@@ -9,619 +9,129 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#f8f9fb;color:#202124;}
-a{text-decoration:none;color:inherit;}
-button{font-family:inherit;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
 
 .editor-top{
-height:74px;
-background:#fff;
-border-bottom:1px solid #edf0f4;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 28px;
-position:sticky;
-top:0;
-z-index:20;
+height:74px;background:#fff;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 28px;position:sticky;top:0;z-index:20
 }
-
-.back-title{
-display:flex;
-align-items:center;
-gap:16px;
-font-size:22px;
-font-weight:800;
-}
-
-.project-title{
-text-align:center;
-}
-
-.project-title h1{
-font-size:24px;
-font-weight:800;
-}
-
-.project-tags{
-display:flex;
-gap:10px;
-justify-content:center;
-margin-top:6px;
-}
-
-.tag{
-background:#f1f3f4;
-color:#5f6368;
-padding:7px 12px;
-border-radius:8px;
-font-size:12px;
-font-weight:800;
-}
-
-.top-actions{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
-.token-pill{
-background:#fff;
-border:1px solid #e5e7eb;
-padding:12px 16px;
-border-radius:12px;
-font-weight:800;
-}
-
-.buy-btn{
-background:#202124;
-color:#fff;
-border:none;
-border-radius:12px;
-padding:13px 20px;
-font-weight:800;
-cursor:pointer;
-}
+.back-title{display:flex;align-items:center;gap:16px;font-size:22px;font-weight:800}
+.project-title{text-align:center}
+.project-title h1{font-size:24px;font-weight:800}
+.project-tags{display:flex;gap:10px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:800}
+.top-actions{display:flex;align-items:center;gap:14px}
+.token-pill{background:#fff;border:1px solid #e5e7eb;padding:12px 16px;border-radius:12px;font-weight:800}
+.buy-btn{background:#202124;color:#fff;border:none;border-radius:12px;padding:13px 20px;font-weight:800}
 
 .editor-wrap{
-display:grid;
-grid-template-columns:1fr 360px;
-gap:28px;
-padding:28px 44px;
-max-width:1600px;
-margin:auto;
+display:grid;grid-template-columns:1fr 360px;gap:28px;
+padding:28px 44px;max-width:1700px;margin:auto
 }
-
-.main-editor{
-display:flex;
-flex-direction:column;
-gap:22px;
-}
+.main-editor{display:flex;flex-direction:column;gap:22px}
 
 .upload-card{
-background:#fff;
-border:1px dashed #cfd4dc;
-border-radius:20px;
-padding:22px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:18px;
-box-shadow:0 6px 18px rgba(0,0,0,.04);
+background:#fff;border:1px dashed #cfd4dc;border-radius:20px;
+padding:22px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 6px 18px rgba(0,0,0,.04)
 }
-
-.upload-left{
-display:flex;
-align-items:center;
-gap:18px;
-}
-
+.upload-left{display:flex;align-items:center;gap:18px}
 .upload-icon{
-width:58px;
-height:58px;
-border-radius:16px;
-background:#f1f3f4;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-color:#202124;
+width:58px;height:58px;border-radius:16px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;font-size:24px
 }
-
-.upload-card h3{
-font-size:19px;
-font-weight:800;
-margin-bottom:5px;
-}
-
-.upload-card p{
-font-size:14px;
-color:#6b7280;
-font-weight:600;
-}
-
-.upload-btn{
-background:#202124;
-color:#fff;
-border:none;
-border-radius:12px;
-padding:14px 22px;
-font-size:15px;
-font-weight:800;
-cursor:pointer;
-transition:.22s;
-}
-
-.upload-btn:hover{
-transform:scale(1.02);
-}
+.upload-card h3{font-size:19px;font-weight:800;margin-bottom:5px}
+.upload-card p{font-size:14px;color:#6b7280;font-weight:600}
+.upload-btn{background:#202124;color:#fff;border:none;border-radius:12px;padding:14px 22px;font-size:15px;font-weight:800}
 
 .video-preview{
-height:520px;
-border-radius:22px;
-overflow:hidden;
+height:520px;border-radius:22px;overflow:hidden;
 background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1800&auto=format&fit=crop') center/cover;
-position:relative;
-box-shadow:0 10px 28px rgba(0,0,0,.12);
+position:relative;box-shadow:0 10px 28px rgba(0,0,0,.12)
 }
-
-.video-preview::after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.08));
-}
-
-.controls{
-position:absolute;
-left:28px;
-right:28px;
-bottom:24px;
-z-index:2;
-color:#fff;
-}
-
-.progress{
-height:6px;
-background:rgba(255,255,255,.38);
-border-radius:20px;
-margin-bottom:16px;
-overflow:visible;
-position:relative;
-}
-
-.progress-fill{
-display:block;
-width:38%;
-height:100%;
-background:#ff5a00;
-border-radius:20px;
-position:relative;
-}
-
-.progress-fill::after{
-content:"";
-position:absolute;
-right:-7px;
-top:50%;
-transform:translateY(-50%);
-width:16px;
-height:16px;
-background:#fff;
-border-radius:50%;
-box-shadow:0 2px 8px rgba(0,0,0,.25);
-}
-
-.control-row{
-display:flex;
-align-items:center;
-justify-content:space-between;
-}
-
-.left-controls,.right-controls{
-display:flex;
-align-items:center;
-gap:18px;
-font-size:20px;
-}
-
-.time{
-font-size:16px;
-font-weight:800;
-}
+.video-preview::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.05))}
+.controls{position:absolute;left:28px;right:28px;bottom:24px;z-index:2;color:#fff}
+.progress{height:6px;background:rgba(255,255,255,.35);border-radius:20px;margin-bottom:16px;overflow:hidden}
+.progress span{display:block;width:38%;height:100%;background:#ff5a00}
+.control-row{display:flex;align-items:center;justify-content:space-between}
+.left-controls,.right-controls{display:flex;align-items:center;gap:18px;font-size:20px}
+.time{font-size:16px;font-weight:800}
 
 .timeline-box{
-background:#fff;
-border:1px solid #e5e7eb;
-border-radius:20px;
-padding:18px;
-box-shadow:0 6px 18px rgba(0,0,0,.04);
+background:#fff;border:1px solid #e5e7eb;border-radius:20px;
+padding:18px;box-shadow:0 6px 18px rgba(0,0,0,.04)
 }
-
-.tool-row{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:18px;
-}
-
-.edit-tools{
-display:flex;
-gap:10px;
-}
-
-.small-btn{
-background:#fff;
-border:1px solid #e5e7eb;
-border-radius:10px;
-padding:10px 14px;
-font-weight:800;
-cursor:pointer;
-}
-
-.small-btn:hover{
-background:#f1f3f4;
-}
-
-.zoom{
-display:flex;
-align-items:center;
-gap:14px;
-}
-
-.zoom-line{
-width:120px;
-height:4px;
-background:#e5e7eb;
-border-radius:20px;
-position:relative;
-}
-
-.zoom-line::after{
-content:"";
-position:absolute;
-left:45%;
-top:-5px;
-width:14px;
-height:14px;
-background:#202124;
-border-radius:50%;
-}
-
-.time-scale{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-color:#666;
-font-size:13px;
-font-weight:800;
-padding:0 58px;
-margin-bottom:12px;
-}
-
-.track{
-display:grid;
-grid-template-columns:42px 1fr;
-gap:14px;
-align-items:center;
-margin-bottom:14px;
-}
-
-.track-icon{
-width:42px;
-height:42px;
-border-radius:12px;
-background:#f1f3f4;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:18px;
-}
-
-.video-strip{
-height:76px;
-border:2px solid #ff5a00;
-border-radius:12px;
-overflow:hidden;
-display:grid;
-grid-template-columns:repeat(5,1fr);
-position:relative;
-}
-
-.video-strip div{
-background-size:cover;
-background-position:center;
-border-right:1px solid rgba(255,255,255,.35);
-}
-
-.video-strip div:last-child{
-border-right:none;
-}
-
-.playhead{
-position:absolute;
-left:23%;
-top:-16px;
-bottom:-110px;
-width:3px;
-background:#ff5a00;
-z-index:5;
-}
-
-.playhead::before{
-content:"";
-position:absolute;
-top:0;
-left:50%;
-transform:translateX(-50%);
-width:18px;
-height:18px;
-border-radius:50%;
-background:#ff5a00;
-}
-
-.audio-strip{
-height:60px;
-border-radius:12px;
-background:#e9fff1;
-border:1px solid #bbf7d0;
-display:flex;
-align-items:center;
-padding:0 12px;
-gap:4px;
-overflow:hidden;
-}
-
-.bar{
-width:4px;
-background:#22c55e;
-border-radius:10px;
-}
+.tool-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.edit-tools,.zoom{display:flex;gap:10px;align-items:center}
+.small-btn{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-weight:800}
+.zoom-line{width:120px;height:4px;background:#e5e7eb;border-radius:20px;position:relative}
+.zoom-line::after{content:"";position:absolute;left:45%;top:-5px;width:14px;height:14px;background:#ff5a00;border-radius:50%}
+.time-scale{display:grid;grid-template-columns:repeat(13,1fr);color:#666;font-size:13px;font-weight:800;padding:0 58px;margin-bottom:12px}
+.track{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:center;margin-bottom:14px}
+.track-icon{width:42px;height:42px;border-radius:12px;background:#f1f3f4;display:flex;align-items:center;justify-content:center;font-size:18px}
+.video-strip{height:76px;border:2px solid #ff5a00;border-radius:12px;overflow:hidden;display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+.video-strip div{background-size:cover;background-position:center}
+.playhead{position:absolute;left:23%;top:-16px;bottom:-110px;width:3px;background:#ff5a00;z-index:5}
+.playhead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:18px;height:18px;border-radius:50%;background:#ff5a00}
+.audio-strip{height:60px;border-radius:12px;background:#e9fff1;border:1px solid #bbf7d0;display:flex;align-items:center;padding:0 12px;gap:4px;overflow:hidden}
+.bar{width:4px;background:#22c55e;border-radius:10px}
 
 .note-box{
-background:#fff;
-border:1px solid #e5e7eb;
-border-radius:18px;
-padding:22px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-box-shadow:0 6px 18px rgba(0,0,0,.04);
+background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:22px;
+display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 18px rgba(0,0,0,.04)
 }
+.note-box p{color:#6b7280;font-weight:600}
+.preview-btn{border:1px solid #e5e7eb;background:#fff;border-radius:12px;padding:13px 20px;font-weight:800}
 
-.note-box p{
-color:#6b7280;
-font-weight:600;
+.side-panel{display:flex;flex-direction:column;gap:18px;position:sticky;top:96px;height:max-content}
+
+.manual-panel,.ai-panel{
+background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+padding:22px;box-shadow:0 8px 24px rgba(0,0,0,.06)
 }
+.manual-panel h2,.ai-head h2{font-size:22px;font-weight:800;margin-bottom:6px}
+.manual-panel p,.ai-head p{color:#6b7280;font-weight:600;font-size:14px;margin-bottom:18px}
 
-.preview-btn{
-border:1px solid #e5e7eb;
-background:#fff;
-border-radius:12px;
-padding:13px 20px;
-font-weight:800;
-cursor:pointer
-  }
-
-.preview-btn:hover{
-  background:#202124;
-  color:#fff;
-  transform:scale(1.01);
-}
-
-.work-panels{
-  display:grid;
-  grid-template-columns:1fr 340px;
-  gap:28px;
-}
-
-.manual-panel{
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:22px;
-  padding:24px;
-  box-shadow:0 8px 24px rgba(0,0,0,.06);
-}
-
-.manual-panel h2{
-  font-size:23px;
-  font-weight:800;
-  margin-bottom:8px;
-}
-
-.manual-panel p{
-  color:#6b7280;
-  font-weight:600;
-  font-size:14px;
-  margin-bottom:20px;
-}
-
-.manual-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
-
+.manual-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .manual-tool{
-  border:1px solid #e5e7eb;
-  background:#fff;
-  border-radius:16px;
-  padding:18px;
-  cursor:pointer;
-  transition:.22s;
+border:1px solid #e5e7eb;background:#fff;border-radius:16px;padding:16px;
+transition:.22s;text-align:left
 }
-
-.manual-tool:hover{
-  transform:scale(1.015);
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
-  background:#f8f9fb;
-}
-
+.manual-tool:hover{transform:scale(1.015);box-shadow:0 8px 20px rgba(0,0,0,.08);background:#f8f9fb}
 .manual-tool i{
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  background:#f1f3f4;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  margin-bottom:12px;
+width:42px;height:42px;border-radius:12px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px
 }
+.manual-tool h3{font-size:15px;font-weight:800;margin-bottom:5px}
+.manual-tool span{color:#6b7280;font-size:12px;font-weight:600}
 
-.manual-tool h3{
-  font-size:16px;
-  font-weight:800;
-  margin-bottom:6px;
-}
-
-.manual-tool span{
-  color:#6b7280;
-  font-size:13px;
-  font-weight:600;
-}
-
-.ai-panel{
-  background:#fff;
-  border:1px solid #e5e7eb;
-  border-radius:22px;
-  padding:24px;
-  height:max-content;
-  position:sticky;
-  top:96px;
-  box-shadow:0 8px 24px rgba(0,0,0,.06);
-}
-
-.ai-head{
-  background:#fff7f2;
-  border:1px solid #ffd4bd;
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:18px;
-}
-
-.ai-head h2{
-  font-size:23px;
-  font-weight:800;
-  margin-bottom:8px;
-}
-
-.ai-head h2 span{
-  color:#ff5a00;
-}
-
-.ai-head p{
-  color:#6b7280;
-  font-weight:700;
-  font-size:14px;
-}
-
-.ai-tool{
-  display:grid;
-  grid-template-columns:48px 1fr 54px;
-  gap:14px;
-  align-items:center;
-  padding:18px 0;
-  border-top:1px solid #edf0f4;
-}
-
+.ai-panel{border:1px solid #ffd4bd}
+.ai-head{background:#fff7f2;border:1px solid #ffd4bd;border-radius:16px;padding:16px;margin-bottom:12px}
+.ai-head h2 span{color:#ff5a00}
+.ai-tool{display:grid;grid-template-columns:46px 1fr 52px;gap:12px;align-items:center;padding:16px 0;border-top:1px solid #edf0f4}
 .ai-icon{
-  width:48px;
-  height:48px;
-  border-radius:12px;
-  background:#f1f3f4;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  color:#202124;
+width:46px;height:46px;border-radius:12px;background:#fff0e8;
+display:flex;align-items:center;justify-content:center;font-size:19px;color:#ff5a00
 }
-
-.ai-tool h3{
-  font-size:16px;
-  font-weight:800;
-  margin-bottom:5px;
-}
-
-.ai-tool p{
-  font-size:13px;
-  color:#555;
-  line-height:1.35;
-}
-
-.toggle{
-  width:52px;
-  height:28px;
-  border-radius:999px;
-  background:#d1d5db;
-  position:relative;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.toggle::after{
-  content:"";
-  position:absolute;
-  width:22px;
-  height:22px;
-  background:#fff;
-  border-radius:50%;
-  top:3px;
-  left:3px;
-  transition:.2s;
-}
-
-.ai-tool.active .toggle{
-  background:#16a34a;
-}
-
-.ai-tool.active .toggle::after{
-  left:27px;
-}
-
-.cost-box{
-  background:#f8f9fb;
-  border:1px solid #e5e7eb;
-  border-radius:14px;
-  padding:16px;
-  margin-top:18px;
-  font-weight:800;
-  display:flex;
-  justify-content:space-between;
-}
-
-.cost-box span:last-child{
-  color:#16a34a;
-}
-
-.generate-btn{
-  width:100%;
-  margin-top:18px;
-  border:none;
-  background:#202124;
-  color:#fff;
-  border-radius:14px;
-  padding:16px;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
-  transition:.22s;
-}
-
-.generate-btn:hover{
-  transform:scale(1.015);
-}
+.ai-tool h3{font-size:15px;font-weight:800;margin-bottom:4px}
+.ai-tool p{font-size:12px;color:#555;line-height:1.35}
+.toggle{width:50px;height:28px;border-radius:999px;background:#d1d5db;position:relative;transition:.2s}
+.toggle::after{content:"";position:absolute;width:22px;height:22px;background:#fff;border-radius:50%;top:3px;left:3px;transition:.2s}
+.ai-tool.active .toggle{background:#ff5a00}
+.ai-tool.active .toggle::after{left:25px}
+.cost-box{background:#f8f9fb;border:1px solid #e5e7eb;border-radius:14px;padding:16px;margin-top:14px;font-weight:800;display:flex;justify-content:space-between}
+.cost-box span:last-child{color:#ff5a00}
+.generate-btn{width:100%;margin-top:16px;border:none;background:#ff5a00;color:#fff;border-radius:14px;padding:16px;font-size:16px;font-weight:800}
+.generate-btn:hover{transform:scale(1.015)}
 
 @media(max-width:1200px){
-  .editor-wrap{grid-template-columns:1fr;}
-  .work-panels{grid-template-columns:1fr;}
-  .ai-panel{position:static;}
-  .video-preview{height:420px;}
-  .manual-grid{grid-template-columns:repeat(2,1fr);}
-}
-
-@media(max-width:760px){
-  .manual-grid{grid-template-columns:1fr;}
+.editor-wrap{grid-template-columns:1fr}
+.side-panel{position:static}
+.video-preview{height:420px}
 }
 </style>
 </head>
@@ -652,126 +162,84 @@ cursor:pointer
 
 <main class="main-editor">
 
-  <div class="upload-card">
-    <div class="upload-left">
-      <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-      <div>
-        <h3>Upload Video</h3>
-        <p>Select a video file to edit using JioVibe AI tools.</p>
-      </div>
-    </div>
-    <button class="upload-btn" type="button">Upload Video</button>
-  </div>
-
-  <div class="video-preview">
-    <div class="controls">
-      <div class="progress"><span></span></div>
-      <div class="control-row">
-        <div class="left-controls">
-          <i class="fa-solid fa-play"></i>
-          <i class="fa-solid fa-volume-high"></i>
-          <span class="time">02:15 / 12:45</span>
-        </div>
-        <div class="right-controls">
-          <i class="fa-regular fa-closed-captioning"></i>
-          <i class="fa-solid fa-gear"></i>
-          <i class="fa-solid fa-expand"></i>
-        </div>
-      </div>
+<div class="upload-card">
+  <div class="upload-left">
+    <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+    <div>
+      <h3>Upload Video</h3>
+      <p>Select a video file to edit using JioVibe AI tools.</p>
     </div>
   </div>
+  <button class="upload-btn">Upload Video</button>
+</div>
 
-  <div class="timeline-box">
-    <div class="tool-row">
-      <div class="edit-tools">
-        <button class="small-btn"><i class="fa-solid fa-rotate-left"></i> Undo</button>
-        <button class="small-btn"><i class="fa-solid fa-rotate-right"></i> Redo</button>
-        <button class="small-btn"><i class="fa-solid fa-scissors"></i> Split</button>
-        <button class="small-btn"><i class="fa-regular fa-trash-can"></i> Delete</button>
+<div class="video-preview">
+  <div class="controls">
+    <div class="progress"><span></span></div>
+    <div class="control-row">
+      <div class="left-controls">
+        <i class="fa-solid fa-play"></i>
+        <i class="fa-solid fa-volume-high"></i>
+        <span class="time">02:15 / 12:45</span>
       </div>
-
-      <div class="zoom">
-        <button class="small-btn">−</button>
-        <div class="zoom-line"></div>
-        <button class="small-btn">+</button>
-        <button class="small-btn"><i class="fa-solid fa-expand"></i></button>
-      </div>
-    </div>
-
-    <div class="time-scale">
-      <span>00:00</span><span>01:00</span><span>02:00</span><span>03:00</span><span>04:00</span><span>05:00</span><span>06:00</span>
-      <span>07:00</span><span>08:00</span><span>09:00</span><span>10:00</span><span>11:00</span><span>12:00</span>
-    </div>
-
-    <div class="track">
-      <div class="track-icon"><i class="fa-regular fa-circle-play"></i></div>
-      <div class="video-strip">
-        <div style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop')"></div>
-        <div style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop')"></div>
-        <div style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop')"></div>
-        <div style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop')"></div>
-        <div style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop')"></div>
-        <div class="playhead"></div>
+      <div class="right-controls">
+        <i class="fa-regular fa-closed-captioning"></i>
+        <i class="fa-solid fa-gear"></i>
+        <i class="fa-solid fa-expand"></i>
       </div>
     </div>
+  </div>
+</div>
 
-    <div class="track">
-      <div class="track-icon"><i class="fa-solid fa-music"></i></div>
-      <div class="audio-strip" id="audioBars"></div>
+<div class="timeline-box">
+  <div class="tool-row">
+    <div class="edit-tools">
+      <button class="small-btn"><i class="fa-solid fa-rotate-left"></i> Undo</button>
+      <button class="small-btn"><i class="fa-solid fa-rotate-right"></i> Redo</button>
+      <button class="small-btn"><i class="fa-solid fa-scissors"></i> Split</button>
+      <button class="small-btn"><i class="fa-regular fa-trash-can"></i> Delete</button>
+    </div>
+    <div class="zoom">
+      <button class="small-btn">−</button>
+      <div class="zoom-line"></div>
+      <button class="small-btn">+</button>
+      <button class="small-btn"><i class="fa-solid fa-expand"></i></button>
     </div>
   </div>
 
-  <div class="note-box">
-    <p><i class="fa-regular fa-lightbulb"></i> AI will analyze your video and apply selected edits. You can preview before generating the final video.</p>
-    <button class="preview-btn"><i class="fa-regular fa-eye"></i> Preview Changes</button>
+  <div class="time-scale">
+    <span>00:00</span><span>01:00</span><span>02:00</span><span>03:00</span><span>04:00</span><span>05:00</span><span>06:00</span>
+    <span>07:00</span><span>08:00</span><span>09:00</span><span>10:00</span><span>11:00</span><span>12:00</span>
   </div>
 
-  <div class="manual-panel">
-    <h2>Manual Editing Tools</h2>
-    <p>Free tools for basic editing. These do not use tokens.</p>
-
-    <div class="manual-grid">
-      <button class="manual-tool" type="button">
-        <i class="fa-solid fa-scissors"></i>
-        <h3>Trim</h3>
-        <span>Cut start or end points.</span>
-      </button>
-
-      <button class="manual-tool" type="button">
-        <i class="fa-solid fa-wand-magic-sparkles"></i>
-        <h3>Effects</h3>
-        <span>Add visual effects manually.</span>
-      </button>
-
-      <button class="manual-tool" type="button">
-        <i class="fa-regular fa-object-group"></i>
-        <h3>Transitions</h3>
-        <span>Add scene transitions.</span>
-      </button>
-
-      <button class="manual-tool" type="button">
-        <i class="fa-solid fa-font"></i>
-        <h3>Text</h3>
-        <span>Add title or captions.</span>
-      </button>
-
-      <button class="manual-tool" type="button">
-        <i class="fa-solid fa-music"></i>
-        <h3>Music</h3>
-        <span>Add background music.</span>
-      </button>
-
-      <button class="manual-tool" type="button">
-        <i class="fa-solid fa-crop-simple"></i>
-        <h3>Crop</h3>
-        <span>Resize and crop video.</span>
-      </button>
+  <div class="track">
+    <div class="track-icon"><i class="fa-regular fa-circle-play"></i></div>
+    <div class="video-strip">
+      <div style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop')"></div>
+      <div class="playhead"></div>
     </div>
   </div>
+
+  <div class="track">
+    <div class="track-icon"><i class="fa-solid fa-music"></i></div>
+    <div class="audio-strip" id="audioBars"></div>
+  </div>
+</div>
+
+<div class="note-box">
+  <p><i class="fa-regular fa-lightbulb"></i> AI will analyze your video and apply selected edits. You can preview before generating the final video.</p>
+  <button class="preview-btn"><i class="fa-regular fa-eye"></i> Preview Changes</button>
+</div>
 
 </main>
 
-<aside class="ai-panel">
+<aside class="side-panel">
+
+<div class="ai-panel">
   <div class="ai-head">
     <h2><span>✨</span> AI Editing</h2>
     <p>Select tools. Token cost will update automatically.</p>
@@ -779,46 +247,25 @@ cursor:pointer
 
   <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
     <div class="ai-icon"><i class="fa-solid fa-scissors"></i></div>
-    <div>
-      <h3>Auto Cut</h3>
-      <p>Remove pauses, long gaps and unnecessary parts.</p>
-    </div>
+    <div><h3>Auto Cut</h3><p>Remove pauses and long gaps.</p></div>
     <div class="toggle"></div>
   </div>
 
   <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
     <div class="ai-icon"><i class="fa-solid fa-volume-xmark"></i></div>
-    <div>
-      <h3>Remove Silence</h3>
-      <p>Detects and removes silent parts.</p>
-    </div>
+    <div><h3>Remove Silence</h3><p>Remove silent parts.</p></div>
     <div class="toggle"></div>
   </div>
 
   <div class="ai-tool" data-cost="4" onclick="toggleTool(this)">
     <div class="ai-icon"><i class="fa-regular fa-object-group"></i></div>
-    <div>
-      <h3>Add Transitions</h3>
-      <p>Add smooth transitions between scenes.</p>
-    </div>
+    <div><h3>Add Transitions</h3><p>Auto scene transitions.</p></div>
     <div class="toggle"></div>
   </div>
 
   <div class="ai-tool" data-cost="3" onclick="toggleTool(this)">
     <div class="ai-icon"><i class="fa-solid fa-wave-square"></i></div>
-    <div>
-      <h3>Enhance Audio</h3>
-      <p>Improve voice clarity and reduce noise.</p>
-    </div>
-    <div class="toggle"></div>
-  </div>
-
-  <div class="ai-tool" data-cost="3" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-solid fa-palette"></i></div>
-    <div>
-      <h3>Color Enhance</h3>
-      <p>Adjust color, light and visual balance.</p>
-    </div>
+    <div><h3>Enhance Audio</h3><p>Improve audio clarity.</p></div>
     <div class="toggle"></div>
   </div>
 
@@ -828,13 +275,28 @@ cursor:pointer
   </div>
 
   <button class="generate-btn">Generate Video</button>
+</div>
+
+<div class="manual-panel">
+  <h2>Manual Tools</h2>
+  <p>Free editing tools. No tokens required.</p>
+
+  <div class="manual-grid">
+    <button class="manual-tool"><i class="fa-solid fa-scissors"></i><h3>Trim</h3><span>Cut video clips.</span></button>
+    <button class="manual-tool"><i class="fa-solid fa-wand-magic-sparkles"></i><h3>Effects</h3><span>Add effects.</span></button>
+    <button class="manual-tool"><i class="fa-regular fa-object-group"></i><h3>Transitions</h3><span>Scene transitions.</span></button>
+    <button class="manual-tool"><i class="fa-solid fa-font"></i><h3>Text</h3><span>Add captions.</span></button>
+    <button class="manual-tool"><i class="fa-solid fa-music"></i><h3>Music</h3><span>Add music.</span></button>
+    <button class="manual-tool"><i class="fa-solid fa-crop-simple"></i><h3>Crop</h3><span>Resize video.</span></button>
+  </div>
+</div>
+
 </aside>
 
 </div>
 
 <script>
 const audioBars = document.getElementById("audioBars");
-
 for(let i=0;i<130;i++){
   const bar=document.createElement("div");
   bar.className="bar";
