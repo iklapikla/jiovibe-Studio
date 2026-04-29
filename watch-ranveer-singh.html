@@ -15,48 +15,101 @@ a{text-decoration:none;color:inherit}
 button,input{font-family:inherit}
 button{cursor:pointer;border:none;background:none}
 
-.page{
-padding:28px;
+.app{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{
+width:250px;
+padding:32px 18px;
+position:fixed;
+height:100%;
+background:#fff;
+border-right:1px solid #edf0f4;
+z-index:20
+}
+.logo{
+display:flex;
+align-items:center;
+gap:4px;
+margin-bottom:45px;
+padding-left:8px
+}
+.logo-circle{
+width:54px;height:54px;background:#ff5a00;color:#fff;
+border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+font-weight:800;font-size:25px
+}
+.logo-text{
+font-size:32px;
+font-weight:800;
+letter-spacing:-1.2px;
+color:#2b070b
+}
+.menu{display:flex;flex-direction:column;gap:12px}
+.menu-item{
+display:flex;
+align-items:center;
+gap:18px;
+padding:17px 22px;
+border-radius:14px;
+font-weight:600;
+font-size:16px;
+color:#383838;
+transition:.25s
+}
+.menu-item i{width:22px;font-size:22px;text-align:center}
+.menu-item:hover{
+background:#fff0e8;
+color:#ff5a00
+}
+.menu-item.active{
+background:#ff5a00;
+color:#fff
+}
+
+/* MAIN */
+.main{
+margin-left:250px;
+width:calc(100% - 250px);
+padding:28px
+}
+
+.watch-layout{
 display:grid;
 grid-template-columns:1fr 380px;
 gap:24px;
+align-items:start
 }
 
-.left{
-min-width:0;
-}
-
+/* PLAYER */
 .player-card{
 background:#fff;
 border:1px solid #e8ebf0;
 border-radius:18px;
 overflow:hidden;
-box-shadow:0 6px 18px rgba(0,0,0,.05);
+box-shadow:0 6px 18px rgba(0,0,0,.05)
 }
-
 .player{
 position:relative;
 width:100%;
 aspect-ratio:16/9;
 background:#111;
-overflow:hidden;
+overflow:hidden
 }
-
 .player img{
 width:100%;
 height:100%;
 object-fit:cover;
-display:block;
+display:block
 }
-
 .player::after{
 content:"";
 position:absolute;
 inset:0;
 background:linear-gradient(to top,rgba(0,0,0,.68),rgba(0,0,0,.04),rgba(0,0,0,.18));
-pointer-events:none;
+pointer-events:none
 }
-
 .live-top{
 position:absolute;
 z-index:3;
@@ -64,9 +117,8 @@ top:18px;
 left:18px;
 display:flex;
 gap:10px;
-align-items:center;
+align-items:center
 }
-
 .live-badge{
 background:#ff4b00;
 color:#fff;
@@ -76,9 +128,8 @@ padding:9px 12px;
 border-radius:8px;
 display:flex;
 align-items:center;
-gap:6px;
+gap:6px
 }
-
 .view-badge{
 background:rgba(0,0,0,.55);
 color:#fff;
@@ -88,9 +139,8 @@ padding:9px 12px;
 border-radius:8px;
 display:flex;
 align-items:center;
-gap:6px;
+gap:6px
 }
-
 .player-icons{
 position:absolute;
 z-index:3;
@@ -99,8 +149,9 @@ top:18px;
 display:flex;
 gap:16px;
 font-size:22px;
-color:#fff;
+color:#fff
 }
+.player-icons button{color:#fff}
 
 .controls{
 position:absolute;
@@ -108,69 +159,88 @@ z-index:3;
 left:22px;
 right:22px;
 bottom:18px;
-color:#fff;
+color:#fff
 }
-
 .progress{
 height:5px;
 border-radius:999px;
 background:rgba(255,255,255,.45);
 overflow:hidden;
-margin-bottom:13px;
+margin-bottom:13px
 }
-
 .progress span{
 display:block;
 height:100%;
 width:58%;
-background:#ff5a00;
+background:#ff5a00
 }
-
 .control-row{
 display:flex;
 align-items:center;
-justify-content:space-between;
+justify-content:space-between
 }
-
 .control-left,.control-right{
 display:flex;
 align-items:center;
 gap:16px;
-font-size:20px;
+font-size:20px
 }
-
+.control-left button,.control-right button{color:#fff}
 .live-dot{
 width:6px;
 height:6px;
 border-radius:50%;
 background:#ff5a00;
 display:inline-block;
-margin-right:5px;
+margin-right:5px
+}
+.settings-menu{
+position:absolute;
+right:50px;
+bottom:58px;
+background:#fff;
+color:#202124;
+width:190px;
+border-radius:12px;
+box-shadow:0 14px 35px rgba(0,0,0,.22);
+display:none;
+overflow:hidden;
+z-index:5
+}
+.settings-menu.show{display:block}
+.settings-menu button{
+width:100%;
+padding:13px 14px;
+text-align:left;
+font-weight:800;
+display:flex;
+align-items:center;
+gap:10px
+}
+.settings-menu button:hover{
+background:#f1f3f4
 }
 
+/* INFO */
 .video-info-card{
-padding:20px 22px 22px;
+padding:20px 22px 22px
 }
-
 .video-title{
 font-size:24px;
 font-weight:900;
-margin-bottom:18px;
+margin-bottom:18px
 }
-
 .channel-row{
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:20px;
+gap:20px
 }
-
 .channel-left{
 display:flex;
 align-items:center;
-gap:14px;
+gap:14px
 }
-
 .profile-wrap{
 position:relative;
 width:58px;
@@ -178,17 +248,16 @@ height:58px;
 border-radius:50%;
 padding:3px;
 background:#20c45a;
+display:block
 }
-
 .profile-wrap img{
 width:100%;
 height:100%;
 border-radius:50%;
 object-fit:cover;
 border:3px solid #fff;
-display:block;
+display:block
 }
-
 .profile-wrap::after{
 content:"";
 position:absolute;
@@ -198,29 +267,25 @@ width:15px;
 height:15px;
 background:#20c45a;
 border:3px solid #fff;
-border-radius:50%;
+border-radius:50%
 }
-
 .channel-name{
 font-size:18px;
 font-weight:900;
 display:flex;
 align-items:center;
-gap:6px;
+gap:6px
 }
-
 .channel-name i{
 color:#ff5a00;
-font-size:14px;
+font-size:14px
 }
-
 .subs{
 font-size:13px;
 font-weight:700;
 color:#6b7280;
-margin-top:4px;
+margin-top:4px
 }
-
 .subscribe{
 background:#ff5a00;
 color:#fff;
@@ -228,13 +293,9 @@ padding:14px 26px;
 border-radius:14px;
 font-size:15px;
 font-weight:900;
-transition:.2s;
+transition:.2s
 }
-
-.subscribe.subscribed{
-background:#202124;
-}
-
+.subscribe.subscribed{background:#202124}
 .bell-btn{
 width:52px;
 height:52px;
@@ -242,15 +303,13 @@ border-radius:50%;
 border:1px solid #e8ebf0;
 background:#fff;
 font-size:20px;
-transition:.2s;
+transition:.2s
 }
-
 .action-buttons{
 display:flex;
 align-items:center;
-gap:12px;
+gap:12px
 }
-
 .action-btn{
 height:48px;
 border:1px solid #e8ebf0;
@@ -262,92 +321,12 @@ align-items:center;
 gap:9px;
 font-size:15px;
 font-weight:900;
-transition:.2s;
+transition:.2s
 }
-
 .action-btn:hover,.bell-btn:hover{
 background:#fff0e8;
 color:#ff5a00;
-border-color:#ff5a00;
-}
-
-.info-grid{
-display:grid;
-grid-template-columns:1.5fr 1fr;
-gap:18px;
-margin-top:18px;
-}
-
-.detail-card{
-background:#fff;
-border:1px solid #e8ebf0;
-border-radius:18px;
-padding:20px;
-box-shadow:0 4px 14px rgba(0,0,0,.04);
-}
-
-.detail-card h3{
-font-size:16px;
-font-weight:900;
-margin-bottom:10px;
-}
-
-.detail-card p{
-font-size:14px;
-line-height:1.6;
-color:#5f6368;
-font-weight:600;
-}
-
-.tags{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:16px;
-}
-
-.tag{
-background:#f1f3f4;
-border-radius:10px;
-padding:10px 12px;
-font-size:13px;
-font-weight:800;
-color:#5f6368;
-}
-
-.small-info{
-display:flex;
-flex-direction:column;
-gap:14px;
-}
-
-.small-box{
-background:#fff;
-border:1px solid #e8ebf0;
-border-radius:18px;
-padding:18px;
-display:flex;
-align-items:center;
-gap:14px;
-box-shadow:0 4px 14px rgba(0,0,0,.04);
-}
-
-.small-box i{
-font-size:24px;
-color:#ff5a00;
-}
-
-.small-box span{
-font-size:13px;
-font-weight:700;
-color:#6b7280;
-}
-
-.small-box strong{
-display:block;
-font-size:16px;
-font-weight:900;
-margin-top:4px;
+border-color:#ff5a00
 }
 
 /* CHAT */
@@ -356,38 +335,34 @@ background:#fff;
 border:1px solid #e8ebf0;
 border-radius:18px;
 overflow:hidden;
-height:calc(100vh - 56px);
+height:560px;
 position:sticky;
 top:28px;
 box-shadow:0 6px 18px rgba(0,0,0,.05);
 display:flex;
-flex-direction:column;
+flex-direction:column
 }
-
 .chat-head{
 height:58px;
 padding:0 18px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-border-bottom:1px solid #edf0f4;
+border-bottom:1px solid #edf0f4
 }
-
 .chat-head h3{
 font-size:16px;
 font-weight:900;
 display:flex;
 align-items:center;
-gap:8px;
+gap:8px
 }
-
 .super-row{
 padding:14px 18px;
 display:flex;
 gap:10px;
-border-bottom:1px solid #edf0f4;
+border-bottom:1px solid #edf0f4
 }
-
 .super-amount{
 background:#ff5a00;
 color:#fff;
@@ -395,117 +370,72 @@ padding:10px 14px;
 border-radius:999px;
 font-size:13px;
 font-weight:900;
-transition:.2s;
+transition:.2s
 }
-
-.super-amount:hover{
-background:#202124;
-}
-
+.super-amount:hover{background:#202124}
 .chat-list{
 flex:1;
 overflow:auto;
 padding:16px 18px;
 display:flex;
 flex-direction:column;
-gap:14px;
+gap:14px
 }
-
 .chat-msg{
 display:grid;
 grid-template-columns:36px 1fr 38px;
 gap:10px;
 align-items:flex-start;
-animation:msgIn .25s ease;
+animation:msgIn .25s ease
 }
-
 @keyframes msgIn{
 from{opacity:0;transform:translateY(8px)}
 to{opacity:1;transform:translateY(0)}
 }
-
 .chat-msg img{
 width:34px;
 height:34px;
 border-radius:50%;
-object-fit:cover;
+object-fit:cover
 }
-
 .chat-name{
 font-size:13px;
 font-weight:900;
-margin-bottom:3px;
+margin-bottom:3px
 }
-
 .chat-text{
 font-size:13px;
 font-weight:600;
 color:#4b5563;
-line-height:1.35;
+line-height:1.35
 }
-
 .chat-time{
 font-size:10px;
 color:#8a9099;
-font-weight:700;
+font-weight:700
 }
-
 .super-chat{
 background:#fff7ed;
 border:1px solid #fed7aa;
 border-radius:14px;
-padding:10px;
+padding:10px
 }
-
-.super-chat .chat-name{
-color:#ff5a00;
-}
-
-.chat-note{
-margin:10px 18px 14px;
-background:#f8f9fb;
-border-radius:14px;
-padding:14px;
-display:flex;
-gap:12px;
-align-items:center;
-}
-
-.chat-note i{
-color:#ff9f00;
-font-size:24px;
-}
-
-.chat-note strong{
-font-size:13px;
-font-weight:900;
-}
-
-.chat-note p{
-font-size:12px;
-color:#6b7280;
-font-weight:600;
-margin-top:2px;
-line-height:1.35;
-}
-
+.super-chat .chat-name{color:#ff5a00}
 .chat-input{
 border-top:1px solid #edf0f4;
 padding:14px 18px;
 display:grid;
 grid-template-columns:1fr 44px 44px 48px;
-gap:10px;
+gap:10px
 }
-
 .chat-input input{
 border:1px solid #e8ebf0;
 border-radius:999px;
 padding:0 16px;
 font-size:13px;
 font-weight:700;
-outline:none;
+outline:none
 }
-
 .round-btn{
 width:44px;
 height:44px;
@@ -513,9 +443,8 @@ border-radius:50%;
 border:1px solid #e8ebf0;
 background:#fff;
 font-size:18px;
-transition:.2s;
+transition:.2s
 }
-
 .send-btn{
 width:48px;
 height:44px;
@@ -523,94 +452,143 @@ border-radius:50%;
 background:#ff5a00;
 color:#fff;
 font-size:18px;
-transition:.2s;
+transition:.2s
 }
-
 .round-btn:hover{
 background:#fff0e8;
 color:#ff5a00;
-border-color:#ff5a00;
+border-color:#ff5a00
+}
+.send-btn:hover{background:#202124}
+
+/* BELOW */
+.below-area{
+margin-top:18px;
+display:grid;
+grid-template-columns:1fr 380px;
+gap:24px
+}
+.detail-card{
+background:#fff;
+border:1px solid #e8ebf0;
+border-radius:18px;
+padding:20px;
+box-shadow:0 4px 14px rgba(0,0,0,.04)
+}
+.detail-card h3{
+font-size:16px;
+font-weight:900;
+margin-bottom:10px
+}
+.detail-card p{
+font-size:14px;
+line-height:1.6;
+color:#5f6368;
+font-weight:600
+}
+.tags{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:16px
+}
+.tag{
+background:#f1f3f4;
+border-radius:10px;
+padding:10px 12px;
+font-size:13px;
+font-weight:800;
+color:#5f6368
+}
+.small-info{
+display:flex;
+flex-direction:column;
+gap:14px
+}
+.small-box{
+background:#fff;
+border:1px solid #e8ebf0;
+border-radius:18px;
+padding:18px;
+display:flex;
+align-items:center;
+gap:14px;
+box-shadow:0 4px 14px rgba(0,0,0,.04)
+}
+.small-box i{
+font-size:24px;
+color:#ff5a00
+}
+.small-box span{
+font-size:13px;
+font-weight:700;
+color:#6b7280
+}
+.small-box strong{
+display:block;
+font-size:16px;
+font-weight:900;
+margin-top:4px
 }
 
-.send-btn:hover{
-background:#202124;
-}
-
-/* LIVE NOW */
+/* LIVE NOW FULL WIDTH */
 .live-section{
-margin-top:44px;
+margin-top:34px
 }
-
 .section-head{
 display:flex;
 align-items:center;
 justify-content:space-between;
-margin-bottom:18px;
+margin-bottom:18px
 }
-
 .section-head h2{
 font-size:24px;
-font-weight:900;
+font-weight:900
 }
-
 .section-head a{
 color:#ff5a00;
 font-size:14px;
-font-weight:900;
+font-weight:900
 }
-
 .live-grid{
 display:grid;
 grid-template-columns:repeat(5,1fr);
-gap:18px;
+gap:18px
 }
-
 .live-card{
 background:#fff;
 border:1px solid #e8ebf0;
 border-radius:18px;
 overflow:hidden;
 box-shadow:0 4px 14px rgba(0,0,0,.04);
-transition:.2s;
+transition:.2s
 }
-
 .live-card.extra-live{display:none}
 .live-card.extra-live.show{display:block}
-
 .live-card:hover{
 box-shadow:0 10px 28px rgba(0,0,0,.08);
-border-color:#d6d9df;
+border-color:#d6d9df
 }
-
 .live-thumb{
 position:relative;
 aspect-ratio:16/9;
 overflow:hidden;
-background:#111;
+background:#111
 }
-
 .live-thumb img{
 width:100%;
 height:100%;
 object-fit:cover;
-display:block;
+display:block
 }
-
 .live-thumb .gif-hover{
 position:absolute;
 inset:0;
 opacity:0;
-transition:.2s;
+transition:.2s
 }
-
-.live-card:hover .gif-hover{
-opacity:1;
-}
-
-.live-card:hover .static-live{
-opacity:0;
-}
-
+.live-card:hover .gif-hover{opacity:1}
+.live-card:hover .static-live{opacity:0}
 .live-chip{
 position:absolute;
 left:8px;
@@ -621,9 +599,8 @@ font-size:12px;
 font-weight:900;
 padding:7px 9px;
 border-radius:7px;
-z-index:3;
+z-index:3
 }
-
 .viewer-chip{
 position:absolute;
 right:8px;
@@ -634,25 +611,23 @@ font-size:12px;
 font-weight:900;
 padding:7px 9px;
 border-radius:7px;
-z-index:3;
+z-index:3
 }
-
 .live-info{
-padding:12px;
+padding:12px
 }
-
 .live-info h3{
 font-size:15px;
 font-weight:900;
-margin-bottom:5px;
+margin-bottom:5px
 }
-
 .live-info p{
 font-size:13px;
 font-weight:600;
-color:#6b7280;
+color:#6b7280
 }
 
+/* MODAL */
 .modal{
 position:fixed;
 inset:0;
@@ -661,56 +636,45 @@ z-index:99;
 display:none;
 align-items:center;
 justify-content:center;
-padding:24px;
+padding:24px
 }
-
 .modal.show{display:flex}
-
 .modal-box{
 width:430px;
 background:#fff;
 border-radius:20px;
 padding:22px;
-box-shadow:0 20px 60px rgba(0,0,0,.25);
+box-shadow:0 20px 60px rgba(0,0,0,.25)
 }
-
 .modal-head{
 display:flex;
 align-items:center;
 justify-content:space-between;
-margin-bottom:16px;
+margin-bottom:16px
 }
-
 .modal-head h3{
 font-size:20px;
-font-weight:900;
+font-weight:900
 }
-
-.modal-close{
-font-size:22px;
-}
-
+.modal-close{font-size:22px}
 .amount-grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:10px;
-margin-bottom:14px;
+margin-bottom:14px
 }
-
 .amount-select{
 border:1px solid #e8ebf0;
 background:#fff;
 border-radius:12px;
 padding:12px;
-font-weight:900;
+font-weight:900
 }
-
 .amount-select.active{
 background:#ff5a00;
 color:#fff;
-border-color:#ff5a00;
+border-color:#ff5a00
 }
-
 .modal-box input{
 width:100%;
 height:48px;
@@ -719,18 +683,16 @@ border-radius:12px;
 padding:0 14px;
 font-weight:700;
 outline:none;
-margin-bottom:12px;
+margin-bottom:12px
 }
-
 .modal-send{
 width:100%;
 height:48px;
 border-radius:12px;
 background:#202124;
 color:#fff;
-font-weight:900;
+font-weight:900
 }
-
 .toast{
 position:fixed;
 top:24px;
@@ -744,23 +706,22 @@ font-weight:900;
 z-index:120;
 opacity:0;
 pointer-events:none;
-transition:.25s;
+transition:.25s
 }
-
 .toast.show{
 opacity:1;
-transform:translateX(-50%) translateY(0);
+transform:translateX(-50%) translateY(0)
 }
 
 @media(max-width:1300px){
-.page{grid-template-columns:1fr}
+.watch-layout,.below-area{grid-template-columns:1fr}
 .chat-card{position:static;height:620px}
 .live-grid{grid-template-columns:repeat(3,1fr)}
 }
-
 @media(max-width:900px){
+.main{margin-left:0;width:100%;padding:18px}
+.sidebar{display:none}
 .live-grid{grid-template-columns:repeat(2,1fr)}
-.info-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -769,9 +730,29 @@ transform:translateX(-50%) translateY(0);
 
 <div class="toast" id="toast">Action done</div>
 
-<div class="page">
+<div class="app">
 
-<main class="left">
+<aside class="sidebar">
+<a href="index.html" class="logo">
+<div class="logo-circle">Jio</div>
+<div class="logo-text">Vibe</div>
+</a>
+
+<nav class="menu">
+<a href="home.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+<a href="explore.html" class="menu-item"><i class="fa-regular fa-compass"></i> Explore</a>
+<a href="live.html" class="menu-item active"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
+<a href="video.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Video</a>
+<a href="shorts.html" class="menu-item"><i class="fa-solid fa-bolt"></i> Shorts</a>
+<a href="subscriptions.html" class="menu-item"><i class="fa-solid fa-list"></i> Subscriptions</a>
+<a href="history.html" class="menu-item"><i class="fa-solid fa-clock"></i> History</a>
+<a href="saved.html" class="menu-item"><i class="fa-solid fa-bookmark"></i> Saved Video</a>
+</nav>
+</aside>
+
+<main class="main">
+
+<div class="watch-layout">
 
 <section class="player-card">
 
@@ -784,25 +765,35 @@ transform:translateX(-50%) translateY(0);
 </div>
 
 <div class="player-icons">
-<button onclick="dummyAction('Shared')"><i class="fa-solid fa-share"></i></button>
+<button onclick="dummyAction('Share opened')"><i class="fa-solid fa-share"></i></button>
 <button onclick="dummyAction('More options')"><i class="fa-solid fa-ellipsis-vertical"></i></button>
 </div>
 
 <div class="controls">
 <div class="progress"><span></span></div>
+
 <div class="control-row">
 <div class="control-left">
 <button onclick="togglePlayIcon(this)"><i class="fa-solid fa-pause"></i></button>
 <button onclick="dummyAction('Volume changed')"><i class="fa-solid fa-volume-high"></i></button>
 <strong><span class="live-dot"></span>LIVE</strong>
 </div>
+
 <div class="control-right">
-<button onclick="dummyAction('Settings opened')"><i class="fa-solid fa-gear"></i></button>
+<button onclick="toggleSettings(event)"><i class="fa-solid fa-gear"></i></button>
 <button onclick="dummyAction('Captions turned on')"><i class="fa-regular fa-closed-captioning"></i></button>
 <button onclick="dummyAction('Full screen mode')"><i class="fa-solid fa-expand"></i></button>
 </div>
 </div>
 </div>
+
+<div class="settings-menu" id="settingsMenu">
+<button onclick="dummyAction('Quality set to Auto')"><i class="fa-solid fa-sliders"></i> Quality: Auto</button>
+<button onclick="dummyAction('Speed set to Normal')"><i class="fa-solid fa-gauge"></i> Speed: Normal</button>
+<button onclick="dummyAction('Captions enabled')"><i class="fa-regular fa-closed-captioning"></i> Captions</button>
+<button onclick="dummyAction('Audio settings opened')"><i class="fa-solid fa-volume-high"></i> Audio</button>
+</div>
+
 </div>
 
 <div class="video-info-card">
@@ -810,9 +801,10 @@ transform:translateX(-50%) translateY(0);
 
 <div class="channel-row">
 <div class="channel-left">
-<div class="profile-wrap">
+
+<a href="story-ranveer-singh.html" class="profile-wrap">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg">
-</div>
+</a>
 
 <div>
 <div class="channel-name">Ranveer Singh <i class="fa-solid fa-certificate"></i></div>
@@ -833,7 +825,34 @@ transform:translateX(-50%) translateY(0);
 
 </section>
 
-<div class="info-grid">
+<aside class="chat-card">
+
+<div class="chat-head">
+<h3>Top chat <i class="fa-solid fa-chevron-down"></i></h3>
+<button onclick="dummyAction('Chat menu opened')"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+</div>
+
+<div class="super-row">
+<button class="super-amount" onclick="openSuper(2000)">₹2,000</button>
+<button class="super-amount" onclick="openSuper(1000)">₹1,000</button>
+<button class="super-amount" onclick="openSuper(500)">₹500</button>
+</div>
+
+<div class="chat-list" id="chatList"></div>
+
+<div class="chat-input">
+<input id="chatInput" placeholder="Type a message...">
+<button class="round-btn" onclick="dummyAction('Emoji picker opened')"><i class="fa-regular fa-face-smile"></i></button>
+<button class="round-btn" onclick="openSuper(500)"><i class="fa-solid fa-indian-rupee-sign"></i></button>
+<button class="send-btn" onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
+</div>
+
+</aside>
+
+</div>
+
+<div class="below-area">
+
 <div class="detail-card">
 <h3>About this live stream</h3>
 <p>Watch Ranveer Singh live with high-energy creator moments, behind-the-scenes fun, audience interaction and exclusive entertainment updates.</p>
@@ -864,6 +883,7 @@ transform:translateX(-50%) translateY(0);
 </div>
 </div>
 </div>
+
 </div>
 
 <section class="live-section">
@@ -969,39 +989,6 @@ transform:translateX(-50%) translateY(0);
 </section>
 
 </main>
-
-<aside class="chat-card">
-
-<div class="chat-head">
-<h3>Top chat <i class="fa-solid fa-chevron-down"></i></h3>
-<button onclick="dummyAction('Chat menu opened')"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-</div>
-
-<div class="super-row">
-<button class="super-amount" onclick="openSuper(2000)">₹2,000</button>
-<button class="super-amount" onclick="openSuper(1000)">₹1,000</button>
-<button class="super-amount" onclick="openSuper(500)">₹500</button>
-</div>
-
-<div class="chat-list" id="chatList"></div>
-
-<div class="chat-note">
-<i class="fa-solid fa-crown"></i>
-<div>
-<strong>Subscribers-only mode</strong>
-<p>Messages that appear are from people who have subscribed to this channel.</p>
-</div>
-</div>
-
-<div class="chat-input">
-<input id="chatInput" placeholder="Type a message...">
-<button class="round-btn" onclick="dummyAction('Emoji picker opened')"><i class="fa-regular fa-face-smile"></i></button>
-<button class="round-btn" onclick="openSuper(500)"><i class="fa-solid fa-indian-rupee-sign"></i></button>
-<button class="send-btn" onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
-</div>
-
-</aside>
-
 </div>
 
 <div class="modal" id="superModal">
@@ -1062,7 +1049,6 @@ addChat(p.name,p.img,p.msg);
 for(let i=0;i<10;i++){
 setTimeout(randomChat, i * 250);
 }
-
 setInterval(randomChat, 2600);
 
 function sendChat(){
@@ -1133,6 +1119,17 @@ showToast("Playing");
 }
 }
 
+function toggleSettings(event){
+event.stopPropagation();
+document.getElementById("settingsMenu").classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+if(!e.target.closest("#settingsMenu") && !e.target.closest(".control-right")){
+document.getElementById("settingsMenu").classList.remove("show");
+}
+});
+
 function toggleAbout(){
 const more = document.getElementById("moreAbout");
 more.style.display = more.style.display === "none" ? "block" : "none";
@@ -1163,7 +1160,7 @@ let seconds = 5149;
 setInterval(()=>{
 seconds++;
 const h = String(Math.floor(seconds/3600)).padStart(2,"0");
-const m = String(Math.floor((seconds%3600)/60)).padStart(2,"0");
+const m = String(Math.floor((seconds%3600)/60).padStart ? Math.floor((seconds%3600)/60) : 0).padStart(2,"0");
 const s = String(seconds%60).padStart(2,"0");
 document.getElementById("streamTime").innerText = `${h}:${m}:${s}`;
 },1000);
