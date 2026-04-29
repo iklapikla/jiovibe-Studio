@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JioVibe AI Studio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f8f8f8;
+      color: #1f1f1f;
+    }
+
+    .studio-layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 240px;
+      background: #ffffff;
+      border-right: 1px solid #eeeeee;
+      padding: 22px 14px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      padding-left: 6px;
+    }
+
+    .logo-circle {
+      width: 44px;
+      height: 44px;
+      background: #ff5a00;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 12px;
+      transition: 0.2s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #fff0e6;
+      color: #ff5a00;
+    }
+
+    .main-area {
+      margin-left: 240px;
+      width: calc(100% - 240px);
+      min-height: 100vh;
+    }
+
+    .topbar {
+      height: 78px;
+      background: #ffffff;
+      border-bottom: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 9;
+    }
+
+    .search-box {
+      width: 520px;
+      max-width: 50%;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      height: 44px;
+      border: 1px solid #e5e5e5;
+      border-radius: 999px;
+      padding: 0 18px 0 44px;
+      outline: none;
+      font-size: 14px;
+      background: #fafafa;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #777;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .bell {
+      position: relative;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .bell-dot {
+      position: absolute;
+      top: -5px;
+      right: -6px;
+      background: #ff5a00;
+      color: white;
+      font-size: 10px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .profile-wrap {
+      position: relative;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .profile img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-name {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 54px;
+      width: 170px;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      overflow: hidden;
+      border: 1px solid #eeeeee;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: #222;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .dropdown a:hover {
+      background: #fff0e6;
+      color: #ff5a00;
+    }
+
+    .dropdown.show {
+      display: block;
+    }
+
+    .page-content {
+      padding: 28px;
+    }
+
+    .placeholder-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      min-height: 400px;
+    }
+
+    .placeholder-card h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .placeholder-card p {
+      color: #666;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="studio-layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-circle">Jio</div>
+        <div class="logo-text">Vibe</div>
+      </div>
+
+      <nav class="nav-menu">
+        <a class="nav-link active" href="index.html">📊 Dashboard</a>
+        <a class="nav-link" href="content.html">▶️ Content</a>
+        <a class="nav-link" href="analytics.html">📈 Analytics</a>
+        <a class="nav-link" href="community-post.html">💬 Community Post</a>
+        <a class="nav-link" href="stories.html">⭕ Stories</a>
+        <a class="nav-link" href="ai-studio.html">✨ AI Studio</a>
+        <a class="nav-link" href="wallet.html">💳 Wallet</a>
+        <a class="nav-link" href="settings.html">⚙️ Settings</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <main class="main-area">
+
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search videos, creators, analytics..." />
+        </div>
+
+        <div class="top-actions">
+          <div class="bell">
+            🔔
+            <span class="bell-dot">1</span>
+          </div>
+
+          <div class="profile-wrap">
+            <div class="profile" onclick="toggleDropdown(event)">
+              <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Ankit.jpeg" alt="Ankit Jayant">
+              <span class="profile-name">Ankit Jayant</span>
+              <span>⌄</span>
+            </div>
+
+            <div class="dropdown" id="profileDropdown">
+              <a href="home.html">Home</a>
+              <a href="index.html">Dashboard</a>
+              <a href="signout.html">Sign out</a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE CONTENT AREA -->
+      <section class="page-content">
+        <div class="placeholder-card">
+          <h1>JioVibe AI Studio</h1>
+          <p>This is your dashboard area. Later, we will build the main dashboard content here.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    function toggleDropdown(event) {
+      event.stopPropagation();
+      document.getElementById("profileDropdown").classList.toggle("show");
+    }
+
+    document.addEventListener("click", function () {
+      document.getElementById("profileDropdown").classList.remove("show");
+    });
+  </script>
+
+</body>
+</html>
