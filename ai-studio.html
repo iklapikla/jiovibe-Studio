@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Studio - JioVibe AI Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f8f9fb;color:#202124;}
+a{text-decoration:none;color:inherit;}
+
+.app{display:flex;min-height:100vh;}
+
+.sidebar{
+width:250px;
+padding:32px 18px;
+position:fixed;
+height:100%;
+background:#fff;
+border-right:1px solid #edf0f4;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:4px;
+margin-bottom:45px;
+padding-left:8px;
+}
+
+.logo-circle{
+width:54px;height:54px;background:#ff5a00;color:#fff;
+border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+font-weight:800;font-size:25px;
+}
+
+.logo-text{
+font-size:32px;
+font-weight:800;
+letter-spacing:-1.2px;
+color:#2b070b;
+}
+
+.menu{display:flex;flex-direction:column;gap:12px;}
+
+.menu-item{
+display:flex;
+align-items:center;
+gap:18px;
+padding:17px 22px;
+border-radius:14px;
+font-weight:600;
+font-size:16px;
+color:#383838;
+transition:.25s;
+}
+
+.menu-item i{width:22px;font-size:22px;text-align:center;}
+
+.menu-item:hover,.menu-item.active{
+background:#f1f3f4;
+color:#111;
+}
+
+.main{
+margin-left:250px;
+width:calc(100% - 250px);
+}
+
+.topbar{
+height:94px;
+border-bottom:1px solid #edf0f4;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 48px;
+background:#fff;
+position:sticky;
+top:0;
+z-index:8;
+}
+
+.search{
+width:600px;
+height:50px;
+border:1px solid #e8ebf0;
+border-radius:28px;
+display:flex;
+align-items:center;
+gap:16px;
+padding:0 22px;
+color:#9ba1ad;
+background:#fff;
+}
+
+.search input{
+border:none;outline:none;flex:1;font-size:15px;color:#333;
+}
+
+.top-actions{display:flex;align-items:center;gap:22px;position:relative;}
+
+.bell{font-size:23px;position:relative;cursor:pointer;}
+
+.bell::after{
+content:"1";
+position:absolute;
+top:-8px;
+right:-7px;
+background:#ff5a00;
+color:#fff;
+font-size:10px;
+width:17px;height:17px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.profile{
+display:flex;
+align-items:center;
+gap:12px;
+cursor:pointer;
+padding:8px;
+border-radius:18px;
+}
+
+.profile img{
+width:48px;height:48px;border-radius:50%;object-fit:cover;
+}
+
+.profile span{font-weight:700;font-size:15px;}
+
+.dropdown{
+position:absolute;
+top:70px;
+right:0;
+width:200px;
+background:#fff;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+display:none;
+overflow:hidden;
+z-index:20;
+}
+
+.dropdown a{
+display:block;
+padding:14px;
+font-weight:600;
+color:#2f2f2f;
+}
+
+.dropdown a:hover{
+background:#f1f3f4;
+color:#111;
+}
+
+.dropdown.show{display:block;}
+
+.content{
+padding:34px 44px 60px;
+}
+
+.page-head{
+margin-bottom:28px;
+}
+
+.page-head h1{
+font-size:38px;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.page-head p{
+font-size:17px;
+font-weight:700;
+color:#6b7280;
+}
+
+/* HERO OFFER */
+.offer-box{
+background:#fff;
+border:1px solid #dfe3ea;
+border-radius:22px;
+padding:34px;
+display:grid;
+grid-template-columns:190px 1fr 300px;
+gap:38px;
+align-items:center;
+box-shadow:0 8px 28px rgba(0,0,0,0.04);
+margin-bottom:34px;
+}
+
+.token-card{
+height:210px;
+border-radius:22px;
+background:#202124;
+color:#fff;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:10px;
+box-shadow:0 14px 30px rgba(0,0,0,.12);
+}
+
+.token-card label{
+font-size:17px;
+font-weight:800;
+}
+
+.token-card i{
+font-size:44px;
+}
+
+.token-card strong{
+font-size:34px;
+}
+
+.token-card span{
+font-size:16px;
+font-weight:800;
+color:#e5e7eb;
+}
+
+.offer-info h2{
+font-size:27px;
+font-weight:800;
+margin-bottom:12px;
+}
+
+.offer-info p{
+font-size:17px;
+color:#555;
+font-weight:500;
+margin-bottom:24px;
+}
+
+.badges{
+display:flex;
+flex-wrap:wrap;
+gap:14px;
+}
+
+.badge{
+padding:13px 18px;
+border-radius:12px;
+border:1px solid #dfe3ea;
+background:#f8f9fb;
+font-weight:800;
+color:#3c4043;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.badge i{
+color:#202124;
+}
+
+.price-area{
+text-align:right;
+}
+
+.price-area h3{
+font-size:50px;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.price-area del{
+font-size:18px;
+color:#9aa0a6;
+font-weight:800;
+margin-left:8px;
+}
+
+.save-box{
+background:#f1f3f4;
+border-radius:16px;
+padding:16px;
+font-size:34px;
+font-weight:800;
+margin:16px 0 20px;
+}
+
+.buy-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+background:#16a34a;
+color:#fff;
+border-radius:14px;
+padding:17px 24px;
+font-size:17px;
+font-weight:800;
+transition:.2s;
+}
+
+.buy-btn:hover{
+background:#12823b;
+transform:scale(1.015);
+}
+
+.secure{
+margin-top:16px;
+font-size:14px;
+font-weight:800;
+color:#6b7280;
+}
+
+/* INCLUDED */
+.section-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.section-head h2{
+font-size:25px;
+font-weight:800;
+margin-bottom:6px;
+}
+
+.section-head p{
+color:#6b7280;
+font-weight:700;
+}
+
+.access-pill{
+border:1px solid #dfe3ea;
+background:#fff;
+border-radius:12px;
+padding:13px 18px;
+font-weight:800;
+color:#202124;
+}
+
+.tools-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:22px;
+margin-bottom:32px;
+}
+
+.tool-card{
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:18px;
+padding:24px;
+display:grid;
+grid-template-columns:74px 1fr 24px;
+gap:20px;
+align-items:flex-start;
+box-shadow:0 6px 18px rgba(0,0,0,0.04);
+transition:.22s ease;
+}
+
+.tool-card:hover{
+transform:scale(1.015);
+box-shadow:0 10px 28px rgba(0,0,0,0.08);
+}
+
+.tool-icon{
+width:74px;
+height:74px;
+border-radius:16px;
+background:#f1f3f4;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:#202124;
+}
+
+.tool-card h3{
+font-size:18px;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.tool-card p{
+font-size:14px;
+line-height:1.55;
+color:#4b5563;
+font-weight:500;
+}
+
+.check-icon{
+color:#22c55e;
+font-size:20px;
+}
+
+.bottom-benefits{
+background:#fff;
+border:1px solid #dfe3ea;
+border-radius:20px;
+padding:26px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+box-shadow:0 6px 18px rgba(0,0,0,0.04);
+}
+
+.benefit{
+display:flex;
+align-items:center;
+gap:18px;
+padding-right:18px;
+border-right:1px solid #edf0f4;
+transition:.22s ease;
+}
+
+.benefit:last-child{border-right:none;}
+
+.benefit:hover{
+transform:scale(1.015);
+}
+
+.benefit i{
+font-size:34px;
+color:#202124;
+}
+
+.benefit h3{
+font-size:17px;
+font-weight:800;
+margin-bottom:5px;
+}
+
+.benefit p{
+font-size:14px;
+color:#4b5563;
+line-height:1.4;
+}
+
+@media(max-width:1200px){
+.offer-box{grid-template-columns:1fr;}
+.price-area{text-align:left;}
+.tools-grid{grid-template-columns:repeat(2,1fr);}
+.bottom-benefits{grid-template-columns:repeat(2,1fr);}
+.search{width:430px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+<a href="index.html" class="logo">
+<div class="logo-circle">Jio</div>
+<div class="logo-text">Vibe</div>
+</a>
+
+<nav class="menu">
+<a href="index.html" class="menu-item"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
+<a href="content.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Content</a>
+<a href="analytics.html" class="menu-item"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+<a href="ai-studio.html" class="menu-item active"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Studio</a>
+<a href="wallet.html" class="menu-item"><i class="fa-solid fa-wallet"></i> Wallet</a>
+<a href="settings.html" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+</nav>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+<div class="search">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" placeholder="Search tools, features..." />
+</div>
+
+<div class="top-actions">
+<div class="bell"><i class="fa-regular fa-bell"></i></div>
+
+<div class="profile" onclick="toggleDropdown()">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Ankit.jpeg">
+<span>Ankit Jayant</span>
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+
+<div class="dropdown" id="dropdown">
+<a href="home.html">Home</a>
+<a href="index.html">Dashboard</a>
+<a href="logout.html">Sign out</a>
+</div>
+</div>
+</header>
+
+<section class="content">
+
+<div class="page-head">
+<h1>AI Studio</h1>
+<p>One AI Package. All Tools. Unlimited Growth.</p>
+</div>
+
+<div class="offer-box">
+<div class="token-card">
+<label>BEST VALUE</label>
+<i class="fa-solid fa-coins"></i>
+<strong>500</strong>
+<span>Tokens</span>
+</div>
+
+<div class="offer-info">
+<h2>AI All-Access Package</h2>
+<p>Get full access to all AI tools with 500 tokens.</p>
+
+<div class="badges">
+<span class="badge"><i class="fa-solid fa-award"></i> All AI Tools Included</span>
+<span class="badge"><i class="fa-solid fa-check"></i> One-Time Payment</span>
+<span class="badge"><i class="fa-solid fa-circle-xmark"></i> No Hidden Charges</span>
+</div>
+</div>
+
+<div class="price-area">
+<h3>₹399 <del>₹1,199</del></h3>
+<div class="save-box">Save ₹800</div>
+<a href="buy-tokens.html" class="buy-btn">Get 500 Tokens <i class="fa-solid fa-chevron-right"></i></a>
+<div class="secure"><i class="fa-solid fa-shield-halved"></i> Secure Payment</div>
+</div>
+</div>
+
+<div class="section-head">
+<div>
+<h2>What’s Included in Your 500 Token Package</h2>
+<p>Use all premium AI tools without any extra cost.</p>
+</div>
+<a href="unlimited-access.html" class="access-pill">Unlimited Access</a>
+</div>
+
+<div class="tools-grid">
+
+<a href="ai-video-editor.html" class="tool-card">
+<div class="tool-icon"><i class="fa-solid fa-film"></i></div>
+<div>
+<h3>AI Video Editor</h3>
+<p>Auto edit your videos with cuts, transitions, effects and smart enhancements.</p>
+</div>
+<i class="fa-solid fa-circle-check check-icon"></i>
+</a>
+
+<a href="ai-thumbnail-generator.html" class="tool-card">
+<div class="tool-icon"><i class="fa-regular fa-image"></i></div>
+<div>
+<h3>AI Thumbnail Generator</h3>
+<p>Generate eye-catching thumbnails that get more clicks and views.</p>
+</div>
+<i class="fa-solid fa-circle-check check-icon"></i>
+</a>
+
+<a href="ai-shorts-generator.html" class="tool-card">
+<div class="tool-icon"><i class="fa-solid fa-clapperboard"></i></div>
+<div>
+<h3>AI Shorts Generator</h3>
+<p>Turn long videos into viral shorts automatically with AI highlights.</p>
+</div>
+<i class="fa-solid fa-circle-check check-icon"></i>
+</a>
+
+<a href="ai-title-description-generator.html" class="tool-card">
+<div class="tool-icon"><i class="fa-regular fa-rectangle-list"></i></div>
+<div>
+<h3>AI Title & Description Generator</h3>
+<p>Get SEO-friendly titles, descriptions and hashtags in seconds.</p>
+</div>
+<i class="fa-solid fa-circle-check check-icon"></i>
+</a>
+
+<a href="ai-multilingual-tool.html" class="tool-card">
+<div class="tool-icon"><i class="fa-solid fa-globe"></i></div>
+<div>
+<h3>AI Multilingual Tool</h3>
+<p>Translate, subtitle and dub your content in multiple languages.</p>
+</div>
+<i class="fa-solid fa-circle-check check-icon"></i>
+</a>
+
+<a href="ai-monetization-insights.html" class="tool-card">
+<div class="tool-icon"><i class="fa-solid fa-chart-line"></i></div>
+<div>
+<h3>AI Monetization Insights</h3>
+<p>Get smart insights and recommendations to increase your revenue.</p>
+</div>
+<i class="fa-solid fa-circle-check check-icon"></i>
+</a>
+
+</div>
+
+<div class="bottom-benefits">
+
+<a href="unlimited-access.html" class="benefit">
+<i class="fa-solid fa-infinity"></i>
+<div>
+<h3>Unlimited Access</h3>
+<p>Use all AI tools as much as you want.</p>
+</div>
+</a>
+
+<a href="boost-productivity.html" class="benefit">
+<i class="fa-solid fa-bolt"></i>
+<div>
+<h3>Boost Productivity</h3>
+<p>Save hours of work with AI automation.</p>
+</div>
+</a>
+
+<a href="grow-faster.html" class="benefit">
+<i class="fa-solid fa-arrow-trend-up"></i>
+<div>
+<h3>Grow Faster</h3>
+<p>Create better content and grow your audience.</p>
+</div>
+</a>
+
+<a href="secure-trusted.html" class="benefit">
+<i class="fa-solid fa-shield-halved"></i>
+<div>
+<h3>Secure & Trusted</h3>
+<p>Your payments and data are always safe.</p>
+</div>
+</a>
+
+</div>
+
+</section>
+
+</main>
+</div>
+
+<script>
+function toggleDropdown(){
+document.getElementById("dropdown").classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+if(!e.target.closest(".profile")){
+document.getElementById("dropdown").classList.remove("show");
+}
+});
+</script>
+
+</body>
+</html>
