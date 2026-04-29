@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Post - JioVibe Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
+
+.topbar{
+height:72px;background:#fff;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 26px;position:sticky;top:0;z-index:20
+}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.project{text-align:center}
+.project h1{font-size:24px;font-weight:900}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.publish-btn{background:#202124;color:#fff;border:none;border-radius:12px;padding:13px 22px;font-weight:900;transition:.22s}
+.publish-btn:hover{transform:scale(1.03)}
+.publish-btn.active{background:#16a34a}
+
+.shell{
+display:grid;
+grid-template-columns:1fr 380px;
+gap:24px;
+padding:26px;
+max-width:1500px;
+margin:auto
+}
+
+.card{
+background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+box-shadow:0 8px 24px rgba(0,0,0,.05)
+}
+
+.main-area{
+display:flex;
+flex-direction:column;
+gap:22px
+}
+
+.post-card{padding:22px}
+.section-title{
+font-size:22px;font-weight:900;margin-bottom:18px;
+display:flex;align-items:center;gap:10px
+}
+.section-title i{color:#ff5a00}
+
+.profile-row{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:18px
+}
+.avatar{
+width:46px;height:46px;border-radius:50%;
+background:url('https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Ankit.jpeg') center/cover;
+border:2px solid #fff;
+box-shadow:0 4px 12px rgba(0,0,0,.10)
+}
+.profile-row strong{font-size:16px;font-weight:900}
+.profile-row small{display:block;color:#6b7280;font-weight:700;margin-top:2px}
+
+.mode-tabs{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-bottom:18px
+}
+.mode-btn{
+border:1px solid #e5e7eb;background:#fff;border-radius:14px;
+padding:14px;text-align:center;font-weight:900;transition:.22s
+}
+.mode-btn i{display:block;font-size:22px;margin-bottom:8px;color:#6b7280}
+.mode-btn:hover{transform:scale(1.03);box-shadow:0 8px 18px rgba(0,0,0,.07)}
+.mode-btn.active{border:2px solid #ff5a00;background:#fff7f2;color:#ff5a00}
+.mode-btn.active i{color:#ff5a00}
+
+.field{margin-bottom:18px}
+.field label{display:block;font-size:14px;font-weight:900;margin-bottom:8px}
+textarea,input,select{
+width:100%;border:1px solid #e5e7eb;border-radius:14px;
+padding:14px;font-size:14px;font-weight:700;outline:none;background:#fff
+}
+textarea{height:145px;resize:none;line-height:1.5}
+textarea:focus,input:focus,select:focus{
+border-color:#202124;box-shadow:0 0 0 3px rgba(32,33,36,.08)
+}
+
+.image-upload{
+width:100%;
+aspect-ratio:1/1;
+max-height:420px;
+border:1px dashed #cfd4dc;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:12px;
+background:#fff;
+transition:.22s;
+overflow:hidden
+}
+.image-upload:hover{
+transform:scale(1.01);
+box-shadow:0 8px 20px rgba(0,0,0,.06)
+}
+.image-upload i{font-size:42px;color:#202124}
+.image-upload h3{font-size:20px;font-weight:900}
+.image-upload p{font-size:14px;color:#6b7280;font-weight:700;text-align:center}
+
+.poll-box{
+display:none;
+border:1px solid #e5e7eb;
+border-radius:18px;
+padding:16px;
+background:#f8f9fb;
+margin-top:12px
+}
+.poll-box.show{display:block}
+.poll-option{
+display:grid;
+grid-template-columns:1fr 42px;
+gap:10px;
+margin-bottom:10px
+}
+.poll-option button{
+border:1px solid #e5e7eb;
+background:#fff;
+border-radius:12px;
+font-size:16px;
+transition:.22s
+}
+.poll-option button:hover{background:#202124;color:#fff}
+.add-option{
+width:100%;
+border:1px dashed #cfd4dc;
+background:#fff;
+border-radius:12px;
+padding:13px;
+font-weight:900;
+transition:.22s
+}
+.add-option:hover{transform:scale(1.01);background:#f1f3f4}
+
+.preview-card{padding:22px}
+.community-preview{
+border:1px solid #e5e7eb;
+border-radius:20px;
+padding:18px;
+background:#fff;
+max-width:640px
+}
+.preview-text{
+font-size:16px;
+font-weight:700;
+line-height:1.6;
+margin:16px 0
+}
+.preview-image{
+aspect-ratio:1/1;
+border-radius:18px;
+background:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop') center/cover;
+margin-bottom:16px
+}
+.preview-actions{
+display:flex;
+gap:18px;
+color:#6b7280;
+font-weight:800
+}
+.preview-actions span{
+display:flex;align-items:center;gap:7px
+}
+
+.right-panel{
+display:flex;
+flex-direction:column;
+gap:18px;
+height:max-content;
+position:sticky;
+top:98px
+}
+
+.ai-card{padding:22px}
+.ai-title{
+font-size:26px;
+font-weight:900;
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:18px
+}
+.ai-title i{color:#ff5a00}
+
+.ai-box{
+background:#fff7f2;
+border:1px solid #ffd4bd;
+border-radius:20px;
+padding:18px;
+margin-bottom:18px
+}
+.ai-box label{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:15px;
+font-weight:900;
+margin-bottom:12px
+}
+.ai-box label i{color:#ff5a00}
+.ai-box textarea{
+height:125px;
+border-color:#ffd4bd;
+background:#fff
+}
+.ai-actions{
+display:flex;
+gap:12px;
+margin-top:12px
+}
+.ai-actions button{
+flex:1;border:none;border-radius:13px;
+padding:14px;font-size:14px;font-weight:900;transition:.22s
+}
+.ai-actions .orange{background:#ff5a00;color:#fff}
+.ai-actions .dark{background:#202124;color:#fff}
+.ai-actions .light{background:#fff;border:1px solid #e5e7eb}
+.ai-actions button:hover{transform:scale(1.02)}
+
+.results{
+display:none;
+margin-top:12px;
+gap:10px;
+flex-direction:column
+}
+.results.show{display:flex}
+.result-item{
+border:1px solid #e5e7eb;background:#fff;border-radius:12px;
+padding:12px;display:flex;justify-content:space-between;gap:10px;
+font-size:13px;font-weight:800;line-height:1.4
+}
+.result-item button{
+border:none;background:#202124;color:#fff;border-radius:9px;padding:8px 10px;font-weight:900
+}
+
+.settings-card{padding:20px}
+.settings-card h2{font-size:20px;font-weight:900;margin-bottom:16px}
+.setting-row{
+display:grid;grid-template-columns:42px 1fr;gap:12px;
+padding:14px 0;border-top:1px solid #edf0f4
+}
+.setting-row:first-of-type{border-top:none}
+.setting-icon{
+width:42px;height:42px;border-radius:12px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center
+}
+.setting-row h3{font-size:15px;font-weight:900;margin-bottom:4px}
+.setting-row p{font-size:13px;color:#6b7280;font-weight:600;line-height:1.4}
+
+.toast{
+position:fixed;top:92px;left:50%;
+transform:translateX(-50%) translateY(-20px);
+background:#202124;color:#fff;padding:14px 22px;
+border-radius:14px;font-weight:900;
+box-shadow:0 12px 30px rgba(0,0,0,.20);
+opacity:0;pointer-events:none;transition:.3s;z-index:999
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:1100px){
+.shell{grid-template-columns:1fr}
+.right-panel{position:static}
+}
+</style>
+</head>
+
+<body>
+
+<div class="toast" id="toast">Community post published successfully</div>
+
+<header class="topbar">
+  <div class="back-title">
+    <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a>
+    <span>Community Post</span>
+  </div>
+
+  <div class="project">
+    <h1>Create Community Post</h1>
+    <div class="tags">
+      <span class="tag">Text</span>
+      <span class="tag">1:1 Image</span>
+      <span class="tag">Poll</span>
+    </div>
+  </div>
+
+  <button class="publish-btn" id="publishBtn" onclick="publishPost()">Publish Post</button>
+</header>
+
+<div class="shell">
+
+<main class="main-area">
+
+  <section class="card post-card">
+    <div class="section-title"><i class="fa-solid fa-pen-to-square"></i> Create Post</div>
+
+    <div class="profile-row">
+      <div class="avatar"></div>
+      <div>
+        <strong>Ankit Jayant</strong>
+        <small>Posting to your community</small>
+      </div>
+    </div>
+
+    <div class="mode-tabs">
+      <button class="mode-btn active" onclick="selectMode(this,'text')">
+        <i class="fa-solid fa-align-left"></i>
+        Text
+      </button>
+
+      <button class="mode-btn" onclick="selectMode(this,'image')">
+        <i class="fa-regular fa-image"></i>
+        Image
+      </button>
+
+      <button class="mode-btn" onclick="selectMode(this,'poll')">
+        <i class="fa-solid fa-square-poll-horizontal"></i>
+        Poll
+      </button>
+    </div>
+
+    <div class="field">
+      <label>Post Text</label>
+      <textarea id="postText" placeholder="Write something for your audience...">New video is almost ready. What should I upload next?</textarea>
+    </div>
+
+    <div class="field" id="imageSection">
+      <label>Upload Image</label>
+      <div class="image-upload">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <h3>Upload 1:1 Image</h3>
+        <p>Recommended square format for community post</p>
+      </div>
+    </div>
+
+    <div class="poll-box" id="pollBox">
+      <div class="field">
+        <label>Poll Question</label>
+        <input id="pollQuestion" placeholder="Ask your audience a question">
+      </div>
+
+      <div class="poll-option">
+        <input placeholder="Option 1">
+        <button><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="poll-option">
+        <input placeholder="Option 2">
+        <button><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <button class="add-option"><i class="fa-solid fa-plus"></i> Add Option</button>
+    </div>
+  </section>
+
+  <section class="card preview-card">
+    <div class="section-title"><i class="fa-regular fa-eye"></i> Post Preview</div>
+
+    <div class="community-preview">
+      <div class="profile-row" style="margin-bottom:0;">
+        <div class="avatar"></div>
+        <div>
+          <strong>Ankit Jayant</strong>
+          <small>Just now</small>
+        </div>
+      </div>
+
+      <div class="preview-text">
+        New video is almost ready. What should I upload next?
+      </div>
+
+      <div class="preview-image"></div>
+
+      <div class="preview-actions">
+        <span><i class="fa-regular fa-thumbs-up"></i> Like</span>
+        <span><i class="fa-regular fa-comment"></i> Comment</span>
+        <span><i class="fa-regular fa-share-from-square"></i> Share</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<aside class="right-panel">
+
+  <section class="card ai-card">
+    <div class="ai-title"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Assist</div>
+
+    <div class="ai-box">
+      <label><i class="fa-solid fa-pen-nib"></i> AI Text Rephrase Prompt</label>
+      <textarea placeholder="Example: Make this community post more engaging, short and friendly."></textarea>
+      <div class="ai-actions">
+        <button class="dark" onclick="showResults('textResults')">Generate Text</button>
+        <button class="light">Clear</button>
+      </div>
+
+      <div class="results" id="textResults">
+        <div class="result-item">New video is coming soon. What topic should I cover next? <button onclick="useText('postText','New video is coming soon. What topic should I cover next?')">Select</button></div>
+        <div class="result-item">Need your help! Which video should I upload next? <button onclick="useText('postText','Need your help! Which video should I upload next?')">Select</button></div>
+        <div class="result-item">Big update coming! Drop your next video idea below. <button onclick="useText('postText','Big update coming! Drop your next video idea below.')">Select</button></div>
+      </div>
+    </div>
+
+    <div class="ai-box">
+      <label><i class="fa-regular fa-image"></i> AI Image Prompt</label>
+      <textarea placeholder="Example: Create a clean 1:1 community post image with gaming setup, orange accent and minimal text."></textarea>
+      <div class="ai-actions">
+        <button class="orange" onclick="showResults('imageResults')">Generate Image</button>
+        <button class="light">Clear</button>
+      </div>
+
+      <div class="results" id="imageResults">
+        <div class="result-item">Square Gaming Community Image <button>Select</button></div>
+        <div class="result-item">Minimal Creator Update Image <button>Select</button></div>
+        <div class="result-item">Poll Style 1:1 Image <button>Select</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card settings-card">
+    <h2>Post Settings</h2>
+
+    <div class="setting-row">
+      <div class="setting-icon"><i class="fa-solid fa-globe"></i></div>
+      <div>
+        <h3>Visibility</h3>
+        <p>Community post will be visible to followers.</p>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-icon"><i class="fa-regular fa-comment"></i></div>
+      <div>
+        <h3>Comments</h3>
+        <p>Allow audience comments and replies.</p>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <div class="setting-icon"><i class="fa-solid fa-bell"></i></div>
+      <div>
+        <h3>Notify</h3>
+        <p>Followers may receive a post notification.</p>
+      </div>
+    </div>
+  </section>
+
+</aside>
+
+</div>
+
+<script>
+function selectMode(btn,type){
+  document.querySelectorAll(".mode-btn").forEach(item=>item.classList.remove("active"));
+  btn.classList.add("active");
+
+  const imageSection = document.getElementById("imageSection");
+  const pollBox = document.getElementById("pollBox");
+
+  if(type === "text"){
+    imageSection.style.display = "none";
+    pollBox.classList.remove("show");
+  }
+
+  if(type === "image"){
+    imageSection.style.display = "block";
+    pollBox.classList.remove("show");
+  }
+
+  if(type === "poll"){
+    imageSection.style.display = "none";
+    pollBox.classList.add("show");
+  }
+}
+
+function showResults(id){
+  document.getElementById(id).classList.toggle("show");
+}
+
+function useText(inputId, text){
+  document.getElementById(inputId).value = text;
+}
+
+function publishPost(){
+  const btn = document.getElementById("publishBtn");
+  const toast = document.getElementById("toast");
+
+  btn.innerText = "Published";
+  btn.classList.add("active");
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2200);
+}
+
+document.getElementById("imageSection").style.display = "none";
+</script>
+
+</body>
+</html>
