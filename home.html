@@ -63,7 +63,13 @@ transition:.25s;
 
 .menu-item i{width:22px;font-size:22px;text-align:center;}
 
-.menu-item:hover,.menu-item.active{
+.menu-item:hover{
+background:#fff0e8;
+color:#ff5a00;
+transform:translateX(3px);
+}
+
+.menu-item.active{
 background:#f1f3f4;
 color:#111;
 }
@@ -74,7 +80,7 @@ margin-left:250px;
 width:calc(100% - 250px);
 }
 
-/* TOPBAR */
+/* TOPBAR - same dashboard positioning */
 .topbar{
 height:94px;
 border-bottom:1px solid #edf0f4;
@@ -120,12 +126,16 @@ position:relative;
 font-size:23px;
 position:relative;
 cursor:pointer;
+height:48px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
 .bell::after{
 content:"1";
 position:absolute;
-top:-8px;
+top:4px;
 right:-7px;
 background:#ff5a00;
 color:#fff;
@@ -145,6 +155,7 @@ gap:12px;
 cursor:pointer;
 padding:8px;
 border-radius:18px;
+height:64px;
 }
 
 .profile img{
@@ -221,6 +232,9 @@ transition:.25s;
 .category-btn:hover{
 transform:translateY(-2px);
 box-shadow:0 8px 22px rgba(0,0,0,0.08);
+background:#fff0e8;
+border-color:#ff5a00;
+color:#ff5a00;
 }
 
 .category-btn.active{
@@ -233,6 +247,14 @@ border-color:#ff5a00;
 font-size:17px;
 }
 
+.extra-category{
+display:none;
+}
+
+.extra-category.show{
+display:flex;
+}
+
 /* BANNER */
 .banner-wrap{
 position:relative;
@@ -243,34 +265,25 @@ background:#111;
 box-shadow:0 8px 28px rgba(0,0,0,0.08);
 }
 
-.banner-slide{
-position:absolute;
-inset:0;
-opacity:0;
-background-size:cover;
-background-position:center;
-animation:bannerFade 25s infinite;
+.banner-track{
+height:100%;
+display:flex;
+transition:transform .7s ease;
 }
 
-.banner-slide:nth-child(1){animation-delay:0s;}
-.banner-slide:nth-child(2){animation-delay:5s;}
-.banner-slide:nth-child(3){animation-delay:10s;}
-.banner-slide:nth-child(4){animation-delay:15s;}
-.banner-slide:nth-child(5){animation-delay:20s;}
+.banner-slide{
+min-width:100%;
+height:100%;
+position:relative;
+background-size:cover;
+background-position:center;
+}
 
 .banner-slide::after{
 content:"";
 position:absolute;
 inset:0;
 background:linear-gradient(90deg,rgba(0,0,0,0.78),rgba(0,0,0,0.20),rgba(0,0,0,0.05));
-}
-
-@keyframes bannerFade{
-0%{opacity:0;transform:scale(1);}
-5%{opacity:1;}
-20%{opacity:1;transform:scale(1.04);}
-25%{opacity:0;}
-100%{opacity:0;}
 }
 
 .banner-content{
@@ -339,6 +352,7 @@ width:32px;
 height:4px;
 border-radius:20px;
 background:rgba(255,255,255,0.55);
+cursor:pointer;
 }
 
 .banner-dots span.active{
@@ -359,6 +373,13 @@ align-items:center;
 justify-content:center;
 font-size:22px;
 box-shadow:0 8px 22px rgba(0,0,0,.15);
+cursor:pointer;
+transition:.25s;
+}
+
+.banner-arrow:hover{
+background:#ff5a00;
+color:#fff;
 }
 
 .banner-arrow.left{left:22px;}
@@ -430,38 +451,77 @@ box-shadow:0 8px 22px rgba(0,0,0,.15);
 <a href="education.html" class="category-btn"><i class="fa-solid fa-graduation-cap"></i> Education</a>
 <a href="lifestyle.html" class="category-btn"><i class="fa-solid fa-mug-hot"></i> Lifestyle</a>
 <a href="movies.html" class="category-btn"><i class="fa-solid fa-clapperboard"></i> Movies</a>
-<a href="#" class="category-btn" onclick="showMoreCategories(event)">More</a>
+
+<a href="sports.html" class="category-btn extra-category"><i class="fa-solid fa-trophy"></i> Sports</a>
+<a href="news.html" class="category-btn extra-category"><i class="fa-solid fa-newspaper"></i> News</a>
+<a href="food.html" class="category-btn extra-category"><i class="fa-solid fa-utensils"></i> Food</a>
+<a href="travel.html" class="category-btn extra-category"><i class="fa-solid fa-plane"></i> Travel</a>
+<a href="fitness.html" class="category-btn extra-category"><i class="fa-solid fa-dumbbell"></i> Fitness</a>
+
+<a href="#" class="category-btn" id="moreBtn" onclick="showMoreCategories(event)">More</a>
 </div>
 
 <div class="banner-wrap">
 
-<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');"></div>
+<div class="banner-track" id="bannerTrack">
 
-<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');"></div>
-
-<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');"></div>
-
-<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1600&auto=format&fit=crop');"></div>
-
-<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop');"></div>
-
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');">
 <div class="banner-content">
 <div class="banner-label">Creator Story</div>
 <h1>Creator Spotlight</h1>
-<p>Meet new creators and their powerful stories. Watch trending moments, live updates and fresh content.</p>
+<p>Meet new creators and their powerful stories.</p>
 <a href="watch-featured.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
 </div>
-
-<div class="banner-dots">
-<span class="active"></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
 </div>
 
-<a href="#" class="banner-arrow left"><i class="fa-solid fa-chevron-left"></i></a>
-<a href="#" class="banner-arrow right"><i class="fa-solid fa-chevron-right"></i></a>
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');">
+<div class="banner-content">
+<div class="banner-label">Live Now</div>
+<h1>Big Live Moments</h1>
+<p>Watch creators going live with trending events.</p>
+<a href="watch-live.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+</div>
+</div>
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');">
+<div class="banner-content">
+<div class="banner-label">Gaming</div>
+<h1>Gaming Highlights</h1>
+<p>Explore fresh gaming clips, live streams and shorts.</p>
+<a href="gaming.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+</div>
+</div>
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1600&auto=format&fit=crop');">
+<div class="banner-content">
+<div class="banner-label">Music</div>
+<h1>Music Sessions</h1>
+<p>Discover songs, studio moments and creator music stories.</p>
+<a href="music.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+</div>
+</div>
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop');">
+<div class="banner-content">
+<div class="banner-label">Community</div>
+<h1>Creator Community</h1>
+<p>Follow posts, updates and stories from your favourite creators.</p>
+<a href="community.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+</div>
+</div>
+
+</div>
+
+<div class="banner-dots" id="bannerDots">
+<span class="active" onclick="goToSlide(0)"></span>
+<span onclick="goToSlide(1)"></span>
+<span onclick="goToSlide(2)"></span>
+<span onclick="goToSlide(3)"></span>
+<span onclick="goToSlide(4)"></span>
+</div>
+
+<div class="banner-arrow left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
+<div class="banner-arrow right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
 
 </div>
 
@@ -483,8 +543,42 @@ document.getElementById("dropdown").classList.remove("show");
 
 function showMoreCategories(e){
 e.preventDefault();
-alert("More categories: Sports, News, Food, Travel, Fashion, Fitness");
+
+document.querySelectorAll(".extra-category").forEach(item=>{
+item.classList.add("show");
+});
+
+document.getElementById("moreBtn").style.display = "none";
 }
+
+let currentSlide = 0;
+const totalSlides = 5;
+const track = document.getElementById("bannerTrack");
+const dots = document.querySelectorAll("#bannerDots span");
+
+function updateBanner(){
+track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+dots.forEach(dot=>dot.classList.remove("active"));
+dots[currentSlide].classList.add("active");
+}
+
+function nextSlide(){
+currentSlide = (currentSlide + 1) % totalSlides;
+updateBanner();
+}
+
+function prevSlide(){
+currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+updateBanner();
+}
+
+function goToSlide(index){
+currentSlide = index;
+updateBanner();
+}
+
+setInterval(nextSlide, 4200);
 </script>
 
 </body>
