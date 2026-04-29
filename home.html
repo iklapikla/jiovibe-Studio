@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JioVibe</title>
+<title>JioVibe Home</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -15,7 +15,7 @@ a{text-decoration:none;color:inherit;}
 
 .app{display:flex;min-height:100vh;}
 
-/* ===== SIDEBAR (UNCHANGED) ===== */
+/* SIDEBAR */
 .sidebar{
 width:250px;
 padding:32px 18px;
@@ -68,13 +68,13 @@ background:#f1f3f4;
 color:#111;
 }
 
-/* ===== MAIN ===== */
+/* MAIN */
 .main{
 margin-left:250px;
 width:calc(100% - 250px);
 }
 
-/* ===== TOPBAR (UNCHANGED) ===== */
+/* TOPBAR */
 .topbar{
 height:94px;
 border-bottom:1px solid #edf0f4;
@@ -186,13 +186,189 @@ color:#111;
 
 .dropdown.show{display:block;}
 
-/* ===== EMPTY CONTENT AREA ===== */
+/* CONTENT */
 .content{
 padding:36px 48px;
 }
 
-/* (abhi empty hai - tum baad me add karoge) */
+/* CATEGORY */
+.categories{
+display:flex;
+align-items:center;
+gap:18px;
+margin-bottom:34px;
+overflow-x:auto;
+padding-bottom:4px;
+}
 
+.category-btn{
+min-width:max-content;
+height:58px;
+padding:0 26px;
+border:1px solid #e8ebf0;
+border-radius:32px;
+background:#fff;
+display:flex;
+align-items:center;
+gap:12px;
+font-size:16px;
+font-weight:800;
+color:#383838;
+box-shadow:0 4px 14px rgba(0,0,0,0.03);
+transition:.25s;
+}
+
+.category-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 22px rgba(0,0,0,0.08);
+}
+
+.category-btn.active{
+background:#ff5a00;
+color:#fff;
+border-color:#ff5a00;
+}
+
+.category-btn i{
+font-size:17px;
+}
+
+/* BANNER */
+.banner-wrap{
+position:relative;
+height:330px;
+border-radius:22px;
+overflow:hidden;
+background:#111;
+box-shadow:0 8px 28px rgba(0,0,0,0.08);
+}
+
+.banner-slide{
+position:absolute;
+inset:0;
+opacity:0;
+background-size:cover;
+background-position:center;
+animation:bannerFade 25s infinite;
+}
+
+.banner-slide:nth-child(1){animation-delay:0s;}
+.banner-slide:nth-child(2){animation-delay:5s;}
+.banner-slide:nth-child(3){animation-delay:10s;}
+.banner-slide:nth-child(4){animation-delay:15s;}
+.banner-slide:nth-child(5){animation-delay:20s;}
+
+.banner-slide::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,rgba(0,0,0,0.78),rgba(0,0,0,0.20),rgba(0,0,0,0.05));
+}
+
+@keyframes bannerFade{
+0%{opacity:0;transform:scale(1);}
+5%{opacity:1;}
+20%{opacity:1;transform:scale(1.04);}
+25%{opacity:0;}
+100%{opacity:0;}
+}
+
+.banner-content{
+position:absolute;
+z-index:3;
+left:34px;
+top:50%;
+transform:translateY(-50%);
+max-width:560px;
+color:#fff;
+}
+
+.banner-label{
+color:#ff5a00;
+font-weight:800;
+letter-spacing:.8px;
+font-size:15px;
+margin-bottom:12px;
+text-transform:uppercase;
+}
+
+.banner-content h1{
+font-size:44px;
+line-height:1.08;
+font-weight:800;
+margin-bottom:14px;
+}
+
+.banner-content p{
+font-size:17px;
+font-weight:600;
+line-height:1.5;
+color:rgba(255,255,255,0.92);
+margin-bottom:22px;
+}
+
+.watch-btn{
+display:inline-flex;
+align-items:center;
+gap:12px;
+background:#ff5a00;
+color:#fff;
+border-radius:12px;
+padding:15px 22px;
+font-size:16px;
+font-weight:800;
+transition:.25s;
+}
+
+.watch-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 24px rgba(255,90,0,0.28);
+}
+
+.banner-dots{
+position:absolute;
+z-index:4;
+left:34px;
+bottom:28px;
+display:flex;
+gap:12px;
+}
+
+.banner-dots span{
+width:32px;
+height:4px;
+border-radius:20px;
+background:rgba(255,255,255,0.55);
+}
+
+.banner-dots span.active{
+background:#ff5a00;
+}
+
+.banner-arrow{
+position:absolute;
+z-index:4;
+top:50%;
+transform:translateY(-50%);
+width:52px;
+height:52px;
+border-radius:50%;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+box-shadow:0 8px 22px rgba(0,0,0,.15);
+}
+
+.banner-arrow.left{left:22px;}
+.banner-arrow.right{right:22px;}
+
+@media(max-width:1100px){
+.search{width:420px;}
+.banner-wrap{height:260px;}
+.banner-content h1{font-size:34px;}
+}
 </style>
 </head>
 
@@ -200,7 +376,6 @@ padding:36px 48px;
 
 <div class="app">
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
 <a href="index.html" class="logo">
 <div class="logo-circle">Jio</div>
@@ -219,7 +394,6 @@ padding:36px 48px;
 </nav>
 </aside>
 
-<!-- MAIN -->
 <main class="main">
 
 <header class="topbar">
@@ -245,9 +419,52 @@ padding:36px 48px;
 </div>
 </header>
 
-<!-- EMPTY CONTENT -->
 <section class="content">
-<!-- yaha se tum next changes add karoge -->
+
+<div class="categories">
+<a href="home.html" class="category-btn active">All</a>
+<a href="gaming.html" class="category-btn"><i class="fa-solid fa-gamepad"></i> Gaming</a>
+<a href="music.html" class="category-btn"><i class="fa-solid fa-music"></i> Music</a>
+<a href="comedy.html" class="category-btn"><i class="fa-regular fa-face-smile"></i> Comedy</a>
+<a href="tech.html" class="category-btn"><i class="fa-solid fa-microchip"></i> Tech</a>
+<a href="education.html" class="category-btn"><i class="fa-solid fa-graduation-cap"></i> Education</a>
+<a href="lifestyle.html" class="category-btn"><i class="fa-solid fa-mug-hot"></i> Lifestyle</a>
+<a href="movies.html" class="category-btn"><i class="fa-solid fa-clapperboard"></i> Movies</a>
+<a href="#" class="category-btn" onclick="showMoreCategories(event)">More</a>
+</div>
+
+<div class="banner-wrap">
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');"></div>
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');"></div>
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');"></div>
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1600&auto=format&fit=crop');"></div>
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop');"></div>
+
+<div class="banner-content">
+<div class="banner-label">Creator Story</div>
+<h1>Creator Spotlight</h1>
+<p>Meet new creators and their powerful stories. Watch trending moments, live updates and fresh content.</p>
+<a href="watch-featured.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+</div>
+
+<div class="banner-dots">
+<span class="active"></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<a href="#" class="banner-arrow left"><i class="fa-solid fa-chevron-left"></i></a>
+<a href="#" class="banner-arrow right"><i class="fa-solid fa-chevron-right"></i></a>
+
+</div>
+
 </section>
 
 </main>
@@ -263,6 +480,11 @@ if(!e.target.closest(".profile")){
 document.getElementById("dropdown").classList.remove("show");
 }
 });
+
+function showMoreCategories(e){
+e.preventDefault();
+alert("More categories: Sports, News, Food, Travel, Fashion, Fitness");
+}
 </script>
 
 </body>
