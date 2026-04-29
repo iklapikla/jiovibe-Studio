@@ -5,393 +5,157 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JioVibe Home</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#fff;color:#202124}
-a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer}
+body{background:#f8f9fb;color:#202124}
 
-.app{
-display:grid;
-grid-template-columns:220px 1fr;
-min-height:100vh
-}
-
-/* SIDEBAR */
+/* ===== LAYOUT ===== */
+.app{display:flex}
 .sidebar{
-border-right:1px solid #edf0f4;
-background:#fff;
-padding:28px 16px;
-position:sticky;
-top:0;
-height:100vh
+width:250px;background:#fff;border-right:1px solid #edf0f4;
+position:fixed;height:100%;padding:28px 18px
 }
-.logo{
-display:flex;
-align-items:center;
-gap:8px;
-margin-bottom:34px
-}
-.logo-circle{
-width:48px;
-height:48px;
-border-radius:50%;
-background:#ff5a00;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:21px;
-font-weight:900
-}
-.logo span{
-font-size:28px;
-font-weight:900
-}
-.nav{
-display:flex;
-flex-direction:column;
-gap:8px
-}
-.nav a{
-display:flex;
-align-items:center;
-gap:14px;
-padding:14px 16px;
-border-radius:14px;
-font-weight:800;
-font-size:15px;
-transition:.22s
-}
-.nav a:hover{
-background:#f8f9fb;
-transform:translateX(4px)
-}
-.nav a.active{
-background:#fff0e8;
-color:#ff5a00
-}
-.nav i{
-width:22px;
-text-align:center;
-font-size:17px
-}
+.main{margin-left:250px;width:calc(100% - 250px)}
 
-/* MAIN */
-.main{
-min-width:0
+/* ===== SIDEBAR ===== */
+.logo{display:flex;align-items:center;margin-bottom:40px}
+.logo-circle{
+width:54px;height:54px;border-radius:50%;
+background:#ff5a00;color:#fff;
+display:flex;align-items:center;justify-content:center;
+font-weight:800;font-size:24px
 }
+.logo-text{font-size:30px;font-weight:800;margin-left:6px}
+
+.menu{display:flex;flex-direction:column;gap:10px}
+.menu-item{
+padding:14px 18px;border-radius:12px;
+display:flex;gap:14px;align-items:center;
+font-weight:700;color:#333;transition:.2s
+}
+.menu-item:hover{background:#f1f3f4}
+.menu-item.active{background:#fff0e8;color:#ff5a00}
+
+/* ===== TOPBAR ===== */
 .topbar{
-height:82px;
+height:90px;background:#fff;
 border-bottom:1px solid #edf0f4;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 28px;
-position:sticky;
-top:0;
-background:#fff;
-z-index:30
+display:flex;align-items:center;justify-content:space-between;
+padding:0 40px;position:sticky;top:0
 }
 .search{
-width:560px;
-height:46px;
+width:520px;height:46px;border-radius:25px;
 border:1px solid #e5e7eb;
-border-radius:999px;
-display:flex;
-align-items:center;
-gap:12px;
-padding:0 18px;
-color:#6b7280
+display:flex;align-items:center;padding:0 18px;gap:10px
 }
-.search input{
-border:none;
-outline:none;
-width:100%;
-font-weight:700;
-color:#202124
-}
-.user-area{
-display:flex;
-align-items:center;
-gap:18px
-}
-.bell{
-position:relative;
-font-size:20px
-}
-.badge{
-position:absolute;
-right:-6px;
-top:-8px;
-background:#ff5a00;
-color:#fff;
-font-size:10px;
-font-weight:900;
-width:18px;
-height:18px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center
-}
-.profile{
-display:flex;
-align-items:center;
-gap:10px;
-font-weight:900
-}
-.profile img{
-width:42px;
-height:42px;
-border-radius:50%;
-object-fit:cover
+.search input{border:none;outline:none;width:100%}
+
+.top-actions{display:flex;align-items:center;gap:20px}
+.bell{position:relative;font-size:20px}
+.bell::after{
+content:"1";position:absolute;top:-6px;right:-6px;
+background:#ff5a00;color:#fff;font-size:10px;
+width:16px;height:16px;border-radius:50%;
+display:flex;align-items:center;justify-content:center
 }
 
-.content{
-padding:24px 28px 60px
-}
+.profile{display:flex;gap:10px;align-items:center;cursor:pointer}
+.profile img{width:42px;height:42px;border-radius:50%}
 
-/* CATEGORIES */
-.categories{
-display:flex;
-gap:12px;
-overflow:auto;
-padding-bottom:8px;
-margin-bottom:22px
+.dropdown{
+position:absolute;top:70px;right:40px;background:#fff;
+border-radius:12px;display:none;
+box-shadow:0 10px 30px rgba(0,0,0,.1)
 }
+.dropdown a{display:block;padding:12px 16px;font-weight:600}
+.dropdown a:hover{background:#f1f3f4}
+.dropdown.show{display:block}
+
+/* ===== CONTENT ===== */
+.content{padding:24px 40px}
+
+/* CATEGORY */
+.categories{display:flex;gap:10px;margin-bottom:18px}
 .cat{
-border:1px solid #e5e7eb;
-background:#fff;
-border-radius:999px;
-padding:12px 18px;
-font-weight:900;
-white-space:nowrap;
-transition:.22s
+padding:10px 16px;border-radius:20px;
+border:1px solid #e5e7eb;background:#fff;font-weight:700
 }
-.cat:hover{
-transform:scale(1.04);
-background:#f8f9fb
-}
-.cat.active{
-background:#ff5a00;
-color:#fff;
-border-color:#ff5a00
-}
+.cat.active{background:#ff5a00;color:#fff}
 
-/* BANNER */
+/* ===== BANNER ===== */
 .banner{
-height:290px;
-border-radius:20px;
-overflow:hidden;
-position:relative;
-margin-bottom:28px;
-box-shadow:0 10px 28px rgba(0,0,0,.10)
+height:260px;border-radius:18px;
+overflow:hidden;position:relative;margin-bottom:24px
 }
-.slide{
-position:absolute;
-inset:0;
-background-size:cover;
-background-position:center;
-opacity:0;
-animation:fadeBanner 20s infinite;
+.banner img{
+position:absolute;width:100%;height:100%;object-fit:cover;
+animation:slide 20s infinite;opacity:0
 }
-.slide:nth-child(1){animation-delay:0s}
-.slide:nth-child(2){animation-delay:4s}
-.slide:nth-child(3){animation-delay:8s}
-.slide:nth-child(4){animation-delay:12s}
-.slide:nth-child(5){animation-delay:16s}
-.banner::after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.12))
-}
-@keyframes fadeBanner{
-0%{opacity:0;transform:scale(1)}
-5%{opacity:1}
-20%{opacity:1;transform:scale(1.04)}
-25%{opacity:0}
+.banner img:nth-child(1){animation-delay:0s}
+.banner img:nth-child(2){animation-delay:5s}
+.banner img:nth-child(3){animation-delay:10s}
+.banner img:nth-child(4){animation-delay:15s}
+
+@keyframes slide{
+0%{opacity:0}
+10%{opacity:1}
+25%{opacity:1}
+30%{opacity:0}
 100%{opacity:0}
 }
-.banner-text{
-position:absolute;
-z-index:2;
-left:38px;
-top:50%;
-transform:translateY(-50%);
-color:#fff;
-max-width:520px
-}
-.banner-text small{
-color:#ff8a3d;
-font-weight:900;
-letter-spacing:.4px
-}
-.banner-text h1{
-font-size:40px;
-font-weight:900;
-margin:10px 0
-}
-.banner-text p{
-font-size:15px;
-font-weight:600;
-opacity:.92;
-margin-bottom:18px
-}
-.banner-btn{
-border:none;
-background:#ff5a00;
-color:#fff;
-border-radius:12px;
-padding:14px 20px;
-font-weight:900;
-transition:.22s
-}
-.banner-btn:hover{
-transform:scale(1.04)
-}
 
-/* SECTION */
-.section{
-margin-top:28px
-}
-.section-line{
-height:1px;
-background:linear-gradient(90deg,transparent,#e5e7eb,transparent);
-margin:26px 0
-}
+/* ===== SECTION ===== */
+.section{margin-top:20px}
 .section-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:16px
+display:flex;justify-content:space-between;margin-bottom:12px
 }
-.section-head h2{
-font-size:22px;
-font-weight:900
-}
-.see-btn{
-border:none;
-background:#fff;
-color:#ff5a00;
-font-weight:900;
-font-size:14px;
-transition:.22s
-}
-.see-btn:hover{
-transform:translateX(4px)
-}
+.see-btn{color:#ff5a00;font-weight:700;cursor:pointer}
 
-/* VIDEO GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px
-}
+/* ===== GRID ===== */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
 .card{
-background:#fff;
-border:1px solid #edf0f4;
-border-radius:16px;
-overflow:hidden;
-box-shadow:0 6px 18px rgba(0,0,0,.04);
-transition:.22s;
-display:none
+background:#fff;border-radius:14px;overflow:hidden;
+border:1px solid #e5e7eb;transition:.2s
 }
-.card.show{display:block}
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 12px 28px rgba(0,0,0,.10)
-}
+.card:hover{transform:translateY(-4px)}
+
 .thumb{
-height:160px;
-background:#111;
-position:relative;
-overflow:hidden
+height:150px;position:relative;overflow:hidden
 }
-.thumb img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block
+.thumb img{width:100%;height:100%;object-fit:cover}
+
+.thumb video{
+position:absolute;top:0;left:0;width:100%;height:100%;
+object-fit:cover;opacity:0
 }
+.card:hover video{opacity:1}
+
 .duration{
-position:absolute;
-right:10px;
-bottom:10px;
-background:rgba(0,0,0,.82);
-color:#fff;
-font-size:12px;
-font-weight:900;
-padding:5px 7px;
-border-radius:6px
-}
-.live-label{
-position:absolute;
-left:10px;
-bottom:10px;
-background:#ff0033;
-color:#fff;
-font-size:11px;
-font-weight:900;
-padding:5px 8px;
-border-radius:5px
-}
-.card-body{
-padding:12px;
-display:grid;
-grid-template-columns:44px 1fr;
-gap:10px
-}
-.creator-pic{
-width:42px;
-height:42px;
-border-radius:50%;
-object-fit:cover;
-border:2px solid #fff;
-box-shadow:0 2px 8px rgba(0,0,0,.10)
-}
-.story-ring{
-padding:3px;
-border-radius:50%;
-background:#18c964
-}
-.story-ring img{
-display:block;
-border:2px solid #fff
-}
-.video-title{
-font-size:14px;
-font-weight:900;
-line-height:1.35;
-margin-bottom:4px
-}
-.channel{
-font-size:12px;
-font-weight:800;
-color:#6b7280
-}
-.meta{
-font-size:12px;
-font-weight:700;
-color:#9aa0a6;
-margin-top:3px
+position:absolute;right:8px;bottom:8px;
+background:#000;color:#fff;font-size:11px;padding:4px 6px;border-radius:5px
 }
 
-/* RESPONSIVE */
-@media(max-width:1300px){
-.grid{grid-template-columns:repeat(3,1fr)}
-.search{width:420px}
+.card-body{display:flex;gap:10px;padding:10px}
+.creator{
+width:36px;height:36px;border-radius:50%;object-fit:cover
 }
-@media(max-width:900px){
-.app{grid-template-columns:1fr}
-.sidebar{display:none}
-.grid{grid-template-columns:1fr}
-.search{width:260px}
-.banner{height:240px}
+
+/* STORY RING */
+.story{
+padding:2px;border-radius:50%;
+background:#19c964
+}
+
+.title{font-size:13px;font-weight:800}
+.channel{font-size:12px;color:#6b7280}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1100px){
+.grid{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -400,255 +164,145 @@ margin-top:3px
 
 <div class="app">
 
+<!-- SIDEBAR -->
 <aside class="sidebar">
-  <a href="index.html" class="logo">
-    <div class="logo-circle">Jio</div>
-    <span>Vibe</span>
-  </a>
+<div class="logo">
+<div class="logo-circle">Jio</div>
+<div class="logo-text">Vibe</div>
+</div>
 
-  <nav class="nav">
-    <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Home</a>
-    <a href="explore.html"><i class="fa-regular fa-compass"></i> Explore</a>
-    <a href="live.html"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
-    <a href="video.html"><i class="fa-regular fa-circle-play"></i> Video</a>
-    <a href="shorts.html"><i class="fa-solid fa-bolt"></i> Shorts</a>
-    <a href="subscriptions.html"><i class="fa-regular fa-rectangle-list"></i> Subscriptions</a>
-    <a href="history.html"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
-    <a href="saved-video.html"><i class="fa-regular fa-bookmark"></i> Saved Video</a>
-  </nav>
+<div class="menu">
+<a class="menu-item active" href="#"><i class="fa-solid fa-house"></i> Home</a>
+<a class="menu-item" href="#"><i class="fa-regular fa-compass"></i> Explore</a>
+<a class="menu-item" href="#"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
+<a class="menu-item" href="#"><i class="fa-regular fa-circle-play"></i> Video</a>
+<a class="menu-item" href="#"><i class="fa-solid fa-bolt"></i> Shorts</a>
+<a class="menu-item" href="#"><i class="fa-solid fa-list"></i> Subscriptions</a>
+<a class="menu-item" href="#"><i class="fa-solid fa-clock"></i> History</a>
+<a class="menu-item" href="#"><i class="fa-solid fa-bookmark"></i> Saved</a>
+</div>
 </aside>
 
+<!-- MAIN -->
 <main class="main">
 
 <header class="topbar">
-  <div class="search">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <input type="text" placeholder="Search creators, videos, topics...">
-  </div>
+<div class="search">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input placeholder="Search creators, videos, topics...">
+</div>
 
-  <div class="user-area">
-    <div class="bell">
-      <i class="fa-regular fa-bell"></i>
-      <span class="badge">1</span>
-    </div>
+<div class="top-actions">
+<div class="bell"><i class="fa-regular fa-bell"></i></div>
 
-    <div class="profile">
-      <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
-      <span>Trupti Latur</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
-  </div>
+<div class="profile" onclick="toggleDropdown()">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
+<span>Trupti Latur</span>
+</div>
+
+<div class="dropdown" id="dropdown">
+<a href="#">Profile</a>
+<a href="#">Settings</a>
+<a href="#">Logout</a>
+</div>
+</div>
 </header>
 
 <div class="content">
 
-  <div class="categories">
-    <button class="cat active" onclick="filterCategory('All', this)">All</button>
-    <button class="cat" onclick="filterCategory('Sports', this)">Sports</button>
-    <button class="cat" onclick="filterCategory('Gaming', this)">Gaming</button>
-    <button class="cat" onclick="filterCategory('Comedy', this)">Comedy</button>
-    <button class="cat" onclick="filterCategory('Music', this)">Music</button>
-    <button class="cat" onclick="filterCategory('Tech', this)">Tech</button>
-    <button class="cat" onclick="filterCategory('Education', this)">Education</button>
-    <button class="cat" onclick="filterCategory('Lifestyle', this)">Lifestyle</button>
-    <button class="cat" onclick="filterCategory('Movies', this)">Movies</button>
-    <button class="cat" onclick="filterCategory('More', this)">More</button>
-  </div>
-
-  <section class="banner">
-    <div class="slide" style="background-image:url('https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ranveer%20Singh.gif')"></div>
-    <div class="slide" style="background-image:url('https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Narendra%20Modi.gif')"></div>
-    <div class="slide" style="background-image:url('https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif')"></div>
-    <div class="slide" style="background-image:url('https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Rohit%20Sharma.gif')"></div>
-    <div class="slide" style="background-image:url('https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif')"></div>
-
-    <div class="banner-text">
-      <small>FEATURED</small>
-      <h1>Fresh stories, live moments and creator videos</h1>
-      <p>Watch trending creators, sports moments, comedy clips, music sessions and AI-powered creator content.</p>
-      <a href="watch-featured.html"><button class="banner-btn"><i class="fa-solid fa-play"></i> Watch Now</button></a>
-    </div>
-  </section>
-
-  <div class="section-line"></div>
-
-  <section class="section">
-    <div class="section-head">
-      <h2>Trending Now 🔥</h2>
-      <button class="see-btn" onclick="toggleMore('trendingGrid', this)">See more <i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    <div class="grid" id="trendingGrid"></div>
-  </section>
-
-  <div class="section-line"></div>
-
-  <section class="section">
-    <div class="section-head">
-      <h2>Recommended for You ✨</h2>
-      <button class="see-btn" onclick="toggleMore('recommendedGrid', this)">See more <i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-
-    <div class="grid" id="recommendedGrid"></div>
-  </section>
-
+<!-- CATEGORY -->
+<div class="categories">
+<button class="cat active">All</button>
+<button class="cat">Sports</button>
+<button class="cat">Gaming</button>
+<button class="cat">Comedy</button>
+<button class="cat">Music</button>
+<button class="cat">Tech</button>
+<button class="cat">Education</button>
+<button class="cat">Lifestyle</button>
+<button class="cat">Movies</button>
+<button class="cat" onclick="addMore()">More</button>
 </div>
 
-</main>
+<!-- BANNER -->
+<div class="banner">
+<img src="https://picsum.photos/1200/400?1">
+<img src="https://picsum.photos/1200/400?2">
+<img src="https://picsum.photos/1200/400?3">
+<img src="https://picsum.photos/1200/400?4">
+</div>
 
+<!-- TRENDING -->
+<div class="section">
+<div class="section-head">
+<h3>Trending 🔥</h3>
+<div class="see-btn" onclick="toggleMore('t')">See more</div>
+</div>
+
+<div class="grid" id="t"></div>
+</div>
+
+<!-- RECOMMENDED -->
+<div class="section">
+<div class="section-head">
+<h3>Recommended ✨</h3>
+<div class="see-btn" onclick="toggleMore('r')">See more</div>
+</div>
+
+<div class="grid" id="r"></div>
+</div>
+
+</div>
+</main>
 </div>
 
 <script>
-const creators = {
-  "Narendra Modi": {
-    category:"Education",
-    gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Narendra%20Modi.gif",
-    pic:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Narendra%20Modi.jpeg"
-  },
-  "Rohit Sharma": {
-    category:"Sports",
-    gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Rohit%20Sharma.gif",
-    pic:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg"
-  },
-  "Total Gaming": {
-    category:"Gaming",
-    gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif",
-    pic:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg"
-  },
-  "Ashish Chanchlani": {
-    category:"Comedy",
-    gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif",
-    pic:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg"
-  },
-  "Arijit Singh": {
-    category:"Music",
-    gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Arijit%20Singh.gif",
-    pic:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Arijit%20Singh.jpg"
-  },
-  "Technical Guruji": {
-    category:"Tech",
-    gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Technical%20Guruji.gif",
-    pic:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg"
-  },
-  "Khan Sir": {
-    category:"Education",
-    gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20khan%20sir%20teacher%20gif.gif",
-    pic:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg"
-  },
-  "Flying Beast": {
-    category:"Lifestyle",
-    gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Flying%20Beast.gif",
-    pic:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.png"
-  },
-  "Ranveer Singh": {
-    category:"Movies",
-    gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ranveer%20Singh.gif",
-    pic:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg"
-  }
-};
-
-const trendingData = [
-  {creator:"Ranveer Singh", title:"Behind the Scene Energy with Ranveer", type:"video", duration:"8:20", story:true},
-  {creator:"Narendra Modi", title:"Major Event Highlights and Key Moments", type:"live", duration:"LIVE", story:true},
-  {creator:"Ashish Chanchlani", title:"Comedy Scene That Everyone Is Sharing", type:"video", duration:"6:14", story:true},
-  {creator:"Rohit Sharma", title:"Captain’s Practice Session Highlights", type:"video", duration:"4:45"},
-  {creator:"Total Gaming", title:"Insane Gaming Moment in Last Zone", type:"live", duration:"LIVE"},
-  {creator:"Arijit Singh", title:"Soulful Music Night Live Clip", type:"video", duration:"5:32"},
-  {creator:"Technical Guruji", title:"Latest Tech Setup Explained", type:"video", duration:"7:18"},
-  {creator:"Khan Sir", title:"Simple Explanation for Students", type:"video", duration:"9:05"},
-  {creator:"Flying Beast", title:"Family Vlog and Travel Moments", type:"video", duration:"10:22"}
-];
-
-const recommendedData = [
-  {creator:"Total Gaming", title:"Gaming Highlights You Should Not Miss", type:"video", duration:"12:44"},
-  {creator:"Arijit Singh", title:"Studio Vibes and Live Singing Moment", type:"video", duration:"3:45"},
-  {creator:"Technical Guruji", title:"Tech Gadgets Worth Watching", type:"video", duration:"6:20"},
-  {creator:"Khan Sir", title:"Education Tip That Makes It Easy", type:"video", duration:"8:15"},
-  {creator:"Flying Beast", title:"Lifestyle Vlog with Family Moments", type:"video", duration:"11:10"},
-  {creator:"Rohit Sharma", title:"Training Day with Rohit Sharma", type:"video", duration:"4:10"},
-  {creator:"Narendra Modi", title:"Public Address Short Highlights", type:"video", duration:"5:01"},
-  {creator:"Ashish Chanchlani", title:"New Comedy Sketch Preview", type:"video", duration:"6:55"},
-  {creator:"Ranveer Singh", title:"Movie Promo and Fun Interview", type:"video", duration:"7:44"}
-];
-
-function createCard(item, index){
-  const c = creators[item.creator];
-  const ringClass = item.story ? "story-ring" : "";
-  const label = item.type === "live"
-    ? `<span class="live-label">LIVE</span>`
-    : `<span class="duration">${item.duration}</span>`;
-
-  return `
-    <a href="watch-${item.creator.toLowerCase().replaceAll(' ','-')}.html"
-       class="card show"
-       data-category="${c.category}"
-       data-extra="${index >= 4 ? 'more' : 'base'}">
-      <div class="thumb">
-        <img src="${c.gif}" alt="${item.creator}">
-        ${label}
-      </div>
-      <div class="card-body">
-        <div class="${ringClass}">
-          <img class="creator-pic" src="${c.pic}" alt="${item.creator}">
-        </div>
-        <div>
-          <div class="video-title">${item.title}</div>
-          <div class="channel">${item.creator}</div>
-          <div class="meta">${c.category} • ${item.type === "live" ? "Live now" : "1.2M views"}</div>
-        </div>
-      </div>
-    </a>
-  `;
+function toggleDropdown(){
+document.getElementById("dropdown").classList.toggle("show")
 }
 
-function renderCards(){
-  document.getElementById("trendingGrid").innerHTML =
-    trendingData.map((item,index)=>createCard(item,index)).join("");
-
-  document.getElementById("recommendedGrid").innerHTML =
-    recommendedData.map((item,index)=>createCard(item,index)).join("");
-
-  resetMore();
+function addMore(){
+alert("More categories coming soon")
 }
 
-function resetMore(){
-  document.querySelectorAll('[data-extra="more"]').forEach(card=>{
-    card.style.display = "none";
-  });
+const data = [
+"Ranveer Singh","Narendra Modi","Ashish Chanchlani",
+"Rohit Sharma","Total Gaming","Arijit Singh",
+"Technical Guruji","Khan Sir","Flying Beast"
+]
+
+function createCard(name,i){
+return `
+<div class="card" style="${i>3?'display:none':''}">
+<div class="thumb">
+<img src="https://picsum.photos/300/200?random=${i}">
+<video src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20${name.replaceAll(' ','%20')}.gif" autoplay muted loop></video>
+<span class="duration">${Math.floor(Math.random()*10)+1}:0${Math.floor(Math.random()*9)}</span>
+</div>
+<div class="card-body">
+<div class="${i<3?'story':''}">
+<img class="creator" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20${name}.jpg">
+</div>
+<div>
+<div class="title">Amazing video by ${name}</div>
+<div class="channel">${name}</div>
+</div>
+</div>
+</div>`
 }
 
-function toggleMore(gridId, btn){
-  const grid = document.getElementById(gridId);
-  const hiddenCards = grid.querySelectorAll('[data-extra="more"]');
-  const isOpen = btn.dataset.open === "true";
-
-  hiddenCards.forEach(card=>{
-    card.style.display = isOpen ? "none" : "block";
-  });
-
-  btn.dataset.open = isOpen ? "false" : "true";
-  btn.innerHTML = isOpen
-    ? `See more <i class="fa-solid fa-chevron-right"></i>`
-    : `See less <i class="fa-solid fa-chevron-up"></i>`;
+function render(){
+document.getElementById("t").innerHTML=data.slice(0,5).map(createCard).join("")
+document.getElementById("r").innerHTML=data.slice(3,9).map(createCard).join("")
 }
+render()
 
-function filterCategory(category, btn){
-  document.querySelectorAll(".cat").forEach(c=>c.classList.remove("active"));
-  btn.classList.add("active");
-
-  document.querySelectorAll(".card").forEach(card=>{
-    const match = category === "All" || category === "More" || card.dataset.category === category;
-    const isMore = card.dataset.extra === "more";
-    card.style.display = match && !isMore ? "block" : "none";
-  });
-
-  document.querySelectorAll(".see-btn").forEach(b=>{
-    b.dataset.open = "false";
-    b.innerHTML = `See more <i class="fa-solid fa-chevron-right"></i>`;
-  });
+function toggleMore(id){
+let cards=document.querySelectorAll(`#${id} .card`)
+cards.forEach((c,i)=>{
+if(i>3)c.style.display=(c.style.display==="none")?"block":"none"
+})
 }
-
-renderCards();
 </script>
 
 </body>
