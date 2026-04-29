@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Video Editor - JioVibe AI Studio</title>
+<title>AI Video Editor - JioVibe</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -14,46 +14,124 @@ body{background:#f8f9fb;color:#202124}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer}
 
-.editor-top{
-height:74px;background:#fff;border-bottom:1px solid #edf0f4;
+.topbar{
+height:72px;background:#fff;border-bottom:1px solid #edf0f4;
 display:flex;align-items:center;justify-content:space-between;
-padding:0 28px;position:sticky;top:0;z-index:20
+padding:0 26px;position:sticky;top:0;z-index:20
 }
-.back-title{display:flex;align-items:center;gap:16px;font-size:22px;font-weight:800}
-.project-title{text-align:center}
-.project-title h1{font-size:24px;font-weight:800}
-.project-tags{display:flex;gap:10px;justify-content:center;margin-top:6px}
-.tag{background:#f1f3f4;color:#5f6368;padding:7px 12px;border-radius:8px;font-size:12px;font-weight:800}
-.top-actions{display:flex;align-items:center;gap:14px}
-.token-pill{background:#fff;border:1px solid #e5e7eb;padding:12px 16px;border-radius:12px;font-weight:800}
-.buy-btn{background:#202124;color:#fff;border:none;border-radius:12px;padding:13px 20px;font-weight:800}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.project{text-align:center}
+.project h1{font-size:24px;font-weight:800}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.top-actions{display:flex;align-items:center;gap:12px}
+.token-pill{border:1px solid #e5e7eb;background:#fff;padding:11px 14px;border-radius:12px;font-weight:800}
+.buy-btn{background:#202124;color:#fff;border-radius:12px;padding:13px 18px;font-weight:800}
 
-.editor-wrap{
-display:grid;grid-template-columns:1fr 360px;gap:28px;
-padding:28px 44px;max-width:1700px;margin:auto
+.editor-shell{
+display:grid;
+grid-template-columns:120px 1fr 340px;
+gap:24px;
+padding:26px;
+max-width:1800px;
+margin:auto;
 }
-.main-editor{display:flex;flex-direction:column;gap:22px}
+
+/* LEFT TOOL RAIL */
+.tool-rail{
+background:#fff;
+border:1px solid #edf0f4;
+border-radius:22px;
+padding:18px 12px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:14px;
+height:max-content;
+position:sticky;
+top:98px;
+box-shadow:0 8px 24px rgba(0,0,0,.04)
+}
+.rail-title{
+font-size:14px;
+font-weight:800;
+color:#6b7280;
+text-align:center;
+margin-bottom:4px
+}
+.rail-item{
+width:92px;
+height:92px;
+border:none;
+background:#fff;
+border-radius:18px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:9px;
+font-size:14px;
+font-weight:800;
+color:#6b7280;
+transition:.22s ease;
+}
+.rail-item i{
+font-size:24px;
+width:44px;
+height:44px;
+border-radius:13px;
+background:#f1f3f4;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#6b7280;
+}
+.rail-item:hover{
+transform:scale(1.04);
+background:#f8f9fb;
+color:#202124;
+box-shadow:0 8px 20px rgba(0,0,0,.08)
+}
+.rail-item.active{
+border:2px solid #ff5a00;
+color:#202124;
+box-shadow:0 8px 20px rgba(255,90,0,.14)
+}
+.rail-item.active i{
+background:#fff0e8;
+color:#ff5a00
+}
+
+/* CENTER */
+.center-editor{display:flex;flex-direction:column;gap:20px}
 
 .upload-card{
 background:#fff;border:1px dashed #cfd4dc;border-radius:20px;
-padding:22px;display:flex;align-items:center;justify-content:space-between;
+padding:20px 24px;display:flex;align-items:center;justify-content:space-between;
 box-shadow:0 6px 18px rgba(0,0,0,.04)
 }
-.upload-left{display:flex;align-items:center;gap:18px}
+.upload-left{display:flex;align-items:center;gap:16px}
 .upload-icon{
-width:58px;height:58px;border-radius:16px;background:#f1f3f4;
-display:flex;align-items:center;justify-content:center;font-size:24px
+width:56px;height:56px;border-radius:16px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;font-size:23px
 }
 .upload-card h3{font-size:19px;font-weight:800;margin-bottom:5px}
 .upload-card p{font-size:14px;color:#6b7280;font-weight:600}
-.upload-btn{background:#202124;color:#fff;border:none;border-radius:12px;padding:14px 22px;font-size:15px;font-weight:800}
+.upload-btn{
+background:#202124;color:#fff;border:none;border-radius:12px;
+padding:14px 22px;font-size:15px;font-weight:800;transition:.22s
+}
+.upload-btn:hover{transform:scale(1.03)}
 
 .video-preview{
 height:520px;border-radius:22px;overflow:hidden;
 background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1800&auto=format&fit=crop') center/cover;
 position:relative;box-shadow:0 10px 28px rgba(0,0,0,.12)
 }
-.video-preview::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.05))}
+.video-preview::after{
+content:"";position:absolute;inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.05))
+}
 .controls{position:absolute;left:28px;right:28px;bottom:24px;z-index:2;color:#fff}
 .progress{height:6px;background:rgba(255,255,255,.35);border-radius:20px;margin-bottom:16px;overflow:hidden}
 .progress span{display:block;width:38%;height:100%;background:#ff5a00}
@@ -67,52 +145,81 @@ padding:18px;box-shadow:0 6px 18px rgba(0,0,0,.04)
 }
 .tool-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .edit-tools,.zoom{display:flex;gap:10px;align-items:center}
-.small-btn{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-weight:800}
+.small-btn{
+background:#fff;border:1px solid #e5e7eb;border-radius:10px;
+padding:10px 14px;font-weight:800;transition:.22s
+}
+.small-btn:hover{transform:scale(1.04);background:#f8f9fb}
 .zoom-line{width:120px;height:4px;background:#e5e7eb;border-radius:20px;position:relative}
 .zoom-line::after{content:"";position:absolute;left:45%;top:-5px;width:14px;height:14px;background:#ff5a00;border-radius:50%}
-.time-scale{display:grid;grid-template-columns:repeat(13,1fr);color:#666;font-size:13px;font-weight:800;padding:0 58px;margin-bottom:12px}
+.time-scale{
+display:grid;grid-template-columns:repeat(13,1fr);
+color:#666;font-size:13px;font-weight:800;padding:0 58px;margin-bottom:12px
+}
 .track{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:center;margin-bottom:14px}
-.track-icon{width:42px;height:42px;border-radius:12px;background:#f1f3f4;display:flex;align-items:center;justify-content:center;font-size:18px}
-.video-strip{height:76px;border:2px solid #ff5a00;border-radius:12px;overflow:hidden;display:grid;grid-template-columns:repeat(5,1fr);position:relative}
+.track-icon{
+width:42px;height:42px;border-radius:12px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;font-size:18px
+}
+.video-strip{
+height:76px;border:2px solid #ff5a00;border-radius:12px;
+overflow:hidden;display:grid;grid-template-columns:repeat(5,1fr);position:relative
+}
 .video-strip div{background-size:cover;background-position:center}
 .playhead{position:absolute;left:23%;top:-16px;bottom:-110px;width:3px;background:#ff5a00;z-index:5}
-.playhead::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:18px;height:18px;border-radius:50%;background:#ff5a00}
-.audio-strip{height:60px;border-radius:12px;background:#e9fff1;border:1px solid #bbf7d0;display:flex;align-items:center;padding:0 12px;gap:4px;overflow:hidden}
+.playhead::before{
+content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+width:18px;height:18px;border-radius:50%;background:#ff5a00
+}
+.audio-strip{
+height:60px;border-radius:12px;background:#e9fff1;border:1px solid #bbf7d0;
+display:flex;align-items:center;padding:0 12px;gap:4px;overflow:hidden
+}
 .bar{width:4px;background:#22c55e;border-radius:10px}
 
 .note-box{
-background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:22px;
+background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:20px;
 display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 18px rgba(0,0,0,.04)
 }
 .note-box p{color:#6b7280;font-weight:600}
-.preview-btn{border:1px solid #e5e7eb;background:#fff;border-radius:12px;padding:13px 20px;font-weight:800}
-
-.side-panel{display:flex;flex-direction:column;gap:18px;position:sticky;top:96px;height:max-content}
-
-.manual-panel,.ai-panel{
-background:#fff;border:1px solid #e5e7eb;border-radius:22px;
-padding:22px;box-shadow:0 8px 24px rgba(0,0,0,.06)
+.preview-btn{
+border:1px solid #e5e7eb;background:#fff;border-radius:12px;
+padding:13px 20px;font-weight:800;transition:.22s
 }
-.manual-panel h2,.ai-head h2{font-size:22px;font-weight:800;margin-bottom:6px}
-.manual-panel p,.ai-head p{color:#6b7280;font-weight:600;font-size:14px;margin-bottom:18px}
+.preview-btn:hover{background:#202124;color:#fff;transform:scale(1.02)}
 
-.manual-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.manual-tool{
-border:1px solid #e5e7eb;background:#fff;border-radius:16px;padding:16px;
-transition:.22s;text-align:left
+/* RIGHT AI PANEL */
+.ai-panel{
+background:#fff;
+border:1px solid #ffd4bd;
+border-radius:22px;
+padding:22px;
+height:max-content;
+position:sticky;
+top:98px;
+box-shadow:0 10px 30px rgba(255,90,0,.10)
 }
-.manual-tool:hover{transform:scale(1.015);box-shadow:0 8px 20px rgba(0,0,0,.08);background:#f8f9fb}
-.manual-tool i{
-width:42px;height:42px;border-radius:12px;background:#f1f3f4;
-display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px
+.ai-head{
+background:#fff7f2;
+border:1px solid #ffd4bd;
+border-radius:16px;
+padding:16px;
+margin-bottom:12px
 }
-.manual-tool h3{font-size:15px;font-weight:800;margin-bottom:5px}
-.manual-tool span{color:#6b7280;font-size:12px;font-weight:600}
-
-.ai-panel{border:1px solid #ffd4bd}
-.ai-head{background:#fff7f2;border:1px solid #ffd4bd;border-radius:16px;padding:16px;margin-bottom:12px}
+.ai-head h2{font-size:23px;font-weight:800;margin-bottom:8px}
 .ai-head h2 span{color:#ff5a00}
-.ai-tool{display:grid;grid-template-columns:46px 1fr 52px;gap:12px;align-items:center;padding:16px 0;border-top:1px solid #edf0f4}
+.ai-head p{color:#6b7280;font-weight:700;font-size:14px}
+
+.ai-tool{
+display:grid;
+grid-template-columns:46px 1fr 52px;
+gap:12px;
+align-items:center;
+padding:16px 0;
+border-top:1px solid #edf0f4;
+transition:.22s
+}
+.ai-tool:hover{transform:scale(1.01)}
 .ai-icon{
 width:46px;height:46px;border-radius:12px;background:#fff0e8;
 display:flex;align-items:center;justify-content:center;font-size:19px;color:#ff5a00
@@ -120,33 +227,42 @@ display:flex;align-items:center;justify-content:center;font-size:19px;color:#ff5
 .ai-tool h3{font-size:15px;font-weight:800;margin-bottom:4px}
 .ai-tool p{font-size:12px;color:#555;line-height:1.35}
 .toggle{width:50px;height:28px;border-radius:999px;background:#d1d5db;position:relative;transition:.2s}
-.toggle::after{content:"";position:absolute;width:22px;height:22px;background:#fff;border-radius:50%;top:3px;left:3px;transition:.2s}
+.toggle::after{
+content:"";position:absolute;width:22px;height:22px;background:#fff;
+border-radius:50%;top:3px;left:3px;transition:.2s
+}
 .ai-tool.active .toggle{background:#ff5a00}
 .ai-tool.active .toggle::after{left:25px}
-.cost-box{background:#f8f9fb;border:1px solid #e5e7eb;border-radius:14px;padding:16px;margin-top:14px;font-weight:800;display:flex;justify-content:space-between}
-.cost-box span:last-child{color:#ff5a00}
-.generate-btn{width:100%;margin-top:16px;border:none;background:#ff5a00;color:#fff;border-radius:14px;padding:16px;font-size:16px;font-weight:800}
-.generate-btn:hover{transform:scale(1.015)}
 
-@media(max-width:1200px){
-.editor-wrap{grid-template-columns:1fr}
-.side-panel{position:static}
-.video-preview{height:420px}
+.cost-box{
+background:#f8f9fb;border:1px solid #e5e7eb;border-radius:14px;
+padding:16px;margin-top:14px;font-weight:800;display:flex;justify-content:space-between
+}
+.cost-box span:last-child{color:#ff5a00}
+.generate-btn{
+width:100%;margin-top:16px;border:none;background:#ff5a00;color:#fff;
+border-radius:14px;padding:16px;font-size:16px;font-weight:800;transition:.22s
+}
+.generate-btn:hover{transform:scale(1.02);box-shadow:0 8px 20px rgba(255,90,0,.25)}
+
+@media(max-width:1300px){
+.editor-shell{grid-template-columns:100px 1fr}
+.ai-panel{grid-column:1/-1;position:static}
 }
 </style>
 </head>
 
 <body>
 
-<header class="editor-top">
+<header class="topbar">
   <div class="back-title">
     <a href="ai-studio.html"><i class="fa-solid fa-arrow-left"></i></a>
     <span>AI Video Editor</span>
   </div>
 
-  <div class="project-title">
+  <div class="project">
     <h1>Weekend Trip to Manali <i class="fa-regular fa-pen-to-square"></i></h1>
-    <div class="project-tags">
+    <div class="tags">
       <span class="tag">Duration: 12:45</span>
       <span class="tag">Resolution: 1920×1080</span>
     </div>
@@ -158,9 +274,53 @@ display:flex;align-items:center;justify-content:center;font-size:19px;color:#ff5
   </div>
 </header>
 
-<div class="editor-wrap">
+<div class="editor-shell">
 
-<main class="main-editor">
+<aside class="tool-rail">
+  <div class="rail-title">AI Tools</div>
+
+  <button class="rail-item active">
+    <i class="fa-solid fa-video"></i>
+    Video
+  </button>
+
+  <button class="rail-item">
+    <i class="fa-solid fa-music"></i>
+    Audio
+  </button>
+
+  <button class="rail-item">
+    <i class="fa-regular fa-image"></i>
+    Image
+  </button>
+
+  <button class="rail-item">
+    <i class="fa-regular fa-closed-captioning"></i>
+    Subtitles
+  </button>
+
+  <button class="rail-item">
+    <i class="fa-solid fa-font"></i>
+    Text
+  </button>
+
+  <button class="rail-item">
+    <i class="fa-regular fa-square"></i>
+    Elements
+  </button>
+
+  <button class="rail-item">
+    <i class="fa-solid fa-palette"></i>
+    Brand Kit
+  </button>
+
+  <button class="rail-item">
+    <i class="fa-solid fa-gear"></i>
+    Settings
+  </button>
+</aside>
+
+<main class="center-editor">
 
 <div class="upload-card">
   <div class="upload-left">
@@ -199,6 +359,7 @@ display:flex;align-items:center;justify-content:center;font-size:19px;color:#ff5
       <button class="small-btn"><i class="fa-solid fa-scissors"></i> Split</button>
       <button class="small-btn"><i class="fa-regular fa-trash-can"></i> Delete</button>
     </div>
+
     <div class="zoom">
       <button class="small-btn">−</button>
       <div class="zoom-line"></div>
@@ -237,12 +398,10 @@ display:flex;align-items:center;justify-content:center;font-size:19px;color:#ff5
 
 </main>
 
-<aside class="side-panel">
-
-<div class="ai-panel">
+<aside class="ai-panel">
   <div class="ai-head">
     <h2><span>✨</span> AI Editing</h2>
-    <p>Select tools. Token cost will update automatically.</p>
+    <p>Select AI tools. Token cost will update automatically.</p>
   </div>
 
   <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
@@ -269,28 +428,18 @@ display:flex;align-items:center;justify-content:center;font-size:19px;color:#ff5
     <div class="toggle"></div>
   </div>
 
+  <div class="ai-tool" data-cost="3" onclick="toggleTool(this)">
+    <div class="ai-icon"><i class="fa-solid fa-palette"></i></div>
+    <div><h3>Color Enhance</h3><p>Improve color and lighting.</p></div>
+    <div class="toggle"></div>
+  </div>
+
   <div class="cost-box">
     <span>Total Cost</span>
     <span id="totalCost">0 Tokens</span>
   </div>
 
   <button class="generate-btn">Generate Video</button>
-</div>
-
-<div class="manual-panel">
-  <h2>Manual Tools</h2>
-  <p>Free editing tools. No tokens required.</p>
-
-  <div class="manual-grid">
-    <button class="manual-tool"><i class="fa-solid fa-scissors"></i><h3>Trim</h3><span>Cut video clips.</span></button>
-    <button class="manual-tool"><i class="fa-solid fa-wand-magic-sparkles"></i><h3>Effects</h3><span>Add effects.</span></button>
-    <button class="manual-tool"><i class="fa-regular fa-object-group"></i><h3>Transitions</h3><span>Scene transitions.</span></button>
-    <button class="manual-tool"><i class="fa-solid fa-font"></i><h3>Text</h3><span>Add captions.</span></button>
-    <button class="manual-tool"><i class="fa-solid fa-music"></i><h3>Music</h3><span>Add music.</span></button>
-    <button class="manual-tool"><i class="fa-solid fa-crop-simple"></i><h3>Crop</h3><span>Resize video.</span></button>
-  </div>
-</div>
-
 </aside>
 
 </div>
