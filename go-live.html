@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go Live - JioVibe Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
+
+.topbar{
+height:72px;background:#fff;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 26px;position:sticky;top:0;z-index:20
+}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.project{text-align:center}
+.project h1{font-size:24px;font-weight:900}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.top-actions{display:flex;align-items:center;gap:12px}
+.live-btn{background:#202124;color:#fff;border:none;border-radius:12px;padding:13px 22px;font-weight:900;transition:.22s}
+.live-btn:hover{transform:scale(1.03)}
+.live-btn.active{background:#ff5a00}
+
+.shell{
+display:grid;
+grid-template-columns:420px 1fr 340px;
+gap:24px;
+padding:26px;
+max-width:1800px;
+margin:auto
+}
+
+.card{
+background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+box-shadow:0 8px 24px rgba(0,0,0,.05)
+}
+
+.left-form{display:flex;flex-direction:column;gap:22px;height:max-content}
+.main-area{display:flex;flex-direction:column;gap:22px}
+
+.player-card{padding:18px}
+.player{
+width:100%;
+aspect-ratio:16/9;
+border-radius:20px;
+overflow:hidden;
+background:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600&auto=format&fit=crop') center/cover;
+position:relative;
+box-shadow:0 10px 28px rgba(0,0,0,.12);
+}
+.player::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.12))}
+.live-badge{
+position:absolute;top:18px;left:18px;z-index:2;
+background:#ff0033;color:#fff;padding:8px 12px;border-radius:8px;
+font-size:13px;font-weight:900
+}
+.viewer-badge{
+position:absolute;top:18px;right:18px;z-index:2;
+background:rgba(0,0,0,.55);color:#fff;padding:8px 12px;border-radius:8px;
+font-size:13px;font-weight:900
+}
+.player-controls{position:absolute;left:22px;right:22px;bottom:20px;z-index:2;color:#fff}
+.progress{height:6px;background:rgba(255,255,255,.35);border-radius:20px;margin-bottom:14px;overflow:hidden}
+.progress span{display:block;width:48%;height:100%;background:#ff5a00}
+.control-row{display:flex;align-items:center;justify-content:space-between}
+.controls-left,.controls-right{display:flex;align-items:center;gap:16px;font-size:18px}
+.time{font-size:14px;font-weight:900}
+
+.stream-box{
+padding:18px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px
+}
+.stream-field label{display:block;font-size:13px;font-weight:900;margin-bottom:8px}
+.copy-row{display:grid;grid-template-columns:1fr 48px;gap:10px}
+.copy-row input{
+border:1px solid #e5e7eb;border-radius:12px;padding:13px;font-weight:700;outline:none;background:#f8f9fb
+}
+.copy-row button{
+border:1px solid #e5e7eb;background:#fff;border-radius:12px;font-size:18px;transition:.22s
+}
+.copy-row button:hover{background:#202124;color:#fff;transform:scale(1.04)}
+
+.features-card{padding:20px}
+.features-card h2{font-size:20px;font-weight:900;margin-bottom:16px}
+.feature-buttons{display:flex;flex-direction:column;gap:12px}
+.feature-btn{
+border:1px solid #e5e7eb;background:#fff;border-radius:16px;
+padding:16px;text-align:left;display:grid;grid-template-columns:44px 1fr;gap:14px;
+align-items:center;transition:.22s
+}
+.feature-btn:hover{transform:scale(1.01);box-shadow:0 8px 20px rgba(0,0,0,.07);background:#f8f9fb}
+.feature-btn.active{border-color:#ff5a00;background:#fff7f2}
+.setting-icon{
+width:44px;height:44px;border-radius:12px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;font-size:18px
+}
+.feature-btn.active .setting-icon{background:#fff0e8;color:#ff5a00}
+.feature-btn h3{font-size:15px;font-weight:900;margin-bottom:4px}
+.feature-btn p{font-size:13px;color:#6b7280;font-weight:600;line-height:1.4}
+
+.form-card{padding:22px}
+.section-title{
+font-size:22px;font-weight:900;margin-bottom:18px;
+display:flex;align-items:center;gap:10px
+}
+.section-title i{color:#ff5a00}
+
+.field{margin-bottom:18px}
+.field label{display:block;font-size:14px;font-weight:900;margin-bottom:8px}
+.field-help{
+font-size:13px;
+font-weight:600;
+color:#6b7280;
+line-height:1.5;
+margin:-2px 0 10px
+}
+.input,textarea,select{
+width:100%;border:1px solid #e5e7eb;border-radius:14px;
+padding:14px;font-size:14px;font-weight:700;outline:none;background:#fff
+}
+textarea{height:115px;resize:none;line-height:1.5}
+.input:focus,textarea:focus,select:focus{
+border-color:#202124;box-shadow:0 0 0 3px rgba(32,33,36,.08)
+}
+
+.ai-mini{
+background:#fff7f2;border:1px solid #ffd4bd;border-radius:16px;
+padding:14px;margin-top:10px
+}
+.ai-mini label{
+display:flex;align-items:center;gap:8px;font-size:13px;font-weight:900;margin-bottom:10px
+}
+.ai-mini label i{color:#ff5a00}
+.ai-mini textarea{height:78px;border-color:#ffd4bd;background:#fff}
+.ai-actions{display:flex;gap:10px;margin-top:10px}
+.ai-actions button{
+flex:1;border:none;border-radius:11px;padding:11px;font-size:13px;font-weight:900;transition:.22s
+}
+.ai-actions .dark{background:#202124;color:#fff}
+.ai-actions .light{background:#fff;border:1px solid #e5e7eb}
+.ai-actions button:hover{transform:scale(1.02)}
+
+.results{display:none;margin-top:12px;gap:10px;flex-direction:column}
+.results.show{display:flex}
+.result-item{
+border:1px solid #e5e7eb;background:#fff;border-radius:12px;
+padding:12px;display:flex;justify-content:space-between;gap:10px;
+font-size:13px;font-weight:800;line-height:1.4
+}
+.result-item button{
+border:none;background:#202124;color:#fff;border-radius:9px;padding:8px 10px;font-weight:900
+}
+
+.thumb-upload{
+height:160px;border:1px dashed #cfd4dc;border-radius:16px;
+display:flex;align-items:center;justify-content:center;flex-direction:column;
+gap:10px;background:#fff;transition:.22s
+}
+.thumb-upload:hover{transform:scale(1.01);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.thumb-upload i{font-size:32px;color:#6b7280}
+.thumb-upload span{font-weight:900}
+
+.chat-card{
+height:calc(100vh - 124px);
+position:sticky;top:98px;
+display:flex;flex-direction:column;overflow:hidden
+}
+.chat-head{
+padding:18px;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between
+}
+.chat-head h2{font-size:20px;font-weight:900}
+.chat-status{font-size:12px;font-weight:900;color:#16a34a}
+.chat-list{
+padding:16px;display:flex;flex-direction:column;
+gap:14px;overflow:auto;flex:1
+}
+.chat-msg{display:flex;gap:10px;align-items:flex-start}
+.avatar{
+width:34px;height:34px;border-radius:50%;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900
+}
+.chat-msg strong{font-size:13px}
+.chat-msg p{font-size:13px;color:#5f6368;line-height:1.4;margin-top:3px}
+.chat-input{
+padding:14px;border-top:1px solid #edf0f4;
+display:flex;gap:10px
+}
+.chat-input input{
+flex:1;border:1px solid #e5e7eb;border-radius:12px;padding:12px;font-weight:700;outline:none
+}
+.chat-input button{
+border:none;background:#202124;color:#fff;border-radius:12px;padding:0 14px;font-weight:900
+}
+
+.toast{
+position:fixed;
+top:92px;
+left:50%;
+transform:translateX(-50%) translateY(-20px);
+background:#202124;
+color:#fff;
+padding:14px 22px;
+border-radius:14px;
+font-weight:900;
+box-shadow:0 12px 30px rgba(0,0,0,.20);
+opacity:0;
+pointer-events:none;
+transition:.3s;
+z-index:999
+}
+.toast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0)
+}
+
+@media(max-width:1300px){
+.shell{grid-template-columns:1fr}
+.chat-card{position:static;height:auto}
+.stream-box{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="toast" id="toast">You’re live now</div>
+
+<header class="topbar">
+  <div class="back-title">
+    <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a>
+    <span>Go Live</span>
+  </div>
+
+  <div class="project">
+    <h1>Live Stream Setup</h1>
+    <div class="tags">
+      <span class="tag">RTMP</span>
+      <span class="tag">Live Chat</span>
+      <span class="tag">AI Assist</span>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <button class="live-btn" id="goLiveBtn" onclick="goLive()">Go Live</button>
+  </div>
+</header>
+
+<div class="shell">
+
+<aside class="left-form">
+  <section class="card form-card">
+    <div class="section-title"><i class="fa-solid fa-sliders"></i> Stream Details</div>
+
+    <div class="field">
+      <label>Title</label>
+      <input class="input" id="titleInput" placeholder="Write your live title">
+      <div class="ai-mini">
+        <label><i class="fa-solid fa-wand-magic-sparkles"></i> AI Title Prompt</label>
+        <textarea placeholder="Example: Create a catchy gaming live stream title."></textarea>
+        <div class="ai-actions">
+          <button class="dark" onclick="showResults('titleResults')">Generate</button>
+          <button class="light">Clear</button>
+        </div>
+        <div class="results" id="titleResults">
+          <div class="result-item">BGMI Custom Room Live | Join Now & Win Rewards <button onclick="useText('titleInput','BGMI Custom Room Live | Join Now & Win Rewards')">Select</button></div>
+          <div class="result-item">Late Night Gaming Live With Subscribers <button onclick="useText('titleInput','Late Night Gaming Live With Subscribers')">Select</button></div>
+          <div class="result-item">Road to Victory Live Stream | Full Power Gameplay <button onclick="useText('titleInput','Road to Victory Live Stream | Full Power Gameplay')">Select</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+      <textarea id="descInput" placeholder="Write your live description"></textarea>
+      <div class="ai-mini">
+        <label><i class="fa-solid fa-wand-magic-sparkles"></i> AI Description Prompt</label>
+        <textarea placeholder="Example: Write live stream description with rules and CTA."></textarea>
+        <div class="ai-actions">
+          <button class="dark" onclick="showResults('descResults')">Generate</button>
+          <button class="light">Clear</button>
+        </div>
+        <div class="results" id="descResults">
+          <div class="result-item">Welcome to today’s live stream. Join the chat, follow the rules and enjoy the gameplay. <button onclick="useText('descInput','Welcome to today’s live stream. Join the chat, follow the rules and enjoy the gameplay.')">Select</button></div>
+          <div class="result-item">Live with subscribers today. Like, share and subscribe for more gaming content. <button onclick="useText('descInput','Live with subscribers today. Like, share and subscribe for more gaming content.')">Select</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Thumbnail Upload</label>
+      <div class="thumb-upload">
+        <i class="fa-regular fa-image"></i>
+        <span>Upload Thumbnail</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>AI Thumbnail Prompt</label>
+      <div class="ai-mini" style="margin-top:0;">
+        <label><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Thumbnail</label>
+        <textarea placeholder="Example: Create bold gaming live thumbnail with orange glow."></textarea>
+        <div class="ai-actions">
+          <button class="dark" onclick="showResults('thumbResults')">Generate</button>
+          <button class="light">Clear</button>
+        </div>
+        <div class="results" id="thumbResults">
+          <div class="result-item">Gaming Live Thumbnail - Bold Dark Style <button>Select</button></div>
+          <div class="result-item">Creator Live Thumbnail - Clean Minimal Style <button>Select</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Category</label>
+      <select>
+        <option>Gaming</option>
+        <option>Music</option>
+        <option>Education</option>
+        <option>Entertainment</option>
+        <option>Tech</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Comments</label>
+      <select>
+        <option>Anyone can comment</option>
+        <option>Subscriber only</option>
+        <option>Comments off</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Tags</label>
+      <input class="input" id="tagInput" placeholder="gaming, live, jiovibe">
+      <div class="ai-mini">
+        <label><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tags Prompt</label>
+        <textarea placeholder="Example: Generate tags for gaming live stream."></textarea>
+        <div class="ai-actions">
+          <button class="dark" onclick="showResults('tagResults')">Generate</button>
+          <button class="light">Clear</button>
+        </div>
+        <div class="results" id="tagResults">
+          <div class="result-item">gaming, live, bgmi, custom room, jiovibe, streamer <button onclick="useText('tagInput','gaming, live, bgmi, custom room, jiovibe, streamer')">Select</button></div>
+          <div class="result-item">live stream, gameplay, creator, esports, gaming india <button onclick="useText('tagInput','live stream, gameplay, creator, esports, gaming india')">Select</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Live Language Output</label>
+      <p class="field-help">
+        AI live language output will translate your live audio in real time. For example, if you select Hindi, viewers will hear the live stream in Hindi while the original stream continues.
+      </p>
+      <select>
+        <option>Original Audio</option>
+        <option>Hindi Live Output</option>
+        <option>English Live Output</option>
+        <option>Tamil Live Output</option>
+        <option>Marathi Live Output</option>
+        <option>Telugu Live Output</option>
+      </select>
+    </div>
+  </section>
+</aside>
+
+<main class="main-area">
+
+  <section class="card player-card">
+    <div class="player">
+      <div class="live-badge">LIVE PREVIEW</div>
+      <div class="viewer-badge"><i class="fa-regular fa-eye"></i> 0 viewers</div>
+
+      <div class="player-controls">
+        <div class="progress"><span></span></div>
+        <div class="control-row">
+          <div class="controls-left">
+            <i class="fa-solid fa-play"></i>
+            <i class="fa-solid fa-volume-high"></i>
+            <span class="time">Preview Feed</span>
+          </div>
+          <div class="controls-right">
+            <i class="fa-regular fa-closed-captioning"></i>
+            <i class="fa-solid fa-gear"></i>
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card stream-box">
+    <div class="stream-field">
+      <label>Server URL</label>
+      <div class="copy-row">
+        <input value="rtmp://live.jiovibe.com/live" readonly>
+        <button><i class="fa-regular fa-copy"></i></button>
+      </div>
+    </div>
+
+    <div class="stream-field">
+      <label>Stream Key</label>
+      <div class="copy-row">
+        <input value="jv_live_x92k_84hd_private" readonly>
+        <button><i class="fa-regular fa-copy"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="card features-card">
+    <h2>Live Features</h2>
+
+    <div class="feature-buttons">
+      <button class="feature-btn" onclick="toggleFeature(this)">
+        <div class="setting-icon"><i class="fa-solid fa-signal"></i></div>
+        <div><h3>Stream Health</h3><p>Excellent connection. No dropped frames.</p></div>
+      </button>
+
+      <button class="feature-btn" onclick="toggleFeature(this)">
+        <div class="setting-icon"><i class="fa-solid fa-clock"></i></div>
+        <div><h3>Schedule</h3><p>Start immediately or schedule for later.</p></div>
+      </button>
+
+      <button class="feature-btn" onclick="toggleFeature(this)">
+        <div class="setting-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div><h3>Moderation</h3><p>Block spam, links and restricted words.</p></div>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<aside class="card chat-card">
+  <div class="chat-head">
+    <h2>Live Chat</h2>
+    <span class="chat-status">Enabled</span>
+  </div>
+
+  <div class="chat-list">
+    <div class="chat-msg"><div class="avatar">RJ</div><div><strong>Rahul</strong><p>Waiting for stream bro 🔥</p></div></div>
+    <div class="chat-msg"><div class="avatar">AK</div><div><strong>Aakash</strong><p>Audio check kar lena before live.</p></div></div>
+    <div class="chat-msg"><div class="avatar">NP</div><div><strong>Neha</strong><p>Thumbnail looks clean!</p></div></div>
+    <div class="chat-msg"><div class="avatar">SG</div><div><strong>Sagar</strong><p>Stream key safe rakhna.</p></div></div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" placeholder="Send message">
+    <button><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</aside>
+
+</div>
+
+<script>
+function showResults(id){
+  document.getElementById(id).classList.toggle("show");
+}
+
+function useText(inputId, text){
+  document.getElementById(inputId).value = text;
+}
+
+function toggleFeature(btn){
+  btn.classList.toggle("active");
+}
+
+function goLive(){
+  const btn = document.getElementById("goLiveBtn");
+  const toast = document.getElementById("toast");
+
+  btn.innerText = "Live";
+  btn.classList.add("active");
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2200);
+}
+</script>
+
+</body>
+</html>
