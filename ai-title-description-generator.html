@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Title & Description Generator - JioVibe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124}
+a{text-decoration:none;color:inherit}
+button,textarea,select,input{font-family:inherit}
+button{cursor:pointer}
+
+.topbar{
+height:72px;background:#fff;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 26px;position:sticky;top:0;z-index:20
+}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.project{text-align:center}
+.project h1{font-size:24px;font-weight:800}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.top-actions{display:flex;align-items:center;gap:12px}
+.token-pill{border:1px solid #e5e7eb;background:#fff;padding:11px 14px;border-radius:12px;font-weight:800}
+.buy-btn{background:#202124;color:#fff;border-radius:12px;padding:13px 18px;font-weight:800}
+
+.shell{
+display:grid;
+grid-template-columns:420px 1fr;
+gap:24px;
+padding:26px;
+max-width:1700px;
+margin:auto
+}
+
+.card{
+background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+box-shadow:0 8px 24px rgba(0,0,0,.05)
+}
+
+.input-panel{
+padding:24px;
+height:max-content;
+position:sticky;
+top:98px
+}
+
+.step-head{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:10px
+}
+.step-no{
+width:34px;height:34px;border-radius:50%;
+background:#ff5a00;color:#fff;
+display:flex;align-items:center;justify-content:center;
+font-weight:900
+}
+.step-head h2{
+font-size:22px;
+font-weight:900
+}
+.sub{
+color:#6b7280;
+font-size:14px;
+font-weight:700;
+margin-bottom:24px
+}
+
+.field{
+margin-bottom:22px
+}
+.field label{
+display:block;
+font-size:15px;
+font-weight:900;
+margin-bottom:10px
+}
+.textarea-wrap{
+position:relative
+}
+textarea{
+width:100%;
+height:135px;
+resize:none;
+border:1px solid #e5e7eb;
+border-radius:16px;
+padding:16px;
+font-size:16px;
+font-weight:600;
+line-height:1.5;
+outline:none;
+background:#fff
+}
+textarea:focus{
+border-color:#202124;
+box-shadow:0 0 0 3px rgba(32,33,36,.08)
+}
+.count{
+position:absolute;
+right:14px;
+bottom:12px;
+font-size:13px;
+font-weight:800;
+color:#9aa0a6
+}
+
+.select-box{
+position:relative
+}
+.select-btn{
+width:100%;
+height:56px;
+border:1px solid #e5e7eb;
+background:#fff;
+border-radius:16px;
+padding:0 16px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+font-size:16px;
+font-weight:800;
+color:#3f3f46;
+transition:.22s
+}
+.select-btn:hover{
+transform:scale(1.01);
+background:#f8f9fb
+}
+.select-btn span{
+display:flex;
+align-items:center;
+gap:12px
+}
+.dropdown-list{
+display:none;
+position:absolute;
+top:64px;
+left:0;
+right:0;
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:16px;
+box-shadow:0 12px 28px rgba(0,0,0,.12);
+overflow:hidden;
+z-index:10
+}
+.dropdown-list.show{display:block}
+.dropdown-list button{
+width:100%;
+border:none;
+background:#fff;
+padding:14px 16px;
+text-align:left;
+font-size:15px;
+font-weight:800;
+color:#3f3f46;
+transition:.18s
+}
+.dropdown-list button:hover{
+background:#f1f3f4
+}
+
+.generate-btn{
+width:100%;
+border:none;
+background:#ff5a00;
+color:#fff;
+border-radius:14px;
+padding:16px;
+font-size:17px;
+font-weight:900;
+transition:.22s;
+margin-top:4px
+}
+.generate-btn:hover{
+transform:scale(1.02);
+box-shadow:0 8px 20px rgba(255,90,0,.25)
+}
+.cost-note{
+text-align:center;
+font-size:14px;
+font-weight:800;
+color:#6b7280;
+margin-top:18px
+}
+.cost-note span{color:#ff5a00}
+
+.results-panel{
+padding:24px
+}
+.results-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:18px;
+padding-bottom:22px;
+border-bottom:1px solid #edf0f4;
+margin-bottom:24px
+}
+.results-head h2{
+font-size:24px;
+font-weight:900;
+margin-bottom:6px
+}
+.results-head p{
+color:#6b7280;
+font-weight:700
+}
+.regenerate-btn{
+border:1px solid #e5e7eb;
+background:#fff;
+border-radius:14px;
+padding:13px 20px;
+font-size:15px;
+font-weight:900;
+transition:.22s
+}
+.regenerate-btn:hover{
+background:#202124;
+color:#fff;
+transform:scale(1.03)
+}
+.regenerate-btn span{color:#ff5a00}
+
+.section-title{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:22px;
+font-weight:900;
+margin-bottom:14px
+}
+.section-title i{color:#ff5a00}
+
+.title-list{
+display:flex;
+flex-direction:column;
+gap:10px;
+margin-bottom:24px
+}
+.title-item{
+border:1px solid #e5e7eb;
+background:#fff;
+border-radius:14px;
+padding:13px 14px;
+display:grid;
+grid-template-columns:26px 1fr 92px;
+gap:12px;
+align-items:center;
+transition:.22s
+}
+.title-item:hover{
+transform:translateX(4px);
+box-shadow:0 8px 18px rgba(0,0,0,.07)
+}
+.radio{
+width:20px;height:20px;border-radius:50%;
+border:2px solid #cbd5e1
+}
+.title-text{
+font-size:15px;
+font-weight:800;
+line-height:1.4
+}
+.copy-btn{
+border:1px solid #e5e7eb;
+background:#fff;
+border-radius:11px;
+padding:10px 14px;
+font-size:14px;
+font-weight:900;
+transition:.22s
+}
+.copy-btn:hover{
+background:#202124;
+color:#fff;
+transform:scale(1.04)
+}
+
+.content-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px
+}
+.result-box{
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:18px;
+padding:20px;
+transition:.22s
+}
+.result-box:hover{
+box-shadow:0 8px 22px rgba(0,0,0,.07)
+}
+.box-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:16px
+}
+.box-head h3{
+font-size:22px;
+font-weight:900;
+display:flex;
+align-items:center;
+gap:10px
+}
+.box-head h3 i{color:#ff5a00}
+.copy-small{
+border:1px solid #e5e7eb;
+background:#fff;
+border-radius:11px;
+padding:10px 14px;
+font-size:14px;
+font-weight:900;
+transition:.22s
+}
+.copy-small:hover{
+background:#202124;
+color:#fff;
+transform:scale(1.04)
+}
+.description-text{
+font-size:15px;
+line-height:1.7;
+font-weight:500;
+color:#303136
+}
+
+.hashtag-wrap{
+display:flex;
+flex-wrap:wrap;
+gap:10px
+}
+.hashtag{
+border:1px solid #e5e7eb;
+background:#f8f9fb;
+border-radius:10px;
+padding:10px 12px;
+font-size:14px;
+font-weight:800;
+transition:.22s
+}
+.hashtag:hover{
+transform:scale(1.04);
+background:#202124;
+color:#fff
+}
+.hashtag.ai{
+background:#fff7f2;
+border-color:#ffd4bd;
+color:#ff5a00
+}
+
+@media(max-width:1100px){
+.shell{grid-template-columns:1fr}
+.input-panel{position:static}
+.content-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="back-title">
+    <a href="ai-studio.html"><i class="fa-solid fa-arrow-left"></i></a>
+    <span>AI Title & Description Generator</span>
+  </div>
+
+  <div class="project">
+    <h1>Content Metadata Generator</h1>
+    <div class="tags">
+      <span class="tag">Titles</span>
+      <span class="tag">Descriptions</span>
+      <span class="tag">Hashtags</span>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <div class="token-pill"><i class="fa-solid fa-coins"></i> My Tokens: <span style="color:#ff5a00;">1,250</span></div>
+    <a href="wallet.html" class="buy-btn">+ Buy Tokens</a>
+  </div>
+</header>
+
+<div class="shell">
+
+<aside class="card input-panel">
+
+  <div class="step-head">
+    <div class="step-no">1</div>
+    <h2>Provide Your Input</h2>
+  </div>
+  <p class="sub">Add video topic or keywords to generate content.</p>
+
+  <div class="field">
+    <label>Video Topic / Keywords *</label>
+    <div class="textarea-wrap">
+      <textarea>Weekend trip to Manali, travel vlog, mountains, adventure, snow, budget trip</textarea>
+      <div class="count">76/300</div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Select Tone</label>
+    <div class="select-box">
+      <button class="select-btn" onclick="toggleMenu('toneMenu')" type="button">
+        <span><i class="fa-regular fa-face-smile"></i> <b id="toneValue">Friendly & Engaging</b></span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="dropdown-list" id="toneMenu">
+        <button onclick="setValue('toneValue','Friendly & Engaging','toneMenu')">Friendly & Engaging</button>
+        <button onclick="setValue('toneValue','Professional','toneMenu')">Professional</button>
+        <button onclick="setValue('toneValue','Funny & Casual','toneMenu')">Funny & Casual</button>
+        <button onclick="setValue('toneValue','Bold & Viral','toneMenu')">Bold & Viral</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Target Audience</label>
+    <div class="select-box">
+      <button class="select-btn" onclick="toggleMenu('audienceMenu')" type="button">
+        <span><i class="fa-solid fa-users"></i> <b id="audienceValue">Young Travelers</b></span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="dropdown-list" id="audienceMenu">
+        <button onclick="setValue('audienceValue','Young Travelers','audienceMenu')">Young Travelers</button>
+        <button onclick="setValue('audienceValue','Gamers','audienceMenu')">Gamers</button>
+        <button onclick="setValue('audienceValue','Tech Audience','audienceMenu')">Tech Audience</button>
+        <button onclick="setValue('audienceValue','General Viewers','audienceMenu')">General Viewers</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Language</label>
+    <div class="select-box">
+      <button class="select-btn" onclick="toggleMenu('languageMenu')" type="button">
+        <span><i class="fa-solid fa-globe"></i> <b id="languageValue">English</b></span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="dropdown-list" id="languageMenu">
+        <button onclick="setValue('languageValue','English','languageMenu')">English</button>
+        <button onclick="setValue('languageValue','Hindi','languageMenu')">Hindi</button>
+        <button onclick="setValue('languageValue','Hinglish','languageMenu')">Hinglish</button>
+        <button onclick="setValue('languageValue','Marathi','languageMenu')">Marathi</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="generate-btn">Generate Content</button>
+  <div class="cost-note">This will cost <span><i class="fa-solid fa-coins"></i> 10 Tokens</span></div>
+
+</aside>
+
+<main class="card results-panel">
+
+  <div class="results-head">
+    <div>
+      <h2><span style="color:#ff5a00;">2</span> AI Generated Results</h2>
+      <p>Review and copy the content you like.</p>
+    </div>
+    <button class="regenerate-btn"><i class="fa-solid fa-rotate-right"></i> Regenerate <span><i class="fa-solid fa-coins"></i> 10 Tokens</span></button>
+  </div>
+
+  <div class="section-title">
+    <i class="fa-solid fa-pen-nib"></i>
+    Title Suggestions
+  </div>
+
+  <div class="title-list">
+    <div class="title-item">
+      <div class="radio"></div>
+      <div class="title-text">Manali Trip on a Budget – Mountains, Snow & Memories!</div>
+      <button class="copy-btn">Copy</button>
+    </div>
+
+    <div class="title-item">
+      <div class="radio"></div>
+      <div class="title-text">Weekend in Manali | Full Travel Guide & Budget Plan</div>
+      <button class="copy-btn">Copy</button>
+    </div>
+
+    <div class="title-item">
+      <div class="radio"></div>
+      <div class="title-text">Snowy Adventures in Manali | A Perfect Weekend Escape!</div>
+      <button class="copy-btn">Copy</button>
+    </div>
+
+    <div class="title-item">
+      <div class="radio"></div>
+      <div class="title-text">Manali Vlog 2026 | Best Places, Food & Travel Tips</div>
+      <button class="copy-btn">Copy</button>
+    </div>
+
+    <div class="title-item">
+      <div class="radio"></div>
+      <div class="title-text">Exploring Manali | Budget Trip with Friends</div>
+      <button class="copy-btn">Copy</button>
+    </div>
+  </div>
+
+  <div class="content-grid">
+
+    <section class="result-box">
+      <div class="box-head">
+        <h3><i class="fa-regular fa-pen-to-square"></i> Description</h3>
+        <button class="copy-small"><i class="fa-regular fa-copy"></i> Copy</button>
+      </div>
+
+      <div class="description-text">
+        Join me on an unforgettable weekend trip to Manali. From snow-capped mountains to scenic roads, cozy cafes and adventure activities, this vlog has it all.
+        <br><br>
+        In this video, I share the complete budget, travel tips, places to visit, food stops and everything you need to know before planning your Manali trip.
+        <br><br>
+        Do not forget to like, share and subscribe for more amazing travel vlogs.
+      </div>
+    </section>
+
+    <section class="result-box">
+      <div class="box-head">
+        <h3><i class="fa-solid fa-hashtag"></i> Hashtags</h3>
+        <button class="copy-small"><i class="fa-regular fa-copy"></i> Copy All</button>
+      </div>
+
+      <div class="hashtag-wrap">
+        <button class="hashtag ai">#ManaliTrip</button>
+        <button class="hashtag ai">#ManaliVlog</button>
+        <button class="hashtag ai">#TravelVlog</button>
+        <button class="hashtag ai">#HimachalPradesh</button>
+        <button class="hashtag ai">#MountainLife</button>
+        <button class="hashtag ai">#SnowVibes</button>
+        <button class="hashtag">#BudgetTravel</button>
+        <button class="hashtag">#WeekendTrip</button>
+        <button class="hashtag">#TravelIndia</button>
+        <button class="hashtag">#Wanderlust</button>
+        <button class="hashtag">#ExploreMore</button>
+        <button class="hashtag">#VlogLife</button>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+</div>
+
+<script>
+function toggleMenu(id){
+  document.querySelectorAll(".dropdown-list").forEach(menu=>{
+    if(menu.id !== id){menu.classList.remove("show")}
+  });
+  document.getElementById(id).classList.toggle("show");
+}
+
+function setValue(targetId, value, menuId){
+  document.getElementById(targetId).innerText = value;
+  document.getElementById(menuId).classList.remove("show");
+}
+
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".select-box")){
+    document.querySelectorAll(".dropdown-list").forEach(menu=>menu.classList.remove("show"));
+  }
+});
+</script>
+
+</body>
+</html>
