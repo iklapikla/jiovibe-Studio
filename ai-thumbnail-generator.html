@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Thumbnail Generator - JioVibe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font-family:inherit}
+
+.topbar{
+height:72px;background:#fff;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 26px;position:sticky;top:0;z-index:20
+}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.project{text-align:center}
+.project h1{font-size:24px;font-weight:800}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.top-actions{display:flex;align-items:center;gap:12px}
+.token-pill{border:1px solid #e5e7eb;background:#fff;padding:11px 14px;border-radius:12px;font-weight:800}
+.buy-btn{background:#202124;color:#fff;border-radius:12px;padding:13px 18px;font-weight:800}
+
+.shell{
+display:grid;
+grid-template-columns:120px 390px 1fr;
+gap:24px;
+padding:26px;
+max-width:1800px;
+margin:auto
+}
+
+/* LEFT TOOL RAIL */
+.tool-rail{
+background:#fff;border:1px solid #edf0f4;border-radius:22px;
+padding:18px 12px;display:flex;flex-direction:column;align-items:center;
+gap:14px;height:max-content;position:sticky;top:98px;
+box-shadow:0 8px 24px rgba(0,0,0,.04)
+}
+.rail-title{font-size:14px;font-weight:800;color:#6b7280;text-align:center;margin-bottom:4px}
+.rail-item{
+width:92px;height:92px;border:none;background:#fff;border-radius:18px;
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:9px;font-size:14px;font-weight:800;color:#6b7280;transition:.22s ease;cursor:pointer
+}
+.rail-item i{
+font-size:24px;width:44px;height:44px;border-radius:13px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;color:#6b7280
+}
+.rail-item:hover{
+transform:scale(1.04);background:#f8f9fb;color:#202124;
+box-shadow:0 8px 20px rgba(0,0,0,.08)
+}
+.rail-item.active{
+border:2px solid #ff5a00;color:#202124;
+box-shadow:0 8px 20px rgba(255,90,0,.14)
+}
+.rail-item.active i{background:#fff0e8;color:#ff5a00}
+
+/* CONTROL PANEL */
+.control-panel{
+background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+padding:22px;height:max-content;position:sticky;top:98px;
+box-shadow:0 8px 24px rgba(0,0,0,.06)
+}
+.step-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.step-no{
+width:34px;height:34px;border-radius:50%;background:#ff5a00;color:#fff;
+display:flex;align-items:center;justify-content:center;font-weight:900
+}
+.step-head h2{font-size:21px;font-weight:900}
+.preview-box{
+height:220px;border-radius:18px;overflow:hidden;position:relative;
+background:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop') center/cover;
+margin-bottom:20px;box-shadow:0 8px 20px rgba(0,0,0,.08)
+}
+.preview-box::after{
+content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.05))
+}
+.preview-controls{
+position:absolute;left:16px;right:16px;bottom:14px;z-index:2;color:#fff;
+display:flex;align-items:center;gap:12px;font-weight:800
+}
+.preview-line{height:5px;background:rgba(255,255,255,.35);border-radius:20px;flex:1;overflow:hidden}
+.preview-line span{display:block;width:45%;height:100%;background:#ff5a00}
+
+.form-section{border-top:1px solid #edf0f4;padding-top:18px;margin-top:18px}
+.form-title{font-size:17px;font-weight:900;margin-bottom:12px}
+.style-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.style-btn{
+border:1px solid #e5e7eb;background:#fff;border-radius:14px;
+height:76px;font-weight:800;color:#444;transition:.22s;cursor:pointer
+}
+.style-btn i{display:block;font-size:20px;margin-bottom:8px}
+.style-btn:hover{transform:scale(1.04);box-shadow:0 8px 18px rgba(0,0,0,.08)}
+.style-btn.active{border:2px solid #ff5a00;background:#fff7f2;color:#ff5a00}
+
+.field{margin-top:16px}
+.field label{display:block;font-weight:900;margin-bottom:8px}
+.field input,.field textarea,.field select{
+width:100%;border:1px solid #e5e7eb;border-radius:13px;padding:13px;
+font-size:14px;font-weight:700;outline:none;background:#fff
+}
+.field textarea{min-height:110px;resize:none;line-height:1.45}
+.field input:focus,.field textarea:focus,.field select:focus{
+border-color:#ff5a00;box-shadow:0 0 0 3px rgba(255,90,0,.10)
+}
+.text-tools{display:grid;grid-template-columns:1fr 44px 44px 44px;gap:8px;margin-top:10px}
+.color-box{height:44px;border-radius:11px;background:#ff5a00;border:none}
+.icon-btn{
+height:44px;border:1px solid #e5e7eb;background:#fff;border-radius:11px;font-weight:900;
+transition:.22s
+}
+.icon-btn:hover{transform:scale(1.05);background:#f8f9fb}
+.prompt-box{
+border:1px solid #ffd4bd;background:#fffaf7;border-radius:16px;
+padding:14px;margin-top:18px
+}
+.prompt-box label{display:flex;gap:8px;align-items:center;font-size:14px;font-weight:900;margin-bottom:10px}
+.prompt-box label i{color:#ff5a00}
+.generate-btn{
+width:100%;margin-top:18px;border:none;background:#ff5a00;color:#fff;
+border-radius:14px;padding:16px;font-size:16px;font-weight:900;transition:.22s
+}
+.generate-btn:hover{transform:scale(1.02);box-shadow:0 8px 20px rgba(255,90,0,.25)}
+.cost-note{text-align:center;color:#6b7280;font-size:13px;font-weight:800;margin-top:12px}
+
+/* OUTPUT AREA */
+.output-area{display:flex;flex-direction:column;gap:20px}
+.output-head{
+background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+padding:22px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 8px 24px rgba(0,0,0,.04)
+}
+.output-head h2{font-size:25px;font-weight:900;margin-bottom:6px}
+.output-head p{color:#6b7280;font-weight:700}
+.regen-btn{
+border:1px solid #e5e7eb;background:#fff;border-radius:12px;
+padding:13px 18px;font-weight:900;transition:.22s
+}
+.regen-btn:hover{transform:scale(1.03);background:#202124;color:#fff}
+
+.thumb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.thumb-card{
+background:#fff;border:1px solid #e5e7eb;border-radius:18px;overflow:hidden;
+box-shadow:0 6px 18px rgba(0,0,0,.04);transition:.22s;cursor:pointer;position:relative
+}
+.thumb-card:hover{transform:scale(1.015);box-shadow:0 12px 30px rgba(0,0,0,.09)}
+.thumb-card.selected{border:2px solid #ff5a00;box-shadow:0 12px 30px rgba(255,90,0,.16)}
+.thumb{
+height:190px;background-size:cover;background-position:center;position:relative;overflow:hidden
+}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.08))}
+.thumb-text{
+position:absolute;left:18px;top:16px;z-index:2;color:#fff;
+font-size:34px;line-height:.95;font-weight:900;text-transform:uppercase;
+text-shadow:3px 3px 0 #000
+}
+.thumb-text span{color:#ffd21f}
+.thumb-label{
+position:absolute;left:18px;bottom:18px;z-index:2;background:#e11d1d;color:#fff;
+font-size:18px;font-weight:900;padding:4px 10px;transform:rotate(-4deg)
+}
+.check{
+position:absolute;right:14px;top:14px;width:36px;height:36px;border:3px solid #fff;
+border-radius:50%;z-index:3;background:rgba(0,0,0,.25)
+}
+.thumb-card.selected .check{background:#ff5a00}
+.thumb-card.selected .check::after{
+content:"✓";color:#fff;font-weight:900;font-size:20px;position:absolute;left:7px;top:2px
+}
+.download{
+height:58px;display:flex;align-items:center;justify-content:center;gap:9px;
+font-size:17px;font-weight:900;background:#fff
+}
+.download:hover{background:#f8f9fb}
+
+.tip-box{
+background:#fff7f2;border:1px solid #ffd4bd;border-radius:18px;
+padding:20px;display:flex;align-items:center;justify-content:space-between;gap:18px
+}
+.tip-box strong{font-size:18px}
+.tip-box i{color:#ff5a00;font-size:24px}
+.learn-btn{
+border:1px solid #e5e7eb;background:#fff;border-radius:12px;padding:13px 18px;font-weight:900
+}
+
+@media(max-width:1350px){
+.shell{grid-template-columns:100px 1fr}
+.control-panel{position:static}
+.output-area{grid-column:2}
+.thumb-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="back-title">
+    <a href="ai-studio.html"><i class="fa-solid fa-arrow-left"></i></a>
+    <span>AI Thumbnail Generator</span>
+  </div>
+
+  <div class="project">
+    <h1>Gaming Thumbnail Project <i class="fa-regular fa-pen-to-square"></i></h1>
+    <div class="tags">
+      <span class="tag">Format: 16:9</span>
+      <span class="tag">Output: 1280×720</span>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <div class="token-pill"><i class="fa-solid fa-coins"></i> My Tokens: <span style="color:#ff5a00;">1,250</span></div>
+    <a href="wallet.html" class="buy-btn">+ Buy Tokens</a>
+  </div>
+</header>
+
+<div class="shell">
+
+<aside class="tool-rail">
+  <div class="rail-title">AI Tools</div>
+  <button class="rail-item active" onclick="selectRail(this)"><i class="fa-regular fa-image"></i> Image</button>
+  <button class="rail-item" onclick="selectRail(this)"><i class="fa-solid fa-video"></i> Video</button>
+  <button class="rail-item" onclick="selectRail(this)"><i class="fa-solid fa-font"></i> Text</button>
+  <button class="rail-item" onclick="selectRail(this)"><i class="fa-solid fa-palette"></i> Style</button>
+  <button class="rail-item" onclick="selectRail(this)"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Prompt</button>
+  <button class="rail-item" onclick="selectRail(this)"><i class="fa-solid fa-layer-group"></i> Templates</button>
+  <button class="rail-item" onclick="selectRail(this)"><i class="fa-solid fa-gear"></i> Settings</button>
+</aside>
+
+<aside class="control-panel">
+
+  <div class="step-head">
+    <div class="step-no">1</div>
+    <h2>Video Preview</h2>
+  </div>
+
+  <div class="preview-box">
+    <div class="preview-controls">
+      <i class="fa-solid fa-play"></i>
+      <span>04:12 / 12:45</span>
+      <div class="preview-line"><span></span></div>
+    </div>
+  </div>
+
+  <div class="step-head">
+    <div class="step-no">2</div>
+    <h2>Customize Thumbnail</h2>
+  </div>
+
+  <div class="form-section">
+    <div class="form-title">Style</div>
+    <div class="style-grid">
+      <button class="style-btn active" onclick="selectStyle(this)"><i class="fa-solid fa-b"></i>Bold</button>
+      <button class="style-btn" onclick="selectStyle(this)"><i class="fa-solid fa-gamepad"></i>Gaming</button>
+      <button class="style-btn" onclick="selectStyle(this)"><i class="fa-regular fa-star"></i>Clean</button>
+      <button class="style-btn" onclick="selectStyle(this)"><i class="fa-solid fa-fire"></i>Viral</button>
+      <button class="style-btn" onclick="selectStyle(this)"><i class="fa-solid fa-arrow-trend-up"></i>Minimal</button>
+      <button class="style-btn" onclick="selectStyle(this)"><i class="fa-solid fa-bolt"></i>High CTR</button>
+    </div>
+
+    <div class="field">
+      <label>Add Text</label>
+      <input type="text" value="Epic 1v4 Clutch in Last Zone!">
+    </div>
+
+    <div class="field">
+      <label>Text Style</label>
+      <div class="text-tools">
+        <select>
+          <option>Anton Bold</option>
+          <option>Impact</option>
+          <option>Inter Black</option>
+        </select>
+        <button class="color-box"></button>
+        <button class="icon-btn"><b>B</b></button>
+        <button class="icon-btn"><i>U</i></button>
+      </div>
+    </div>
+
+    <div class="prompt-box">
+      <label><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Based Thumbnail</label>
+      <textarea placeholder="Example: Create a high contrast gaming thumbnail with bold yellow text, red badge, dramatic lighting and strong focus on the player."></textarea>
+    </div>
+
+    <button class="generate-btn">✨ Generate Thumbnails <i class="fa-solid fa-coins"></i> 10 Tokens</button>
+    <div class="cost-note">This will generate 4–6 thumbnail options using AI.</div>
+  </div>
+</aside>
+
+<main class="output-area">
+
+  <div class="output-head">
+    <div>
+      <h2><span style="color:#ff5a00;">3</span> Generated Thumbnails</h2>
+      <p>Choose your favorite thumbnail or regenerate new options.</p>
+    </div>
+    <button class="regen-btn"><i class="fa-solid fa-rotate-right"></i> Regenerate <span style="color:#ff5a00;">10 Tokens</span></button>
+  </div>
+
+  <div class="thumb-grid">
+
+    <div class="thumb-card selected" onclick="selectThumb(this)">
+      <div class="check"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop')">
+        <div class="thumb-text">EPIC 1V4<br><span>CLUTCH</span><br>LAST ZONE!</div>
+        <div class="thumb-label">LAST ZONE</div>
+      </div>
+      <div class="download"><i class="fa-solid fa-download"></i> Download</div>
+    </div>
+
+    <div class="thumb-card" onclick="selectThumb(this)">
+      <div class="check"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=900&auto=format&fit=crop')">
+        <div class="thumb-text">EPIC 1V4<br><span>CLUTCH</span><br>LAST ZONE!</div>
+        <div class="thumb-label">LAST ZONE</div>
+      </div>
+      <div class="download"><i class="fa-solid fa-download"></i> Download</div>
+    </div>
+
+    <div class="thumb-card" onclick="selectThumb(this)">
+      <div class="check"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=900&auto=format&fit=crop')">
+        <div class="thumb-text">EPIC 1V4<br><span>CLUTCH</span><br>LAST ZONE!</div>
+        <div class="thumb-label">LAST ZONE</div>
+      </div>
+      <div class="download"><i class="fa-solid fa-download"></i> Download</div>
+    </div>
+
+    <div class="thumb-card" onclick="selectThumb(this)">
+      <div class="check"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1598550476439-6847785fcea6?q=80&w=900&auto=format&fit=crop')">
+        <div class="thumb-text">EPIC 1V4<br><span>CLUTCH</span><br>LAST ZONE!</div>
+        <div class="thumb-label">LAST ZONE</div>
+      </div>
+      <div class="download"><i class="fa-solid fa-download"></i> Download</div>
+    </div>
+
+    <div class="thumb-card" onclick="selectThumb(this)">
+      <div class="check"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?q=80&w=900&auto=format&fit=crop')">
+        <div class="thumb-text">EPIC 1V4<br><span>CLUTCH</span><br>LAST ZONE!</div>
+        <div class="thumb-label">LAST ZONE</div>
+      </div>
+      <div class="download"><i class="fa-solid fa-download"></i> Download</div>
+    </div>
+
+    <div class="thumb-card" onclick="selectThumb(this)">
+      <div class="check"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1603481546238-487240415921?q=80&w=900&auto=format&fit=crop')">
+        <div class="thumb-text">EPIC 1V4<br><span>CLUTCH</span><br>LAST ZONE!</div>
+        <div class="thumb-label">LAST ZONE</div>
+      </div>
+      <div class="download"><i class="fa-solid fa-download"></i> Download</div>
+    </div>
+
+  </div>
+
+  <div class="tip-box">
+    <div>
+      <strong><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tip:</strong>
+      <span> Bold text, high contrast colors and clear action focus usually get more clicks.</span>
+    </div>
+    <button class="learn-btn">Learn More</button>
+  </div>
+
+</main>
+
+</div>
+
+<script>
+function selectRail(btn){
+  document.querySelectorAll(".rail-item").forEach(item => item.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+function selectStyle(btn){
+  document.querySelectorAll(".style-btn").forEach(item => item.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+function selectThumb(card){
+  document.querySelectorAll(".thumb-card").forEach(item => item.classList.remove("selected"));
+  card.classList.add("selected");
+}
+</script>
+
+</body>
+</html>
