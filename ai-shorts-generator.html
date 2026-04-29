@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Shorts Generator - JioVibe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+
+.topbar{
+height:72px;background:#fff;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 26px;position:sticky;top:0;z-index:20
+}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.project{text-align:center}
+.project h1{font-size:24px;font-weight:800}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.top-actions{display:flex;align-items:center;gap:12px}
+.token-pill{border:1px solid #e5e7eb;background:#fff;padding:11px 14px;border-radius:12px;font-weight:800}
+.buy-btn{background:#202124;color:#fff;border-radius:12px;padding:13px 18px;font-weight:800}
+
+.editor-shell{
+display:grid;
+grid-template-columns:120px 1fr 360px;
+gap:24px;
+padding:26px;
+max-width:1800px;
+margin:auto;
+}
+
+.tool-rail{
+background:#fff;
+border:1px solid #edf0f4;
+border-radius:22px;
+padding:18px 12px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:14px;
+height:max-content;
+position:sticky;
+top:98px;
+box-shadow:0 8px 24px rgba(0,0,0,.04)
+}
+.rail-title{
+font-size:14px;
+font-weight:800;
+color:#6b7280;
+text-align:center;
+margin-bottom:4px
+}
+.rail-item{
+width:92px;
+height:92px;
+border:none;
+background:#fff;
+border-radius:18px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:9px;
+font-size:14px;
+font-weight:800;
+color:#6b7280;
+transition:.22s ease;
+}
+.rail-item i{
+font-size:24px;
+width:44px;
+height:44px;
+border-radius:13px;
+background:#f1f3f4;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#6b7280;
+}
+.rail-item:hover{
+transform:scale(1.04);
+background:#f8f9fb;
+color:#202124;
+box-shadow:0 8px 20px rgba(0,0,0,.08)
+}
+.rail-item.active{
+border:2px solid #ff5a00;
+color:#202124;
+box-shadow:0 8px 20px rgba(255,90,0,.14)
+}
+.rail-item.active i{
+background:#fff0e8;
+color:#ff5a00
+}
+
+.center-editor{display:flex;flex-direction:column;gap:20px}
+
+.upload-card{
+background:#fff;border:1px dashed #cfd4dc;border-radius:20px;
+padding:20px 24px;display:flex;align-items:center;justify-content:space-between;
+box-shadow:0 6px 18px rgba(0,0,0,.04)
+}
+.upload-left{display:flex;align-items:center;gap:16px}
+.upload-icon{
+width:56px;height:56px;border-radius:16px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;font-size:23px
+}
+.upload-card h3{font-size:19px;font-weight:800;margin-bottom:5px}
+.upload-card p{font-size:14px;color:#6b7280;font-weight:600}
+.upload-btn{
+background:#202124;color:#fff;border:none;border-radius:12px;
+padding:14px 22px;font-size:15px;font-weight:800;transition:.22s
+}
+.upload-btn:hover{transform:scale(1.03)}
+
+/* 9:16 SHORTS PREVIEW */
+.video-preview{
+height:520px;
+width:293px;
+aspect-ratio:9/16;
+border-radius:22px;
+overflow:hidden;
+background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop') center/cover;
+position:relative;
+box-shadow:0 10px 28px rgba(0,0,0,.12);
+margin:0 auto;
+}
+.video-preview::after{
+content:"";position:absolute;inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.05))
+}
+.controls{position:absolute;left:18px;right:18px;bottom:20px;z-index:2;color:#fff}
+.progress{height:6px;background:rgba(255,255,255,.35);border-radius:20px;margin-bottom:16px;overflow:hidden}
+.progress span{display:block;width:38%;height:100%;background:#ff5a00}
+.control-row{display:flex;align-items:center;justify-content:space-between}
+.left-controls,.right-controls{display:flex;align-items:center;gap:12px;font-size:17px}
+.time{font-size:14px;font-weight:800}
+
+.timeline-box{
+background:#fff;border:1px solid #e5e7eb;border-radius:20px;
+padding:18px;box-shadow:0 6px 18px rgba(0,0,0,.04)
+}
+.tool-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.edit-tools,.zoom{display:flex;gap:10px;align-items:center}
+.small-btn{
+background:#fff;border:1px solid #e5e7eb;border-radius:10px;
+padding:10px 14px;font-weight:800;transition:.22s
+}
+.small-btn:hover{transform:scale(1.04);background:#f8f9fb}
+.zoom-line{width:120px;height:4px;background:#e5e7eb;border-radius:20px;position:relative}
+.zoom-line::after{content:"";position:absolute;left:45%;top:-5px;width:14px;height:14px;background:#ff5a00;border-radius:50%}
+.time-scale{
+display:grid;grid-template-columns:repeat(7,1fr);
+color:#666;font-size:13px;font-weight:800;padding:0 58px;margin-bottom:12px
+}
+.track{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:center;margin-bottom:14px}
+.track-icon{
+width:42px;height:42px;border-radius:12px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;font-size:18px
+}
+.video-strip{
+height:76px;border:2px solid #ff5a00;border-radius:12px;
+overflow:hidden;display:grid;grid-template-columns:repeat(5,1fr);position:relative
+}
+.video-strip div{background-size:cover;background-position:center}
+.playhead{position:absolute;left:38%;top:-16px;bottom:-110px;width:3px;background:#ff5a00;z-index:5}
+.playhead::before{
+content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+width:18px;height:18px;border-radius:50%;background:#ff5a00
+}
+.audio-strip{
+height:60px;border-radius:12px;background:#e9fff1;border:1px solid #bbf7d0;
+display:flex;align-items:center;padding:0 12px;gap:4px;overflow:hidden
+}
+.bar{width:4px;background:#22c55e;border-radius:10px}
+
+.note-box{
+background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:20px;
+display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 18px rgba(0,0,0,.04)
+}
+.note-box p{color:#6b7280;font-weight:600}
+.preview-btn{
+border:1px solid #e5e7eb;background:#fff;border-radius:12px;
+padding:13px 20px;font-weight:800;transition:.22s
+}
+.preview-btn:hover{background:#202124;color:#fff;transform:scale(1.02)}
+
+.ai-panel{
+background:#fff;
+border:1px solid #ffd4bd;
+border-radius:22px;
+padding:22px;
+height:max-content;
+position:sticky;
+top:98px;
+box-shadow:0 10px 30px rgba(255,90,0,.10)
+}
+.ai-head{
+background:#fff7f2;
+border:1px solid #ffd4bd;
+border-radius:16px;
+padding:16px;
+margin-bottom:14px
+}
+.ai-head h2{font-size:23px;font-weight:800;margin-bottom:8px}
+.ai-head h2 span{color:#ff5a00}
+.ai-head p{color:#6b7280;font-weight:700;font-size:14px}
+
+.prompt-box{
+border:1px solid #ffd4bd;
+background:#fffaf7;
+border-radius:16px;
+padding:14px;
+margin-bottom:14px;
+}
+.prompt-box label{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:14px;
+font-weight:800;
+color:#202124;
+margin-bottom:10px;
+}
+.prompt-box label i{color:#ff5a00}
+.prompt-box textarea{
+width:100%;
+min-height:105px;
+resize:none;
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:12px;
+font-size:13px;
+font-weight:600;
+outline:none;
+line-height:1.45;
+background:#fff;
+color:#202124;
+}
+.prompt-box textarea:focus{
+border-color:#ff5a00;
+box-shadow:0 0 0 3px rgba(255,90,0,.10);
+}
+.prompt-actions{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+.prompt-btn{
+flex:1;
+border:none;
+border-radius:10px;
+padding:11px;
+font-size:13px;
+font-weight:800;
+transition:.22s;
+}
+.prompt-btn.dark{
+background:#202124;
+color:#fff;
+}
+.prompt-btn.light{
+background:#fff;
+border:1px solid #e5e7eb;
+color:#202124;
+}
+.prompt-btn:hover{
+transform:scale(1.02);
+}
+
+.ai-tool{
+display:grid;
+grid-template-columns:46px 1fr 52px;
+gap:12px;
+align-items:center;
+padding:16px 0;
+border-top:1px solid #edf0f4;
+transition:.22s
+}
+.ai-tool:hover{transform:scale(1.01)}
+.ai-tool.active{
+background:#fff7f2;
+margin:0 -10px;
+padding-left:10px;
+padding-right:10px;
+border-radius:14px;
+}
+.ai-icon{
+width:46px;height:46px;border-radius:12px;background:#fff0e8;
+display:flex;align-items:center;justify-content:center;font-size:19px;color:#ff5a00
+}
+.ai-tool h3{font-size:15px;font-weight:800;margin-bottom:4px}
+.ai-tool p{font-size:12px;color:#555;line-height:1.35}
+.toggle{width:50px;height:28px;border-radius:999px;background:#d1d5db;position:relative;transition:.2s}
+.toggle::after{
+content:"";position:absolute;width:22px;height:22px;background:#fff;
+border-radius:50%;top:3px;left:3px;transition:.2s
+}
+.ai-tool.active .toggle{background:#ff5a00}
+.ai-tool.active .toggle::after{left:25px}
+
+.cost-box{
+background:#f8f9fb;border:1px solid #e5e7eb;border-radius:14px;
+padding:16px;margin-top:14px;font-weight:800;display:flex;justify-content:space-between
+}
+.cost-box span:last-child{color:#ff5a00}
+.generate-btn{
+width:100%;margin-top:16px;border:none;background:#ff5a00;color:#fff;
+border-radius:14px;padding:16px;font-size:16px;font-weight:800;transition:.22s
+}
+.generate-btn:hover{transform:scale(1.02);box-shadow:0 8px 20px rgba(255,90,0,.25)}
+
+@media(max-width:1300px){
+.editor-shell{grid-template-columns:100px 1fr}
+.ai-panel{grid-column:1/-1;position:static}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="back-title">
+    <a href="ai-studio.html"><i class="fa-solid fa-arrow-left"></i></a>
+    <span>AI Shorts Generator</span>
+  </div>
+
+  <div class="project">
+    <h1>Weekend Short <i class="fa-regular fa-pen-to-square"></i></h1>
+    <div class="tags">
+      <span class="tag">Duration: 00:45</span>
+      <span class="tag">Resolution: 1080×1920</span>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <div class="token-pill"><i class="fa-solid fa-coins"></i> My Tokens: <span style="color:#ff5a00;">1,250</span></div>
+    <a href="wallet.html" class="buy-btn">+ Buy Tokens</a>
+  </div>
+</header>
+
+<div class="editor-shell">
+
+<aside class="tool-rail">
+  <div class="rail-title">AI Tools</div>
+
+  <button class="rail-item" onclick="selectRail(this)">
+    <i class="fa-solid fa-video"></i>
+    Video
+  </button>
+
+  <button class="rail-item" onclick="selectRail(this)">
+    <i class="fa-solid fa-music"></i>
+    Audio
+  </button>
+
+  <button class="rail-item" onclick="selectRail(this)">
+    <i class="fa-regular fa-image"></i>
+    Image
+  </button>
+
+  <button class="rail-item" onclick="selectRail(this)">
+    <i class="fa-regular fa-closed-captioning"></i>
+    Subtitles
+  </button>
+
+  <button class="rail-item" onclick="selectRail(this)">
+    <i class="fa-solid fa-font"></i>
+    Text
+  </button>
+
+  <button class="rail-item" onclick="selectRail(this)">
+    <i class="fa-regular fa-square"></i>
+    Elements
+  </button>
+
+  <button class="rail-item" onclick="selectRail(this)">
+    <i class="fa-solid fa-palette"></i>
+    Brand Kit
+  </button>
+
+  <button class="rail-item" onclick="selectRail(this)">
+    <i class="fa-solid fa-gear"></i>
+    Settings
+  </button>
+</aside>
+
+<main class="center-editor">
+
+<div class="upload-card">
+  <div class="upload-left">
+    <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+    <div>
+      <h3>Upload Shorts Video</h3>
+      <p>Select a vertical video under 60 seconds.</p>
+    </div>
+  </div>
+  <button class="upload-btn">Upload Video</button>
+</div>
+
+<div class="video-preview">
+  <div class="controls">
+    <div class="progress"><span></span></div>
+    <div class="control-row">
+      <div class="left-controls">
+        <i class="fa-solid fa-play"></i>
+        <i class="fa-solid fa-volume-high"></i>
+        <span class="time">00:18 / 00:45</span>
+      </div>
+      <div class="right-controls">
+        <i class="fa-regular fa-closed-captioning"></i>
+        <i class="fa-solid fa-gear"></i>
+        <i class="fa-solid fa-expand"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="timeline-box">
+  <div class="tool-row">
+    <div class="edit-tools">
+      <button class="small-btn"><i class="fa-solid fa-rotate-left"></i> Undo</button>
+      <button class="small-btn"><i class="fa-solid fa-rotate-right"></i> Redo</button>
+      <button class="small-btn"><i class="fa-solid fa-scissors"></i> Split</button>
+      <button class="small-btn"><i class="fa-regular fa-trash-can"></i> Delete</button>
+    </div>
+
+    <div class="zoom">
+      <button class="small-btn">−</button>
+      <div class="zoom-line"></div>
+      <button class="small-btn">+</button>
+      <button class="small-btn"><i class="fa-solid fa-expand"></i></button>
+    </div>
+  </div>
+
+  <div class="time-scale">
+    <span>00:00</span><span>00:10</span><span>00:20</span><span>00:30</span><span>00:40</span><span>00:50</span><span>01:00</span>
+  </div>
+
+  <div class="track">
+    <div class="track-icon"><i class="fa-regular fa-circle-play"></i></div>
+    <div class="video-strip">
+      <div style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop')"></div>
+      <div style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop')"></div>
+      <div class="playhead"></div>
+    </div>
+  </div>
+
+  <div class="track">
+    <div class="track-icon"><i class="fa-solid fa-music"></i></div>
+    <div class="audio-strip" id="audioBars"></div>
+  </div>
+</div>
+
+<div class="note-box">
+  <p><i class="fa-regular fa-lightbulb"></i> AI will analyze your short and create an optimized vertical clip under 60 seconds.</p>
+  <button class="preview-btn"><i class="fa-regular fa-eye"></i> Preview Changes</button>
+</div>
+
+</main>
+
+<aside class="ai-panel">
+  <div class="ai-head">
+    <h2><span>✨</span> AI Shorts Editing</h2>
+    <p>Select AI tools or describe your short using a prompt.</p>
+  </div>
+
+  <div class="prompt-box">
+    <label><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Based Short</label>
+    <textarea placeholder="Example: Convert this video into a fast-paced 45 second short with auto captions, zoom cuts, upbeat edits and viral hook at the start."></textarea>
+    <div class="prompt-actions">
+      <button class="prompt-btn dark" type="button">Apply Prompt</button>
+      <button class="prompt-btn light" type="button">Clear</button>
+    </div>
+  </div>
+
+  <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
+    <div class="ai-icon"><i class="fa-solid fa-scissors"></i></div>
+    <div><h3>Auto Cut</h3><p>Convert long parts into a short.</p></div>
+    <div class="toggle"></div>
+  </div>
+
+  <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
+    <div class="ai-icon"><i class="fa-regular fa-closed-captioning"></i></div>
+    <div><h3>Auto Captions</h3><p>Add captions for Shorts format.</p></div>
+    <div class="toggle"></div>
+  </div>
+
+  <div class="ai-tool" data-cost="4" onclick="toggleTool(this)">
+    <div class="ai-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+    <div><h3>Auto Zoom</h3><p>Add zoom moments automatically.</p></div>
+    <div class="toggle"></div>
+  </div>
+
+  <div class="ai-tool" data-cost="3" onclick="toggleTool(this)">
+    <div class="ai-icon"><i class="fa-solid fa-bolt"></i></div>
+    <div><h3>Highlight Moments</h3><p>Find best moments for short.</p></div>
+    <div class="toggle"></div>
+  </div>
+
+  <div class="ai-tool" data-cost="3" onclick="toggleTool(this)">
+    <div class="ai-icon"><i class="fa-solid fa-palette"></i></div>
+    <div><h3>Color Enhance</h3><p>Improve color and lighting.</p></div>
+    <div class="toggle"></div>
+  </div>
+
+  <div class="cost-box">
+    <span>Total Cost</span>
+    <span id="totalCost">0 Tokens</span>
+  </div>
+
+  <button class="generate-btn">Generate Short</button>
+</aside>
+
+</div>
+
+<script>
+const audioBars = document.getElementById("audioBars");
+for(let i=0;i<130;i++){
+  const bar=document.createElement("div");
+  bar.className="bar";
+  bar.style.height=(12+Math.random()*34)+"px";
+  audioBars.appendChild(bar);
+}
+
+function toggleTool(tool){
+  tool.classList.toggle("active");
+  updateCost();
+}
+
+function updateCost(){
+  let total = 0;
+  document.querySelectorAll(".ai-tool.active").forEach(tool=>{
+    total += Number(tool.dataset.cost);
+  });
+  document.getElementById("totalCost").innerText = total + " Tokens";
+}
+
+function selectRail(btn){
+  document.querySelectorAll(".rail-item").forEach(item => item.classList.remove("active"));
+  btn.classList.add("active");
+}
+</script>
+
+</body>
+</html>
