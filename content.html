@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content - JioVibe AI Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f8f9fb;color:#202124;}
+a{text-decoration:none;color:inherit;}
+
+.app{display:flex;min-height:100vh;}
+
+.sidebar{
+width:250px;
+padding:32px 18px;
+position:fixed;
+height:100%;
+background:#fff;
+border-right:1px solid #edf0f4;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:4px;
+margin-bottom:45px;
+padding-left:8px;
+}
+
+.logo-circle{
+width:54px;height:54px;background:#ff5a00;color:#fff;
+border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+font-weight:800;font-size:25px;
+}
+
+.logo-text{
+font-size:32px;
+font-weight:800;
+letter-spacing:-1.2px;
+color:#2b070b;
+}
+
+.menu{display:flex;flex-direction:column;gap:12px;}
+
+.menu-item{
+display:flex;
+align-items:center;
+gap:18px;
+padding:17px 22px;
+border-radius:14px;
+font-weight:600;
+font-size:16px;
+color:#383838;
+transition:.25s;
+}
+
+.menu-item i{width:22px;font-size:22px;text-align:center;}
+
+.menu-item:hover,.menu-item.active{
+background:#f1f3f4;
+color:#111;
+}
+
+.main{
+margin-left:250px;
+width:calc(100% - 250px);
+}
+
+.topbar{
+height:94px;
+border-bottom:1px solid #edf0f4;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 48px;
+background:#fff;
+position:sticky;
+top:0;
+z-index:8;
+}
+
+.search{
+width:600px;
+height:50px;
+border:1px solid #e8ebf0;
+border-radius:28px;
+display:flex;
+align-items:center;
+gap:16px;
+padding:0 22px;
+color:#9ba1ad;
+background:#fff;
+}
+
+.search input{
+border:none;
+outline:none;
+flex:1;
+font-size:15px;
+color:#333;
+}
+
+.top-actions{
+display:flex;
+align-items:center;
+gap:22px;
+position:relative;
+}
+
+.bell{
+font-size:23px;
+position:relative;
+cursor:pointer;
+}
+
+.bell::after{
+content:"1";
+position:absolute;
+top:-8px;
+right:-7px;
+background:#ff5a00;
+color:#fff;
+font-size:10px;
+width:17px;
+height:17px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.profile{
+display:flex;
+align-items:center;
+gap:12px;
+cursor:pointer;
+padding:8px;
+border-radius:18px;
+}
+
+.profile img{
+width:48px;
+height:48px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.profile span{
+font-weight:700;
+font-size:15px;
+}
+
+.dropdown{
+position:absolute;
+top:70px;
+right:0;
+width:200px;
+background:#fff;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+display:none;
+overflow:hidden;
+z-index:20;
+}
+
+.dropdown a{
+display:block;
+padding:14px;
+font-weight:600;
+color:#2f2f2f;
+}
+
+.dropdown a:hover{
+background:#f1f3f4;
+color:#111;
+}
+
+.dropdown.show{display:block;}
+
+.content{
+padding:34px 44px 60px;
+}
+
+.page-title{
+font-size:32px;
+font-weight:800;
+margin-bottom:26px;
+}
+
+.tabs{
+display:flex;
+gap:36px;
+border-bottom:1px solid #dfe3ea;
+margin-bottom:18px;
+}
+
+.tab{
+padding:0 0 15px;
+font-size:16px;
+font-weight:700;
+color:#6b7280;
+border:none;
+background:none;
+cursor:pointer;
+position:relative;
+}
+
+.tab.active{
+color:#202124;
+}
+
+.tab.active::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-1px;
+width:100%;
+height:3px;
+background:#202124;
+border-radius:10px;
+}
+
+.filter-row{
+height:54px;
+display:flex;
+align-items:center;
+gap:18px;
+color:#5f6368;
+font-weight:600;
+border-bottom:1px solid #e5e7eb;
+margin-bottom:0;
+}
+
+.table-wrap{
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 4px 14px rgba(0,0,0,0.04);
+}
+
+.table-head,
+.table-row{
+display:grid;
+grid-template-columns:42px 1.9fr .8fr .8fr .9fr .6fr .7fr .8fr;
+align-items:center;
+gap:18px;
+padding:14px 20px;
+}
+
+.table-head{
+background:#f1f3f4;
+color:#5f6368;
+font-size:13px;
+font-weight:800;
+border-bottom:1px solid #e5e7eb;
+}
+
+.table-row{
+min-height:94px;
+border-bottom:1px solid #eef0f2;
+font-size:14px;
+}
+
+.table-row:last-child{
+border-bottom:none;
+}
+
+.check{
+width:22px;
+height:22px;
+border:2px solid #9aa0a6;
+border-radius:3px;
+}
+
+.video-info{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.thumb{
+width:128px;
+height:72px;
+border-radius:8px;
+background-size:cover;
+background-position:center;
+position:relative;
+flex-shrink:0;
+overflow:hidden;
+}
+
+.duration{
+position:absolute;
+right:6px;
+bottom:6px;
+background:rgba(0,0,0,.8);
+color:white;
+font-size:12px;
+font-weight:700;
+padding:3px 6px;
+border-radius:4px;
+}
+
+.video-title{
+font-weight:700;
+margin-bottom:6px;
+color:#202124;
+}
+
+.desc{
+color:#7a7f87;
+font-size:13px;
+line-height:1.4;
+max-width:440px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.status{
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:600;
+}
+
+.public{color:#202124;}
+.unlisted{color:#3c4043;}
+.none{color:#202124;}
+
+.date small{
+display:block;
+color:#7a7f87;
+margin-top:5px;
+font-weight:600;
+}
+
+.likes{
+text-align:right;
+}
+
+.like-bar{
+width:80px;
+height:5px;
+background:#d8dadd;
+border-radius:10px;
+margin-left:auto;
+margin-top:8px;
+overflow:hidden;
+}
+
+.like-fill{
+height:100%;
+background:#6b7280;
+width:88%;
+}
+
+.empty{
+background:#fff;
+border:1px dashed #d5d9e0;
+border-radius:18px;
+padding:50px;
+text-align:center;
+color:#6b7280;
+font-weight:700;
+display:none;
+}
+
+@media(max-width:1100px){
+.search{width:420px;}
+.table-head,.table-row{
+grid-template-columns:36px 1.8fr .8fr .8fr .8fr;
+}
+.hide-md{display:none;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+<a href="index.html" class="logo">
+<div class="logo-circle">Jio</div>
+<div class="logo-text">Vibe</div>
+</a>
+
+<nav class="menu">
+<a href="index.html" class="menu-item"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
+<a href="content.html" class="menu-item active"><i class="fa-regular fa-circle-play"></i> Content</a>
+<a href="analytics.html" class="menu-item"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+<a href="community-post.html" class="menu-item"><i class="fa-regular fa-comments"></i> Community Post</a>
+<a href="stories.html" class="menu-item"><i class="fa-regular fa-circle"></i> Stories</a>
+<a href="ai-studio.html" class="menu-item"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Studio</a>
+<a href="wallet.html" class="menu-item"><i class="fa-solid fa-wallet"></i> Wallet</a>
+<a href="settings.html" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
+</nav>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+<div class="search">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" placeholder="Search your videos, posts, analytics..." />
+</div>
+
+<div class="top-actions">
+<div class="bell"><i class="fa-regular fa-bell"></i></div>
+
+<div class="profile" onclick="toggleDropdown()">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Ankit.jpeg">
+<span>Ankit Jayant</span>
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+
+<div class="dropdown" id="dropdown">
+<a href="home.html">Home</a>
+<a href="index.html">Dashboard</a>
+<a href="logout.html">Sign out</a>
+</div>
+</div>
+</header>
+
+<section class="content">
+
+<h1 class="page-title">Channel Content</h1>
+
+<div class="tabs">
+<button class="tab active" onclick="switchTab('live', this)">Live</button>
+<button class="tab" onclick="switchTab('video', this)">Video</button>
+<button class="tab" onclick="switchTab('shorts', this)">Shorts</button>
+<button class="tab" onclick="switchTab('stories', this)">Stories</button>
+<button class="tab" onclick="switchTab('community', this)">Community Post</button>
+</div>
+
+<div class="filter-row">
+<i class="fa-solid fa-filter"></i>
+<span>Filter</span>
+</div>
+
+<div class="table-wrap">
+<div class="table-head">
+<div><div class="check"></div></div>
+<div>Content</div>
+<div>Visibility</div>
+<div>Restrictions</div>
+<div>Date <i class="fa-solid fa-arrow-down"></i></div>
+<div class="hide-md">Views</div>
+<div class="hide-md">Comments</div>
+<div class="hide-md">Likes</div>
+</div>
+
+<div id="list"></div>
+</div>
+
+</section>
+
+</main>
+</div>
+
+<script>
+const data = {
+live: [
+{title:"Gaming Night Live", desc:"Live stream with audience chat and gameplay.", img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop", time:"LIVE", vis:"Public", icon:"fa-globe", date:"29 Apr 2026", status:"Live", views:"12.4K", comments:"248", likes:"96.5%"},
+{title:"Creator Q&A Session", desc:"Answering community questions live.", img:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=900&auto=format&fit=crop", time:"LIVE", vis:"Public", icon:"fa-globe", date:"28 Apr 2026", status:"Streamed", views:"8.1K", comments:"132", likes:"94.2%"},
+{title:"Music Jam Live", desc:"Acoustic session and fan requests.", img:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=900&auto=format&fit=crop", time:"LIVE", vis:"Unlisted", icon:"fa-link", date:"24 Apr 2026", status:"Streamed", views:"3.7K", comments:"86", likes:"91.8%"}
+],
+video: [
+{title:"AI Editing Workflow Explained", desc:"Step by step video editing process using AI tools.", img:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop", time:"12:48", vis:"Public", icon:"fa-globe", date:"27 Apr 2026", status:"Published", views:"42.8K", comments:"318", likes:"98.1%"},
+{title:"Behind the Scenes Vlog", desc:"A day inside creator studio setup.", img:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=900&auto=format&fit=crop", time:"8:25", vis:"Public", icon:"fa-globe", date:"22 Apr 2026", status:"Published", views:"18.2K", comments:"94", likes:"96.0%"},
+{title:"How to Grow Your Channel", desc:"Simple creator growth tips for beginners.", img:"https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=900&auto=format&fit=crop", time:"15:10", vis:"Unlisted", icon:"fa-link", date:"18 Apr 2026", status:"Uploaded", views:"1.2K", comments:"12", likes:"--"},
+{title:"Studio Setup Tour", desc:"Camera, lights, mic and creator tools setup.", img:"https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=900&auto=format&fit=crop", time:"6:42", vis:"Public", icon:"fa-globe", date:"11 Apr 2026", status:"Published", views:"9.6K", comments:"61", likes:"92.4%"}
+],
+shorts: [
+{title:"Quick AI Thumbnail Hack", desc:"Short tip for better video thumbnails.", img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=900&auto=format&fit=crop", time:"0:38", vis:"Public", icon:"fa-globe", date:"29 Apr 2026", status:"Published", views:"86K", comments:"412", likes:"97.7%"},
+{title:"3 Creator Tips", desc:"Fast growth tips in under one minute.", img:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop", time:"0:52", vis:"Public", icon:"fa-globe", date:"25 Apr 2026", status:"Published", views:"54K", comments:"205", likes:"95.3%"},
+{title:"Before vs After Edit", desc:"AI edited clip transformation.", img:"https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=900&auto=format&fit=crop", time:"0:29", vis:"Unlisted", icon:"fa-link", date:"19 Apr 2026", status:"Uploaded", views:"2.4K", comments:"8", likes:"--"}
+],
+stories: [
+{title:"New Upload Coming Soon", desc:"Story update for followers.", img:"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop", time:"Story", vis:"Public", icon:"fa-globe", date:"Today", status:"Active", views:"5.1K", comments:"--", likes:"--"},
+{title:"Behind The Camera", desc:"Studio moment shared as story.", img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=900&auto=format&fit=crop", time:"Story", vis:"Public", icon:"fa-globe", date:"Yesterday", status:"Expired", views:"3.9K", comments:"--", likes:"--"},
+{title:"Poll Result Update", desc:"Audience poll story summary.", img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=900&auto=format&fit=crop", time:"Story", vis:"Unlisted", icon:"fa-link", date:"21 Apr 2026", status:"Expired", views:"1.1K", comments:"--", likes:"--"}
+],
+community: [
+{title:"Which video should come next?", desc:"Community poll for upcoming content.", img:"https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=900&auto=format&fit=crop", time:"Post", vis:"Public", icon:"fa-globe", date:"Today", status:"Published", views:"7.8K", comments:"542", likes:"89.2%"},
+{title:"Thank you for 25K followers", desc:"Creator milestone community update.", img:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900&auto=format&fit=crop", time:"Post", vis:"Public", icon:"fa-globe", date:"26 Apr 2026", status:"Published", views:"11.2K", comments:"389", likes:"96.9%"},
+{title:"Upload Schedule Update", desc:"Weekly content schedule announcement.", img:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop", time:"Post", vis:"Unlisted", icon:"fa-link", date:"20 Apr 2026", status:"Uploaded", views:"980", comments:"21", likes:"--"}
+]
+};
+
+function renderList(type){
+const list = document.getElementById("list");
+list.innerHTML = data[type].map(item => `
+<div class="table-row">
+  <div><div class="check"></div></div>
+
+  <div class="video-info">
+    <div class="thumb" style="background-image:url('${item.img}')">
+      <span class="duration">${item.time}</span>
+    </div>
+    <div>
+      <div class="video-title">${item.title}</div>
+      <div class="desc">${item.desc}</div>
+    </div>
+  </div>
+
+  <div class="status ${item.vis.toLowerCase()}">
+    <i class="fa-solid ${item.icon}"></i> ${item.vis}
+  </div>
+
+  <div class="none">None</div>
+
+  <div class="date">
+    ${item.date}
+    <small>${item.status}</small>
+  </div>
+
+  <div class="hide-md">${item.views}</div>
+  <div class="hide-md">${item.comments}</div>
+
+  <div class="hide-md likes">
+    ${item.likes}
+    ${item.likes !== "--" ? `<div class="like-bar"><div class="like-fill"></div></div>` : ""}
+  </div>
+</div>
+`).join("");
+}
+
+function switchTab(type, btn){
+document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
+btn.classList.add("active");
+renderList(type);
+}
+
+function toggleDropdown(){
+document.getElementById("dropdown").classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+if(!e.target.closest(".profile")){
+document.getElementById("dropdown").classList.remove("show");
+}
+});
+
+renderList("live");
+</script>
+
+</body>
+</html>
