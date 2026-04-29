@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Shorts - JioVibe Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
+
+.topbar{
+height:72px;background:#fff;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 26px;position:sticky;top:0;z-index:20
+}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.project{text-align:center}
+.project h1{font-size:24px;font-weight:900}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.publish-btn{background:#202124;color:#fff;border:none;border-radius:12px;padding:13px 22px;font-weight:900;transition:.22s}
+.publish-btn:hover{transform:scale(1.03)}
+.publish-btn.active{background:#16a34a}
+
+.shell{
+display:grid;
+grid-template-columns:430px 1fr 330px;
+gap:24px;
+padding:26px;
+max-width:1800px;
+margin:auto
+}
+
+.card{
+background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+box-shadow:0 8px 24px rgba(0,0,0,.05)
+}
+
+.left-form{display:flex;flex-direction:column;gap:22px;height:max-content}
+.main-area{display:flex;flex-direction:column;gap:22px}
+
+.form-card{padding:22px}
+.section-title{
+font-size:22px;font-weight:900;margin-bottom:18px;
+display:flex;align-items:center;gap:10px
+}
+.section-title i{color:#ff5a00}
+
+.field{margin-bottom:18px}
+.field label{display:block;font-size:14px;font-weight:900;margin-bottom:8px}
+.field-help{
+font-size:13px;font-weight:600;color:#6b7280;
+line-height:1.5;margin:-2px 0 10px
+}
+.input,textarea,select{
+width:100%;border:1px solid #e5e7eb;border-radius:14px;
+padding:14px;font-size:14px;font-weight:700;outline:none;background:#fff
+}
+textarea{height:115px;resize:none;line-height:1.5}
+.input:focus,textarea:focus,select:focus{
+border-color:#202124;box-shadow:0 0 0 3px rgba(32,33,36,.08)
+}
+
+.ai-mini{
+background:#fff7f2;border:1px solid #ffd4bd;border-radius:16px;
+padding:14px;margin-top:10px
+}
+.ai-mini label{
+display:flex;align-items:center;gap:8px;font-size:13px;font-weight:900;margin-bottom:10px
+}
+.ai-mini label i{color:#ff5a00}
+.ai-mini textarea{height:78px;border-color:#ffd4bd;background:#fff}
+.ai-actions{display:flex;gap:10px;margin-top:10px}
+.ai-actions button{
+flex:1;border:none;border-radius:11px;padding:11px;font-size:13px;font-weight:900;transition:.22s
+}
+.ai-actions .dark{background:#202124;color:#fff}
+.ai-actions .light{background:#fff;border:1px solid #e5e7eb}
+.ai-actions button:hover{transform:scale(1.02)}
+
+.results{display:none;margin-top:12px;gap:10px;flex-direction:column}
+.results.show{display:flex}
+.result-item{
+border:1px solid #e5e7eb;background:#fff;border-radius:12px;
+padding:12px;display:flex;justify-content:space-between;gap:10px;
+font-size:13px;font-weight:800;line-height:1.4
+}
+.result-item button{
+border:none;background:#202124;color:#fff;border-radius:9px;padding:8px 10px;font-weight:900
+}
+
+.upload-card{padding:22px}
+.upload-box{
+height:230px;border:1px dashed #cfd4dc;border-radius:20px;
+display:flex;align-items:center;justify-content:center;flex-direction:column;
+gap:12px;background:#fff;transition:.22s
+}
+.upload-box:hover{transform:scale(1.01);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.upload-box i{font-size:42px;color:#202124}
+.upload-box h3{font-size:20px;font-weight:900}
+.upload-box p{font-size:14px;color:#6b7280;font-weight:700}
+.upload-box button{
+border:none;background:#202124;color:#fff;border-radius:12px;
+padding:13px 20px;font-weight:900
+}
+
+.player-card{padding:18px}
+.player{
+width:320px;
+aspect-ratio:9/16;
+border-radius:20px;
+overflow:hidden;
+background:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop') center/cover;
+position:relative;
+box-shadow:0 10px 28px rgba(0,0,0,.12);
+margin:0 auto;
+}
+.player::after{
+content:"";position:absolute;inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.12))
+}
+.video-badge{
+position:absolute;top:18px;left:18px;z-index:2;
+background:#202124;color:#fff;padding:8px 12px;border-radius:8px;
+font-size:13px;font-weight:900
+}
+.player-controls{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;color:#fff}
+.progress{height:6px;background:rgba(255,255,255,.35);border-radius:20px;margin-bottom:14px;overflow:hidden}
+.progress span{display:block;width:36%;height:100%;background:#ff5a00}
+.control-row{display:flex;align-items:center;justify-content:space-between}
+.controls-left,.controls-right{display:flex;align-items:center;gap:12px;font-size:16px}
+.time{font-size:13px;font-weight:900}
+
+.thumb-upload{
+height:160px;border:1px dashed #cfd4dc;border-radius:16px;
+display:flex;align-items:center;justify-content:center;flex-direction:column;
+gap:10px;background:#fff;transition:.22s
+}
+.thumb-upload:hover{transform:scale(1.01);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.thumb-upload i{font-size:32px;color:#6b7280}
+.thumb-upload span{font-weight:900}
+
+.side-panel{display:flex;flex-direction:column;gap:22px;height:max-content;position:sticky;top:98px}
+.status-card{padding:20px}
+.status-card h2{font-size:20px;font-weight:900;margin-bottom:16px}
+.status-item{
+display:grid;grid-template-columns:44px 1fr;gap:14px;
+padding:15px 0;border-top:1px solid #edf0f4
+}
+.status-item:first-of-type{border-top:none}
+.status-icon{
+width:44px;height:44px;border-radius:12px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center;font-size:18px
+}
+.status-item h3{font-size:15px;font-weight:900;margin-bottom:4px}
+.status-item p{font-size:13px;color:#6b7280;font-weight:600;line-height:1.4}
+
+.visibility-card{padding:20px}
+.visibility-card h2{font-size:20px;font-weight:900;margin-bottom:14px}
+.option-list{display:flex;flex-direction:column;gap:12px}
+.option-btn{
+border:1px solid #e5e7eb;background:#fff;border-radius:16px;
+padding:16px;text-align:left;display:grid;grid-template-columns:40px 1fr;
+gap:12px;align-items:center;transition:.22s
+}
+.option-btn:hover{transform:scale(1.01);box-shadow:0 8px 20px rgba(0,0,0,.07)}
+.option-btn.active{border-color:#ff5a00;background:#fff7f2}
+.option-icon{
+width:40px;height:40px;border-radius:12px;background:#f1f3f4;
+display:flex;align-items:center;justify-content:center
+}
+.option-btn.active .option-icon{background:#fff0e8;color:#ff5a00}
+.option-btn h3{font-size:15px;font-weight:900;margin-bottom:4px}
+.option-btn p{font-size:13px;color:#6b7280;font-weight:600}
+
+.toast{
+position:fixed;top:92px;left:50%;
+transform:translateX(-50%) translateY(-20px);
+background:#202124;color:#fff;padding:14px 22px;
+border-radius:14px;font-weight:900;
+box-shadow:0 12px 30px rgba(0,0,0,.20);
+opacity:0;pointer-events:none;transition:.3s;z-index:999
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:1300px){
+.shell{grid-template-columns:1fr}
+.side-panel{position:static}
+}
+</style>
+</head>
+
+<body>
+
+<div class="toast" id="toast">Shorts published successfully</div>
+
+<header class="topbar">
+  <div class="back-title">
+    <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a>
+    <span>Upload Shorts</span>
+  </div>
+
+  <div class="project">
+    <h1>Shorts Upload Setup</h1>
+    <div class="tags">
+      <span class="tag">Shorts Details</span>
+      <span class="tag">9:16 Video</span>
+      <span class="tag">AI Assist</span>
+    </div>
+  </div>
+
+  <button class="publish-btn" id="publishBtn" onclick="publishVideo()">Publish</button>
+</header>
+
+<div class="shell">
+
+<aside class="left-form">
+
+  <section class="card form-card">
+    <div class="section-title"><i class="fa-solid fa-sliders"></i> Video Details</div>
+
+    <div class="field">
+      <label>Title</label>
+      <input class="input" id="titleInput" placeholder="Write your shorts title">
+      <div class="ai-mini">
+        <label><i class="fa-solid fa-wand-magic-sparkles"></i> AI Title Prompt</label>
+        <textarea placeholder="Example: Create a catchy YouTube Shorts title for my gaming video."></textarea>
+        <div class="ai-actions">
+          <button class="dark" onclick="showResults('titleResults')">Generate</button>
+          <button class="light">Clear</button>
+        </div>
+        <div class="results" id="titleResults">
+          <div class="result-item">Epic Shorts Highlight | Best Moment in 30 Seconds <button onclick="useText('titleInput','Epic Shorts Highlight | Best Moment in 30 Seconds')">Select</button></div>
+          <div class="result-item">This Clutch Was Too Close! #Shorts <button onclick="useText('titleInput','This Clutch Was Too Close! #Shorts')">Select</button></div>
+          <div class="result-item">Insane Gaming Moment You Must Watch <button onclick="useText('titleInput','Insane Gaming Moment You Must Watch')">Select</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Description</label>
+      <textarea id="descInput" placeholder="Write your shorts description"></textarea>
+      <div class="ai-mini">
+        <label><i class="fa-solid fa-wand-magic-sparkles"></i> AI Description Prompt</label>
+        <textarea placeholder="Example: Write a short description with CTA and hashtags."></textarea>
+        <div class="ai-actions">
+          <button class="dark" onclick="showResults('descResults')">Generate</button>
+          <button class="light">Clear</button>
+        </div>
+        <div class="results" id="descResults">
+          <div class="result-item">Watch this quick gaming highlight with a clean clutch moment. Like, share and follow for more Shorts. <button onclick="useText('descInput','Watch this quick gaming highlight with a clean clutch moment. Like, share and follow for more Shorts.')">Select</button></div>
+          <div class="result-item">A fast-paced Shorts video featuring the best moment from my latest gameplay. <button onclick="useText('descInput','A fast-paced Shorts video featuring the best moment from my latest gameplay.')">Select</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Thumbnail Upload</label>
+      <div class="thumb-upload">
+        <i class="fa-regular fa-image"></i>
+        <span>Upload Thumbnail</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>AI Thumbnail Prompt</label>
+      <div class="ai-mini" style="margin-top:0;">
+        <label><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Thumbnail</label>
+        <textarea placeholder="Example: Create a vertical Shorts thumbnail with bold text and orange accent."></textarea>
+        <div class="ai-actions">
+          <button class="dark" onclick="showResults('thumbResults')">Generate</button>
+          <button class="light">Clear</button>
+        </div>
+        <div class="results" id="thumbResults">
+          <div class="result-item">Shorts Thumbnail - Bold Vertical Style <button>Select</button></div>
+          <div class="result-item">Creator Shorts Thumbnail - Clean Minimal Style <button>Select</button></div>
+          <div class="result-item">Highlight Shorts Thumbnail - High Contrast Style <button>Select</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Category</label>
+      <select>
+        <option>Gaming</option>
+        <option>Music</option>
+        <option>Education</option>
+        <option>Entertainment</option>
+        <option>Tech</option>
+        <option>Lifestyle</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Tags</label>
+      <input class="input" id="tagInput" placeholder="shorts, gaming, jiovibe">
+      <div class="ai-mini">
+        <label><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tags Prompt</label>
+        <textarea placeholder="Example: Generate tags for this Shorts video."></textarea>
+        <div class="ai-actions">
+          <button class="dark" onclick="showResults('tagResults')">Generate</button>
+          <button class="light">Clear</button>
+        </div>
+        <div class="results" id="tagResults">
+          <div class="result-item">shorts, gaming, gameplay, clutch, jiovibe, viral shorts <button onclick="useText('tagInput','shorts, gaming, gameplay, clutch, jiovibe, viral shorts')">Select</button></div>
+          <div class="result-item">youtube shorts, gaming india, esports, streamer, best moments <button onclick="useText('tagInput','youtube shorts, gaming india, esports, streamer, best moments')">Select</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Comments</label>
+      <select>
+        <option>Anyone can comment</option>
+        <option>Subscriber only</option>
+        <option>Comments off</option>
+      </select>
+    </div>
+
+  </section>
+</aside>
+
+<main class="main-area">
+
+  <section class="card upload-card">
+    <div class="section-title"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Your Shorts</div>
+
+    <div class="upload-box">
+      <i class="fa-solid fa-cloud-arrow-up"></i>
+      <h3>Click to upload shorts video</h3>
+      <p>MP4, MOV or AVI. Recommended ratio 9:16.</p>
+      <button>Upload Shorts</button>
+    </div>
+  </section>
+
+  <section class="card player-card">
+    <div class="player">
+      <div class="video-badge">SHORTS PREVIEW</div>
+
+      <div class="player-controls">
+        <div class="progress"><span></span></div>
+        <div class="control-row">
+          <div class="controls-left">
+            <i class="fa-solid fa-play"></i>
+            <i class="fa-solid fa-volume-high"></i>
+            <span class="time">00:18 / 00:45</span>
+          </div>
+          <div class="controls-right">
+            <i class="fa-regular fa-closed-captioning"></i>
+            <i class="fa-solid fa-gear"></i>
+            <i class="fa-solid fa-expand"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<aside class="side-panel">
+
+  <section class="card status-card">
+    <h2>Upload Status</h2>
+
+    <div class="status-item">
+      <div class="status-icon"><i class="fa-solid fa-upload"></i></div>
+      <div><h3>Upload</h3><p>Shorts video file is ready for upload preview.</p></div>
+    </div>
+
+    <div class="status-item">
+      <div class="status-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <div><h3>AI Assist</h3><p>Use AI to generate title, description, tags and thumbnail ideas.</p></div>
+    </div>
+
+    <div class="status-item">
+      <div class="status-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+      <div><h3>Shorts Format</h3><p>Vertical 9:16 video optimized for mobile viewing.</p></div>
+    </div>
+  </section>
+
+  <section class="card visibility-card">
+    <h2>Visibility</h2>
+
+    <div class="option-list">
+      <button class="option-btn active" onclick="selectVisibility(this)">
+        <div class="option-icon"><i class="fa-solid fa-globe"></i></div>
+        <div><h3>Public</h3><p>Everyone can watch this short.</p></div>
+      </button>
+
+      <button class="option-btn" onclick="selectVisibility(this)">
+        <div class="option-icon"><i class="fa-solid fa-link"></i></div>
+        <div><h3>Unlisted</h3><p>Only people with the link can watch.</p></div>
+      </button>
+
+      <button class="option-btn" onclick="selectVisibility(this)">
+        <div class="option-icon"><i class="fa-solid fa-lock"></i></div>
+        <div><h3>Private</h3><p>Only you can watch this short.</p></div>
+      </button>
+
+      <button class="option-btn" onclick="selectVisibility(this)">
+        <div class="option-icon"><i class="fa-solid fa-clock"></i></div>
+        <div><h3>Schedule</h3><p>Publish this short later.</p></div>
+      </button>
+    </div>
+  </section>
+
+</aside>
+
+</div>
+
+<script>
+function showResults(id){
+  document.getElementById(id).classList.toggle("show");
+}
+
+function useText(inputId, text){
+  document.getElementById(inputId).value = text;
+}
+
+function selectVisibility(btn){
+  document.querySelectorAll(".option-btn").forEach(item=>item.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+function publishVideo(){
+  const btn = document.getElementById("publishBtn");
+  const toast = document.getElementById("toast");
+
+  btn.innerText = "Published";
+  btn.classList.add("active");
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2200);
+}
+</script>
+
+</body>
+</html>
