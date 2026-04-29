@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Monetization Insights - JioVibe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+
+.topbar{
+height:72px;background:#fff;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 26px;position:sticky;top:0;z-index:20
+}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.project{text-align:center}
+.project h1{font-size:24px;font-weight:800}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.top-actions{display:flex;align-items:center;gap:12px}
+.token-pill{border:1px solid #e5e7eb;background:#fff;padding:11px 14px;border-radius:12px;font-weight:800}
+.buy-btn{background:#202124;color:#fff;border-radius:12px;padding:13px 18px;font-weight:800}
+
+.container{
+padding:26px;
+max-width:1600px;
+margin:auto
+}
+
+.plan-card{
+background:#fff;
+border:1px solid #ffd4bd;
+border-radius:24px;
+padding:28px;
+box-shadow:0 10px 30px rgba(255,90,0,.08);
+display:grid;
+grid-template-columns:1fr 340px;
+gap:28px;
+align-items:center;
+margin-bottom:24px
+}
+.plan-badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:#fff7f2;
+border:1px solid #ffd4bd;
+color:#ff5a00;
+padding:9px 13px;
+border-radius:999px;
+font-size:13px;
+font-weight:900;
+margin-bottom:14px
+}
+.plan-card h1{
+font-size:34px;
+font-weight:900;
+margin-bottom:10px
+}
+.plan-card p{
+color:#6b7280;
+font-weight:700;
+line-height:1.6;
+max-width:760px
+}
+.benefits{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-top:20px
+}
+.benefit{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:800;
+color:#3f3f46
+}
+.benefit i{color:#16a34a}
+
+.price-box{
+background:#f8f9fb;
+border:1px solid #e5e7eb;
+border-radius:20px;
+padding:24px;
+text-align:center
+}
+.price-box h2{
+font-size:40px;
+font-weight:900;
+margin-bottom:4px
+}
+.price-box p{
+font-size:14px;
+margin-bottom:18px
+}
+.activate-btn{
+width:100%;
+border:none;
+background:#ff5a00;
+color:#fff;
+border-radius:14px;
+padding:16px;
+font-size:16px;
+font-weight:900;
+transition:.22s
+}
+.activate-btn:hover{
+transform:scale(1.02);
+box-shadow:0 8px 20px rgba(255,90,0,.25)
+}
+.activate-btn.activated{
+background:#16a34a
+}
+
+.locked-state{
+background:#fff;
+border:1px dashed #cfd4dc;
+border-radius:22px;
+padding:70px 28px;
+text-align:center;
+box-shadow:0 8px 24px rgba(0,0,0,.04)
+}
+.locked-state i{
+font-size:46px;
+color:#9aa0a6;
+margin-bottom:16px
+}
+.locked-state h2{
+font-size:28px;
+font-weight:900;
+margin-bottom:8px
+}
+.locked-state p{
+color:#6b7280;
+font-weight:700
+}
+
+.insights{
+display:none;
+gap:22px
+}
+.insights.show{
+display:grid
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px
+}
+.stat-card{
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:20px;
+padding:22px;
+box-shadow:0 8px 24px rgba(0,0,0,.04);
+transition:.22s
+}
+.stat-card:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 28px rgba(0,0,0,.08)
+}
+.stat-card h3{
+font-size:14px;
+color:#6b7280;
+font-weight:800;
+margin-bottom:8px
+}
+.stat-card strong{
+font-size:28px;
+font-weight:900
+}
+.stat-card span{
+display:block;
+margin-top:8px;
+font-size:13px;
+font-weight:800;
+color:#16a34a
+}
+
+.main-grid{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:22px
+}
+.card{
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:22px;
+padding:24px;
+box-shadow:0 8px 24px rgba(0,0,0,.04)
+}
+.card-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:18px;
+margin-bottom:18px
+}
+.card-head h2{
+font-size:24px;
+font-weight:900;
+display:flex;
+align-items:center;
+gap:10px
+}
+.card-head h2 i{color:#ff5a00}
+.pill{
+background:#f1f3f4;
+border-radius:999px;
+padding:8px 12px;
+font-size:13px;
+font-weight:900;
+color:#5f6368
+}
+
+.suggestion-list{
+display:flex;
+flex-direction:column;
+gap:12px
+}
+.suggestion{
+border:1px solid #e5e7eb;
+border-radius:16px;
+padding:16px;
+display:grid;
+grid-template-columns:42px 1fr;
+gap:14px;
+align-items:flex-start;
+transition:.22s
+}
+.suggestion:hover{
+transform:scale(1.01);
+box-shadow:0 8px 20px rgba(0,0,0,.06)
+}
+.suggestion-icon{
+width:42px;
+height:42px;
+border-radius:12px;
+background:#fff0e8;
+color:#ff5a00;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px
+}
+.suggestion h3{
+font-size:16px;
+font-weight:900;
+margin-bottom:5px
+}
+.suggestion p{
+font-size:14px;
+font-weight:600;
+line-height:1.5;
+color:#6b7280
+}
+
+.forecast-box{
+background:#f8f9fb;
+border:1px solid #e5e7eb;
+border-radius:18px;
+padding:20px
+}
+.forecast-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px 0;
+border-bottom:1px solid #e5e7eb;
+font-weight:800
+}
+.forecast-row:last-child{border-bottom:none}
+.forecast-row span:last-child{
+font-size:22px;
+font-weight:900
+}
+.growth{
+color:#16a34a
+}
+.progress-wrap{
+margin-top:18px
+}
+.progress-label{
+display:flex;
+justify-content:space-between;
+font-weight:800;
+font-size:13px;
+color:#6b7280;
+margin-bottom:8px
+}
+.progress-bar{
+height:12px;
+background:#e5e7eb;
+border-radius:999px;
+overflow:hidden
+}
+.progress-fill{
+height:100%;
+width:72%;
+background:#16a34a
+}
+
+.audit-score{
+display:flex;
+align-items:center;
+gap:22px;
+margin-bottom:18px
+}
+.score-circle{
+width:118px;
+height:118px;
+border-radius:50%;
+background:conic-gradient(#ff5a00 62%, #e5e7eb 0);
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+flex-shrink:0
+}
+.score-circle::after{
+content:"";
+position:absolute;
+width:88px;
+height:88px;
+background:#fff;
+border-radius:50%
+}
+.score-circle strong{
+position:relative;
+z-index:2;
+font-size:28px;
+font-weight:900
+}
+.audit-text h3{
+font-size:18px;
+font-weight:900;
+margin-bottom:6px
+}
+.audit-text p{
+color:#6b7280;
+font-weight:600;
+line-height:1.5
+}
+
+.idea-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px
+}
+.idea{
+border:1px solid #e5e7eb;
+border-radius:16px;
+padding:16px;
+font-weight:800;
+transition:.22s
+}
+.idea:hover{
+transform:scale(1.02);
+background:#f8f9fb
+}
+.idea small{
+display:block;
+margin-top:8px;
+color:#6b7280;
+font-weight:700
+}
+
+.action-list{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px
+}
+.action{
+border:1px solid #e5e7eb;
+border-radius:16px;
+padding:18px;
+display:flex;
+gap:14px;
+align-items:flex-start;
+transition:.22s
+}
+.action:hover{
+transform:scale(1.015);
+box-shadow:0 8px 20px rgba(0,0,0,.06)
+}
+.action i{
+width:40px;
+height:40px;
+border-radius:12px;
+background:#f1f3f4;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#202124
+}
+.action h3{
+font-size:16px;
+font-weight:900;
+margin-bottom:5px
+}
+.action p{
+font-size:13px;
+color:#6b7280;
+font-weight:600;
+line-height:1.4
+}
+
+@media(max-width:1200px){
+.plan-card,.main-grid{grid-template-columns:1fr}
+.stats-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="back-title">
+    <a href="ai-studio.html"><i class="fa-solid fa-arrow-left"></i></a>
+    <span>AI Monetization Insights</span>
+  </div>
+
+  <div class="project">
+    <h1>Revenue Growth Advisor</h1>
+    <div class="tags">
+      <span class="tag">AI Suggestions</span>
+      <span class="tag">Forecast</span>
+      <span class="tag">Content Ideas</span>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <div class="token-pill"><i class="fa-solid fa-coins"></i> My Tokens: <span id="tokenCount" style="color:#ff5a00;">1,250</span></div>
+    <a href="wallet.html" class="buy-btn">+ Buy Tokens</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <section class="plan-card">
+    <div>
+      <div class="plan-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Single AI Plan</div>
+      <h1>AI Monetization Growth Plan</h1>
+      <p>Activate AI analysis for your channel. It will review your thumbnails, video performance, monetization gaps and content opportunities to generate a growth action plan.</p>
+
+      <div class="benefits">
+        <div class="benefit"><i class="fa-solid fa-check-circle"></i> Channel revenue analysis</div>
+        <div class="benefit"><i class="fa-solid fa-check-circle"></i> Thumbnail improvement tips</div>
+        <div class="benefit"><i class="fa-solid fa-check-circle"></i> Revenue growth forecast</div>
+        <div class="benefit"><i class="fa-solid fa-check-circle"></i> New content ideas</div>
+      </div>
+    </div>
+
+    <div class="price-box">
+      <h2>50 Tokens</h2>
+      <p>One-time AI insight unlock</p>
+      <button class="activate-btn" id="activateBtn" onclick="activatePlan()">Activate Plan</button>
+    </div>
+  </section>
+
+  <section class="locked-state" id="lockedState">
+    <i class="fa-solid fa-lock"></i>
+    <h2>Insights are locked</h2>
+    <p>Activate the AI Growth Plan to unlock revenue forecast, suggestions, thumbnail audit and content ideas.</p>
+  </section>
+
+  <section class="insights" id="insights">
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Current Monthly Revenue</h3>
+        <strong>₹18,200</strong>
+        <span>Based on current trend</span>
+      </div>
+
+      <div class="stat-card">
+        <h3>Forecast Revenue</h3>
+        <strong>₹27,500</strong>
+        <span>After optimization</span>
+      </div>
+
+      <div class="stat-card">
+        <h3>Growth Potential</h3>
+        <strong>+51%</strong>
+        <span>Estimated uplift</span>
+      </div>
+
+      <div class="stat-card">
+        <h3>Thumbnail Score</h3>
+        <strong>62/100</strong>
+        <span>Needs improvement</span>
+      </div>
+    </div>
+
+    <div class="main-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <h2><i class="fa-solid fa-lightbulb"></i> AI Suggestions</h2>
+          <span class="pill">High Priority</span>
+        </div>
+
+        <div class="suggestion-list">
+          <div class="suggestion">
+            <div class="suggestion-icon"><i class="fa-regular fa-image"></i></div>
+            <div>
+              <h3>Improve Thumbnail Contrast</h3>
+              <p>Your thumbnails need stronger subject focus and bolder text. Use darker backgrounds with brighter text highlights.</p>
+            </div>
+          </div>
+
+          <div class="suggestion">
+            <div class="suggestion-icon"><i class="fa-solid fa-play"></i></div>
+            <div>
+              <h3>Stronger First 5 Seconds</h3>
+              <p>Average drop-off starts early. Add a clear hook at the beginning and preview the best moment first.</p>
+            </div>
+          </div>
+
+          <div class="suggestion">
+            <div class="suggestion-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div>
+              <h3>Post More Shorts</h3>
+              <p>Publish 3 Shorts per week from your best long-form videos to increase discovery and audience reach.</p>
+            </div>
+          </div>
+
+          <div class="suggestion">
+            <div class="suggestion-icon"><i class="fa-solid fa-comments"></i></div>
+            <div>
+              <h3>Add Comment CTA</h3>
+              <p>Pin a comment asking viewers to vote for your next video topic. This can increase engagement signals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2><i class="fa-solid fa-chart-line"></i> Revenue Growth Forecast</h2>
+          <span class="pill">AI Estimate</span>
+        </div>
+
+        <div class="forecast-box">
+          <div class="forecast-row">
+            <span>Current Revenue</span>
+            <span>₹18,200</span>
+          </div>
+
+          <div class="forecast-row">
+            <span>Projected Revenue</span>
+            <span>₹27,500</span>
+          </div>
+
+          <div class="forecast-row">
+            <span>Growth</span>
+            <span class="growth">+51%</span>
+          </div>
+
+          <div class="progress-wrap">
+            <div class="progress-label">
+              <span>Optimization Potential</span>
+              <span>72%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="main-grid">
+
+      <div class="card">
+        <div class="card-head">
+          <h2><i class="fa-solid fa-image"></i> Thumbnail Audit</h2>
+          <span class="pill">Needs Work</span>
+        </div>
+
+        <div class="audit-score">
+          <div class="score-circle"><strong>62</strong></div>
+          <div class="audit-text">
+            <h3>Low text visibility detected</h3>
+            <p>Use bold text, face focus, higher contrast and less clutter. Keep only 3 to 5 important words on thumbnail.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2><i class="fa-solid fa-video"></i> Video Performance Tips</h2>
+          <span class="pill">Retention</span>
+        </div>
+
+        <div class="suggestion-list">
+          <div class="suggestion">
+            <div class="suggestion-icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <h3>Retention: 42%</h3>
+              <p>Viewers drop after the first 20 seconds. Add faster pacing and remove slow intro sections.</p>
+            </div>
+          </div>
+
+          <div class="suggestion">
+            <div class="suggestion-icon"><i class="fa-solid fa-scissors"></i></div>
+            <div>
+              <h3>Cut Slow Sections</h3>
+              <p>Trim long pauses and repeated parts. Keep the video moving every 4 to 6 seconds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h2><i class="fa-solid fa-list-check"></i> Content Ideas</h2>
+        <span class="pill">Recommended</span>
+      </div>
+
+      <div class="idea-grid">
+        <div class="idea">How I made this video using AI <small>Good for creator audience</small></div>
+        <div class="idea">Best gaming setup under budget <small>High search potential</small></div>
+        <div class="idea">1 minute tips for creators <small>Shorts friendly format</small></div>
+        <div class="idea">Behind the scenes of my latest video <small>Builds audience connection</small></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h2><i class="fa-solid fa-indian-rupee-sign"></i> Monetization Actions</h2>
+        <span class="pill">Next Steps</span>
+      </div>
+
+      <div class="action-list">
+        <div class="action">
+          <i class="fa-solid fa-crown"></i>
+          <div>
+            <h3>Add Membership CTA</h3>
+            <p>Promote membership benefits in video end screen and pinned comment.</p>
+          </div>
+        </div>
+
+        <div class="action">
+          <i class="fa-solid fa-gift"></i>
+          <div>
+            <h3>Premium Content Hook</h3>
+            <p>Create bonus clips or early access for loyal viewers.</p>
+          </div>
+        </div>
+
+        <div class="action">
+          <i class="fa-solid fa-link"></i>
+          <div>
+            <h3>Add Affiliate Links</h3>
+            <p>Add product links related to your setup, tools or video topic.</p>
+          </div>
+        </div>
+
+        <div class="action">
+          <i class="fa-solid fa-tower-broadcast"></i>
+          <div>
+            <h3>Weekly Live Stream</h3>
+            <p>Run weekly live sessions to increase watch time and direct fan engagement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<script>
+let activated = false;
+let tokens = 1250;
+
+function activatePlan(){
+  if(activated) return;
+
+  activated = true;
+  tokens = tokens - 50;
+
+  document.getElementById("tokenCount").innerText = tokens.toLocaleString();
+  document.getElementById("activateBtn").innerText = "Activated";
+  document.getElementById("activateBtn").classList.add("activated");
+
+  document.getElementById("lockedState").style.display = "none";
+  document.getElementById("insights").classList.add("show");
+}
+</script>
+
+</body>
+</html>
