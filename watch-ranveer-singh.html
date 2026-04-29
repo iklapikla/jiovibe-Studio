@@ -431,17 +431,64 @@ border-color:#ff5a00
 }
 
 /* CHAT */
-.chat-card{
+.share-modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.45);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:200;
+}
+
+.share-modal.show{display:flex}
+
+.share-box{
+width:420px;
 background:#fff;
-border:1px solid #e8ebf0;
-border-radius:18px;
-overflow:hidden;
-height:calc(100vh - 122px);
-position:sticky;
-top:122px;
-box-shadow:0 6px 18px rgba(0,0,0,.05);
+border-radius:20px;
+padding:22px;
+box-shadow:0 20px 60px rgba(0,0,0,.25)
+}
+
+.share-head{
 display:flex;
-flex-direction:column
+justify-content:space-between;
+align-items:center;
+margin-bottom:18px;
+}
+
+.share-head h3{
+font-size:20px;
+font-weight:900;
+}
+
+.share-options{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.share-option{
+border:1px solid #e8ebf0;
+border-radius:14px;
+padding:16px 10px;
+font-weight:900;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:8px;
+transition:.2s;
+}
+
+.share-option:hover{
+background:#fff0e8;
+color:#ff5a00;
+border-color:#ff5a00;
+}
+
+.share-option i{
+font-size:24px;
 }
 .chat-head{
 height:58px;
@@ -1245,11 +1292,41 @@ btn.dataset.open = open ? "false" : "true";
 btn.innerText = open ? "View all" : "View less";
 }
 
-async function shareLive(){
+function shareLive(){
+document.getElementById("shareModal").classList.add("show");
+}
+
+function closeShare(){
+document.getElementById("shareModal").classList.remove("show");
+}
+
+function shareToWhatsApp(){
+const url = encodeURIComponent(window.location.href);
+window.open("https://wa.me/?text=" + url, "_blank");
+}
+
+function shareToInstagram(){
+showToast("Instagram sharing opened");
+}
+
+async function nativeShare(){
 const shareData = {
 title: "Ranveer Singh Live - JioVibe",
 text: "Watch Ranveer Singh live on JioVibe.",
 url: window.location.href
+};
+
+if(navigator.share){
+await navigator.share(shareData);
+}else{
+copyLink();
+}
+}
+
+function copyLink(){
+navigator.clipboard.writeText(window.location.href);
+showToast("Link copied");
+closeShare();
 };
 
 if(navigator.share){
@@ -1279,6 +1356,41 @@ viewers += Math.floor(Math.random()*25);
 document.getElementById("viewerCount").innerText = (viewers/1000).toFixed(1)+"K";
 },3500);
 </script>
+<div class="share-modal" id="shareModal">
+  <div class="share-box">
+    <div class="share-head">
+      <h3>Share Live</h3>
+      <button onclick="closeShare()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
 
+    <div class="share-options">
+      <button class="share-option" onclick="shareToWhatsApp()">
+        <i class="fa-brands fa-whatsapp"></i>
+        WhatsApp
+      </button>
+
+      <button class="share-option" onclick="shareToInstagram()">
+        <i class="fa-brands fa-instagram"></i>
+        Instagram
+      </button>
+
+      <button class="share-option" onclick="nativeShare()">
+        <i class="fa-solid fa-share-nodes"></i>
+        iOS Share
+      </button>
+
+      <button class="share-option" onclick="copyLink()">
+        <i class="fa-regular fa-copy"></i>
+        Copy Link
+      </button>
+
+      <button class="share-option" onclick="nativeShare()">
+        <i class="fa-solid fa-ellipsis"></i>
+        More
+      </button>
+    </div>
+  </div>
+</div>
+  
 </body>
 </html>
