@@ -168,8 +168,8 @@ padding:34px 44px 60px;
 }
 
 .balance-box{
-background:#fff7f2;
-border:1px solid #ffd4bd;
+background:#fff;
+border:1px solid #e5e7eb;
 border-radius:22px;
 padding:28px 32px;
 display:grid;
@@ -184,7 +184,7 @@ box-shadow:0 8px 24px rgba(0,0,0,.04);
 display:flex;
 align-items:center;
 gap:24px;
-border-right:1px solid #ffd4bd;
+border-right:1px solid #e5e7eb;
 padding-right:28px;
 }
 
@@ -192,7 +192,7 @@ padding-right:28px;
 width:96px;
 height:96px;
 border-radius:50%;
-background:#ff5a00;
+background:#202124;
 color:white;
 display:flex;
 align-items:center;
@@ -228,11 +228,11 @@ align-items:center;
 gap:10px;
 }
 
-.list-grid i{color:#ff5a00;}
+.list-grid i{color:#202124;}
 
 .wallet-icon{
 font-size:72px;
-color:#ff8a3d;
+color:#202124;
 text-align:center;
 }
 
@@ -261,8 +261,8 @@ font-weight:800;
 
 .pack-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:28px;
+grid-template-columns:repeat(4,1fr);
+gap:22px;
 margin-bottom:30px;
 }
 
@@ -271,7 +271,7 @@ position:relative;
 background:#fff;
 border:1px solid #e5e7eb;
 border-radius:18px;
-padding:34px 28px 28px;
+padding:34px 22px 28px;
 text-align:center;
 box-shadow:0 6px 18px rgba(0,0,0,.04);
 transition:.22s ease;
@@ -295,9 +295,11 @@ left:50%;
 transform:translateX(-50%);
 background:#202124;
 color:#fff;
-padding:10px 28px;
+padding:10px 22px;
 border-radius:8px;
 font-weight:800;
+font-size:13px;
+white-space:nowrap;
 }
 
 .pack-icon{
@@ -314,13 +316,13 @@ color:#ff8a00;
 }
 
 .pack-card h2{
-font-size:48px;
+font-size:44px;
 color:#ff5a00;
 font-weight:800;
 }
 
 .pack-card h3{
-font-size:24px;
+font-size:22px;
 margin-bottom:26px;
 }
 
@@ -331,7 +333,7 @@ margin:22px 0;
 }
 
 .price{
-font-size:36px;
+font-size:34px;
 font-weight:800;
 margin-bottom:10px;
 }
@@ -484,7 +486,7 @@ outline:none;
 width:100%;
 height:52px;
 border:none;
-background:#16a34a;
+background:#202124;
 color:#fff;
 font-size:17px;
 font-weight:800;
@@ -494,7 +496,7 @@ transition:.2s;
 }
 
 .pay-btn:hover{
-background:#12823b;
+background:#000;
 transform:scale(1.01);
 }
 
@@ -555,10 +557,18 @@ font-size:13px;
 color:#666;
 }
 
+@media(max-width:1300px){
+.pack-grid{grid-template-columns:repeat(2,1fr);}
+}
+
 @media(max-width:1200px){
 .balance-box,.checkout-box{grid-template-columns:1fr;}
-.pack-grid,.payment-methods,.security-row{grid-template-columns:1fr;}
+.payment-methods,.security-row{grid-template-columns:1fr;}
 .search{width:430px;}
+}
+
+@media(max-width:900px){
+.pack-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -652,7 +662,7 @@ color:#666;
 <button class="select-btn">Select</button>
 </div>
 
-<div class="pack-card selected" onclick="selectPack(this, '500 Tokens', '₹399')">
+<div class="pack-card" onclick="selectPack(this, '500 Tokens', '₹399')">
 <div class="best">BEST VALUE</div>
 <div class="pack-icon"><i class="fa-solid fa-coins"></i></div>
 <h2>500</h2>
@@ -660,7 +670,7 @@ color:#666;
 <div class="line"></div>
 <div class="price">₹399</div>
 <div class="pay-type">One-time payment</div>
-<button class="select-btn">Selected</button>
+<button class="select-btn">Select</button>
 </div>
 
 <div class="pack-card" onclick="selectPack(this, '1000 Tokens', '₹699')">
@@ -673,6 +683,16 @@ color:#666;
 <button class="select-btn">Select</button>
 </div>
 
+<div class="pack-card" onclick="selectPack(this, '1500 Tokens', '₹999')">
+<div class="pack-icon"><i class="fa-solid fa-coins"></i></div>
+<h2>1500</h2>
+<h3>Tokens</h3>
+<div class="line"></div>
+<div class="price">₹999</div>
+<div class="pay-type">One-time payment</div>
+<button class="select-btn">Select</button>
+</div>
+
 </div>
 
 <div class="payment-title">
@@ -681,7 +701,7 @@ color:#666;
 </div>
 
 <div class="payment-methods">
-<div class="method selected" onclick="selectMethod(this, 'UPI')">
+<div class="method" onclick="selectMethod(this, 'UPI')">
 <div class="radio"></div>
 <i class="fa-solid fa-mobile-screen-button big"></i>
 <div>
@@ -720,9 +740,9 @@ color:#666;
 
 <div class="summary">
 <h2>Order Summary</h2>
-<div class="summary-row"><span>Token Pack</span><span id="summaryPack">500 Tokens</span></div>
-<div class="summary-row"><span>Amount</span><span id="summaryAmount">₹399</span></div>
-<div class="summary-row"><span>Payment Method</span><span id="summaryMethod">UPI</span></div>
+<div class="summary-row"><span>Token Pack</span><span id="summaryPack">Select Token Pack</span></div>
+<div class="summary-row"><span>Amount</span><span id="summaryAmount">--</span></div>
+<div class="summary-row"><span>Payment Method</span><span id="summaryMethod">Select Method</span></div>
 </div>
 </div>
 
