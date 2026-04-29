@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings - JioVibe AI Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f8f9fb;color:#202124;}
+a{text-decoration:none;color:inherit;}
+button,input,textarea{font-family:inherit;}
+
+.app{display:flex;min-height:100vh;}
+
+.sidebar{
+width:250px;
+padding:32px 18px;
+position:fixed;
+height:100%;
+background:#fff;
+border-right:1px solid #edf0f4;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:4px;
+margin-bottom:45px;
+padding-left:8px;
+}
+
+.logo-circle{
+width:54px;height:54px;background:#ff5a00;color:#fff;
+border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+font-weight:800;font-size:25px;
+}
+
+.logo-text{
+font-size:32px;
+font-weight:800;
+letter-spacing:-1.2px;
+color:#2b070b;
+}
+
+.menu{display:flex;flex-direction:column;gap:12px;}
+
+.menu-item{
+display:flex;
+align-items:center;
+gap:18px;
+padding:17px 22px;
+border-radius:14px;
+font-weight:600;
+font-size:16px;
+color:#383838;
+transition:.25s;
+}
+
+.menu-item i{width:22px;font-size:22px;text-align:center;}
+
+.menu-item:hover,.menu-item.active{
+background:#f1f3f4;
+color:#111;
+}
+
+.main{
+margin-left:250px;
+width:calc(100% - 250px);
+}
+
+.topbar{
+height:94px;
+border-bottom:1px solid #edf0f4;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 48px;
+background:#fff;
+position:sticky;
+top:0;
+z-index:8;
+}
+
+.search{
+width:600px;
+height:50px;
+border:1px solid #e8ebf0;
+border-radius:28px;
+display:flex;
+align-items:center;
+gap:16px;
+padding:0 22px;
+color:#9ba1ad;
+background:#fff;
+}
+
+.search input{
+border:none;outline:none;flex:1;font-size:15px;color:#333;
+}
+
+.top-actions{display:flex;align-items:center;gap:22px;position:relative;}
+
+.bell{font-size:23px;position:relative;cursor:pointer;}
+
+.bell::after{
+content:"1";
+position:absolute;
+top:-8px;
+right:-7px;
+background:#ff5a00;
+color:#fff;
+font-size:10px;
+width:17px;height:17px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.profile{
+display:flex;
+align-items:center;
+gap:12px;
+cursor:pointer;
+padding:8px;
+border-radius:18px;
+}
+
+.profile img{
+width:48px;height:48px;border-radius:50%;object-fit:cover;
+}
+
+.profile span{font-weight:700;font-size:15px;}
+
+.dropdown{
+position:absolute;
+top:70px;
+right:0;
+width:200px;
+background:#fff;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+display:none;
+overflow:hidden;
+z-index:20;
+}
+
+.dropdown a{
+display:block;
+padding:14px;
+font-weight:600;
+color:#2f2f2f;
+}
+
+.dropdown a:hover{
+background:#f1f3f4;
+color:#111;
+}
+
+.dropdown.show{display:block;}
+
+.content{
+padding:34px 44px 60px;
+}
+
+.page-head{
+margin-bottom:28px;
+}
+
+.page-head h1{
+font-size:34px;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.page-head p{
+color:#6b7280;
+font-size:16px;
+font-weight:600;
+}
+
+.settings-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:24px;
+}
+
+.setting-card{
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:22px;
+padding:28px;
+box-shadow:0 6px 18px rgba(0,0,0,.04);
+}
+
+.card-title{
+font-size:22px;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.card-subtitle{
+color:#6b7280;
+font-size:15px;
+font-weight:600;
+line-height:1.6;
+margin-bottom:22px;
+}
+
+.media-row{
+display:grid;
+grid-template-columns:360px 1fr;
+gap:28px;
+align-items:center;
+}
+
+.banner-preview{
+height:170px;
+border-radius:18px;
+background:linear-gradient(135deg,#202124,#444);
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+position:relative;
+overflow:hidden;
+}
+
+.banner-preview::before{
+content:"";
+position:absolute;
+inset:0;
+background:url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop') center/cover;
+opacity:.45;
+}
+
+.banner-preview span{
+position:relative;
+font-size:28px;
+font-weight:800;
+}
+
+.picture-preview{
+width:170px;
+height:170px;
+border-radius:50%;
+overflow:hidden;
+border:8px solid #f1f3f4;
+box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+
+.picture-preview img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.action-buttons{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+}
+
+.soft-btn{
+border:none;
+background:#202124;
+color:#fff;
+border-radius:999px;
+padding:13px 22px;
+font-size:15px;
+font-weight:800;
+cursor:pointer;
+transition:.22s;
+}
+
+.soft-btn.secondary{
+background:#f1f3f4;
+color:#202124;
+}
+
+.soft-btn:hover{
+transform:scale(1.02);
+box-shadow:0 8px 18px rgba(0,0,0,.10);
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:22px;
+}
+
+.field{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.field.full{
+grid-column:1/-1;
+}
+
+.field label{
+font-size:15px;
+font-weight:800;
+}
+
+.field small{
+color:#6b7280;
+font-weight:600;
+line-height:1.5;
+}
+
+.input-box,
+.textarea-box{
+border:1px solid #dfe3ea;
+background:#fff;
+border-radius:14px;
+padding:16px;
+font-size:16px;
+font-weight:600;
+outline:none;
+transition:.2s;
+}
+
+.input-box:focus,
+.textarea-box:focus{
+border-color:#202124;
+box-shadow:0 0 0 3px rgba(32,33,36,.08);
+}
+
+.textarea-box{
+min-height:160px;
+resize:none;
+line-height:1.6;
+}
+
+.url-row{
+display:grid;
+grid-template-columns:1fr 54px;
+gap:12px;
+align-items:center;
+}
+
+.icon-btn{
+width:54px;
+height:54px;
+border:none;
+border-radius:14px;
+background:#f1f3f4;
+font-size:20px;
+cursor:pointer;
+transition:.22s;
+}
+
+.icon-btn:hover{
+background:#202124;
+color:#fff;
+}
+
+.links-list{
+display:flex;
+flex-direction:column;
+gap:16px;
+}
+
+.link-row{
+display:grid;
+grid-template-columns:36px 280px 1fr;
+gap:14px;
+align-items:center;
+}
+
+.drag-icon{
+font-size:22px;
+color:#6b7280;
+text-align:center;
+}
+
+.add-btn{
+margin-top:18px;
+display:inline-flex;
+align-items:center;
+gap:10px;
+background:#202124;
+color:#fff;
+border:none;
+border-radius:999px;
+padding:13px 22px;
+font-weight:800;
+font-size:15px;
+cursor:pointer;
+transition:.22s;
+}
+
+.add-btn:hover{
+transform:scale(1.02);
+box-shadow:0 8px 18px rgba(0,0,0,.10);
+}
+
+.save-bar{
+position:sticky;
+bottom:20px;
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:18px;
+padding:16px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+box-shadow:0 12px 32px rgba(0,0,0,.12);
+margin-top:24px;
+}
+
+.save-bar span{
+font-weight:700;
+color:#6b7280;
+}
+
+.save-btn{
+border:none;
+background:#16a34a;
+color:#fff;
+border-radius:12px;
+padding:13px 24px;
+font-size:15px;
+font-weight:800;
+cursor:pointer;
+}
+
+.save-btn:hover{
+background:#12823b;
+}
+
+@media(max-width:1200px){
+.search{width:430px;}
+.media-row,.form-grid{grid-template-columns:1fr;}
+.link-row{grid-template-columns:36px 1fr;}
+.link-row .input-box:nth-child(3){grid-column:2;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+<a href="index.html" class="logo">
+<div class="logo-circle">Jio</div>
+<div class="logo-text">Vibe</div>
+</a>
+
+<nav class="menu">
+<a href="index.html" class="menu-item"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
+<a href="content.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Content</a>
+<a href="analytics.html" class="menu-item"><i class="fa-solid fa-chart-line"></i> Analytics</a>
+<a href="ai-studio.html" class="menu-item"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Studio</a>
+<a href="wallet.html" class="menu-item"><i class="fa-solid fa-wallet"></i> Wallet</a>
+<a href="settings.html" class="menu-item active"><i class="fa-solid fa-gear"></i> Settings</a>
+</nav>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+<div class="search">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" placeholder="Search settings, channel, profile..." />
+</div>
+
+<div class="top-actions">
+<div class="bell"><i class="fa-regular fa-bell"></i></div>
+
+<div class="profile" onclick="toggleDropdown()">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Ankit.jpeg">
+<span>Ankit Jayant</span>
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+
+<div class="dropdown" id="dropdown">
+<a href="home.html">Home</a>
+<a href="index.html">Dashboard</a>
+<a href="logout.html">Sign out</a>
+</div>
+</div>
+</header>
+
+<section class="content">
+
+<div class="page-head">
+<h1>Channel Settings</h1>
+<p>Manage your channel identity, profile details, links and contact information.</p>
+</div>
+
+<div class="settings-grid">
+
+<div class="setting-card">
+<h2 class="card-title">Banner Image</h2>
+<p class="card-subtitle">This image will appear across the top of your channel. Recommended size: 2048 × 1152 pixels.</p>
+
+<div class="media-row">
+<div class="banner-preview">
+<span>Ankit Jayant</span>
+</div>
+
+<div>
+<p class="card-subtitle">Use a clean banner that represents your content style, brand identity and creator personality.</p>
+<div class="action-buttons">
+<button class="soft-btn" type="button">Change</button>
+<button class="soft-btn secondary" type="button">Remove</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="setting-card">
+<h2 class="card-title">Picture</h2>
+<p class="card-subtitle">Your profile picture will appear next to your videos, comments and channel profile.</p>
+
+<div class="media-row">
+<div class="picture-preview">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Ankit.jpeg" alt="Ankit Jayant">
+</div>
+
+<div>
+<p class="card-subtitle">Use a clear square image. Recommended size: at least 98 × 98 pixels.</p>
+<div class="action-buttons">
+<button class="soft-btn" type="button">Change</button>
+<button class="soft-btn secondary" type="button">Remove</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="setting-card">
+<h2 class="card-title">Basic Info</h2>
+<p class="card-subtitle">Choose a channel name, handle and description that represent you and your content.</p>
+
+<div class="form-grid">
+<div class="field">
+<label>Name</label>
+<small>Changes made to your name will be visible on your JioVibe channel.</small>
+<input class="input-box" type="text" value="Ankit Jayant">
+</div>
+
+<div class="field">
+<label>Handle</label>
+<small>Choose a unique handle using letters and numbers.</small>
+<input class="input-box" type="text" value="@ankitjayant">
+</div>
+
+<div class="field full">
+<label>Description</label>
+<small>Tell viewers about your channel, content style and upload schedule.</small>
+<textarea class="textarea-box">Hello Guys!!! Welcome To My Channel. 🙂
+
+I'm Ankit Jayant, and here I post gaming videos, creator content, live streams and AI-powered content updates.</textarea>
+</div>
+
+<button class="add-btn" type="button"><i class="fa-solid fa-plus"></i> Add language</button>
+</div>
+</div>
+
+<div class="setting-card">
+<h2 class="card-title">Channel URL</h2>
+<p class="card-subtitle">This is the standard web address for your channel. You can copy and share it with your viewers.</p>
+
+<div class="field">
+<label>Channel URL</label>
+<div class="url-row">
+<input class="input-box" type="text" value="https://www.jiovibe.com/channel/UC3dTgLaVxvqj5rQBJCncjOQ">
+<button class="icon-btn" type="button"><i class="fa-regular fa-copy"></i></button>
+</div>
+</div>
+
+<br>
+
+<div class="field">
+<label>Custom URL</label>
+<div class="url-row">
+<input class="input-box" type="text" value="https://www.jiovibe.com/c/ankitjayant">
+<button class="icon-btn" type="button"><i class="fa-regular fa-copy"></i></button>
+</div>
+</div>
+</div>
+
+<div class="setting-card">
+<h2 class="card-title">Links</h2>
+<p class="card-subtitle">Share external links with your viewers. They will be visible on your channel profile and About page.</p>
+
+<div class="links-list">
+<div class="link-row">
+<div class="drag-icon"><i class="fa-solid fa-grip-lines"></i></div>
+<input class="input-box" type="text" value="Instagram">
+<input class="input-box" type="text" value="https://www.instagram.com/ankitjayant/">
+</div>
+
+<div class="link-row">
+<div class="drag-icon"><i class="fa-solid fa-grip-lines"></i></div>
+<input class="input-box" type="text" value="Discord">
+<input class="input-box" type="text" value="https://discord.gg/example">
+</div>
+</div>
+
+<button class="add-btn" type="button"><i class="fa-solid fa-plus"></i> Add link</button>
+</div>
+
+<div class="setting-card">
+<h2 class="card-title">Contact Info</h2>
+<p class="card-subtitle">Let people contact you for business enquiries. This email may appear in the About section of your channel.</p>
+
+<div class="field">
+<label>Email</label>
+<input class="input-box" type="email" placeholder="Email address">
+</div>
+</div>
+
+</div>
+
+<div class="save-bar">
+<span>Changes are for demo only. Buttons are clickable-style but no real action is connected.</span>
+<button class="save-btn" type="button">Save Changes</button>
+</div>
+
+</section>
+
+</main>
+</div>
+
+<script>
+function toggleDropdown(){
+document.getElementById("dropdown").classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+if(!e.target.closest(".profile")){
+document.getElementById("dropdown").classList.remove("show");
+}
+});
+</script>
+
+</body>
+</html>
