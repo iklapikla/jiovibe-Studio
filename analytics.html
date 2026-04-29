@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics - JioVibe Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124}
+a{text-decoration:none;color:inherit}
+button,select{font-family:inherit}
+button{cursor:pointer}
+
+.topbar{
+height:72px;background:#fff;border-bottom:1px solid #edf0f4;
+display:flex;align-items:center;justify-content:space-between;
+padding:0 26px;position:sticky;top:0;z-index:20
+}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.project{text-align:center}
+.project h1{font-size:24px;font-weight:900}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
+.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.filters{display:flex;gap:10px}
+.filters select{
+border:1px solid #e5e7eb;background:#fff;border-radius:12px;
+padding:12px 14px;font-weight:800;outline:none
+}
+
+.container{
+padding:26px;
+max-width:1700px;
+margin:auto
+}
+
+.card{
+background:#fff;border:1px solid #e5e7eb;border-radius:22px;
+box-shadow:0 8px 24px rgba(0,0,0,.05)
+}
+
+/* AI HERO */
+.ai-summary{
+border:1px solid #ffd4bd;
+background:#fff;
+border-radius:24px;
+padding:26px;
+box-shadow:0 10px 30px rgba(255,90,0,.08);
+margin-bottom:22px
+}
+.ai-head{
+display:flex;
+justify-content:space-between;
+gap:20px;
+align-items:flex-start;
+margin-bottom:20px
+}
+.ai-badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:#fff7f2;
+border:1px solid #ffd4bd;
+color:#ff5a00;
+padding:9px 14px;
+border-radius:999px;
+font-size:13px;
+font-weight:900;
+margin-bottom:12px
+}
+.ai-head h1{
+font-size:34px;
+font-weight:900;
+margin-bottom:8px
+}
+.ai-head p{
+color:#6b7280;
+font-weight:700;
+line-height:1.6
+}
+.health-score{
+width:150px;
+height:150px;
+border-radius:50%;
+background:conic-gradient(#ff5a00 78%, #e5e7eb 0);
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+flex-shrink:0
+}
+.health-score::after{
+content:"";
+position:absolute;
+width:112px;
+height:112px;
+background:#fff;
+border-radius:50%
+}
+.health-score strong{
+position:relative;
+z-index:2;
+font-size:32px;
+font-weight:900
+}
+.ai-points{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px
+}
+.ai-point{
+background:#f8f9fb;
+border:1px solid #e5e7eb;
+border-radius:16px;
+padding:16px;
+display:flex;
+gap:12px;
+align-items:flex-start;
+transition:.22s
+}
+.ai-point:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 22px rgba(0,0,0,.07)
+}
+.ai-point i{
+width:38px;
+height:38px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#fff0e8;
+color:#ff5a00
+}
+.ai-point h3{
+font-size:15px;
+font-weight:900;
+margin-bottom:4px
+}
+.ai-point p{
+font-size:13px;
+font-weight:600;
+color:#6b7280;
+line-height:1.4
+}
+
+/* AI GRID */
+.ai-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+margin-bottom:22px
+}
+.ai-card{
+padding:22px;
+border:1px solid #e5e7eb;
+transition:.22s
+}
+.ai-card:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 28px rgba(0,0,0,.08)
+}
+.card-title{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:16px
+}
+.card-title h2{
+font-size:21px;
+font-weight:900;
+display:flex;
+align-items:center;
+gap:10px
+}
+.card-title h2 i{color:#ff5a00}
+.small-pill{
+background:#f1f3f4;
+color:#5f6368;
+padding:7px 10px;
+border-radius:999px;
+font-size:12px;
+font-weight:900
+}
+.forecast-row{
+display:flex;
+justify-content:space-between;
+padding:10px 0;
+border-bottom:1px solid #edf0f4;
+font-weight:800
+}
+.forecast-row:last-child{border-bottom:none}
+.green{color:#16a34a}
+.problem-list,.idea-list{
+display:flex;
+flex-direction:column;
+gap:10px
+}
+.problem,.idea{
+border:1px solid #e5e7eb;
+border-radius:13px;
+padding:12px;
+font-size:14px;
+font-weight:700;
+color:#4b5563;
+line-height:1.4
+}
+.problem i{color:#ef4444;margin-right:8px}
+.idea i{color:#ff5a00;margin-right:8px}
+
+.action-row{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px;
+margin-bottom:26px
+}
+.action-btn{
+border:1px solid #e5e7eb;
+background:#fff;
+border-radius:18px;
+padding:18px;
+display:flex;
+align-items:center;
+gap:14px;
+font-size:16px;
+font-weight:900;
+transition:.22s
+}
+.action-btn i{
+width:42px;
+height:42px;
+border-radius:12px;
+background:#fff0e8;
+color:#ff5a00;
+display:flex;
+align-items:center;
+justify-content:center
+}
+.action-btn:hover{
+transform:scale(1.015);
+box-shadow:0 10px 24px rgba(0,0,0,.08);
+background:#f8f9fb
+}
+
+/* NORMAL ANALYTICS */
+.section-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:6px 0 18px
+}
+.section-head h2{
+font-size:28px;
+font-weight:900
+}
+.section-head p{
+color:#6b7280;
+font-weight:700
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:16px;
+margin-bottom:22px
+}
+.stat-card{
+padding:20px;
+transition:.22s
+}
+.stat-card:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 28px rgba(0,0,0,.08)
+}
+.stat-card h3{
+font-size:13px;
+color:#6b7280;
+font-weight:900;
+margin-bottom:10px
+}
+.stat-card strong{
+font-size:25px;
+font-weight:900
+}
+.stat-card span{
+display:block;
+font-size:12px;
+font-weight:900;
+color:#16a34a;
+margin-top:8px
+}
+
+.chart-grid{
+display:grid;
+grid-template-columns:1.3fr .7fr;
+gap:22px;
+margin-bottom:22px
+}
+.chart-card{padding:22px}
+.chart{
+height:260px;
+display:flex;
+align-items:flex-end;
+gap:12px;
+padding-top:20px
+}
+.bar{
+flex:1;
+background:linear-gradient(to top,#202124,#6b7280);
+border-radius:12px 12px 0 0;
+min-height:30px;
+transition:.22s
+}
+.bar:hover{
+transform:scaleY(1.04);
+background:#ff5a00
+}
+.line-chart{
+height:260px;
+position:relative;
+background:
+linear-gradient(#edf0f4 1px,transparent 1px) 0 0/100% 52px;
+border-radius:16px;
+overflow:hidden
+}
+.line{
+position:absolute;
+left:20px;
+right:20px;
+bottom:42px;
+height:150px;
+border-left:4px solid #16a34a;
+border-bottom:4px solid #16a34a;
+border-radius:0 0 0 18px
+}
+.line::after{
+content:"";
+position:absolute;
+right:-4px;
+top:-8px;
+width:16px;
+height:16px;
+border-radius:50%;
+background:#16a34a
+}
+
+.table-card{padding:22px;margin-bottom:22px}
+.table{
+display:flex;
+flex-direction:column;
+gap:10px
+}
+.table-head,.table-row{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr 1fr;
+gap:14px;
+align-items:center
+}
+.table-head{
+font-size:13px;
+font-weight:900;
+color:#6b7280;
+padding:12px;
+background:#f8f9fb;
+border-radius:12px
+}
+.table-row{
+padding:14px 12px;
+border:1px solid #edf0f4;
+border-radius:14px;
+font-size:14px;
+font-weight:800;
+transition:.22s
+}
+.table-row:hover{
+transform:scale(1.005);
+box-shadow:0 8px 18px rgba(0,0,0,.06)
+}
+.video-info{
+display:flex;
+align-items:center;
+gap:12px
+}
+.thumb{
+width:82px;
+height:46px;
+border-radius:8px;
+background-size:cover;
+background-position:center;
+flex-shrink:0
+}
+.status-good{color:#16a34a}
+.status-mid{color:#ff5a00}
+
+.bottom-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:22px
+}
+.audience-card,.revenue-card{padding:22px}
+.audience-list,.revenue-list{
+display:flex;
+flex-direction:column;
+gap:14px
+}
+.insight-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+padding:14px;
+border:1px solid #edf0f4;
+border-radius:14px
+}
+.insight-row strong{font-size:15px}
+.insight-row span{font-weight:900;color:#6b7280}
+.device-bar{
+height:10px;
+background:#e5e7eb;
+border-radius:999px;
+overflow:hidden;
+margin-top:8px
+}
+.device-fill{
+height:100%;
+background:#202124
+}
+
+@media(max-width:1300px){
+.stats-grid{grid-template-columns:repeat(3,1fr)}
+.ai-grid,.action-row,.chart-grid,.bottom-grid{grid-template-columns:1fr}
+.ai-points{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="back-title">
+    <a href="index.html"><i class="fa-solid fa-arrow-left"></i></a>
+    <span>Analytics</span>
+  </div>
+
+  <div class="project">
+    <h1>Creator Analytics Dashboard</h1>
+    <div class="tags">
+      <span class="tag">AI First</span>
+      <span class="tag">Revenue</span>
+      <span class="tag">Audience</span>
+    </div>
+  </div>
+
+  <div class="filters">
+    <select>
+      <option>Last 28 Days</option>
+      <option>Last 7 Days</option>
+      <option>Last 90 Days</option>
+      <option>This Year</option>
+    </select>
+
+    <select>
+      <option>All Content</option>
+      <option>Videos</option>
+      <option>Shorts</option>
+      <option>Live</option>
+      <option>Posts</option>
+    </select>
+  </div>
+</header>
+
+<div class="container">
+
+<section class="ai-summary">
+  <div class="ai-head">
+    <div>
+      <div class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Analytics Summary</div>
+      <h1>Your channel is growing, but CTR needs improvement</h1>
+      <p>AI found that Shorts are performing better than long videos. Your audience is most active between 7 PM and 10 PM. Thumbnail contrast and first 5 seconds need improvement.</p>
+    </div>
+
+    <div class="health-score">
+      <strong>78</strong>
+    </div>
+  </div>
+
+  <div class="ai-points">
+    <div class="ai-point">
+      <i class="fa-solid fa-arrow-trend-up"></i>
+      <div>
+        <h3>Growth +18%</h3>
+        <p>Views and subscriber growth improved this week.</p>
+      </div>
+    </div>
+
+    <div class="ai-point">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <div>
+        <h3>CTR is low</h3>
+        <p>Last 3 videos need stronger thumbnail and title.</p>
+      </div>
+    </div>
+
+    <div class="ai-point">
+      <i class="fa-solid fa-bolt"></i>
+      <div>
+        <h3>Shorts working better</h3>
+        <p>Shorts are getting 2.4x higher reach than videos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ai-grid">
+  <div class="card ai-card">
+    <div class="card-title">
+      <h2><i class="fa-solid fa-chart-line"></i> Growth Forecast</h2>
+      <span class="small-pill">Next 30 days</span>
+    </div>
+
+    <div class="forecast-row"><span>Subscribers</span><strong class="green">+1.2K</strong></div>
+    <div class="forecast-row"><span>Views</span><strong class="green">+420K</strong></div>
+    <div class="forecast-row"><span>Revenue</span><strong class="green">+₹8,000</strong></div>
+  </div>
+
+  <div class="card ai-card">
+    <div class="card-title">
+      <h2><i class="fa-solid fa-circle-exclamation"></i> Problems</h2>
+      <span class="small-pill">Fix first</span>
+    </div>
+
+    <div class="problem-list">
+      <div class="problem"><i class="fa-solid fa-warning"></i> Low retention in first 10 seconds.</div>
+      <div class="problem"><i class="fa-solid fa-warning"></i> Thumbnail text is not clearly visible.</div>
+      <div class="problem"><i class="fa-solid fa-warning"></i> Upload consistency dropped this week.</div>
+    </div>
+  </div>
+
+  <div class="card ai-card">
+    <div class="card-title">
+      <h2><i class="fa-solid fa-lightbulb"></i> Content Ideas</h2>
+      <span class="small-pill">AI picks</span>
+    </div>
+
+    <div class="idea-list">
+      <div class="idea"><i class="fa-solid fa-wand-magic-sparkles"></i> 1v4 clutch reaction short.</div>
+      <div class="idea"><i class="fa-solid fa-wand-magic-sparkles"></i> Behind the scenes of latest video.</div>
+      <div class="idea"><i class="fa-solid fa-wand-magic-sparkles"></i> “How I edit using AI” tutorial.</div>
+    </div>
+  </div>
+</section>
+
+<section class="action-row">
+  <button class="action-btn">
+    <i class="fa-regular fa-image"></i>
+    Fix Thumbnail
+  </button>
+
+  <button class="action-btn">
+    <i class="fa-solid fa-heading"></i>
+    Generate Better Title
+  </button>
+
+  <button class="action-btn">
+    <i class="fa-solid fa-scissors"></i>
+    Improve Retention
+  </button>
+</section>
+
+<div class="section-head">
+  <div>
+    <h2>Normal Analytics</h2>
+    <p>Standard creator performance numbers</p>
+  </div>
+</div>
+
+<section class="stats-grid">
+  <div class="card stat-card">
+    <h3>Total Views</h3>
+    <strong>12.4M</strong>
+    <span>+18.2%</span>
+  </div>
+
+  <div class="card stat-card">
+    <h3>Watch Time</h3>
+    <strong>45K hrs</strong>
+    <span>+9.8%</span>
+  </div>
+
+  <div class="card stat-card">
+    <h3>Subscribers</h3>
+    <strong>+2.3K</strong>
+    <span>+14.1%</span>
+  </div>
+
+  <div class="card stat-card">
+    <h3>Revenue</h3>
+    <strong>₹18.5K</strong>
+    <span>+11.4%</span>
+  </div>
+
+  <div class="card stat-card">
+    <h3>Engagement</h3>
+    <strong>8.7%</strong>
+    <span>+2.1%</span>
+  </div>
+
+  <div class="card stat-card">
+    <h3>Avg Duration</h3>
+    <strong>3:42</strong>
+    <span>+0:24</span>
+  </div>
+</section>
+
+<section class="chart-grid">
+  <div class="card chart-card">
+    <div class="card-title">
+      <h2><i class="fa-solid fa-chart-simple"></i> Views Trend</h2>
+      <span class="small-pill">Daily</span>
+    </div>
+
+    <div class="chart">
+      <div class="bar" style="height:42%"></div>
+      <div class="bar" style="height:55%"></div>
+      <div class="bar" style="height:48%"></div>
+      <div class="bar" style="height:70%"></div>
+      <div class="bar" style="height:64%"></div>
+      <div class="bar" style="height:88%"></div>
+      <div class="bar" style="height:76%"></div>
+      <div class="bar" style="height:92%"></div>
+      <div class="bar" style="height:68%"></div>
+      <div class="bar" style="height:82%"></div>
+    </div>
+  </div>
+
+  <div class="card chart-card">
+    <div class="card-title">
+      <h2><i class="fa-solid fa-indian-rupee-sign"></i> Revenue Growth</h2>
+      <span class="small-pill">Monthly</span>
+    </div>
+
+    <div class="line-chart">
+      <div class="line"></div>
+    </div>
+  </div>
+</section>
+
+<section class="card table-card">
+  <div class="card-title">
+    <h2><i class="fa-solid fa-video"></i> Top Content</h2>
+    <span class="small-pill">Best performing</span>
+  </div>
+
+  <div class="table">
+    <div class="table-head">
+      <div>Content</div>
+      <div>Views</div>
+      <div>CTR</div>
+      <div>Watch Time</div>
+      <div>Status</div>
+    </div>
+
+    <div class="table-row">
+      <div class="video-info">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop')"></div>
+        <span>Epic Gaming Highlights</span>
+      </div>
+      <div>420K</div>
+      <div>7.8%</div>
+      <div>8.2K hrs</div>
+      <div class="status-good">Strong</div>
+    </div>
+
+    <div class="table-row">
+      <div class="video-info">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=500&auto=format&fit=crop')"></div>
+        <span>1 Minute Creator Tip</span>
+      </div>
+      <div>310K</div>
+      <div>9.4%</div>
+      <div>4.1K hrs</div>
+      <div class="status-good">Viral</div>
+    </div>
+
+    <div class="table-row">
+      <div class="video-info">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500&auto=format&fit=crop')"></div>
+        <span>Live Stream Replay</span>
+      </div>
+      <div>95K</div>
+      <div>3.1%</div>
+      <div>2.8K hrs</div>
+      <div class="status-mid">Improve CTR</div>
+    </div>
+  </div>
+</section>
+
+<section class="bottom-grid">
+  <div class="card audience-card">
+    <div class="card-title">
+      <h2><i class="fa-solid fa-users"></i> Audience Insights</h2>
+      <span class="small-pill">Viewers</span>
+    </div>
+
+    <div class="audience-list">
+      <div class="insight-row"><strong>Top Country</strong><span>India 82%</span></div>
+      <div class="insight-row"><strong>Top City</strong><span>Mumbai</span></div>
+      <div class="insight-row"><strong>Age Group</strong><span>18–24</span></div>
+      <div class="insight-row">
+        <div>
+          <strong>Mobile Users</strong>
+          <div class="device-bar"><div class="device-fill" style="width:78%"></div></div>
+        </div>
+        <span>78%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card revenue-card">
+    <div class="card-title">
+      <h2><i class="fa-solid fa-wallet"></i> Revenue Breakdown</h2>
+      <span class="small-pill">Earnings</span>
+    </div>
+
+    <div class="revenue-list">
+      <div class="insight-row"><strong>Ads Revenue</strong><span>₹11,200</span></div>
+      <div class="insight-row"><strong>Live Revenue</strong><span>₹3,800</span></div>
+      <div class="insight-row"><strong>Premium Content</strong><span>₹2,400</span></div>
+      <div class="insight-row"><strong>AI Tools Revenue</strong><span>₹1,100</span></div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+</body>
+</html>
