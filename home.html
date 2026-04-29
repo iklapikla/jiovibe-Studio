@@ -3,160 +3,196 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JioVibe Home</title>
+<title>JioVibe</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#f8f9fb;color:#202124}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f8f9fb;color:#202124;}
+a{text-decoration:none;color:inherit;}
 
-/* ===== LAYOUT ===== */
-.app{display:flex}
+.app{display:flex;min-height:100vh;}
+
+/* ===== SIDEBAR (UNCHANGED) ===== */
 .sidebar{
-width:250px;background:#fff;border-right:1px solid #edf0f4;
-position:fixed;height:100%;padding:28px 18px
+width:250px;
+padding:32px 18px;
+position:fixed;
+height:100%;
+background:#fff;
+border-right:1px solid #edf0f4;
 }
-.main{margin-left:250px;width:calc(100% - 250px)}
 
-/* ===== SIDEBAR ===== */
-.logo{display:flex;align-items:center;margin-bottom:40px}
+.logo{
+display:flex;
+align-items:center;
+gap:4px;
+margin-bottom:45px;
+padding-left:8px;
+}
+
 .logo-circle{
-width:54px;height:54px;border-radius:50%;
-background:#ff5a00;color:#fff;
+width:54px;height:54px;background:#ff5a00;color:#fff;
+border-radius:50%;
 display:flex;align-items:center;justify-content:center;
-font-weight:800;font-size:24px
+font-weight:800;font-size:25px;
 }
-.logo-text{font-size:30px;font-weight:800;margin-left:6px}
 
-.menu{display:flex;flex-direction:column;gap:10px}
+.logo-text{
+font-size:32px;
+font-weight:800;
+letter-spacing:-1.2px;
+color:#2b070b;
+}
+
+.menu{display:flex;flex-direction:column;gap:12px;}
+
 .menu-item{
-padding:14px 18px;border-radius:12px;
-display:flex;gap:14px;align-items:center;
-font-weight:700;color:#333;transition:.2s
+display:flex;
+align-items:center;
+gap:18px;
+padding:17px 22px;
+border-radius:14px;
+font-weight:600;
+font-size:16px;
+color:#383838;
+transition:.25s;
 }
-.menu-item:hover{background:#f1f3f4}
-.menu-item.active{background:#fff0e8;color:#ff5a00}
 
-/* ===== TOPBAR ===== */
+.menu-item i{width:22px;font-size:22px;text-align:center;}
+
+.menu-item:hover,.menu-item.active{
+background:#f1f3f4;
+color:#111;
+}
+
+/* ===== MAIN ===== */
+.main{
+margin-left:250px;
+width:calc(100% - 250px);
+}
+
+/* ===== TOPBAR (UNCHANGED) ===== */
 .topbar{
-height:90px;background:#fff;
+height:94px;
 border-bottom:1px solid #edf0f4;
-display:flex;align-items:center;justify-content:space-between;
-padding:0 40px;position:sticky;top:0
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 48px;
+background:#fff;
+position:sticky;
+top:0;
+z-index:8;
 }
+
 .search{
-width:520px;height:46px;border-radius:25px;
-border:1px solid #e5e7eb;
-display:flex;align-items:center;padding:0 18px;gap:10px
+width:600px;
+height:50px;
+border:1px solid #e8ebf0;
+border-radius:28px;
+display:flex;
+align-items:center;
+gap:16px;
+padding:0 22px;
+color:#9ba1ad;
+background:#fff;
 }
-.search input{border:none;outline:none;width:100%}
 
-.top-actions{display:flex;align-items:center;gap:20px}
-.bell{position:relative;font-size:20px}
+.search input{
+border:none;
+outline:none;
+flex:1;
+font-size:15px;
+color:#333;
+}
+
+.top-actions{
+display:flex;
+align-items:center;
+gap:22px;
+position:relative;
+}
+
+.bell{
+font-size:23px;
+position:relative;
+cursor:pointer;
+}
+
 .bell::after{
-content:"1";position:absolute;top:-6px;right:-6px;
-background:#ff5a00;color:#fff;font-size:10px;
-width:16px;height:16px;border-radius:50%;
-display:flex;align-items:center;justify-content:center
+content:"1";
+position:absolute;
+top:-8px;
+right:-7px;
+background:#ff5a00;
+color:#fff;
+font-size:10px;
+width:17px;
+height:17px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-.profile{display:flex;gap:10px;align-items:center;cursor:pointer}
-.profile img{width:42px;height:42px;border-radius:50%}
+.profile{
+display:flex;
+align-items:center;
+gap:12px;
+cursor:pointer;
+padding:8px;
+border-radius:18px;
+}
+
+.profile img{
+width:48px;
+height:48px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.profile span{
+font-weight:700;
+font-size:15px;
+}
 
 .dropdown{
-position:absolute;top:70px;right:40px;background:#fff;
-border-radius:12px;display:none;
-box-shadow:0 10px 30px rgba(0,0,0,.1)
-}
-.dropdown a{display:block;padding:12px 16px;font-weight:600}
-.dropdown a:hover{background:#f1f3f4}
-.dropdown.show{display:block}
-
-/* ===== CONTENT ===== */
-.content{padding:24px 40px}
-
-/* CATEGORY */
-.categories{display:flex;gap:10px;margin-bottom:18px}
-.cat{
-padding:10px 16px;border-radius:20px;
-border:1px solid #e5e7eb;background:#fff;font-weight:700
-}
-.cat.active{background:#ff5a00;color:#fff}
-
-/* ===== BANNER ===== */
-.banner{
-height:260px;border-radius:18px;
-overflow:hidden;position:relative;margin-bottom:24px
-}
-.banner img{
-position:absolute;width:100%;height:100%;object-fit:cover;
-animation:slide 20s infinite;opacity:0
-}
-.banner img:nth-child(1){animation-delay:0s}
-.banner img:nth-child(2){animation-delay:5s}
-.banner img:nth-child(3){animation-delay:10s}
-.banner img:nth-child(4){animation-delay:15s}
-
-@keyframes slide{
-0%{opacity:0}
-10%{opacity:1}
-25%{opacity:1}
-30%{opacity:0}
-100%{opacity:0}
+position:absolute;
+top:70px;
+right:0;
+width:200px;
+background:#fff;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+display:none;
+overflow:hidden;
+z-index:20;
 }
 
-/* ===== SECTION ===== */
-.section{margin-top:20px}
-.section-head{
-display:flex;justify-content:space-between;margin-bottom:12px
-}
-.see-btn{color:#ff5a00;font-weight:700;cursor:pointer}
-
-/* ===== GRID ===== */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-
-.card{
-background:#fff;border-radius:14px;overflow:hidden;
-border:1px solid #e5e7eb;transition:.2s
-}
-.card:hover{transform:translateY(-4px)}
-
-.thumb{
-height:150px;position:relative;overflow:hidden
-}
-.thumb img{width:100%;height:100%;object-fit:cover}
-
-.thumb video{
-position:absolute;top:0;left:0;width:100%;height:100%;
-object-fit:cover;opacity:0
-}
-.card:hover video{opacity:1}
-
-.duration{
-position:absolute;right:8px;bottom:8px;
-background:#000;color:#fff;font-size:11px;padding:4px 6px;border-radius:5px
+.dropdown a{
+display:block;
+padding:14px;
+font-weight:600;
+color:#2f2f2f;
 }
 
-.card-body{display:flex;gap:10px;padding:10px}
-.creator{
-width:36px;height:36px;border-radius:50%;object-fit:cover
+.dropdown a:hover{
+background:#f1f3f4;
+color:#111;
 }
 
-/* STORY RING */
-.story{
-padding:2px;border-radius:50%;
-background:#19c964
+.dropdown.show{display:block;}
+
+/* ===== EMPTY CONTENT AREA ===== */
+.content{
+padding:36px 48px;
 }
 
-.title{font-size:13px;font-weight:800}
-.channel{font-size:12px;color:#6b7280}
+/* (abhi empty hai - tum baad me add karoge) */
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:1100px){
-.grid{grid-template-columns:repeat(2,1fr)}
-}
 </style>
 </head>
 
@@ -166,21 +202,21 @@ background:#19c964
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
-<div class="logo">
+<a href="index.html" class="logo">
 <div class="logo-circle">Jio</div>
 <div class="logo-text">Vibe</div>
-</div>
+</a>
 
-<div class="menu">
-<a class="menu-item active" href="#"><i class="fa-solid fa-house"></i> Home</a>
-<a class="menu-item" href="#"><i class="fa-regular fa-compass"></i> Explore</a>
-<a class="menu-item" href="#"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
-<a class="menu-item" href="#"><i class="fa-regular fa-circle-play"></i> Video</a>
-<a class="menu-item" href="#"><i class="fa-solid fa-bolt"></i> Shorts</a>
-<a class="menu-item" href="#"><i class="fa-solid fa-list"></i> Subscriptions</a>
-<a class="menu-item" href="#"><i class="fa-solid fa-clock"></i> History</a>
-<a class="menu-item" href="#"><i class="fa-solid fa-bookmark"></i> Saved</a>
-</div>
+<nav class="menu">
+<a href="home.html" class="menu-item active"><i class="fa-solid fa-house"></i> Home</a>
+<a href="explore.html" class="menu-item"><i class="fa-regular fa-compass"></i> Explore</a>
+<a href="live.html" class="menu-item"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
+<a href="video.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Video</a>
+<a href="shorts.html" class="menu-item"><i class="fa-solid fa-bolt"></i> Shorts</a>
+<a href="subscriptions.html" class="menu-item"><i class="fa-solid fa-list"></i> Subscriptions</a>
+<a href="history.html" class="menu-item"><i class="fa-solid fa-clock"></i> History</a>
+<a href="saved.html" class="menu-item"><i class="fa-solid fa-bookmark"></i> Saved Video</a>
+</nav>
 </aside>
 
 <!-- MAIN -->
@@ -189,7 +225,7 @@ background:#19c964
 <header class="topbar">
 <div class="search">
 <i class="fa-solid fa-magnifying-glass"></i>
-<input placeholder="Search creators, videos, topics...">
+<input type="text" placeholder="Search creators, videos, topics..." />
 </div>
 
 <div class="top-actions">
@@ -198,111 +234,35 @@ background:#19c964
 <div class="profile" onclick="toggleDropdown()">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
 <span>Trupti Latur</span>
+<i class="fa-solid fa-chevron-down"></i>
 </div>
 
 <div class="dropdown" id="dropdown">
-<a href="#">Profile</a>
-<a href="#">Settings</a>
-<a href="#">Logout</a>
+<a href="home.html">Home</a>
+<a href="index.html">Dashboard</a>
+<a href="logout.html">Sign out</a>
 </div>
 </div>
 </header>
 
-<div class="content">
+<!-- EMPTY CONTENT -->
+<section class="content">
+<!-- yaha se tum next changes add karoge -->
+</section>
 
-<!-- CATEGORY -->
-<div class="categories">
-<button class="cat active">All</button>
-<button class="cat">Sports</button>
-<button class="cat">Gaming</button>
-<button class="cat">Comedy</button>
-<button class="cat">Music</button>
-<button class="cat">Tech</button>
-<button class="cat">Education</button>
-<button class="cat">Lifestyle</button>
-<button class="cat">Movies</button>
-<button class="cat" onclick="addMore()">More</button>
-</div>
-
-<!-- BANNER -->
-<div class="banner">
-<img src="https://picsum.photos/1200/400?1">
-<img src="https://picsum.photos/1200/400?2">
-<img src="https://picsum.photos/1200/400?3">
-<img src="https://picsum.photos/1200/400?4">
-</div>
-
-<!-- TRENDING -->
-<div class="section">
-<div class="section-head">
-<h3>Trending 🔥</h3>
-<div class="see-btn" onclick="toggleMore('t')">See more</div>
-</div>
-
-<div class="grid" id="t"></div>
-</div>
-
-<!-- RECOMMENDED -->
-<div class="section">
-<div class="section-head">
-<h3>Recommended ✨</h3>
-<div class="see-btn" onclick="toggleMore('r')">See more</div>
-</div>
-
-<div class="grid" id="r"></div>
-</div>
-
-</div>
 </main>
 </div>
 
 <script>
 function toggleDropdown(){
-document.getElementById("dropdown").classList.toggle("show")
+document.getElementById("dropdown").classList.toggle("show");
 }
 
-function addMore(){
-alert("More categories coming soon")
+document.addEventListener("click",function(e){
+if(!e.target.closest(".profile")){
+document.getElementById("dropdown").classList.remove("show");
 }
-
-const data = [
-"Ranveer Singh","Narendra Modi","Ashish Chanchlani",
-"Rohit Sharma","Total Gaming","Arijit Singh",
-"Technical Guruji","Khan Sir","Flying Beast"
-]
-
-function createCard(name,i){
-return `
-<div class="card" style="${i>3?'display:none':''}">
-<div class="thumb">
-<img src="https://picsum.photos/300/200?random=${i}">
-<video src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20${name.replaceAll(' ','%20')}.gif" autoplay muted loop></video>
-<span class="duration">${Math.floor(Math.random()*10)+1}:0${Math.floor(Math.random()*9)}</span>
-</div>
-<div class="card-body">
-<div class="${i<3?'story':''}">
-<img class="creator" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20${name}.jpg">
-</div>
-<div>
-<div class="title">Amazing video by ${name}</div>
-<div class="channel">${name}</div>
-</div>
-</div>
-</div>`
-}
-
-function render(){
-document.getElementById("t").innerHTML=data.slice(0,5).map(createCard).join("")
-document.getElementById("r").innerHTML=data.slice(3,9).map(createCard).join("")
-}
-render()
-
-function toggleMore(id){
-let cards=document.querySelectorAll(`#${id} .card`)
-cards.forEach((c,i)=>{
-if(i>3)c.style.display=(c.style.display==="none")?"block":"none"
-})
-}
+});
 </script>
 
 </body>
