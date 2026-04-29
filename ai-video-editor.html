@@ -30,14 +30,13 @@ padding:0 26px;position:sticky;top:0;z-index:20
 
 .editor-shell{
 display:grid;
-grid-template-columns:120px 1fr 340px;
+grid-template-columns:120px 1fr 360px;
 gap:24px;
 padding:26px;
 max-width:1800px;
 margin:auto;
 }
 
-/* LEFT TOOL RAIL */
 .tool-rail{
 background:#fff;
 border:1px solid #edf0f4;
@@ -102,7 +101,6 @@ background:#fff0e8;
 color:#ff5a00
 }
 
-/* CENTER */
 .center-editor{display:flex;flex-direction:column;gap:20px}
 
 .upload-card{
@@ -188,7 +186,6 @@ padding:13px 20px;font-weight:800;transition:.22s
 }
 .preview-btn:hover{background:#202124;color:#fff;transform:scale(1.02)}
 
-/* RIGHT AI PANEL */
 .ai-panel{
 background:#fff;
 border:1px solid #ffd4bd;
@@ -204,11 +201,73 @@ background:#fff7f2;
 border:1px solid #ffd4bd;
 border-radius:16px;
 padding:16px;
-margin-bottom:12px
+margin-bottom:14px
 }
 .ai-head h2{font-size:23px;font-weight:800;margin-bottom:8px}
 .ai-head h2 span{color:#ff5a00}
 .ai-head p{color:#6b7280;font-weight:700;font-size:14px}
+
+.prompt-box{
+border:1px solid #ffd4bd;
+background:#fffaf7;
+border-radius:16px;
+padding:14px;
+margin-bottom:14px;
+}
+.prompt-box label{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:14px;
+font-weight:800;
+color:#202124;
+margin-bottom:10px;
+}
+.prompt-box label i{color:#ff5a00}
+.prompt-box textarea{
+width:100%;
+min-height:105px;
+resize:none;
+border:1px solid #e5e7eb;
+border-radius:12px;
+padding:12px;
+font-size:13px;
+font-weight:600;
+outline:none;
+line-height:1.45;
+background:#fff;
+color:#202124;
+}
+.prompt-box textarea:focus{
+border-color:#ff5a00;
+box-shadow:0 0 0 3px rgba(255,90,0,.10);
+}
+.prompt-actions{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+.prompt-btn{
+flex:1;
+border:none;
+border-radius:10px;
+padding:11px;
+font-size:13px;
+font-weight:800;
+transition:.22s;
+}
+.prompt-btn.dark{
+background:#202124;
+color:#fff;
+}
+.prompt-btn.light{
+background:#fff;
+border:1px solid #e5e7eb;
+color:#202124;
+}
+.prompt-btn:hover{
+transform:scale(1.02);
+}
 
 .ai-tool{
 display:grid;
@@ -220,6 +279,13 @@ border-top:1px solid #edf0f4;
 transition:.22s
 }
 .ai-tool:hover{transform:scale(1.01)}
+.ai-tool.active{
+background:#fff7f2;
+margin:0 -10px;
+padding-left:10px;
+padding-right:10px;
+border-radius:14px;
+}
 .ai-icon{
 width:46px;height:46px;border-radius:12px;background:#fff0e8;
 display:flex;align-items:center;justify-content:center;font-size:19px;color:#ff5a00
@@ -279,42 +345,42 @@ border-radius:14px;padding:16px;font-size:16px;font-weight:800;transition:.22s
 <aside class="tool-rail">
   <div class="rail-title">AI Tools</div>
 
-  <button class="rail-item active">
+  <button class="rail-item" onclick="selectRail(this)">
     <i class="fa-solid fa-video"></i>
     Video
   </button>
 
-  <button class="rail-item">
+  <button class="rail-item" onclick="selectRail(this)">
     <i class="fa-solid fa-music"></i>
     Audio
   </button>
 
-  <button class="rail-item">
+  <button class="rail-item" onclick="selectRail(this)">
     <i class="fa-regular fa-image"></i>
     Image
   </button>
 
-  <button class="rail-item">
+  <button class="rail-item" onclick="selectRail(this)">
     <i class="fa-regular fa-closed-captioning"></i>
     Subtitles
   </button>
 
-  <button class="rail-item">
+  <button class="rail-item" onclick="selectRail(this)">
     <i class="fa-solid fa-font"></i>
     Text
   </button>
 
-  <button class="rail-item">
+  <button class="rail-item" onclick="selectRail(this)">
     <i class="fa-regular fa-square"></i>
     Elements
   </button>
 
-  <button class="rail-item">
+  <button class="rail-item" onclick="selectRail(this)">
     <i class="fa-solid fa-palette"></i>
     Brand Kit
   </button>
 
-  <button class="rail-item">
+  <button class="rail-item" onclick="selectRail(this)">
     <i class="fa-solid fa-gear"></i>
     Settings
   </button>
@@ -401,7 +467,16 @@ border-radius:14px;padding:16px;font-size:16px;font-weight:800;transition:.22s
 <aside class="ai-panel">
   <div class="ai-head">
     <h2><span>✨</span> AI Editing</h2>
-    <p>Select AI tools. Token cost will update automatically.</p>
+    <p>Select AI tools or describe your edit using a prompt.</p>
+  </div>
+
+  <div class="prompt-box">
+    <label><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Based Edit</label>
+    <textarea placeholder="Example: Make this video cinematic, remove silent parts, add smooth transitions, improve audio clarity and add warm travel color grading."></textarea>
+    <div class="prompt-actions">
+      <button class="prompt-btn dark" type="button">Apply Prompt</button>
+      <button class="prompt-btn light" type="button">Clear</button>
+    </div>
   </div>
 
   <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
@@ -464,6 +539,11 @@ function updateCost(){
     total += Number(tool.dataset.cost);
   });
   document.getElementById("totalCost").innerText = total + " Tokens";
+}
+
+function selectRail(btn){
+  document.querySelectorAll(".rail-item").forEach(item => item.classList.remove("active"));
+  btn.classList.add("active");
 }
 </script>
 
