@@ -10,7 +10,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#fff3e9;color:#5a000b;}
+body{background:#FFF6ED;color:#4A0E0E;}
 a{text-decoration:none;color:inherit;}
 
 .app{display:flex;min-height:100vh;}
@@ -20,8 +20,8 @@ width:250px;
 padding:32px 18px;
 position:fixed;
 height:100%;
-background:#fff8f2;
-border-right:1px solid #ffd0aa;
+background:#FFF6ED;
+border-right:1px solid #FFD2B3;
 }
 
 .logo{
@@ -33,7 +33,7 @@ padding-left:8px;
 }
 
 .logo-circle{
-width:54px;height:54px;background:#ff7415;color:#fff;
+width:54px;height:54px;background:#FF7A00;color:#FFFFFF;
 border-radius:50%;
 display:flex;align-items:center;justify-content:center;
 font-weight:800;font-size:25px;
@@ -43,7 +43,7 @@ font-weight:800;font-size:25px;
 font-size:32px;
 font-weight:800;
 letter-spacing:-1.2px;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .menu{display:flex;flex-direction:column;gap:12px;}
@@ -56,15 +56,19 @@ padding:17px 22px;
 border-radius:14px;
 font-weight:600;
 font-size:16px;
-color:#5a000b;
+color:#4A0E0E;
 transition:.25s;
 }
 
-.menu-item i{width:22px;font-size:22px;text-align:center;}
+.menu-item i{width:22px;font-size:22px;text-align:center;color:#FF7A00;}
 
 .menu-item:hover,.menu-item.active{
-background:#ffd0aa;
-color:#5a000b;
+background:#FF7A00;
+color:#FFFFFF;
+}
+
+.menu-item:hover i,.menu-item.active i{
+color:#FFFFFF;
 }
 
 .main{
@@ -74,12 +78,12 @@ width:calc(100% - 250px);
 
 .topbar{
 height:94px;
-border-bottom:1px solid #ffd0aa;
+border-bottom:1px solid #FFD2B3;
 display:flex;
 align-items:center;
 justify-content:space-between;
 padding:0 48px;
-background:#fff8f2;
+background:#FFF6ED;
 position:sticky;
 top:0;
 z-index:8;
@@ -88,14 +92,14 @@ z-index:8;
 .search{
 width:600px;
 height:50px;
-border:1px solid #ffd0aa;
+border:1px solid #FFD2B3;
 border-radius:28px;
 display:flex;
 align-items:center;
 gap:16px;
 padding:0 22px;
-color:#8a160b;
-background:#fff;
+color:#E65100;
+background:#FFFFFF;
 }
 
 .search input{
@@ -103,7 +107,8 @@ border:none;
 outline:none;
 flex:1;
 font-size:15px;
-color:#5a000b;
+color:#4A0E0E;
+background:#FFFFFF;
 }
 
 .top-actions{
@@ -117,7 +122,7 @@ position:relative;
 font-size:23px;
 position:relative;
 cursor:pointer;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .bell::after{
@@ -125,8 +130,8 @@ content:"1";
 position:absolute;
 top:-8px;
 right:-7px;
-background:#d93600;
-color:#fff;
+background:#E65100;
+color:#FFFFFF;
 font-size:10px;
 width:17px;
 height:17px;
@@ -143,7 +148,7 @@ gap:12px;
 cursor:pointer;
 padding:8px;
 border-radius:18px;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .profile img{
@@ -163,9 +168,9 @@ position:absolute;
 top:70px;
 right:0;
 width:200px;
-background:#fff;
+background:#FFFFFF;
 border-radius:14px;
-box-shadow:0 10px 30px rgba(90,0,11,0.18);
+box-shadow:0 10px 30px rgba(74,14,14,0.18);
 display:none;
 overflow:hidden;
 z-index:20;
@@ -175,12 +180,12 @@ z-index:20;
 display:block;
 padding:14px;
 font-weight:600;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .dropdown a:hover{
-background:#ffd0aa;
-color:#5a000b;
+background:#FFE4CC;
+color:#4A0E0E;
 }
 
 .dropdown.show{display:block;}
@@ -193,13 +198,13 @@ padding:34px 44px 60px;
 font-size:32px;
 font-weight:800;
 margin-bottom:26px;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .tabs{
 display:flex;
 gap:34px;
-border-bottom:1px solid #ffd0aa;
+border-bottom:1px solid #FFD2B3;
 margin-bottom:18px;
 }
 
@@ -207,7 +212,7 @@ margin-bottom:18px;
 padding:0 0 15px;
 font-size:16px;
 font-weight:700;
-color:#8a160b;
+color:#7A3E2E;
 border:none;
 background:none;
 cursor:pointer;
@@ -215,7 +220,7 @@ position:relative;
 }
 
 .tab.active{
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .tab.active::after{
@@ -225,7 +230,7 @@ left:0;
 bottom:-1px;
 width:100%;
 height:3px;
-background:#d93600;
+background:#FF7A00;
 border-radius:10px;
 }
 
@@ -234,20 +239,19 @@ height:54px;
 display:flex;
 align-items:center;
 gap:18px;
-color:#8a160b;
+color:#7A3E2E;
 font-weight:600;
-border-bottom:1px solid #ffd0aa;
+border-bottom:1px solid #FFD2B3;
 }
 
 .table-wrap{
-background:#fff8f2;
-border:1px solid #ffd0aa;
+background:#FFFFFF;
+border:1px solid #FFD2B3;
 border-radius:18px;
 overflow:hidden;
-box-shadow:0 4px 14px rgba(90,0,11,0.08);
+box-shadow:0 4px 14px rgba(74,14,14,0.08);
 }
 
-/* FIXED TABLE ALIGNMENT */
 .table-head,
 .table-row{
 display:grid;
@@ -265,18 +269,18 @@ column-gap:20px;
 }
 
 .table-head{
-background:#ffd0aa;
-color:#5a000b;
+background:#FFE4CC;
+color:#4A0E0E;
 font-size:13px;
 font-weight:800;
 padding:16px 20px;
-border-bottom:1px solid #ffd0aa;
+border-bottom:1px solid #FFD2B3;
 }
 
 .table-row{
 min-height:96px;
 padding:14px 20px;
-border-bottom:1px solid #ffd0aa;
+border-bottom:1px solid #FFD2B3;
 font-size:14px;
 }
 
@@ -287,7 +291,7 @@ border-bottom:none;
 .check{
 width:22px;
 height:22px;
-border:2px solid #8a160b;
+border:2px solid #7A3E2E;
 border-radius:3px;
 }
 
@@ -313,8 +317,8 @@ overflow:hidden;
 position:absolute;
 right:6px;
 bottom:6px;
-background:rgba(90,0,11,.88);
-color:white;
+background:rgba(42,10,10,.88);
+color:#FFFFFF;
 font-size:12px;
 font-weight:700;
 padding:3px 6px;
@@ -324,14 +328,14 @@ border-radius:4px;
 .video-title{
 font-weight:800;
 margin-bottom:6px;
-color:#5a000b;
+color:#4A0E0E;
 white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis;
 }
 
 .desc{
-color:#8a160b;
+color:#7A3E2E;
 font-size:13px;
 line-height:1.4;
 white-space:nowrap;
@@ -345,30 +349,31 @@ align-items:center;
 gap:9px;
 font-weight:700;
 white-space:nowrap;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .status i{
 width:18px;
 text-align:center;
 font-size:15px;
+color:#FF7A00;
 }
 
 .restriction{
 font-weight:500;
 white-space:nowrap;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .date{
 font-weight:500;
 white-space:nowrap;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .date small{
 display:block;
-color:#8a160b;
+color:#A66A55;
 margin-top:5px;
 font-weight:600;
 }
@@ -376,20 +381,20 @@ font-weight:600;
 .center-text{
 font-weight:500;
 white-space:nowrap;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .likes{
 text-align:right;
 font-weight:500;
 white-space:nowrap;
-color:#5a000b;
+color:#4A0E0E;
 }
 
 .like-bar{
 width:80px;
 height:5px;
-background:#ffd0aa;
+background:#FFE4CC;
 border-radius:10px;
 margin-left:auto;
 margin-top:8px;
@@ -398,7 +403,7 @@ overflow:hidden;
 
 .like-fill{
 height:100%;
-background:#d93600;
+background:#FF7A00;
 width:88%;
 }
 
