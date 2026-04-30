@@ -11,10 +11,10 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{
-background:#080b10;
-color:#fff;
+background:#f8f9fb;
+color:#202124;
 height:100vh;
-overflow:hidden;
+overflow:hidden
 }
 button,input{font-family:inherit}
 button{border:none;background:none;cursor:pointer;color:inherit}
@@ -26,53 +26,57 @@ display:flex;
 align-items:center;
 justify-content:center;
 position:relative;
-background:radial-gradient(circle at center,#171b24 0%,#07090d 70%);
+background:linear-gradient(135deg,#f8f9fb,#eef1f6)
 }
 
 .close-btn{
 position:fixed;
 right:28px;
 top:24px;
-width:44px;
-height:44px;
+width:46px;
+height:46px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:34px;
+font-size:28px;
 z-index:30;
-color:#fff;
-transition:.2s;
+color:#202124;
+background:#fff;
+box-shadow:0 8px 24px rgba(0,0,0,.12);
+transition:.2s
 }
 .close-btn:hover{
-background:rgba(255,255,255,.1);
+background:#ff5a00;
+color:#fff
 }
 
 .story-modal{
-width:min(1120px,92vw);
-height:min(760px,92vh);
-background:#1f232b;
-border-radius:22px;
+width:min(1160px,92vw);
+height:min(780px,92vh);
+background:#fff;
+border:1px solid #e8ebf0;
+border-radius:24px;
 overflow:hidden;
 display:grid;
-grid-template-columns:430px 1fr;
-box-shadow:0 30px 90px rgba(0,0,0,.55);
-animation:pop .25s ease;
+grid-template-columns:440px 1fr;
+box-shadow:0 28px 80px rgba(0,0,0,.16);
+animation:pop .22s ease
 }
 
 @keyframes pop{
-from{transform:scale(.96);opacity:0}
+from{transform:scale(.97);opacity:0}
 to{transform:scale(1);opacity:1}
 }
 
 /* LEFT STORY */
 .story-left{
-background:#000;
+background:#111;
 position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
-overflow:hidden;
+overflow:hidden
 }
 
 .story-img{
@@ -80,35 +84,35 @@ height:100%;
 aspect-ratio:9/16;
 max-width:100%;
 object-fit:cover;
-display:block;
+display:block
 }
 
 .progress-wrap{
 position:absolute;
-top:14px;
-left:14px;
-right:14px;
+top:16px;
+left:16px;
+right:16px;
 display:flex;
-gap:6px;
-z-index:10;
+gap:7px;
+z-index:10
 }
 .progress{
 height:4px;
 flex:1;
-background:rgba(255,255,255,.35);
+background:rgba(255,255,255,.38);
 border-radius:20px;
-overflow:hidden;
+overflow:hidden
 }
 .progress span{
 display:block;
 height:100%;
 width:0%;
-background:#fff;
-border-radius:20px;
+background:#ff5a00;
+border-radius:20px
 }
 .progress.done span{width:100%}
 .progress.active span{
-animation:fill 5s linear forwards;
+animation:fill 5s linear forwards
 }
 @keyframes fill{
 from{width:0%}
@@ -117,29 +121,36 @@ to{width:100%}
 
 .story-user{
 position:absolute;
-top:30px;
-left:18px;
-right:18px;
+top:34px;
+left:20px;
+right:20px;
 z-index:11;
 display:flex;
 align-items:center;
 gap:12px;
+padding:10px 12px;
+border-radius:999px;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(8px);
+width:max-content;
+max-width:calc(100% - 40px)
 }
 .story-user img{
 width:42px;
 height:42px;
 border-radius:50%;
 object-fit:cover;
-border:2px solid #fff;
+border:2px solid #fff
 }
 .story-user strong{
 font-size:15px;
 font-weight:900;
+color:#fff
 }
 .story-user span{
 font-size:12px;
-color:rgba(255,255,255,.75);
-font-weight:700;
+color:rgba(255,255,255,.78);
+font-weight:700
 }
 
 .nav-area{
@@ -147,7 +158,7 @@ position:absolute;
 top:0;
 bottom:0;
 width:45%;
-z-index:8;
+z-index:8
 }
 .nav-left{left:0}
 .nav-right{right:0}
@@ -160,19 +171,19 @@ bottom:22px;
 z-index:12;
 display:flex;
 align-items:center;
-gap:14px;
+gap:14px
 }
 
 .reply-box{
 flex:1;
 height:56px;
-border:2px solid rgba(255,255,255,.85);
+border:1px solid rgba(255,255,255,.68);
 border-radius:30px;
 display:flex;
 align-items:center;
 padding:0 18px;
-background:rgba(0,0,0,.22);
-backdrop-filter:blur(8px);
+background:rgba(255,255,255,.16);
+backdrop-filter:blur(10px)
 }
 .reply-box input{
 width:100%;
@@ -180,33 +191,32 @@ background:transparent;
 border:none;
 outline:none;
 color:#fff;
-font-size:16px;
-font-weight:700;
+font-size:15px;
+font-weight:800
 }
 .reply-box input::placeholder{
-color:rgba(255,255,255,.82);
+color:rgba(255,255,255,.88)
 }
 
 .story-icon{
-width:48px;
-height:48px;
+width:50px;
+height:50px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:30px;
+font-size:24px;
 color:#fff;
-transition:.2s;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(8px);
+transition:.2s
 }
 .story-icon:hover{
-background:rgba(255,255,255,.12);
+background:#ff5a00
 }
 .story-icon.liked{
-color:#ff3b5f;
-}
-
-.send-reply{
-font-size:28px;
+background:#ff5a00;
+color:#fff
 }
 
 .arrow{
@@ -216,196 +226,236 @@ transform:translateY(-50%);
 width:42px;
 height:42px;
 border-radius:50%;
-background:rgba(255,255,255,.9);
-color:#111;
+background:#fff;
+color:#202124;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:20px;
+font-size:18px;
 z-index:14;
+box-shadow:0 8px 24px rgba(0,0,0,.18);
+transition:.2s
+}
+.arrow:hover{
+background:#ff5a00;
+color:#fff
 }
 .arrow.left{left:14px}
 .arrow.right{right:14px}
 
-/* RIGHT COMMENTS */
+/* RIGHT PANEL */
 .story-right{
 display:flex;
 flex-direction:column;
-background:#24272f;
-border-left:1px solid rgba(255,255,255,.08);
+background:#fff
 }
 
 .right-head{
-height:76px;
-border-bottom:1px solid rgba(255,255,255,.08);
-padding:0 22px;
+height:82px;
+border-bottom:1px solid #edf0f4;
+padding:0 24px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-flex-shrink:0;
+flex-shrink:0
 }
 .account{
 display:flex;
 align-items:center;
-gap:12px;
+gap:12px
 }
 .account img{
-width:44px;
-height:44px;
+width:48px;
+height:48px;
 border-radius:50%;
 object-fit:cover;
+border:2px solid #fff;
+box-shadow:0 2px 10px rgba(0,0,0,.10)
 }
 .account strong{
-font-size:15px;
+font-size:16px;
 font-weight:900;
+color:#202124
 }
 .verify{
-color:#3897f0;
-font-size:14px;
+color:#ff5a00;
+font-size:13px
 }
-.follow{
-color:#7aa7ff;
-font-weight:900;
-margin-left:4px;
+.sub-count{
+display:block;
+margin-top:3px;
+color:#6b7280;
+font-size:12px;
+font-weight:800
+}
+.subscribe-btn{
+background:#ff5a00;
+color:#fff;
+border-radius:12px;
+padding:11px 16px;
+font-size:13px;
+font-weight:900
 }
 .dots{
 font-size:22px;
-color:#fff;
+color:#5f6368
 }
 
 .caption{
-padding:18px 22px;
-border-bottom:1px solid rgba(255,255,255,.08);
+padding:20px 24px;
+border-bottom:1px solid #edf0f4;
 display:grid;
 grid-template-columns:44px 1fr;
 gap:12px;
 flex-shrink:0;
+background:#fffaf6
 }
 .caption img{
-width:40px;
-height:40px;
+width:42px;
+height:42px;
 border-radius:50%;
-object-fit:cover;
+object-fit:cover
 }
 .caption p{
 font-size:15px;
 line-height:1.45;
-font-weight:600;
-color:#f2f2f2;
+font-weight:700;
+color:#303236
 }
 .caption strong{
-font-weight:900;
+font-weight:900
 }
 .caption .tags{
 display:block;
 margin-top:12px;
-color:#7aa7ff;
+color:#ff5a00;
+font-weight:900
 }
 .caption small{
 display:block;
 margin-top:8px;
-color:#a7adb8;
-font-weight:700;
+color:#8a9099;
+font-weight:800
 }
 
 .comments{
 flex:1;
 overflow-y:auto;
-padding:18px 22px;
+padding:18px 24px;
 display:flex;
 flex-direction:column;
-gap:20px;
+gap:18px;
+background:#fff
 }
 .comment{
 display:grid;
-grid-template-columns:38px 1fr 24px;
-gap:12px;
+grid-template-columns:40px 1fr 28px;
+gap:12px
 }
 .comment img{
-width:36px;
-height:36px;
+width:38px;
+height:38px;
 border-radius:50%;
-object-fit:cover;
+object-fit:cover
 }
 .comment strong{
 font-size:14px;
 font-weight:900;
+color:#202124
 }
 .comment p{
 font-size:14px;
 font-weight:600;
-line-height:1.35;
+line-height:1.4;
 margin-top:4px;
-color:#f1f1f1;
+color:#4b5563
 }
 .comment small{
 display:inline-block;
 margin-top:8px;
-color:#a7adb8;
+color:#8a9099;
 font-weight:800;
-font-size:12px;
+font-size:12px
 }
 .comment .like{
-color:#c9ced8;
-font-size:15px;
-padding-top:5px;
+color:#8a9099;
+font-size:16px;
+padding-top:5px
+}
+.comment .like:hover{
+color:#ff5a00
 }
 
 .actions{
-border-top:1px solid rgba(255,255,255,.08);
-padding:16px 22px 10px;
+border-top:1px solid #edf0f4;
+padding:16px 24px 12px;
 flex-shrink:0;
+background:#fff
 }
 .action-row{
 display:flex;
 align-items:center;
 justify-content:space-between;
-margin-bottom:10px;
+margin-bottom:10px
 }
 .action-left{
 display:flex;
-gap:20px;
-font-size:28px;
+gap:18px;
+font-size:24px
+}
+.action-left i,.bookmark{
+transition:.2s;
+cursor:pointer
+}
+.action-left i:hover,.bookmark:hover{
+color:#ff5a00
 }
 .bookmark{
-font-size:27px;
+font-size:24px
 }
 .likes{
 font-size:14px;
 font-weight:900;
-margin-bottom:4px;
+margin-bottom:4px
 }
 .date{
 font-size:12px;
-color:#a7adb8;
-font-weight:700;
+color:#8a9099;
+font-weight:800
 }
 
 .public-comment{
-height:62px;
-border-top:1px solid rgba(255,255,255,.08);
+height:68px;
+border-top:1px solid #edf0f4;
 display:flex;
 align-items:center;
 gap:12px;
-padding:0 22px;
+padding:0 24px;
 flex-shrink:0;
+background:#fff
+}
+.public-comment i{
+color:#5f6368
 }
 .public-comment input{
 flex:1;
-background:transparent;
-border:none;
+height:44px;
+background:#f8f9fb;
+border:1px solid #edf0f4;
+border-radius:24px;
 outline:none;
-color:#fff;
-font-size:15px;
-font-weight:700;
+padding:0 16px;
+color:#202124;
+font-size:14px;
+font-weight:700
 }
 .public-comment input::placeholder{
-color:#a7adb8;
+color:#8a9099
 }
 .public-comment button{
-font-size:15px;
+font-size:14px;
 font-weight:900;
-color:#8daeff;
+color:#ff5a00
 }
 
 .toast{
@@ -413,18 +463,18 @@ position:fixed;
 top:28px;
 left:50%;
 transform:translateX(-50%) translateY(-20px);
-background:#fff;
-color:#111;
+background:#202124;
+color:#fff;
 padding:13px 18px;
 border-radius:12px;
 font-weight:900;
 opacity:0;
 transition:.25s;
-z-index:100;
+z-index:100
 }
 .toast.show{
 opacity:1;
-transform:translateX(-50%) translateY(0);
+transform:translateX(-50%) translateY(0)
 }
 
 @media(max-width:900px){
@@ -432,18 +482,18 @@ transform:translateX(-50%) translateY(0);
 grid-template-columns:1fr;
 height:100vh;
 width:100vw;
-border-radius:0;
+border-radius:0
 }
 .story-right{
-display:none;
+display:none
 }
 .story-img{
 width:100%;
-height:100%;
+height:100%
 }
 .close-btn{
 right:12px;
-top:12px;
+top:12px
 }
 }
 </style>
@@ -461,7 +511,6 @@ top:12px;
 
 <div class="story-modal">
 
-<!-- LEFT STORY -->
 <div class="story-left">
 
 <div class="progress-wrap" id="progressWrap">
@@ -495,32 +544,35 @@ top:12px;
 <i class="fa-regular fa-heart"></i>
 </button>
 
-<button class="story-icon send-reply" onclick="sendPrivateReply()">
+<button class="story-icon" onclick="sendPrivateReply()">
 <i class="fa-regular fa-paper-plane"></i>
 </button>
 </div>
 
 </div>
 
-<!-- RIGHT COMMENTS -->
 <div class="story-right">
 
 <div class="right-head">
 <div class="account">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg">
 <div>
-<strong>ranveersingh <i class="fa-solid fa-circle-check verify"></i></strong>
-<span class="follow">• Follow</span>
+<strong>Ranveer Singh <i class="fa-solid fa-circle-check verify"></i></strong>
+<span class="sub-count">4.8M subscribers</span>
 </div>
 </div>
+
+<div style="display:flex;align-items:center;gap:16px;">
+<button class="subscribe-btn" onclick="toggleSubscribe(this)">Subscribe</button>
 <i class="fa-solid fa-ellipsis dots"></i>
+</div>
 </div>
 
 <div class="caption">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg">
 <div>
 <p>
-<strong>ranveersingh</strong>
+<strong>Ranveer Singh</strong>
 New story drop! Energy, style and creator vibes all in one frame 🔥
 <span class="tags">#RanveerLive #CreatorEnergy #JioVibe</span>
 </p>
@@ -585,7 +637,7 @@ New story drop! Energy, style and creator vibes all in one frame 🔥
 
 <div class="public-comment">
 <i class="fa-regular fa-face-smile"></i>
-<input id="publicInput" placeholder="Add a comment...">
+<input id="publicInput" placeholder="Add a public comment...">
 <button onclick="sendPublicComment()">Post</button>
 </div>
 
@@ -667,7 +719,7 @@ div.className = "comment";
 div.innerHTML = `
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
 <div>
-<strong>trupti_latur</strong>
+<strong>Trupti Latur</strong>
 <p>${text}</p>
 <small>Now &nbsp; Reply</small>
 </div>
@@ -677,6 +729,11 @@ div.innerHTML = `
 box.appendChild(div);
 box.scrollTop = box.scrollHeight;
 input.value = "";
+}
+
+function toggleSubscribe(btn){
+btn.innerText = btn.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
+btn.style.background = btn.innerText === "Subscribed" ? "#202124" : "#ff5a00";
 }
 
 function showToast(text){
