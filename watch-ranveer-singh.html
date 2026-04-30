@@ -17,7 +17,7 @@ button{cursor:pointer;border:none;background:none}
 
 .app{display:flex;min-height:100vh}
 
-/* SIDEBAR SAME */
+/* SIDEBAR */
 .sidebar{
 width:250px;
 padding:32px 18px;
@@ -45,7 +45,7 @@ font-weight:600;font-size:16px;color:#383838;transition:.25s
 /* MAIN */
 .main{margin-left:250px;width:calc(100% - 250px)}
 
-/* TOPBAR SAME */
+/* TOPBAR */
 .topbar{
 height:94px;border-bottom:1px solid #edf0f4;display:flex;align-items:center;justify-content:space-between;
 padding:0 48px;background:#fff;position:sticky;top:0;z-index:8
@@ -76,9 +76,15 @@ box-shadow:0 10px 30px rgba(0,0,0,0.15);display:none;overflow:hidden;z-index:20
 .content{padding:28px 48px 60px}
 .watch-layout{
 display:grid;
-grid-template-columns:minmax(0,1fr) 390px;
-gap:28px;
-align-items:start
+grid-template-columns:1fr 380px;
+gap:22px;
+align-items:stretch
+}
+
+.left-watch{
+display:flex;
+flex-direction:column;
+gap:12px
 }
 
 .video-card{
@@ -120,7 +126,7 @@ position:absolute;left:22px;right:22px;bottom:18px;z-index:3;color:#fff
 .live-dot{color:#ff5a00;font-weight:900}
 
 /* VIDEO INFO */
-.video-detail{padding:18px 22px 22px}
+.video-detail{padding:16px 20px 18px}
 .video-detail h1{font-size:23px;font-weight:900;margin-bottom:18px}
 .channel-row{
 display:flex;align-items:center;justify-content:space-between;gap:20px
@@ -128,10 +134,12 @@ display:flex;align-items:center;justify-content:space-between;gap:20px
 .channel-left{display:flex;align-items:center;gap:14px}
 .creator-wrap{
 width:58px;height:58px;border-radius:50%;padding:4px;background:#20c45a;
-box-shadow:0 0 0 3px rgba(32,196,90,.12)
+box-shadow:0 0 0 3px rgba(32,196,90,.12);
+cursor:pointer
 }
 .creator-wrap img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #fff}
-.creator-meta strong{font-size:17px;font-weight:900}
+.creator-meta strong{font-size:17px;font-weight:900;cursor:pointer}
+.creator-meta strong:hover{color:#ff5a00}
 .creator-meta span{display:block;font-size:13px;font-weight:700;color:#6b7280;margin-top:3px}
 .subscribe{
 background:#ff5a00;color:#fff;border-radius:13px;padding:15px 26px;font-weight:900;font-size:16px
@@ -143,31 +151,33 @@ background:#fff;display:inline-flex;align-items:center;justify-content:center;ga
 .icon-btn.active{background:#202124;color:#fff}
 .channel-actions{display:flex;align-items:center;gap:12px}
 
-.info-grid{
-display:grid;grid-template-columns:1.4fr .9fr;gap:18px;margin-top:18px
-}
-.info-box{
-background:#fff;border:1px solid #e8ebf0;border-radius:18px;padding:18px;
+/* ABOUT BOX */
+.about-box{
+background:#fff;border:1px solid #e8ebf0;border-radius:18px;padding:18px 20px;
 box-shadow:0 4px 14px rgba(0,0,0,0.035)
 }
-.info-box h3{font-size:16px;font-weight:900;margin-bottom:12px}
-.info-box p{color:#5f6368;font-weight:600;line-height:1.55}
+.started-line{
+font-size:13px;
+font-weight:900;
+color:#5f6368;
+margin-bottom:10px
+}
+.about-box h3{font-size:16px;font-weight:900;margin-bottom:10px}
+.about-box p{color:#5f6368;font-weight:600;line-height:1.55}
 .see-more{color:#ff5a00;font-weight:900;margin-top:12px;display:inline-flex;gap:8px}
 .tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 .tags span{background:#f1f3f4;border-radius:10px;padding:9px 12px;font-weight:800;color:#5f6368;font-size:13px}
-.small-card{display:flex;align-items:center;gap:14px;margin-bottom:14px}
-.small-icon{
-width:46px;height:46px;background:#fff0e8;color:#ff5a00;border-radius:14px;
-display:flex;align-items:center;justify-content:center;font-size:20px
-}
-.small-card strong{font-size:16px}
-.small-card span{display:block;color:#6b7280;font-size:13px;font-weight:700;margin-bottom:3px}
 
 /* CHAT */
 .chat-card{
 background:#fff;border:1px solid #e8ebf0;border-radius:20px;overflow:hidden;
 box-shadow:0 4px 14px rgba(0,0,0,0.04);
-height:790px;display:flex;flex-direction:column;position:sticky;top:122px
+height:auto;
+min-height:100%;
+display:flex;
+flex-direction:column;
+position:sticky;
+top:122px
 }
 .chat-head{
 height:62px;border-bottom:1px solid #edf0f4;padding:0 18px;
@@ -176,7 +186,15 @@ display:flex;align-items:center;justify-content:space-between
 .chat-head h2{font-size:18px;font-weight:900;display:flex;gap:8px;align-items:center}
 .super-row{padding:14px 18px;border-bottom:1px solid #edf0f4;display:flex;gap:10px}
 .super-chip{background:#ff5a00;color:#fff;border-radius:999px;padding:10px 16px;font-weight:900}
-.chat-messages{flex:1;overflow:auto;padding:14px 18px;display:flex;flex-direction:column;gap:14px}
+.chat-messages{
+flex:1;
+overflow:auto;
+padding:14px 18px;
+display:flex;
+flex-direction:column;
+gap:14px;
+min-height:470px
+}
 .msg{display:grid;grid-template-columns:38px 1fr 40px;gap:10px;align-items:start}
 .msg img{width:34px;height:34px;border-radius:50%;object-fit:cover}
 .msg strong{font-size:13px;font-weight:900}
@@ -186,13 +204,6 @@ display:flex;align-items:center;justify-content:space-between
 background:#fff7f2;border:1px solid #ffd4bd;border-radius:14px;padding:12px
 }
 .super-msg .amount{color:#ff5a00;font-weight:900;margin-bottom:5px}
-
-.sub-mode{
-margin:12px 18px;background:#f8f9fb;border-radius:14px;padding:14px;display:grid;grid-template-columns:42px 1fr;gap:12px
-}
-.sub-mode i{font-size:28px;color:#ff9f00}
-.sub-mode strong{font-size:13px;font-weight:900}
-.sub-mode p{font-size:12px;color:#6b7280;font-weight:600}
 
 .chat-input{
 border-top:1px solid #edf0f4;padding:14px 18px;display:flex;gap:10px;align-items:center
@@ -207,9 +218,7 @@ display:flex;align-items:center;justify-content:center
 .send-btn{background:#ff5a00;color:#fff;border-color:#ff5a00}
 
 /* LIVE ROW */
-.live-row{
-margin-top:32px
-}
+.live-row{margin-top:18px}
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .section-head h2{font-size:24px;font-weight:900}
 .section-head a{font-size:14px;color:#ff5a00;font-weight:900}
@@ -231,14 +240,15 @@ position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:cente
 }
 .overlay.show{display:flex}
 .modal{
-width:420px;background:#fff;border-radius:22px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.25)
+width:440px;background:#fff;border-radius:22px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.25)
 }
 .modal h2{font-size:22px;font-weight:900;margin-bottom:16px}
-.share-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.share-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}
 .share-item{
 height:78px;border:1px solid #edf0f4;border-radius:16px;display:flex;flex-direction:column;
 align-items:center;justify-content:center;gap:8px;font-weight:800;background:#fff
 }
+.share-item:hover{background:#fff0e8;color:#ff5a00;border-color:#ff5a00}
 .share-item i{font-size:22px}
 .copy-row{display:flex;gap:8px}
 .copy-row input{flex:1;border:1px solid #edf0f4;border-radius:12px;padding:12px;font-weight:700}
@@ -267,7 +277,7 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 @media(max-width:1300px){
 .search{width:420px}
 .watch-layout{grid-template-columns:1fr}
-.chat-card{position:static;height:560px}
+.chat-card{position:static;min-height:560px}
 .live-grid{grid-template-columns:repeat(3,1fr)}
 }
 </style>
@@ -326,7 +336,8 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 
 <div class="watch-layout">
 
-<div>
+<div class="left-watch">
+
 <div class="video-card">
 <div class="player">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ranveer%20Singh.gif">
@@ -336,7 +347,7 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 <span class="viewer-tag"><i class="fa-solid fa-eye"></i> 12.8K</span>
 </div>
 <div class="player-icons">
-<i class="fa-solid fa-share"></i>
+<i class="fa-solid fa-share" onclick="openShare()"></i>
 <i class="fa-solid fa-ellipsis-vertical"></i>
 </div>
 </div>
@@ -363,13 +374,15 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 
 <div class="channel-row">
 <div class="channel-left">
-<div class="creator-wrap">
+<div class="creator-wrap" onclick="window.location.href='story-ranveer-singh.html'">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg">
 </div>
+
 <div class="creator-meta">
-<strong>Ranveer Singh 🔥</strong>
+<strong onclick="window.location.href='ranveer-channel.html'">Ranveer Singh 🔥</strong>
 <span>4.8M subscribers</span>
 </div>
+
 <button class="subscribe" onclick="toggleSubscribe(this)">Subscribe</button>
 <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
 </div>
@@ -383,10 +396,9 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 </div>
 </div>
 
-<div class="info-grid">
-<div class="info-box">
-<h3>Started streaming 2 hours ago</h3>
-<p><strong>About this live stream</strong></p>
+<div class="about-box">
+<div class="started-line">Started streaming 2 hours ago</div>
+<h3>About this live stream</h3>
 <p>Watch Ranveer Singh live with high-energy creator moments, behind-the-scenes fun, audience interaction and exclusive entertainment updates.</p>
 <a href="#" class="see-more">See more <i class="fa-solid fa-chevron-down"></i></a>
 <div class="tags">
@@ -397,18 +409,6 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 </div>
 </div>
 
-<div>
-<div class="info-box small-card">
-<div class="small-icon"><i class="fa-regular fa-calendar"></i></div>
-<div><span>Started at</span><strong>Today, 7:30 PM</strong></div>
-</div>
-
-<div class="info-box small-card">
-<div class="small-icon"><i class="fa-solid fa-stopwatch"></i></div>
-<div><span>Streaming for</span><strong id="streamTimer">02:00:00</strong></div>
-</div>
-</div>
-</div>
 </div>
 
 <aside class="chat-card">
@@ -424,14 +424,6 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 </div>
 
 <div class="chat-messages" id="chatMessages"></div>
-
-<div class="sub-mode">
-<i class="fa-solid fa-crown"></i>
-<div>
-<strong>Subscribers-only mode</strong>
-<p>Messages that appear are from people who have subscribed to this channel.</p>
-</div>
-</div>
 
 <div class="chat-input">
 <input id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendChat()">
@@ -450,11 +442,45 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 </div>
 
 <div class="live-grid">
-<div class="live-card"><div class="live-thumb"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop"><span class="live-tag">LIVE</span><span class="live-count">2K</span></div><div class="live-info"><strong>Battle Royale Live</strong><span>Gaming Beast</span></div></div>
-<div class="live-card"><div class="live-thumb"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=900&auto=format&fit=crop"><span class="live-tag">LIVE</span><span class="live-count">6.1K</span></div><div class="live-info"><strong>DJ Night Session</strong><span>Club India</span></div></div>
-<div class="live-card"><div class="live-thumb"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=900&auto=format&fit=crop"><span class="live-tag">LIVE</span><span class="live-count">6.1K</span></div><div class="live-info"><strong>Math Class Live</strong><span>Study Smart</span></div></div>
-<div class="live-card"><div class="live-thumb"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop"><span class="live-tag">LIVE</span><span class="live-count">2.7K</span></div><div class="live-info"><strong>Creator Travel Talk</strong><span>Live Creator</span></div></div>
-<div class="live-card"><div class="live-thumb"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop"><span class="live-tag">LIVE</span><span class="live-count">4.4K</span></div><div class="live-info"><strong>Comedy Room</strong><span>Laugh Circle</span></div></div>
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">2K</span>
+</div>
+<div class="live-info"><strong>Battle Royale Live</strong><span>Gaming Beast</span></div>
+</div>
+
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">6.1K</span>
+</div>
+<div class="live-info"><strong>DJ Night Session</strong><span>Club India</span></div>
+</div>
+
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">6.1K</span>
+</div>
+<div class="live-info"><strong>Math Class Live</strong><span>Study Smart</span></div>
+</div>
+
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">2.7K</span>
+</div>
+<div class="live-info"><strong>Creator Travel Talk</strong><span>Live Creator</span></div>
+</div>
+
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">4.4K</span>
+</div>
+<div class="live-info"><strong>Comedy Room</strong><span>Laugh Circle</span></div>
+</div>
 </div>
 </section>
 
@@ -467,12 +493,15 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 <div class="modal">
 <button class="close-btn" onclick="closeShare()"><i class="fa-solid fa-xmark"></i></button>
 <h2>Share this live</h2>
+
 <div class="share-grid">
 <button class="share-item"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
 <button class="share-item"><i class="fa-brands fa-instagram"></i> Instagram</button>
 <button class="share-item"><i class="fa-brands fa-x-twitter"></i> X</button>
 <button class="share-item"><i class="fa-solid fa-envelope"></i> Mail</button>
+<button class="share-item" onclick="nativeShare()"><i class="fa-solid fa-ellipsis"></i> More</button>
 </div>
+
 <div class="copy-row">
 <input id="shareLink" value="https://iklapikla.github.io/jiovibe-Studio/watch-ranveer-singh.html" readonly>
 <button onclick="copyShare()">Copy</button>
@@ -511,6 +540,7 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 function toggleDropdown(){
 document.getElementById("dropdown").classList.toggle("show");
 }
+
 document.addEventListener("click",function(e){
 if(!e.target.closest(".profile")){
 document.getElementById("dropdown").classList.remove("show");
@@ -533,15 +563,30 @@ btn.innerText=btn.innerText==="Subscribe"?"Subscribed":"Subscribe";
 btn.style.background=btn.innerText==="Subscribed"?"#202124":"#ff5a00";
 }
 
+/* Share */
 function openShare(){
 document.getElementById("shareOverlay").classList.add("show");
 }
+
 function closeShare(){
 document.getElementById("shareOverlay").classList.remove("show");
 }
+
 function copyShare(){
 navigator.clipboard.writeText(document.getElementById("shareLink").value);
 showToast("Link copied");
+}
+
+function nativeShare(){
+if(navigator.share){
+navigator.share({
+title:"Ranveer Singh Live",
+text:"Watch Ranveer Singh Live on JioVibe",
+url:document.getElementById("shareLink").value
+});
+}else{
+showToast("More share options not supported here");
+}
 }
 
 /* Chat */
@@ -570,7 +615,7 @@ const img=`https://i.pravatar.cc/80?img=${Math.floor(Math.random()*60)+1}`;
 addChat(chatNames[i],chatTexts[Math.floor(Math.random()*chatTexts.length)],img);
 }
 
-for(let i=0;i<8;i++) randomChat();
+for(let i=0;i<5;i++) randomChat();
 setInterval(randomChat,3000);
 
 function sendChat(){
@@ -589,19 +634,23 @@ selectedAmount=amount;
 document.getElementById("superOverlay").classList.add("show");
 updateAmountButtons();
 }
+
 function closeSuper(){
 document.getElementById("superOverlay").classList.remove("show");
 }
+
 function selectAmount(amount){
 selectedAmount=amount;
 updateAmountButtons();
 }
+
 function updateAmountButtons(){
 document.querySelectorAll(".amount-btn").forEach(btn=>{
 btn.classList.remove("active");
 if(btn.innerText.replace(",","").includes(selectedAmount)) btn.classList.add("active");
 });
 }
+
 function sendSuper(){
 const msg=document.getElementById("superMessage").value.trim() || "Super support for this live!";
 addChat("You",msg,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",selectedAmount);
@@ -616,16 +665,6 @@ t.innerText=text;
 t.classList.add("show");
 setTimeout(()=>t.classList.remove("show"),1800);
 }
-
-/* Timer */
-let seconds=7200;
-setInterval(()=>{
-seconds++;
-const h=String(Math.floor(seconds/3600)).padStart(2,"0");
-const m=String(Math.floor((seconds%3600)/60)).padStart(2,"0");
-const s=String(seconds%60).padStart(2,"0");
-document.getElementById("streamTimer").innerText=`${h}:${m}:${s}`;
-},1000);
 </script>
 
 </body>
