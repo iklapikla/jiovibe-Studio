@@ -5,17 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JioVibe Gaming</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#f8f9fb;color:#202124}
-a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer;border:none;background:none}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f8f9fb;color:#202124;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
 
-.app{display:flex;min-height:100vh}
+.app{display:flex;min-height:100vh;}
 
+/* SIDEBAR */
 .sidebar{
 width:250px;
 padding:32px 18px;
@@ -47,7 +48,7 @@ letter-spacing:-1.2px;
 color:#2b070b;
 }
 
-.menu{display:flex;flex-direction:column;gap:12px}
+.menu{display:flex;flex-direction:column;gap:12px;}
 
 .menu-item{
 display:flex;
@@ -58,10 +59,10 @@ border-radius:14px;
 font-weight:600;
 font-size:16px;
 color:#383838;
-transition:.2s;
+transition:.25s;
 }
 
-.menu-item i{width:22px;font-size:22px;text-align:center}
+.menu-item i{width:22px;font-size:22px;text-align:center;}
 
 .menu-item:hover{
 background:#fff0e8;
@@ -73,11 +74,13 @@ background:#f1f3f4;
 color:#111;
 }
 
+/* MAIN */
 .main{
 margin-left:250px;
 width:calc(100% - 250px);
 }
 
+/* TOPBAR */
 .topbar{
 height:94px;
 border-bottom:1px solid #edf0f4;
@@ -187,12 +190,14 @@ background:#f1f3f4;
 color:#111;
 }
 
-.dropdown.show{display:block}
+.dropdown.show{display:block;}
 
+/* CONTENT */
 .content{
 padding:36px 48px 60px;
 }
 
+/* CATEGORY */
 .categories{
 display:flex;
 align-items:center;
@@ -216,7 +221,7 @@ font-size:16px;
 font-weight:800;
 color:#383838;
 box-shadow:0 4px 14px rgba(0,0,0,0.03);
-transition:.2s;
+transition:background .2s,color .2s,border-color .2s;
 }
 
 .category-btn:hover{
@@ -231,6 +236,12 @@ color:#fff;
 border-color:#ff5a00;
 }
 
+.category-btn i{font-size:17px;}
+
+.extra-category{display:none;}
+.extra-category.show{display:flex;}
+
+/* BANNER */
 .banner-wrap{
 position:relative;
 height:330px;
@@ -259,7 +270,7 @@ background-position:center;
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(90deg,rgba(0,0,0,0.82),rgba(0,0,0,0.28),rgba(0,0,0,0.08));
+background:linear-gradient(90deg,rgba(0,0,0,0.78),rgba(0,0,0,0.20),rgba(0,0,0,0.05));
 }
 
 .banner-content{
@@ -274,7 +285,7 @@ color:#fff;
 
 .banner-label{
 color:#ff5a00;
-font-weight:900;
+font-weight:800;
 letter-spacing:.8px;
 font-size:15px;
 margin-bottom:12px;
@@ -284,7 +295,7 @@ text-transform:uppercase;
 .banner-content h1{
 font-size:44px;
 line-height:1.08;
-font-weight:900;
+font-weight:800;
 margin-bottom:14px;
 }
 
@@ -306,6 +317,11 @@ border-radius:12px;
 padding:15px 22px;
 font-size:16px;
 font-weight:800;
+transition:.25s;
+}
+
+.watch-btn:hover{
+box-shadow:0 10px 24px rgba(255,90,0,0.28);
 }
 
 .banner-dots{
@@ -325,7 +341,7 @@ background:rgba(255,255,255,0.55);
 cursor:pointer;
 }
 
-.banner-dots span.active{background:#ff5a00}
+.banner-dots span.active{background:#ff5a00;}
 
 .banner-arrow{
 position:absolute;
@@ -342,6 +358,7 @@ justify-content:center;
 font-size:22px;
 box-shadow:0 8px 22px rgba(0,0,0,.15);
 cursor:pointer;
+transition:.25s;
 }
 
 .banner-arrow:hover{
@@ -349,9 +366,10 @@ background:#ff5a00;
 color:#fff;
 }
 
-.banner-arrow.left{left:22px}
-.banner-arrow.right{right:22px}
+.banner-arrow.left{left:22px;}
+.banner-arrow.right{right:22px;}
 
+/* SECTIONS */
 .section-separator{
 height:1px;
 background:linear-gradient(90deg,rgba(0,0,0,0),#e5e7eb,rgba(0,0,0,0));
@@ -367,18 +385,19 @@ margin-bottom:18px;
 
 .section-head h2{
 font-size:24px;
-font-weight:900;
+font-weight:800;
 }
 
 .see-link{
 font-size:14px;
-font-weight:900;
+font-weight:800;
 color:#ff5a00;
 display:flex;
 align-items:center;
 gap:7px;
 }
 
+/* VIDEO GRID */
 .video-grid{
 display:grid;
 grid-template-columns:repeat(5,1fr);
@@ -394,13 +413,15 @@ box-shadow:0 4px 14px rgba(0,0,0,0.04);
 transition:.25s;
 }
 
+.video-card.clickable{cursor:pointer;}
+
 .video-card:hover{
 box-shadow:0 10px 28px rgba(0,0,0,0.08);
 border-color:#d6d9df;
 }
 
-.video-card.extra-video{display:none}
-.video-card.extra-video.show{display:block}
+.video-card.extra-video{display:none;}
+.video-card.extra-video.show{display:block;}
 
 .video-thumb{
 position:relative;
@@ -415,6 +436,7 @@ width:100%;
 height:100%;
 object-fit:cover;
 display:block;
+transition:.25s;
 }
 
 .duration{
@@ -450,6 +472,13 @@ gap:10px;
 padding:12px;
 }
 
+.creator-link{
+display:block;
+width:42px;
+height:42px;
+border-radius:50%;
+}
+
 .creator-img{
 width:42px;
 height:42px;
@@ -460,9 +489,29 @@ border:2px solid #fff;
 box-shadow:0 2px 8px rgba(0,0,0,.12);
 }
 
+.status-ring{
+width:42px;
+height:42px;
+padding:3px;
+border-radius:50%;
+background:linear-gradient(135deg,#00c853,#00e676);
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+}
+
+.status-ring .creator-img{
+width:100%;
+height:100%;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #fff;
+}
+
 .video-title{
 font-size:13px;
-font-weight:900;
+font-weight:800;
 line-height:1.35;
 margin-bottom:5px;
 color:#202124;
@@ -482,10 +531,14 @@ color:#8a9099;
 }
 
 @media(max-width:1300px){
-.search{width:420px}
-.video-grid{grid-template-columns:repeat(3,1fr)}
-.banner-wrap{height:260px}
-.banner-content h1{font-size:34px}
+.search{width:420px;}
+.video-grid{grid-template-columns:repeat(3,1fr);}
+.banner-wrap{height:260px;}
+.banner-content h1{font-size:34px;}
+}
+
+@media(max-width:900px){
+.video-grid{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
@@ -495,13 +548,13 @@ color:#8a9099;
 <div class="app">
 
 <aside class="sidebar">
-<a href="home.html" class="logo">
+<a href="index.html" class="logo">
 <div class="logo-circle">Jio</div>
 <div class="logo-text">Vibe</div>
 </a>
 
 <nav class="menu">
-<a href="home.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+<a href="home.html" class="menu-item active"><i class="fa-solid fa-house"></i> Home</a>
 <a href="explore.html" class="menu-item"><i class="fa-regular fa-compass"></i> Explore</a>
 <a href="live.html" class="menu-item"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
 <a href="video.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Video</a>
@@ -548,7 +601,14 @@ color:#8a9099;
 <a href="education.html" class="category-btn"><i class="fa-solid fa-graduation-cap"></i> Education</a>
 <a href="lifestyle.html" class="category-btn"><i class="fa-solid fa-mug-hot"></i> Lifestyle</a>
 <a href="movies.html" class="category-btn"><i class="fa-solid fa-clapperboard"></i> Movies</a>
-<a href="sports.html" class="category-btn"><i class="fa-solid fa-trophy"></i> Sports</a>
+
+<a href="sports.html" class="category-btn extra-category"><i class="fa-solid fa-trophy"></i> Sports</a>
+<a href="news.html" class="category-btn extra-category"><i class="fa-solid fa-newspaper"></i> News</a>
+<a href="food.html" class="category-btn extra-category"><i class="fa-solid fa-utensils"></i> Food</a>
+<a href="travel.html" class="category-btn extra-category"><i class="fa-solid fa-plane"></i> Travel</a>
+<a href="fitness.html" class="category-btn extra-category"><i class="fa-solid fa-dumbbell"></i> Fitness</a>
+
+<a href="#" class="category-btn" id="moreBtn" onclick="showMoreCategories(event)">More</a>
 </div>
 
 <div class="banner-wrap">
@@ -557,45 +617,45 @@ color:#8a9099;
 <div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600&auto=format&fit=crop');">
 <div class="banner-content">
 <div class="banner-label">Gaming</div>
-<h1>Battle Arena Highlights</h1>
-<p>Watch creator-led gaming videos, clutch moments and esports-style content.</p>
-<a href="video.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+<h1>Gaming Arena</h1>
+<p>Watch trending gameplay, esports moments and creator gaming videos.</p>
+<a href="gaming.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
 </div>
 </div>
 
 <div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');">
 <div class="banner-content">
-<div class="banner-label">Esports</div>
-<h1>Live Gaming Action</h1>
-<p>Explore tournament moments, live rooms and high-energy creator gameplay.</p>
+<div class="banner-label">Live Gaming</div>
+<h1>Live Battle Streams</h1>
+<p>Follow intense matches, clutch rounds and live gaming action.</p>
 <a href="live.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
 </div>
 </div>
 
-<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1560253023-3ec5d502959f?q=80&w=1600&auto=format&fit=crop');">
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1556438064-2d7646166914?q=80&w=1600&auto=format&fit=crop');">
+<div class="banner-content">
+<div class="banner-label">Esports</div>
+<h1>Esports Highlights</h1>
+<p>Catch tournament plays, final circles and best gaming moments.</p>
+<a href="video.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+</div>
+</div>
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=1600&auto=format&fit=crop');">
 <div class="banner-content">
 <div class="banner-label">Creator Gaming</div>
-<h1>Clutch Plays & Final Zones</h1>
-<p>Discover short gaming clips, full matches and creator reactions.</p>
-<a href="shorts.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+<h1>Top Gaming Creators</h1>
+<p>Discover creators playing battle royale, racing, sports and strategy games.</p>
+<a href="subscriptions.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
 </div>
 </div>
 
 <div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1600&auto=format&fit=crop');">
 <div class="banner-content">
-<div class="banner-label">Console Zone</div>
-<h1>Next Level Gaming Setups</h1>
-<p>Gaming rooms, console battles, device reviews and weekend game sessions.</p>
-<a href="video.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
-</div>
-</div>
-
-<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?q=80&w=1600&auto=format&fit=crop');">
-<div class="banner-content">
-<div class="banner-label">Pro Practice</div>
-<h1>Esports Training Room</h1>
-<p>Watch teams practice, improve strategy and prepare for the next big match.</p>
-<a href="live.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+<div class="banner-label">Gaming Setup</div>
+<h1>Pro Setup Stories</h1>
+<p>Explore gaming rooms, creator setups and behind-the-scenes content.</p>
+<a href="explore.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
 </div>
 </div>
 
@@ -621,7 +681,88 @@ color:#8a9099;
 <button class="see-link" id="trendingMoreBtn" onclick="toggleMoreVideos('trending')">See more <i class="fa-solid fa-chevron-right"></i></button>
 </div>
 
-<div class="video-grid" id="trendingGrid"></div>
+<div class="video-grid">
+
+<div class="video-card clickable" onclick="openVideo('watch-gaming-1.html')">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=900&auto=format&fit=crop">
+<span class="live-badge">LIVE</span>
+</div>
+<div class="video-info">
+<div class="creator-link status-ring" onclick="openStory(event,'story-gaming-1.html')">
+<img class="creator-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop">
+</div>
+<div>
+<div class="video-title">BGMI Final Circle Live Match With Clutch Gameplay</div>
+<div class="channel-name">Alpha Gamer</div>
+<div class="video-meta">Gaming • Live now</div>
+</div>
+</div>
+</div>
+
+<div class="video-card clickable" onclick="openVideo('watch-gaming-2.html')">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=900&auto=format&fit=crop">
+<span class="duration">9:42</span>
+</div>
+<div class="video-info">
+<div class="creator-link status-ring" onclick="openStory(event,'story-gaming-2.html')">
+<img class="creator-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop">
+</div>
+<div>
+<div class="video-title">Free Fire Rank Push Best Moments and Headshots</div>
+<div class="channel-name">Shadow Plays</div>
+<div class="video-meta">Gaming • 1.4M views • 2 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1556438064-2d7646166914?q=80&w=900&auto=format&fit=crop">
+<span class="duration">12:18</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200&auto=format&fit=crop">
+<div>
+<div class="video-title">Valorant Ace Round and Best Aim Training Routine</div>
+<div class="channel-name">Pixel Warrior</div>
+<div class="video-meta">Gaming • 980K views • 4 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=900&auto=format&fit=crop">
+<span class="duration">7:35</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=200&auto=format&fit=crop">
+<div>
+<div class="video-title">Racing Game Challenge With Crazy Comeback Finish</div>
+<div class="channel-name">Nitro Rider</div>
+<div class="video-meta">Gaming • 760K views • 6 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=900&auto=format&fit=crop">
+<span class="duration">15:20</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=200&auto=format&fit=crop">
+<div>
+<div class="video-title">New Gaming Setup Tour With Budget Accessories</div>
+<div class="channel-name">Game Room India</div>
+<div class="video-meta">Gaming • 1.1M views • 1 day ago</div>
+</div>
+</div>
+</div>
+
+</div>
 </section>
 
 <div class="section-separator"></div>
@@ -632,10 +773,88 @@ color:#8a9099;
 <button class="see-link" id="recommendedMoreBtn" onclick="toggleMoreVideos('recommended')">See more <i class="fa-solid fa-chevron-right"></i></button>
 </div>
 
-<div class="video-grid" id="recommendedGrid"></div>
+<div class="video-grid">
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=900&auto=format&fit=crop">
+<span class="duration">10:05</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop">
+<div>
+<div class="video-title">Console Gaming Night With Story Mode Gameplay</div>
+<div class="channel-name">Console King</div>
+<div class="video-meta">Gaming • 640K views • 3 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1580327344181-c1163234e5a0?q=80&w=900&auto=format&fit=crop">
+<span class="duration">8:28</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop">
+<div>
+<div class="video-title">Minecraft Survival Build With Secret Base Design</div>
+<div class="channel-name">Block Master</div>
+<div class="video-meta">Gaming • 850K views • 7 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?q=80&w=900&auto=format&fit=crop">
+<span class="duration">11:50</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200&auto=format&fit=crop">
+<div>
+<div class="video-title">PC Game Benchmark Test With Smooth FPS</div>
+<div class="channel-name">FPS Lab</div>
+<div class="video-meta">Gaming • 990K views • 12 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1616588589676-62b3bd4ff6d2?q=80&w=900&auto=format&fit=crop">
+<span class="duration">6:32</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=200&auto=format&fit=crop">
+<div>
+<div class="video-title">Mobile Gaming Tips To Improve Reaction Time</div>
+<div class="channel-name">Tap Master</div>
+<div class="video-meta">Gaming • 1.3M views • 1 day ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=900&auto=format&fit=crop">
+<span class="duration">13:15</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?q=80&w=200&auto=format&fit=crop">
+<div>
+<div class="video-title">Top 5 Multiplayer Games To Play With Friends</div>
+<div class="channel-name">Squad Zone</div>
+<div class="video-meta">Gaming • 720K views • 1 day ago</div>
+</div>
+</div>
+</div>
+
+</div>
 </section>
 
 </section>
+
 </main>
 </div>
 
@@ -650,80 +869,13 @@ document.getElementById("dropdown").classList.remove("show");
 }
 });
 
-const gamingCreators = [
-{name:"Pixel Warrior", profile:"https://i.pravatar.cc/100?img=12"},
-{name:"Clutch King", profile:"https://i.pravatar.cc/100?img=15"},
-{name:"GameStorm India", profile:"https://i.pravatar.cc/100?img=18"},
-{name:"Shadow Gamer", profile:"https://i.pravatar.cc/100?img=21"},
-{name:"Arena Squad", profile:"https://i.pravatar.cc/100?img=24"},
-{name:"Battle Zone", profile:"https://i.pravatar.cc/100?img=27"},
-{name:"Level Up Plays", profile:"https://i.pravatar.cc/100?img=30"},
-{name:"Pro Aim Lab", profile:"https://i.pravatar.cc/100?img=33"},
-{name:"NoScope Nation", profile:"https://i.pravatar.cc/100?img=36"},
-{name:"Final Circle", profile:"https://i.pravatar.cc/100?img=39"}
-];
-
-const gamingThumbs = [
-"https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1560253023-3ec5d502959f?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1547394765-185e1e68f34e?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=900&auto=format&fit=crop"
-];
-
-const trendingTitles = [
-"Final Zone Fight That Shocked Everyone",
-"Pro Player Ranked Match Highlights",
-"One Squad vs Full Lobby Challenge",
-"New Gaming Setup Reaction",
-"Fastest Headshot Round Compilation",
-"Live Tournament Room Highlights",
-"Top Gaming Moments This Week"
-];
-
-const recommendedTitles = [
-"Best Controller Settings for Beginners",
-"How to Improve Aim in 10 Minutes",
-"Budget Gaming Setup Tour",
-"Weekend Multiplayer Match Vibes",
-"Hidden Tips Every Gamer Should Know",
-"Keyboard vs Controller Challenge",
-"Esports Practice Session Breakdown"
-];
-
-function createCard(title, index, type){
-const creator = gamingCreators[index % gamingCreators.length];
-const thumb = gamingThumbs[index % gamingThumbs.length];
-const isExtra = index > 4 ? `extra-video ${type}-extra` : "";
-const isLive = title.toLowerCase().includes("live");
-
-return `
-<div class="video-card ${isExtra}">
-<div class="video-thumb">
-<img src="${thumb}">
-${isLive ? `<span class="live-badge">LIVE</span>` : `<span class="duration">${["12:44","5:30","8:20","10:12","7:50","9:05","14:20"][index]}</span>`}
-</div>
-<div class="video-info">
-<img class="creator-img" src="${creator.profile}">
-<div>
-<div class="video-title">${title}</div>
-<div class="channel-name">${creator.name}</div>
-<div class="video-meta">Gaming • ${["1.8M","950K","720K","410K","580K","890K","300K"][index]} views • ${index + 1} day ago</div>
-</div>
-</div>
-</div>
-`;
+function showMoreCategories(e){
+e.preventDefault();
+document.querySelectorAll(".extra-category").forEach(item=>{
+item.classList.add("show");
+});
+document.getElementById("moreBtn").style.display = "none";
 }
-
-document.getElementById("trendingGrid").innerHTML = trendingTitles.map((t,i)=>createCard(t,i,"trending")).join("");
-document.getElementById("recommendedGrid").innerHTML = recommendedTitles.map((t,i)=>createCard(t,i+3,"recommended")).join("");
 
 let currentSlide = 0;
 const totalSlides = 5;
@@ -752,6 +904,15 @@ updateBanner();
 }
 
 setInterval(nextSlide, 4200);
+
+function openVideo(url){
+window.location.href = url;
+}
+
+function openStory(event,url){
+event.stopPropagation();
+window.location.href = url;
+}
 
 function toggleMoreVideos(type){
 const items = document.querySelectorAll("." + type + "-extra");
