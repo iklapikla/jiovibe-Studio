@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JioVibe Gaming</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -16,7 +16,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 .app{display:flex;min-height:100vh}
 
-/* SIDEBAR */
 .sidebar{
 width:250px;
 padding:32px 18px;
@@ -59,7 +58,7 @@ border-radius:14px;
 font-weight:600;
 font-size:16px;
 color:#383838;
-transition:.25s;
+transition:.2s;
 }
 
 .menu-item i{width:22px;font-size:22px;text-align:center}
@@ -74,13 +73,11 @@ background:#f1f3f4;
 color:#111;
 }
 
-/* MAIN */
 .main{
 margin-left:250px;
 width:calc(100% - 250px);
 }
 
-/* TOPBAR */
 .topbar{
 height:94px;
 border-bottom:1px solid #edf0f4;
@@ -192,12 +189,10 @@ color:#111;
 
 .dropdown.show{display:block}
 
-/* CONTENT */
 .content{
 padding:36px 48px 60px;
 }
 
-/* CATEGORY */
 .categories{
 display:flex;
 align-items:center;
@@ -221,7 +216,7 @@ font-size:16px;
 font-weight:800;
 color:#383838;
 box-shadow:0 4px 14px rgba(0,0,0,0.03);
-transition:background .2s,color .2s,border-color .2s;
+transition:.2s;
 }
 
 .category-btn:hover{
@@ -236,7 +231,6 @@ color:#fff;
 border-color:#ff5a00;
 }
 
-/* BANNER */
 .banner-wrap{
 position:relative;
 height:330px;
@@ -280,7 +274,7 @@ color:#fff;
 
 .banner-label{
 color:#ff5a00;
-font-weight:800;
+font-weight:900;
 letter-spacing:.8px;
 font-size:15px;
 margin-bottom:12px;
@@ -290,7 +284,7 @@ text-transform:uppercase;
 .banner-content h1{
 font-size:44px;
 line-height:1.08;
-font-weight:800;
+font-weight:900;
 margin-bottom:14px;
 }
 
@@ -312,11 +306,6 @@ border-radius:12px;
 padding:15px 22px;
 font-size:16px;
 font-weight:800;
-transition:.25s;
-}
-
-.watch-btn:hover{
-box-shadow:0 10px 24px rgba(255,90,0,0.28);
 }
 
 .banner-dots{
@@ -353,7 +342,6 @@ justify-content:center;
 font-size:22px;
 box-shadow:0 8px 22px rgba(0,0,0,.15);
 cursor:pointer;
-transition:.25s;
 }
 
 .banner-arrow:hover{
@@ -364,7 +352,6 @@ color:#fff;
 .banner-arrow.left{left:22px}
 .banner-arrow.right{right:22px}
 
-/* SECTIONS */
 .section-separator{
 height:1px;
 background:linear-gradient(90deg,rgba(0,0,0,0),#e5e7eb,rgba(0,0,0,0));
@@ -380,19 +367,18 @@ margin-bottom:18px;
 
 .section-head h2{
 font-size:24px;
-font-weight:800;
+font-weight:900;
 }
 
 .see-link{
 font-size:14px;
-font-weight:800;
+font-weight:900;
 color:#ff5a00;
 display:flex;
 align-items:center;
 gap:7px;
 }
 
-/* VIDEO GRID */
 .video-grid{
 display:grid;
 grid-template-columns:repeat(5,1fr);
@@ -407,8 +393,6 @@ overflow:hidden;
 box-shadow:0 4px 14px rgba(0,0,0,0.04);
 transition:.25s;
 }
-
-.video-card.clickable{cursor:pointer}
 
 .video-card:hover{
 box-shadow:0 10px 28px rgba(0,0,0,0.08);
@@ -492,7 +476,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.12);
 
 .video-title{
 font-size:13px;
-font-weight:800;
+font-weight:900;
 line-height:1.35;
 margin-bottom:5px;
 color:#202124;
@@ -517,10 +501,6 @@ color:#8a9099;
 .banner-wrap{height:260px}
 .banner-content h1{font-size:34px}
 }
-
-@media(max-width:900px){
-.video-grid{grid-template-columns:repeat(2,1fr)}
-}
 </style>
 </head>
 
@@ -529,7 +509,7 @@ color:#8a9099;
 <div class="app">
 
 <aside class="sidebar">
-<a href="index.html" class="logo">
+<a href="home.html" class="logo">
 <div class="logo-circle">Jio</div>
 <div class="logo-text">Vibe</div>
 </a>
@@ -615,12 +595,32 @@ color:#8a9099;
 </div>
 </div>
 
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=1600&auto=format&fit=crop');">
+<div class="banner-content">
+<div class="banner-label">Console Zone</div>
+<h1>Next Level Gaming Setups</h1>
+<p>Gaming rooms, console battles, device reviews and weekend game sessions.</p>
+<a href="video.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+</div>
+</div>
+
+<div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?q=80&w=1600&auto=format&fit=crop');">
+<div class="banner-content">
+<div class="banner-label">Pro Practice</div>
+<h1>Esports Training Room</h1>
+<p>Watch teams practice, improve strategy and prepare for the next big match.</p>
+<a href="live.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
+</div>
+</div>
+
 </div>
 
 <div class="banner-dots" id="bannerDots">
 <span class="active" onclick="goToSlide(0)"></span>
 <span onclick="goToSlide(1)"></span>
 <span onclick="goToSlide(2)"></span>
+<span onclick="goToSlide(3)"></span>
+<span onclick="goToSlide(4)"></span>
 </div>
 
 <div class="banner-arrow left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
@@ -635,121 +635,7 @@ color:#8a9099;
 <button class="see-link" id="trendingMoreBtn" onclick="toggleMoreVideos('trending')">See more <i class="fa-solid fa-chevron-right"></i></button>
 </div>
 
-<div class="video-grid">
-
-<div class="video-card clickable" onclick="openVideo('video.html')">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif">
-<span class="duration">12:44</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Last Zone Gaming Highlights You Should Not Miss</div>
-<div class="channel-name">Total Gaming</div>
-<div class="video-meta">Gaming • 1.8M views • 1 day ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif">
-<span class="duration">5:30</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Epic Clutch Moment in Final Circle</div>
-<div class="channel-name">Total Gaming</div>
-<div class="video-meta">Gaming • 950K views • 4 hours ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif">
-<span class="live-badge">LIVE</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Battle Royale Live Room</div>
-<div class="channel-name">Gaming Beast</div>
-<div class="video-meta">Gaming • Live now</div>
-</div>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif">
-<span class="duration">8:20</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Top 5 Gaming Tricks for New Players</div>
-<div class="channel-name">Pro Gaming India</div>
-<div class="video-meta">Gaming • 720K views • 9 hours ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif">
-<span class="duration">10:12</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Mobile Gaming Setup Under Budget</div>
-<div class="channel-name">Game Setup India</div>
-<div class="video-meta">Gaming • 410K views • 12 hours ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card extra-video trending-extra">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif">
-<span class="duration">7:50</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Console Gaming Challenge</div>
-<div class="channel-name">Console King</div>
-<div class="video-meta">Gaming • 580K views • 1 day ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card extra-video trending-extra">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif">
-<span class="duration">9:05</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Esports Team Practice Highlights</div>
-<div class="channel-name">Esports Arena</div>
-<div class="video-meta">Gaming • 890K views • 1 day ago</div>
-</div>
-</div>
-</div>
-
-</div>
+<div class="video-grid" id="trendingGrid"></div>
 </section>
 
 <div class="section-separator"></div>
@@ -760,125 +646,10 @@ color:#8a9099;
 <button class="see-link" id="recommendedMoreBtn" onclick="toggleMoreVideos('recommended')">See more <i class="fa-solid fa-chevron-right"></i></button>
 </div>
 
-<div class="video-grid">
-
-<div class="video-card">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif">
-<span class="duration">6:40</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Gaming Highlights for Weekend Watch</div>
-<div class="channel-name">Total Gaming</div>
-<div class="video-meta">Gaming • 780K views • 2 days ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif">
-<span class="duration">11:15</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Best Multiplayer Moments of the Week</div>
-<div class="channel-name">Game Squad</div>
-<div class="video-meta">Gaming • 610K views • 2 days ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif">
-<span class="duration">14:05</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">PC Gaming Room Tour</div>
-<div class="channel-name">Setup Master</div>
-<div class="video-meta">Gaming • 430K views • 3 days ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif">
-<span class="duration">5:55</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Gaming Keyboard Sound Test</div>
-<div class="channel-name">Gadget Gamer</div>
-<div class="video-meta">Gaming • 300K views • 3 days ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif">
-<span class="duration">8:42</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Beginner Guide to Better Aim</div>
-<div class="channel-name">Aim Coach India</div>
-<div class="video-meta">Gaming • 520K views • 4 days ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card extra-video recommended-extra">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1605901309584-818e25960a8f?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif">
-<span class="duration">13:18</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Gaming Laptop Test in Real Match</div>
-<div class="channel-name">Tech Gamer</div>
-<div class="video-meta">Gaming • 670K views • 5 days ago</div>
-</div>
-</div>
-</div>
-
-<div class="video-card extra-video recommended-extra">
-<div class="video-thumb">
-<img class="static-thumb" src="https://images.unsplash.com/photo-1556438064-2d7646166914?q=80&w=900&auto=format&fit=crop">
-<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif">
-<span class="duration">4:58</span>
-</div>
-<div class="video-info">
-<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
-<div>
-<div class="video-title">Quick Reaction Challenge</div>
-<div class="channel-name">Game Lab</div>
-<div class="video-meta">Gaming • 290K views • 5 days ago</div>
-</div>
-</div>
-</div>
-
-</div>
+<div class="video-grid" id="recommendedGrid"></div>
 </section>
 
 </section>
-
 </main>
 </div>
 
@@ -893,8 +664,107 @@ document.getElementById("dropdown").classList.remove("show");
 }
 });
 
+const creators = [
+{
+name:"Total Gaming",
+profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg",
+gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif"
+},
+{
+name:"Rohit Sharma",
+profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg",
+gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Rohit%20Sharma.gif"
+},
+{
+name:"Technical Guruji",
+profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg",
+gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Technical%20Guruji.gif"
+},
+{
+name:"Flying Beast",
+profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.png",
+gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Flying%20Beast.gif"
+},
+{
+name:"Ranveer Singh",
+profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg",
+gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Ranveer%20Singh.gif"
+},
+{
+name:"Ashish Chanchlani",
+profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg",
+gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Ashish%20Chanchlani.gif"
+},
+{
+name:"Khan Sir",
+profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg",
+gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Khan%20Sir.gif"
+}
+];
+
+const thumbs = [
+"https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1560253023-3ec5d502959f?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?q=80&w=900&auto=format&fit=crop"
+];
+
+const trendingTitles = [
+"Last Zone Gaming Highlights You Should Not Miss",
+"Epic Clutch Moment in Final Circle",
+"Battle Royale Live Room",
+"Top 5 Gaming Tricks for New Players",
+"Mobile Gaming Setup Under Budget",
+"Console Gaming Challenge",
+"Esports Team Practice Highlights"
+];
+
+const recommendedTitles = [
+"Gaming Highlights for Weekend Watch",
+"Best Multiplayer Moments of the Week",
+"PC Gaming Room Tour",
+"Gaming Keyboard Sound Test",
+"Beginner Guide to Better Aim",
+"Gaming Laptop Test in Real Match",
+"Quick Reaction Challenge"
+];
+
+function createCard(title, index, type){
+const creator = creators[index % creators.length];
+const thumb = thumbs[index % thumbs.length];
+const isExtra = index > 4 ? `extra-video ${type}-extra` : "";
+const isLive = title.toLowerCase().includes("live");
+
+return `
+<div class="video-card ${isExtra}">
+<div class="video-thumb">
+<img class="static-thumb" src="${thumb}">
+<img class="gif-preview" src="${creator.gif}">
+${isLive ? `<span class="live-badge">LIVE</span>` : `<span class="duration">${["12:44","5:30","8:20","10:12","7:50","9:05","14:20"][index]}</span>`}
+</div>
+<div class="video-info">
+<img class="creator-img" src="${creator.profile}">
+<div>
+<div class="video-title">${title}</div>
+<div class="channel-name">${creator.name}</div>
+<div class="video-meta">Gaming • ${["1.8M","950K","720K","410K","580K","890K","300K"][index]} views • ${index + 1} day ago</div>
+</div>
+</div>
+</div>
+`;
+}
+
+document.getElementById("trendingGrid").innerHTML = trendingTitles.map((t,i)=>createCard(t,i,"trending")).join("");
+document.getElementById("recommendedGrid").innerHTML = recommendedTitles.map((t,i)=>createCard(t,i+2,"recommended")).join("");
+
 let currentSlide = 0;
-const totalSlides = 3;
+const totalSlides = 5;
 const track = document.getElementById("bannerTrack");
 const dots = document.querySelectorAll("#bannerDots span");
 
@@ -920,10 +790,6 @@ updateBanner();
 }
 
 setInterval(nextSlide, 4200);
-
-function openVideo(url){
-window.location.href = url;
-}
 
 function toggleMoreVideos(type){
 const items = document.querySelectorAll("." + type + "-extra");
