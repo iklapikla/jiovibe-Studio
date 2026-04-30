@@ -22,7 +22,7 @@ width:250px;
 padding:32px 18px;
 position:fixed;
 height:100%;
-background:#FFF6ED;
+background:#FFFFFF;
 border-right:1px solid #FFD2B3;
 }
 
@@ -62,19 +62,17 @@ color:#7A3E2E;
 transition:.25s;
 }
 
-.menu-item i{width:22px;font-size:22px;text-align:center;color:#FF7A00;}
+.menu-item i{width:22px;font-size:22px;text-align:center;}
 
 .menu-item:hover{
 background:#FFE4CC;
-color:#E65100;
+color:#FF7A00;
 }
 
 .menu-item.active{
 background:#FF7A00;
 color:#FFFFFF;
 }
-
-.menu-item.active i{color:#FFFFFF;}
 
 /* MAIN */
 .main{
@@ -90,7 +88,7 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 padding:0 48px;
-background:#FFF6ED;
+background:#FFFFFF;
 position:sticky;
 top:0;
 z-index:8;
@@ -115,7 +113,6 @@ outline:none;
 flex:1;
 font-size:15px;
 color:#4A0E0E;
-background:#FFFFFF;
 }
 
 .top-actions{
@@ -129,7 +126,6 @@ position:relative;
 font-size:23px;
 position:relative;
 cursor:pointer;
-color:#4A0E0E;
 }
 
 .bell::after{
@@ -155,7 +151,6 @@ gap:12px;
 cursor:pointer;
 padding:8px;
 border-radius:18px;
-color:#4A0E0E;
 }
 
 .profile img{
@@ -192,7 +187,7 @@ color:#4A0E0E;
 
 .dropdown a:hover{
 background:#FFE4CC;
-color:#4A0E0E;
+color:#2A0A0A;
 }
 
 .dropdown.show{display:block;}
@@ -224,15 +219,15 @@ align-items:center;
 gap:12px;
 font-size:16px;
 font-weight:800;
-color:#4A0E0E;
-box-shadow:0 4px 14px rgba(74,14,14,0.03);
+color:#7A3E2E;
+box-shadow:0 4px 14px rgba(255,122,0,0.05);
 transition:background .2s,color .2s,border-color .2s;
 }
 
 .category-btn:hover{
 background:#FFE4CC;
 border-color:#FF7A00;
-color:#E65100;
+color:#FF7A00;
 }
 
 .category-btn.active{
@@ -241,7 +236,7 @@ color:#FFFFFF;
 border-color:#FF7A00;
 }
 
-.category-btn i{font-size:17px;color:inherit;}
+.category-btn i{font-size:17px;}
 
 .extra-category{display:none;}
 .extra-category.show{display:flex;}
@@ -253,7 +248,7 @@ height:330px;
 border-radius:22px;
 overflow:hidden;
 background:#2A0A0A;
-box-shadow:0 8px 28px rgba(74,14,14,0.08);
+box-shadow:0 8px 28px rgba(74,14,14,0.10);
 margin-bottom:42px;
 }
 
@@ -326,7 +321,6 @@ transition:.25s;
 }
 
 .watch-btn:hover{
-background:#E65100;
 box-shadow:0 10px 24px rgba(255,122,0,0.28);
 }
 
@@ -358,7 +352,6 @@ width:52px;
 height:52px;
 border-radius:50%;
 background:#FFFFFF;
-color:#4A0E0E;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -379,7 +372,7 @@ color:#FFFFFF;
 /* SECTIONS */
 .section-separator{
 height:1px;
-background:linear-gradient(90deg,rgba(255,224,204,0),#FFE0CC,rgba(255,224,204,0));
+background:linear-gradient(90deg,rgba(0,0,0,0),#FFE0CC,rgba(0,0,0,0));
 margin:28px 0 24px;
 }
 
@@ -393,13 +386,12 @@ margin-bottom:18px;
 .section-head h2{
 font-size:24px;
 font-weight:800;
-color:#4A0E0E;
 }
 
 .see-link{
 font-size:14px;
 font-weight:800;
-color:#E65100;
+color:#FF7A00;
 display:flex;
 align-items:center;
 gap:7px;
@@ -424,7 +416,7 @@ transition:.25s;
 .video-card.clickable{cursor:pointer;}
 
 .video-card:hover{
-box-shadow:0 10px 28px rgba(74,14,14,0.08);
+box-shadow:0 10px 28px rgba(74,14,14,0.10);
 border-color:#FF7A00;
 }
 
@@ -698,3 +690,338 @@ color:#A66A55;
 <div class="banner-arrow left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
 <div class="banner-arrow right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
 </div>
+
+<div class="section-separator"></div>
+
+<section>
+<div class="section-head">
+<h2>Trending Now 🔥</h2>
+<button class="see-link" id="trendingMoreBtn" onclick="toggleMoreVideos('trending')">See more <i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<div class="video-grid">
+
+<div class="video-card clickable" onclick="openVideo('watch-ranveer-singh.html')">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ranveer%20Singh.gif">
+<span class="live-badge">LIVE</span>
+</div>
+<div class="video-info">
+<div class="creator-link status-ring" onclick="openStory(event,'story-ranveer-singh.html')">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg">
+</div>
+<div>
+<div class="video-title">Ranveer Singh Live: Creator Energy and Big Moments</div>
+<div class="channel-name">Ranveer Singh</div>
+<div class="video-meta">Movies • Live now</div>
+</div>
+</div>
+</div>
+
+<div class="video-card clickable" onclick="openVideo('watch-ashish-chanchlani.html')">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif">
+<span class="duration">6:14</span>
+</div>
+<div class="video-info">
+<div class="creator-link status-ring" onclick="openStory(event,'story-ashish-chanchlani.html')">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg">
+</div>
+<div>
+<div class="video-title">Comedy Scene That Everyone Is Sharing Today</div>
+<div class="channel-name">Ashish Chanchlani</div>
+<div class="video-meta">Comedy • 1.2M views • 2 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Narendra%20Modi.gif">
+<span class="duration">8:30</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Narendra%20Modi.jpeg">
+<div>
+<div class="video-title">Major Event Highlights and Key Moments</div>
+<div class="channel-name">Narendra Modi</div>
+<div class="video-meta">Education • 920K views • 5 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Rohit%20Sharma.gif">
+<span class="duration">4:45</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg">
+<div>
+<div class="video-title">Captain’s Practice Session Highlights</div>
+<div class="channel-name">Rohit Sharma</div>
+<div class="video-meta">Sports • 780K views • 8 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif">
+<span class="duration">12:44</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
+<div>
+<div class="video-title">Last Zone Gaming Highlights You Should Not Miss</div>
+<div class="channel-name">Total Gaming</div>
+<div class="video-meta">Gaming • 1.8M views • 1 day ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card extra-video trending-extra">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif">
+<span class="duration">7:20</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg">
+<div>
+<div class="video-title">New Comedy Sketch Preview</div>
+<div class="channel-name">Ashish Chanchlani</div>
+<div class="video-meta">Comedy • 640K views • 1 day ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card extra-video trending-extra">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Arijit%20Singh.gif">
+<span class="duration">3:45</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Arijit%20Singh.jpg">
+<div>
+<div class="video-title">Studio Vibes and Live Singing Moment</div>
+<div class="channel-name">Arijit Singh</div>
+<div class="video-meta">Music • 1.1M views • 1 day ago</div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<div class="section-separator"></div>
+
+<section>
+<div class="section-head">
+<h2>Recommended for You ✨</h2>
+<button class="see-link" id="recommendedMoreBtn" onclick="toggleMoreVideos('recommended')">See more <i class="fa-solid fa-chevron-right"></i></button>
+</div>
+
+<div class="video-grid">
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Technical%20Guruji.gif">
+<span class="duration">6:20</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg">
+<div>
+<div class="video-title">Tech Gadgets Worth Watching This Week</div>
+<div class="channel-name">Technical Guruji</div>
+<div class="video-meta">Tech • 620K views • 3 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20khan%20sir%20teacher%20gif.gif">
+<span class="duration">8:15</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg">
+<div>
+<div class="video-title">Education Tip That Makes It Easy</div>
+<div class="channel-name">Khan Sir</div>
+<div class="video-meta">Education • 850K views • 7 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Flying%20Beast.gif">
+<span class="duration">11:10</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.png">
+<div>
+<div class="video-title">Family Vlog and Travel Moments</div>
+<div class="channel-name">Flying Beast</div>
+<div class="video-meta">Lifestyle • 990K views • 12 hours ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ranveer%20Singh.gif">
+<span class="duration">7:44</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg">
+<div>
+<div class="video-title">Movie Promo and Fun Interview</div>
+<div class="channel-name">Ranveer Singh</div>
+<div class="video-meta">Movies • 1.3M views • 1 day ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Narendra%20Modi.gif">
+<span class="duration">5:01</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Narendra%20Modi.jpeg">
+<div>
+<div class="video-title">Public Address Short Highlights</div>
+<div class="channel-name">Narendra Modi</div>
+<div class="video-meta">Education • 720K views • 1 day ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card extra-video recommended-extra">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Rohit%20Sharma.gif">
+<span class="duration">4:10</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg">
+<div>
+<div class="video-title">Training Day with Rohit Sharma</div>
+<div class="channel-name">Rohit Sharma</div>
+<div class="video-meta">Sports • 1.4M views • 2 days ago</div>
+</div>
+</div>
+</div>
+
+<div class="video-card extra-video recommended-extra">
+<div class="video-thumb">
+<img class="static-thumb" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop">
+<img class="gif-preview" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif">
+<span class="duration">9:50</span>
+</div>
+<div class="video-info">
+<img class="creator-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg">
+<div>
+<div class="video-title">Epic Gaming Setup and Final Fight</div>
+<div class="channel-name">Total Gaming</div>
+<div class="video-meta">Gaming • 1.5M views • 2 days ago</div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+</section>
+
+</main>
+</div>
+
+<script>
+function toggleDropdown(){
+document.getElementById("dropdown").classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+if(!e.target.closest(".profile")){
+document.getElementById("dropdown").classList.remove("show");
+}
+});
+
+function showMoreCategories(e){
+e.preventDefault();
+document.querySelectorAll(".extra-category").forEach(item=>{
+item.classList.add("show");
+});
+document.getElementById("moreBtn").style.display = "none";
+}
+
+let currentSlide = 0;
+const totalSlides = 5;
+const track = document.getElementById("bannerTrack");
+const dots = document.querySelectorAll("#bannerDots span");
+
+function updateBanner(){
+track.style.transform = `translateX(-${currentSlide * 100}%)`;
+dots.forEach(dot=>dot.classList.remove("active"));
+dots[currentSlide].classList.add("active");
+}
+
+function nextSlide(){
+currentSlide = (currentSlide + 1) % totalSlides;
+updateBanner();
+}
+
+function prevSlide(){
+currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+updateBanner();
+}
+
+function goToSlide(index){
+currentSlide = index;
+updateBanner();
+}
+
+setInterval(nextSlide, 4200);
+
+function openVideo(url){
+window.location.href = url;
+}
+
+function openStory(event,url){
+event.stopPropagation();
+window.location.href = url;
+}
+
+function toggleMoreVideos(type){
+const items = document.querySelectorAll("." + type + "-extra");
+const btn = document.getElementById(type + "MoreBtn");
+const isOpen = btn.dataset.open === "true";
+
+items.forEach(item=>{
+item.classList.toggle("show", !isOpen);
+});
+
+btn.dataset.open = isOpen ? "false" : "true";
+
+btn.innerHTML = isOpen
+? `See more <i class="fa-solid fa-chevron-right"></i>`
+: `See less <i class="fa-solid fa-chevron-up"></i>`;
+}
+</script>
+
+</body>
+</html>
