@@ -228,87 +228,137 @@ font-weight:900
 }
 
 /* COMMENTS */
+/* COMMENTS */
 .comments-section{
 margin-top:16px;
 background:#fff;
 border:1px solid #e8ebf0;
 border-radius:18px;
 box-shadow:0 4px 14px rgba(0,0,0,.04);
-padding:18px
+padding:24px 28px;
 }
+
 .comments-head{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:16px
+margin-bottom:22px;
 }
+
 .comments-head h2{
-font-size:22px;
-font-weight:900
+font-size:24px;
+font-weight:900;
 }
-.support-btn{
-background:#ff5a00;
-color:#fff;
-border-radius:12px;
-padding:12px 16px;
-font-weight:900
-}
+
 .comment-box{
 display:grid;
-grid-template-columns:44px 1fr 110px;
-gap:12px;
+grid-template-columns:54px 1fr 54px 54px 54px;
+gap:14px;
 align-items:center;
-margin-bottom:18px
+margin-bottom:26px;
 }
+
 .comment-box img{
-width:42px;height:42px;border-radius:50%;object-fit:cover
+width:54px;
+height:54px;
+border-radius:50%;
+object-fit:cover;
 }
+
 .comment-box input{
-height:46px;
+height:56px;
 border:1px solid #e8ebf0;
-border-radius:24px;
-padding:0 16px;
+border-radius:30px;
+padding:0 20px;
 outline:none;
-font-weight:700
+font-size:16px;
+font-weight:600;
 }
-.comment-box button{
-height:46px;
-background:#202124;
+
+.comment-icon{
+width:54px;
+height:54px;
+border:1px solid #e8ebf0;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:21px;
+background:#fff;
+}
+
+.comment-send{
+width:54px;
+height:54px;
+border-radius:50%;
+background:#ff5a00;
 color:#fff;
-border-radius:14px;
-font-weight:900
+font-size:22px;
+display:flex;
+align-items:center;
+justify-content:center;
 }
+
 .comments-list{
 display:flex;
 flex-direction:column;
-gap:16px;
-max-height:360px;
-overflow:auto
+gap:22px;
+max-height:none;
+overflow:visible;
 }
+
 .comment{
 display:grid;
-grid-template-columns:44px 1fr;
-gap:12px
+grid-template-columns:54px 1fr;
+gap:12px;
 }
+
 .comment img{
-width:42px;height:42px;border-radius:50%;object-fit:cover
+width:54px;
+height:54px;
+border-radius:50%;
+object-fit:cover;
 }
-.comment strong{font-size:14px;font-weight:900}
-.comment small{color:#8a9099;font-weight:700;margin-left:8px}
-.comment p{font-size:14px;color:#4b5563;font-weight:600;line-height:1.45;margin-top:5px}
+
+.comment strong{
+font-size:16px;
+font-weight:900;
+}
+
+.comment small{
+color:#6b7280;
+font-weight:800;
+margin-left:8px;
+}
+
+.comment p{
+font-size:16px;
+color:#4b5563;
+font-weight:500;
+line-height:1.5;
+margin-top:6px;
+}
+
 .comment-actions{
-display:flex;gap:14px;margin-top:8px;color:#6b7280;font-weight:800;font-size:13px
+display:flex;
+gap:22px;
+margin-top:10px;
+color:#666;
+font-weight:900;
+font-size:15px;
 }
+
 .super-comment{
 background:#fff7f2;
 border:1px solid #ffd4bd;
 border-radius:14px;
-padding:12px
+padding:12px;
 }
+
 .super-comment .amount{
 color:#ff5a00;
 font-weight:900;
-margin-bottom:4px
+margin-bottom:4px;
 }
 
 /* MODALS */
@@ -464,7 +514,7 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 </div>
 
 <div class="creator-meta">
-<strong onclick="window.location.href='ashish-channel.html'">Ashish Chanchlani 🔥</strong>
+<strong onclick="window.location.href='ashish-channel.html'">Ashish Chanchlani </strong>
 <span>32.5M subscribers</span>
 </div>
 
@@ -496,14 +546,15 @@ background:#202124;color:#fff;border-radius:14px;padding:14px 20px;font-weight:9
 
 <section class="comments-section">
 <div class="comments-head">
-<h2>Comments</h2>
-<button class="support-btn" onclick="openSuper(500)">Super Support</button>
+<h2>Comments (320)</h2>
 </div>
 
 <div class="comment-box">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
 <input id="commentInput" placeholder="Add a comment...">
-<button onclick="sendComment()">Comment</button>
+<button class="comment-icon"><i class="fa-regular fa-face-smile"></i></button>
+<button class="comment-icon" onclick="openSuper(500)"><i class="fa-solid fa-indian-rupee-sign"></i></button>
+<button class="comment-send" onclick="sendComment()"><i class="fa-solid fa-paper-plane"></i></button>
 </div>
 
 <div class="comments-list" id="commentsList"></div>
@@ -740,13 +791,12 @@ showToast("More share options not supported here");
 
 /* Comments */
 const comments = [
-{name:"Rahul Beats", text:"This scene is too funny 😂", img:"https://i.pravatar.cc/80?img=11"},
-{name:"Comedy Fan", text:"Ashish never disappoints!", img:"https://i.pravatar.cc/80?img=20"},
-{name:"Mumbai Vibes", text:"Shared this with my friends.", img:"https://i.pravatar.cc/80?img=31"},
-{name:"Ritika Jain", text:"Timing and expressions are perfect.", img:"https://i.pravatar.cc/80?img=45"}
+{name:"Rohit Verma", time:"2 days ago", likes:"256", text:"What a visual treat. The editing and storytelling is just perfect.", img:"https://i.pravatar.cc/80?img=12"},
+{name:"Priya Sharma", time:"1 day ago", likes:"189", text:"This feels so peaceful. Please make more travel videos like this.", img:"https://i.pravatar.cc/80?img=32"},
+{name:"Aman Gupta", time:"12 hours ago", likes:"98", text:"The mountain shots are beautiful. Loved the background music.", img:"https://i.pravatar.cc/80?img=48"}
 ];
 
-function addComment(name,text,img,superAmount){
+function addComment(name,text,img,superAmount,time="Just now",likes="0"){
 const list=document.getElementById("commentsList");
 const div=document.createElement("div");
 div.className=superAmount?"comment super-comment":"comment";
@@ -754,23 +804,23 @@ div.innerHTML=`
 <img src="${img}">
 <div>
 ${superAmount?`<div class="amount">Super Support ₹${superAmount}</div>`:""}
-<strong>${name}</strong><small>Just now</small>
+<strong>${name}</strong><small>${time}</small>
 <p>${text}</p>
 <div class="comment-actions">
-<span><i class="fa-regular fa-thumbs-up"></i> Like</span>
+<span>Like ${likes}</span>
 <span>Reply</span>
 </div>
 </div>`;
 list.prepend(div);
 }
 
-comments.reverse().forEach(c=>addComment(c.name,c.text,c.img));
+comments.reverse().forEach(c=>addComment(c.name,c.text,c.img,null,c.time,c.likes));
 
 function sendComment(){
 const input=document.getElementById("commentInput");
 const text=input.value.trim();
 if(!text)return;
-addComment("Trupti Latur",text,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg");
+addComment("Trupti Latur",text,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",null,"Now","0");
 input.value="";
 }
 
