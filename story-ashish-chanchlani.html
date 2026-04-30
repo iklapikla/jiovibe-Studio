@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashish Chanchlani Story - JioVibe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8f9fb;color:#202124;height:100vh;overflow:hidden}
+button,input{font-family:inherit}
+button{border:none;background:none;cursor:pointer;color:inherit}
+
+.story-page{
+width:100%;height:100vh;display:flex;align-items:center;justify-content:center;
+position:relative;background:linear-gradient(135deg,#f8f9fb,#eef1f6)
+}
+
+.close-btn{
+position:fixed;right:28px;top:24px;width:46px;height:46px;border-radius:50%;
+display:flex;align-items:center;justify-content:center;font-size:28px;z-index:30;
+color:#202124;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:.2s
+}
+.close-btn:hover{background:#ff5a00;color:#fff}
+
+.story-modal{
+width:min(1160px,92vw);height:min(780px,92vh);background:#fff;border:1px solid #e8ebf0;
+border-radius:24px;overflow:hidden;display:grid;grid-template-columns:440px 1fr;
+box-shadow:0 28px 80px rgba(0,0,0,.16);animation:pop .22s ease
+}
+@keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+
+.story-left{
+background:#111;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden
+}
+.story-img{height:100%;aspect-ratio:9/16;max-width:100%;object-fit:cover;display:block}
+
+.progress-wrap{
+position:absolute;top:16px;left:16px;right:16px;display:flex;gap:7px;z-index:10
+}
+.progress{height:4px;flex:1;background:rgba(255,255,255,.38);border-radius:20px;overflow:hidden}
+.progress span{display:block;height:100%;width:0%;background:#ff5a00;border-radius:20px}
+.progress.done span{width:100%}
+.progress.active span{animation:fill 5s linear forwards}
+@keyframes fill{from{width:0%}to{width:100%}}
+
+.story-user{
+position:absolute;top:34px;left:20px;right:20px;z-index:11;display:flex;align-items:center;
+gap:12px;padding:10px 12px;border-radius:999px;background:rgba(0,0,0,.35);
+backdrop-filter:blur(8px);width:max-content;max-width:calc(100% - 40px)
+}
+.story-user img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+.story-user strong{font-size:15px;font-weight:900;color:#fff}
+.story-user span{font-size:12px;color:rgba(255,255,255,.78);font-weight:700}
+
+.nav-area{position:absolute;top:0;bottom:0;width:45%;z-index:8}
+.nav-left{left:0}.nav-right{right:0}
+
+.story-bottom{
+position:absolute;left:18px;right:18px;bottom:22px;z-index:12;display:flex;align-items:center;gap:14px
+}
+.reply-box{
+flex:1;height:56px;border:1px solid rgba(255,255,255,.68);border-radius:30px;
+display:flex;align-items:center;padding:0 18px;background:rgba(255,255,255,.16);backdrop-filter:blur(10px)
+}
+.reply-box input{
+width:100%;background:transparent;border:none;outline:none;color:#fff;font-size:15px;font-weight:800
+}
+.reply-box input::placeholder{color:rgba(255,255,255,.88)}
+
+.story-icon{
+width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+font-size:24px;color:#fff;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);transition:.2s
+}
+.story-icon:hover,.story-icon.liked{background:#ff5a00;color:#fff}
+
+.arrow{
+position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
+background:#fff;color:#202124;display:flex;align-items:center;justify-content:center;font-size:18px;
+z-index:14;box-shadow:0 8px 24px rgba(0,0,0,.18);transition:.2s
+}
+.arrow:hover{background:#ff5a00;color:#fff}
+.arrow.left{left:14px}.arrow.right{right:14px}
+
+/* RIGHT PANEL */
+.story-right{display:flex;flex-direction:column;background:#fff}
+
+.right-head{
+height:82px;border-bottom:1px solid #edf0f4;padding:0 24px;display:flex;align-items:center;
+justify-content:space-between;flex-shrink:0
+}
+.account{display:flex;align-items:center;gap:12px}
+.account img{
+width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #fff;
+box-shadow:0 2px 10px rgba(0,0,0,.10)
+}
+.account strong{font-size:16px;font-weight:900;color:#202124}
+.verify{color:#ff5a00;font-size:13px}
+.sub-count{display:block;margin-top:3px;color:#6b7280;font-size:12px;font-weight:800}
+.subscribe-btn{
+background:#ff5a00;color:#fff;border-radius:12px;padding:11px 16px;font-size:13px;font-weight:900
+}
+.dots{font-size:22px;color:#5f6368}
+
+.caption{
+padding:20px 24px;border-bottom:1px solid #edf0f4;display:grid;grid-template-columns:44px 1fr;
+gap:12px;flex-shrink:0;background:#fffaf6
+}
+.caption img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.caption p{font-size:15px;line-height:1.45;font-weight:700;color:#303236}
+.caption strong{font-weight:900}
+.caption .tags{display:block;margin-top:12px;color:#ff5a00;font-weight:900}
+.caption small{display:block;margin-top:8px;color:#8a9099;font-weight:800}
+
+.comments{
+flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:18px;background:#fff
+}
+.comment{display:grid;grid-template-columns:40px 1fr 28px;gap:12px}
+.comment img{width:38px;height:38px;border-radius:50%;object-fit:cover}
+.comment strong{font-size:14px;font-weight:900;color:#202124}
+.comment p{font-size:14px;font-weight:600;line-height:1.4;margin-top:4px;color:#4b5563}
+.comment small{display:inline-block;margin-top:8px;color:#8a9099;font-weight:800;font-size:12px}
+.comment .like{color:#8a9099;font-size:16px;padding-top:5px}
+.comment .like:hover{color:#ff5a00}
+
+.actions{
+border-top:1px solid #edf0f4;padding:16px 24px 12px;flex-shrink:0;background:#fff
+}
+.action-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.action-left{display:flex;gap:18px;font-size:24px}
+.action-left i,.bookmark{transition:.2s;cursor:pointer}
+.action-left i:hover,.bookmark:hover{color:#ff5a00}
+.bookmark{font-size:24px}
+.likes{font-size:14px;font-weight:900;margin-bottom:4px}
+.date{font-size:12px;color:#8a9099;font-weight:800}
+
+.public-comment{
+height:68px;border-top:1px solid #edf0f4;display:flex;align-items:center;gap:12px;
+padding:0 24px;flex-shrink:0;background:#fff
+}
+.public-comment i{color:#5f6368}
+.public-comment input{
+flex:1;height:44px;background:#f8f9fb;border:1px solid #edf0f4;border-radius:24px;
+outline:none;padding:0 16px;color:#202124;font-size:14px;font-weight:700
+}
+.public-comment input::placeholder{color:#8a9099}
+.public-comment button{font-size:14px;font-weight:900;color:#ff5a00}
+
+.toast{
+position:fixed;top:28px;left:50%;transform:translateX(-50%) translateY(-20px);
+background:#202124;color:#fff;padding:13px 18px;border-radius:12px;font-weight:900;
+opacity:0;transition:.25s;z-index:100
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:900px){
+.story-modal{grid-template-columns:1fr;height:100vh;width:100vw;border-radius:0}
+.story-right{display:none}
+.story-img{width:100%;height:100%}
+.close-btn{right:12px;top:12px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="toast" id="toast">Sent to Ashish Chanchlani</div>
+
+<div class="story-page">
+
+<button class="close-btn" onclick="window.location.href='watch-ashish-chanchlani.html'">
+<i class="fa-solid fa-xmark"></i>
+</button>
+
+<div class="story-modal">
+
+<div class="story-left">
+
+<div class="progress-wrap" id="progressWrap">
+<div class="progress active"><span></span></div>
+<div class="progress"><span></span></div>
+<div class="progress"><span></span></div>
+</div>
+
+<div class="story-user">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg">
+<div>
+<strong>Ashish Chanchlani</strong>
+<span>1h ago</span>
+</div>
+</div>
+
+<img id="storyImage" class="story-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ashish%20Chanchalani%200.avif">
+
+<div class="nav-area nav-left" onclick="prevStory()"></div>
+<div class="nav-area nav-right" onclick="nextStory()"></div>
+
+<button class="arrow left" onclick="prevStory()"><i class="fa-solid fa-chevron-left"></i></button>
+<button class="arrow right" onclick="nextStory()"><i class="fa-solid fa-chevron-right"></i></button>
+
+<div class="story-bottom">
+<div class="reply-box">
+<input id="privateReply" placeholder="Reply to Ashish Chanchlani...">
+</div>
+
+<button class="story-icon" id="heartBtn" onclick="toggleHeart()">
+<i class="fa-regular fa-heart"></i>
+</button>
+
+<button class="story-icon" onclick="sendPrivateReply()">
+<i class="fa-regular fa-paper-plane"></i>
+</button>
+</div>
+
+</div>
+
+<div class="story-right">
+
+<div class="right-head">
+<div class="account">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg">
+<div>
+<strong>Ashish Chanchlani <i class="fa-solid fa-circle-check verify"></i></strong>
+<span class="sub-count">32.5M subscribers</span>
+</div>
+</div>
+
+<div style="display:flex;align-items:center;gap:16px;">
+<button class="subscribe-btn" onclick="toggleSubscribe(this)">Subscribe</button>
+<i class="fa-solid fa-ellipsis dots"></i>
+</div>
+</div>
+
+<div class="caption">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg">
+<div>
+<p>
+<strong>Ashish Chanchlani</strong>
+New comedy story drop! Behind-the-scenes madness, funny moments and creator energy 😂🔥
+<span class="tags">#AshishChanchlani #Comedy #JioVibe</span>
+</p>
+<small>1 h</small>
+</div>
+</div>
+
+<div class="comments" id="publicComments">
+<div class="comment">
+<img src="https://i.pravatar.cc/80?img=12">
+<div>
+<strong>comedyfan_18</strong>
+<p>This scene is too funny 😂</p>
+<small>45 m &nbsp; 2,120 likes &nbsp; Reply</small>
+</div>
+<i class="fa-regular fa-heart like"></i>
+</div>
+
+<div class="comment">
+<img src="https://i.pravatar.cc/80?img=33">
+<div>
+<strong>mumbai_vibes</strong>
+<p>Ashish bhai never disappoints 🔥</p>
+<small>30 m &nbsp; 920 likes &nbsp; Reply</small>
+</div>
+<i class="fa-regular fa-heart like"></i>
+</div>
+
+<div class="comment">
+<img src="https://i.pravatar.cc/80?img=48">
+<div>
+<strong>laughingclub</strong>
+<p>Relatable comedy king 😂</p>
+<small>22 m &nbsp; 410 likes &nbsp; Reply</small>
+</div>
+<i class="fa-regular fa-heart like"></i>
+</div>
+
+<div class="comment">
+<img src="https://i.pravatar.cc/80?img=19">
+<div>
+<strong>creatorfan</strong>
+<p>JioVibe story feature looks clean and premium.</p>
+<small>10 m &nbsp; 119 likes &nbsp; Reply</small>
+</div>
+<i class="fa-regular fa-heart like"></i>
+</div>
+</div>
+
+<div class="actions">
+<div class="action-row">
+<div class="action-left">
+<i class="fa-regular fa-heart"></i>
+<i class="fa-regular fa-comment"></i>
+<i class="fa-regular fa-paper-plane"></i>
+</div>
+<i class="fa-regular fa-bookmark bookmark"></i>
+</div>
+<div class="likes">2.4M likes</div>
+<div class="date">30 April</div>
+</div>
+
+<div class="public-comment">
+<i class="fa-regular fa-face-smile"></i>
+<input id="publicInput" placeholder="Add a public comment...">
+<button onclick="sendPublicComment()">Post</button>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script>
+const stories = [
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ashish%20Chanchalani%200.avif",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ashish%20Chanchalani%201.jpg",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ashish%20Chanchalani%202.jpeg"
+];
+
+let currentStory = 0;
+let timer;
+
+function updateStory(){
+document.getElementById("storyImage").src = stories[currentStory];
+
+const bars = document.querySelectorAll(".progress");
+bars.forEach((bar,index)=>{
+bar.classList.remove("active","done");
+bar.querySelector("span").style.animation = "none";
+bar.querySelector("span").offsetHeight;
+bar.querySelector("span").style.animation = "";
+if(index < currentStory){bar.classList.add("done");}
+if(index === currentStory){bar.classList.add("active");}
+});
+
+clearTimeout(timer);
+timer = setTimeout(nextStory,5000);
+}
+
+function nextStory(){
+currentStory++;
+if(currentStory >= stories.length){currentStory = 0;}
+updateStory();
+}
+
+function prevStory(){
+currentStory--;
+if(currentStory < 0){currentStory = stories.length - 1;}
+updateStory();
+}
+
+function toggleHeart(){
+const btn = document.getElementById("heartBtn");
+btn.classList.toggle("liked");
+btn.innerHTML = btn.classList.contains("liked")
+? '<i class="fa-solid fa-heart"></i>'
+: '<i class="fa-regular fa-heart"></i>';
+}
+
+function sendPrivateReply(){
+const input = document.getElementById("privateReply");
+if(!input.value.trim()) return;
+showToast("Message sent directly to Ashish Chanchlani");
+input.value = "";
+}
+
+function sendPublicComment(){
+const input = document.getElementById("publicInput");
+const text = input.value.trim();
+if(!text) return;
+
+const box = document.getElementById("publicComments");
+const div = document.createElement("div");
+div.className = "comment";
+div.innerHTML = `
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
+<div>
+<strong>Trupti Latur</strong>
+<p>${text}</p>
+<small>Now &nbsp; Reply</small>
+</div>
+<i class="fa-regular fa-heart like"></i>
+`;
+
+box.appendChild(div);
+box.scrollTop = box.scrollHeight;
+input.value = "";
+}
+
+function toggleSubscribe(btn){
+btn.innerText = btn.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
+btn.style.background = btn.innerText === "Subscribed" ? "#202124" : "#ff5a00";
+}
+
+function showToast(text){
+const toast = document.getElementById("toast");
+toast.innerText = text;
+toast.classList.add("show");
+setTimeout(()=>toast.classList.remove("show"),1800);
+}
+
+document.addEventListener("keydown",function(e){
+if(e.key === "ArrowRight") nextStory();
+if(e.key === "ArrowLeft") prevStory();
+if(e.key === "Escape") window.location.href = "watch-ashish-chanchlani.html";
+});
+
+updateStory();
+</script>
+
+</body>
+</html>
