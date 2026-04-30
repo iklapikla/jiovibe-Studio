@@ -100,7 +100,7 @@ aspect-ratio:16/9;
 position:relative;
 overflow:hidden;
 background:#111;
-max-height:520px
+max-height:none;
 }
 .player img{
 width:100%;height:100%;object-fit:cover;display:block
@@ -650,7 +650,7 @@ function sendChat(){
 const input=document.getElementById("chatInput");
 const text=input.value.trim();
 if(!text)return;
-addChat("You",text,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg");
+addChat("Trupti Latur",text,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg");
 input.value="";
 }
 
