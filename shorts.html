@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shorts - JioVibe</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JioVibe Shorts</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#f8f9fb;color:#202124}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:#f8f9fb;color:#202124;overflow:hidden}
 a{text-decoration:none;color:inherit}
 button,input{font-family:inherit}
 button{border:none;background:none;cursor:pointer;color:inherit}
 
-.app{display:flex;min-height:100vh}
+.app{display:flex;height:100vh}
 
 /* SIDEBAR */
 .sidebar{
 width:250px;
-padding:32px 18px;
-position:fixed;
-height:100%;
-background:#fff;
+height:100vh;
 border-right:1px solid #edf0f4;
+padding:32px 18px;
+background:#fff;
 z-index:10
 }
 .logo{display:flex;align-items:center;gap:4px;margin-bottom:45px;padding-left:8px}
@@ -32,335 +31,351 @@ z-index:10
 width:54px;height:54px;background:#ff5a00;color:#fff;border-radius:50%;
 display:flex;align-items:center;justify-content:center;font-weight:800;font-size:25px
 }
-.logo-text{font-size:32px;font-weight:800;letter-spacing:-1.2px;color:#2b070b}
+.logo-text{font-size:32px;font-weight:800;color:#2b070b;letter-spacing:-1.2px}
 .menu{display:flex;flex-direction:column;gap:12px}
 .menu-item{
 display:flex;align-items:center;gap:18px;padding:17px 22px;border-radius:14px;
-font-weight:600;font-size:16px;color:#383838;transition:.25s
+font-weight:600;color:#383838;font-size:16px;transition:.25s
 }
 .menu-item i{width:22px;font-size:22px;text-align:center}
 .menu-item:hover{background:#fff0e8;color:#ff5a00}
 .menu-item.active{background:#ff5a00;color:#fff}
 
 /* MAIN */
-.main{margin-left:250px;width:calc(100% - 250px)}
-
-/* TOPBAR */
+.main{flex:1;height:100vh;display:flex;flex-direction:column}
 .topbar{
-height:94px;border-bottom:1px solid #edf0f4;display:flex;align-items:center;justify-content:space-between;
-padding:0 48px;background:#fff;position:sticky;top:0;z-index:8
+height:94px;
+border-bottom:1px solid #edf0f4;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 48px;
+background:#fff;
+position:sticky;
+top:0;
+z-index:8
 }
 .search{
-width:600px;height:50px;border:1px solid #e8ebf0;border-radius:28px;
-display:flex;align-items:center;gap:16px;padding:0 22px;color:#9ba1ad;background:#fff
+width:600px;
+height:50px;
+border:1px solid #e8ebf0;
+border-radius:28px;
+display:flex;
+align-items:center;
+gap:16px;
+padding:0 22px;
+color:#9ba1ad;
+background:#fff
 }
-.search input{border:none;outline:none;flex:1;font-size:15px;color:#333}
+.search input{border:none;outline:none;flex:1;font-size:15px;background:transparent}
 .top-actions{display:flex;align-items:center;gap:22px;position:relative}
-.bell{font-size:23px;position:relative;cursor:pointer}
+.bell{font-size:23px;position:relative;width:28px;height:28px;display:flex;align-items:center;justify-content:center}
 .bell::after{
 content:"1";position:absolute;top:-8px;right:-7px;background:#ff5a00;color:#fff;
-font-size:10px;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center
+font-size:10px;font-weight:700;width:17px;height:17px;border-radius:50%;
+display:flex;align-items:center;justify-content:center
 }
-.profile{display:flex;align-items:center;gap:12px;cursor:pointer;padding:8px;border-radius:18px}
-.profile img{width:48px;height:48px;border-radius:50%;object-fit:cover}
-.profile span{font-weight:700;font-size:15px}
+.profile{display:flex;align-items:center;gap:12px;cursor:pointer;height:54px}
+.profile img{width:48px;height:48px;object-fit:cover;border-radius:50%}
+.profile span{font-weight:700;font-size:15px;white-space:nowrap}
+.profile i{font-size:14px}
 .dropdown{
 position:absolute;top:70px;right:0;width:200px;background:#fff;border-radius:14px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);display:none;overflow:hidden;z-index:20
+box-shadow:0 10px 30px rgba(0,0,0,.15);display:none;overflow:hidden;z-index:20
 }
-.dropdown a{display:block;padding:14px;font-weight:600;color:#2f2f2f}
-.dropdown a:hover{background:#f1f3f4;color:#111}
+.dropdown a{display:block;padding:14px;font-weight:700}
+.dropdown a:hover{background:#f1f3f4}
 .dropdown.show{display:block}
 
-/* PAGE */
-.content{padding:30px 48px 60px}
-.page-head{margin-bottom:24px}
-.page-head h1{font-size:32px;font-weight:900}
-.page-head p{font-size:16px;font-weight:700;color:#6b7280;margin-top:6px}
+/* FEED */
+.feed-home{
+flex:1;
+overflow-y:auto;
+padding:28px 34px 50px;
+background:#fbfbfc
+}
+.feed-title{margin-bottom:22px}
+.feed-title h1{font-size:30px;font-weight:900}
+.feed-title p{color:#777;font-weight:700;margin-top:5px}
 
-.shorts-grid{
+.feed-grid{
 display:grid;
 grid-template-columns:repeat(5,1fr);
-gap:18px;
+gap:18px
 }
-
-.short-card{
-height:360px;
-border-radius:18px;
+.feed-card{
+width:100%;
+aspect-ratio:9/16;
+border-radius:20px;
 overflow:hidden;
 position:relative;
-background:#111;
-box-shadow:0 6px 18px rgba(0,0,0,.08);
+background:#000;
 cursor:pointer;
-transition:.2s;
+box-shadow:0 10px 28px rgba(0,0,0,.10);
+transition:.25s
 }
-.short-card:hover{
-box-shadow:0 14px 30px rgba(0,0,0,.16);
+.feed-card:hover{
+box-shadow:0 18px 40px rgba(0,0,0,.16)
 }
-.short-card img{
+.feed-card img{
 width:100%;
 height:100%;
 object-fit:cover;
-display:block;
+display:block
 }
-.short-card::after{
+.feed-card:after{
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,0.05));
+background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.72))
 }
-.short-views{
+.feed-card .views{
 position:absolute;
 top:12px;
 left:12px;
-z-index:2;
-background:rgba(0,0,0,.72);
+background:rgba(0,0,0,.60);
 color:#fff;
-border-radius:8px;
+padding:7px 10px;
+border-radius:9px;
 font-size:12px;
 font-weight:900;
-padding:6px 9px;
+z-index:2
 }
-.short-info{
+.feed-card .feed-info{
 position:absolute;
 left:14px;
 right:14px;
 bottom:14px;
-z-index:2;
 color:#fff;
+z-index:2
 }
-.short-info h3{
+.feed-info h3{
 font-size:15px;
-font-weight:900;
-line-height:1.3;
-margin-bottom:5px;
+line-height:1.35;
+margin-bottom:7px;
+font-weight:900
 }
-.short-info p{
+.feed-info p{
 font-size:12px;
-font-weight:700;
-opacity:.9;
+color:#eee;
+font-weight:700
 }
 
-/* REEL MODAL */
-.reel-overlay{
+/* PLAYER */
+.player-mode{
 position:fixed;
 inset:0;
-background:rgba(248,249,251,.98);
-z-index:100;
-display:none;
-align-items:center;
-justify-content:center;
+background:#fbfbfc;
+z-index:60;
+display:none
 }
-.reel-overlay.show{display:flex}
+.player-mode.show{display:block}
 
-.close-reel{
+.close-player{
 position:fixed;
+top:22px;
 right:28px;
-top:24px;
 width:48px;
 height:48px;
 border-radius:50%;
 background:#fff;
 color:#ff5a00;
-box-shadow:0 8px 24px rgba(0,0,0,.12);
-font-size:24px;
-z-index:120;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-.close-reel:hover{
-background:#ff5a00;
-color:#fff;
+box-shadow:0 8px 28px rgba(0,0,0,.15);
+z-index:90;
+font-size:22px
 }
 
-.reel-stage{
-height:88vh;
+.short-scroll{
+height:100vh;
+overflow-y:auto;
+scroll-snap-type:y mandatory;
+scroll-behavior:smooth;
+scrollbar-width:none;
 display:flex;
+flex-direction:column;
 align-items:center;
-justify-content:center;
-gap:28px;
+padding:18px 0
+}
+.short-scroll::-webkit-scrollbar{display:none}
+
+.short-item{
+height:100vh;
+width:720px;
+max-width:96vw;
 position:relative;
+scroll-snap-align:start;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0
 }
 
-.reel-card{
-height:82vh;
+.phone{
+height:calc(100vh - 36px);
 aspect-ratio:9/16;
-max-height:760px;
-background:#111;
-border-radius:20px;
+max-height:940px;
+border-radius:24px;
 overflow:hidden;
 position:relative;
-box-shadow:0 28px 70px rgba(0,0,0,.20);
+background:#000;
+box-shadow:0 24px 55px rgba(0,0,0,.20)
 }
-.reel-card img{
+.phone img{
 width:100%;
 height:100%;
 object-fit:cover;
-display:block;
+display:block
 }
-.reel-card::after{
+.phone::after{
 content:"";
 position:absolute;
 inset:0;
-background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.05));
+background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.06) 45%,rgba(0,0,0,.72));
+pointer-events:none
 }
-
-.mute-btn{
+.mute{
 position:absolute;
-right:14px;
-top:14px;
-z-index:3;
-width:38px;
-height:38px;
-border-radius:50%;
+top:18px;
+right:18px;
+width:44px;
+height:44px;
 background:rgba(0,0,0,.45);
 color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:16px;
+border-radius:50%;
+z-index:3;
+font-size:18px
 }
 
-.reel-bottom{
+.short-info{
 position:absolute;
-left:18px;
-right:18px;
-bottom:18px;
-z-index:3;
-color:#fff;
+left:24px;
+right:24px;
+bottom:38px;
+z-index:4;
+color:#fff
 }
 .creator-line{
 display:flex;
 align-items:center;
 gap:10px;
-margin-bottom:12px;
+margin-bottom:16px
 }
 .creator-line img{
 width:42px;
 height:42px;
 border-radius:50%;
 object-fit:cover;
-border:2px solid #fff;
+border:2px solid #fff
 }
-.creator-line strong{
-font-size:15px;
-font-weight:900;
-}
+.creator-line b{font-size:15px}
 .verify{color:#ff5a00}
 .follow-btn{
 margin-left:auto;
 border:1px solid #ff5a00;
+background:rgba(0,0,0,.25);
 color:#fff;
-background:rgba(255,90,0,.18);
-border-radius:999px;
-padding:8px 14px;
-font-size:12px;
-font-weight:900;
-}
-.follow-btn.followed{
-background:#fff;
-color:#202124;
-border-color:#fff;
-}
-.reel-title{
-font-size:15px;
-font-weight:800;
-line-height:1.45;
-margin-bottom:8px;
-}
-.reel-tags{
-font-size:13px;
-font-weight:900;
-color:#ff5a00;
-margin-bottom:12px;
-}
-.reel-progress{
-height:4px;
-background:rgba(255,255,255,.4);
 border-radius:20px;
-overflow:hidden;
+padding:9px 18px;
+font-weight:900
 }
-.reel-progress span{
+.follow-btn.following{
+background:#fff;
+color:#333;
+border-color:#fff
+}
+.caption{font-size:15px;line-height:1.5;margin-bottom:8px;font-weight:800}
+.tags{font-size:14px;font-weight:900;color:#ff5a00}
+
+.short-progress{
+position:absolute;
+left:24px;
+right:24px;
+bottom:22px;
+height:4px;
+background:rgba(255,255,255,.35);
+border-radius:10px;
+z-index:4
+}
+.short-progress span{
 display:block;
 height:100%;
-width:38%;
+width:40%;
 background:#ff5a00;
+border-radius:10px
 }
-.reel-time{
+.time{
+position:absolute;
+right:24px;
+bottom:10px;
+color:#fff;
+font-size:13px;
+font-weight:800;
+z-index:4
+}
+
+/* ACTION BUTTONS */
+.actions{
 position:absolute;
 right:0;
-bottom:10px;
-font-size:12px;
-font-weight:900;
-color:#fff;
-}
-
-/* ACTIONS */
-.reel-actions{
+transform:translateX(88px);
+top:50%;
+margin-top:-150px;
 display:flex;
 flex-direction:column;
-gap:16px;
+gap:18px
 }
-.action-btn{
-width:58px;
-min-height:58px;
+.action{
+width:66px;
+min-height:66px;
 border-radius:14px;
 background:#fff;
-box-shadow:0 8px 22px rgba(0,0,0,.08);
+box-shadow:0 8px 28px rgba(0,0,0,.10);
 display:flex;
 flex-direction:column;
 align-items:center;
 justify-content:center;
-gap:5px;
-font-size:20px;
-color:#4b5563;
+gap:6px;
 font-weight:900;
+color:#555
 }
-.action-btn span{
-font-size:11px;
-font-weight:900;
-}
-.action-btn:hover{
-color:#ff5a00;
-background:#fff0e8;
-}
-.action-btn.active{
-background:#ff5a00;
-color:#fff;
-}
+.action i{font-size:24px}
+.action span{font-size:12px}
+.action:hover{background:#fff0e8;color:#ff5a00}
+.action.liked{background:#ff5a00;color:#fff}
 
-/* SCROLL BUTTONS */
-.reel-nav{
+.more-menu{
+display:none;
 position:absolute;
-left:50%;
-transform:translateX(-50%);
-width:48px;
-height:48px;
-border-radius:50%;
+right:-250px;
+top:70%;
+width:220px;
 background:#fff;
-color:#202124;
-box-shadow:0 8px 24px rgba(0,0,0,.12);
-font-size:20px;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:110;
+border:1px solid #edf0f4;
+border-radius:16px;
+box-shadow:0 10px 30px rgba(0,0,0,.16);
+z-index:30;
+overflow:hidden
 }
-.reel-nav.up{top:18px}
-.reel-nav.down{bottom:18px}
-.reel-nav:hover{
-background:#ff5a00;
-color:#fff;
+.more-menu.show{display:block}
+.more-menu div{
+padding:14px 16px;
+font-size:14px;
+font-weight:800;
+cursor:pointer
+}
+.more-menu div:hover{
+background:#fff0e8;
+color:#ff5a00
 }
 
-/* COMMENTS POP */
+/* COMMENT PANEL FIXED */
 .comment-panel{
 position:fixed;
-right:40px;
-bottom:40px;
-width:380px;
-height:520px;
+right:36px;
+top:50%;
+transform:translateY(-50%);
+width:390px;
+height:560px;
 background:#fff;
 border:1px solid #e8ebf0;
 border-radius:20px;
@@ -368,7 +383,7 @@ box-shadow:0 24px 60px rgba(0,0,0,.20);
 z-index:130;
 display:none;
 flex-direction:column;
-overflow:hidden;
+overflow:hidden
 }
 .comment-panel.show{display:flex}
 .comment-head{
@@ -378,6 +393,7 @@ display:flex;
 align-items:center;
 justify-content:space-between;
 padding:0 18px;
+flex-shrink:0
 }
 .comment-head h3{font-size:18px;font-weight:900}
 .comment-list{
@@ -386,26 +402,27 @@ overflow:auto;
 padding:16px;
 display:flex;
 flex-direction:column;
-gap:14px;
+gap:14px
 }
 .comment{
 display:grid;
 grid-template-columns:38px 1fr;
-gap:10px;
+gap:10px
 }
 .comment img{
 width:36px;
 height:36px;
 border-radius:50%;
-object-fit:cover;
+object-fit:cover
 }
-.comment strong{font-size:13px;font-weight:900}
+.comment h4{font-size:13px;font-weight:900}
 .comment p{font-size:13px;color:#4b5563;font-weight:600;margin-top:3px}
 .comment-input{
 border-top:1px solid #edf0f4;
 padding:12px;
 display:flex;
 gap:8px;
+flex-shrink:0
 }
 .comment-input input{
 flex:1;
@@ -414,62 +431,66 @@ border:1px solid #e8ebf0;
 border-radius:22px;
 padding:0 14px;
 outline:none;
-font-weight:700;
+font-weight:700
 }
-.comment-input button{
+.send{
 width:42px;
 height:42px;
 border-radius:50%;
 background:#ff5a00;
 color:#fff;
+font-size:16px
 }
 
-/* SHARE */
-.share-pop{
+/* SHARE MODAL */
+.modal-bg{
 position:fixed;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-width:420px;
-background:#fff;
-border-radius:22px;
-box-shadow:0 24px 70px rgba(0,0,0,.22);
-z-index:140;
+inset:0;
+background:rgba(0,0,0,.45);
 display:none;
-padding:24px;
-}
-.share-pop.show{display:block}
-.share-pop h3{
-font-size:22px;
-font-weight:900;
-margin-bottom:18px;
-}
-.share-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-}
-.share-item{
-height:78px;
-border:1px solid #e8ebf0;
-border-radius:16px;
-display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
-gap:8px;
-font-weight:800;
+z-index:140
 }
-.share-item:hover{
+.modal-bg.show{display:flex}
+.modal{
+background:#fff;
+width:420px;
+border-radius:20px;
+padding:24px;
+box-shadow:0 15px 45px rgba(0,0,0,.25)
+}
+.modal h2{margin-bottom:18px;font-size:22px;font-weight:900}
+.close{
+margin-top:18px;
+width:100%;
+height:46px;
+border-radius:12px;
+background:#f1f1f1;
+font-weight:900
+}
+.share-icons{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:14px
+}
+.share-icon{
+text-align:center;
+font-size:13px;
+font-weight:800;
+cursor:pointer
+}
+.share-icon i{
+width:54px;
+height:54px;
+border-radius:50%;
 background:#fff0e8;
 color:#ff5a00;
-border-color:#ff5a00;
-}
-.share-close{
-position:absolute;
-right:16px;
-top:14px;
-font-size:22px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+margin:0 auto 8px
 }
 
 .toast{
@@ -484,26 +505,36 @@ border-radius:12px;
 font-weight:900;
 opacity:0;
 transition:.25s;
-z-index:200;
+z-index:200
 }
 .toast.show{
 opacity:1;
-transform:translateX(-50%) translateY(0);
+transform:translateX(-50%) translateY(0)
 }
 
-@media(max-width:1300px){
+@media(max-width:1200px){
+.feed-grid{grid-template-columns:repeat(4,1fr)}
 .search{width:420px}
-.shorts-grid{grid-template-columns:repeat(3,1fr)}
 }
-@media(max-width:900px){
+@media(max-width:1000px){
+.sidebar{width:220px}
+.feed-grid{grid-template-columns:repeat(3,1fr)}
+.actions{transform:translateX(78px)}
+}
+@media(max-width:780px){
 .sidebar{display:none}
-.main{margin-left:0;width:100%}
-.topbar{padding:0 18px}
-.search{width:280px}
-.content{padding:22px}
-.shorts-grid{grid-template-columns:repeat(2,1fr)}
-.reel-actions{position:absolute;right:16px;bottom:110px;z-index:5}
-.comment-panel{right:14px;left:14px;width:auto}
+.topbar{padding:0 16px}
+.profile span{display:none}
+.search{width:100%}
+.feed-home{padding:20px}
+.feed-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+.short-item{width:100%;height:100vh;max-width:100%}
+.phone{width:100%;height:100%;border-radius:0;max-height:none}
+.actions{right:16px;top:auto;bottom:120px;transform:none;margin-top:0;z-index:5}
+.action{background:rgba(255,255,255,.92)}
+.close-player{top:18px;right:18px}
+.comment-panel{right:14px;left:14px;top:50%;width:auto}
+.more-menu{right:20px;top:auto;bottom:105px}
 }
 </style>
 </head>
@@ -537,11 +568,11 @@ transform:translateX(-50%) translateY(0);
 <header class="topbar">
 <div class="search">
 <i class="fa-solid fa-magnifying-glass"></i>
-<input type="text" placeholder="Search creators, videos, topics..." />
+<input placeholder="Search creators, videos, music..." />
 </div>
 
 <div class="top-actions">
-<div class="bell"><i class="fa-regular fa-bell"></i></div>
+<a href="notifications.html" class="bell"><i class="fa-regular fa-bell"></i></a>
 
 <div class="profile" onclick="toggleDropdown()">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
@@ -557,86 +588,25 @@ transform:translateX(-50%) translateY(0);
 </div>
 </header>
 
-<section class="content">
-
-<div class="page-head">
+<section class="feed-home" id="feedHome">
+<div class="feed-title">
 <h1>Shorts</h1>
 <p>Tap any short to open full-screen reel view</p>
 </div>
 
-<div class="shorts-grid" id="shortsGrid"></div>
-
+<div class="feed-grid" id="feedGrid"></div>
 </section>
 
 </main>
 </div>
 
-<!-- REEL MODAL -->
-<div class="reel-overlay" id="reelOverlay">
-
-<button class="close-reel" onclick="closeReel()">
-<i class="fa-solid fa-xmark"></i>
-</button>
-
-<button class="reel-nav up" onclick="prevReel()">
-<i class="fa-solid fa-chevron-up"></i>
-</button>
-
-<div class="reel-stage">
-
-<div class="reel-card">
-<img id="reelImage" src="">
-
-<button class="mute-btn" id="muteBtn" onclick="toggleMute()">
-<i class="fa-solid fa-volume-xmark"></i>
-</button>
-
-<div class="reel-bottom">
-<div class="creator-line">
-<img id="reelProfile" src="">
-<strong id="reelCreator">Creator</strong>
-<i class="fa-solid fa-certificate verify"></i>
-<button class="follow-btn" id="followBtn" onclick="toggleFollow()">Subscribe</button>
+<!-- FULL SCREEN SHORT PLAYER -->
+<div class="player-mode" id="playerMode">
+<button class="close-player" onclick="closePlayer()"><i class="fa-solid fa-xmark"></i></button>
+<div class="short-scroll" id="shortScroll"></div>
 </div>
 
-<div class="reel-title" id="reelTitle">Short title</div>
-<div class="reel-tags" id="reelTags">#JioVibe #Shorts</div>
-
-<div class="reel-progress"><span id="reelProgress"></span></div>
-<div class="reel-time" id="reelTime">00:08 / 00:25</div>
-</div>
-</div>
-
-<div class="reel-actions">
-<button class="action-btn" id="likeBtn" onclick="toggleLike()">
-<i class="fa-solid fa-heart"></i>
-<span id="likeCount">24.5K</span>
-</button>
-
-<button class="action-btn" onclick="openComments()">
-<i class="fa-regular fa-comment-dots"></i>
-<span id="commentCount">785</span>
-</button>
-
-<button class="action-btn" onclick="openShare()">
-<i class="fa-solid fa-share"></i>
-<span>1.2K</span>
-</button>
-
-<button class="action-btn" onclick="showToast('More options coming soon')">
-<i class="fa-solid fa-ellipsis"></i>
-</button>
-</div>
-
-</div>
-
-<button class="reel-nav down" onclick="nextReel()">
-<i class="fa-solid fa-chevron-down"></i>
-</button>
-
-</div>
-
-<!-- COMMENTS -->
+<!-- COMMENT PANEL -->
 <div class="comment-panel" id="commentPanel">
 <div class="comment-head">
 <h3>Comments</h3>
@@ -647,20 +617,27 @@ transform:translateX(-50%) translateY(0);
 
 <div class="comment-input">
 <input id="commentInput" placeholder="Add a comment...">
-<button onclick="sendComment()"><i class="fa-solid fa-paper-plane"></i></button>
+<button class="send" onclick="sendComment()"><i class="fa-solid fa-paper-plane"></i></button>
 </div>
 </div>
 
-<!-- SHARE -->
-<div class="share-pop" id="sharePop">
-<button class="share-close" onclick="closeShare()"><i class="fa-solid fa-xmark"></i></button>
-<h3>Share Short</h3>
+<!-- SHARE MODAL -->
+<div class="modal-bg" id="shareModal">
+<div class="modal">
+<h2>Share Short</h2>
 
-<div class="share-grid">
-<button class="share-item" onclick="shareToast('WhatsApp')"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
-<button class="share-item" onclick="shareToast('Instagram')"><i class="fa-brands fa-instagram"></i> Instagram</button>
-<button class="share-item" onclick="shareToast('X')"><i class="fa-brands fa-x-twitter"></i> X</button>
-<button class="share-item" onclick="nativeShare()"><i class="fa-solid fa-ellipsis"></i> More</button>
+<div class="share-icons">
+<div class="share-icon" onclick="shareToast('WhatsApp')"><i class="fa-brands fa-whatsapp"></i>WhatsApp</div>
+<div class="share-icon" onclick="shareToast('Instagram')"><i class="fa-brands fa-instagram"></i>Instagram</div>
+<div class="share-icon" onclick="shareToast('Facebook')"><i class="fa-brands fa-facebook"></i>Facebook</div>
+<div class="share-icon" onclick="shareToast('Twitter')"><i class="fa-brands fa-x-twitter"></i>Twitter</div>
+<div class="share-icon" onclick="shareToast('Telegram')"><i class="fa-brands fa-telegram"></i>Telegram</div>
+<div class="share-icon" onclick="copyLink()"><i class="fa-solid fa-link"></i>Copy Link</div>
+<div class="share-icon" onclick="shareToast('Email')"><i class="fa-solid fa-envelope"></i>Email</div>
+<div class="share-icon" onclick="nativeShare()"><i class="fa-solid fa-ellipsis"></i>More</div>
+</div>
+
+<button class="close" onclick="closeModal('shareModal')">Close</button>
 </div>
 </div>
 
@@ -675,180 +652,225 @@ document.getElementById("dropdown").classList.remove("show");
 }
 });
 
-const shorts = [
+const shortsData = [
 {
-name:"Narendra Modi",
 gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Narendra%20Modi.gif",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Narendra%20Modi.jpeg",
-title:"Major event moments in seconds",
+creator:"Narendra Modi",
+avatar:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Narendra%20Modi.jpeg",
+caption:"Major event moments in seconds",
 tags:"#Modi #India #Shorts",
-views:"1.4M",
-likes:"42.5K",
-comments:"1.2K"
+likes:"42.5K", comments:"1.2K", shares:"2.1K", views:"1.4M"
 },
 {
-name:"Rohit Sharma",
 gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Rohit%20Sharma.gif",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg",
-title:"Captain energy and cricket vibes",
+creator:"Rohit Sharma",
+avatar:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg",
+caption:"Captain energy and cricket vibes",
 tags:"#RohitSharma #Cricket #Sports",
-views:"980K",
-likes:"32.1K",
-comments:"920"
+likes:"32.1K", comments:"920", shares:"1.4K", views:"980K"
 },
 {
-name:"Total Gaming",
 gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg",
-title:"Last zone clutch in 15 seconds",
+creator:"Total Gaming",
+avatar:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg",
+caption:"Last zone clutch in 15 seconds",
 tags:"#Gaming #TotalGaming #Clutch",
-views:"2.2M",
-likes:"88.4K",
-comments:"2.1K"
+likes:"88.4K", comments:"2.1K", shares:"3.6K", views:"2.2M"
 },
 {
-name:"Ashish Chanchlani",
 gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Ashish%20Chanchlani.gif",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg",
-title:"When friends say just 5 minutes",
+creator:"Ashish Chanchlani",
+avatar:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg",
+caption:"When friends say just 5 minutes",
 tags:"#Comedy #AshishChanchlani #Funny",
-views:"760K",
-likes:"24.5K",
-comments:"785"
+likes:"24.5K", comments:"785", shares:"1.2K", views:"760K"
 },
 {
-name:"Arijit Singh",
 gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Arijit%20Singh.gif",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Arijit%20Singh.jpg",
-title:"Studio melody in a short vibe",
+creator:"Arijit Singh",
+avatar:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Arijit%20Singh.jpg",
+caption:"Studio melody in a short vibe",
 tags:"#Music #ArijitSingh #Vibes",
-views:"1.1M",
-likes:"52.8K",
-comments:"1.6K"
+likes:"52.8K", comments:"1.6K", shares:"2.8K", views:"1.1M"
 },
 {
-name:"Technical Guruji",
 gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Technical%20Guruji.gif",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg",
-title:"Future tech in 15 seconds",
+creator:"Technical Guruji",
+avatar:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg",
+caption:"Future tech in 15 seconds",
 tags:"#Tech #Gadgets #TechnicalGuruji",
-views:"3.8M",
-likes:"94.2K",
-comments:"3.2K"
+likes:"94.2K", comments:"3.2K", shares:"4.8K", views:"3.8M"
 },
 {
-name:"Khan Sir",
 gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Khan%20Sir.gif",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg",
-title:"Simple explanation that hits hard",
+creator:"Khan Sir",
+avatar:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg",
+caption:"Simple explanation that hits hard",
 tags:"#Education #KhanSir #Learning",
-views:"690K",
-likes:"19.8K",
-comments:"540"
+likes:"19.8K", comments:"540", shares:"890", views:"690K"
 },
 {
-name:"Flying Beast",
 gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Flying%20Beast.gif",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.png",
-title:"Travel mood with family vibes",
+creator:"Flying Beast",
+avatar:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.png",
+caption:"Travel mood with family vibes",
 tags:"#Lifestyle #FlyingBeast #Travel",
-views:"1.7M",
-likes:"64.2K",
-comments:"1.4K"
+likes:"64.2K", comments:"1.4K", shares:"2.2K", views:"1.7M"
 },
 {
-name:"Ranveer Singh",
 gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Ranveer%20Singh.gif",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg",
-title:"Energy, style and creator vibes",
+creator:"Ranveer Singh",
+avatar:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg",
+caption:"Energy, style and creator vibes",
 tags:"#RanveerSingh #Movies #Energy",
-views:"1.4M",
-likes:"75.9K",
-comments:"2.4K"
+likes:"75.9K", comments:"2.4K", shares:"3.1K", views:"1.4M"
 }
 ];
 
-let currentReel = 0;
-let isMuted = true;
+let feedMultiplier = 4;
 
-function renderGrid(){
-const grid = document.getElementById("shortsGrid");
-grid.innerHTML = shorts.concat(shorts.slice(0,6)).map((item,index)=>{
-const realIndex = index % shorts.length;
-return `
-<div class="short-card" onclick="openReel(${realIndex})">
+function renderFeed(){
+const grid = document.getElementById("feedGrid");
+grid.innerHTML = "";
+
+for(let round=0; round<feedMultiplier; round++){
+shortsData.forEach((item,index)=>{
+const card = document.createElement("div");
+card.className = "feed-card";
+card.onclick = () => openPlayer(index);
+card.innerHTML = `
 <img src="${item.gif}">
-<div class="short-views"><i class="fa-solid fa-play"></i> ${item.views}</div>
-<div class="short-info">
-<h3>${item.title}</h3>
-<p>${item.name}</p>
-</div>
+<span class="views"><i class="fa-solid fa-play"></i> ${item.views}</span>
+<div class="feed-info">
+<h3>${item.caption}</h3>
+<p>${item.creator}</p>
 </div>
 `;
-}).join("");
+grid.appendChild(card);
+});
+}
 }
 
-function openReel(index){
-currentReel = index;
-document.getElementById("reelOverlay").classList.add("show");
-updateReel();
+function createShortItem(item,index){
+const wrap = document.createElement("div");
+wrap.className = "short-item";
+
+wrap.innerHTML = `
+<div class="phone">
+<img src="${item.gif}">
+<button class="mute" onclick="toggleMute(this)"><i class="fa-solid fa-volume-xmark"></i></button>
+
+<div class="short-info">
+<div class="creator-line">
+<img src="${item.avatar}">
+<b>${item.creator} <span class="verify"><i class="fa-solid fa-certificate"></i></span></b>
+<button class="follow-btn" onclick="toggleFollow(this)">Subscribe</button>
+</div>
+<div class="caption">${item.caption}</div>
+<div class="tags">${item.tags}</div>
+</div>
+
+<div class="short-progress"><span style="width:${35 + (index % 5) * 10}%"></span></div>
+<div class="time">00:${String(8 + (index % 15)).padStart(2,"0")} / 00:25</div>
+</div>
+
+<div class="actions">
+<button class="action like" onclick="toggleLike(this)"><i class="fa-solid fa-heart"></i><span>${item.likes}</span></button>
+<button class="action" onclick="openComments()"><i class="fa-regular fa-comment-dots"></i><span>${item.comments}</span></button>
+<button class="action" onclick="openModal('shareModal')"><i class="fa-solid fa-share"></i><span>${item.shares}</span></button>
+<button class="action" onclick="toggleMoreMenu(this)"><i class="fa-solid fa-ellipsis"></i></button>
+</div>
+
+<div class="more-menu">
+<div onclick="showToast('Short saved')"><i class="fa-regular fa-bookmark"></i> Save short</div>
+<div onclick="showToast('Added to playlist')"><i class="fa-solid fa-list"></i> Add to playlist</div>
+<div onclick="showToast('Marked as not interested')"><i class="fa-regular fa-eye-slash"></i> Not interested</div>
+<div onclick="showToast('Report submitted')"><i class="fa-regular fa-flag"></i> Report</div>
+</div>
+`;
+
+return wrap;
 }
 
-function closeReel(){
-document.getElementById("reelOverlay").classList.remove("show");
+function openPlayer(index){
+const player = document.getElementById("playerMode");
+const scroll = document.getElementById("shortScroll");
+scroll.innerHTML = "";
+
+let playerList = [];
+for(let i=0;i<40;i++){
+playerList.push(shortsData[(index+i)%shortsData.length]);
+}
+
+playerList.forEach((item,i)=>{
+scroll.appendChild(createShortItem(item,i));
+});
+
+player.classList.add("show");
+
+setTimeout(()=>{
+scroll.scrollTop = 0;
+},50);
+}
+
+function closePlayer(){
+document.getElementById("playerMode").classList.remove("show");
+document.getElementById("shortScroll").innerHTML = "";
 closeComments();
-closeShare();
+closeModal("shareModal");
 }
 
-function updateReel(){
-const item = shorts[currentReel];
-
-document.getElementById("reelImage").src = item.gif;
-document.getElementById("reelProfile").src = item.profile;
-document.getElementById("reelCreator").innerText = item.name;
-document.getElementById("reelTitle").innerText = item.title;
-document.getElementById("reelTags").innerText = item.tags;
-document.getElementById("likeCount").innerText = item.likes;
-document.getElementById("commentCount").innerText = item.comments;
-
-document.getElementById("likeBtn").classList.remove("active");
-document.getElementById("followBtn").innerText = "Subscribe";
-document.getElementById("followBtn").classList.remove("followed");
-
-renderComments();
+function toggleLike(btn){
+btn.classList.toggle("liked");
+const span = btn.querySelector("span");
+if(!btn.dataset.base) btn.dataset.base = span.innerText;
+span.innerText = btn.classList.contains("liked") ? "Liked" : btn.dataset.base;
 }
 
-function nextReel(){
-currentReel = (currentReel + 1) % shorts.length;
-updateReel();
+function toggleFollow(btn){
+btn.classList.toggle("following");
+btn.innerText = btn.classList.contains("following") ? "Subscribed" : "Subscribe";
 }
 
-function prevReel(){
-currentReel = (currentReel - 1 + shorts.length) % shorts.length;
-updateReel();
+function toggleMute(btn){
+const icon = btn.querySelector("i");
+icon.classList.toggle("fa-volume-xmark");
+icon.classList.toggle("fa-volume-high");
+showToast(icon.classList.contains("fa-volume-high") ? "Unmuted" : "Muted");
 }
 
-function toggleMute(){
-isMuted = !isMuted;
-document.getElementById("muteBtn").innerHTML = isMuted
-? '<i class="fa-solid fa-volume-xmark"></i>'
-: '<i class="fa-solid fa-volume-high"></i>';
-showToast(isMuted ? "Muted" : "Unmuted");
+function toggleMoreMenu(btn){
+const menu = btn.closest(".short-item").querySelector(".more-menu");
+document.querySelectorAll(".more-menu").forEach(m=>{
+if(m !== menu) m.classList.remove("show");
+});
+menu.classList.toggle("show");
 }
 
-function toggleLike(){
-const btn = document.getElementById("likeBtn");
-btn.classList.toggle("active");
-showToast(btn.classList.contains("active") ? "Liked" : "Like removed");
+document.getElementById("feedHome").addEventListener("scroll", function(){
+if(this.scrollTop + this.clientHeight >= this.scrollHeight - 300){
+feedMultiplier++;
+renderFeed();
 }
+});
 
-function toggleFollow(){
-const btn = document.getElementById("followBtn");
-btn.classList.toggle("followed");
-btn.innerText = btn.classList.contains("followed") ? "Subscribed" : "Subscribe";
+document.getElementById("shortScroll").addEventListener("scroll", function(){
+if(this.scrollTop + this.clientHeight >= this.scrollHeight - 500){
+for(let i=0;i<8;i++){
+const item = shortsData[Math.floor(Math.random()*shortsData.length)];
+this.appendChild(createShortItem(item,this.children.length));
 }
+}
+});
+
+document.addEventListener("click",function(e){
+if(!e.target.closest(".action") && !e.target.closest(".more-menu")){
+document.querySelectorAll(".more-menu").forEach(m=>m.classList.remove("show"));
+}
+});
 
 function openComments(){
+renderComments();
 document.getElementById("commentPanel").classList.add("show");
 }
 
@@ -858,53 +880,63 @@ document.getElementById("commentPanel").classList.remove("show");
 
 function renderComments(){
 const comments = [
-["Rahul Beats","This short is fire 🔥","https://i.pravatar.cc/80?img=11"],
-["Priya Sharma","Loved this vibe!","https://i.pravatar.cc/80?img=32"],
-["Mumbai Vibes","Too good, replaying again.","https://i.pravatar.cc/80?img=44"],
-["Creator Fan","JioVibe shorts look premium.","https://i.pravatar.cc/80?img=19"]
+["Rohan","This is so good 🔥","https://i.pravatar.cc/80?img=11"],
+["Priya","Vibe is perfect","https://i.pravatar.cc/80?img=18"],
+["Amit","Watched it 5 times already","https://i.pravatar.cc/80?img=24"],
+["Mumbai Vibes","JioVibe shorts look clean","https://i.pravatar.cc/80?img=32"]
 ];
 
 document.getElementById("commentList").innerHTML = comments.map(c=>`
 <div class="comment">
 <img src="${c[2]}">
-<div>
-<strong>${c[0]}</strong>
-<p>${c[1]}</p>
-</div>
+<div><h4>${c[0]}</h4><p>${c[1]}</p></div>
 </div>
 `).join("");
 }
 
 function sendComment(){
 const input = document.getElementById("commentInput");
-const text = input.value.trim();
-if(!text)return;
+if(input.value.trim() === "") return;
 
+const list = document.getElementById("commentList");
 const div = document.createElement("div");
 div.className = "comment";
 div.innerHTML = `
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
-<div>
-<strong>Trupti Latur</strong>
-<p>${text}</p>
-</div>
+<div><h4>Trupti Latur</h4><p>${input.value}</p></div>
 `;
-document.getElementById("commentList").appendChild(div);
+list.prepend(div);
 input.value = "";
 showToast("Comment added");
 }
 
-function openShare(){
-document.getElementById("sharePop").classList.add("show");
+document.getElementById("commentInput").addEventListener("keydown",e=>{
+if(e.key === "Enter") sendComment();
+});
+
+function openModal(id){
+document.getElementById(id).classList.add("show");
 }
 
-function closeShare(){
-document.getElementById("sharePop").classList.remove("show");
+function closeModal(id){
+document.getElementById(id).classList.remove("show");
 }
+
+document.querySelectorAll(".modal-bg").forEach(m=>{
+m.addEventListener("click",e=>{
+if(e.target === m) m.classList.remove("show");
+});
+});
 
 function shareToast(type){
 showToast("Shared on " + type);
-closeShare();
+closeModal("shareModal");
+}
+
+function copyLink(){
+navigator.clipboard.writeText(window.location.href);
+showToast("Link copied");
+closeModal("shareModal");
 }
 
 function nativeShare(){
@@ -927,19 +959,12 @@ setTimeout(()=>toast.classList.remove("show"),1600);
 }
 
 document.addEventListener("keydown",function(e){
-if(document.getElementById("reelOverlay").classList.contains("show")){
-if(e.key === "ArrowDown") nextReel();
-if(e.key === "ArrowUp") prevReel();
-if(e.key === "Escape") closeReel();
+if(document.getElementById("playerMode").classList.contains("show")){
+if(e.key==="Escape") closePlayer();
 }
 });
 
-document.getElementById("reelOverlay").addEventListener("wheel",function(e){
-if(e.deltaY > 0) nextReel();
-else prevReel();
-});
-
-renderGrid();
+renderFeed();
 </script>
 
 </body>
