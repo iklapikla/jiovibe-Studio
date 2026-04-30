@@ -415,21 +415,7 @@ width:100%;
 height:100%;
 object-fit:cover;
 display:block;
-transition:.25s;
 }
-
-.gif-preview{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0;
-transition:.25s;
-}
-
-.video-card:hover .gif-preview{opacity:1}
-.video-card:hover .static-thumb{opacity:0}
 
 .duration{
 position:absolute;
@@ -664,45 +650,20 @@ document.getElementById("dropdown").classList.remove("show");
 }
 });
 
-const creators = [
-{
-name:"Total Gaming",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg",
-gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif"
-},
-{
-name:"Rohit Sharma",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg",
-gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Rohit%20Sharma.gif"
-},
-{
-name:"Technical Guruji",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg",
-gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Technical%20Guruji.gif"
-},
-{
-name:"Flying Beast",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.png",
-gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Flying%20Beast.gif"
-},
-{
-name:"Ranveer Singh",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg",
-gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Ranveer%20Singh.gif"
-},
-{
-name:"Ashish Chanchlani",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg",
-gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Ashish%20Chanchlani.gif"
-},
-{
-name:"Khan Sir",
-profile:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg",
-gif:"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Khan%20Sir.gif"
-}
+const gamingCreators = [
+{name:"Pixel Warrior", profile:"https://i.pravatar.cc/100?img=12"},
+{name:"Clutch King", profile:"https://i.pravatar.cc/100?img=15"},
+{name:"GameStorm India", profile:"https://i.pravatar.cc/100?img=18"},
+{name:"Shadow Gamer", profile:"https://i.pravatar.cc/100?img=21"},
+{name:"Arena Squad", profile:"https://i.pravatar.cc/100?img=24"},
+{name:"Battle Zone", profile:"https://i.pravatar.cc/100?img=27"},
+{name:"Level Up Plays", profile:"https://i.pravatar.cc/100?img=30"},
+{name:"Pro Aim Lab", profile:"https://i.pravatar.cc/100?img=33"},
+{name:"NoScope Nation", profile:"https://i.pravatar.cc/100?img=36"},
+{name:"Final Circle", profile:"https://i.pravatar.cc/100?img=39"}
 ];
 
-const thumbs = [
+const gamingThumbs = [
 "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop",
 "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=900&auto=format&fit=crop",
 "https://images.unsplash.com/photo-1560253023-3ec5d502959f?q=80&w=900&auto=format&fit=crop",
@@ -712,40 +673,41 @@ const thumbs = [
 "https://images.unsplash.com/photo-1600861195091-690c92f1d2cc?q=80&w=900&auto=format&fit=crop",
 "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=900&auto=format&fit=crop",
 "https://images.unsplash.com/photo-1511882150382-421056c89033?q=80&w=900&auto=format&fit=crop",
-"https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?q=80&w=900&auto=format&fit=crop"
+"https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1547394765-185e1e68f34e?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=900&auto=format&fit=crop"
 ];
 
 const trendingTitles = [
-"Last Zone Gaming Highlights You Should Not Miss",
-"Epic Clutch Moment in Final Circle",
-"Battle Royale Live Room",
-"Top 5 Gaming Tricks for New Players",
-"Mobile Gaming Setup Under Budget",
-"Console Gaming Challenge",
-"Esports Team Practice Highlights"
+"Final Zone Fight That Shocked Everyone",
+"Pro Player Ranked Match Highlights",
+"One Squad vs Full Lobby Challenge",
+"New Gaming Setup Reaction",
+"Fastest Headshot Round Compilation",
+"Live Tournament Room Highlights",
+"Top Gaming Moments This Week"
 ];
 
 const recommendedTitles = [
-"Gaming Highlights for Weekend Watch",
-"Best Multiplayer Moments of the Week",
-"PC Gaming Room Tour",
-"Gaming Keyboard Sound Test",
-"Beginner Guide to Better Aim",
-"Gaming Laptop Test in Real Match",
-"Quick Reaction Challenge"
+"Best Controller Settings for Beginners",
+"How to Improve Aim in 10 Minutes",
+"Budget Gaming Setup Tour",
+"Weekend Multiplayer Match Vibes",
+"Hidden Tips Every Gamer Should Know",
+"Keyboard vs Controller Challenge",
+"Esports Practice Session Breakdown"
 ];
 
 function createCard(title, index, type){
-const creator = creators[index % creators.length];
-const thumb = thumbs[index % thumbs.length];
+const creator = gamingCreators[index % gamingCreators.length];
+const thumb = gamingThumbs[index % gamingThumbs.length];
 const isExtra = index > 4 ? `extra-video ${type}-extra` : "";
 const isLive = title.toLowerCase().includes("live");
 
 return `
 <div class="video-card ${isExtra}">
 <div class="video-thumb">
-<img class="static-thumb" src="${thumb}">
-<img class="gif-preview" src="${creator.gif}">
+<img src="${thumb}">
 ${isLive ? `<span class="live-badge">LIVE</span>` : `<span class="duration">${["12:44","5:30","8:20","10:12","7:50","9:05","14:20"][index]}</span>`}
 </div>
 <div class="video-info">
@@ -761,7 +723,7 @@ ${isLive ? `<span class="live-badge">LIVE</span>` : `<span class="duration">${["
 }
 
 document.getElementById("trendingGrid").innerHTML = trendingTitles.map((t,i)=>createCard(t,i,"trending")).join("");
-document.getElementById("recommendedGrid").innerHTML = recommendedTitles.map((t,i)=>createCard(t,i+2,"recommended")).join("");
+document.getElementById("recommendedGrid").innerHTML = recommendedTitles.map((t,i)=>createCard(t,i+3,"recommended")).join("");
 
 let currentSlide = 0;
 const totalSlides = 5;
