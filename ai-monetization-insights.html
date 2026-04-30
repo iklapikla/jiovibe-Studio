@@ -10,23 +10,24 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#f8f9fb;color:#202124}
+body{background:#FFF6ED;color:#4A0E0E}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer}
 
 .topbar{
-height:72px;background:#fff;border-bottom:1px solid #edf0f4;
+height:72px;background:#FFF6ED;border-bottom:1px solid #FFD2B3;
 display:flex;align-items:center;justify-content:space-between;
 padding:0 26px;position:sticky;top:0;z-index:20
 }
 .back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
 .project{text-align:center}
-.project h1{font-size:24px;font-weight:800}
+.project h1{font-size:24px;font-weight:800;color:#4A0E0E}
 .tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
-.tag{background:#f1f3f4;color:#5f6368;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.tag{background:#FFE4CC;color:#7A3E2E;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
 .top-actions{display:flex;align-items:center;gap:12px}
-.token-pill{border:1px solid #e5e7eb;background:#fff;padding:11px 14px;border-radius:12px;font-weight:800}
-.buy-btn{background:#202124;color:#fff;border-radius:12px;padding:13px 18px;font-weight:800}
+.token-pill{border:1px solid #FFD2B3;background:#FFFFFF;padding:11px 14px;border-radius:12px;font-weight:800;color:#4A0E0E}
+.buy-btn{background:#FF7A00;color:#FFFFFF;border-radius:12px;padding:13px 18px;font-weight:800}
+.buy-btn:hover{background:#E65100}
 
 .container{
 padding:26px;
@@ -35,11 +36,11 @@ margin:auto
 }
 
 .plan-card{
-background:#fff;
-border:1px solid #ffd4bd;
+background:#FFFFFF;
+border:1px solid #FFD2B3;
 border-radius:24px;
 padding:28px;
-box-shadow:0 10px 30px rgba(255,90,0,.08);
+box-shadow:0 10px 30px rgba(255,122,0,.08);
 display:grid;
 grid-template-columns:1fr 340px;
 gap:28px;
@@ -50,9 +51,9 @@ margin-bottom:24px
 display:inline-flex;
 align-items:center;
 gap:8px;
-background:#fff7f2;
-border:1px solid #ffd4bd;
-color:#ff5a00;
+background:#FFE4CC;
+border:1px solid #FFD2B3;
+color:#FF7A00;
 padding:9px 13px;
 border-radius:999px;
 font-size:13px;
@@ -62,10 +63,11 @@ margin-bottom:14px
 .plan-card h1{
 font-size:34px;
 font-weight:900;
-margin-bottom:10px
+margin-bottom:10px;
+color:#4A0E0E
 }
 .plan-card p{
-color:#6b7280;
+color:#7A3E2E;
 font-weight:700;
 line-height:1.6;
 max-width:760px
@@ -81,13 +83,13 @@ display:flex;
 align-items:center;
 gap:10px;
 font-weight:800;
-color:#3f3f46
+color:#4A0E0E
 }
-.benefit i{color:#16a34a}
+.benefit i{color:#FF7A00}
 
 .price-box{
-background:#f8f9fb;
-border:1px solid #e5e7eb;
+background:#FFE4CC;
+border:1px solid #FFD2B3;
 border-radius:20px;
 padding:24px;
 text-align:center
@@ -95,17 +97,19 @@ text-align:center
 .price-box h2{
 font-size:40px;
 font-weight:900;
-margin-bottom:4px
+margin-bottom:4px;
+color:#4A0E0E
 }
 .price-box p{
 font-size:14px;
-margin-bottom:18px
+margin-bottom:18px;
+color:#7A3E2E
 }
 .activate-btn{
 width:100%;
 border:none;
-background:#ff5a00;
-color:#fff;
+background:#FF7A00;
+color:#FFFFFF;
 border-radius:14px;
 padding:16px;
 font-size:16px;
@@ -114,32 +118,34 @@ transition:.22s
 }
 .activate-btn:hover{
 transform:scale(1.02);
-box-shadow:0 8px 20px rgba(255,90,0,.25)
+box-shadow:0 8px 20px rgba(255,122,0,.25);
+background:#E65100
 }
 .activate-btn.activated{
-background:#16a34a
+background:#E65100
 }
 
 .locked-state{
-background:#fff;
-border:1px dashed #cfd4dc;
+background:#FFFFFF;
+border:1px dashed #FFD2B3;
 border-radius:22px;
 padding:70px 28px;
 text-align:center;
-box-shadow:0 8px 24px rgba(0,0,0,.04)
+box-shadow:0 8px 24px rgba(74,14,14,.04)
 }
 .locked-state i{
 font-size:46px;
-color:#9aa0a6;
+color:#A66A55;
 margin-bottom:16px
 }
 .locked-state h2{
 font-size:28px;
 font-weight:900;
-margin-bottom:8px
+margin-bottom:8px;
+color:#4A0E0E
 }
 .locked-state p{
-color:#6b7280;
+color:#7A3E2E;
 font-weight:700
 }
 
@@ -157,33 +163,34 @@ grid-template-columns:repeat(4,1fr);
 gap:18px
 }
 .stat-card{
-background:#fff;
-border:1px solid #e5e7eb;
+background:#FFFFFF;
+border:1px solid #FFD2B3;
 border-radius:20px;
 padding:22px;
-box-shadow:0 8px 24px rgba(0,0,0,.04);
+box-shadow:0 8px 24px rgba(74,14,14,.04);
 transition:.22s
 }
 .stat-card:hover{
 transform:translateY(-4px);
-box-shadow:0 12px 28px rgba(0,0,0,.08)
+box-shadow:0 12px 28px rgba(74,14,14,.08)
 }
 .stat-card h3{
 font-size:14px;
-color:#6b7280;
+color:#7A3E2E;
 font-weight:800;
 margin-bottom:8px
 }
 .stat-card strong{
 font-size:28px;
-font-weight:900
+font-weight:900;
+color:#4A0E0E
 }
 .stat-card span{
 display:block;
 margin-top:8px;
 font-size:13px;
 font-weight:800;
-color:#16a34a
+color:#FF7A00
 }
 
 .main-grid{
@@ -192,11 +199,11 @@ grid-template-columns:1.1fr .9fr;
 gap:22px
 }
 .card{
-background:#fff;
-border:1px solid #e5e7eb;
+background:#FFFFFF;
+border:1px solid #FFD2B3;
 border-radius:22px;
 padding:24px;
-box-shadow:0 8px 24px rgba(0,0,0,.04)
+box-shadow:0 8px 24px rgba(74,14,14,.04)
 }
 .card-head{
 display:flex;
@@ -210,16 +217,17 @@ font-size:24px;
 font-weight:900;
 display:flex;
 align-items:center;
-gap:10px
+gap:10px;
+color:#4A0E0E
 }
-.card-head h2 i{color:#ff5a00}
+.card-head h2 i{color:#FF7A00}
 .pill{
-background:#f1f3f4;
+background:#FFE4CC;
 border-radius:999px;
 padding:8px 12px;
 font-size:13px;
 font-weight:900;
-color:#5f6368
+color:#7A3E2E
 }
 
 .suggestion-list{
@@ -228,7 +236,7 @@ flex-direction:column;
 gap:12px
 }
 .suggestion{
-border:1px solid #e5e7eb;
+border:1px solid #FFD2B3;
 border-radius:16px;
 padding:16px;
 display:grid;
@@ -239,14 +247,14 @@ transition:.22s
 }
 .suggestion:hover{
 transform:scale(1.01);
-box-shadow:0 8px 20px rgba(0,0,0,.06)
+box-shadow:0 8px 20px rgba(74,14,14,.06)
 }
 .suggestion-icon{
 width:42px;
 height:42px;
 border-radius:12px;
-background:#fff0e8;
-color:#ff5a00;
+background:#FFE4CC;
+color:#FF7A00;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -255,18 +263,19 @@ font-size:18px
 .suggestion h3{
 font-size:16px;
 font-weight:900;
-margin-bottom:5px
+margin-bottom:5px;
+color:#4A0E0E
 }
 .suggestion p{
 font-size:14px;
 font-weight:600;
 line-height:1.5;
-color:#6b7280
+color:#7A3E2E
 }
 
 .forecast-box{
-background:#f8f9fb;
-border:1px solid #e5e7eb;
+background:#FFE4CC;
+border:1px solid #FFD2B3;
 border-radius:18px;
 padding:20px
 }
@@ -275,8 +284,9 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:14px 0;
-border-bottom:1px solid #e5e7eb;
-font-weight:800
+border-bottom:1px solid #FFD2B3;
+font-weight:800;
+color:#4A0E0E
 }
 .forecast-row:last-child{border-bottom:none}
 .forecast-row span:last-child{
@@ -284,7 +294,7 @@ font-size:22px;
 font-weight:900
 }
 .growth{
-color:#16a34a
+color:#FF7A00
 }
 .progress-wrap{
 margin-top:18px
@@ -294,19 +304,19 @@ display:flex;
 justify-content:space-between;
 font-weight:800;
 font-size:13px;
-color:#6b7280;
+color:#7A3E2E;
 margin-bottom:8px
 }
 .progress-bar{
 height:12px;
-background:#e5e7eb;
+background:#FFD2B3;
 border-radius:999px;
 overflow:hidden
 }
 .progress-fill{
 height:100%;
 width:72%;
-background:#16a34a
+background:#FF7A00
 }
 
 .audit-score{
@@ -319,7 +329,7 @@ margin-bottom:18px
 width:118px;
 height:118px;
 border-radius:50%;
-background:conic-gradient(#ff5a00 62%, #e5e7eb 0);
+background:conic-gradient(#FF7A00 62%, #FFD2B3 0);
 display:flex;
 align-items:center;
 justify-content:center;
@@ -331,22 +341,24 @@ content:"";
 position:absolute;
 width:88px;
 height:88px;
-background:#fff;
+background:#FFFFFF;
 border-radius:50%
 }
 .score-circle strong{
 position:relative;
 z-index:2;
 font-size:28px;
-font-weight:900
+font-weight:900;
+color:#4A0E0E
 }
 .audit-text h3{
 font-size:18px;
 font-weight:900;
-margin-bottom:6px
+margin-bottom:6px;
+color:#4A0E0E
 }
 .audit-text p{
-color:#6b7280;
+color:#7A3E2E;
 font-weight:600;
 line-height:1.5
 }
@@ -357,20 +369,22 @@ grid-template-columns:repeat(2,1fr);
 gap:14px
 }
 .idea{
-border:1px solid #e5e7eb;
+border:1px solid #FFD2B3;
 border-radius:16px;
 padding:16px;
 font-weight:800;
-transition:.22s
+transition:.22s;
+color:#4A0E0E;
+background:#FFFFFF
 }
 .idea:hover{
 transform:scale(1.02);
-background:#f8f9fb
+background:#FFE4CC
 }
 .idea small{
 display:block;
 margin-top:8px;
-color:#6b7280;
+color:#7A3E2E;
 font-weight:700
 }
 
@@ -380,36 +394,38 @@ grid-template-columns:repeat(2,1fr);
 gap:14px
 }
 .action{
-border:1px solid #e5e7eb;
+border:1px solid #FFD2B3;
 border-radius:16px;
 padding:18px;
 display:flex;
 gap:14px;
 align-items:flex-start;
-transition:.22s
+transition:.22s;
+background:#FFFFFF
 }
 .action:hover{
 transform:scale(1.015);
-box-shadow:0 8px 20px rgba(0,0,0,.06)
+box-shadow:0 8px 20px rgba(74,14,14,.06)
 }
 .action i{
 width:40px;
 height:40px;
 border-radius:12px;
-background:#f1f3f4;
+background:#FFE4CC;
 display:flex;
 align-items:center;
 justify-content:center;
-color:#202124
+color:#FF7A00
 }
 .action h3{
 font-size:16px;
 font-weight:900;
-margin-bottom:5px
+margin-bottom:5px;
+color:#4A0E0E
 }
 .action p{
 font-size:13px;
-color:#6b7280;
+color:#7A3E2E;
 font-weight:600;
 line-height:1.4
 }
@@ -439,7 +455,7 @@ line-height:1.4
   </div>
 
   <div class="top-actions">
-    <div class="token-pill"><i class="fa-solid fa-coins"></i> My Tokens: <span id="tokenCount" style="color:#ff5a00;">1,250</span></div>
+    <div class="token-pill"><i class="fa-solid fa-coins"></i> My Tokens: <span id="tokenCount" style="color:#FF7A00;">1,250</span></div>
     <a href="wallet.html" class="buy-btn">+ Buy Tokens</a>
   </div>
 </header>
