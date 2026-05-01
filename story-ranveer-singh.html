@@ -11,8 +11,8 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{
-background:#f8f9fb;
-color:#202124;
+background:#FFF6ED;
+color:#4A0E0E;
 height:100vh;
 overflow:hidden
 }
@@ -26,7 +26,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 position:relative;
-background:linear-gradient(135deg,#f8f9fb,#eef1f6)
+background:#FFF6ED
 }
 
 .close-btn{
@@ -41,13 +41,13 @@ align-items:center;
 justify-content:center;
 font-size:28px;
 z-index:30;
-color:#202124;
+color:#4A0E0E;
 background:#fff;
 box-shadow:0 8px 24px rgba(0,0,0,.12);
 transition:.2s
 }
 .close-btn:hover{
-background:#ff5a00;
+background:#FF7A00;
 color:#fff
 }
 
@@ -55,7 +55,7 @@ color:#fff
 width:min(1160px,92vw);
 height:min(780px,92vh);
 background:#fff;
-border:1px solid #e8ebf0;
+border:1px solid #FFD2B3;
 border-radius:24px;
 overflow:hidden;
 display:grid;
@@ -71,7 +71,7 @@ to{transform:scale(1);opacity:1}
 
 /* LEFT STORY */
 .story-left{
-background:#111;
+background:#2A0A0A;
 position:relative;
 display:flex;
 align-items:center;
@@ -107,7 +107,7 @@ overflow:hidden
 display:block;
 height:100%;
 width:0%;
-background:#ff5a00;
+background:#FF7A00;
 border-radius:20px
 }
 .progress.done span{width:100%}
@@ -212,10 +212,10 @@ backdrop-filter:blur(8px);
 transition:.2s
 }
 .story-icon:hover{
-background:#ff5a00
+background:#FF7A00
 }
 .story-icon.liked{
-background:#ff5a00;
+background:#FF7A00;
 color:#fff
 }
 
@@ -227,7 +227,7 @@ width:42px;
 height:42px;
 border-radius:50%;
 background:#fff;
-color:#202124;
+color:#4A0E0E;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -237,7 +237,7 @@ box-shadow:0 8px 24px rgba(0,0,0,.18);
 transition:.2s
 }
 .arrow:hover{
-background:#ff5a00;
+background:#FF7A00;
 color:#fff
 }
 .arrow.left{left:14px}
@@ -252,7 +252,7 @@ background:#fff
 
 .right-head{
 height:82px;
-border-bottom:1px solid #edf0f4;
+border-bottom:1px solid #FFE0CC;
 padding:0 24px;
 display:flex;
 align-items:center;
@@ -275,21 +275,21 @@ box-shadow:0 2px 10px rgba(0,0,0,.10)
 .account strong{
 font-size:16px;
 font-weight:900;
-color:#202124
+color:#4A0E0E
 }
 .verify{
-color:#ff5a00;
+color:#FF7A00;
 font-size:13px
 }
 .sub-count{
 display:block;
 margin-top:3px;
-color:#6b7280;
+color:#A66A55;
 font-size:12px;
 font-weight:800
 }
 .subscribe-btn{
-background:#ff5a00;
+background:#FF7A00;
 color:#fff;
 border-radius:12px;
 padding:11px 16px;
@@ -298,17 +298,17 @@ font-weight:900
 }
 .dots{
 font-size:22px;
-color:#5f6368
+color:#A66A55
 }
 
 .caption{
 padding:20px 24px;
-border-bottom:1px solid #edf0f4;
+border-bottom:1px solid #FFE0CC;
 display:grid;
 grid-template-columns:44px 1fr;
 gap:12px;
 flex-shrink:0;
-background:#fffaf6
+background:#FFE4CC
 }
 .caption img{
 width:42px;
@@ -320,7 +320,7 @@ object-fit:cover
 font-size:15px;
 line-height:1.45;
 font-weight:700;
-color:#303236
+color:#4A0E0E
 }
 .caption strong{
 font-weight:900
@@ -328,13 +328,13 @@ font-weight:900
 .caption .tags{
 display:block;
 margin-top:12px;
-color:#ff5a00;
+color:#FF7A00;
 font-weight:900
 }
 .caption small{
 display:block;
 margin-top:8px;
-color:#8a9099;
+color:#A66A55;
 font-weight:800
 }
 
@@ -361,33 +361,33 @@ object-fit:cover
 .comment strong{
 font-size:14px;
 font-weight:900;
-color:#202124
+color:#4A0E0E
 }
 .comment p{
 font-size:14px;
 font-weight:600;
 line-height:1.4;
 margin-top:4px;
-color:#4b5563
+color:#7A3E2E
 }
 .comment small{
 display:inline-block;
 margin-top:8px;
-color:#8a9099;
+color:#A66A55;
 font-weight:800;
 font-size:12px
 }
 .comment .like{
-color:#8a9099;
+color:#A66A55;
 font-size:16px;
 padding-top:5px
 }
 .comment .like:hover{
-color:#ff5a00
+color:#FF7A00
 }
 
 .actions{
-border-top:1px solid #edf0f4;
+border-top:1px solid #FFE0CC;
 padding:16px 24px 12px;
 flex-shrink:0;
 background:#fff
@@ -408,7 +408,7 @@ transition:.2s;
 cursor:pointer
 }
 .action-left i:hover,.bookmark:hover{
-color:#ff5a00
+color:#FF7A00
 }
 .bookmark{
 font-size:24px
@@ -420,13 +420,13 @@ margin-bottom:4px
 }
 .date{
 font-size:12px;
-color:#8a9099;
+color:#A66A55;
 font-weight:800
 }
 
 .public-comment{
 height:68px;
-border-top:1px solid #edf0f4;
+border-top:1px solid #FFE0CC;
 display:flex;
 align-items:center;
 gap:12px;
@@ -435,27 +435,27 @@ flex-shrink:0;
 background:#fff
 }
 .public-comment i{
-color:#5f6368
+color:#A66A55
 }
 .public-comment input{
 flex:1;
 height:44px;
-background:#f8f9fb;
-border:1px solid #edf0f4;
+background:#FFF6ED;
+border:1px solid #FFE0CC;
 border-radius:24px;
 outline:none;
 padding:0 16px;
-color:#202124;
+color:#4A0E0E;
 font-size:14px;
 font-weight:700
 }
 .public-comment input::placeholder{
-color:#8a9099
+color:#A66A55
 }
 .public-comment button{
 font-size:14px;
 font-weight:900;
-color:#ff5a00
+color:#FF7A00
 }
 
 .toast{
@@ -463,7 +463,7 @@ position:fixed;
 top:28px;
 left:50%;
 transform:translateX(-50%) translateY(-20px);
-background:#202124;
+background:#4A0E0E;
 color:#fff;
 padding:13px 18px;
 border-radius:12px;
@@ -733,7 +733,7 @@ input.value = "";
 
 function toggleSubscribe(btn){
 btn.innerText = btn.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
-btn.style.background = btn.innerText === "Subscribed" ? "#202124" : "#ff5a00";
+btn.style.background = btn.innerText === "Subscribed" ? "#4A0E0E" : "#FF7A00";
 }
 
 function showToast(text){
