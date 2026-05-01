@@ -558,6 +558,91 @@ color:#A66A55;
 @media(max-width:900px){
 .video-grid{grid-template-columns:repeat(2,1fr);}
 }
+
+  /* GLOBAL FADE IN */
+.content{
+animation:fadeIn .6s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(10px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* CATEGORY HOVER */
+.category-btn{
+transition:all .25s ease;
+}
+
+.category-btn:hover{
+transform:scale(1.08);
+box-shadow:0 8px 20px rgba(255,122,0,0.2);
+}
+
+/* EXTRA CATEGORY POP */
+.extra-category{
+opacity:0;
+transform:scale(.9);
+transition:.3s;
+}
+
+.extra-category.show{
+display:flex;
+opacity:1;
+transform:scale(1);
+}
+
+/* VIDEO CARD HOVER PREMIUM */
+.video-card{
+transition:all .3s ease;
+}
+
+.video-card:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:0 18px 40px rgba(74,14,14,0.18);
+}
+
+/* THUMB ZOOM */
+.video-thumb img{
+transition:transform .4s ease;
+}
+
+.video-card:hover .video-thumb img{
+transform:scale(1.08);
+}
+
+/* EXTRA VIDEO ANIMATION */
+.video-card.extra-video{
+opacity:0;
+transform:translateY(20px);
+transition:.4s;
+}
+
+.video-card.extra-video.show{
+display:block;
+opacity:1;
+transform:translateY(0);
+}
+
+/* BANNER ZOOM EFFECT */
+.banner-slide{
+animation:bannerZoom 8s ease infinite alternate;
+}
+
+@keyframes bannerZoom{
+from{transform:scale(1);}
+to{transform:scale(1.05);}
+}
+
+/* BUTTON HOVER */
+.watch-btn{
+transition:.25s;
+}
+
+.watch-btn:hover{
+transform:scale(1.05);
+}
+  
 </style>
 </head>
 
@@ -695,7 +780,7 @@ color:#A66A55;
 
 <section>
 <div class="section-head">
-<h2>Trending Now 🔥</h2>
+<h2>Trending Now</h2>
 <button class="see-link" id="trendingMoreBtn" onclick="toggleMoreVideos('trending')">See more <i class="fa-solid fa-chevron-right"></i></button>
 </div>
 
@@ -824,7 +909,7 @@ color:#A66A55;
 
 <section>
 <div class="section-head">
-<h2>Recommended for You ✨</h2>
+<h2>Recommended for You</h2>
 <button class="see-link" id="recommendedMoreBtn" onclick="toggleMoreVideos('recommended')">See more <i class="fa-solid fa-chevron-right"></i></button>
 </div>
 
@@ -1011,8 +1096,10 @@ const items = document.querySelectorAll("." + type + "-extra");
 const btn = document.getElementById(type + "MoreBtn");
 const isOpen = btn.dataset.open === "true";
 
-items.forEach(item=>{
+items.forEach((item,index)=>{
+setTimeout(()=>{
 item.classList.toggle("show", !isOpen);
+}, index * 80); // smooth stagger animation
 });
 
 btn.dataset.open = isOpen ? "false" : "true";
