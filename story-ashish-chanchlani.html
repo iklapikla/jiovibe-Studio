@@ -10,31 +10,31 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#f8f9fb;color:#202124;height:100vh;overflow:hidden}
+body{background:#FFF6ED;color:#4A0E0E;height:100vh;overflow:hidden}
 button,input{font-family:inherit}
 button{border:none;background:none;cursor:pointer;color:inherit}
 
 .story-page{
 width:100%;height:100vh;display:flex;align-items:center;justify-content:center;
-position:relative;background:linear-gradient(135deg,#f8f9fb,#eef1f6)
+position:relative;background:#FFF6ED
 }
 
 .close-btn{
 position:fixed;right:28px;top:24px;width:46px;height:46px;border-radius:50%;
 display:flex;align-items:center;justify-content:center;font-size:28px;z-index:30;
-color:#202124;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:.2s
+color:#4A0E0E;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:.2s
 }
-.close-btn:hover{background:#ff5a00;color:#fff}
+.close-btn:hover{background:#FF7A00;color:#fff}
 
 .story-modal{
-width:min(1160px,92vw);height:min(780px,92vh);background:#fff;border:1px solid #e8ebf0;
+width:min(1160px,92vw);height:min(780px,92vh);background:#fff;border:1px solid #FFD2B3;
 border-radius:24px;overflow:hidden;display:grid;grid-template-columns:440px 1fr;
 box-shadow:0 28px 80px rgba(0,0,0,.16);animation:pop .22s ease
 }
 @keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
 
 .story-left{
-background:#111;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden
+background:#2A0A0A;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden
 }
 .story-img{height:100%;aspect-ratio:9/16;max-width:100%;object-fit:cover;display:block}
 
@@ -42,7 +42,7 @@ background:#111;position:relative;display:flex;align-items:center;justify-conten
 position:absolute;top:16px;left:16px;right:16px;display:flex;gap:7px;z-index:10
 }
 .progress{height:4px;flex:1;background:rgba(255,255,255,.38);border-radius:20px;overflow:hidden}
-.progress span{display:block;height:100%;width:0%;background:#ff5a00;border-radius:20px}
+.progress span{display:block;height:100%;width:0%;background:#FF7A00;border-radius:20px}
 .progress.done span{width:100%}
 .progress.active span{animation:fill 5s linear forwards}
 @keyframes fill{from{width:0%}to{width:100%}}
@@ -75,21 +75,21 @@ width:100%;background:transparent;border:none;outline:none;color:#fff;font-size:
 width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;
 font-size:24px;color:#fff;background:rgba(0,0,0,.35);backdrop-filter:blur(8px);transition:.2s
 }
-.story-icon:hover,.story-icon.liked{background:#ff5a00;color:#fff}
+.story-icon:hover,.story-icon.liked{background:#FF7A00;color:#fff}
 
 .arrow{
 position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
-background:#fff;color:#202124;display:flex;align-items:center;justify-content:center;font-size:18px;
+background:#fff;color:#4A0E0E;display:flex;align-items:center;justify-content:center;font-size:18px;
 z-index:14;box-shadow:0 8px 24px rgba(0,0,0,.18);transition:.2s
 }
-.arrow:hover{background:#ff5a00;color:#fff}
+.arrow:hover{background:#FF7A00;color:#fff}
 .arrow.left{left:14px}.arrow.right{right:14px}
 
 /* RIGHT PANEL */
 .story-right{display:flex;flex-direction:column;background:#fff}
 
 .right-head{
-height:82px;border-bottom:1px solid #edf0f4;padding:0 24px;display:flex;align-items:center;
+height:82px;border-bottom:1px solid #FFE0CC;padding:0 24px;display:flex;align-items:center;
 justify-content:space-between;flex-shrink:0
 }
 .account{display:flex;align-items:center;gap:12px}
@@ -97,61 +97,61 @@ justify-content:space-between;flex-shrink:0
 width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #fff;
 box-shadow:0 2px 10px rgba(0,0,0,.10)
 }
-.account strong{font-size:16px;font-weight:900;color:#202124}
-.verify{color:#ff5a00;font-size:13px}
-.sub-count{display:block;margin-top:3px;color:#6b7280;font-size:12px;font-weight:800}
+.account strong{font-size:16px;font-weight:900;color:#4A0E0E}
+.verify{color:#FF7A00;font-size:13px}
+.sub-count{display:block;margin-top:3px;color:#A66A55;font-size:12px;font-weight:800}
 .subscribe-btn{
-background:#ff5a00;color:#fff;border-radius:12px;padding:11px 16px;font-size:13px;font-weight:900
+background:#FF7A00;color:#fff;border-radius:12px;padding:11px 16px;font-size:13px;font-weight:900
 }
-.dots{font-size:22px;color:#5f6368}
+.dots{font-size:22px;color:#A66A55}
 
 .caption{
-padding:20px 24px;border-bottom:1px solid #edf0f4;display:grid;grid-template-columns:44px 1fr;
-gap:12px;flex-shrink:0;background:#fffaf6
+padding:20px 24px;border-bottom:1px solid #FFE0CC;display:grid;grid-template-columns:44px 1fr;
+gap:12px;flex-shrink:0;background:#FFE4CC
 }
 .caption img{width:42px;height:42px;border-radius:50%;object-fit:cover}
-.caption p{font-size:15px;line-height:1.45;font-weight:700;color:#303236}
+.caption p{font-size:15px;line-height:1.45;font-weight:700;color:#4A0E0E}
 .caption strong{font-weight:900}
-.caption .tags{display:block;margin-top:12px;color:#ff5a00;font-weight:900}
-.caption small{display:block;margin-top:8px;color:#8a9099;font-weight:800}
+.caption .tags{display:block;margin-top:12px;color:#FF7A00;font-weight:900}
+.caption small{display:block;margin-top:8px;color:#A66A55;font-weight:800}
 
 .comments{
 flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:18px;background:#fff
 }
 .comment{display:grid;grid-template-columns:40px 1fr 28px;gap:12px}
 .comment img{width:38px;height:38px;border-radius:50%;object-fit:cover}
-.comment strong{font-size:14px;font-weight:900;color:#202124}
-.comment p{font-size:14px;font-weight:600;line-height:1.4;margin-top:4px;color:#4b5563}
-.comment small{display:inline-block;margin-top:8px;color:#8a9099;font-weight:800;font-size:12px}
-.comment .like{color:#8a9099;font-size:16px;padding-top:5px}
-.comment .like:hover{color:#ff5a00}
+.comment strong{font-size:14px;font-weight:900;color:#4A0E0E}
+.comment p{font-size:14px;font-weight:600;line-height:1.4;margin-top:4px;color:#7A3E2E}
+.comment small{display:inline-block;margin-top:8px;color:#A66A55;font-weight:800;font-size:12px}
+.comment .like{color:#A66A55;font-size:16px;padding-top:5px}
+.comment .like:hover{color:#FF7A00}
 
 .actions{
-border-top:1px solid #edf0f4;padding:16px 24px 12px;flex-shrink:0;background:#fff
+border-top:1px solid #FFE0CC;padding:16px 24px 12px;flex-shrink:0;background:#fff
 }
 .action-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .action-left{display:flex;gap:18px;font-size:24px}
 .action-left i,.bookmark{transition:.2s;cursor:pointer}
-.action-left i:hover,.bookmark:hover{color:#ff5a00}
+.action-left i:hover,.bookmark:hover{color:#FF7A00}
 .bookmark{font-size:24px}
 .likes{font-size:14px;font-weight:900;margin-bottom:4px}
-.date{font-size:12px;color:#8a9099;font-weight:800}
+.date{font-size:12px;color:#A66A55;font-weight:800}
 
 .public-comment{
-height:68px;border-top:1px solid #edf0f4;display:flex;align-items:center;gap:12px;
+height:68px;border-top:1px solid #FFE0CC;display:flex;align-items:center;gap:12px;
 padding:0 24px;flex-shrink:0;background:#fff
 }
-.public-comment i{color:#5f6368}
+.public-comment i{color:#A66A55}
 .public-comment input{
-flex:1;height:44px;background:#f8f9fb;border:1px solid #edf0f4;border-radius:24px;
-outline:none;padding:0 16px;color:#202124;font-size:14px;font-weight:700
+flex:1;height:44px;background:#FFF6ED;border:1px solid #FFE0CC;border-radius:24px;
+outline:none;padding:0 16px;color:#4A0E0E;font-size:14px;font-weight:700
 }
-.public-comment input::placeholder{color:#8a9099}
-.public-comment button{font-size:14px;font-weight:900;color:#ff5a00}
+.public-comment input::placeholder{color:#A66A55}
+.public-comment button{font-size:14px;font-weight:900;color:#FF7A00}
 
 .toast{
 position:fixed;top:28px;left:50%;transform:translateX(-50%) translateY(-20px);
-background:#202124;color:#fff;padding:13px 18px;border-radius:12px;font-weight:900;
+background:#4A0E0E;color:#fff;padding:13px 18px;border-radius:12px;font-weight:900;
 opacity:0;transition:.25s;z-index:100
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -391,7 +391,7 @@ input.value = "";
 
 function toggleSubscribe(btn){
 btn.innerText = btn.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
-btn.style.background = btn.innerText === "Subscribed" ? "#202124" : "#ff5a00";
+btn.style.background = btn.innerText === "Subscribed" ? "#4A0E0E" : "#FF7A00";
 }
 
 function showToast(text){
