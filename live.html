@@ -23,7 +23,7 @@ width:250px;
 padding:32px 18px;
 position:fixed;
 height:100%;
-background:#FFF6ED;
+background:#FFFFFF;
 border-right:1px solid #FFD2B3;
 z-index:10
 }
@@ -38,8 +38,8 @@ display:flex;align-items:center;justify-content:center;font-weight:800;font-size
 display:flex;align-items:center;gap:18px;padding:17px 22px;border-radius:14px;
 font-weight:600;font-size:16px;color:#7A3E2E;transition:.25s
 }
-.menu-item i{width:22px;font-size:22px;text-align:center;color:#FF7A00}
-.menu-item:hover{background:#FFE4CC;color:#E65100}
+.menu-item i{width:22px;font-size:22px;text-align:center}
+.menu-item:hover{background:#FFFFFF0e8;color:#FF7A00}
 .menu-item.active{background:#FF7A00;color:#FFFFFF}
 
 /* MAIN */
@@ -48,7 +48,7 @@ font-weight:600;font-size:16px;color:#7A3E2E;transition:.25s
 /* TOPBAR */
 .topbar{
 height:94px;border-bottom:1px solid #FFD2B3;display:flex;align-items:center;justify-content:space-between;
-padding:0 48px;background:#FFF6ED;position:sticky;top:0;z-index:8
+padding:0 48px;background:#FFFFFF;position:sticky;top:0;z-index:8
 }
 .search{
 width:600px;height:50px;border:1px solid #FFD2B3;border-radius:28px;
@@ -56,20 +56,20 @@ display:flex;align-items:center;gap:16px;padding:0 22px;color:#A66A55;background
 }
 .search input{border:none;outline:none;flex:1;font-size:15px;color:#4A0E0E}
 .top-actions{display:flex;align-items:center;gap:22px;position:relative}
-.bell{font-size:23px;position:relative;cursor:pointer;color:#FF7A00}
+.bell{font-size:23px;position:relative;cursor:pointer}
 .bell::after{
 content:"1";position:absolute;top:-8px;right:-7px;background:#FF7A00;color:#FFFFFF;
 font-size:10px;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center
 }
 .profile{display:flex;align-items:center;gap:12px;cursor:pointer;padding:8px;border-radius:18px}
 .profile img{width:48px;height:48px;border-radius:50%;object-fit:cover}
-.profile span{font-weight:700;font-size:15px;color:#4A0E0E}
+.profile span{font-weight:700;font-size:15px}
 .dropdown{
 position:absolute;top:70px;right:0;width:200px;background:#FFFFFF;border-radius:14px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);display:none;overflow:hidden;z-index:20
+box-shadow:0 10px 30px rgba(74,14,14,0.15);display:none;overflow:hidden;z-index:20
 }
 .dropdown a{display:block;padding:14px;font-weight:600;color:#4A0E0E}
-.dropdown a:hover{background:#FFE4CC;color:#E65100}
+.dropdown a:hover{background:#FFE4CC;color:#2A0A0A}
 .dropdown.show{display:block}
 
 /* PAGE */
@@ -91,7 +91,7 @@ min-width:0
 
 .video-card{
 background:#FFFFFF;border:1px solid #FFD2B3;border-radius:18px;overflow:hidden;
-box-shadow:0 4px 14px rgba(0,0,0,0.04)
+box-shadow:0 4px 14px rgba(74,14,14,0.04)
 }
 
 .player{
@@ -116,7 +116,7 @@ position:absolute;top:18px;left:18px;right:18px;z-index:3;display:flex;justify-c
 background:#FF7A00;color:#FFFFFF;font-weight:900;border-radius:8px;padding:9px 13px;display:inline-flex;gap:8px;align-items:center
 }
 .viewer-tag{
-background:rgba(0,0,0,.65);color:#FFFFFF;font-weight:900;border-radius:8px;padding:9px 13px;margin-left:8px;display:inline-flex;gap:8px;align-items:center
+background:rgba(42,10,10,.65);color:#FFFFFF;font-weight:900;border-radius:8px;padding:9px 13px;margin-left:8px;display:inline-flex;gap:8px;align-items:center
 }
 .player-icons{color:#FFFFFF;display:flex;gap:16px;font-size:19px}
 .controls{
@@ -130,45 +130,45 @@ position:absolute;left:22px;right:22px;bottom:16px;z-index:3;color:#FFFFFF
 
 /* VIDEO INFO */
 .video-detail{padding:14px 18px 16px}
-.video-detail h1{font-size:21px;font-weight:900;margin-bottom:15px;color:#4A0E0E}
+.video-detail h1{font-size:21px;font-weight:900;margin-bottom:15px}
 .channel-row{
 display:flex;align-items:center;justify-content:space-between;gap:18px
 }
 .channel-left{display:flex;align-items:center;gap:13px}
 .creator-wrap{
 width:56px;height:56px;border-radius:50%;padding:4px;background:#FF7A00;
-box-shadow:0 0 0 3px rgba(255,122,0,.12);
+box-shadow:0 0 0 3px rgba(32,196,90,.12);
 cursor:pointer;flex-shrink:0
 }
 .creator-wrap img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #FFFFFF}
-.creator-meta strong{font-size:16px;font-weight:900;cursor:pointer;color:#4A0E0E}
-.creator-meta strong:hover{color:#E65100}
+.creator-meta strong{font-size:16px;font-weight:900;cursor:pointer}
+.creator-meta strong:hover{color:#FF7A00}
 .creator-meta span{display:block;font-size:12px;font-weight:700;color:#A66A55;margin-top:3px}
 .subscribe{
 background:#FF7A00;color:#FFFFFF;border-radius:12px;padding:13px 22px;font-weight:900;font-size:15px
 }
 .icon-btn{
 height:44px;min-width:54px;padding:0 14px;border:1px solid #FFD2B3;border-radius:14px;
-background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:900;font-size:14px;color:#4A0E0E
+background:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:900;font-size:14px
 }
-.icon-btn.active{background:#2A0A0A;color:#FFFFFF}
+.icon-btn.active{background:#4A0E0E;color:#FFFFFF}
 .channel-actions{display:flex;align-items:center;gap:10px}
 
 /* ABOUT BOX */
 .about-box{
-background:#FFFFFF;border:1px solid #FFD2B3;border-radius:18px;padding:14;
+background:#FFFFFF;border:1px solid #FFD2B3;border-radius:18px;padding:14px 16px;
 box-shadow:0 4px 14px rgba(74,14,14,0.035);
 min-height:108px
 }
 .started-line{
 font-size:12px;
 font-weight:900;
-color:#A66A55;
+color:#7A3E2E;
 margin-bottom:7px
 }
-.about-box h3{font-size:14px;font-weight:900;margin-bottom:7px;color:#4A0E0E}
+.about-box h3{font-size:14px;font-weight:900;margin-bottom:7px}
 .about-box p{color:#7A3E2E;font-weight:600;line-height:1.45;font-size:13px}
-.see-more{color:#E65100;font-weight:900;margin-top:9px;display:inline-flex;gap:8px;font-size:13px}
+.see-more{color:#FF7A00;font-weight:900;margin-top:9px;display:inline-flex;gap:8px;font-size:13px}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .tags span{background:#FFE4CC;border-radius:9px;padding:7px 10px;font-weight:800;color:#7A3E2E;font-size:12px}
 
@@ -185,13 +185,13 @@ position:sticky;
 top:112px
 }
 .chat-head{
-height:58px;border-bottom:1px solid #FFE0CC;padding:0 18px;
+height:58px;border-bottom:1px solid #FFD2B3;padding:0 18px;
 display:flex;align-items:center;justify-content:space-between;
 flex-shrink:0
 }
-.chat-head h2{font-size:18px;font-weight:900;display:flex;gap:8px;align-items:center;color:#4A0E0E}
+.chat-head h2{font-size:18px;font-weight:900;display:flex;gap:8px;align-items:center}
 .super-row{
-padding:13px 18px;border-bottom:1px solid #FFE0CC;display:flex;gap:10px;
+padding:13px 18px;border-bottom:1px solid #FFD2B3;display:flex;gap:10px;
 flex-shrink:0
 }
 .super-chip{background:#FF7A00;color:#FFFFFF;border-radius:999px;padding:10px 16px;font-weight:900}
@@ -207,44 +207,43 @@ min-height:0
 }
 .msg{display:grid;grid-template-columns:38px 1fr 38px;gap:10px;align-items:start}
 .msg img{width:34px;height:34px;border-radius:50%;object-fit:cover}
-.msg strong{font-size:13px;font-weight:900;color:#4A0E0E}
+.msg strong{font-size:13px;font-weight:900}
 .msg p{font-size:13px;color:#7A3E2E;font-weight:600;margin-top:3px;line-height:1.35}
 .msg small{font-size:11px;color:#A66A55;text-align:right}
 .super-msg{
-background:#FFE4CC;border:1px solid #FFD2B3;border-radius:14px;padding:12px
+background:#FFFFFF7f2;border:1px solid #FFD2B3;border-radius:14px;padding:12px
 }
-.super-msg .amount{color:#E65100;font-weight:900;margin-bottom:5px}
+.super-msg .amount{color:#FF7A00;font-weight:900;margin-bottom:5px}
 
 .chat-input{
-border-top:1px solid #FFE0CC;padding:14px 18px;display:flex;gap:10px;align-items:center;
+border-top:1px solid #FFD2B3;padding:14px 18px;display:flex;gap:10px;align-items:center;
 flex-shrink:0;background:#FFFFFF
 }
 .chat-input input{
-flex:1;height:46px;border:1px solid #FFD2B3;border-radius:24px;padding:0 16px;outline:none;font-weight:700;min-width:0;background:#FFFFFF;color:#4A0E0E
+flex:1;height:46px;border:1px solid #FFD2B3;border-radius:24px;padding:0 16px;outline:none;font-weight:700;min-width:0
 }
-.chat-input input:focus{border-color:#FF7A00}
 .round-btn{
 width:46px;height:46px;border-radius:50%;border:1px solid #FFD2B3;background:#FFFFFF;font-size:18px;
-display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#4A0E0E
+display:flex;align-items:center;justify-content:center;flex-shrink:0
 }
 .send-btn{background:#FF7A00;color:#FFFFFF;border-color:#FF7A00}
 
 /* LIVE ROW */
 .live-row{margin-top:14px}
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.section-head h2{font-size:23px;font-weight:900;color:#4A0E0E}
-.section-head a{font-size:14px;color:#E65100;font-weight:900}
+.section-head h2{font-size:23px;font-weight:900}
+.section-head a{font-size:14px;color:#FF7A00;font-weight:900}
 .live-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
 .live-card{
-background:#FFFFFF;border:1px solid #FFD2B3;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(74,14,14,.04)
+background:#FFFFFF;border:1px solid #FFD2B3;border-radius:16px;overflow:hidden;box-shadow:0 4px 14px rgba(42,10,10,.04)
 }
 .live-thumb{position:relative;aspect-ratio:16/9;background:#2A0A0A}
 .live-thumb img{width:100%;height:100%;object-fit:cover}
 .live-thumb .live-tag{position:absolute;left:8px;top:8px;padding:7px 9px;font-size:12px}
 .live-count{position:absolute;right:8px;top:8px;background:rgba(42,10,10,.75);color:#FFFFFF;border-radius:8px;padding:6px 8px;font-weight:900;font-size:12px}
 .live-info{padding:11px}
-.live-info strong{font-size:14px;font-weight:900;color:#4A0E0E}
-.live-info span{display:block;color:#7A3E2E;font-weight:600;margin-top:4px}
+.live-info strong{font-size:14px;font-weight:900}
+.live-info span{display:block;color:#A66A55;font-weight:600;margin-top:4px}
 
 /* MODALS */
 .overlay{
@@ -254,35 +253,35 @@ position:fixed;inset:0;background:rgba(42,10,10,.45);display:none;align-items:ce
 .modal{
 width:440px;background:#FFFFFF;border-radius:22px;padding:24px;box-shadow:0 20px 60px rgba(74,14,14,.25)
 }
-.modal h2{font-size:22px;font-weight:900;margin-bottom:16px;color:#4A0E0E}
+.modal h2{font-size:22px;font-weight:900;margin-bottom:16px}
 .share-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0}
 .share-item{
 height:78px;border:1px solid #FFD2B3;border-radius:16px;display:flex;flex-direction:column;
-align-items:center;justify-content:center;gap:8px;font-weight:800;background:#FFFFFF;color:#4A0E0E
+align-items:center;justify-content:center;gap:8px;font-weight:800;background:#FFFFFF
 }
-.share-item:hover{background:#FFE4CC;color:#E65100;border-color:#FF7A00}
+.share-item:hover{background:#FFFFFF0e8;color:#FF7A00;border-color:#FF7A00}
 .share-item i{font-size:22px}
 .copy-row{display:flex;gap:8px}
-.copy-row input{flex:1;border:1px solid #FFD2B3;border-radius:12px;padding:12px;font-weight:700;background:#FFFFFF;color:#4A0E0E}
+.copy-row input{flex:1;border:1px solid #FFD2B3;border-radius:12px;padding:12px;font-weight:700}
 .copy-row button,.modal-btn{
-background:#FF7A00;color:#FFFFFF;border-radius:12px;padding:12px 16px;font-weight:900
+background:#4A0E0E;color:#FFFFFF;border-radius:12px;padding:12px 16px;font-weight:900
 }
-.close-btn{float:right;font-size:20px;color:#4A0E0E}
+.close-btn{float:right;font-size:20px}
 
 .super-form{display:flex;flex-direction:column;gap:12px}
 .amounts{display:flex;gap:10px}
 .amount-btn{
-background:#FFE4CC;border-radius:999px;padding:10px 16px;font-weight:900;color:#4A0E0E
+background:#FFE4CC;border-radius:999px;padding:10px 16px;font-weight:900
 }
 .amount-btn.active{background:#FF7A00;color:#FFFFFF}
 .super-form textarea,.super-form select{
-width:100%;border:1px solid #FFD2B3;border-radius:14px;padding:13px;font-weight:700;outline:none;background:#FFFFFF;color:#4A0E0E
+width:100%;border:1px solid #FFD2B3;border-radius:14px;padding:13px;font-weight:700;outline:none
 }
 .super-form textarea{height:90px;resize:none}
 
 .toast{
 position:fixed;top:110px;left:50%;transform:translateX(-50%) translateY(-20px);
-background:#2A0A0A;color:#FFFFFF;border-radius:14px;padding:14px 20px;font-weight:900;opacity:0;z-index:200;transition:.25s
+background:#4A0E0E;color:#FFFFFF;border-radius:14px;padding:14px 20px;font-weight:900;opacity:0;z-index:200;transition:.25s
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -307,3 +306,394 @@ background:#2A0A0A;color:#FFFFFF;border-radius:14px;padding:14px 20px;font-weigh
 </head>
 
 <body>
+
+<div class="toast" id="toast">Copied</div>
+
+<div class="app">
+
+<aside class="sidebar">
+<a href="home.html" class="logo">
+<div class="logo-circle">Jio</div>
+<div class="logo-text">Vibe</div>
+</a>
+
+<nav class="menu">
+<a href="home.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+<a href="explore.html" class="menu-item"><i class="fa-regular fa-compass"></i> Explore</a>
+<a href="live.html" class="menu-item active"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
+<a href="video.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Video</a>
+<a href="shorts.html" class="menu-item"><i class="fa-solid fa-bolt"></i> Shorts</a>
+<a href="subscriptions.html" class="menu-item"><i class="fa-solid fa-list"></i> Subscriptions</a>
+<a href="history.html" class="menu-item"><i class="fa-solid fa-clock"></i> History</a>
+<a href="saved.html" class="menu-item"><i class="fa-solid fa-bookmark"></i> Saved Video</a>
+</nav>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+<div class="search">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" placeholder="Search creators, videos, topics..." />
+</div>
+
+<div class="top-actions">
+<div class="bell"><i class="fa-regular fa-bell"></i></div>
+
+<div class="profile" onclick="toggleDropdown()">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
+<span>Trupti Latur</span>
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+
+<div class="dropdown" id="dropdown">
+<a href="home.html">Home</a>
+<a href="index.html">Dashboard</a>
+<a href="logout.html">Sign out</a>
+</div>
+</div>
+</header>
+
+<section class="content">
+
+<div class="watch-layout">
+
+<div class="left-watch">
+
+<div class="video-card">
+<div class="player">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ranveer%20Singh.gif">
+
+<div class="player-top">
+<div>
+<span class="live-tag"><i class="fa-solid fa-play"></i> LIVE</span>
+<span class="viewer-tag"><i class="fa-solid fa-eye"></i> 12.8K</span>
+</div>
+<div class="player-icons">
+<i class="fa-solid fa-share" onclick="openShare()"></i>
+<i class="fa-solid fa-ellipsis-vertical"></i>
+</div>
+</div>
+
+<div class="controls">
+<div class="progress"><span></span></div>
+<div class="control-row">
+<div class="control-left">
+<i class="fa-solid fa-pause"></i>
+<i class="fa-solid fa-volume-high"></i>
+<span class="live-dot">● LIVE</span>
+</div>
+<div class="control-right">
+<i class="fa-solid fa-gear"></i>
+<i class="fa-regular fa-closed-captioning"></i>
+<i class="fa-solid fa-expand"></i>
+</div>
+</div>
+</div>
+</div>
+
+<div class="video-detail">
+<h1>Ranveer Singh Live | Creator Energy and Big Moments</h1>
+
+<div class="channel-row">
+<div class="channel-left">
+<div class="creator-wrap" onclick="window.location.href='story-ranveer-singh.html'">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg">
+</div>
+
+<div class="creator-meta">
+<strong onclick="window.location.href='ranveer-channel.html'">Ranveer Singh </strong>
+<span>4.8M subscribers</span>
+</div>
+
+<button class="subscribe" onclick="toggleSubscribe(this)">Subscribe</button>
+<button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+</div>
+
+<div class="channel-actions">
+<button class="icon-btn" id="likeBtn" onclick="toggleLike()"><i class="fa-regular fa-thumbs-up"></i> <span id="likeCount">1.2K</span></button>
+<button class="icon-btn" onclick="openShare()"><i class="fa-solid fa-share"></i> Share</button>
+<button class="icon-btn" id="saveBtn" onclick="toggleSave()"><i class="fa-regular fa-bookmark"></i> Save</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="about-box">
+<div class="started-line">Started streaming 2 hours ago</div>
+<h3>About this live stream</h3>
+<p>Watch Ranveer Singh live with high-energy creator moments, behind-the-scenes fun, audience interaction and exclusive entertainment updates.</p>
+<a href="#" class="see-more">See more <i class="fa-solid fa-chevron-down"></i></a>
+<div class="tags">
+<span>#RanveerLive</span>
+<span>#CreatorEnergy</span>
+<span>#JioVibeLive</span>
+<span>#Entertainment</span>
+</div>
+</div>
+
+</div>
+
+<aside class="chat-card">
+<div class="chat-head">
+<h2>Top chat <i class="fa-solid fa-chevron-down"></i></h2>
+<i class="fa-solid fa-ellipsis-vertical"></i>
+</div>
+
+<div class="super-row">
+<button class="super-chip" onclick="openSuper(2000)">₹2,000</button>
+<button class="super-chip" onclick="openSuper(1000)">₹1,000</button>
+<button class="super-chip" onclick="openSuper(500)">₹500</button>
+</div>
+
+<div class="chat-messages" id="chatMessages"></div>
+
+<div class="chat-input">
+<input id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendChat()">
+<button class="round-btn"><i class="fa-regular fa-face-smile"></i></button>
+<button class="round-btn" onclick="openSuper(500)"><i class="fa-solid fa-indian-rupee-sign"></i></button>
+<button class="round-btn send-btn" onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
+</div>
+</aside>
+
+</div>
+
+<section class="live-row">
+<div class="section-head">
+<h2> Live now on JioVibe</h2>
+<a href="live.html">View all</a>
+</div>
+
+<div class="live-grid">
+
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">2K</span>
+</div>
+<div class="live-info"><strong>Battle Royale Live</strong><span>Gaming Beast</span></div>
+</div>
+
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">6.1K</span>
+</div>
+<div class="live-info"><strong>DJ Night Session</strong><span>Club India</span></div>
+</div>
+
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">6.1K</span>
+</div>
+<div class="live-info"><strong>Math Class Live</strong><span>Study Smart</span></div>
+</div>
+
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">2.7K</span>
+</div>
+<div class="live-info"><strong>Creator Travel Talk</strong><span>Live Creator</span></div>
+</div>
+
+<div class="live-card">
+<div class="live-thumb">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop">
+<span class="live-tag">LIVE</span><span class="live-count">4.4K</span>
+</div>
+<div class="live-info"><strong>Comedy Room</strong><span>Laugh Circle</span></div>
+</div>
+
+</div>
+</section>
+
+</section>
+</main>
+</div>
+
+<!-- SHARE MODAL -->
+<div class="overlay" id="shareOverlay">
+<div class="modal">
+<button class="close-btn" onclick="closeShare()"><i class="fa-solid fa-xmark"></i></button>
+<h2>Share this live</h2>
+
+<div class="share-grid">
+<button class="share-item"><i class="fa-brands fa-whatsapp"></i> WhatsApp</button>
+<button class="share-item"><i class="fa-brands fa-instagram"></i> Instagram</button>
+<button class="share-item"><i class="fa-brands fa-x-twitter"></i> X</button>
+<button class="share-item"><i class="fa-solid fa-envelope"></i> Mail</button>
+<button class="share-item" onclick="nativeShare()"><i class="fa-solid fa-ellipsis"></i> More</button>
+</div>
+
+<div class="copy-row">
+<input id="shareLink" value="https://iklapikla.github.io/jiovibe-Studio/watch-ranveer-singh.html" readonly>
+<button onclick="copyShare()">Copy</button>
+</div>
+</div>
+</div>
+
+<!-- SUPER SUPPORT MODAL -->
+<div class="overlay" id="superOverlay">
+<div class="modal">
+<button class="close-btn" onclick="closeSuper()"><i class="fa-solid fa-xmark"></i></button>
+<h2>Super Support</h2>
+
+<div class="super-form">
+<div class="amounts">
+<button class="amount-btn" onclick="selectAmount(500)">₹500</button>
+<button class="amount-btn" onclick="selectAmount(1000)">₹1,000</button>
+<button class="amount-btn" onclick="selectAmount(2000)">₹2,000</button>
+</div>
+
+<textarea id="superMessage" placeholder="Add your Super Support message..."></textarea>
+
+<select id="paymentMode">
+<option>UPI</option>
+<option>Credit / Debit Card</option>
+<option>Wallet</option>
+<option>Net Banking</option>
+</select>
+
+<button class="modal-btn" onclick="sendSuper()">Pay & Send Super Support</button>
+</div>
+</div>
+</div>
+
+<script>
+function toggleDropdown(){
+document.getElementById("dropdown").classList.toggle("show");
+}
+
+document.addEventListener("click",function(e){
+if(!e.target.closest(".profile")){
+document.getElementById("dropdown").classList.remove("show");
+}
+});
+
+function toggleLike(){
+const btn=document.getElementById("likeBtn");
+const count=document.getElementById("likeCount");
+btn.classList.toggle("active");
+count.innerText=btn.classList.contains("active")?"1.3K":"1.2K";
+}
+
+function toggleSave(){
+document.getElementById("saveBtn").classList.toggle("active");
+}
+
+function toggleSubscribe(btn){
+btn.innerText=btn.innerText==="Subscribe"?"Subscribed":"Subscribe";
+btn.style.background=btn.innerText==="Subscribed"?"#202124":"#ff5a00";
+}
+
+/* Share */
+function openShare(){
+document.getElementById("shareOverlay").classList.add("show");
+}
+
+function closeShare(){
+document.getElementById("shareOverlay").classList.remove("show");
+}
+
+function copyShare(){
+navigator.clipboard.writeText(document.getElementById("shareLink").value);
+showToast("Link copied");
+}
+
+function nativeShare(){
+if(navigator.share){
+navigator.share({
+title:"Ranveer Singh Live",
+text:"Watch Ranveer Singh Live on JioVibe",
+url:document.getElementById("shareLink").value
+});
+}else{
+showToast("More share options not supported here");
+}
+}
+
+/* Chat */
+const chatNames=["Rahul Beats","Acoustic Fan","Music Lover","Priya Sharma","Mumbai Vibes","Live Viewer","Ritika Jain","Creator Fan"];
+const chatTexts=["Super live!","This feels so powerful","Great energy","Watching with friends","What a vibe!","Audio is very clear","Love this moment","Ranveer energy is next level"];
+
+function addChat(name,text,img,superAmount){
+const box=document.getElementById("chatMessages");
+const div=document.createElement("div");
+div.className=superAmount?"msg super-msg":"msg";
+div.innerHTML=`
+<img src="${img}">
+<div>
+${superAmount?`<div class="amount">Super Support ₹${superAmount}</div>`:""}
+<strong>${name}</strong>
+<p>${text}</p>
+</div>
+<small>Now</small>`;
+box.appendChild(div);
+while(box.children.length > 35){
+box.removeChild(box.firstElementChild);
+}
+box.scrollTop=box.scrollHeight;
+}
+
+function randomChat(){
+const i=Math.floor(Math.random()*chatNames.length);
+const img=`https://i.pravatar.cc/80?img=${Math.floor(Math.random()*60)+1}`;
+addChat(chatNames[i],chatTexts[Math.floor(Math.random()*chatTexts.length)],img);
+}
+
+for(let i=0;i<5;i++) randomChat();
+setInterval(randomChat,3000);
+
+function sendChat(){
+const input=document.getElementById("chatInput");
+const text=input.value.trim();
+if(!text)return;
+addChat("Trupti Latur",text,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg");
+input.value="";
+}
+
+/* Super Support */
+let selectedAmount=500;
+
+function openSuper(amount){
+selectedAmount=amount;
+document.getElementById("superOverlay").classList.add("show");
+updateAmountButtons();
+}
+
+function closeSuper(){
+document.getElementById("superOverlay").classList.remove("show");
+}
+
+function selectAmount(amount){
+selectedAmount=amount;
+updateAmountButtons();
+}
+
+function updateAmountButtons(){
+document.querySelectorAll(".amount-btn").forEach(btn=>{
+btn.classList.remove("active");
+if(btn.innerText.replace(",","").includes(selectedAmount)) btn.classList.add("active");
+});
+}
+
+function sendSuper(){
+const msg=document.getElementById("superMessage").value.trim() || "Super support for this live!";
+addChat("You",msg,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",selectedAmount);
+document.getElementById("superMessage").value="";
+closeSuper();
+showToast("Super Support sent");
+}
+
+function showToast(text){
+const t=document.getElementById("toast");
+t.innerText=text;
+t.classList.add("show");
+setTimeout(()=>t.classList.remove("show"),1800);
+}
+</script>
+
+</body>
+</html>
