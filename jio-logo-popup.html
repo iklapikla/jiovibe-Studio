@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JioVibe Explore Popup</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#FFF6ED;color:#4A0E0E;min-height:100vh;overflow:hidden}
+button{font-family:inherit;border:none;cursor:pointer;background:none}
+.overlay{position:fixed;inset:0;background:rgba(42,10,10,.42);display:flex;align-items:center;justify-content:center;z-index:100;padding:30px}
+.popup{width:min(1480px,95vw);height:min(900px,92vh);background:#FFFFFF;border:1px solid #FFD2B3;border-radius:28px;box-shadow:0 28px 80px rgba(74,14,14,.22);overflow:hidden;display:flex;flex-direction:column}
+.popup-head{height:86px;padding:0 30px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #FFE0CC;background:#FFF6ED;flex-shrink:0}
+.popup-title{display:flex;align-items:center;gap:14px}
+.logo-circle{width:54px;height:54px;border-radius:50%;background:#FF7A00;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:24px}
+.popup-title h2{font-size:28px;font-weight:900;color:#4A0E0E}
+.popup-title span{font-size:14px;font-weight:700;color:#A66A55;display:block;margin-top:3px}
+.close-btn{width:46px;height:46px;border-radius:50%;background:#FFFFFF;border:1px solid #FFD2B3;color:#4A0E0E;font-size:22px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.close-btn:hover{background:#FF7A00;color:#FFFFFF}
+.tabs-wrap{padding:22px 30px 14px;background:#FFFFFF;border-bottom:1px solid #FFE0CC}
+.tabs{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px}
+.tab-btn{min-width:max-content;height:48px;padding:0 20px;border-radius:999px;background:#FFFFFF;border:1px solid #FFD2B3;color:#7A3E2E;font-size:14px;font-weight:900;transition:.2s}
+.tab-btn:hover{background:#FFE4CC;color:#E65100;border-color:#FF7A00}
+.tab-btn.active{background:#FF7A00;color:#FFFFFF;border-color:#FF7A00}
+.popup-body{padding:24px 30px 32px;overflow-y:auto;background:#FFF6ED;flex:1}
+.section-info{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.section-info h3{font-size:26px;font-weight:900;color:#4A0E0E}
+.section-info p{font-size:14px;font-weight:700;color:#A66A55}
+.content-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.card{background:#FFFFFF;border:1px solid #FFD2B3;border-radius:18px;overflow:hidden;box-shadow:0 4px 14px rgba(74,14,14,.04);transition:.22s;cursor:pointer}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(74,14,14,.10);border-color:#FF7A00}
+.thumb{position:relative;aspect-ratio:16/9;background:#2A0A0A;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{position:absolute;left:9px;bottom:9px;background:#E65100;color:#FFFFFF;font-size:11px;font-weight:900;padding:6px 9px;border-radius:7px}
+.duration{position:absolute;right:9px;bottom:9px;background:rgba(42,10,10,.84);color:#FFFFFF;font-size:11px;font-weight:900;padding:6px 8px;border-radius:7px}
+.viewer{position:absolute;right:9px;top:9px;background:rgba(42,10,10,.72);color:#FFFFFF;font-size:11px;font-weight:900;padding:6px 8px;border-radius:7px}
+.card-info{padding:13px 14px 15px;display:grid;grid-template-columns:40px 1fr;gap:10px}
+.avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #FFE4CC}
+.card-title{font-size:14px;font-weight:900;line-height:1.35;color:#4A0E0E;margin-bottom:5px}
+.channel{font-size:12px;font-weight:800;color:#7A3E2E;margin-bottom:3px}
+.meta{font-size:12px;font-weight:700;color:#A66A55;line-height:1.4}
+.empty{display:none;font-size:18px;font-weight:800;color:#A66A55;padding:40px;text-align:center}
+@media(max-width:1300px){.content-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:1000px){.content-grid{grid-template-columns:repeat(3,1fr)}.popup{height:94vh}}
+@media(max-width:700px){.overlay{padding:0}.popup{width:100vw;height:100vh;border-radius:0}.content-grid{grid-template-columns:repeat(2,1fr)}.popup-head,.tabs-wrap,.popup-body{padding-left:18px;padding-right:18px}}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="popupOverlay">
+<div class="popup">
+
+<div class="popup-head">
+<div class="popup-title">
+<div class="logo-circle">Jio</div>
+<div>
+<h2>Explore JioVibe</h2>
+<span>Live streams, videos and creators across all categories</span>
+</div>
+</div>
+<button class="close-btn" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></button>
+</div>
+
+<div class="tabs-wrap">
+<div class="tabs">
+<button class="tab-btn active" onclick="filterCategory('All', this)">All</button>
+<button class="tab-btn" onclick="filterCategory('Gaming', this)">Gaming</button>
+<button class="tab-btn" onclick="filterCategory('Music', this)">Music</button>
+<button class="tab-btn" onclick="filterCategory('Comedy', this)">Comedy</button>
+<button class="tab-btn" onclick="filterCategory('Tech', this)">Tech</button>
+<button class="tab-btn" onclick="filterCategory('Education', this)">Education</button>
+<button class="tab-btn" onclick="filterCategory('Lifestyle', this)">Lifestyle</button>
+<button class="tab-btn" onclick="filterCategory('Movies', this)">Movies</button>
+<button class="tab-btn" onclick="filterCategory('Sports', this)">Sports</button>
+<button class="tab-btn" onclick="filterCategory('News', this)">News</button>
+<button class="tab-btn" onclick="filterCategory('Food', this)">Food</button>
+<button class="tab-btn" onclick="filterCategory('Travel', this)">Travel</button>
+</div>
+</div>
+
+<div class="popup-body">
+<div class="section-info">
+<div>
+<h3 id="sectionTitle">All Content</h3>
+<p id="sectionSub">Showing mixed live and video content from all categories</p>
+</div>
+</div>
+
+<div class="content-grid" id="contentGrid"></div>
+<div class="empty" id="emptyState">No content found for this category.</div>
+</div>
+
+</div>
+</div>
+
+<script>
+const thumbs = {
+Gaming:["https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=900&auto=format&fit=crop"],
+Music:["https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=900&auto=format&fit=crop"],
+Comedy:["https://images.unsplash.com/photo-1527224857830-43a7acc85260?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1515169067865-5387ec356754?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1543584756-31b1bfc0bd00?q=80&w=900&auto=format&fit=crop"],
+Tech:["https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=900&auto=format&fit=crop"],
+Education:["https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=900&auto=format&fit=crop"],
+Lifestyle:["https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1511988617509-a57c8a288659?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=900&auto=format&fit=crop"],
+Movies:["https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1524985069026-dd778a71c7b4?q=80&w=900&auto=format&fit=crop"],
+Sports:["https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1521412644187-c49fa049e84d?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1505843279827-4b52212e0e6f?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=900&auto=format&fit=crop"],
+News:["https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop"],
+Food:["https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=900&auto=format&fit=crop"],
+Travel:["https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=900&auto=format&fit=crop","https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=900&auto=format&fit=crop"]
+};
+
+const titles = {
+Gaming:["Final Zone Live Battle","Gaming Setup Tour","Retro Arcade Challenge","New Game Drops"],
+Music:["Acoustic Live Session","Bollywood Cover Night","Concert Highlights","Studio Song Making"],
+Comedy:["Stand-up Live Night","Office Comedy Sketch","College Funny Moments","Bloopers Compilation"],
+Tech:["New Gadget Review","AI Tool Demo","Coding Setup Tour","Robot Tech Explained"],
+Education:["Live Study Session","Math Made Simple","Career Guidance Talk","Exam Tips Video"],
+Lifestyle:["Morning Wellness Live","Daily Routine Vlog","Fashion Styling Tips","Healthy Habit Guide"],
+Movies:["Trailer Breakdown","Cinema Review Live","Behind The Scene Clip","Top Movie Moments"],
+Sports:["Match Reaction Live","Training Highlights","Cricket Practice Session","Fitness Challenge"],
+News:["Top Headlines Explained","Market Update Live","Breaking Story Recap","Daily News Roundup"],
+Food:["Street Food Tour","Pizza Making Video","Healthy Bowl Recipe","BBQ Live Session"],
+Travel:["Hidden Valley Vlog","Beach Travel Guide","Mountain Road Trip","City Walk Live"]
+};
+
+const avatars = [
+"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=200&auto=format&fit=crop"
+];
+
+const categories = Object.keys(thumbs);
+const grid = document.getElementById("contentGrid");
+
+categories.forEach(cat=>{
+for(let i=0;i<10;i++){
+const isLive = i % 3 === 0;
+const img = thumbs[cat][i % thumbs[cat].length];
+const title = titles[cat][i % titles[cat].length];
+const avatar = avatars[i % avatars.length];
+const card = document.createElement("div");
+card.className = "card";
+card.dataset.category = cat;
+card.innerHTML = `
+<div class="thumb">
+<img src="${img}">
+${isLive ? `<span class="badge">LIVE</span><span class="viewer">${(2+i)}.${i}K</span>` : `<span class="duration">${6+i}:${(20+i).toString().slice(0,2)}</span>`}
+</div>
+<div class="card-info">
+<img class="avatar" src="${avatar}">
+<div>
+<div class="card-title">${title}</div>
+<div class="channel">${cat} Creator ${i+1}</div>
+<div class="meta">${cat} • ${isLive ? "Live now" : (500+i*80)+"K views"}</div>
+</div>
+</div>`;
+grid.appendChild(card);
+}
+});
+
+function closePopup(){
+window.history.back();
+}
+
+function filterCategory(category, btn){
+document.querySelectorAll(".tab-btn").forEach(item=>item.classList.remove("active"));
+btn.classList.add("active");
+
+document.getElementById("sectionTitle").innerText = category === "All" ? "All Content" : category;
+document.getElementById("sectionSub").innerText = category === "All"
+? "Showing mixed live and video content from all categories"
+: "Showing live and video content from " + category;
+
+let visible = 0;
+document.querySelectorAll(".card").forEach(card=>{
+const match = category === "All" || card.dataset.category === category;
+card.style.display = match ? "block" : "none";
+if(match) visible++;
+});
+document.getElementById("emptyState").style.display = visible ? "none" : "block";
+}
+
+document.addEventListener("keydown",function(e){
+if(e.key === "Escape") closePopup();
+});
+</script>
+
+</body>
+</html>
