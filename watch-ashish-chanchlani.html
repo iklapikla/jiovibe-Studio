@@ -672,6 +672,93 @@ scroll-behavior:auto!important;
 }
 }
 
+
+/* ADD-ON: YouTube-style player settings + AI CC translate demo */
+.control-right{position:relative}
+.player-menu{
+position:absolute;
+right:0;
+bottom:34px;
+width:250px;
+background:rgba(255,255,255,.98);
+color:#4A0E0E;
+border:1px solid #FFD2B3;
+border-radius:16px;
+box-shadow:0 14px 40px rgba(42,10,10,.24);
+padding:8px;
+display:none;
+z-index:10;
+backdrop-filter:blur(10px);
+}
+.player-menu.show{display:block;animation:softDrop .2s ease both}
+.player-menu-title{
+font-size:12px;
+font-weight:900;
+color:#A66A55;
+padding:9px 10px 6px;
+text-transform:uppercase;
+letter-spacing:.5px;
+}
+.player-menu button{
+width:100%;display:flex;align-items:center;justify-content:space-between;
+gap:10px;padding:11px 10px;border-radius:11px;color:#4A0E0E;font-weight:800;font-size:13px;
+}
+.player-menu button:hover{background:#FFE4CC;color:#FF7A00}
+.player-menu button i{width:18px;text-align:center}
+.player-menu .menu-value{color:#A66A55;font-weight:900;margin-left:auto}
+.player-menu .menu-back{justify-content:flex-start;color:#FF7A00}
+.player-menu-panel{display:none}
+.player-menu-panel.active{display:block}
+.cc-ai-banner{
+position:absolute;
+left:50%;top:50%;transform:translate(-50%,-50%);
+background:rgba(42,10,10,.82);
+color:#FFFFFF;
+border:1px solid rgba(255,210,179,.55);
+border-radius:18px;
+padding:16px 20px;
+z-index:9;
+display:none;
+min-width:300px;
+text-align:center;
+box-shadow:0 18px 50px rgba(0,0,0,.25);
+backdrop-filter:blur(10px);
+}
+.cc-ai-banner.show{display:block;animation:premiumModalIn .25s ease both}
+.cc-ai-banner strong{display:block;font-size:16px;margin-bottom:6px;color:#FFB066}
+.cc-ai-banner span{font-size:13px;font-weight:700;color:#FFFFFF}
+#settingsBtn,#ccBtn,#fullscreenBtn{cursor:pointer}
+.video-card.theater-mode{
+position:relative;
+z-index:30;
+box-shadow:0 24px 70px rgba(74,14,14,.22);
+}
+
+/* ADD-ON: bigger fixed AI summary popup */
+.ai-modal{
+width:700px !important;
+max-width:92vw !important;
+min-height:690px;
+max-height:88vh;
+overflow-y:auto;
+padding:30px !important;
+}
+.ai-icon{width:56px !important;height:56px !important;border-radius:18px !important;font-size:24px !important}
+.ai-modal h2{font-size:28px !important}
+.ai-subtitle{font-size:16px !important}
+.ai-language-row{padding:18px 20px !important;margin-bottom:20px !important;border-radius:20px !important}
+.ai-language-row label{font-size:18px !important}
+.ai-language-row select{font-size:16px !important;padding:13px 18px !important;min-width:150px}
+.ai-summary-box{min-height:390px;padding:22px 24px !important;border-radius:22px !important}
+.ai-summary-box h3{font-size:22px !important;margin-bottom:14px !important}
+.ai-summary-box p{font-size:18px !important;line-height:1.65 !important;min-height:118px}
+.ai-points div{font-size:16px !important;padding:14px 16px !important;border-radius:14px !important}
+.ai-note{font-size:15px !important;line-height:1.5 !important}
+@keyframes softDrop{
+from{opacity:0;transform:translateY(-8px) scale(.98)}
+to{opacity:1;transform:translateY(0) scale(1)}
+}
+
 </style>
 </head>
 
@@ -734,6 +821,11 @@ scroll-behavior:auto!important;
 <div class="player">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif">
 
+<div class="cc-ai-banner" id="ccAiBanner">
+<strong id="ccAiTitle">AI Translate Ready</strong>
+<span id="ccAiText">Choose a language from CC to demo real-time audio translation.</span>
+</div>
+
 <div class="player-top">
 <div class="player-icons">
 <i class="fa-solid fa-share" onclick="openShare()"></i>
@@ -750,9 +842,50 @@ scroll-behavior:auto!important;
 <span class="time-text">02:15 / 06:14</span>
 </div>
 <div class="control-right">
-<i class="fa-solid fa-gear"></i>
-<i class="fa-regular fa-closed-captioning"></i>
-<i class="fa-solid fa-expand"></i>
+<i class="fa-solid fa-gear" id="settingsBtn" onclick="togglePlayerMenu(event)"></i>
+<i class="fa-regular fa-closed-captioning" id="ccBtn" onclick="toggleCcMenu(event)"></i>
+<i class="fa-solid fa-expand" id="fullscreenBtn" onclick="toggleFullscreen()"></i>
+
+<div class="player-menu" id="playerMenu">
+<div class="player-menu-panel active" id="mainSettingsPanel">
+<div class="player-menu-title">Settings</div>
+<button onclick="openSettingsPanel('qualityPanel')"><span><i class="fa-solid fa-display"></i> Quality</span><span class="menu-value" id="qualityValue">Auto</span></button>
+<button onclick="openSettingsPanel('speedPanel')"><span><i class="fa-solid fa-gauge-high"></i> Playback speed</span><span class="menu-value" id="speedValue">Normal</span></button>
+<button onclick="openSettingsPanel('captionPanel')"><span><i class="fa-regular fa-closed-captioning"></i> Captions</span><span class="menu-value" id="captionValue">Off</span></button>
+<button onclick="toggleTheaterMode()"><span><i class="fa-solid fa-tv"></i> Theater mode</span><span class="menu-value" id="theaterValue">Off</span></button>
+<button onclick="toggleMiniPlayer()"><span><i class="fa-regular fa-window-restore"></i> Mini player</span><span class="menu-value">Demo</span></button>
+</div>
+
+<div class="player-menu-panel" id="qualityPanel">
+<button class="menu-back" onclick="openSettingsPanel('mainSettingsPanel')"><i class="fa-solid fa-chevron-left"></i> Quality</button>
+<button onclick="setQuality('Auto')">Auto</button>
+<button onclick="setQuality('1080p HD')">1080p HD</button>
+<button onclick="setQuality('720p')">720p</button>
+<button onclick="setQuality('480p')">480p</button>
+<button onclick="setQuality('360p')">360p</button>
+</div>
+
+<div class="player-menu-panel" id="speedPanel">
+<button class="menu-back" onclick="openSettingsPanel('mainSettingsPanel')"><i class="fa-solid fa-chevron-left"></i> Playback speed</button>
+<button onclick="setSpeed('0.5x')">0.5x</button>
+<button onclick="setSpeed('0.75x')">0.75x</button>
+<button onclick="setSpeed('Normal')">Normal</button>
+<button onclick="setSpeed('1.25x')">1.25x</button>
+<button onclick="setSpeed('1.5x')">1.5x</button>
+<button onclick="setSpeed('2x')">2x</button>
+</div>
+
+<div class="player-menu-panel" id="captionPanel">
+<button class="menu-back" onclick="openSettingsPanel('mainSettingsPanel')"><i class="fa-solid fa-chevron-left"></i> Captions / AI Translate</button>
+<button onclick="setCaption('Off')">Off</button>
+<button onclick="setCaption('English CC')">English CC</button>
+<button onclick="setAiLanguage('Hindi')">AI Translate: Hindi</button>
+<button onclick="setAiLanguage('Tamil')">AI Translate: Tamil</button>
+<button onclick="setAiLanguage('Telugu')">AI Translate: Telugu</button>
+<button onclick="setAiLanguage('Marathi')">AI Translate: Marathi</button>
+<button onclick="setAiLanguage('Bengali')">AI Translate: Bengali</button>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1201,6 +1334,88 @@ btn.innerHTML=open
 ? `Show more <i class="fa-solid fa-chevron-down"></i>`
 : `Show less <i class="fa-solid fa-chevron-up"></i>`;
 }
+
+
+/* Player Settings + AI CC Translate */
+function togglePlayerMenu(event){
+if(event) event.stopPropagation();
+const menu=document.getElementById("playerMenu");
+menu.classList.toggle("show");
+openSettingsPanel("mainSettingsPanel");
+}
+
+function toggleCcMenu(event){
+if(event) event.stopPropagation();
+const menu=document.getElementById("playerMenu");
+menu.classList.add("show");
+openSettingsPanel("captionPanel");
+}
+
+function openSettingsPanel(panelId){
+document.querySelectorAll(".player-menu-panel").forEach(panel=>panel.classList.remove("active"));
+document.getElementById(panelId).classList.add("active");
+}
+
+function setQuality(value){
+document.getElementById("qualityValue").innerText=value;
+showToast("Quality set to " + value);
+openSettingsPanel("mainSettingsPanel");
+}
+
+function setSpeed(value){
+document.getElementById("speedValue").innerText=value;
+showToast("Playback speed: " + value);
+openSettingsPanel("mainSettingsPanel");
+}
+
+function setCaption(value){
+document.getElementById("captionValue").innerText=value;
+showToast(value === "Off" ? "Captions off" : value + " enabled");
+hideAiBanner();
+openSettingsPanel("mainSettingsPanel");
+}
+
+function setAiLanguage(language){
+document.getElementById("captionValue").innerText="AI " + language;
+document.getElementById("ccAiTitle").innerText="AI Translate: " + language;
+document.getElementById("ccAiText").innerText="Demo: video audio is now playing in " + language + " in real time.";
+document.getElementById("ccAiBanner").classList.add("show");
+showToast("AI real-time audio translation: " + language);
+openSettingsPanel("mainSettingsPanel");
+setTimeout(hideAiBanner,3200);
+}
+
+function hideAiBanner(){
+const banner=document.getElementById("ccAiBanner");
+if(banner) banner.classList.remove("show");
+}
+
+function toggleTheaterMode(){
+const card=document.querySelector(".video-card");
+card.classList.toggle("theater-mode");
+document.getElementById("theaterValue").innerText=card.classList.contains("theater-mode")?"On":"Off";
+showToast(card.classList.contains("theater-mode")?"Theater mode on":"Theater mode off");
+}
+
+function toggleMiniPlayer(){
+showToast("Mini player demo activated");
+}
+
+function toggleFullscreen(){
+const player=document.querySelector(".player");
+if(!document.fullscreenElement && player.requestFullscreen){
+player.requestFullscreen();
+}else if(document.exitFullscreen){
+document.exitFullscreen();
+}
+}
+
+document.addEventListener("click",function(e){
+if(!e.target.closest("#playerMenu") && !e.target.closest("#settingsBtn") && !e.target.closest("#ccBtn")){
+const menu=document.getElementById("playerMenu");
+if(menu) menu.classList.remove("show");
+}
+});
 
 function showToast(text){
 const t=document.getElementById("toast");
