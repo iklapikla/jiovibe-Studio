@@ -3,324 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Shorts Generator - JioVibe</title>
+<title>AI Content Generator - JioVibe</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+:root{
+  --cream:#FFF6ED;
+  --soft:#FFE4CC;
+  --line:#FFD2B3;
+  --orange:#FF7A00;
+  --orange2:#E65100;
+  --brown:#7A3E2E;
+  --dark:#4A0E0E;
+  --deep:#2A0A0A;
+  --white:#fff;
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#FFF6ED;color:#4A0E0E}
+body{background:var(--cream);color:var(--dark)}
 a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer}
+button,textarea,input{font-family:inherit}
+button{cursor:pointer;border:none}
 
 .topbar{
-height:72px;background:#FFF6ED;border-bottom:1px solid #FFD2B3;
-display:flex;align-items:center;justify-content:space-between;
-padding:0 26px;position:sticky;top:0;z-index:20
+  height:72px;background:var(--cream);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 26px;position:sticky;top:0;z-index:20;
 }
-.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
+.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:900}
 .project{text-align:center}
-.project h1{font-size:24px;font-weight:800;color:#4A0E0E}
+.project h1{font-size:24px;font-weight:900}
 .tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
-.tag{background:#FFE4CC;color:#7A3E2E;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
+.tag{background:var(--soft);color:var(--brown);padding:6px 11px;border-radius:8px;font-size:12px;font-weight:900}
 .top-actions{display:flex;align-items:center;gap:12px}
-.token-pill{border:1px solid #FFD2B3;background:#FFFFFF;padding:11px 14px;border-radius:12px;font-weight:800;color:#4A0E0E}
-.buy-btn{background:#FF7A00;color:#FFFFFF;border-radius:12px;padding:13px 18px;font-weight:800}
-.buy-btn:hover{background:#E65100}
+.token-pill{border:1px solid var(--line);background:#fff;padding:11px 14px;border-radius:12px;font-weight:900}
+.buy-btn{background:var(--orange);color:#fff;border-radius:12px;padding:13px 18px;font-weight:900}
+.buy-btn:hover{background:var(--orange2)}
 
-.editor-shell{
-display:grid;
-grid-template-columns:120px 1fr 360px;
-gap:24px;
-padding:26px;
-max-width:1800px;
-margin:auto;
-}
+.shell{max-width:1450px;margin:auto;padding:26px;display:flex;flex-direction:column;gap:20px}
 
-.tool-rail{
-background:#FFF6ED;
-border:1px solid #FFD2B3;
-border-radius:22px;
-padding:18px 12px;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:14px;
-height:max-content;
-position:sticky;
-top:98px;
-box-shadow:0 8px 24px rgba(74,14,14,.04)
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:22px;
+  padding:22px;box-shadow:0 8px 24px rgba(74,14,14,.05);
 }
-.rail-title{
-font-size:14px;
-font-weight:800;
-color:#A66A55;
-text-align:center;
-margin-bottom:4px
+.card-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;
 }
-.rail-item{
-width:92px;
-height:92px;
-border:none;
-background:#FFFFFF;
-border-radius:18px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-gap:9px;
-font-size:14px;
-font-weight:800;
-color:#7A3E2E;
-transition:.22s ease;
+.card-title{display:flex;align-items:center;gap:12px}
+.step-no{
+  width:34px;height:34px;border-radius:50%;background:var(--orange);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:950;
 }
-.rail-item i{
-font-size:24px;
-width:44px;
-height:44px;
-border-radius:13px;
-background:#FFE4CC;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#FF7A00;
-}
-.rail-item:hover{
-transform:scale(1.04);
-background:#FFE4CC;
-color:#4A0E0E;
-box-shadow:0 8px 20px rgba(74,14,14,.08)
-}
-.rail-item.active{
-border:2px solid #FF7A00;
-color:#FF7A00;
-box-shadow:0 8px 20px rgba(255,122,0,.14)
-}
-.rail-item.active i{
-background:#FFE4CC;
-color:#FF7A00
-}
+.card-head h2{font-size:22px;font-weight:950}
+.note{font-size:13px;color:#A66A55;font-weight:850;text-align:right}
 
-.center-editor{display:flex;flex-direction:column;gap:20px}
-
-.upload-card{
-background:#FFFFFF;border:1px dashed #FFD2B3;border-radius:20px;
-padding:20px 24px;display:flex;align-items:center;justify-content:space-between;
-box-shadow:0 6px 18px rgba(74,14,14,.04)
+.upload-box{
+  border:1px dashed var(--line);border-radius:18px;padding:20px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;background:#FFF9F3;
 }
-.upload-left{display:flex;align-items:center;gap:16px}
+.upload-left{display:flex;align-items:center;gap:15px}
 .upload-icon{
-width:56px;height:56px;border-radius:16px;background:#FFE4CC;
-display:flex;align-items:center;justify-content:center;font-size:23px;color:#FF7A00
+  width:58px;height:58px;border-radius:16px;background:#FFE4CC;
+  display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:24px;
 }
-.upload-card h3{font-size:19px;font-weight:800;margin-bottom:5px;color:#4A0E0E}
-.upload-card p{font-size:14px;color:#7A3E2E;font-weight:600}
-.upload-btn{
-background:#FF7A00;color:#FFFFFF;border:none;border-radius:12px;
-padding:14px 22px;font-size:15px;font-weight:800;transition:.22s
-}
-.upload-btn:hover{transform:scale(1.03);background:#E65100}
+.upload-left h3{font-size:19px;font-weight:950;margin-bottom:4px}
+.upload-left p{font-size:14px;font-weight:750;color:var(--brown)}
 
-.video-preview{
-height:520px;
-width:293px;
-aspect-ratio:9/16;
-border-radius:22px;
-overflow:hidden;
-background:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop') center/cover;
-position:relative;
-box-shadow:0 10px 28px rgba(74,14,14,.12);
-margin:0 auto;
+.btn{
+  border-radius:14px;padding:14px 20px;font-size:15px;font-weight:950;transition:.22s;
 }
-.video-preview::after{
-content:"";position:absolute;inset:0;
-background:linear-gradient(to top,rgba(42,10,10,.72),rgba(42,10,10,.05))
-}
-.controls{position:absolute;left:18px;right:18px;bottom:20px;z-index:2;color:#FFFFFF}
-.progress{height:6px;background:rgba(255,255,255,.35);border-radius:20px;margin-bottom:16px;overflow:hidden}
-.progress span{display:block;width:38%;height:100%;background:#FF7A00}
-.control-row{display:flex;align-items:center;justify-content:space-between}
-.left-controls,.right-controls{display:flex;align-items:center;gap:12px;font-size:17px}
-.time{font-size:14px;font-weight:800}
+.btn.primary{background:var(--orange);color:#fff}
+.btn.secondary{background:#fff;color:var(--dark);border:1px solid var(--line)}
+.btn.more{background:var(--soft);color:var(--orange);border:1px solid var(--line)}
+.btn:hover{transform:scale(1.02);box-shadow:0 8px 18px rgba(255,122,0,.14)}
+.btn.primary:hover{background:var(--orange2)}
 
-.timeline-box{
-background:#FFFFFF;border:1px solid #FFD2B3;border-radius:20px;
-padding:18px;box-shadow:0 6px 18px rgba(74,14,14,.04)
+.more-wrap{
+  text-align:center;
+  margin-top:16px;
 }
-.tool-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.edit-tools,.zoom{display:flex;gap:10px;align-items:center}
-.small-btn{
-background:#FFFFFF;border:1px solid #FFD2B3;border-radius:10px;
-padding:10px 14px;font-weight:800;transition:.22s;color:#4A0E0E
-}
-.small-btn:hover{transform:scale(1.04);background:#FFE4CC}
-.zoom-line{width:120px;height:4px;background:#FFE4CC;border-radius:20px;position:relative}
-.zoom-line::after{content:"";position:absolute;left:45%;top:-5px;width:14px;height:14px;background:#FF7A00;border-radius:50%}
-.time-scale{
-display:grid;grid-template-columns:repeat(7,1fr);
-color:#7A3E2E;font-size:13px;font-weight:800;padding:0 58px;margin-bottom:12px
-}
-.track{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:center;margin-bottom:14px}
-.track-icon{
-width:42px;height:42px;border-radius:12px;background:#FFE4CC;
-display:flex;align-items:center;justify-content:center;font-size:18px;color:#FF7A00
-}
-.video-strip{
-height:76px;border:2px solid #FF7A00;border-radius:12px;
-overflow:hidden;display:grid;grid-template-columns:repeat(5,1fr);position:relative
-}
-.video-strip div{background-size:cover;background-position:center}
-.playhead{position:absolute;left:38%;top:-16px;bottom:-110px;width:3px;background:#FF7A00;z-index:5}
-.playhead::before{
-content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
-width:18px;height:18px;border-radius:50%;background:#FF7A00
-}
-.audio-strip{
-height:60px;border-radius:12px;background:#FFE4CC;border:1px solid #FFD2B3;
-display:flex;align-items:center;padding:0 12px;gap:4px;overflow:hidden
-}
-.bar{width:4px;background:#FF7A00;border-radius:10px}
-
-.note-box{
-background:#FFFFFF;border:1px solid #FFD2B3;border-radius:18px;padding:20px;
-display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 18px rgba(74,14,14,.04)
-}
-.note-box p{color:#7A3E2E;font-weight:600}
-.preview-btn{
-border:1px solid #FFD2B3;background:#FFFFFF;border-radius:12px;
-padding:13px 20px;font-weight:800;transition:.22s;color:#4A0E0E
-}
-.preview-btn:hover{background:#FF7A00;color:#FFFFFF;transform:scale(1.02)}
-
-.ai-panel{
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:22px;
-padding:22px;
-height:max-content;
-position:sticky;
-top:98px;
-box-shadow:0 10px 30px rgba(255,122,0,.10)
-}
-.ai-head{
-background:#FFE4CC;
-border:1px solid #FFD2B3;
-border-radius:16px;
-padding:16px;
-margin-bottom:14px
-}
-.ai-head h2{font-size:23px;font-weight:800;margin-bottom:8px;color:#4A0E0E}
-.ai-head h2 span{color:#FF7A00}
-.ai-head p{color:#7A3E2E;font-weight:700;font-size:14px}
-
-.prompt-box{
-border:1px solid #FFD2B3;
-background:#FFFFFF;
-border-radius:16px;
-padding:14px;
-margin-bottom:14px;
-}
-.prompt-box label{
-display:flex;
-align-items:center;
-gap:8px;
-font-size:14px;
-font-weight:800;
-color:#4A0E0E;
-margin-bottom:10px;
-}
-.prompt-box label i{color:#FF7A00}
-.prompt-box textarea{
-width:100%;
-min-height:105px;
-resize:none;
-border:1px solid #FFD2B3;
-border-radius:12px;
-padding:12px;
-font-size:13px;
-font-weight:600;
-outline:none;
-line-height:1.45;
-background:#FFFFFF;
-color:#4A0E0E;
-}
-.prompt-box textarea:focus{
-border-color:#FF7A00;
-box-shadow:0 0 0 3px rgba(255,122,0,.10);
-}
-.prompt-actions{
-display:flex;
-gap:10px;
-margin-top:10px;
-}
-.prompt-btn{
-flex:1;
-border:none;
-border-radius:10px;
-padding:11px;
-font-size:13px;
-font-weight:800;
-transition:.22s;
-}
-.prompt-btn.dark{
-background:#FF7A00;
-color:#FFFFFF;
-}
-.prompt-btn.light{
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-color:#4A0E0E;
-}
-.prompt-btn:hover{
-transform:scale(1.02);
+.more-wrap .btn{
+  padding:10px 18px;
+  font-size:13px;
+  border-radius:999px;
 }
 
-.ai-tool{
-display:grid;
-grid-template-columns:46px 1fr 52px;
-gap:12px;
-align-items:center;
-padding:16px 0;
-border-top:1px solid #FFE0CC;
-transition:.22s
+.prompt-area{
+  display:grid;grid-template-columns:1fr 220px;gap:16px;align-items:stretch;
 }
-.ai-tool:hover{transform:scale(1.01)}
-.ai-tool.active{
-background:#FFE4CC;
-margin:0 -10px;
-padding-left:10px;
-padding-right:10px;
-border-radius:14px;
+textarea{
+  width:100%;height:120px;resize:none;border:1px solid var(--line);
+  border-radius:16px;padding:15px;outline:none;font-size:15px;font-weight:700;
+  line-height:1.45;color:var(--dark);background:#fff;
 }
-.ai-icon{
-width:46px;height:46px;border-radius:12px;background:#FFE4CC;
-display:flex;align-items:center;justify-content:center;font-size:19px;color:#FF7A00
-}
-.ai-tool h3{font-size:15px;font-weight:800;margin-bottom:4px;color:#4A0E0E}
-.ai-tool p{font-size:12px;color:#7A3E2E;line-height:1.35}
-.toggle{width:50px;height:28px;border-radius:999px;background:#FFD2B3;position:relative;transition:.2s}
-.toggle::after{
-content:"";position:absolute;width:22px;height:22px;background:#FFFFFF;
-border-radius:50%;top:3px;left:3px;transition:.2s
-}
-.ai-tool.active .toggle{background:#FF7A00}
-.ai-tool.active .toggle::after{left:25px}
+textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,122,0,.10)}
+.prompt-actions{display:flex;flex-direction:column;gap:12px}
 
-.cost-box{
-background:#FFE4CC;border:1px solid #FFD2B3;border-radius:14px;
-padding:16px;margin-top:14px;font-weight:800;display:flex;justify-content:space-between;color:#4A0E0E
+.action-row{
+  background:#fff;border:1px solid var(--line);border-radius:18px;
+  padding:16px;display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;
 }
-.cost-box span:last-child{color:#FF7A00}
-.generate-btn{
-width:100%;margin-top:16px;border:none;background:#FF7A00;color:#FFFFFF;
-border-radius:14px;padding:16px;font-size:16px;font-weight:800;transition:.22s
+.action-info h3{font-size:18px;font-weight:950;margin-bottom:4px}
+.action-info p{font-size:13px;font-weight:750;color:var(--brown);line-height:1.35}
+.cost-pill{
+  background:var(--soft);border:1px solid var(--line);border-radius:999px;
+  color:var(--orange);padding:9px 13px;font-size:13px;font-weight:950;white-space:nowrap;
 }
-.generate-btn:hover{transform:scale(1.02);box-shadow:0 8px 20px rgba(255,122,0,.25);background:#E65100}
+.action-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.output{display:none;margin-top:16px;border-top:1px solid #FFE0CC;padding-top:16px}
+.output.show{display:block}
 
-@media(max-width:1300px){
-.editor-shell{grid-template-columns:100px 1fr}
-.ai-panel{grid-column:1/-1;position:static}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.short-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.story-grid,.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.meta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+
+.video-card,.short-card,.image-card,.meta-card{
+  border:1px solid var(--line);background:#FFF9F3;border-radius:18px;overflow:hidden;
+  transition:.22s;
+}
+.video-card:hover,.short-card:hover,.image-card:hover,.meta-card:hover{
+  transform:translateY(-3px);box-shadow:0 12px 26px rgba(255,122,0,.12);
+}
+
+.video-thumb{aspect-ratio:16/9;background-size:cover;background-position:center;position:relative}
+.short-thumb{
+  aspect-ratio:9/16;width:62%;margin:14px auto;border-radius:16px;
+  background-size:cover;background-position:center;position:relative;
+}
+.story-thumb{
+  aspect-ratio:9/16;width:65%;margin:14px auto;border-radius:16px;
+  background-size:cover;background-position:center;position:relative;
+}
+.community-thumb{
+  aspect-ratio:1/1;background-size:cover;background-position:center;position:relative;
+}
+.video-thumb:after,.short-thumb:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(42,10,10,.55),rgba(42,10,10,.04));
+}
+.story-thumb:after,.community-thumb:after{
+  display:none;
+  content:none;
+}
+.play{
+  position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:44px;height:44px;border-radius:50%;background:#fff;color:var(--orange);
+  display:flex;align-items:center;justify-content:center;
+}
+.item-body{padding:14px}
+.item-body h3{font-size:16px;font-weight:950;margin-bottom:5px}
+.item-body p{font-size:13px;font-weight:750;color:var(--brown);line-height:1.35}
+.download-btn{
+  width:100%;margin-top:12px;background:#fff;border:1px solid var(--line);
+  color:var(--orange);border-radius:12px;padding:11px;font-size:13px;font-weight:950;
+}
+.download-btn:hover{background:var(--soft)}
+
+.meta-card{padding:16px}
+.meta-card h3{font-size:16px;font-weight:950;margin-bottom:8px}
+.meta-card p{font-size:14px;font-weight:750;color:var(--brown);line-height:1.45;margin-bottom:12px}
+.copy-btn{
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:10px 13px;font-size:13px;font-weight:950;color:var(--orange);
+}
+.copy-btn:hover{background:var(--soft)}
+
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translateX(-50%);
+  background:var(--deep);color:#fff;padding:13px 18px;border-radius:999px;
+  font-weight:850;display:none;z-index:100;
+}
+.toast.show{display:block}
+
+@media(max-width:1000px){
+  .action-row{grid-template-columns:1fr}
+  .prompt-area{grid-template-columns:1fr}
+  .video-grid,.short-grid,.story-grid,.community-grid,.meta-grid{grid-template-columns:1fr}
+}
+@media(max-width:800px){
+  .topbar{height:auto;flex-wrap:wrap;gap:14px;padding:16px}
+  .project{order:3;width:100%}
+  .upload-box{flex-direction:column;align-items:stretch}
 }
 </style>
 </head>
@@ -330,14 +195,15 @@ border-radius:14px;padding:16px;font-size:16px;font-weight:800;transition:.22s
 <header class="topbar">
   <div class="back-title">
     <a href="ai-studio.html"><i class="fa-solid fa-arrow-left"></i></a>
-    <span>AI Shorts Generator</span>
+    <span>AI Video Generator</span>
   </div>
 
   <div class="project">
-    <h1>Weekend Short <i class="fa-regular fa-pen-to-square"></i></h1>
+    <h1>Create Video, Shorts & Social Assets</h1>
     <div class="tags">
-      <span class="tag">Duration: 00:45</span>
-      <span class="tag">Resolution: 1080×1920</span>
+      <span class="tag">Video 16:9</span>
+      <span class="tag">Shorts 9:16</span>
+      <span class="tag">Images for Posts</span>
     </div>
   </div>
 
@@ -347,209 +213,398 @@ border-radius:14px;padding:16px;font-size:16px;font-weight:800;transition:.22s
   </div>
 </header>
 
-<div class="editor-shell">
+<div class="shell">
 
-<aside class="tool-rail">
-  <div class="rail-title">AI Tools</div>
-
-  <button class="rail-item" onclick="selectRail(this)">
-    <i class="fa-solid fa-video"></i>
-    Video
-  </button>
-
-  <button class="rail-item" onclick="selectRail(this)">
-    <i class="fa-solid fa-music"></i>
-    Audio
-  </button>
-
-  <button class="rail-item" onclick="selectRail(this)">
-    <i class="fa-regular fa-image"></i>
-    Image
-  </button>
-
-  <button class="rail-item" onclick="selectRail(this)">
-    <i class="fa-regular fa-closed-captioning"></i>
-    Subtitles
-  </button>
-
-  <button class="rail-item" onclick="selectRail(this)">
-    <i class="fa-solid fa-font"></i>
-    Text
-  </button>
-
-  <button class="rail-item" onclick="selectRail(this)">
-    <i class="fa-regular fa-square"></i>
-    Elements
-  </button>
-
-  <button class="rail-item" onclick="selectRail(this)">
-    <i class="fa-solid fa-palette"></i>
-    Brand Kit
-  </button>
-
-  <button class="rail-item" onclick="selectRail(this)">
-    <i class="fa-solid fa-gear"></i>
-    Settings
-  </button>
-</aside>
-
-<main class="center-editor">
-
-<div class="upload-card">
-  <div class="upload-left">
-    <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-    <div>
-      <h3>Upload Shorts Video</h3>
-      <p>Select a vertical video under 60 seconds.</p>
+<section class="card">
+  <div class="card-head">
+    <div class="card-title">
+      <div class="step-no">1</div>
+      <h2>Upload Video</h2>
     </div>
+    <div class="note">Free upload</div>
   </div>
-  <button class="upload-btn">Upload Video</button>
-</div>
 
-<div class="video-preview">
-  <div class="controls">
-    <div class="progress"><span></span></div>
-    <div class="control-row">
-      <div class="left-controls">
-        <i class="fa-solid fa-play"></i>
-        <i class="fa-solid fa-volume-high"></i>
-        <span class="time">00:18 / 00:45</span>
-      </div>
-      <div class="right-controls">
-        <i class="fa-regular fa-closed-captioning"></i>
-        <i class="fa-solid fa-gear"></i>
-        <i class="fa-solid fa-expand"></i>
+  <div class="upload-box">
+    <div class="upload-left">
+      <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+      <div>
+        <h3 id="uploadTitle">Upload your video</h3>
+        <p id="uploadText">Upload is free. After upload, you can generate title, description, videos, shorts and images using tokens.</p>
       </div>
     </div>
+    <button class="btn primary" id="uploadBtn" onclick="uploadVideo()">Upload Video • Free</button>
   </div>
-</div>
+</section>
 
-<div class="timeline-box">
-  <div class="tool-row">
-    <div class="edit-tools">
-      <button class="small-btn"><i class="fa-solid fa-rotate-left"></i> Undo</button>
-      <button class="small-btn"><i class="fa-solid fa-rotate-right"></i> Redo</button>
-      <button class="small-btn"><i class="fa-solid fa-scissors"></i> Split</button>
-      <button class="small-btn"><i class="fa-regular fa-trash-can"></i> Delete</button>
+<section class="card">
+  <div class="card-head">
+    <div class="card-title">
+      <div class="step-no">2</div>
+      <h2>Prompt to Video</h2>
     </div>
-
-    <div class="zoom">
-      <button class="small-btn">−</button>
-      <div class="zoom-line"></div>
-      <button class="small-btn">+</button>
-      <button class="small-btn"><i class="fa-solid fa-expand"></i></button>
-    </div>
+    <div class="note">Generate 3 videos in 16:9</div>
   </div>
 
-  <div class="time-scale">
-    <span>00:00</span><span>00:10</span><span>00:20</span><span>00:30</span><span>00:40</span><span>00:50</span><span>01:00</span>
-  </div>
-
-  <div class="track">
-    <div class="track-icon"><i class="fa-regular fa-circle-play"></i></div>
-    <div class="video-strip">
-      <div style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop')"></div>
-      <div style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop')"></div>
-      <div style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop')"></div>
-      <div style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop')"></div>
-      <div style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop')"></div>
-      <div class="playhead"></div>
-    </div>
-  </div>
-
-  <div class="track">
-    <div class="track-icon"><i class="fa-solid fa-music"></i></div>
-    <div class="audio-strip" id="audioBars"></div>
-  </div>
-</div>
-
-<div class="note-box">
-  <p><i class="fa-regular fa-lightbulb"></i> AI will analyze your short and create an optimized vertical clip under 60 seconds.</p>
-  <button class="preview-btn"><i class="fa-regular fa-eye"></i> Preview Changes</button>
-</div>
-
-</main>
-
-<aside class="ai-panel">
-  <div class="ai-head">
-    <h2><span>✨</span> AI Shorts Editing</h2>
-    <p>Select AI tools or describe your short using a prompt.</p>
-  </div>
-
-  <div class="prompt-box">
-    <label><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Based Short</label>
-    <textarea placeholder="Example: Convert this video into a fast-paced 45 second short with auto captions, zoom cuts, upbeat edits and viral hook at the start."></textarea>
+  <div class="prompt-area">
+    <textarea id="promptText">Create a cinematic gaming intro video with fast cuts, glowing orange effects, creator face reveal moment, and strong YouTube-style opening.</textarea>
     <div class="prompt-actions">
-      <button class="prompt-btn dark" type="button">Apply Prompt</button>
-      <button class="prompt-btn light" type="button">Clear</button>
+      <button class="btn primary" onclick="generatePromptVideos()">Generate Video • 20 Tokens</button>
+      <button class="btn secondary" onclick="clearPrompt()">Clear Prompt</button>
     </div>
   </div>
 
-  <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-solid fa-scissors"></i></div>
-    <div><h3>Auto Cut</h3><p>Convert long parts into a short.</p></div>
-    <div class="toggle"></div>
+  <div class="output" id="promptVideoOutput">
+    <div class="video-grid" id="promptVideoGrid"></div>
+    <div class="more-wrap">
+      <button class="btn more" onclick="comingSoon()">More • 10 Tokens</button>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="action-row">
+    <div class="action-info">
+      <h3>Generate Title</h3>
+      <p>Generate copy-ready titles for uploaded video or prompt video.</p>
+    </div>
+    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 5 Tokens</div>
+    <div class="action-buttons">
+      <button class="btn primary" onclick="generateTitle('uploaded')">For Uploaded Video</button>
+      <button class="btn secondary" onclick="generateTitle('prompt')">For Prompt Video</button>
+    </div>
   </div>
 
-  <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-regular fa-closed-captioning"></i></div>
-    <div><h3>Auto Captions</h3><p>Add captions for Shorts format.</p></div>
-    <div class="toggle"></div>
+  <div class="output" id="titleOutput">
+    <div class="meta-grid" id="titleGrid"></div>
+    <div class="more-wrap">
+      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="action-row">
+    <div class="action-info">
+      <h3>Generate Description</h3>
+      <p>Generate copy-ready descriptions for uploaded video or prompt video.</p>
+    </div>
+    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 5 Tokens</div>
+    <div class="action-buttons">
+      <button class="btn primary" onclick="generateDescription('uploaded')">For Uploaded Video</button>
+      <button class="btn secondary" onclick="generateDescription('prompt')">For Prompt Video</button>
+    </div>
   </div>
 
-  <div class="ai-tool" data-cost="4" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-    <div><h3>Auto Zoom</h3><p>Add zoom moments automatically.</p></div>
-    <div class="toggle"></div>
+  <div class="output" id="descriptionOutput">
+    <div class="meta-grid" id="descriptionGrid"></div>
+    <div class="more-wrap">
+      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="action-row">
+    <div class="action-info">
+      <h3>Generate More Videos from Uploaded Video</h3>
+      <p>Create 3 new 16:9 video versions from your uploaded video.</p>
+    </div>
+    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 15 Tokens</div>
+    <div class="action-buttons">
+      <button class="btn primary" onclick="generateMoreVideos()">Generate</button>
+    </div>
   </div>
 
-  <div class="ai-tool" data-cost="3" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-solid fa-bolt"></i></div>
-    <div><h3>Highlight Moments</h3><p>Find best moments for short.</p></div>
-    <div class="toggle"></div>
+  <div class="output" id="moreVideoOutput">
+    <div class="video-grid" id="moreVideoGrid"></div>
+    <div class="more-wrap">
+      <button class="btn more" onclick="comingSoon()">More • 10 Tokens</button>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="action-row">
+    <div class="action-info">
+      <h3>Generate More Shorts from Uploaded Video</h3>
+      <p>Create 3 vertical 9:16 shorts from your uploaded video.</p>
+    </div>
+    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 10 Tokens</div>
+    <div class="action-buttons">
+      <button class="btn primary" onclick="generateShorts()">Generate</button>
+    </div>
   </div>
 
-  <div class="ai-tool" data-cost="3" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-solid fa-palette"></i></div>
-    <div><h3>Color Enhance</h3><p>Improve color and lighting.</p></div>
-    <div class="toggle"></div>
+  <div class="output" id="shortOutput">
+    <div class="short-grid" id="shortGrid"></div>
+    <div class="more-wrap">
+      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="action-row">
+    <div class="action-info">
+      <h3>Extract Images from Video for Story</h3>
+      <p>Extract and refine 3 vertical 9:16 story images from the video.</p>
+    </div>
+    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 10 Tokens</div>
+    <div class="action-buttons">
+      <button class="btn primary" onclick="generateStoryImages()">Generate</button>
+    </div>
   </div>
 
-  <div class="cost-box">
-    <span>Total Cost</span>
-    <span id="totalCost">0 Tokens</span>
+  <div class="output" id="storyOutput">
+    <div class="story-grid" id="storyGrid"></div>
+    <div class="more-wrap">
+      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="action-row">
+    <div class="action-info">
+      <h3>Extract Images from Video for Community Post</h3>
+      <p>Extract and refine 3 square 1:1 images for community post.</p>
+    </div>
+    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 10 Tokens</div>
+    <div class="action-buttons">
+      <button class="btn primary" onclick="generateCommunityImages()">Generate</button>
+    </div>
   </div>
 
-  <button class="generate-btn">Generate Short</button>
-</aside>
+  <div class="output" id="communityOutput">
+    <div class="community-grid" id="communityGrid"></div>
+    <div class="more-wrap">
+      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
+    </div>
+  </div>
+</section>
 
 </div>
+
+<div class="toast" id="toast">Done</div>
 
 <script>
-const audioBars = document.getElementById("audioBars");
-for(let i=0;i<130;i++){
-  const bar=document.createElement("div");
-  bar.className="bar";
-  bar.style.height=(12+Math.random()*34)+"px";
-  audioBars.appendChild(bar);
+let videoUploaded = false;
+
+const videoImages = [
+  "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop"
+];
+
+const travelImages = [
+  "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop"
+];
+
+const storyImages = [
+  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop"
+];
+
+function showToast(text){
+  const toast=document.getElementById("toast");
+  toast.innerText=text;
+  toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"),1800);
 }
 
-function toggleTool(tool){
-  tool.classList.toggle("active");
-  updateCost();
+function requireUpload(){
+  if(!videoUploaded){
+    showToast("Please upload video first");
+    return false;
+  }
+  return true;
 }
 
-function updateCost(){
-  let total = 0;
-  document.querySelectorAll(".ai-tool.active").forEach(tool=>{
-    total += Number(tool.dataset.cost);
-  });
-  document.getElementById("totalCost").innerText = total + " Tokens";
+function comingSoon(){
+  showToast("More output will be available soon");
 }
 
-function selectRail(btn){
-  document.querySelectorAll(".rail-item").forEach(item => item.classList.remove("active"));
-  btn.classList.add("active");
+function uploadVideo(){
+  videoUploaded = true;
+  document.getElementById("uploadTitle").innerText="Video uploaded successfully";
+  document.getElementById("uploadText").innerText="Your uploaded video is ready for title, description, videos, shorts and image extraction.";
+  document.getElementById("uploadBtn").innerHTML='<i class="fa-solid fa-check"></i> Uploaded';
+  showToast("Video uploaded successfully");
+}
+
+function clearPrompt(){
+  document.getElementById("promptText").value="";
+  showToast("Prompt cleared");
+}
+
+function videoCard(title,img,desc){
+  return `
+  <div class="video-card">
+    <div class="video-thumb" style="background-image:url('${img}')">
+      <div class="play"><i class="fa-solid fa-play"></i></div>
+    </div>
+    <div class="item-body">
+      <h3>${title}</h3>
+      <p>${desc}</p>
+      <button class="download-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button>
+    </div>
+  </div>`;
+}
+
+function shortCard(title,img,desc){
+  return `
+  <div class="short-card">
+    <div class="short-thumb" style="background-image:url('${img}')">
+      <div class="play"><i class="fa-solid fa-play"></i></div>
+    </div>
+    <div class="item-body">
+      <h3>${title}</h3>
+      <p>${desc}</p>
+      <button class="download-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button>
+    </div>
+  </div>`;
+}
+
+function storyImageCard(title,img){
+  return `
+  <div class="image-card">
+    <div class="story-thumb" style="background-image:url('${img}')"></div>
+    <div class="item-body">
+      <h3>${title}</h3>
+      <p>9:16 refined story image generated from video frame.</p>
+      <button class="download-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button>
+    </div>
+  </div>`;
+}
+
+function communityImageCard(title,img){
+  return `
+  <div class="image-card">
+    <div class="community-thumb" style="background-image:url('${img}')"></div>
+    <div class="item-body">
+      <h3>${title}</h3>
+      <p>1:1 refined community post image generated from video frame.</p>
+      <button class="download-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button>
+    </div>
+  </div>`;
+}
+
+function generatePromptVideos(){
+  const grid=document.getElementById("promptVideoGrid");
+  grid.innerHTML =
+    videoCard("Prompt Video 1",videoImages[0],"16:9 AI generated video from prompt.")+
+    videoCard("Prompt Video 2",videoImages[1],"Alternative 16:9 video style.")+
+    videoCard("Prompt Video 3",videoImages[2],"High energy creator-style output.");
+  document.getElementById("promptVideoOutput").classList.add("show");
+  showToast("3 prompt videos generated • 20 Tokens");
+}
+
+function generateTitle(type){
+  if(type === "uploaded" && !requireUpload()) return;
+
+  const grid=document.getElementById("titleGrid");
+  const label = type === "uploaded" ? "Uploaded Video" : "Prompt Video";
+  const titles = [
+    "High Energy Gaming Intro | JioVibe Creator Edit",
+    "This Intro Looks Insane | AI Generated Video",
+    "Creator Video Made with AI | Full Edit Demo",
+    "From Idea to Video in Seconds"
+  ];
+
+  grid.innerHTML = titles.map((title,i)=>`
+    <div class="meta-card">
+      <h3>${label} Title ${i+1}</h3>
+      <p>${title}</p>
+      <button class="copy-btn" onclick="copyText('${title.replace(/'/g,"")}')">
+        <i class="fa-regular fa-copy"></i> Copy
+      </button>
+    </div>
+  `).join("");
+
+  document.getElementById("titleOutput").classList.add("show");
+  showToast("Titles generated • 5 Tokens");
+}
+
+function generateDescription(type){
+  if(type === "uploaded" && !requireUpload()) return;
+
+  const grid=document.getElementById("descriptionGrid");
+  const label = type === "uploaded" ? "Uploaded Video" : "Prompt Video";
+  const descriptions = [
+    "A strong creator-style video with fast cuts, bold visuals and high engagement opening. Created using JioVibe AI.",
+    "Watch this AI-powered video edit with cinematic visuals, smooth transitions and a powerful opening hook.",
+    "This video shows how creators can generate professional content using prompt-based AI tools on JioVibe.",
+    "A clean and engaging AI generated video made for creators, streamers and community posts."
+  ];
+
+  grid.innerHTML = descriptions.map((desc,i)=>`
+    <div class="meta-card">
+      <h3>${label} Description ${i+1}</h3>
+      <p>${desc}</p>
+      <button class="copy-btn" onclick="copyText('${desc.replace(/'/g,"")}')">
+        <i class="fa-regular fa-copy"></i> Copy
+      </button>
+    </div>
+  `).join("");
+
+  document.getElementById("descriptionOutput").classList.add("show");
+  showToast("Descriptions generated • 5 Tokens");
+}
+
+function generateMoreVideos(){
+  if(!requireUpload()) return;
+
+  const grid=document.getElementById("moreVideoGrid");
+  grid.innerHTML =
+    videoCard("Cinematic Edit",travelImages[0],"Generated from uploaded video in 16:9.")+
+    videoCard("Highlight Cut",travelImages[1],"Best moments converted into video.")+
+    videoCard("Clean Creator Edit",travelImages[2],"Polished creator-style 16:9 output.");
+  document.getElementById("moreVideoOutput").classList.add("show");
+  showToast("3 more videos generated • 15 Tokens");
+}
+
+function generateShorts(){
+  if(!requireUpload()) return;
+
+  const grid=document.getElementById("shortGrid");
+  grid.innerHTML =
+    shortCard("Viral Short",storyImages[0],"9:16 hook-first short generated.")+
+    shortCard("Best Moment Short",storyImages[1],"Best clip converted into short.")+
+    shortCard("Caption Short",storyImages[2],"Short with auto caption style.");
+  document.getElementById("shortOutput").classList.add("show");
+  showToast("3 shorts generated • 10 Tokens");
+}
+
+function generateStoryImages(){
+  if(!requireUpload()) return;
+
+  const grid=document.getElementById("storyGrid");
+  grid.innerHTML =
+    storyImageCard("Story Image 1",storyImages[0])+
+    storyImageCard("Story Image 2",storyImages[1])+
+    storyImageCard("Story Image 3",storyImages[2]);
+  document.getElementById("storyOutput").classList.add("show");
+  showToast("Story images generated • 10 Tokens");
+}
+
+function generateCommunityImages(){
+  if(!requireUpload()) return;
+
+  const grid=document.getElementById("communityGrid");
+  grid.innerHTML =
+    communityImageCard("Community Post 1",travelImages[0])+
+    communityImageCard("Community Post 2",travelImages[1])+
+    communityImageCard("Community Post 3",travelImages[2]);
+  document.getElementById("communityOutput").classList.add("show");
+  showToast("Community post images generated • 10 Tokens");
+}
+
+function copyText(text){
+  navigator.clipboard.writeText(text);
+  showToast("Copied");
 }
 </script>
 
