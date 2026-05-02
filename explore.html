@@ -486,6 +486,197 @@ z-index:200
 .category-grid{grid-template-columns:repeat(2,1fr)}
 .reel-grid{grid-template-columns:repeat(2,1fr)}
 }
+
+
+/* PREMIUM HOVER ANIMATION LAYER - ADDED ONLY */
+.menu-item,
+.category-btn,
+.video-card,
+.hero-section,
+.cat-card,
+.reel-card,
+.watch-btn,
+.hero-arrow,
+.profile,
+.bell,
+.dropdown a,
+.section-head button{
+will-change: transform;
+}
+
+.menu-item{
+transition: background .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+transform-origin: left center;
+}
+
+.menu-item:hover{
+transform: scale(1.045);
+box-shadow: 0 10px 24px rgba(255,122,0,.16);
+}
+
+.profile,
+.bell{
+transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.profile:hover{
+transform: scale(1.035);
+background:#FFF6ED;
+box-shadow:0 8px 20px rgba(74,14,14,.08);
+}
+
+.bell:hover{
+transform: scale(1.12);
+color:#FF7A00;
+}
+
+.search{
+transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+
+.search:focus-within{
+border-color:#FF7A00;
+box-shadow:0 8px 22px rgba(255,122,0,.13);
+transform: translateY(-1px);
+}
+
+.watch-btn{
+transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.watch-btn:hover{
+transform: translateY(-2px) scale(1.04);
+box-shadow:0 14px 30px rgba(255,122,0,.32);
+}
+
+.hero-section{
+transition: transform .35s ease, box-shadow .35s ease;
+transform-origin:center center;
+}
+
+.hero-section:hover{
+transform: scale(1.012);
+box-shadow:0 20px 48px rgba(74,14,14,.18);
+}
+
+.hero{
+transition: transform .55s ease;
+}
+
+.hero-section:hover .hero{
+transform: scale(1.035);
+}
+
+.hero-content,
+.hero-arrow,
+.hero-dots{
+transform: translateZ(0);
+}
+
+.hero-section:hover .hero-content,
+.hero-section:hover .hero-arrow,
+.hero-section:hover .hero-dots{
+transform: translateZ(0) scale(.988);
+}
+
+.hero-arrow{
+transition: background .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+
+.hero-arrow:hover{
+transform: translateY(-50%) scale(1.1);
+box-shadow:0 12px 28px rgba(255,122,0,.22);
+}
+
+.section-head button{
+transition: transform .25s ease, color .25s ease;
+}
+
+.section-head button:hover{
+transform: translateX(3px) scale(1.03);
+}
+
+.video-card{
+transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+transform-origin:center center;
+}
+
+.video-card:hover{
+transform: translateY(-8px) scale(1.035);
+box-shadow:0 18px 42px rgba(74,14,14,.16);
+border-color:#FF7A00;
+}
+
+.thumb img,
+.thumb video{
+transition: transform .4s ease, opacity .25s ease;
+}
+
+.video-card:hover .thumb img,
+.video-card:hover .thumb video{
+transform: scale(1.08);
+}
+
+.extra{
+opacity:0;
+transform: translateY(14px);
+transition: opacity .35s ease, transform .35s ease;
+}
+
+.extra.show{
+opacity:1;
+transform: translateY(0);
+}
+
+.cat-card,
+.reel-card{
+transition: transform .3s ease, box-shadow .3s ease;
+transform-origin:center center;
+}
+
+.cat-card:hover,
+.reel-card:hover{
+transform: translateY(-7px) scale(1.035);
+box-shadow:0 20px 46px rgba(74,14,14,.18);
+}
+
+.cat-card img,
+.reel-card img{
+transition: transform .45s ease;
+}
+
+.cat-card:hover img,
+.reel-card:hover img{
+transform: scale(1.08);
+}
+
+.modal{
+animation: modalPop .28s ease;
+}
+
+@keyframes modalPop{
+from{opacity:0;transform:translateY(12px) scale(.98);}
+to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+.toast{
+animation: toastRise .25s ease;
+}
+
+@keyframes toastRise{
+from{opacity:0;transform:translateX(-50%) translateY(12px);}
+to{opacity:1;transform:translateX(-50%) translateY(0);}
+}
+
+@media (prefers-reduced-motion: reduce){
+*,*::before,*::after{
+animation-duration:.01ms !important;
+animation-iteration-count:1 !important;
+transition-duration:.01ms !important;
+scroll-behavior:auto !important;
+}
+}
+
 </style>
 </head>
 
