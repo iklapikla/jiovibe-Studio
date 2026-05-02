@@ -280,6 +280,41 @@ opacity:0;pointer-events:none;transition:.3s;z-index:999
 .tool-rail,.right-panel{position:static}
 .story-frame{width:330px}
 }
+
+/* --- ADDED PREMIUM ANIMATIONS ONLY --- */
+.back-title a,.publish-btn,.tag{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}
+.back-title a:hover,.publish-btn:hover,.tag:hover{transform:scale(1.05);box-shadow:0 10px 24px rgba(255,122,0,.14)}
+.tool-rail,.center-area,.right-panel{animation:softFadeUp .45s ease both}
+.center-area{animation-delay:.05s}.right-panel{animation-delay:.08s}
+@keyframes softFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.tool-rail,.story-frame-wrap{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;will-change:transform}
+.card:hover,.tool-rail:hover,.story-frame-wrap:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 18px 42px rgba(74,14,14,.13);border-color:#FF7A00}
+.story-frame{transition:transform .35s ease,box-shadow .35s ease;will-change:transform}
+.story-frame:hover{transform:scale(1.018);box-shadow:0 22px 50px rgba(74,14,14,.18)}
+.rail-item{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease;will-change:transform}
+.rail-item:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 14px 30px rgba(74,14,14,.12)}
+.rail-item i{transition:transform .25s ease,box-shadow .25s ease}
+.rail-item:hover i{transform:scale(1.08);box-shadow:0 10px 22px rgba(255,122,0,.15)}
+.input,textarea,select{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.input:hover,textarea:hover,select:hover,.input:focus,textarea:focus,select:focus{transform:scale(1.01);box-shadow:0 10px 24px rgba(255,122,0,.12);border-color:#FF7A00}
+button,.preview-actions button,.ai-actions button,.result-item button,.sticker{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease}
+button:hover,.preview-actions button:hover,.ai-actions button:hover,.result-item button:hover{transform:scale(1.04);box-shadow:0 10px 24px rgba(255,122,0,.14)}
+.ai-box{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.ai-box:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 14px 30px rgba(74,14,14,.10);border-color:#FF7A00}
+.results.show{animation:resultsIn .28s ease both}
+@keyframes resultsIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.result-item{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.result-item:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 10px 24px rgba(74,14,14,.08);border-color:#FF7A00}
+.story-upload-small.show{animation:uploadIn .28s ease both}
+@keyframes uploadIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.story-upload-small:hover{transform:translateY(-5px) scale(1.015);box-shadow:0 16px 34px rgba(74,14,14,.12);border-color:#FF7A00}
+.sticker:hover{transform:translateY(-4px) scale(1.08);box-shadow:0 12px 26px rgba(255,122,0,.16);border-color:#FF7A00}
+.story-footer i,.reply-box{transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+.story-footer i:hover,.reply-box:hover{transform:scale(1.06);box-shadow:0 10px 24px rgba(255,255,255,.14)}
+.toast.show{animation:toastPop .28s ease both}
+@keyframes toastPop{from{opacity:0;transform:translateX(-50%) translateY(-18px) scale(.96)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+
 </style>
 </head>
 
