@@ -461,6 +461,159 @@ line-height:1.4;
 .bottom-benefits{grid-template-columns:repeat(2,1fr);}
 .search{width:430px;}
 }
+
+/* --- ADDED PREMIUM ANIMATIONS ONLY --- */
+
+/* Sidebar */
+.menu-item{
+transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
+transform-origin:left center;
+will-change:transform;
+}
+.menu-item:hover{
+transform:scale(1.045);
+box-shadow:0 10px 24px rgba(255,122,0,.14);
+}
+
+/* Topbar */
+.bell,
+.profile,
+.dropdown a{
+transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
+}
+.bell:hover,
+.profile:hover{
+transform:scale(1.05);
+}
+.profile:hover{
+background:#FFFFFF;
+box-shadow:0 8px 22px rgba(74,14,14,.08);
+}
+.dropdown.show{
+animation:dropdownIn .22s ease both;
+}
+@keyframes dropdownIn{
+from{opacity:0;transform:translateY(-8px) scale(.98);}
+to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+/* Page load */
+.page-head,
+.offer-box,
+.section-head,
+.tools-grid,
+.bottom-benefits{
+animation:softFadeUp .45s ease both;
+}
+.offer-box{animation-delay:.05s;}
+.section-head{animation-delay:.08s;}
+.tools-grid{animation-delay:.1s;}
+.bottom-benefits{animation-delay:.12s;}
+
+@keyframes softFadeUp{
+from{opacity:0;transform:translateY(12px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* Search */
+.search{
+transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.search:hover,
+.search:focus-within{
+transform:scale(1.015);
+box-shadow:0 10px 24px rgba(255,122,0,.12);
+border-color:#FF7A00;
+}
+
+/* Offer package */
+.offer-box{
+transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+will-change:transform;
+}
+.offer-box:hover{
+transform:translateY(-7px) scale(1.01);
+box-shadow:0 22px 50px rgba(74,14,14,.16);
+border-color:#FF7A00;
+}
+.token-card{
+transition:transform .3s ease,box-shadow .3s ease;
+will-change:transform;
+}
+.offer-box:hover .token-card{
+transform:scale(1.04);
+box-shadow:0 18px 42px rgba(42,10,10,.22);
+}
+
+/* Buttons and badges */
+.badge,
+.buy-btn,
+.access-pill{
+transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
+}
+.badge:hover,
+.access-pill:hover{
+transform:translateY(-3px) scale(1.03);
+box-shadow:0 10px 24px rgba(255,122,0,.12);
+border-color:#FF7A00;
+}
+.buy-btn:hover{
+transform:scale(1.045);
+box-shadow:0 12px 28px rgba(255,122,0,.22);
+}
+
+/* Tool cards */
+.tool-card{
+transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+will-change:transform;
+}
+.tool-card:hover{
+transform:translateY(-7px) scale(1.025);
+box-shadow:0 20px 44px rgba(74,14,14,.14);
+border-color:#FF7A00;
+}
+.tool-icon{
+transition:transform .3s ease,box-shadow .3s ease;
+}
+.tool-card:hover .tool-icon{
+transform:scale(1.08);
+box-shadow:0 12px 26px rgba(255,122,0,.18);
+}
+.check-icon{
+transition:transform .25s ease,color .25s ease;
+}
+.tool-card:hover .check-icon{
+transform:scale(1.12);
+color:#E65100;
+}
+
+/* Benefits */
+.benefit{
+transition:transform .3s ease,box-shadow .3s ease,background .3s ease,border-color .3s ease;
+border-radius:16px;
+will-change:transform;
+}
+.benefit:hover{
+transform:translateY(-5px) scale(1.02);
+box-shadow:0 14px 30px rgba(74,14,14,.10);
+background:#FFF6ED;
+}
+.benefit i{
+transition:transform .25s ease,filter .25s ease;
+}
+.benefit:hover i{
+transform:scale(1.1);
+filter:drop-shadow(0 8px 14px rgba(255,122,0,.22));
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+*{
+animation:none !important;
+transition:none !important;
+}
+}
+
 </style>
 </head>
 
