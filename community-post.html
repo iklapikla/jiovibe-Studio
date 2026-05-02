@@ -286,6 +286,51 @@ opacity:0;pointer-events:none;transition:.3s;z-index:999
 .shell{grid-template-columns:1fr}
 .right-panel{position:static}
 }
+
+/* --- ADDED PREMIUM ANIMATIONS ONLY --- */
+.back-title a,.publish-btn,.tag{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}
+.back-title a:hover,.publish-btn:hover,.tag:hover{transform:scale(1.05);box-shadow:0 10px 24px rgba(255,122,0,.14)}
+.main-area,.right-panel{animation:softFadeUp .45s ease both}
+.right-panel{animation-delay:.08s}
+@keyframes softFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;will-change:transform}
+.card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 18px 42px rgba(74,14,14,.13);border-color:#FF7A00}
+.mode-btn{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease;will-change:transform}
+.mode-btn:hover{transform:translateY(-4px) scale(1.035);box-shadow:0 14px 30px rgba(74,14,14,.12);border-color:#FF7A00}
+.mode-btn i{transition:transform .25s ease}
+.mode-btn:hover i{transform:scale(1.08)}
+textarea,input,select{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+textarea:hover,input:hover,select:hover,textarea:focus,input:focus,select:focus{transform:scale(1.01);box-shadow:0 10px 24px rgba(255,122,0,.12);border-color:#FF7A00}
+button,.ai-actions button,.result-item button,.add-option{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease}
+button:hover,.ai-actions button:hover,.result-item button:hover,.add-option:hover{transform:scale(1.04);box-shadow:0 10px 24px rgba(255,122,0,.14)}
+.image-upload{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;will-change:transform}
+.image-upload:hover{transform:translateY(-5px) scale(1.015);box-shadow:0 16px 34px rgba(74,14,14,.12);border-color:#FF7A00}
+.community-preview{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;will-change:transform}
+.community-preview:hover{transform:translateY(-5px) scale(1.01);box-shadow:0 16px 34px rgba(74,14,14,.12);border-color:#FF7A00}
+.preview-image{transition:transform .42s ease}
+.community-preview:hover .preview-image{transform:scale(1.02)}
+.preview-actions span{transition:transform .25s ease,color .25s ease;cursor:pointer}
+.preview-actions span:hover{transform:scale(1.06);color:#FF7A00}
+.ai-box{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.ai-box:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 14px 30px rgba(74,14,14,.10);border-color:#FF7A00}
+.results.show{animation:resultsIn .28s ease both}
+@keyframes resultsIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.result-item{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.result-item:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 10px 24px rgba(74,14,14,.08);border-color:#FF7A00}
+.poll-box.show{animation:panelIn .28s ease both}
+@keyframes panelIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.poll-option{transition:transform .25s ease}
+.poll-option:hover{transform:translateY(-3px) scale(1.01)}
+.setting-row{transition:transform .25s ease,background .25s ease;border-radius:14px}
+.setting-row:hover{transform:translateY(-3px) scale(1.01);background:#FFF6ED}
+.setting-icon{transition:transform .25s ease,box-shadow .25s ease}
+.setting-row:hover .setting-icon{transform:scale(1.08);box-shadow:0 10px 24px rgba(255,122,0,.16)}
+.avatar{transition:transform .25s ease,box-shadow .25s ease}
+.profile-row:hover .avatar{transform:scale(1.06);box-shadow:0 10px 24px rgba(255,122,0,.15)}
+.toast.show{animation:toastPop .28s ease both}
+@keyframes toastPop{from{opacity:0;transform:translateX(-50%) translateY(-18px) scale(.96)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+
 </style>
 </head>
 
