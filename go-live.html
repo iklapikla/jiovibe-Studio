@@ -230,6 +230,199 @@ transform:translateX(-50%) translateY(0)
 .chat-card{position:static;height:auto}
 .stream-box{grid-template-columns:1fr}
 }
+
+/* --- ADDED PREMIUM ANIMATIONS ONLY --- */
+
+/* Topbar */
+.back-title a,
+.live-btn,
+.tag{
+transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
+}
+.back-title a:hover,
+.live-btn:hover,
+.tag:hover{
+transform:scale(1.05);
+box-shadow:0 10px 24px rgba(255,122,0,.14);
+}
+
+/* Page load */
+.left-form,
+.player-card,
+.stream-box,
+.features-card,
+.chat-card{
+animation:softFadeUp .45s ease both;
+}
+.player-card{animation-delay:.05s;}
+.stream-box{animation-delay:.08s;}
+.features-card{animation-delay:.1s;}
+.chat-card{animation-delay:.12s;}
+
+@keyframes softFadeUp{
+from{opacity:0;transform:translateY(12px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* Cards */
+.card{
+transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+will-change:transform;
+}
+.card:hover{
+transform:translateY(-6px) scale(1.01);
+box-shadow:0 18px 42px rgba(74,14,14,.13);
+border-color:#FF7A00;
+}
+
+/* Player preview */
+.player{
+transition:transform .35s ease,box-shadow .35s ease;
+will-change:transform;
+}
+.player:hover{
+transform:scale(1.018);
+box-shadow:0 22px 50px rgba(74,14,14,.18);
+}
+
+/* Inputs */
+.input,
+textarea,
+select,
+.copy-row input,
+.chat-input input{
+transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.input:hover,
+textarea:hover,
+select:hover,
+.copy-row input:hover,
+.chat-input input:hover,
+.input:focus,
+textarea:focus,
+select:focus,
+.copy-row input:focus,
+.chat-input input:focus{
+transform:scale(1.01);
+box-shadow:0 10px 24px rgba(255,122,0,.12);
+border-color:#FF7A00;
+}
+
+/* Buttons */
+button,
+.copy-row button,
+.ai-actions button,
+.result-item button,
+.chat-input button{
+transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
+}
+button:hover,
+.copy-row button:hover,
+.ai-actions button:hover,
+.result-item button:hover,
+.chat-input button:hover{
+transform:scale(1.04);
+box-shadow:0 10px 24px rgba(255,122,0,.14);
+}
+
+/* AI Mini blocks */
+.ai-mini{
+transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.ai-mini:hover{
+transform:translateY(-4px) scale(1.01);
+box-shadow:0 14px 30px rgba(74,14,14,.10);
+border-color:#FF7A00;
+}
+
+/* Results */
+.results.show{
+animation:resultsIn .28s ease both;
+}
+@keyframes resultsIn{
+from{opacity:0;transform:translateY(10px) scale(.98);}
+to{opacity:1;transform:translateY(0) scale(1);}
+}
+.result-item{
+transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.result-item:hover{
+transform:translateY(-3px) scale(1.01);
+box-shadow:0 10px 24px rgba(74,14,14,.08);
+border-color:#FF7A00;
+}
+
+/* Thumbnail upload */
+.thumb-upload{
+transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.thumb-upload:hover{
+transform:translateY(-5px) scale(1.015);
+box-shadow:0 14px 30px rgba(74,14,14,.10);
+border-color:#FF7A00;
+}
+
+/* Feature buttons */
+.feature-btn{
+transition:transform .3s ease,box-shadow .3s ease,background .3s ease,border-color .3s ease;
+will-change:transform;
+}
+.feature-btn:hover{
+transform:translateY(-5px) scale(1.015);
+box-shadow:0 16px 34px rgba(74,14,14,.12);
+border-color:#FF7A00;
+}
+.setting-icon{
+transition:transform .3s ease,box-shadow .3s ease;
+}
+.feature-btn:hover .setting-icon{
+transform:scale(1.08);
+box-shadow:0 10px 24px rgba(255,122,0,.16);
+}
+
+/* Stream copy box */
+.stream-field{
+transition:transform .25s ease;
+}
+.stream-field:hover{
+transform:translateY(-3px);
+}
+
+/* Chat messages */
+.chat-msg{
+transition:transform .25s ease,background .25s ease;
+border-radius:12px;
+padding:4px;
+}
+.chat-msg:hover{
+transform:translateY(-3px) scale(1.01);
+background:#FFF6ED;
+}
+.avatar{
+transition:transform .25s ease,box-shadow .25s ease;
+}
+.chat-msg:hover .avatar{
+transform:scale(1.08);
+box-shadow:0 8px 18px rgba(255,122,0,.16);
+}
+
+/* Toast */
+.toast.show{
+animation:toastPop .28s ease both;
+}
+@keyframes toastPop{
+from{opacity:0;transform:translateX(-50%) translateY(-18px) scale(.96);}
+to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+*{
+animation:none !important;
+transition:none !important;
+}
+}
+
 </style>
 </head>
 
