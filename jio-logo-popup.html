@@ -1,688 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JioVibe Category Start Popup</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JioVibe Category + AI Mood Popup</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{
---cream:#FFF6ED;
---soft:#FFE4CC;
---line:#FFD2B3;
---orange:#FF7A00;
---orange2:#E65100;
---rust:#D73700;
---brown:#7A3E2E;
---dark:#4A0E0E;
---deep:#2A0A0A;
---maroon:#530713;
+--cream:#FFF6ED;--soft:#FFE4CC;--line:#FFD2B3;--orange:#FF7A00;--orange2:#E65100;--rust:#D73700;--brown:#7A3E2E;--dark:#4A0E0E;--deep:#2A0A0A;--maroon:#530713;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:var(--cream);color:var(--dark);overflow:hidden;}
-a{text-decoration:none;color:inherit;}
-button{font-family:inherit;cursor:pointer;border:none;background:none;}
+a{text-decoration:none;color:inherit}button{font-family:inherit;cursor:pointer;border:none;background:none}
+.app{display:flex;min-height:100vh}.sidebar{width:250px;padding:32px 18px;position:fixed;height:100%;background:#fff;border-right:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:4px;margin-bottom:45px;padding-left:8px}.logo-circle{width:54px;height:54px;background:var(--orange);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:25px}.logo-text{font-size:32px;font-weight:800;letter-spacing:-1.2px;color:var(--dark)}
+.menu{display:flex;flex-direction:column;gap:12px}.menu-item{display:flex;align-items:center;gap:18px;padding:17px 22px;border-radius:14px;font-weight:600;font-size:16px;color:var(--brown);transition:.25s}.menu-item i{width:22px;font-size:22px;text-align:center}.menu-item:hover{background:var(--soft);color:var(--orange);transform:scale(1.04);box-shadow:0 10px 24px rgba(255,122,0,.16)}.menu-item.active{background:var(--orange);color:#fff}
+.main{margin-left:250px;width:calc(100% - 250px)}.topbar{height:94px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:#fff;position:sticky;top:0;z-index:8}.search{width:600px;height:50px;border:1px solid var(--line);border-radius:28px;display:flex;align-items:center;gap:16px;padding:0 22px;color:#A66A55;background:#fff}.search input{border:none;outline:none;flex:1;font-size:15px;color:var(--dark)}.top-actions{display:flex;align-items:center;gap:22px}.bell{font-size:23px;position:relative}.bell:after{content:'1';position:absolute;top:-8px;right:-7px;background:var(--orange);color:#fff;font-size:10px;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center}.profile{display:flex;align-items:center;gap:12px;padding:8px;border-radius:18px}.profile img{width:48px;height:48px;border-radius:50%;object-fit:cover}.profile span{font-weight:700;font-size:15px}
+.content{padding:36px 48px 70px;height:calc(100vh - 94px);overflow:auto}.categories{display:flex;align-items:center;gap:18px;margin-bottom:34px;overflow-x:auto;padding:2px 2px 8px}.category-btn{min-width:max-content;height:58px;padding:0 26px;border:1px solid var(--line);border-radius:32px;background:#fff;display:flex;align-items:center;gap:12px;font-size:16px;font-weight:800;color:var(--brown);box-shadow:0 4px 14px rgba(255,122,0,.05);transition:.25s}.category-btn:hover,.category-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);transform:scale(1.04);box-shadow:0 10px 26px rgba(255,122,0,.22)}
+.banner-wrap{position:relative;height:330px;border-radius:22px;overflow:hidden;background:var(--deep);box-shadow:0 8px 28px rgba(74,14,14,.10);margin-bottom:42px}.banner-slide{height:100%;position:relative;background-size:cover;background-position:center}.banner-slide:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(42,10,10,.78),rgba(42,10,10,.20),rgba(42,10,10,.05))}.banner-content{position:absolute;z-index:3;left:34px;top:50%;transform:translateY(-50%);max-width:560px;color:#fff}.banner-label{color:var(--orange);font-weight:800;letter-spacing:.8px;font-size:15px;margin-bottom:12px;text-transform:uppercase}.banner-content h1{font-size:44px;line-height:1.08;font-weight:800;margin-bottom:14px}.banner-content p{font-size:17px;font-weight:600;line-height:1.5;color:rgba(255,255,255,.92);margin-bottom:22px}.watch-btn{display:inline-flex;align-items:center;gap:12px;background:var(--orange);color:#fff;border-radius:12px;padding:15px 22px;font-size:16px;font-weight:800}.section-separator{height:1px;background:linear-gradient(90deg,rgba(0,0,0,0),#FFE0CC,rgba(0,0,0,0));margin:28px 0 24px}.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.section-head h2{font-size:24px;font-weight:800}.see-link{font-size:14px;font-weight:800;color:var(--orange)}.video-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}.video-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 4px 14px rgba(74,14,14,.04);transition:.3s}.video-card:hover{transform:scale(1.04);box-shadow:0 16px 38px rgba(74,14,14,.16);border-color:var(--orange)}.video-thumb{position:relative;width:100%;aspect-ratio:16/9;background:var(--deep);overflow:hidden}.video-thumb img{width:100%;height:100%;object-fit:cover;display:block}.duration,.live-badge{position:absolute;right:8px;bottom:8px;background:rgba(42,10,10,.85);color:#fff;font-size:11px;font-weight:800;padding:4px 7px;border-radius:6px}.live-badge{right:auto;left:8px;background:var(--orange2)}.video-info{display:grid;grid-template-columns:42px 1fr;gap:10px;padding:12px}.creator-img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 2px 8px rgba(74,14,14,.12)}.video-title{font-size:13px;font-weight:800;line-height:1.35;margin-bottom:5px}.channel-name{font-size:12px;font-weight:700;color:var(--brown);margin-bottom:3px}.video-meta{font-size:12px;font-weight:600;color:#A66A55}.shorts-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}.short-card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 4px 14px rgba(74,14,14,.04);transition:.3s}.short-card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(74,14,14,.14);border-color:var(--orange)}.short-thumb{aspect-ratio:9/16;background:var(--deep);position:relative;overflow:hidden}.short-thumb img{width:100%;height:100%;object-fit:cover;display:block}.short-title{padding:11px 12px 13px;font-size:13px;font-weight:800;line-height:1.35}
+.start-overlay{position:fixed;inset:0;z-index:50;background:rgba(42,10,10,.40);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:center;padding:28px}.start-popup{width:min(1260px,94vw);height:min(820px,92vh);background:var(--cream);border:1px solid rgba(122,62,46,.24);border-radius:38px;box-shadow:0 34px 100px rgba(74,14,14,.34);overflow:hidden;display:grid;grid-template-columns:350px 1fr;position:relative}.start-popup:before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,var(--orange) 0 13px,transparent 14px),radial-gradient(circle,var(--rust) 0 12px,transparent 13px),radial-gradient(circle,#FFCBA3 0 12px,transparent 13px);background-size:148px 148px,186px 186px,220px 220px;background-position:42px 34px,110px 74px,180px 118px;opacity:.08;pointer-events:none}.start-left{position:relative;z-index:2;background:linear-gradient(180deg,var(--maroon) 0%,#8A180A 56%,var(--orange2) 100%);padding:36px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}.start-left:before{content:'';position:absolute;width:250px;height:250px;border-radius:50%;background:rgba(255,246,237,.12);top:-86px;left:-80px}.start-left:after{content:'';position:absolute;width:260px;height:260px;border-radius:50%;border:34px solid rgba(255,246,237,.10);right:-118px;bottom:76px}.start-brand,.start-copy,.start-mini{position:relative;z-index:2}.start-brand{display:flex;align-items:center;gap:10px}.start-logo-circle{width:58px;height:58px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:25px}.start-logo-text{font-size:34px;font-weight:800;letter-spacing:-1.2px}.start-copy span{display:inline-flex;margin-bottom:16px;background:rgba(255,246,237,.16);border:1px solid rgba(255,246,237,.22);border-radius:999px;padding:9px 13px;font-size:12px;font-weight:900}.start-copy h1{font-size:42px;line-height:.98;font-weight:900;letter-spacing:-.06em;margin-bottom:16px}.start-copy p{font-size:15px;line-height:1.7;font-weight:650;color:rgba(255,255,255,.82)}.start-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.start-mini div{background:rgba(255,246,237,.14);border:1px solid rgba(255,246,237,.20);border-radius:18px;padding:14px}.start-mini b{display:block;font-size:22px;font-weight:900}.start-mini small{font-size:11px;font-weight:800;color:rgba(255,255,255,.72)}
+.close-start{position:absolute;right:26px;top:24px;width:48px;height:48px;border-radius:50%;background:#fff;border:1px solid var(--line);color:var(--dark);font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(74,14,14,.08);transition:.25s;z-index:6}.close-start:hover{background:var(--orange);color:#fff;transform:rotate(90deg)}.start-right{position:relative;z-index:2;padding:34px;display:flex;flex-direction:column;min-width:0;overflow:hidden}.start-top{padding-right:60px;margin-bottom:18px}.start-top h2{font-size:34px;font-weight:900;letter-spacing:-.05em}.start-top p{font-size:14px;font-weight:700;color:#A66A55;margin-top:6px;line-height:1.5}.right-scroll{overflow:auto;padding-right:4px}.category-select-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}.choice-card{height:128px;border-radius:24px;overflow:hidden;position:relative;border:2px solid transparent;background:#fff;box-shadow:0 10px 26px rgba(74,14,14,.07);cursor:pointer;transition:.23s}.choice-card:hover{transform:translateY(-5px) scale(1.01)}.choice-card.selected{border-color:var(--orange);box-shadow:0 18px 40px rgba(255,122,0,.24)}.choice-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.choice-card:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,10,10,.08),rgba(42,10,10,.78))}.choice-content{position:absolute;z-index:2;left:14px;right:14px;bottom:14px;display:flex;align-items:center;justify-content:space-between;color:#fff}.choice-content strong{font-size:17px;font-weight:900}.choice-content i{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.25)}.selected .choice-content i{background:var(--orange);border-color:var(--orange)}
+.start-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#fff;border:1px solid var(--line);border-radius:24px;padding:16px;box-shadow:0 12px 30px rgba(74,14,14,.06);margin-bottom:16px}.selected-text{font-size:13px;font-weight:800;color:#A66A55}.selected-text b{color:var(--dark)}.continue-btn{height:50px;padding:0 24px;border-radius:16px;background:var(--orange);color:#fff;font-size:14px;font-weight:900;display:flex;align-items:center;gap:10px;transition:.2s}.continue-btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(255,122,0,.25)}
+.ai-box{background:#fff;border:1px solid var(--line);border-radius:26px;box-shadow:0 14px 34px rgba(74,14,14,.08);overflow:visible;margin-bottom:18px}.ai-head{padding:18px 20px 14px;display:flex;gap:14px;align-items:center;border-bottom:1px solid #FFE0CC}.ai-icon{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,var(--orange),var(--rust));color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 10px 20px rgba(255,122,0,.22)}.ai-head h3{font-size:22px;font-weight:900}.ai-head p{font-size:13px;font-weight:750;color:#A66A55;margin-top:3px}.ai-chat{height:178px;overflow-y:auto;background:linear-gradient(180deg,#FFF6ED,#fff);padding:14px 18px;display:flex;flex-direction:column;gap:12px}.msg{max-width:80%;padding:13px 15px;border-radius:18px;font-size:14px;font-weight:750;line-height:1.45}.msg.bot{background:#fff;border:1px solid var(--line);color:var(--dark);box-shadow:0 8px 20px rgba(74,14,14,.05);align-self:flex-start}.msg.user{background:var(--orange);color:#fff;align-self:flex-end}.mood-chips{display:flex;flex-wrap:wrap;gap:10px;padding:14px 18px 4px}.mood-chip{height:38px;padding:0 14px;border-radius:999px;background:#FFF6ED;border:1px solid var(--line);color:var(--brown);font-size:13px;font-weight:900;display:inline-flex;align-items:center;gap:8px}.mood-chip:hover{background:var(--orange);color:#fff;border-color:var(--orange)}.ai-input-wrap{position:relative;padding:14px 18px 18px;display:grid;grid-template-columns:1fr 128px;gap:12px}.ai-input{height:54px;border-radius:18px;border:2px solid var(--orange);outline:none;padding:0 18px;font-size:15px;font-weight:800;color:var(--dark);background:#fff}.ask-btn{height:54px;border-radius:18px;background:var(--orange);color:#fff;font-size:15px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:10px}.ai-suggestions{display:none;position:absolute;left:18px;right:158px;bottom:76px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 40px rgba(74,14,14,.18);overflow:hidden;z-index:10}.ai-suggestions.show{display:block}.suggest-title{padding:12px 16px;background:#FFF6ED;color:#A66A55;font-size:12px;font-weight:900;text-transform:uppercase}.suggest-item{padding:14px 16px;border-top:1px solid #FFE0CC;font-size:14px;font-weight:850;color:var(--dark);cursor:pointer;display:flex;align-items:center;gap:10px}.suggest-item:hover{background:var(--soft);color:var(--orange)}.ai-result-action{display:none;padding:0 18px 18px}.ai-result-action.show{display:block}.ai-continue{height:48px;padding:0 20px;border-radius:16px;background:linear-gradient(135deg,var(--orange),var(--rust));color:#fff;font-size:14px;font-weight:900;display:inline-flex;align-items:center;gap:10px;box-shadow:0 12px 28px rgba(255,122,0,.22)}
+.popup-feed{display:none;animation:fadeUp .25s ease both}.feed-mode .selection-mode{display:none}.feed-mode .popup-feed{display:block}@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}.popup-feed-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}.popup-feed-head h3{font-size:29px;font-weight:900;letter-spacing:-.04em}.popup-feed-head p{font-size:13px;font-weight:700;color:#A66A55;margin-top:5px}.head-actions{display:flex;gap:10px}.back-choice,.studio-choice{height:42px;padding:0 14px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--brown);font-size:13px;font-weight:900;display:flex;align-items:center;gap:8px;white-space:nowrap}.studio-choice{background:var(--orange);color:#fff;border-color:var(--orange)}.inside-video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}.inside-video-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 22px rgba(74,14,14,.06);transition:.25s}.inside-video-card:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 16px 34px rgba(74,14,14,.13)}.inside-video-thumb{position:relative;aspect-ratio:16/9;background:var(--deep);overflow:hidden}.inside-video-thumb img{width:100%;height:100%;object-fit:cover;display:block}.inside-video-info{display:grid;grid-template-columns:40px 1fr;gap:10px;padding:11px}.random-logo{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:14px;box-shadow:0 5px 14px rgba(74,14,14,.14);background:linear-gradient(135deg,var(--orange),var(--rust))}.inside-video-title{font-size:13px;font-weight:900;line-height:1.35;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.inside-video-meta{font-size:11px;font-weight:750;color:#A66A55;line-height:1.35}.inside-shorts-title{font-size:20px;font-weight:900;margin:8px 0 13px}.inside-shorts-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.inside-short-card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 20px rgba(74,14,14,.05);transition:.25s}.inside-short-card:hover{transform:translateY(-4px);border-color:var(--orange)}.inside-short-thumb{aspect-ratio:9/16;background:var(--deep);position:relative;overflow:hidden}.inside-short-thumb img{width:100%;height:100%;object-fit:cover;display:block}.inside-short-title{font-size:12px;font-weight:900;line-height:1.3;padding:9px}
+@media(max-width:1300px){.search{width:420px}.video-grid{grid-template-columns:repeat(3,1fr)}.shorts-grid{grid-template-columns:repeat(4,1fr)}.category-select-grid{grid-template-columns:repeat(3,1fr)}.start-popup{grid-template-columns:320px 1fr}.inside-video-grid{grid-template-columns:repeat(2,1fr)}.inside-shorts-grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:900px){.sidebar{display:none}.main{margin-left:0;width:100%}.topbar{padding:0 18px}.start-popup{grid-template-columns:1fr;height:95vh}.start-left{min-height:220px}.start-mini{display:none}.category-select-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.start-overlay{padding:0}.start-popup{width:100vw;height:100vh;border-radius:0}.start-right{padding:22px}.category-select-grid{grid-template-columns:1fr}.inside-video-grid{grid-template-columns:1fr}.inside-shorts-grid{grid-template-columns:repeat(2,1fr)}.ai-input-wrap{grid-template-columns:1fr}.ai-suggestions{right:18px;bottom:142px}.ask-btn{width:100%}}
 
-/* HOME PAGE BASE - SAME JIOVIBE FEEL */
-.app{display:flex;min-height:100vh;}
-.sidebar{width:250px;padding:32px 18px;position:fixed;height:100%;background:#FFFFFF;border-right:1px solid var(--line);}
-.logo{display:flex;align-items:center;gap:4px;margin-bottom:45px;padding-left:8px;}
-.logo-circle{width:54px;height:54px;background:var(--orange);color:#FFFFFF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:25px;}
-.logo-text{font-size:32px;font-weight:800;letter-spacing:-1.2px;color:var(--dark);}
-.menu{display:flex;flex-direction:column;gap:12px;}
-.menu-item{display:flex;align-items:center;gap:18px;padding:17px 22px;border-radius:14px;font-weight:600;font-size:16px;color:var(--brown);transition:.25s;}
-.menu-item i{width:22px;font-size:22px;text-align:center;}
-.menu-item:hover{background:var(--soft);color:var(--orange);transform:scale(1.06);box-shadow:0 10px 24px rgba(255,122,0,.16);}
-.menu-item.active{background:var(--orange);color:#FFFFFF;}
-.main{margin-left:250px;width:calc(100% - 250px);}
-.topbar{height:94px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:#FFFFFF;position:sticky;top:0;z-index:8;}
-.search{width:600px;height:50px;border:1px solid var(--line);border-radius:28px;display:flex;align-items:center;gap:16px;padding:0 22px;color:#A66A55;background:#FFFFFF;}
-.search input{border:none;outline:none;flex:1;font-size:15px;color:var(--dark);}
-.top-actions{display:flex;align-items:center;gap:22px;position:relative;}
-.bell{font-size:23px;position:relative;cursor:pointer;}
-.bell::after{content:"1";position:absolute;top:-8px;right:-7px;background:var(--orange);color:#FFFFFF;font-size:10px;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-.profile{display:flex;align-items:center;gap:12px;cursor:pointer;padding:8px;border-radius:18px;}
-.profile img{width:48px;height:48px;border-radius:50%;object-fit:cover;}
-.profile span{font-weight:700;font-size:15px;}
-.profile:hover{transform:scale(1.03);box-shadow:0 10px 24px rgba(255,122,0,.12);}
-.dropdown{position:absolute;top:70px;right:0;width:200px;background:#FFFFFF;border-radius:14px;box-shadow:0 10px 30px rgba(74,14,14,.15);display:none;overflow:hidden;z-index:20;animation:dropdownIn .22s ease both;}
-.dropdown a{display:block;padding:14px;font-weight:600;color:var(--dark);}
-.dropdown a:hover{background:var(--soft);color:var(--deep);}
-.dropdown.show{display:block;}
-@keyframes dropdownIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.content{padding:36px 48px 70px;height:calc(100vh - 94px);overflow:auto;}
-.categories{display:flex;align-items:center;gap:18px;margin-bottom:34px;overflow-x:auto;padding:2px 2px 8px;}
-.category-btn{min-width:max-content;height:58px;padding:0 26px;border:1px solid var(--line);border-radius:32px;background:#FFFFFF;display:flex;align-items:center;gap:12px;font-size:16px;font-weight:800;color:var(--brown);box-shadow:0 4px 14px rgba(255,122,0,.05);transition:.25s;}
-.category-btn:hover,.category-btn.active{background:var(--orange);color:#FFFFFF;border-color:var(--orange);transform:scale(1.04);box-shadow:0 10px 26px rgba(255,122,0,.22);}
-.banner-wrap{position:relative;height:330px;border-radius:22px;overflow:hidden;background:var(--deep);box-shadow:0 8px 28px rgba(74,14,14,.10);margin-bottom:42px;}
-.banner-slide{height:100%;position:relative;background-size:cover;background-position:center;}
-.banner-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(42,10,10,.78),rgba(42,10,10,.20),rgba(42,10,10,.05));}
-.banner-content{position:absolute;z-index:3;left:34px;top:50%;transform:translateY(-50%);max-width:560px;color:#FFFFFF;}
-.banner-label{color:var(--orange);font-weight:800;letter-spacing:.8px;font-size:15px;margin-bottom:12px;text-transform:uppercase;}
-.banner-content h1{font-size:44px;line-height:1.08;font-weight:800;margin-bottom:14px;}
-.banner-content p{font-size:17px;font-weight:600;line-height:1.5;color:rgba(255,255,255,.92);margin-bottom:22px;}
-.watch-btn{display:inline-flex;align-items:center;gap:12px;background:var(--orange);color:#FFFFFF;border-radius:12px;padding:15px 22px;font-size:16px;font-weight:800;}
-.section-separator{height:1px;background:linear-gradient(90deg,rgba(0,0,0,0),#FFE0CC,rgba(0,0,0,0));margin:28px 0 24px;}
-.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
-.section-head h2{font-size:24px;font-weight:800;}
-.see-link{font-size:14px;font-weight:800;color:var(--orange);display:flex;align-items:center;gap:7px;}
-.video-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
-.video-card{background:#FFFFFF;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 4px 14px rgba(74,14,14,.04);transition:.3s;}
-.video-card:hover{transform:scale(1.04);box-shadow:0 16px 38px rgba(74,14,14,.16);border-color:var(--orange);}
-.video-thumb{position:relative;width:100%;aspect-ratio:16/9;background:var(--deep);overflow:hidden;}
-.video-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-.duration,.live-badge{position:absolute;right:8px;bottom:8px;background:rgba(42,10,10,.85);color:#FFFFFF;font-size:11px;font-weight:800;padding:4px 7px;border-radius:6px;z-index:3;}
-.live-badge{right:auto;left:8px;background:var(--orange2);}
-.video-info{display:grid;grid-template-columns:46px 1fr;gap:10px;padding:12px;}
-.creator-img{width:42px;height:42px;border-radius:50%;object-fit:cover;display:block;border:2px solid #FFFFFF;box-shadow:0 2px 8px rgba(74,14,14,.12);}
-.video-title{font-size:13px;font-weight:800;line-height:1.35;margin-bottom:5px;color:var(--dark);}
-.channel-name{font-size:12px;font-weight:700;color:var(--brown);margin-bottom:3px;}
-.video-meta{font-size:12px;font-weight:600;color:#A66A55;}
-.shorts-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;}
-.short-card{background:#FFFFFF;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 4px 14px rgba(74,14,14,.04);transition:.3s;}
-.short-card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(74,14,14,.14);border-color:var(--orange);}
-.short-thumb{aspect-ratio:9/16;background:var(--deep);position:relative;overflow:hidden;}
-.short-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-.short-title{padding:11px 12px 13px;font-size:13px;font-weight:800;line-height:1.35;color:var(--dark);}
+/* FINAL OVERRIDES: compact category + visible AI chat input */
+.start-right{overflow:hidden;}
+.selection-mode{height:100%;display:flex;flex-direction:column;min-height:0;}
+.selection-mode .start-top{padding-right:70px;margin-bottom:12px;}
+.selection-mode .start-top h2{font-size:30px;}
+.selection-mode .start-top p{font-size:13px;line-height:1.45;}
+.selection-mode .right-scroll{height:100%;overflow-y:auto;padding-right:8px;display:flex;flex-direction:column;gap:12px;}
+.category-select-grid{grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px;}
+.choice-card{height:84px;border-radius:18px;}
+.choice-content{inset:auto 11px 10px;}
+.choice-content strong{font-size:14px;}
+.choice-content i{width:30px;height:30px;font-size:13px;}
+.start-actions{padding:12px 14px;border-radius:18px;margin-bottom:0;}
+.continue-btn{height:44px;border-radius:14px;}
+.ai-box{margin-top:0;border-radius:24px;border:2px solid rgba(255,122,0,.35);box-shadow:0 18px 44px rgba(255,122,0,.12);}
+.ai-head{padding:14px 16px 12px;gap:12px;}
+.ai-icon{width:46px;height:46px;border-radius:15px;}
+.ai-head h3{font-size:22px;line-height:1.1;}
+.ai-head p{font-size:13px;line-height:1.35;}
+.ai-chat{height:122px;padding:12px 16px;gap:10px;}
+.msg{font-size:13px;line-height:1.4;padding:11px 13px;border-radius:16px;max-width:86%;}
+.mood-chips{padding:12px 16px 4px;gap:8px;}
+.mood-chip{height:34px;padding:0 12px;font-size:12px;}
+.ai-input-wrap{padding:12px 16px 16px;grid-template-columns:1fr 112px;gap:10px;}
+.ai-input{height:48px;border-radius:16px;font-size:14px;}
+.ask-btn{height:48px;border-radius:16px;font-size:14px;}
+.ai-suggestions{left:16px;right:138px;bottom:68px;max-height:236px;overflow-y:auto;z-index:80;}
+.suggest-title{padding:10px 14px;font-size:11px;}
+.suggest-item{padding:12px 14px;font-size:13px;}
+.ai-result-action{padding:0 16px 14px;}
+.ai-continue{height:44px;border-radius:14px;}
+.chat-label-line{display:flex;align-items:center;gap:8px;color:var(--orange);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin:0 16px 2px;}
+@media(max-width:1300px){.category-select-grid{grid-template-columns:repeat(3,1fr)}.choice-card{height:80px}.ai-chat{height:110px}}
+@media(max-width:620px){.ai-input-wrap{grid-template-columns:1fr}.ai-suggestions{right:16px;bottom:126px}.category-select-grid{grid-template-columns:1fr 1fr}.choice-card{height:74px}}
 
-/* CATEGORY START POPUP - MATCHED WITH HOME PAGE THEME */
-.start-overlay{
-position:fixed;
-inset:0;
-z-index:50;
-background:rgba(42,10,10,.34);
-backdrop-filter:blur(14px);
-display:flex;
-align-items:center;
-justify-content:center;
-padding:28px;
-}
-.start-popup{
-width:min(1240px,94vw);
-height:min(820px,92vh);
-background:#FFF6ED;
-border:1px solid #FFD2B3;
-border-radius:28px;
-box-shadow:0 30px 90px rgba(74,14,14,.26);
-overflow:hidden;
-display:grid;
-grid-template-columns:330px 1fr;
-position:relative;
-}
-.start-popup:before{
-content:"";
-position:absolute;
-inset:0;
-background:
-radial-gradient(circle at 82% 12%,rgba(255,122,0,.14),transparent 28%),
-radial-gradient(circle at 18% 86%,rgba(255,228,204,.75),transparent 30%);
-pointer-events:none;
-}
-.start-left{
-position:relative;
-z-index:2;
-background:#FFFFFF;
-border-right:1px solid #FFD2B3;
-padding:34px 28px;
-color:#4A0E0E;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-overflow:hidden;
-}
-.start-left:before{
-content:"";
-position:absolute;
-width:230px;
-height:230px;
-border-radius:50%;
-background:#FFE4CC;
-top:-90px;
-right:-84px;
-opacity:.86;
-}
-.start-left:after{
-content:"";
-position:absolute;
-width:220px;
-height:220px;
-border-radius:50%;
-border:32px solid rgba(255,122,0,.10);
-left:-110px;
-bottom:78px;
-}
-.start-brand{
-position:relative;
-z-index:2;
-display:flex;
-align-items:center;
-gap:4px;
-}
-.start-logo-circle{
-width:54px;
-height:54px;
-background:#FF7A00;
-color:#FFFFFF;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:800;
-font-size:25px;
-box-shadow:0 10px 24px rgba(255,122,0,.20);
-}
-.start-logo-text{
-font-size:32px;
-font-weight:800;
-letter-spacing:-1.2px;
-color:#4A0E0E;
-}
-.start-copy{
-position:relative;
-z-index:2;
-}
-.start-copy span{
-display:inline-flex;
-margin-bottom:18px;
-background:#FFE4CC;
-border:1px solid #FFD2B3;
-color:#FF7A00;
-border-radius:999px;
-padding:9px 14px;
-font-size:12px;
-font-weight:900;
-letter-spacing:.2px;
-}
-.start-copy h1{
-font-size:40px;
-line-height:1.04;
-font-weight:900;
-letter-spacing:-.055em;
-margin-bottom:16px;
-color:#4A0E0E;
-}
-.start-copy p{
-font-size:15px;
-line-height:1.7;
-font-weight:650;
-color:#7A3E2E;
-}
-.start-mini{
-position:relative;
-z-index:2;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-}
-.start-mini div{
-background:#FFF6ED;
-border:1px solid #FFD2B3;
-border-radius:18px;
-padding:14px 12px;
-box-shadow:0 6px 18px rgba(74,14,14,.04);
-}
-.start-mini b{
-display:block;
-font-size:22px;
-font-weight:900;
-color:#FF7A00;
-}
-.start-mini small{
-font-size:11px;
-font-weight:800;
-color:#7A3E2E;
-}
-.start-right{
-position:relative;
-z-index:2;
-padding:34px 34px 28px;
-display:flex;
-flex-direction:column;
-min-width:0;
-overflow:auto;
-background:#FFF6ED;
-}
-.close-start{
-position:absolute;
-right:26px;
-top:24px;
-width:48px;
-height:48px;
-border-radius:50%;
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-color:#4A0E0E;
-font-size:20px;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 10px 25px rgba(74,14,14,.08);
-transition:.25s;
-z-index:5;
-}
-.close-start:hover{
-background:#FF7A00;
-color:#FFFFFF;
-transform:scale(1.06) rotate(90deg);
-box-shadow:0 12px 28px rgba(255,122,0,.24);
-}
-.start-top{
-display:flex;
-align-items:flex-start;
-justify-content:space-between;
-gap:20px;
-margin-bottom:22px;
-padding-right:62px;
-}
-.start-top h2{
-font-size:34px;
-font-weight:900;
-color:#4A0E0E;
-letter-spacing:-.05em;
-}
-.start-top p{
-font-size:14px;
-font-weight:700;
-color:#A66A55;
-margin-top:6px;
-line-height:1.5;
-}
-.category-select-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:14px;
-margin-bottom:22px;
-}
-.choice-card{
-height:132px;
-border-radius:20px;
-overflow:hidden;
-position:relative;
-border:1px solid #FFD2B3;
-background:#FFFFFF;
-box-shadow:0 4px 14px rgba(74,14,14,.04);
-cursor:pointer;
-transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
-}
-.choice-card:hover{
-transform:scale(1.04);
-box-shadow:0 16px 38px rgba(74,14,14,.16);
-border-color:#FF7A00;
-}
-.choice-card.selected{
-border:2px solid #FF7A00;
-box-shadow:0 16px 38px rgba(255,122,0,.20);
-}
-.choice-card img{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-filter:saturate(1.04);
-transition:transform .35s ease;
-}
-.choice-card:hover img{transform:scale(1.06);}
-.choice-card:after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,rgba(42,10,10,.04),rgba(42,10,10,.78));
-}
-.choice-content{
-position:absolute;
-z-index:2;
-inset:auto 14px 14px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-color:#FFFFFF;
-}
-.choice-content strong{
-font-size:17px;
-font-weight:900;
-text-shadow:0 2px 10px rgba(42,10,10,.25);
-}
-.choice-content i{
-width:34px;
-height:34px;
-border-radius:50%;
-background:rgba(255,255,255,.20);
-display:flex;
-align-items:center;
-justify-content:center;
-border:1px solid rgba(255,255,255,.25);
-}
-.selected .choice-content i{
-background:#FF7A00;
-border-color:#FF7A00;
-box-shadow:0 8px 18px rgba(255,122,0,.28);
-}
-.start-actions{
-margin-top:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:16px;
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:22px;
-padding:16px;
-box-shadow:0 8px 24px rgba(74,14,14,.07);
-}
-.selected-text{
-font-size:13px;
-font-weight:800;
-color:#A66A55;
-}
-.selected-text b{color:#4A0E0E;}
-.continue-btn{
-height:50px;
-padding:0 24px;
-border-radius:14px;
-background:#FF7A00;
-color:#FFFFFF;
-font-size:14px;
-font-weight:900;
-display:flex;
-align-items:center;
-gap:10px;
-transition:.25s;
-}
-.continue-btn:hover{
-transform:scale(1.04);
-box-shadow:0 12px 28px rgba(255,122,0,.25);
-}
-.popup-feed{
-display:none;
-animation:fadeUp .28s ease both;
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.popup-feed-head{
-display:flex;
-align-items:flex-start;
-justify-content:space-between;
-gap:16px;
-margin-bottom:16px;
-}
-.popup-feed-head h3{
-font-size:27px;
-font-weight:900;
-color:#4A0E0E;
-letter-spacing:-.04em;
-}
-.popup-feed-head p{
-font-size:13px;
-font-weight:700;
-color:#A66A55;
-margin-top:5px;
-}
-.back-choice{
-height:42px;
-padding:0 14px;
-border-radius:999px;
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-color:#7A3E2E;
-font-size:13px;
-font-weight:900;
-display:flex;
-align-items:center;
-gap:8px;
-white-space:nowrap;
-transition:.25s;
-}
-.back-choice:hover{
-background:#FFE4CC;
-color:#FF7A00;
-box-shadow:0 8px 20px rgba(255,122,0,.12);
-}
-.inside-video-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
-margin-bottom:20px;
-}
-.inside-video-card{
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 4px 14px rgba(74,14,14,.04);
-transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
-}
-.inside-video-card:hover{
-transform:scale(1.035);
-border-color:#FF7A00;
-box-shadow:0 16px 38px rgba(74,14,14,.16);
-}
-.inside-video-thumb{
-position:relative;
-aspect-ratio:16/9;
-background:#2A0A0A;
-overflow:hidden;
-}
-.inside-video-thumb img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-transition:transform .35s ease;
-}
-.inside-video-card:hover .inside-video-thumb img{transform:scale(1.06);}
-.inside-video-info{
-display:grid;
-grid-template-columns:40px 1fr;
-gap:10px;
-padding:11px;
-}
-.random-logo{
-width:40px;
-height:40px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#FFFFFF;
-font-weight:900;
-font-size:14px;
-box-shadow:0 5px 14px rgba(74,14,14,.14);
-}
-.logo-style-1{background:#FF7A00;}
-.logo-style-2{background:#E65100;}
-.logo-style-3{background:linear-gradient(135deg,#FF7A00,#D73700);}
-.logo-style-4{background:linear-gradient(135deg,#7A3E2E,#FF7A00);}
-.logo-style-5{background:#FFE4CC;color:#4A0E0E;border:1px solid #FFD2B3;}
-.inside-video-title{
-font-size:13px;
-font-weight:900;
-color:#4A0E0E;
-line-height:1.35;
-margin-bottom:4px;
-display:-webkit-box;
--webkit-line-clamp:2;
--webkit-box-orient:vertical;
-overflow:hidden;
-}
-.inside-video-meta{
-font-size:11px;
-font-weight:750;
-color:#A66A55;
-line-height:1.35;
-}
-.inside-shorts-title{
-font-size:20px;
-font-weight:900;
-color:#4A0E0E;
-margin:8px 0 13px;
-}
-.inside-shorts-grid{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:14px;
-}
-.inside-short-card{
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:18px;
-overflow:hidden;
-box-shadow:0 4px 14px rgba(74,14,14,.04);
-transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
-}
-.inside-short-card:hover{
-transform:translateY(-4px);
-border-color:#FF7A00;
-box-shadow:0 16px 34px rgba(74,14,14,.14);
-}
-.inside-short-thumb{
-aspect-ratio:9/16;
-background:#2A0A0A;
-position:relative;
-overflow:hidden;
-}
-.inside-short-thumb img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:block;
-transition:transform .35s ease;
-}
-.inside-short-card:hover .inside-short-thumb img{transform:scale(1.06);}
-.inside-short-title{
-font-size:12px;
-font-weight:900;
-color:#4A0E0E;
-line-height:1.3;
-padding:9px;
-}
-.feed-mode .category-select-grid,.feed-mode .start-actions{display:none;}
-.feed-mode .popup-feed{display:block;}
-.feed-mode .start-top{margin-bottom:16px;}
-.feed-mode .start-top h2{font-size:28px;}
-@media(max-width:1300px){.inside-video-grid{grid-template-columns:repeat(2,1fr)}.inside-shorts-grid{grid-template-columns:repeat(4,1fr)}.search{width:420px}.video-grid{grid-template-columns:repeat(3,1fr)}.shorts-grid{grid-template-columns:repeat(4,1fr)}.category-select-grid{grid-template-columns:repeat(3,1fr)}.start-popup{grid-template-columns:320px 1fr}.banner-wrap{height:260px}.banner-content h1{font-size:34px}}
-@media(max-width:900px){.sidebar{display:none}.main{margin-left:0;width:100%}.topbar{padding:0 18px}.search{width:100%}.video-grid{grid-template-columns:repeat(2,1fr)}.shorts-grid{grid-template-columns:repeat(3,1fr)}.start-popup{grid-template-columns:1fr;height:95vh}.start-left{min-height:230px}.start-mini{display:none}.start-copy h1{font-size:34px}.category-select-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.inside-video-grid{grid-template-columns:1fr}.inside-shorts-grid{grid-template-columns:repeat(2,1fr)}.start-overlay{padding:0}.start-popup{width:100vw;height:100vh;border-radius:0}.start-left{padding:24px;min-height:220px}.start-right{padding:22px}.category-select-grid{grid-template-columns:1fr}.choice-card{height:118px}.content{padding:22px 16px}.video-grid{grid-template-columns:1fr}.shorts-grid{grid-template-columns:repeat(2,1fr)}.banner-wrap{height:240px}.profile span{display:none}}
 </style>
 </head>
 <body>
-
 <div class="app">
 <aside class="sidebar">
-<a href="jio-logo-popup.html" class="logo">
-<div class="logo-circle">Jio</div>
-<div class="logo-text">Vibe</div>
-</a>
+<a href="jio-logo-popup.html" class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></a>
 <nav class="menu">
-<a href="home.html" class="menu-item active"><i class="fa-solid fa-house"></i> Home</a>
-<a href="explore.html" class="menu-item"><i class="fa-regular fa-compass"></i> Explore</a>
-<a href="live.html" class="menu-item"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
-<a href="video.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Video</a>
-<a href="shorts.html" class="menu-item"><i class="fa-solid fa-bolt"></i> Shorts</a>
-<a href="subscriptions.html" class="menu-item"><i class="fa-solid fa-list"></i> Subscriptions</a>
-<a href="history.html" class="menu-item"><i class="fa-solid fa-clock"></i> History</a>
-<a href="saved.html" class="menu-item"><i class="fa-solid fa-bookmark"></i> Saved Video</a>
+<a href="home.html" class="menu-item active"><i class="fa-solid fa-house"></i> Home</a><a href="explore.html" class="menu-item"><i class="fa-regular fa-compass"></i> Explore</a><a href="live.html" class="menu-item"><i class="fa-solid fa-tower-broadcast"></i> Live</a><a href="video.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Video</a><a href="shorts.html" class="menu-item"><i class="fa-solid fa-bolt"></i> Shorts</a><a href="subscriptions.html" class="menu-item"><i class="fa-solid fa-list"></i> Subscriptions</a><a href="history.html" class="menu-item"><i class="fa-solid fa-clock"></i> History</a><a href="saved.html" class="menu-item"><i class="fa-solid fa-bookmark"></i> Saved Video</a>
 </nav>
 </aside>
-
 <main class="main">
-<header class="topbar">
-<div class="search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search creators, videos, topics..." /></div>
-<div class="top-actions">
-<div class="bell"><i class="fa-regular fa-bell"></i></div>
-<div class="profile" onclick="toggleDropdown()"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg"><span>Trupti Latur</span><i class="fa-solid fa-chevron-down"></i></div>
-<div class="dropdown" id="dropdown">
-<a href="home.html">Home</a>
-<a href="index.html">Dashboard</a>
-<a href="logout.html">Sign out</a>
-</div>
-</div>
-</header>
-
-<section class="content">
-<div class="categories" id="topCategories"></div>
-
-<div class="banner-wrap">
-<div class="banner-slide" id="homeBanner" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');">
-<div class="banner-content">
-<div class="banner-label" id="bannerLabel">Live Now</div>
-<h1 id="bannerTitle">Big Live Moments</h1>
-<p id="bannerText">Watch creators going live with trending events.</p>
-<a href="#" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a>
-</div>
-</div>
-</div>
-
-<div class="section-separator"></div>
-<section>
-<div class="section-head"><h2 id="videoSectionTitle">Trending Videos</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div>
-<div class="video-grid" id="videoGrid"></div>
-</section>
-
-<div class="section-separator"></div>
-<section>
-<div class="section-head"><h2 id="shortsSectionTitle">Shorts For You</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div>
-<div class="shorts-grid" id="shortsGrid"></div>
-</section>
-</section>
+<header class="topbar"><div class="search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search creators, videos, topics..." /></div><div class="top-actions"><div class="bell"><i class="fa-regular fa-bell"></i></div><div class="profile"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg"><span>Trupti Latur</span><i class="fa-solid fa-chevron-down"></i></div></div></header>
+<section class="content"><div class="categories" id="topCategories"></div><div class="banner-wrap"><div class="banner-slide" id="homeBanner" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label" id="bannerLabel">Live Now</div><h1 id="bannerTitle">Big Live Moments</h1><p id="bannerText">Watch creators going live with trending events.</p><a href="#" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div></div><div class="section-separator"></div><section><div class="section-head"><h2 id="videoSectionTitle">Trending Videos</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="videoGrid"></div></section><div class="section-separator"></div><section><div class="section-head"><h2 id="shortsSectionTitle">Shorts For You</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="shorts-grid" id="shortsGrid"></div></section></section>
 </main>
 </div>
-
 <div class="start-overlay" id="startOverlay">
-<div class="start-popup">
+<div class="start-popup" id="startPopup">
 <button class="close-start" onclick="goHome()"><i class="fa-solid fa-xmark"></i></button>
-
-<div class="start-left">
-<div class="start-brand">
-<div class="start-logo-circle">Jio</div>
-<div class="start-logo-text">Vibe</div>
-</div>
-<div class="start-copy">
-<span>Personalize your feed</span>
-<h1>What are you into today?</h1>
-<p>Select one category and JioVibe will open with related videos, live streams and shorts.</p>
-</div>
-<div class="start-mini">
-<div><b>12</b><small>categories</small></div>
-<div><b>16:9</b><small>videos</small></div>
-<div><b>9:16</b><small>shorts</small></div>
-</div>
-</div>
-
+<div class="start-left"><div class="start-brand"><div class="start-logo-circle">Jio</div><div class="start-logo-text">Vibe</div></div><div class="start-copy"><span>Personalize your feed</span><h1>What are you into today?</h1><p>Select a category or ask AI for mood-based content and creator tools.</p></div><div class="start-mini"><div><b>12</b><small>categories</small></div><div><b>AI</b><small>suggestions</small></div><div><b>9:16</b><small>shorts</small></div></div></div>
 <div class="start-right">
-<div class="start-top">
-<div>
-<h2>Choose your vibe</h2>
-<p>This will decide what appears first on your home feed.</p>
-</div>
-</div>
-
-<div class="category-select-grid" id="categorySelectGrid"></div>
-
-<div class="popup-feed" id="popupFeed">
-<div class="popup-feed-head">
-<div>
-<h3 id="popupFeedTitle">Gaming Videos</h3>
-<p id="popupFeedSub">Related videos and shorts based on your selected category.</p>
-</div>
-<button class="back-choice" onclick="backToChoices()"><i class="fa-solid fa-arrow-left"></i> Change</button>
-</div>
-<div class="inside-video-grid" id="insideVideoGrid"></div>
-<h3 class="inside-shorts-title" id="insideShortsTitle">Gaming Shorts</h3>
-<div class="inside-shorts-grid" id="insideShortsGrid"></div>
-</div>
-
-<div class="start-actions">
-<div class="selected-text">Selected: <b id="selectedCategoryText">Gaming</b></div>
-<button class="continue-btn" onclick="showPopupFeed(selectedCategory)">Continue <i class="fa-solid fa-arrow-right"></i></button>
+<div class="selection-mode"><div class="start-top"><h2>Choose your vibe</h2><p>Select any category and continue. Related random 16:9 videos and 9:16 shorts will open inside this popup.</p></div><div class="right-scroll"><div class="category-select-grid" id="categorySelectGrid"></div><div class="start-actions"><div class="selected-text">Selected: <b id="selectedCategoryText">Gaming</b></div><button class="continue-btn" onclick="showPopupFeed(selectedCategory,'category')">Continue <i class="fa-solid fa-arrow-right"></i></button></div>
+<div class="ai-box"><div class="ai-head"><div class="ai-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div><div><h3>AI Mood Assist</h3><p>Dummy AI flow: mood suggestions, smart replies and direct action.</p></div></div><div class="chat-label-line"><i class="fa-solid fa-message"></i> Chat suggestion flow</div><div class="ai-chat" id="aiChat"><div class="msg bot">Hi, what is your vibe today? You can pick a mood, ask for creator content, or ask for editing help.</div></div><div class="mood-chips"><button class="mood-chip" onclick="useMood('Happy')">Happy</button><button class="mood-chip" onclick="useMood('Sad')">Sad</button><button class="mood-chip" onclick="useMood('Breakup')">Breakup</button><button class="mood-chip" onclick="useMood('Motivated')">Motivated</button><button class="mood-chip" onclick="useMood('Chill')">Chill</button><button class="mood-chip" onclick="useMood('Funny')">Funny</button></div><div class="ai-input-wrap"><input class="ai-input" id="aiInput" onfocus="showAISuggestions()" oninput="filterAISuggestions()" placeholder="Type or select a suggestion..."><button class="ask-btn" onclick="sendAI()">Send <i class="fa-solid fa-arrow-right"></i></button><div class="ai-suggestions" id="aiSuggestions"></div></div><div class="ai-result-action" id="aiActionBox"><button class="ai-continue" id="aiContinueBtn" onclick="continueAIAction()"><i class="fa-solid fa-wand-magic-sparkles"></i> Continue</button></div></div>
+</div></div>
+<div class="popup-feed"><div class="popup-feed-head"><div><h3 id="popupFeedTitle">Gaming Videos</h3><p id="popupFeedSub">Related videos and shorts based on your selected category.</p></div><div class="head-actions"><button class="back-choice" onclick="backToChoices()"><i class="fa-solid fa-arrow-left"></i> Change</button><button class="studio-choice" onclick="goStudio()"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Studio</button></div></div><div class="right-scroll"><div class="inside-video-grid" id="insideVideoGrid"></div><h3 class="inside-shorts-title" id="insideShortsTitle">Gaming Shorts</h3><div class="inside-shorts-grid" id="insideShortsGrid"></div></div></div>
 </div>
 </div>
 </div>
-</div>
-
 <script>
-function toggleDropdown(){document.getElementById("dropdown")?.classList.toggle("show");}
-document.addEventListener("click",function(e){const p=document.querySelector(".profile");const d=document.getElementById("dropdown");if(d && p && !p.contains(e.target) && !d.contains(e.target)){d.classList.remove("show");}});
+const studioUrl='https://iklapikla.github.io/jiovibe-Studio/index.html';
 const categoryData={
 Gaming:{icon:'fa-gamepad',img:'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop',banner:'Gaming Arena Is Live',label:'Gaming',text:'Battles, tournaments, streamers and gaming highlights.',videos:['Final Zone Live Battle','Gaming Setup Tour','Retro Arcade Challenge','Last Zone Gaming Highlights','Pro Player Match Review'],shorts:['Clutch moment','1v4 fight','Setup reveal','Fast reaction','Winning shot','Gaming meme']},
 Music:{icon:'fa-music',img:'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1000&auto=format&fit=crop',banner:'Music Sessions For You',label:'Music',text:'Live covers, studio sessions and trending performances.',videos:['Acoustic Live Session','Bollywood Cover Night','Concert Highlights','Studio Song Making','Singer Reaction Video'],shorts:['Hook line','Studio cut','Live chorus','Fan moment','Mic check','Song vibe']},
@@ -697,180 +104,37 @@ Food:{icon:'fa-utensils',img:'https://images.unsplash.com/photo-1504674900247-08
 Travel:{icon:'fa-plane',img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1000&auto=format&fit=crop',banner:'Travel Stories',label:'Travel',text:'Hidden places, city walks and creator travel vlogs.',videos:['Hidden Valley Vlog','Beach Travel Guide','Mountain Road Trip','City Walk Live','Budget Travel Plan'],shorts:['Beach clip','Hill view','City bite','Travel hack','Road trip','Hidden spot']},
 Fitness:{icon:'fa-dumbbell',img:'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop',banner:'Fitness And Energy',label:'Fitness',text:'Workouts, health routines and transformation videos.',videos:['Full Body Workout','Morning Fitness Routine','Home Workout Plan','Trainer Live Session','Transformation Story'],shorts:['Push-up set','Gym tip','Meal prep','Quick stretch','Workout cut','Fitness hack']}
 };
-
-const creatorNames=['Ranveer Singh','Ashish Chanchlani','Rohit Sharma','Total Gaming','Technical Guruji','Khan Sir','Flying Beast','JioVibe Creator'];
-const avatarList=[
-'https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg',
-'https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg',
-'https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg',
-'https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg',
-'https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg',
-'https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg',
-'https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.png',
-'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'
-];
-let selectedCategory='Gaming';
-
-function goHome(){window.location.href='home.html';}
-
-const categorySelectGrid=document.getElementById('categorySelectGrid');
-Object.keys(categoryData).forEach(cat=>{
-const card=document.createElement('div');
-card.className=cat===selectedCategory?'choice-card selected':'choice-card';
-card.onclick=()=>selectCategory(cat,card);
-card.innerHTML=`<img src="${categoryData[cat].img}"><div class="choice-content"><strong>${cat}</strong><i class="fa-solid ${categoryData[cat].icon}"></i></div>`;
-categorySelectGrid.appendChild(card);
-});
-
-const topCategories=document.getElementById('topCategories');
-Object.keys(categoryData).forEach(cat=>{
-const btn=document.createElement('button');
-btn.className='category-btn';
-btn.innerHTML=`<i class="fa-solid ${categoryData[cat].icon}"></i> ${cat}`;
-btn.onclick=()=>applyCategory(cat);
-topCategories.appendChild(btn);
-});
-
-function selectCategory(cat,card){
-selectedCategory=cat;
-document.querySelectorAll('.choice-card').forEach(c=>c.classList.remove('selected'));
-card.classList.add('selected');
-document.getElementById('selectedCategoryText').innerText=cat;
-}
-
-function startExperience(cat){
-document.getElementById('startOverlay').style.display='none';
-applyCategory(cat);
-}
-
-function showPopupFeed(cat){
-const popup=document.querySelector('.start-popup');
-popup.classList.add('feed-mode');
-document.getElementById('popupFeedTitle').innerText=cat+' Videos';
-document.getElementById('popupFeedSub').innerText='Related 16:9 videos and 9:16 shorts inside the same popup.';
-document.getElementById('insideShortsTitle').innerText=cat+' Shorts';
-renderInsideVideos(cat);
-renderInsideShorts(cat);
-}
-
-function backToChoices(){
-document.querySelector('.start-popup').classList.remove('feed-mode');
-}
-
-function renderInsideVideos(cat){
-const data=categoryData[cat];
-const grid=document.getElementById('insideVideoGrid');
-grid.innerHTML='';
-for(let i=0;i<6;i++){
-const logoText=['JV','V','J','FX','GO','TV'][i%6];
-const card=document.createElement('div');
-card.className='inside-video-card';
-card.innerHTML=`
-<div class="inside-video-thumb">
-<img src="${getMixedImage(cat,i)}">
-${i===0?'<span class="live-badge">LIVE</span>':`<span class="duration">${4+i}:${22+i}</span>`}
-</div>
-<div class="inside-video-info">
-<div class="random-logo logo-style-${(i%5)+1}">${logoText}</div>
-<div>
-<div class="inside-video-title">${data.videos[i%data.videos.length]}</div>
-<div class="inside-video-meta">${randomChannel(cat,i)} • ${i===0?'Live now':(310+i*145)+'K views'}</div>
-</div>
-</div>`;
-grid.appendChild(card);
-}
-}
-
-function renderInsideShorts(cat){
-const data=categoryData[cat];
-const grid=document.getElementById('insideShortsGrid');
-grid.innerHTML='';
-for(let i=0;i<5;i++){
-const card=document.createElement('div');
-card.className='inside-short-card';
-card.innerHTML=`
-<div class="inside-short-thumb"><img src="${getMixedImage(cat,i+6)}"><span class="live-badge">SHORT</span></div>
-<div class="inside-short-title">${data.shorts[i%data.shorts.length]}</div>`;
-grid.appendChild(card);
-}
-}
-
-function randomChannel(cat,i){
-const names=['Vibe Originals','Urban Creator','Flash Studio','Creator Hub','India Live','Trend Room','Next Wave','PopCast'];
-return cat+' '+names[i%names.length];
-}
-
-function getMixedImage(cat,i){
-const fallback=categoryData[cat].img;
-const pool={
+const imagePool={
 Gaming:['https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=900&auto=format&fit=crop'],
 Music:['https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?q=80&w=900&auto=format&fit=crop'],
 Comedy:['https://images.unsplash.com/photo-1527224857830-43a7acc85260?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1543584756-31b1bfc0bd00?q=80&w=900&auto=format&fit=crop'],
 Tech:['https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=900&auto=format&fit=crop'],
-Education:['https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=900&auto=format&fit=crop'],
-Lifestyle:['https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=900&auto=format&fit=crop'],
-Movies:['https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=900&auto=format&fit=crop'],
-Sports:['https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1521412644187-c49fa049e84d?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=900&auto=format&fit=crop'],
-News:['https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=900&auto=format&fit=crop'],
-Food:['https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=900&auto=format&fit=crop'],
-Travel:['https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=900&auto=format&fit=crop'],
-Fitness:['https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=900&auto=format&fit=crop']
+Movies:['https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=900&auto=format&fit=crop'],
+Sports:['https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=900&auto=format&fit=crop'],
+Food:['https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=900&auto=format&fit=crop'],
+Travel:['https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop'],
+Fitness:['https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=900&auto=format&fit=crop']
 };
-return (pool[cat]||[fallback])[i%(pool[cat]||[fallback]).length];
-}
-
-function applyCategory(cat){
-const data=categoryData[cat];
-document.querySelectorAll('.category-btn').forEach(btn=>btn.classList.remove('active'));
-[...document.querySelectorAll('.category-btn')].find(btn=>btn.innerText.trim()===cat)?.classList.add('active');
-document.getElementById('homeBanner').style.backgroundImage=`url('${data.img}')`;
-document.getElementById('bannerLabel').innerText=data.label;
-document.getElementById('bannerTitle').innerText=data.banner;
-document.getElementById('bannerText').innerText=data.text;
-document.getElementById('videoSectionTitle').innerText=cat+' Videos';
-document.getElementById('shortsSectionTitle').innerText=cat+' Shorts';
-renderVideos(cat);
-renderShorts(cat);
-}
-
-function renderVideos(cat){
-const data=categoryData[cat];
-const grid=document.getElementById('videoGrid');
-grid.innerHTML='';
-for(let i=0;i<5;i++){
-const card=document.createElement('div');
-card.className='video-card';
-card.innerHTML=`
-<div class="video-thumb">
-<img src="${data.img}">
-${i===0?'<span class="live-badge">LIVE</span>':`<span class="duration">${5+i}:${20+i}</span>`}
-</div>
-<div class="video-info">
-<img class="creator-img" src="${avatarList[i%avatarList.length]}">
-<div>
-<div class="video-title">${data.videos[i%data.videos.length]}</div>
-<div class="channel-name">${creatorNames[i%creatorNames.length]}</div>
-<div class="video-meta">${cat} • ${i===0?'Live now':(420+i*170)+'K views • '+(i+1)+' hours ago'}</div>
-</div>
-</div>`;
-grid.appendChild(card);
-}
-}
-
-function renderShorts(cat){
-const data=categoryData[cat];
-const grid=document.getElementById('shortsGrid');
-grid.innerHTML='';
-for(let i=0;i<6;i++){
-const card=document.createElement('div');
-card.className='short-card';
-card.innerHTML=`
-<div class="short-thumb"><img src="${data.img}"><span class="live-badge">SHORT</span></div>
-<div class="short-title">${data.shorts[i%data.shorts.length]}</div>`;
-grid.appendChild(card);
-}
-}
-
+let selectedCategory='Gaming';let aiAction={type:'category',category:'Comedy'};
+function goHome(){window.location.href='home.html'}function goStudio(){window.location.href=studioUrl}
+Object.keys(categoryData).forEach(cat=>{const card=document.createElement('div');card.className=cat===selectedCategory?'choice-card selected':'choice-card';card.onclick=()=>selectCategory(cat,card);card.innerHTML=`<img src="${categoryData[cat].img}"><div class="choice-content"><strong>${cat}</strong><i class="fa-solid ${categoryData[cat].icon}"></i></div>`;document.getElementById('categorySelectGrid').appendChild(card);const btn=document.createElement('button');btn.className='category-btn';btn.innerHTML=`<i class="fa-solid ${categoryData[cat].icon}"></i> ${cat}`;btn.onclick=()=>applyCategory(cat);document.getElementById('topCategories').appendChild(btn)});
+function selectCategory(cat,card){selectedCategory=cat;document.querySelectorAll('.choice-card').forEach(c=>c.classList.remove('selected'));card.classList.add('selected');document.getElementById('selectedCategoryText').innerText=cat}
+function showPopupFeed(cat,source){document.getElementById('startPopup').classList.add('feed-mode');document.getElementById('popupFeedTitle').innerText=cat+' Videos';document.getElementById('popupFeedSub').innerText=source==='mood'?'AI picked this category based on your mood.':'Related 16:9 videos and 9:16 shorts inside the same popup.';document.getElementById('insideShortsTitle').innerText=cat+' Shorts';renderInsideVideos(cat);renderInsideShorts(cat);applyCategory(cat)}
+function backToChoices(){document.getElementById('startPopup').classList.remove('feed-mode')}
+function getImage(cat,i){const pool=imagePool[cat]||[categoryData[cat].img];return pool[i%pool.length]}
+function renderInsideVideos(cat){const data=categoryData[cat];const grid=document.getElementById('insideVideoGrid');grid.innerHTML='';for(let i=0;i<6;i++){grid.innerHTML+=`<div class="inside-video-card"><div class="inside-video-thumb"><img src="${getImage(cat,i)}">${i===0?'<span class="live-badge">LIVE</span>':`<span class="duration">${4+i}:${22+i}</span>`}</div><div class="inside-video-info"><div class="random-logo">${cat[0]}</div><div><div class="inside-video-title">${data.videos[i%data.videos.length]}</div><div class="inside-video-meta">${cat} Creator • ${i===0?'Live now':(310+i*145)+'K views'}</div></div></div></div>`}}
+function renderInsideShorts(cat){const data=categoryData[cat];const grid=document.getElementById('insideShortsGrid');grid.innerHTML='';for(let i=0;i<5;i++){grid.innerHTML+=`<div class="inside-short-card"><div class="inside-short-thumb"><img src="${getImage(cat,i+6)}"><span class="live-badge">SHORT</span></div><div class="inside-short-title">${data.shorts[i%data.shorts.length]}</div></div>`}}
+function applyCategory(cat){const data=categoryData[cat];document.getElementById('bannerLabel').innerText=data.label;document.getElementById('bannerTitle').innerText=data.banner;document.getElementById('bannerText').innerText=data.text;document.getElementById('homeBanner').style.backgroundImage=`url('${data.img}')`;document.getElementById('videoSectionTitle').innerText=cat+' Videos';document.getElementById('shortsSectionTitle').innerText=cat+' Shorts';document.getElementById('videoGrid').innerHTML='';document.getElementById('shortsGrid').innerHTML='';for(let i=0;i<5;i++){document.getElementById('videoGrid').innerHTML+=`<div class="video-card"><div class="video-thumb"><img src="${getImage(cat,i)}"><span class="duration">${5+i}:${10+i}</span></div><div class="video-info"><img class="creator-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"><div><div class="video-title">${data.videos[i%data.videos.length]}</div><div class="channel-name">${cat} Creator</div><div class="video-meta">${200+i*140}K views • Today</div></div></div></div>`}for(let i=0;i<6;i++){document.getElementById('shortsGrid').innerHTML+=`<div class="short-card"><div class="short-thumb"><img src="${getImage(cat,i+3)}"></div><div class="short-title">${data.shorts[i%data.shorts.length]}</div></div>`}}
+const suggestions=['What is your vibe today?','I am happy, show me refreshing content','I am sad, suggest calming videos','Breakup mood content please','I want funny content','I want motivational content','How can I create AI thumbnail?','How can I go live with AI title?','Suggest AI video editor tips','Create title for my live stream','I want to see Ranveer Singh content','I want music videos','Show me comedy shorts'];
+function showAISuggestions(){renderSuggestions(suggestions)}
+function filterAISuggestions(){const q=document.getElementById('aiInput').value.toLowerCase();renderSuggestions(suggestions.filter(s=>s.toLowerCase().includes(q)).length?suggestions.filter(s=>s.toLowerCase().includes(q)):suggestions)}
+function renderSuggestions(list){const box=document.getElementById('aiSuggestions');box.classList.add('show');box.innerHTML='<div class="suggest-title">Suggestions</div>'+list.slice(0,8).map(s=>`<div class="suggest-item" onclick="pickSuggestion('${s.replace(/'/g,"\\'")}')"><i class="fa-solid fa-wand-magic-sparkles"></i>${s}</div>`).join('')}
+function pickSuggestion(text){document.getElementById('aiInput').value=text;document.getElementById('aiSuggestions').classList.remove('show');sendAI()}
+function useMood(mood){document.getElementById('aiInput').value=mood;sendAI()}
+function addMsg(text,type){const chat=document.getElementById('aiChat');chat.innerHTML+=`<div class="msg ${type}">${text}</div>`;chat.scrollTop=chat.scrollHeight}
+function sendAI(){const input=document.getElementById('aiInput');const q=input.value.trim();if(!q)return;document.getElementById('aiSuggestions').classList.remove('show');addMsg(q,'user');let l=q.toLowerCase();let reply='',actionCat='Comedy',type='category';if(l.includes('thumbnail')||l.includes('edit')||l.includes('title')||l.includes('live')||l.includes('studio')){reply='Yes, you can do this inside AI Studio. JioVibe AI can help with AI generated titles, prompt thumbnails, shorts from live, video editing and monetization ideas. Tap Continue to open AI Studio.';type='studio'}else if(l.includes('ranveer')){reply='You can visit the <a href="#" style="color:#FF7A00;font-weight:900">Ranveer Singh original channel</a>. You can also watch related videos and shorts here. Tap Continue to open movie and creator content.';actionCat='Movies'}else if(l.includes('sad')||l.includes('breakup')||l.includes('calm')){reply='You can watch calm music, soft lifestyle vlogs and emotional creator videos to refresh your mood. Do you want to see this content?';actionCat='Music'}else if(l.includes('happy')||l.includes('funny')||l.includes('comedy')){reply='You can watch funny sketches, light comedy shorts and happy creator moments to refresh your mood. Do you want to see this content?';actionCat='Comedy'}else if(l.includes('motivat')||l.includes('fitness')){reply='You can watch motivational fitness, sports highlights and creator stories to boost your energy. Do you want to see this content?';actionCat='Fitness'}else if(l.includes('music')){reply='You can watch live music, studio sessions and relaxing shorts. Do you want to see this content?';actionCat='Music'}else{reply='I can suggest content based on your mood. You can pick happy, sad, breakup, chill, funny or motivated. I will show matching videos and shorts inside this popup.';actionCat='Comedy'}aiAction={type:type,category:actionCat};addMsg(reply,'bot');document.getElementById('aiActionBox').classList.add('show');document.getElementById('aiContinueBtn').innerHTML=type==='studio'?'<i class="fa-solid fa-wand-magic-sparkles"></i> Continue to AI Studio':'<i class="fa-solid fa-play"></i> Continue to '+actionCat;input.value=''}
+function continueAIAction(){if(aiAction.type==='studio'){goStudio()}else{showPopupFeed(aiAction.category,'mood')}}
+document.addEventListener('click',e=>{if(!e.target.closest('.ai-input-wrap'))document.getElementById('aiSuggestions').classList.remove('show')});
 applyCategory('Gaming');
 </script>
 </body>
