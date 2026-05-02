@@ -191,10 +191,13 @@ background:#FFFFFF;
 border:1px solid #FFD2B3;
 border-radius:22px;
 padding:22px;
-height:max-content;
+height:calc(100vh - 124px);
 position:sticky;
 top:98px;
-box-shadow:0 10px 30px rgba(255,122,0,.10)
+box-shadow:0 10px 30px rgba(255,122,0,.10);
+display:flex;
+flex-direction:column;
+overflow:hidden;
 }
 .ai-head{
 background:#FFE4CC;
@@ -213,6 +216,7 @@ background:#FFFFFF;
 border-radius:16px;
 padding:14px;
 margin-bottom:14px;
+flex-shrink:0;
 }
 .prompt-box label{
 display:flex;
@@ -269,12 +273,22 @@ color:#4A0E0E;
 transform:scale(1.02);
 }
 
+.ai-tools-scroll{
+overflow-y:auto;
+min-height:0;
+padding-right:6px;
+margin-right:-6px;
+}
+.ai-tools-scroll::-webkit-scrollbar{width:6px}
+.ai-tools-scroll::-webkit-scrollbar-track{background:#FFF6ED;border-radius:20px}
+.ai-tools-scroll::-webkit-scrollbar-thumb{background:#FFD2B3;border-radius:20px}
+.ai-tools-scroll::-webkit-scrollbar-thumb:hover{background:#FF7A00}
 .ai-tool{
 display:grid;
 grid-template-columns:46px 1fr 52px;
 gap:12px;
 align-items:center;
-padding:16px 0;
+padding:15px 0;
 border-top:1px solid #FFE0CC;
 transition:.22s
 }
@@ -300,9 +314,17 @@ border-radius:50%;top:3px;left:3px;transition:.2s
 .ai-tool.active .toggle{background:#FF7A00}
 .ai-tool.active .toggle::after{left:25px}
 
+.ai-bottom-actions{
+flex-shrink:0;
+background:#FFFFFF;
+border-top:1px solid #FFE0CC;
+margin:14px -22px -22px;
+padding:14px 22px 18px;
+box-shadow:0 -10px 22px rgba(74,14,14,.04);
+}
 .cost-box{
 background:#FFE4CC;border:1px solid #FFD2B3;border-radius:14px;
-padding:16px;margin-top:14px;font-weight:800;display:flex;justify-content:space-between;color:#4A0E0E
+padding:16px;font-weight:800;display:flex;justify-content:space-between;color:#4A0E0E
 }
 .cost-box span:last-child{color:#FF7A00}
 .generate-btn{
@@ -313,7 +335,16 @@ border-radius:14px;padding:16px;font-size:16px;font-weight:800;transition:.22s
 
 @media(max-width:1300px){
 .editor-shell{grid-template-columns:100px 1fr}
-.ai-panel{grid-column:1/-1;position:static}
+.ai-panel{grid-column:1/-1;position:static;height:auto;max-height:none}
+.ai-tools-scroll{max-height:420px}
+}
+@media(max-width:900px){
+.editor-shell{grid-template-columns:1fr;padding:18px}
+.tool-rail{position:static;width:100%;flex-direction:row;overflow-x:auto;justify-content:flex-start}
+.rail-item{min-width:92px}
+.topbar{height:auto;gap:16px;flex-wrap:wrap;padding:16px}
+.project{text-align:left}
+.video-preview{height:360px}
 }
 </style>
 </head>
@@ -472,49 +503,65 @@ border-radius:14px;padding:16px;font-size:16px;font-weight:800;transition:.22s
 
   <div class="prompt-box">
     <label><i class="fa-solid fa-wand-magic-sparkles"></i> Prompt Based Edit</label>
-    <textarea placeholder="Example: Make this video cinematic, remove silent parts, add smooth transitions, improve audio clarity and add warm travel color grading."></textarea>
+    <textarea placeholder="Example: Add AI Shoutcaster in Hinglish, find best highlights, make this travel vlog cinematic, reframe the subject, clean voice and optimize the first 3 seconds for better engagement."></textarea>
     <div class="prompt-actions">
       <button class="prompt-btn dark" type="button">Apply Prompt</button>
       <button class="prompt-btn light" type="button">Clear</button>
     </div>
   </div>
 
-  <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-solid fa-scissors"></i></div>
-    <div><h3>Auto Cut</h3><p>Remove pauses and long gaps.</p></div>
-    <div class="toggle"></div>
+  <div class="ai-tools-scroll">
+    <div class="ai-tool" data-cost="12" onclick="toggleTool(this)">
+      <div class="ai-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+      <div><h3>AI Shoutcaster</h3><p>Auto-generate scene-based commentary for gaming, travel, sports and vlogs.</p></div>
+      <div class="toggle"></div>
+    </div>
+
+    <div class="ai-tool" data-cost="10" onclick="toggleTool(this)">
+      <div class="ai-icon"><i class="fa-solid fa-bolt"></i></div>
+      <div><h3>AI Highlight Detection</h3><p>Find viral moments, action shots, emotions and best clips automatically.</p></div>
+      <div class="toggle"></div>
+    </div>
+
+    <div class="ai-tool" data-cost="14" onclick="toggleTool(this)">
+      <div class="ai-icon"><i class="fa-solid fa-brain"></i></div>
+      <div><h3>AI Context-Based Editing</h3><p>Understands video type and applies the right edit style automatically.</p></div>
+      <div class="toggle"></div>
+    </div>
+
+    <div class="ai-tool" data-cost="8" onclick="toggleTool(this)">
+      <div class="ai-icon"><i class="fa-solid fa-crop-simple"></i></div>
+      <div><h3>AI Auto Reframing</h3><p>Tracks the subject and adds smart zoom, pan and cinematic framing.</p></div>
+      <div class="toggle"></div>
+    </div>
+
+    <div class="ai-tool" data-cost="7" onclick="toggleTool(this)">
+      <div class="ai-icon"><i class="fa-solid fa-wave-square"></i></div>
+      <div><h3>AI Voice Enhancement</h3><p>Improves voice clarity, reduces noise and repairs weak audio parts.</p></div>
+      <div class="toggle"></div>
+    </div>
+
+    <div class="ai-tool" data-cost="7" onclick="toggleTool(this)">
+      <div class="ai-icon"><i class="fa-solid fa-palette"></i></div>
+      <div><h3>AI Scene-Based Color Grading</h3><p>Adjusts color, lighting and mood based on each scene automatically.</p></div>
+      <div class="toggle"></div>
+    </div>
+
+    <div class="ai-tool" data-cost="15" onclick="toggleTool(this)">
+      <div class="ai-icon"><i class="fa-solid fa-chart-line"></i></div>
+      <div><h3>AI Viral Optimization Engine</h3><p>Suggests hooks, cuts and best moments to make the video more shareable.</p></div>
+      <div class="toggle"></div>
+    </div>
   </div>
 
-  <div class="ai-tool" data-cost="5" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-solid fa-volume-xmark"></i></div>
-    <div><h3>Remove Silence</h3><p>Remove silent parts.</p></div>
-    <div class="toggle"></div>
-  </div>
+  <div class="ai-bottom-actions">
+    <div class="cost-box">
+      <span>Total Cost</span>
+      <span id="totalCost">0 Tokens</span>
+    </div>
 
-  <div class="ai-tool" data-cost="4" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-regular fa-object-group"></i></div>
-    <div><h3>Add Transitions</h3><p>Auto scene transitions.</p></div>
-    <div class="toggle"></div>
+    <button class="generate-btn">Generate Video</button>
   </div>
-
-  <div class="ai-tool" data-cost="3" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-solid fa-wave-square"></i></div>
-    <div><h3>Enhance Audio</h3><p>Improve audio clarity.</p></div>
-    <div class="toggle"></div>
-  </div>
-
-  <div class="ai-tool" data-cost="3" onclick="toggleTool(this)">
-    <div class="ai-icon"><i class="fa-solid fa-palette"></i></div>
-    <div><h3>Color Enhance</h3><p>Improve color and lighting.</p></div>
-    <div class="toggle"></div>
-  </div>
-
-  <div class="cost-box">
-    <span>Total Cost</span>
-    <span id="totalCost">0 Tokens</span>
-  </div>
-
-  <button class="generate-btn">Generate Video</button>
 </aside>
 
 </div>
