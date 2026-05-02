@@ -581,6 +581,207 @@ color:#7A3E2E;
 @media(max-width:900px){
 .pack-grid{grid-template-columns:1fr;}
 }
+
+/* --- ADDED PREMIUM ANIMATIONS ONLY --- */
+
+/* Sidebar */
+.menu-item{
+transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
+transform-origin:left center;
+will-change:transform;
+}
+.menu-item:hover{
+transform:scale(1.045);
+box-shadow:0 10px 24px rgba(255,122,0,.14);
+}
+
+/* Topbar */
+.bell,
+.profile,
+.dropdown a{
+transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
+}
+.bell:hover,
+.profile:hover{
+transform:scale(1.05);
+}
+.profile:hover{
+background:#FFFFFF;
+box-shadow:0 8px 22px rgba(74,14,14,.08);
+}
+.dropdown.show{
+animation:dropdownIn .22s ease both;
+}
+@keyframes dropdownIn{
+from{opacity:0;transform:translateY(-8px) scale(.98);}
+to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+/* Page load */
+.balance-box,
+.section-title,
+.pack-grid,
+.payment-title,
+.payment-methods,
+.checkout-box,
+.security-row{
+animation:softFadeUp .45s ease both;
+}
+.section-title{animation-delay:.05s;}
+.pack-grid{animation-delay:.08s;}
+.payment-title{animation-delay:.1s;}
+.payment-methods{animation-delay:.12s;}
+.checkout-box{animation-delay:.14s;}
+.security-row{animation-delay:.16s;}
+
+@keyframes softFadeUp{
+from{opacity:0;transform:translateY(12px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* Search */
+.search{
+transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.search:hover,
+.search:focus-within{
+transform:scale(1.015);
+box-shadow:0 10px 24px rgba(255,122,0,.12);
+border-color:#FF7A00;
+}
+
+/* Balance hero */
+.balance-box{
+transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+will-change:transform;
+}
+.balance-box:hover{
+transform:translateY(-7px) scale(1.01);
+box-shadow:0 22px 50px rgba(74,14,14,.16);
+border-color:#FF7A00;
+}
+.coin-big,
+.wallet-icon{
+transition:transform .3s ease,filter .3s ease,box-shadow .3s ease;
+}
+.balance-box:hover .coin-big{
+transform:scale(1.06);
+box-shadow:0 16px 34px rgba(42,10,10,.18);
+}
+.balance-box:hover .wallet-icon{
+transform:scale(1.08);
+filter:drop-shadow(0 10px 16px rgba(255,122,0,.22));
+}
+
+/* Token pack cards */
+.pack-card{
+transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+will-change:transform;
+}
+.pack-card:hover{
+transform:translateY(-8px) scale(1.025);
+box-shadow:0 20px 44px rgba(74,14,14,.14);
+border-color:#FF7A00;
+}
+.pack-icon{
+transition:transform .3s ease,box-shadow .3s ease;
+}
+.pack-card:hover .pack-icon{
+transform:scale(1.08);
+box-shadow:0 12px 26px rgba(255,122,0,.18);
+}
+.best{
+transition:transform .25s ease,box-shadow .25s ease;
+}
+.pack-card:hover .best{
+transform:translateX(-50%) scale(1.05);
+box-shadow:0 10px 24px rgba(42,10,10,.16);
+}
+
+/* Buttons */
+.select-btn,
+.pay-btn{
+transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
+}
+.select-btn:hover,
+.pay-btn:hover{
+transform:scale(1.045);
+box-shadow:0 12px 28px rgba(255,122,0,.22);
+}
+
+/* Payment methods */
+.method{
+transition:transform .3s ease,box-shadow .3s ease,background .3s ease,border-color .3s ease;
+will-change:transform;
+}
+.method:hover{
+transform:translateY(-5px) scale(1.015);
+box-shadow:0 16px 34px rgba(74,14,14,.12);
+border-color:#FF7A00;
+}
+.method i.big{
+transition:transform .25s ease,filter .25s ease;
+}
+.method:hover i.big{
+transform:scale(1.1);
+filter:drop-shadow(0 8px 14px rgba(255,122,0,.22));
+}
+
+/* Checkout */
+.checkout-box,
+.summary{
+transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+}
+.checkout-box:hover{
+transform:translateY(-5px) scale(1.005);
+box-shadow:0 18px 42px rgba(74,14,14,.13);
+border-color:#FF7A00;
+}
+.form-box input{
+transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.form-box input:hover,
+.form-box input:focus{
+transform:scale(1.01);
+box-shadow:0 10px 24px rgba(255,122,0,.12);
+border-color:#FF7A00;
+}
+
+/* Security row */
+.security-item{
+transition:transform .25s ease,background .25s ease;
+border-radius:14px;
+padding:8px;
+}
+.security-item:hover{
+transform:translateY(-4px) scale(1.01);
+background:#FFF6ED;
+}
+.security-item i{
+transition:transform .25s ease,filter .25s ease;
+}
+.security-item:hover i{
+transform:scale(1.1);
+filter:drop-shadow(0 8px 14px rgba(255,122,0,.22));
+}
+
+/* List items */
+.list-grid span{
+transition:transform .25s ease,color .25s ease;
+}
+.list-grid span:hover{
+transform:translateX(4px);
+color:#FF7A00;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+*{
+animation:none !important;
+transition:none !important;
+}
+}
+
 </style>
 </head>
 
