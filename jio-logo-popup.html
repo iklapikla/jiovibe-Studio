@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>JioVibe Choose Your Vibe</title>
+<title>JioVibe Choose Your Vibe Popup</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -17,7 +17,6 @@
 --brown:#7A3E2E;
 --dark:#4A0E0E;
 --deep:#2A0A0A;
---card:#FFFFFF;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--cream);color:var(--dark);overflow:hidden}
@@ -25,88 +24,131 @@ a{text-decoration:none;color:inherit}
 button,input{font-family:inherit}
 button{border:none;background:none;cursor:pointer}
 
-.app{display:flex;min-height:100vh}
-
-/* SIDEBAR */
-.sidebar{
+/* BLURRED HOME PAGE BEHIND POPUP */
+.home-bg{
+position:fixed;
+inset:0;
+z-index:1;
+filter:blur(9px);
+transform:scale(1.035);
+opacity:.72;
+pointer-events:none;
+}
+.home-bg::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(42,10,10,.30);
+z-index:20
+}
+.bg-app{display:flex;min-height:100vh;background:#FFF6ED}
+.bg-sidebar{
 width:250px;
 padding:32px 18px;
-position:fixed;
 height:100%;
 background:#FFFFFF;
-border-right:1px solid var(--line);
-z-index:10
+border-right:1px solid #FFD2B3;
+position:fixed;
 }
-.logo{display:flex;align-items:center;gap:4px;margin-bottom:45px;padding-left:8px}
-.logo-circle{
-width:54px;height:54px;background:var(--orange);color:#FFFFFF;border-radius:50%;
+.bg-logo{display:flex;align-items:center;gap:4px;margin-bottom:45px;padding-left:8px}
+.bg-logo-circle{
+width:54px;height:54px;background:#FF7A00;color:#fff;border-radius:50%;
 display:flex;align-items:center;justify-content:center;font-weight:800;font-size:25px
 }
-.logo-text{font-size:32px;font-weight:800;letter-spacing:-1.2px;color:var(--dark)}
-.menu{display:flex;flex-direction:column;gap:12px}
-.menu-item{
+.bg-logo-text{font-size:32px;font-weight:800;letter-spacing:-1.2px;color:#4A0E0E}
+.bg-menu{display:flex;flex-direction:column;gap:12px}
+.bg-menu-item{
 display:flex;align-items:center;gap:18px;padding:17px 22px;border-radius:14px;
-font-weight:600;font-size:16px;color:var(--brown);transition:.25s
+font-weight:600;font-size:16px;color:#7A3E2E
 }
-.menu-item i{width:22px;font-size:22px;text-align:center}
-.menu-item:hover{background:var(--soft);color:var(--orange);transform:translateX(4px) scale(1.03)}
-.menu-item.active{background:var(--orange);color:#FFFFFF}
+.bg-menu-item i{width:22px;font-size:22px;text-align:center}
+.bg-main{margin-left:250px;width:calc(100% - 250px)}
+.bg-topbar{
+height:94px;border-bottom:1px solid #FFD2B3;display:flex;align-items:center;justify-content:space-between;
+padding:0 48px;background:#fff
+}
+.bg-search{
+width:600px;height:50px;border:1px solid #FFD2B3;border-radius:28px;
+display:flex;align-items:center;gap:16px;padding:0 22px;color:#A66A55;background:#fff
+}
+.bg-search span{font-size:15px;color:#A66A55}
+.bg-profile{display:flex;align-items:center;gap:12px;padding:8px;border-radius:18px}
+.bg-profile img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+.bg-content{padding:36px 48px 60px}
+.bg-categories{display:flex;gap:18px;margin-bottom:34px;overflow:hidden}
+.bg-cat{
+min-width:max-content;height:58px;padding:0 26px;border:1px solid #FFD2B3;border-radius:32px;background:#fff;
+display:flex;align-items:center;gap:12px;font-size:16px;font-weight:800;color:#7A3E2E
+}
+.bg-cat.active{background:#FF7A00;color:#fff;border-color:#FF7A00}
+.bg-banner{
+height:330px;border-radius:22px;overflow:hidden;background:#2A0A0A;margin-bottom:42px;position:relative;
+background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');
+background-size:cover;background-position:center
+}
+.bg-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(42,10,10,.78),rgba(42,10,10,.20),rgba(42,10,10,.05))}
+.bg-banner-content{position:absolute;z-index:3;left:34px;top:50%;transform:translateY(-50%);max-width:560px;color:#fff}
+.bg-banner-content b{color:#FF7A00;font-weight:800;letter-spacing:.8px;font-size:15px;text-transform:uppercase}
+.bg-banner-content h1{font-size:44px;line-height:1.08;font-weight:800;margin:12px 0 14px}
+.bg-banner-content p{font-size:17px;font-weight:600;line-height:1.5;color:rgba(255,255,255,.92)}
+.bg-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.bg-section-head h2{font-size:24px;font-weight:800}
+.bg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.bg-card{background:#fff;border:1px solid #FFD2B3;border-radius:18px;overflow:hidden;box-shadow:0 4px 14px rgba(74,14,14,.04)}
+.bg-thumb{aspect-ratio:16/9;background:#2A0A0A}
+.bg-thumb img{width:100%;height:100%;object-fit:cover}
+.bg-info{display:grid;grid-template-columns:42px 1fr;gap:10px;padding:12px}
+.bg-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.bg-title{font-size:13px;font-weight:800;line-height:1.35;margin-bottom:5px}
+.bg-meta{font-size:12px;color:#A66A55;font-weight:700}
 
-/* MAIN */
-.main{margin-left:250px;width:calc(100% - 250px)}
-.topbar{
-height:94px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;
-padding:0 48px;background:#FFFFFF;position:sticky;top:0;z-index:8
+/* POPUP OVERLAY */
+.popup-overlay{
+position:fixed;
+inset:0;
+z-index:50;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:34px;
+background:rgba(42,10,10,.18);
+backdrop-filter:blur(7px);
 }
-.search{
-width:600px;height:50px;border:1px solid var(--line);border-radius:28px;
-display:flex;align-items:center;gap:16px;padding:0 22px;color:#A66A55;background:#FFFFFF
+.close-popup{
+position:absolute;
+right:42px;
+top:34px;
+width:54px;
+height:54px;
+border-radius:50%;
+background:#fff;
+border:1px solid var(--line);
+color:var(--dark);
+font-size:22px;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 18px 42px rgba(74,14,14,.20);
+transition:.25s;
+z-index:80
 }
-.search input{border:none;outline:none;flex:1;font-size:15px;color:var(--dark)}
-.top-actions{display:flex;align-items:center;gap:22px}
-.bell{font-size:23px;position:relative}
-.bell::after{
-content:"1";position:absolute;top:-8px;right:-7px;background:var(--orange);color:#fff;
-font-size:10px;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center
-}
-.profile{display:flex;align-items:center;gap:12px;padding:8px;border-radius:18px}
-.profile img{width:48px;height:48px;border-radius:50%;object-fit:cover}
-.profile span{font-weight:700;font-size:15px}
+.close-popup:hover{background:var(--orange);color:#fff;transform:rotate(90deg)}
 
-.content{
-height:calc(100vh - 94px);
-padding:28px 48px;
-position:relative;
-overflow:hidden
-}
-.bg-blur{
-position:absolute;inset:0;opacity:.22;filter:blur(16px);transform:scale(1.05);
-background:
-linear-gradient(rgba(42,10,10,.18),rgba(42,10,10,.18)),
-url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop') center/cover;
-pointer-events:none
-}
-
-/* NEW POPUP */
 .vibe-shell{
-position:relative;
-z-index:2;
-height:100%;
-width:min(1500px,100%);
-margin:0 auto;
+width:min(1480px,94vw);
+height:min(820px,90vh);
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:22px;
-background:rgba(255,255,255,.64);
+background:rgba(255,246,237,.94);
 border:1px solid rgba(255,210,179,.95);
 border-radius:34px;
-box-shadow:0 30px 90px rgba(74,14,14,.22);
-backdrop-filter:blur(18px);
+box-shadow:0 34px 110px rgba(74,14,14,.36);
 padding:22px;
 overflow:hidden;
 }
 .panel{
-background:rgba(255,255,255,.92);
+background:rgba(255,255,255,.96);
 border:1px solid var(--line);
 border-radius:28px;
 box-shadow:0 14px 38px rgba(74,14,14,.08);
@@ -131,13 +173,8 @@ background:#FFF3E8;border:1px solid #FFD7BC;border-radius:999px;padding:8px 11px
 }
 .panel-head h1,.panel-head h2{font-size:30px;font-weight:900;letter-spacing:-.045em;line-height:1.05}
 .panel-head p{font-size:13px;font-weight:700;color:#A66A55;line-height:1.45;margin-top:8px}
-.close-start{
-width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid var(--line);
-font-size:18px;color:var(--dark);display:flex;align-items:center;justify-content:center;transition:.25s;flex-shrink:0
-}
-.close-start:hover{background:var(--orange);color:#fff;transform:rotate(90deg)}
 
-/* LEFT: CATEGORY */
+/* LEFT CATEGORY */
 .left-body{
 padding:18px 22px 22px;
 overflow:auto;
@@ -150,7 +187,7 @@ gap:12px;
 margin-bottom:16px
 }
 .choice-card{
-height:112px;border-radius:20px;overflow:hidden;position:relative;border:2px solid transparent;background:#fff;
+height:104px;border-radius:20px;overflow:hidden;position:relative;border:2px solid transparent;background:#fff;
 box-shadow:0 10px 25px rgba(74,14,14,.06);
 cursor:pointer;transition:.25s
 }
@@ -158,33 +195,50 @@ cursor:pointer;transition:.25s
 .choice-card.selected{border-color:var(--orange);box-shadow:0 18px 42px rgba(255,122,0,.24)}
 .choice-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .choice-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,10,10,.02),rgba(42,10,10,.72))}
+.choice-tick{
+position:absolute;z-index:3;top:10px;right:10px;width:28px;height:28px;border-radius:50%;
+background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.35);color:#fff;
+display:flex;align-items:center;justify-content:center;font-size:12px
+}
+.choice-card.selected .choice-tick{background:var(--orange);border-color:var(--orange)}
 .choice-content{
 position:absolute;z-index:2;left:13px;right:13px;bottom:12px;display:flex;align-items:center;justify-content:space-between;color:#fff
 }
 .choice-content strong{font-size:15px;font-weight:900}
 .choice-content i{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.22)}
-.selected .choice-content i{background:var(--orange);border-color:var(--orange)}
 
+.selection-note{
+background:#FFF9F3;
+border:1px solid var(--line);
+border-radius:18px;
+padding:13px 14px;
+font-size:13px;
+font-weight:800;
+color:var(--brown);
+line-height:1.45;
+margin-bottom:12px
+}
+.selection-note b{color:var(--orange)}
 .start-actions{
-display:flex;align-items:center;justify-content:space-between;gap:14px;background:#FFF9F3;border:1px solid var(--line);
+display:flex;align-items:center;justify-content:space-between;gap:14px;background:#FFFFFF;border:1px solid var(--line);
 border-radius:20px;padding:14px;margin-bottom:18px
 }
-.selected-text{font-size:13px;font-weight:800;color:#A66A55}
+.selected-text{font-size:13px;font-weight:800;color:#A66A55;line-height:1.4}
 .selected-text b{color:var(--dark)}
 .continue-btn,.back-choice,.studio-choice{
 height:46px;padding:0 18px;border-radius:15px;background:var(--orange);color:#fff;font-size:14px;font-weight:900;
-display:flex;align-items:center;gap:9px;transition:.22s
+display:flex;align-items:center;gap:9px;transition:.22s;white-space:nowrap
 }
 .continue-btn:hover,.studio-choice:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(255,122,0,.25)}
 .back-choice{background:#fff;color:var(--brown);border:1px solid var(--line)}
 .back-choice:hover{background:var(--soft)}
 
-/* FEED MODE INSIDE LEFT */
+/* FEED MODE */
 .popup-feed{display:none}
 .feed-mode .selection-mode{display:none}
 .feed-mode .popup-feed{display:flex;flex-direction:column;min-height:0;animation:fadeUp .26s ease both}
 .popup-feed-head{padding:22px 24px 16px;border-bottom:1px solid #FFE0CC;display:flex;justify-content:space-between;gap:14px}
-.popup-feed-head h3{font-size:30px;font-weight:900;letter-spacing:-.045em}
+.popup-feed-head h3{font-size:27px;font-weight:900;letter-spacing:-.045em}
 .popup-feed-head p{font-size:13px;font-weight:700;color:#A66A55;margin-top:6px;line-height:1.45}
 .head-actions{display:flex;gap:10px;align-items:flex-start}
 .feed-scroll{padding:18px 22px 22px;overflow:auto}
@@ -211,7 +265,7 @@ position:absolute;right:8px;bottom:8px;background:rgba(42,10,10,.85);color:#fff;
 .inside-short-thumb img{width:100%;height:100%;object-fit:cover}
 .inside-short-title{font-size:12px;font-weight:900;line-height:1.3;padding:9px}
 
-/* RIGHT: AI */
+/* RIGHT AI */
 .ai-body{padding:18px 22px 22px;display:flex;flex-direction:column;gap:14px;min-height:0;flex:1}
 .mood-title{font-size:24px;font-weight:900;letter-spacing:-.03em}
 .mood-sub{font-size:13px;color:#A66A55;font-weight:750;margin-top:5px;line-height:1.45}
@@ -249,18 +303,19 @@ border-radius:20px;box-shadow:0 18px 40px rgba(74,14,14,.18);overflow:hidden;z-i
 @keyframes chatIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:1300px){
-.search{width:420px}
-.vibe-shell{grid-template-columns:1fr;height:auto;overflow:auto}
-.content{overflow:auto}
+.bg-search{width:420px}
+.bg-grid{grid-template-columns:repeat(3,1fr)}
+.vibe-shell{grid-template-columns:1fr;height:92vh;overflow:auto}
 .category-select-grid{grid-template-columns:repeat(4,1fr)}
 .ai-chat{min-height:260px}
 }
 @media(max-width:900px){
-.sidebar{display:none}
-.main{margin-left:0;width:100%}
-.topbar{padding:0 18px}
-.search{width:280px}
-.content{padding:18px}
+.bg-sidebar{display:none}
+.bg-main{margin-left:0;width:100%}
+.bg-topbar{padding:0 18px}
+.bg-search{width:280px}
+.popup-overlay{padding:18px}
+.close-popup{right:22px;top:18px}
 .vibe-shell{padding:14px;border-radius:26px}
 .category-select-grid{grid-template-columns:repeat(2,1fr)}
 .inside-video-grid{grid-template-columns:1fr}
@@ -271,29 +326,50 @@ border-radius:20px;box-shadow:0 18px 40px rgba(74,14,14,.18);overflow:hidden;z-i
 </style>
 </head>
 <body>
-<div class="app">
-<aside class="sidebar">
-<a href="home.html" class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></a>
-<nav class="menu">
-<a href="home.html" class="menu-item active"><i class="fa-solid fa-house"></i> Home</a>
-<a href="explore.html" class="menu-item"><i class="fa-regular fa-compass"></i> Explore</a>
-<a href="live.html" class="menu-item"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
-<a href="video.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Video</a>
-<a href="shorts.html" class="menu-item"><i class="fa-solid fa-bolt"></i> Shorts</a>
-<a href="subscriptions.html" class="menu-item"><i class="fa-solid fa-list"></i> Subscriptions</a>
-<a href="history.html" class="menu-item"><i class="fa-solid fa-clock"></i> History</a>
-<a href="saved.html" class="menu-item"><i class="fa-solid fa-bookmark"></i> Saved Video</a>
+
+<!-- Home page background, blurred behind popup -->
+<div class="home-bg">
+<div class="bg-app">
+<aside class="bg-sidebar">
+<div class="bg-logo"><div class="bg-logo-circle">Jio</div><div class="bg-logo-text">Vibe</div></div>
+<nav class="bg-menu">
+<div class="bg-menu-item"><i class="fa-solid fa-house"></i> Home</div>
+<div class="bg-menu-item"><i class="fa-regular fa-compass"></i> Explore</div>
+<div class="bg-menu-item"><i class="fa-solid fa-tower-broadcast"></i> Live</div>
+<div class="bg-menu-item"><i class="fa-regular fa-circle-play"></i> Video</div>
+<div class="bg-menu-item"><i class="fa-solid fa-bolt"></i> Shorts</div>
+<div class="bg-menu-item"><i class="fa-solid fa-list"></i> Subscriptions</div>
+<div class="bg-menu-item"><i class="fa-solid fa-clock"></i> History</div>
+<div class="bg-menu-item"><i class="fa-solid fa-bookmark"></i> Saved Video</div>
 </nav>
 </aside>
-
-<main class="main">
-<header class="topbar">
-<div class="search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search creators, videos, topics..." /></div>
-<div class="top-actions"><div class="bell"><i class="fa-regular fa-bell"></i></div><div class="profile"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg"><span>Trupti Latur</span><i class="fa-solid fa-chevron-down"></i></div></div>
+<main class="bg-main">
+<header class="bg-topbar">
+<div class="bg-search"><i class="fa-solid fa-magnifying-glass"></i><span>Search creators, videos, topics...</span></div>
+<div class="bg-profile"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg"><b>Trupti Latur</b><i class="fa-solid fa-chevron-down"></i></div>
 </header>
+<section class="bg-content">
+<div class="bg-categories">
+<div class="bg-cat active">All</div><div class="bg-cat"><i class="fa-solid fa-gamepad"></i> Gaming</div><div class="bg-cat"><i class="fa-solid fa-music"></i> Music</div><div class="bg-cat"><i class="fa-regular fa-face-smile"></i> Comedy</div><div class="bg-cat"><i class="fa-solid fa-microchip"></i> Tech</div><div class="bg-cat"><i class="fa-solid fa-graduation-cap"></i> Education</div>
+</div>
+<div class="bg-banner">
+<div class="bg-banner-content"><b>Live Now</b><h1>Big Live Moments</h1><p>Watch creators going live with trending events.</p></div>
+</div>
+<div class="bg-section-head"><h2>Trending Now</h2><b style="color:#FF7A00">See more</b></div>
+<div class="bg-grid">
+<div class="bg-card"><div class="bg-thumb"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ranveer%20Singh.webp"></div><div class="bg-info"><img class="bg-avatar" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg"><div><div class="bg-title">Ranveer Singh Live: Creator Energy</div><div class="bg-meta">Movies • Live now</div></div></div></div>
+<div class="bg-card"><div class="bg-thumb"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ashish%20Chanchlani.webp"></div><div class="bg-info"><img class="bg-avatar" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg"><div><div class="bg-title">Comedy Scene Everyone Is Sharing</div><div class="bg-meta">Comedy • 1.2M views</div></div></div></div>
+<div class="bg-card"><div class="bg-thumb"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Total%20Gaming.webp"></div><div class="bg-info"><img class="bg-avatar" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg"><div><div class="bg-title">Last Zone Gaming Highlights</div><div class="bg-meta">Gaming • 1.8M views</div></div></div></div>
+<div class="bg-card"><div class="bg-thumb"><img src="https://wallpaperaccess.com/full/3900106.jpg"></div><div class="bg-info"><img class="bg-avatar" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg"><div><div class="bg-title">Tech Gadgets Worth Watching</div><div class="bg-meta">Tech • 620K views</div></div></div></div>
+<div class="bg-card"><div class="bg-thumb"><img src="https://wallpapercave.com/wp/wp6293134.jpg"></div><div class="bg-info"><img class="bg-avatar" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg"><div><div class="bg-title">Education Tip Made Easy</div><div class="bg-meta">Education • 850K views</div></div></div></div>
+</div>
+</section>
+</main>
+</div>
+</div>
 
-<section class="content">
-<div class="bg-blur"></div>
+<div class="popup-overlay">
+<button class="close-popup" onclick="goHome()"><i class="fa-solid fa-xmark"></i></button>
 
 <div class="vibe-shell" id="startPopup">
 
@@ -303,15 +379,15 @@ border-radius:20px;box-shadow:0 18px 40px rgba(74,14,14,.18);overflow:hidden;z-i
 <div>
 <div class="kicker"><i class="fa-solid fa-layer-group"></i> Personalize your feed</div>
 <h1>Choose your vibe</h1>
-<p>Select any category. Related 16:9 videos and 9:16 shorts will open here on the left side only.</p>
+<p>Select one or multiple categories. Your feed will mix related videos, live streams and shorts.</p>
 </div>
-<button class="close-start" onclick="goHome()"><i class="fa-solid fa-xmark"></i></button>
 </div>
 <div class="left-body">
 <div class="category-select-grid" id="categorySelectGrid"></div>
+<div class="selection-note" id="selectionNote">Please select one or more categories. Then tap Continue to see related videos, live streams and shorts.</div>
 <div class="start-actions">
-<div class="selected-text">Selected: <b id="selectedCategoryText">Gaming</b></div>
-<button class="continue-btn" onclick="showPopupFeed(selectedCategory,'category')">Continue <i class="fa-solid fa-arrow-right"></i></button>
+<div class="selected-text">Selected: <b id="selectedCategoryText">None</b></div>
+<button class="continue-btn" onclick="showPopupFeed()">Continue <i class="fa-solid fa-arrow-right"></i></button>
 </div>
 </div>
 </div>
@@ -320,7 +396,7 @@ border-radius:20px;box-shadow:0 18px 40px rgba(74,14,14,.18);overflow:hidden;z-i
 <div class="popup-feed-head">
 <div>
 <h3 id="popupFeedTitle">Gaming Videos</h3>
-<p id="popupFeedSub">Related videos and shorts based on your selected category.</p>
+<p id="popupFeedSub">Related videos, live streams and shorts based on your selected category.</p>
 </div>
 <div class="head-actions">
 <button class="back-choice" onclick="backToChoices()"><i class="fa-solid fa-arrow-left"></i> Change</button>
@@ -329,7 +405,7 @@ border-radius:20px;box-shadow:0 18px 40px rgba(74,14,14,.18);overflow:hidden;z-i
 </div>
 <div class="feed-scroll">
 <div class="inside-video-grid" id="insideVideoGrid"></div>
-<h3 class="inside-shorts-title" id="insideShortsTitle">Gaming Shorts</h3>
+<h3 class="inside-shorts-title" id="insideShortsTitle">Shorts For You</h3>
 <div class="inside-shorts-grid" id="insideShortsGrid"></div>
 </div>
 </div>
@@ -375,8 +451,6 @@ border-radius:20px;box-shadow:0 18px 40px rgba(74,14,14,.18);overflow:hidden;z-i
 </section>
 
 </div>
-</section>
-</main>
 </div>
 
 <script>
@@ -419,8 +493,8 @@ Travel:['https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900
 Fitness:['https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=900&auto=format&fit=crop']
 };
 
-let selectedCategory='Gaming';
-let pendingAction={type:'category',category:'Comedy'};
+let selectedCategories=[];
+let pendingAction={type:'category',categories:['Comedy']};
 let noCount=0;
 
 function goHome(){window.location.href='home.html'}
@@ -431,60 +505,92 @@ function getColor(i){return logoColors[i%logoColors.length]}
 
 Object.keys(categoryData).forEach(cat=>{
 const card=document.createElement('div');
-card.className=cat===selectedCategory?'choice-card selected':'choice-card';
-card.onclick=()=>selectCategory(cat,card);
-card.innerHTML=`<img src="${categoryData[cat].img}"><div class="choice-content"><strong>${cat}</strong><i class="fa-solid ${categoryData[cat].icon}"></i></div>`;
+card.className=selectedCategories.includes(cat)?'choice-card selected':'choice-card';
+card.onclick=()=>toggleCategory(cat,card);
+card.innerHTML=`<img src="${categoryData[cat].img}"><div class="choice-tick"><i class="fa-solid fa-check"></i></div><div class="choice-content"><strong>${cat}</strong><i class="fa-solid ${categoryData[cat].icon}"></i></div>`;
 document.getElementById('categorySelectGrid').appendChild(card);
 });
 
-function selectCategory(cat,card){
-selectedCategory=cat;
-document.querySelectorAll('.choice-card').forEach(c=>c.classList.remove('selected'));
+function toggleCategory(cat,card){
+if(selectedCategories.includes(cat)){
+selectedCategories=selectedCategories.filter(c=>c!==cat);
+card.classList.remove('selected');
+}else{
+selectedCategories.push(cat);
 card.classList.add('selected');
-document.getElementById('selectedCategoryText').innerText=cat;
+}
+updateSelectedText();
 }
 
-function showPopupFeed(cat,source){
+function updateSelectedText(){
+if(selectedCategories.length===0){
+document.getElementById('selectedCategoryText').innerText='None';
+document.getElementById('selectionNote').innerHTML='Please select one or more categories. Then tap Continue to see related videos, live streams and shorts.';
+return;
+}
+const text=selectedCategories.join(', ');
+document.getElementById('selectedCategoryText').innerText=text;
+const msg=selectedCategories.length===1
+? `You selected <b>${text}</b>. Do you want videos and live streams related to this? Tap Continue.`
+: `You selected <b>${text}</b>. Do you want a mixed feed from these categories? Tap Continue.`;
+document.getElementById('selectionNote').innerHTML=msg;
+}
+
+function showPopupFeed(customCategories,source){
+const cats=Array.isArray(customCategories)?customCategories:selectedCategories;
+if(!cats || cats.length===0){
+document.getElementById('selectionNote').innerHTML='Please select at least one category first, then tap Continue.';
+document.getElementById('selectionNote').style.borderColor='#FF7A00';
+document.getElementById('selectionNote').style.boxShadow='0 10px 24px rgba(255,122,0,.16)';
+return;
+}
+document.getElementById('selectionNote').style.borderColor='#FFD2B3';
+document.getElementById('selectionNote').style.boxShadow='none';
 document.getElementById('startPopup').classList.add('feed-mode');
-document.getElementById('popupFeedTitle').innerText=cat+' Videos';
+document.getElementById('popupFeedTitle').innerText=cats.length===1?cats[0]+' Videos':cats.join(' + ')+' Mix';
 document.getElementById('popupFeedSub').innerText=source==='mood'
-?'AI picked this category based on your mood. Videos and shorts are opening here only.'
-:'Related random 16:9 videos and 9:16 shorts are opening here only.';
-document.getElementById('insideShortsTitle').innerText=cat+' Shorts';
-renderInsideVideos(cat);
-renderInsideShorts(cat);
+?'AI picked this content based on your mood. Videos, live streams and shorts are opening here.'
+:'Related videos, live streams and shorts based on your selected categories.';
+document.getElementById('insideShortsTitle').innerText=cats.length===1?cats[0]+' Shorts':'Mixed Shorts For You';
+renderInsideVideos(cats);
+renderInsideShorts(cats);
 }
 
 function backToChoices(){document.getElementById('startPopup').classList.remove('feed-mode')}
 
-function renderInsideVideos(cat){
-const data=categoryData[cat];
+function renderInsideVideos(cats){
 const grid=document.getElementById('insideVideoGrid');
 grid.innerHTML='';
-for(let i=0;i<6;i++){
+const total=cats.length===1?6:8;
+for(let i=0;i<total;i++){
+const cat=cats[i%cats.length];
+const data=categoryData[cat];
 const creator=getCreator(i+cat.length);
+const isLive=i%3===0;
 grid.innerHTML+=`
 <div class="inside-video-card">
 <div class="inside-video-thumb">
 <img src="${getImage(cat,i)}">
-${i===0?'<span class="live-badge">LIVE</span>':`<span class="duration">${4+i}:${22+i}</span>`}
+${isLive?'<span class="live-badge">LIVE</span>':`<span class="duration">${4+i}:${22+i}</span>`}
 </div>
 <div class="inside-video-info">
 <div class="random-logo" style="background:${getColor(i)}">${creator.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
 <div>
 <div class="inside-video-title">${data.videos[i%data.videos.length]}</div>
-<div class="inside-video-meta">${creator} • ${i===0?'Live now':(310+i*145)+'K views'} • ${cat}</div>
+<div class="inside-video-meta">${creator} • ${isLive?'Live now':(310+i*145)+'K views'} • ${cat}</div>
 </div>
 </div>
 </div>`;
 }
 }
 
-function renderInsideShorts(cat){
-const data=categoryData[cat];
+function renderInsideShorts(cats){
 const grid=document.getElementById('insideShortsGrid');
 grid.innerHTML='';
-for(let i=0;i<4;i++){
+const total=cats.length===1?4:8;
+for(let i=0;i<total;i++){
+const cat=cats[i%cats.length];
+const data=categoryData[cat];
 grid.innerHTML+=`
 <div class="inside-short-card">
 <div class="inside-short-thumb"><img src="${getImage(cat,i+6)}"><span class="live-badge">SHORT</span></div>
@@ -537,10 +643,10 @@ const chat=document.getElementById('aiChat');
 chat.innerHTML+=`<div class="msg ${type}">${text}</div>`;
 chat.scrollTop=chat.scrollHeight;
 }
-function addBotAction(text,cat,type='category'){
+function addBotAction(text,categories,type='category'){
 const chat=document.getElementById('aiChat');
-pendingAction={type,category:cat};
-const primary=type==='studio'?'Continue to AI Studio':'Continue to '+cat;
+pendingAction={type,categories:Array.isArray(categories)?categories:[categories]};
+const primary=type==='studio'?'Continue to AI Studio':'Continue to '+pendingAction.categories.join(' + ');
 chat.innerHTML+=`
 <div class="msg bot">
 ${text}
@@ -564,61 +670,62 @@ function processAI(q){
 const l=q.toLowerCase();
 noCount=0;
 if(l.includes('thumbnail')||l.includes('edit')||l.includes('title')||l.includes('shorts from')||l.includes('studio')){
-addBotAction('This looks like a creator tool request. JioVibe AI Studio can help with AI thumbnail, title, video editor, shorts generator and monetization ideas.', 'AI Studio', 'studio');
+addBotAction('This looks like a creator tool request. JioVibe AI Studio can help with AI thumbnail, title, video editor, shorts generator and monetization ideas.', ['AI Studio'], 'studio');
 }
 else if(l.includes('sad')||l.includes('breakup')||l.includes('low')||l.includes('calm')){
-addBotAction('I understand. You can watch soft music, calming creator videos, or light comedy to refresh your mood. I recommend starting with Comedy because it feels lighter for a quick mood change.', 'Comedy');
+addBotAction('I understand. You can watch soft music and light comedy to refresh your mood. I recommend a Music + Comedy mix.', ['Music','Comedy']);
 }
 else if(l.includes('happy')||l.includes('funny')||l.includes('laugh')||l.includes('comedy')){
-addBotAction('Nice. For this mood, comedy sketches, creator reactions and short funny clips will work best. I can open Comedy videos and shorts here.', 'Comedy');
+addBotAction('Nice. For this mood, comedy sketches and short funny clips will work best. I can open Comedy videos and shorts here.', ['Comedy']);
 }
 else if(l.includes('motivat')||l.includes('fitness')||l.includes('energy')){
-addBotAction('For motivation, I recommend Fitness and Sports content. It will feel energetic, positive and action-driven.', 'Fitness');
+addBotAction('For motivation, I recommend Fitness and Sports content. It will feel energetic, positive and action-driven.', ['Fitness','Sports']);
 }
 else if(l.includes('music')||l.includes('relax')||l.includes('chill')){
-addBotAction('For a chill mood, music sessions and soft creator performances are a good fit. I can open Music content here.', 'Music');
+addBotAction('For a chill mood, music sessions and lifestyle vlogs are a good fit. I can open a Music + Lifestyle mix here.', ['Music','Lifestyle']);
 }
 else if(l.includes('learn')||l.includes('study')||l.includes('education')){
-addBotAction('Good choice. I can show quick learning videos, study hacks and education shorts that feel useful without being heavy.', 'Education');
+addBotAction('Good choice. I can show quick learning videos, study hacks and education shorts that feel useful without being heavy.', ['Education']);
 }
 else if(l.includes('game')||l.includes('live stream')){
-addBotAction('Gaming live streams, clutch moments and tournament clips are perfect for this. I can open Gaming content here.', 'Gaming');
+addBotAction('Gaming live streams, clutch moments and tournament clips are perfect for this. I can open Gaming content here.', ['Gaming']);
 }
 else if(l.includes('food')||l.includes('travel')){
-addBotAction('I can show relaxing food and travel videos. For a stronger visual feed, Travel content will look premium in the demo.', 'Travel');
+addBotAction('I can show relaxing Food and Travel videos. This mix will look premium and visual in the demo.', ['Food','Travel']);
 }
 else if(l.includes('ranveer')){
-addBotAction('I can show creator and movie-style content related to celebrity moments. For this demo, Movies is the closest category.', 'Movies');
+addBotAction('I can show creator and movie-style content related to celebrity moments. For this demo, Movies is the closest category.', ['Movies']);
 }
 else if(l.includes('no')){
 sayNo();
 }
 else{
-addBotAction('Based on your message, I suggest a light content feed first. Comedy is usually the safest category for quick engagement and mood refresh.', 'Comedy');
+addBotAction('Based on your message, I suggest a mixed light feed first. Comedy + Music usually works well for quick engagement and mood refresh.', ['Comedy','Music']);
 }
 }
 function sayNo(){
 noCount++;
 if(noCount===1){
 addMsg('No','user');
-addBotAction('No problem. Do you want something calm instead, like Music, or something energetic like Fitness?', 'Music');
+addBotAction('No problem. Do you want something calm instead, like Music, or something energetic like Fitness?', ['Music']);
 }
 else if(noCount===2){
 addMsg('No','user');
-addBotAction('Okay, then I can ask one more thing: do you want entertainment, learning, or creator tools? If creator tools, I will take you to AI Studio.', 'AI Studio', 'studio');
+addBotAction('Okay, then I can ask one more thing: do you want entertainment, learning, or creator tools? If creator tools, I will take you to AI Studio.', ['AI Studio'], 'studio');
 }
 else{
 addMsg('No','user');
-addBotAction('Understood. I will show a neutral mixed Comedy feed because it works well for most viewers in a demo.', 'Comedy');
+addBotAction('Understood. I will show a neutral mixed Comedy + Music feed because it works well for most viewers in a demo.', ['Comedy','Music']);
 }
 }
 function continueAIAction(){
 if(pendingAction.type==='studio'){goStudio()}
-else{showPopupFeed(pendingAction.category,'mood')}
+else{showPopupFeed(pendingAction.categories,'mood')}
 }
 document.addEventListener('click',e=>{
 if(!e.target.closest('.ai-input-wrap'))document.getElementById('aiSuggestions').classList.remove('show');
 });
+updateSelectedText();
 </script>
 </body>
 </html>
