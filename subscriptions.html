@@ -379,6 +379,134 @@ transform:translateX(-50%) translateY(0)
 .video-grid{grid-template-columns:repeat(2,1fr)}
 .page-head h1{font-size:30px}
 }
+
+/* --- ADDED PREMIUM ANIMATIONS ONLY --- */
+
+/* Sidebar hover animation */
+.menu-item{
+transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
+transform-origin:left center;
+}
+.menu-item:hover{
+transform:scale(1.045);
+box-shadow:0 10px 24px rgba(255,122,0,0.14);
+}
+
+/* Topbar profile and notification polish */
+.bell,
+.profile,
+.dropdown a{
+transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
+}
+.bell:hover,
+.profile:hover{
+transform:scale(1.05);
+}
+.profile:hover{
+background:#FFF6ED;
+box-shadow:0 8px 22px rgba(74,14,14,.08);
+}
+
+/* Page content soft entry */
+.page-head,
+.filters,
+.channel-grid,
+.video-grid{
+animation:softFadeUp .45s ease both;
+}
+.filters{animation-delay:.05s;}
+.channel-grid{animation-delay:.08s;}
+.video-grid{animation-delay:.1s;}
+
+@keyframes softFadeUp{
+from{opacity:0;transform:translateY(12px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* Manage and filter buttons */
+.manage-btn,
+.filter-btn,
+.section-head button{
+transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
+}
+.manage-btn:hover,
+.filter-btn:hover,
+.section-head button:hover{
+transform:scale(1.055);
+box-shadow:0 10px 24px rgba(255,122,0,.14);
+}
+
+/* Channel cards */
+.channel-card{
+transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+will-change:transform;
+}
+.channel-card:hover{
+transform:translateY(-8px) scale(1.025);
+box-shadow:0 20px 44px rgba(74,14,14,.14);
+border-color:#FF7A00;
+}
+.channel-img-wrap img{
+transition:transform .35s ease,box-shadow .35s ease;
+}
+.channel-card:hover .channel-img-wrap img{
+transform:scale(1.07);
+box-shadow:0 12px 26px rgba(255,122,0,.18);
+}
+
+/* Subscription buttons */
+.sub-btn{
+transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
+}
+.sub-btn:hover{
+transform:scale(1.06);
+box-shadow:0 10px 24px rgba(74,14,14,.12);
+}
+
+/* Video cards */
+.video-card{
+transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
+will-change:transform;
+}
+.video-card:hover{
+transform:translateY(-8px) scale(1.025);
+box-shadow:0 20px 44px rgba(74,14,14,.14);
+border-color:#FF7A00;
+}
+.video-thumb img{
+transition:transform .42s ease;
+}
+.video-card:hover .video-thumb img{
+transform:scale(1.08);
+}
+
+/* Extra items smooth appear */
+.extra-channel.show,
+.extra-video.show{
+animation:extraFadeUp .32s ease both;
+}
+@keyframes extraFadeUp{
+from{opacity:0;transform:translateY(14px) scale(.98);}
+to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+/* Toast polish */
+.toast.show{
+animation:toastPop .25s ease both;
+}
+@keyframes toastPop{
+from{opacity:0;transform:translateX(-50%) translateY(-18px) scale(.96);}
+to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+*{
+animation:none !important;
+transition:none !important;
+}
+}
+
 </style>
 </head>
 
