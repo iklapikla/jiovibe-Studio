@@ -444,6 +444,80 @@ background:#FF7A00
 .ai-grid,.action-row,.chart-grid,.bottom-grid{grid-template-columns:1fr}
 .ai-points{grid-template-columns:1fr}
 }
+
+/* --- ADDED PREMIUM ANIMATIONS ONLY --- */
+.back-title a,.tag,.filters select{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease}
+.back-title a:hover,.tag:hover,.filters select:hover{transform:scale(1.05);box-shadow:0 10px 24px rgba(255,122,0,.14);border-color:#FF7A00}
+.ai-summary,.ai-grid,.action-row,.section-head,.stats-grid,.chart-grid,.table-card,.bottom-grid{animation:softFadeUp .45s ease both}
+.ai-grid{animation-delay:.05s}.action-row{animation-delay:.08s}.stats-grid{animation-delay:.1s}.chart-grid{animation-delay:.12s}.table-card{animation-delay:.14s}.bottom-grid{animation-delay:.16s}
+@keyframes softFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.ai-summary,.ai-point,.ai-card,.stat-card,.chart-card,.table-card,.audience-card,.revenue-card{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;will-change:transform}
+.card:hover,.ai-summary:hover,.ai-card:hover,.stat-card:hover,.chart-card:hover,.table-card:hover,.audience-card:hover,.revenue-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 18px 42px rgba(74,14,14,.13);border-color:#FF7A00}
+.ai-point:hover{transform:translateY(-5px) scale(1.015);box-shadow:0 16px 34px rgba(74,14,14,.12);border-color:#FF7A00}
+.ai-point i,.action-btn i{transition:transform .25s ease,box-shadow .25s ease}
+.ai-point:hover i,.action-btn:hover i{transform:scale(1.08);box-shadow:0 10px 24px rgba(255,122,0,.16)}
+.health-score{transition:transform .35s ease,box-shadow .35s ease;will-change:transform}
+.ai-summary:hover .health-score{transform:scale(1.055);box-shadow:0 16px 34px rgba(255,122,0,.18)}
+.action-btn{transition:transform .3s ease,box-shadow .3s ease,background .3s ease,border-color .3s ease;will-change:transform}
+.action-btn:hover{transform:translateY(-5px) scale(1.015);box-shadow:0 16px 34px rgba(74,14,14,.12);border-color:#FF7A00}
+.stat-card strong{transition:transform .25s ease,color .25s ease;display:inline-block}
+.stat-card:hover strong{transform:scale(1.05);color:#FF7A00}
+.bar{transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+.bar:hover{transform:scaleY(1.06);box-shadow:0 0 18px rgba(255,122,0,.22)}
+.line-chart,.line{transition:transform .3s ease,box-shadow .3s ease}
+.chart-card:hover .line{transform:scale(1.02);box-shadow:0 0 18px rgba(255,122,0,.16)}
+.table-row,.insight-row,.problem,.idea,.forecast-row{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease}
+.table-row:hover,.insight-row:hover,.problem:hover,.idea:hover{transform:translateY(-4px) scale(1.01);box-shadow:0 12px 28px rgba(74,14,14,.09);border-color:#FF7A00;background:#FFF6ED}
+.thumb{transition:transform .3s ease,box-shadow .3s ease}
+.table-row:hover .thumb{transform:scale(1.06);box-shadow:0 12px 26px rgba(74,14,14,.14)}
+.device-fill{transition:box-shadow .25s ease,transform .25s ease}
+.insight-row:hover .device-fill{box-shadow:0 0 14px rgba(255,122,0,.28);transform:scaleX(1.02)}
+.small-pill,.ai-badge{transition:transform .25s ease,box-shadow .25s ease}
+.small-pill:hover,.ai-badge:hover{transform:scale(1.05);box-shadow:0 10px 24px rgba(255,122,0,.12)}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+
+
+/* --- FIXED REVENUE GROWTH LINE GRAPH --- */
+.line-chart{
+height:260px;
+position:relative;
+background:
+linear-gradient(#FFE0CC 1px,transparent 1px) 0 0/100% 52px;
+border-radius:16px;
+overflow:hidden;
+padding:20px;
+}
+.revenue-svg{
+width:100%;
+height:100%;
+display:block;
+overflow:visible;
+}
+.revenue-line{
+fill:none;
+stroke:#FF7A00;
+stroke-width:6;
+stroke-linecap:round;
+stroke-linejoin:round;
+filter:drop-shadow(0 6px 10px rgba(255,122,0,.22));
+}
+.revenue-area{
+fill:rgba(255,122,0,.10);
+}
+.revenue-dot{
+fill:#FF7A00;
+stroke:#FFFFFF;
+stroke-width:4;
+filter:drop-shadow(0 4px 8px rgba(255,122,0,.35));
+}
+.chart-card:hover .revenue-line{
+stroke:#E65100;
+}
+.chart-card:hover .revenue-dot{
+transform:scale(1.05);
+transform-origin:center;
+}
+
 </style>
 </head>
 
@@ -653,7 +727,11 @@ background:#FF7A00
     </div>
 
     <div class="line-chart">
-      <div class="line"></div>
+      <svg class="revenue-svg" viewBox="0 0 520 220" preserveAspectRatio="none" aria-label="Revenue growth line chart">
+        <path class="revenue-area" d="M20 175 C90 160, 135 150, 185 130 C240 108, 280 116, 330 86 C380 56, 430 74, 500 42 L500 200 L20 200 Z"></path>
+        <path class="revenue-line" d="M20 175 C90 160, 135 150, 185 130 C240 108, 280 116, 330 86 C380 56, 430 74, 500 42"></path>
+        <circle class="revenue-dot" cx="500" cy="42" r="9"></circle>
+      </svg>
     </div>
   </div>
 </section>
