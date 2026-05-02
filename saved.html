@@ -515,6 +515,52 @@ transform:translateX(-50%) translateY(0)
 .page-head h1{font-size:30px}
 .saved-list.grid{grid-template-columns:1fr}
 }
+
+/* --- ADDED PREMIUM ANIMATIONS ONLY --- */
+
+/* Sidebar */
+.menu-item{transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;transform-origin:left center;will-change:transform}
+.menu-item:hover{transform:scale(1.045);box-shadow:0 10px 24px rgba(255,122,0,.14)}
+
+/* Topbar */
+.bell,.profile,.dropdown a{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}
+.bell:hover,.profile:hover{transform:scale(1.05)}
+.profile:hover{background:#FFF6ED;box-shadow:0 8px 22px rgba(74,14,14,.08)}
+.dropdown.show{animation:dropdownIn .22s ease both}
+@keyframes dropdownIn{from{opacity:0;transform:translateY(-8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* Buttons */
+.action-btn-main,.filter-btn,.playlist-btn,.sort-btn,.more-btn{transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease}
+.action-btn-main:hover,.filter-btn:hover,.playlist-btn:hover,.sort-btn:hover,.more-btn:hover{transform:scale(1.05);box-shadow:0 10px 24px rgba(255,122,0,.14)}
+
+/* Cards */
+.saved-item{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;will-change:transform}
+.saved-item:hover{transform:translateY(-7px) scale(1.02);box-shadow:0 20px 44px rgba(74,14,14,.13);border-color:#FF7A00}
+.thumb img{transition:transform .42s ease}
+.saved-item:hover .thumb img{transform:scale(1.08)}
+
+/* Playlist */
+.playlist-card{transition:transform .3s ease,box-shadow .3s ease}
+.playlist-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 18px 38px rgba(74,14,14,.12)}
+.playlist-cover img{transition:transform .5s ease}
+.playlist-card:hover .playlist-cover img{transform:scale(1.05)}
+
+/* Menus & modals */
+.item-menu.show{animation:menuPop .22s ease both}
+@keyframes menuPop{from{opacity:0;transform:translateY(8px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* Extra items */
+.extra-item.show{animation:extraFadeUp .32s ease both}
+@keyframes extraFadeUp{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* Page load */
+.page-head,.saved-layout{animation:softFadeUp .45s ease both}
+.saved-layout{animation-delay:.06s}
+@keyframes softFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+
 </style>
 </head>
 
