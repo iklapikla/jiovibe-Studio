@@ -3,784 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wallet - JioVibe AI Studio</title>
+<title>Wallet & Earnings - JioVibe</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-body{background:#FFF6ED;color:#4A0E0E;}
-a{text-decoration:none;color:inherit;}
+body{margin:0;font-family:Inter;background:#FFF6ED;color:#4A0E0E}
 
-.app{display:flex;min-height:100vh;}
+/* layout */
+.app{display:flex}
+.sidebar{width:230px;padding:20px;border-right:1px solid #FFD2B3}
+.main{flex:1;padding:20px}
 
-.sidebar{
-width:250px;
-padding:32px 18px;
-position:fixed;
-height:100%;
-background:#FFF6ED;
-border-right:1px solid #FFD2B3;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:4px;
-margin-bottom:45px;
-padding-left:8px;
-}
-
-.logo-circle{
-width:54px;height:54px;background:#FF7A00;color:#FFFFFF;
-border-radius:50%;
-display:flex;align-items:center;justify-content:center;
-font-weight:800;font-size:25px;
-}
-
-.logo-text{
-font-size:32px;
-font-weight:800;
-letter-spacing:-1.2px;
-color:#4A0E0E;
-}
-
-.menu{display:flex;flex-direction:column;gap:12px;}
-
-.menu-item{
-display:flex;
-align-items:center;
-gap:18px;
-padding:17px 22px;
-border-radius:14px;
-font-weight:600;
-font-size:16px;
-color:#7A3E2E;
-transition:.25s;
-}
-
-.menu-item i{width:22px;font-size:22px;text-align:center;color:#FF7A00;}
-
-.menu-item:hover,.menu-item.active{
-background:#FFE4CC;
-color:#4A0E0E;
-}
-
-.main{
-margin-left:250px;
-width:calc(100% - 250px);
-}
-
-.topbar{
-height:94px;
-border-bottom:1px solid #FFD2B3;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 48px;
-background:#FFF6ED;
-position:sticky;
-top:0;
-z-index:8;
-}
-
-.search{
-width:600px;
-height:50px;
+/* cards */
+.card{
+background:#fff;
 border:1px solid #FFD2B3;
-border-radius:28px;
-display:flex;
-align-items:center;
-gap:16px;
-padding:0 22px;
-color:#A66A55;
-background:#FFFFFF;
-}
-
-.search input{
-border:none;outline:none;flex:1;font-size:15px;color:#4A0E0E;
-}
-
-.top-actions{display:flex;align-items:center;gap:22px;position:relative;}
-
-.bell{font-size:23px;position:relative;cursor:pointer;color:#4A0E0E;}
-
-.bell::after{
-content:"1";
-position:absolute;
-top:-8px;
-right:-7px;
-background:#FF7A00;
-color:#FFFFFF;
-font-size:10px;
-width:17px;height:17px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.profile{
-display:flex;
-align-items:center;
-gap:12px;
-cursor:pointer;
-padding:8px;
-border-radius:18px;
-}
-
-.profile img{
-width:48px;height:48px;border-radius:50%;object-fit:cover;
-}
-
-.profile span{font-weight:700;font-size:15px;color:#4A0E0E;}
-
-.dropdown{
-position:absolute;
-top:70px;
-right:0;
-width:200px;
-background:#FFFFFF;
-border-radius:14px;
-box-shadow:0 10px 30px rgba(74,14,14,0.15);
-display:none;
-overflow:hidden;
-z-index:20;
-}
-
-.dropdown a{
-display:block;
-padding:14px;
-font-weight:600;
-color:#4A0E0E;
-}
-
-.dropdown a:hover{
-background:#FFE4CC;
-}
-
-.dropdown.show{display:block;}
-
-.content{
-padding:34px 44px 60px;
-}
-
-.balance-box{
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:22px;
-padding:28px 32px;
-display:grid;
-grid-template-columns:360px 1fr 140px;
-gap:34px;
-align-items:center;
-margin-bottom:34px;
-box-shadow:0 8px 24px rgba(74,14,14,.04);
-}
-
-.balance-left{
-display:flex;
-align-items:center;
-gap:24px;
-border-right:1px solid #FFD2B3;
-padding-right:28px;
-}
-
-.coin-big{
-width:96px;
-height:96px;
-border-radius:50%;
-background:#2A0A0A;
-color:#FFFFFF;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:44px;
-}
-
-.balance-left h2{
-font-size:20px;
-margin-bottom:28px;
-}
-
-.balance-left strong{
-font-size:24px;
-margin-right:16px;
-}
-
-.balance-list h3{
-font-size:18px;
-margin-bottom:16px;
-}
-
-.list-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:14px 34px;
-font-weight:700;
-}
-
-.list-grid span{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.list-grid i{color:#FF7A00;}
-
-.wallet-icon{
-font-size:72px;
-color:#FF7A00;
-text-align:center;
-}
-
-.section-title{
-display:flex;
-align-items:center;
-gap:22px;
-justify-content:center;
-margin:16px 0 26px;
-}
-
-.section-title::before,
-.section-title::after{
-content:"";
-height:1px;
-background:#FFE0CC;
-flex:1;
-}
-
-.section-title h1{
-font-size:28px;
-font-weight:800;
-color:#4A0E0E;
-}
-
-.section-title i{color:#FF7A00;}
-
-.pack-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:22px;
-margin-bottom:30px;
-}
-
-.pack-card{
-position:relative;
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:18px;
-padding:34px 22px 28px;
-text-align:center;
-box-shadow:0 6px 18px rgba(74,14,14,.04);
-transition:.22s ease;
-cursor:pointer;
-}
-
-.pack-card:hover{
-transform:scale(1.015);
-box-shadow:0 12px 30px rgba(74,14,14,.08);
-}
-
-.pack-card.selected{
-border:2px solid #FF7A00;
-box-shadow:0 12px 30px rgba(255,122,0,.15);
-}
-
-.best{
-position:absolute;
-top:-16px;
-left:50%;
-transform:translateX(-50%);
-background:#2A0A0A;
-color:#FFFFFF;
-padding:10px 22px;
-border-radius:8px;
-font-weight:800;
-font-size:13px;
-white-space:nowrap;
-}
-
-.pack-icon{
-width:84px;
-height:84px;
-border-radius:50%;
-background:#FFE4CC;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:0 auto 24px;
-font-size:34px;
-color:#FF7A00;
-}
-
-.pack-card h2{
-font-size:44px;
-color:#FF7A00;
-font-weight:800;
-}
-
-.pack-card h3{
-font-size:22px;
-margin-bottom:26px;
-}
-
-.line{
-height:1px;
-background:#FFE0CC;
-margin:22px 0;
-}
-
-.price{
-font-size:34px;
-font-weight:800;
-margin-bottom:10px;
-}
-
-.pay-type{
-color:#7A3E2E;
-font-weight:700;
+border-radius:16px;
+padding:20px;
 margin-bottom:20px;
 }
 
-.select-btn{
+/* buttons */
+.btn{
 background:#FF7A00;
-color:#FFFFFF;
-border:none;
-width:100%;
-padding:15px;
-border-radius:12px;
-font-size:16px;
-font-weight:800;
-cursor:pointer;
-transition:.2s;
-}
-
-.select-btn:hover{background:#E65100;}
-
-.pack-card.selected .select-btn{
-background:#E65100;
-}
-
-.payment-title{
-display:flex;
-align-items:center;
-gap:18px;
-margin:10px 0 18px;
-}
-
-.payment-title h2{
-font-size:22px;
-color:#4A0E0E;
-}
-
-.payment-title span{
+color:#fff;
+padding:10px 16px;
+border-radius:10px;
 font-weight:700;
-color:#7A3E2E;
-border-left:1px solid #FFD2B3;
-padding-left:18px;
-}
-
-.payment-title i{color:#FF7A00;}
-
-.payment-methods{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:22px;
-margin-bottom:26px;
-}
-
-.method{
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:16px;
-padding:22px;
-display:flex;
-align-items:center;
-gap:18px;
 cursor:pointer;
-transition:.22s ease;
-position:relative;
-}
-
-.method:hover{
-transform:scale(1.01);
-box-shadow:0 8px 24px rgba(74,14,14,.07);
-}
-
-.method.selected{
-border:2px solid #FF7A00;
-background:#FFE4CC;
-}
-
-.radio{
-width:22px;height:22px;
-border:2px solid #FFD2B3;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.method.selected .radio{
-border-color:#FF7A00;
-}
-
-.method.selected .radio::after{
-content:"";
-width:10px;
-height:10px;
-border-radius:50%;
-background:#FF7A00;
-}
-
-.method i.big{
-font-size:34px;
-color:#FF7A00;
-}
-
-.method h3{
-font-size:18px;
-margin-bottom:4px;
-}
-
-.method p{
-font-size:13px;
-color:#7A3E2E;
-font-weight:600;
-}
-
-.instant{
-position:absolute;
-right:16px;
-top:14px;
-background:#FF7A00;
-color:#FFFFFF;
-font-size:12px;
-font-weight:800;
-padding:5px 9px;
-border-radius:8px;
-}
-
-.checkout-box{
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:20px;
-padding:24px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:24px;
-margin-bottom:22px;
-}
-
-.form-box input{
-width:100%;
-height:48px;
-border:1px solid #FFD2B3;
-border-radius:12px;
-padding:0 16px;
-font-size:14px;
-margin-bottom:14px;
-outline:none;
-background:#FFFFFF;
-}
-
-.form-box input:focus{
-border-color:#FF7A00;
-}
-
-.pay-btn{
-width:100%;
-height:52px;
 border:none;
-background:#FF7A00;
-color:#FFFFFF;
-font-size:17px;
-font-weight:800;
-border-radius:12px;
-cursor:pointer;
-transition:.2s;
 }
 
-.pay-btn:hover{
-background:#E65100;
-transform:scale(1.01);
-}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 
-.summary{
+/* revenue cards */
+.rev-card{
+background:#fff;
 border:1px solid #FFD2B3;
-background:#FFE4CC;
-border-radius:16px;
 padding:20px;
+border-radius:14px;
 }
+.rev-card h2{margin:10px 0}
 
-.summary h2{
-font-size:20px;
-margin-bottom:18px;
-color:#4A0E0E;
-}
-
-.summary-row{
+/* payment */
+.method{
+border:1px solid #FFD2B3;
+padding:16px;
+border-radius:12px;
+margin-bottom:12px;
 display:flex;
 justify-content:space-between;
-font-weight:800;
-margin-bottom:13px;
-color:#4A0E0E;
-}
-
-.summary-row span:last-child{
-color:#FF7A00;
-}
-
-.security-row{
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:18px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-padding:22px;
-gap:20px;
-}
-
-.security-item{
-display:flex;
 align-items:center;
-gap:16px;
-border-right:1px solid #FFD2B3;
+cursor:pointer;
 }
+.method.selected{border:2px solid #FF7A00;background:#FFE4CC}
 
-.security-item:last-child{border-right:none;}
-
-.security-item i{
-font-size:32px;
-color:#FF7A00;
-}
-
-.security-item h3{
-font-size:17px;
-margin-bottom:4px;
-color:#4A0E0E;
-}
-
-.security-item p{
-font-size:13px;
-color:#7A3E2E;
-}
-
-@media(max-width:1300px){
-.pack-grid{grid-template-columns:repeat(2,1fr);}
-}
-
-@media(max-width:1200px){
-.balance-box,.checkout-box{grid-template-columns:1fr;}
-.payment-methods,.security-row{grid-template-columns:1fr;}
-.search{width:430px;}
-}
-
-@media(max-width:900px){
-.pack-grid{grid-template-columns:1fr;}
-}
-
-/* --- ADDED PREMIUM ANIMATIONS ONLY --- */
-
-/* Sidebar */
-.menu-item{
-transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
-transform-origin:left center;
-will-change:transform;
-}
-.menu-item:hover{
-transform:scale(1.045);
-box-shadow:0 10px 24px rgba(255,122,0,.14);
-}
-
-/* Topbar */
-.bell,
-.profile,
-.dropdown a{
-transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
-}
-.bell:hover,
-.profile:hover{
-transform:scale(1.05);
-}
-.profile:hover{
-background:#FFFFFF;
-box-shadow:0 8px 22px rgba(74,14,14,.08);
-}
-.dropdown.show{
-animation:dropdownIn .22s ease both;
-}
-@keyframes dropdownIn{
-from{opacity:0;transform:translateY(-8px) scale(.98);}
-to{opacity:1;transform:translateY(0) scale(1);}
-}
-
-/* Page load */
-.balance-box,
-.section-title,
-.pack-grid,
-.payment-title,
-.payment-methods,
-.checkout-box,
-.security-row{
-animation:softFadeUp .45s ease both;
-}
-.section-title{animation-delay:.05s;}
-.pack-grid{animation-delay:.08s;}
-.payment-title{animation-delay:.1s;}
-.payment-methods{animation-delay:.12s;}
-.checkout-box{animation-delay:.14s;}
-.security-row{animation-delay:.16s;}
-
-@keyframes softFadeUp{
-from{opacity:0;transform:translateY(12px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-/* Search */
-.search{
-transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
-}
-.search:hover,
-.search:focus-within{
-transform:scale(1.015);
-box-shadow:0 10px 24px rgba(255,122,0,.12);
-border-color:#FF7A00;
-}
-
-/* Balance hero */
-.balance-box{
-transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
-will-change:transform;
-}
-.balance-box:hover{
-transform:translateY(-7px) scale(1.01);
-box-shadow:0 22px 50px rgba(74,14,14,.16);
-border-color:#FF7A00;
-}
-.coin-big,
-.wallet-icon{
-transition:transform .3s ease,filter .3s ease,box-shadow .3s ease;
-}
-.balance-box:hover .coin-big{
-transform:scale(1.06);
-box-shadow:0 16px 34px rgba(42,10,10,.18);
-}
-.balance-box:hover .wallet-icon{
-transform:scale(1.08);
-filter:drop-shadow(0 10px 16px rgba(255,122,0,.22));
-}
-
-/* Token pack cards */
-.pack-card{
-transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
-will-change:transform;
-}
-.pack-card:hover{
-transform:translateY(-8px) scale(1.025);
-box-shadow:0 20px 44px rgba(74,14,14,.14);
-border-color:#FF7A00;
-}
-.pack-icon{
-transition:transform .3s ease,box-shadow .3s ease;
-}
-.pack-card:hover .pack-icon{
-transform:scale(1.08);
-box-shadow:0 12px 26px rgba(255,122,0,.18);
-}
-.best{
-transition:transform .25s ease,box-shadow .25s ease;
-}
-.pack-card:hover .best{
-transform:translateX(-50%) scale(1.05);
-box-shadow:0 10px 24px rgba(42,10,10,.16);
-}
-
-/* Buttons */
-.select-btn,
-.pay-btn{
-transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
-}
-.select-btn:hover,
-.pay-btn:hover{
-transform:scale(1.045);
-box-shadow:0 12px 28px rgba(255,122,0,.22);
-}
-
-/* Payment methods */
-.method{
-transition:transform .3s ease,box-shadow .3s ease,background .3s ease,border-color .3s ease;
-will-change:transform;
-}
-.method:hover{
-transform:translateY(-5px) scale(1.015);
-box-shadow:0 16px 34px rgba(74,14,14,.12);
-border-color:#FF7A00;
-}
-.method i.big{
-transition:transform .25s ease,filter .25s ease;
-}
-.method:hover i.big{
-transform:scale(1.1);
-filter:drop-shadow(0 8px 14px rgba(255,122,0,.22));
-}
-
-/* Checkout */
-.checkout-box,
-.summary{
-transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
-}
-.checkout-box:hover{
-transform:translateY(-5px) scale(1.005);
-box-shadow:0 18px 42px rgba(74,14,14,.13);
-border-color:#FF7A00;
-}
-.form-box input{
-transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
-}
-.form-box input:hover,
-.form-box input:focus{
-transform:scale(1.01);
-box-shadow:0 10px 24px rgba(255,122,0,.12);
-border-color:#FF7A00;
-}
-
-/* Security row */
-.security-item{
-transition:transform .25s ease,background .25s ease;
-border-radius:14px;
-padding:8px;
-}
-.security-item:hover{
-transform:translateY(-4px) scale(1.01);
-background:#FFF6ED;
-}
-.security-item i{
-transition:transform .25s ease,filter .25s ease;
-}
-.security-item:hover i{
-transform:scale(1.1);
-filter:drop-shadow(0 8px 14px rgba(255,122,0,.22));
-}
-
-/* List items */
-.list-grid span{
-transition:transform .25s ease,color .25s ease;
-}
-.list-grid span:hover{
-transform:translateX(4px);
-color:#FF7A00;
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce){
-*{
-animation:none !important;
-transition:none !important;
-}
-}
+/* table */
+table{width:100%;border-collapse:collapse}
+th{background:#FFE4CC;padding:12px;text-align:left}
+td{padding:12px;border-bottom:1px solid #FFE0CC}
 
 </style>
 </head>
@@ -789,233 +73,467 @@ transition:none !important;
 
 <div class="app">
 
-<aside class="sidebar">
-<a href="index.html" class="logo">
-<div class="logo-circle">Jio</div>
-<div class="logo-text">Vibe</div>
-</a>
-
-<nav class="menu">
-<a href="index.html" class="menu-item"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
-<a href="content.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Content</a>
-<a href="analytics.html" class="menu-item"><i class="fa-solid fa-chart-line"></i> Analytics</a>
-<a href="ai-studio.html" class="menu-item"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Studio</a>
-<a href="wallet.html" class="menu-item active"><i class="fa-solid fa-wallet"></i> Wallet</a>
-<a href="settings.html" class="menu-item"><i class="fa-solid fa-gear"></i> Settings</a>
-</nav>
-</aside>
-
-<main class="main">
-
-<header class="topbar">
-<div class="search">
-<i class="fa-solid fa-magnifying-glass"></i>
-<input type="text" placeholder="Search wallet, payments, tokens..." />
+<!-- Sidebar -->
+<div class="sidebar">
+<h2>JioVibe</h2>
+<p>Dashboard</p>
+<p>Content</p>
+<p>Analytics</p>
+<p><b>Wallet</b></p>
 </div>
 
-<div class="top-actions">
-<div class="bell"><i class="fa-regular fa-bell"></i></div>
+<div class="main">
 
-<div class="profile" onclick="toggleDropdown()">
-<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Ankit.jpeg">
-<span>Ankit Jayant</span>
-<i class="fa-solid fa-chevron-down"></i>
+<!-- Balance -->
+<div class="card">
+<h3>Current Token Balance</h3>
+<h2>1,250 Tokens</h2>
 </div>
 
-<div class="dropdown" id="dropdown">
-<a href="home.html">Home</a>
-<a href="index.html">Dashboard</a>
-<a href="logout.html">Sign out</a>
-</div>
-</div>
-</header>
+<!-- Token Packs -->
+<div class="card">
+<h2>Choose a Token Pack</h2>
 
-<section class="content">
+<div class="grid">
 
-<div class="balance-box">
-<div class="balance-left">
-<div class="coin-big"><i class="fa-solid fa-coins"></i></div>
-<div>
-<h2>Current Token Balance</h2>
-<strong>1,250</strong> <b>Tokens</b>
-</div>
-</div>
-
-<div class="balance-list">
-<h3>Tokens let you use AI tools like</h3>
-<div class="list-grid">
-<span><i class="fa-regular fa-circle-check"></i> AI Video Editor</span>
-<span><i class="fa-regular fa-circle-check"></i> AI Shorts Generator</span>
-<span><i class="fa-regular fa-circle-check"></i> AI Thumbnail Generator</span>
-<span><i class="fa-regular fa-circle-check"></i> AI Multilingual Tools</span>
-<span><i class="fa-regular fa-circle-check"></i> AI Title & Description Generator</span>
-<span><i class="fa-regular fa-circle-check"></i> And many more...</span>
-</div>
-</div>
-
-<div class="wallet-icon"><i class="fa-solid fa-wallet"></i></div>
-</div>
-
-<div class="section-title">
-<i class="fa-solid fa-wand-magic-sparkles"></i>
-<h1>Choose a Token Pack</h1>
-<i class="fa-solid fa-wand-magic-sparkles"></i>
-</div>
-
-<div class="pack-grid">
-
-<div class="pack-card" onclick="selectPack(this, '100 Tokens', '₹99')">
-<div class="pack-icon"><i class="fa-solid fa-coins"></i></div>
+<div class="rev-card" onclick="selectPack(this,'100 Tokens')">
 <h2>100</h2>
-<h3>Tokens</h3>
-<div class="line"></div>
-<div class="price">₹99</div>
-<div class="pay-type">One-time payment</div>
-<button class="select-btn">Select</button>
+<p>₹99</p>
+<button class="btn">Select</button>
 </div>
 
-<div class="pack-card" onclick="selectPack(this, '500 Tokens', '₹399')">
-<div class="best">BEST VALUE</div>
-<div class="pack-icon"><i class="fa-solid fa-coins"></i></div>
+<div class="rev-card" onclick="selectPack(this,'500 Tokens')">
 <h2>500</h2>
-<h3>Tokens</h3>
-<div class="line"></div>
-<div class="price">₹399</div>
-<div class="pay-type">One-time payment</div>
-<button class="select-btn">Select</button>
+<p>₹399</p>
+<button class="btn">Select</button>
 </div>
 
-<div class="pack-card" onclick="selectPack(this, '1000 Tokens', '₹699')">
-<div class="pack-icon"><i class="fa-solid fa-coins"></i></div>
+<div class="rev-card" onclick="selectPack(this,'1000 Tokens')">
 <h2>1000</h2>
-<h3>Tokens</h3>
-<div class="line"></div>
-<div class="price">₹699</div>
-<div class="pay-type">One-time payment</div>
-<button class="select-btn">Select</button>
-</div>
-
-<div class="pack-card" onclick="selectPack(this, '1500 Tokens', '₹999')">
-<div class="pack-icon"><i class="fa-solid fa-coins"></i></div>
-<h2>1500</h2>
-<h3>Tokens</h3>
-<div class="line"></div>
-<div class="price">₹999</div>
-<div class="pay-type">One-time payment</div>
-<button class="select-btn">Select</button>
+<p>₹699</p>
+<button class="btn">Select</button>
 </div>
 
 </div>
+</div>
 
-<div class="payment-title">
+<!-- Payment -->
+<div class="card">
 <h2>Select Payment Method</h2>
-<span><i class="fa-solid fa-shield-halved"></i> Secure & Encrypted Payments</span>
-</div>
 
-<div class="payment-methods">
-<div class="method" onclick="selectMethod(this, 'UPI')">
-<div class="radio"></div>
-<i class="fa-solid fa-mobile-screen-button big"></i>
+<div class="method" onclick="selectMethod(this,'UPI')">
 <div>
-<h3>UPI</h3>
-<p>Pay using any UPI app</p>
+<b>UPI</b><br>
+<small>Pay using any UPI app</small>
 </div>
-<span class="instant">Instant</span>
+<button class="btn">Proceed</button>
 </div>
 
-<div class="method" onclick="selectMethod(this, 'Credit / Debit Card')">
-<div class="radio"></div>
-<i class="fa-regular fa-credit-card big"></i>
+<div class="method" onclick="selectMethod(this,'Card')">
 <div>
-<h3>Credit / Debit Card</h3>
-<p>Visa, Mastercard, Rupay</p>
+<b>Credit / Debit Card</b><br>
+<small>Visa, Mastercard, Rupay</small>
 </div>
-<span class="instant">Instant</span>
+<button class="btn">Proceed</button>
 </div>
 
-<div class="method" onclick="selectMethod(this, 'Wallets')">
-<div class="radio"></div>
-<i class="fa-solid fa-wallet big"></i>
+<div class="method" onclick="selectMethod(this,'Wallet')">
 <div>
-<h3>Wallets</h3>
-<p>Paytm, PhonePe, Amazon Pay</p>
+<b>Wallets</b><br>
+<small>Paytm, PhonePe, Amazon Pay, JioVibe Wallet</small>
 </div>
-<span class="instant">Instant</span>
-</div>
-</div>
-
-<div class="checkout-box">
-<div class="form-box">
-<input type="text" placeholder="Enter UPI ID">
-<button class="pay-btn">Pay Now</button>
+<button class="btn">Proceed</button>
 </div>
 
-<div class="summary">
-<h2>Order Summary</h2>
-<div class="summary-row"><span>Token Pack</span><span id="summaryPack">Select Token Pack</span></div>
-<div class="summary-row"><span>Amount</span><span id="summaryAmount">--</span></div>
-<div class="summary-row"><span>Payment Method</span><span id="summaryMethod">Select Method</span></div>
-</div>
 </div>
 
-<div class="security-row">
-<div class="security-item">
-<i class="fa-solid fa-shield-halved"></i>
-<div>
-<h3>100% Secure</h3>
-<p>Your payments are safe with us.</p>
-</div>
+<!-- Earnings -->
+<h2>₹ Your Content Earnings</h2>
+
+<div class="grid">
+
+<div class="rev-card">
+<p>Total Revenue (Lifetime)</p>
+<h2>₹1,84,750</h2>
 </div>
 
-<div class="security-item">
-<i class="fa-solid fa-bolt"></i>
-<div>
-<h3>Instant Delivery</h3>
-<p>Tokens added instantly to your account.</p>
-</div>
+<div class="rev-card">
+<p>Current Wallet Balance</p>
+<h2>₹28,600</h2>
+<button class="btn">Withdraw to Bank</button>
 </div>
 
-<div class="security-item">
-<i class="fa-solid fa-lock"></i>
-<div>
-<h3>Secure Payments</h3>
-<p>PCI DSS compliant.</p>
-</div>
-</div>
+<div class="rev-card">
+<p>Withdrawn Till Now</p>
+<h2>₹24,000</h2>
 </div>
 
-</section>
+</div>
+<br><br>
 
-</main>
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;">
+    <div>
+      <h2>Live, Video & Shorts Earnings</h2>
+      <p>Filter and track how much each content item earned from ads, Super Support, subscriptions and brand campaigns.</p>
+    </div>
+
+    <div style="display:flex;gap:12px;align-items:center;">
+      <select id="earningFilter" onchange="applyFilter()" style="padding:12px 16px;border:1px solid #FFD2B3;border-radius:12px;font-weight:800;color:#4A0E0E;">
+        <option value="All">All</option>
+        <option value="Today">Today</option>
+        <option value="This Week">This Week</option>
+        <option value="This Month">This Month</option>
+        <option value="Live">Live</option>
+        <option value="Video">Video</option>
+        <option value="Shorts">Shorts</option>
+      </select>
+
+      <div style="background:#FFE4CC;border:1px solid #FFD2B3;border-radius:12px;padding:12px 18px;font-weight:800;">
+        Amount: <span id="filterAmount" style="color:#FF7A00;">₹1,84,750</span>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Content</th>
+        <th>Type</th>
+        <th>Revenue Source</th>
+        <th>Date</th>
+        <th>Earnings</th>
+      </tr>
+    </thead>
+    <tbody id="earningsTable">
+      <tr data-type="Live" data-date="Today" data-amount="12400">
+        <td><b>Weekend Gaming Live</b><br><small>Live stream • 2.4L views</small></td>
+        <td>Live</td>
+        <td>Super Support + Ads</td>
+        <td>Today</td>
+        <td><b>₹12,400</b></td>
+      </tr>
+
+      <tr data-type="Video" data-date="Today" data-amount="8650">
+        <td><b>Manali Travel Vlog</b><br><small>Video • 1.8L views</small></td>
+        <td>Video</td>
+        <td>Ads Revenue</td>
+        <td>Today</td>
+        <td><b>₹8,650</b></td>
+      </tr>
+
+      <tr data-type="Shorts" data-date="Today" data-amount="5100">
+        <td><b>Best Moment Short</b><br><small>Shorts • 4.1L views</small></td>
+        <td>Shorts</td>
+        <td>Shorts Ads</td>
+        <td>Today</td>
+        <td><b>₹5,100</b></td>
+      </tr>
+
+      <tr data-type="Live" data-date="This Week" data-amount="4750">
+        <td><b>Creator Q&A Live</b><br><small>Live stream • 82K views</small></td>
+        <td>Live</td>
+        <td>Membership</td>
+        <td>This Week</td>
+        <td><b>₹4,750</b></td>
+      </tr>
+
+      <tr data-type="Video" data-date="This Week" data-amount="18000">
+        <td><b>Gaming Setup Tour</b><br><small>Video • 96K views</small></td>
+        <td>Video</td>
+        <td>Brand Deal</td>
+        <td>This Week</td>
+        <td><b>₹18,000</b></td>
+      </tr>
+
+      <tr data-type="Shorts" data-date="This Week" data-amount="3900">
+        <td><b>Travel Hook Short</b><br><small>Shorts • 2.7L views</small></td>
+        <td>Shorts</td>
+        <td>Ads + Boost</td>
+        <td>This Week</td>
+        <td><b>₹3,900</b></td>
+      </tr>
+
+      <tr data-type="Video" data-date="This Week" data-amount="2850">
+        <td><b>AI Thumbnail Tutorial</b><br><small>Video • 64K views</small></td>
+        <td>Video</td>
+        <td>Ads Revenue</td>
+        <td>This Week</td>
+        <td><b>₹2,850</b></td>
+      </tr>
+
+      <tr data-type="Live" data-date="This Month" data-amount="21300">
+        <td><b>Esports Watch Party</b><br><small>Live stream • 3.2L views</small></td>
+        <td>Live</td>
+        <td>Super Support</td>
+        <td>This Month</td>
+        <td><b>₹21,300</b></td>
+      </tr>
+
+      <tr data-type="Shorts" data-date="This Month" data-amount="6200">
+        <td><b>Mountain Reel Short</b><br><small>Shorts • 5.5L views</small></td>
+        <td>Shorts</td>
+        <td>Shorts Revenue</td>
+        <td>This Month</td>
+        <td><b>₹6,200</b></td>
+      </tr>
+
+      <tr data-type="Video" data-date="This Month" data-amount="9450">
+        <td><b>New Game Review</b><br><small>Video • 1.2L views</small></td>
+        <td>Video</td>
+        <td>Ads + Affiliate</td>
+        <td>This Month</td>
+        <td><b>₹9,450</b></td>
+      </tr>
+
+      <tr data-type="Live" data-date="This Month" data-amount="3800">
+        <td><b>Music Jam Live</b><br><small>Live stream • 76K views</small></td>
+        <td>Live</td>
+        <td>Subscriptions</td>
+        <td>This Month</td>
+        <td><b>₹3,800</b></td>
+      </tr>
+
+      <tr data-type="Shorts" data-date="All" data-amount="4300">
+        <td><b>Funny Reaction Short</b><br><small>Shorts • 3.8L views</small></td>
+        <td>Shorts</td>
+        <td>Shorts Ads</td>
+        <td>All</td>
+        <td><b>₹4,300</b></td>
+      </tr>
+
+      <tr data-type="Video" data-date="All" data-amount="2700">
+        <td><b>Creator Studio Walkthrough</b><br><small>Video • 58K views</small></td>
+        <td>Video</td>
+        <td>Ads Revenue</td>
+        <td>All</td>
+        <td><b>₹2,700</b></td>
+      </tr>
+
+      <tr data-type="Live" data-date="All" data-amount="7850">
+        <td><b>Subscriber Special Live</b><br><small>Live stream • 1.1L views</small></td>
+        <td>Live</td>
+        <td>Super Support</td>
+        <td>All</td>
+        <td><b>₹7,850</b></td>
+      </tr>
+
+      <tr data-type="Video" data-date="All" data-amount="15000">
+        <td><b>AI Editing Workflow</b><br><small>Video • 88K views</small></td>
+        <td>Video</td>
+        <td>Brand Campaign</td>
+        <td>All</td>
+        <td><b>₹15,000</b></td>
+      </tr>
+
+      <tr data-type="Shorts" data-date="All" data-amount="8100">
+        <td><b>Sports Clip Short</b><br><small>Shorts • 6.4L views</small></td>
+        <td>Shorts</td>
+        <td>Shorts Ads</td>
+        <td>All</td>
+        <td><b>₹8,100</b></td>
+      </tr>
+
+      <tr data-type="Live" data-date="All" data-amount="6750">
+        <td><b>Tech Creator Live</b><br><small>Live stream • 92K views</small></td>
+        <td>Live</td>
+        <td>Membership + Ads</td>
+        <td>All</td>
+        <td><b>₹6,750</b></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:20px;">
+    <div>
+      <h2>Token & Transaction History</h2>
+      <p>Detailed record of purchases, AI tool usage, earnings, tax deductions and bank transfers.</p>
+    </div>
+    <button class="btn" onclick="toggleTransactions()" id="historyBtn">View Detailed Transactions</button>
+  </div>
+
+  <div id="transactionBox" style="display:none;margin-top:20px;">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Gross Amount</th>
+          <th>Deductions / Tax</th>
+          <th>Net / Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>03 May 2026</td>
+          <td><b>Bank Transfer</b></td>
+          <td>Creator payout transferred from JioVibe Wallet to HDFC Bank ending 2841</td>
+          <td><b>₹28,600</b></td>
+          <td>
+            Platform fee: ₹1,430<br>
+            TDS: ₹1,430<br>
+            Processing fee: ₹49
+          </td>
+          <td><b>₹25,691 credited</b></td>
+        </tr>
+
+        <tr>
+          <td>03 May 2026</td>
+          <td><b>Token Purchase</b></td>
+          <td>1000 Tokens Pack purchased through UPI</td>
+          <td><b>₹699</b></td>
+          <td>GST included: ₹106.63</td>
+          <td><b>Success</b></td>
+        </tr>
+
+        <tr>
+          <td>03 May 2026</td>
+          <td><b>AI Tool Usage</b></td>
+          <td>AI Content Generator: Prompt to Video</td>
+          <td><b>-20 Tokens</b></td>
+          <td>No extra tax on token spend</td>
+          <td><b>Used</b></td>
+        </tr>
+
+        <tr>
+          <td>03 May 2026</td>
+          <td><b>AI Tool Usage</b></td>
+          <td>AI Thumbnail Generator: Generate Similar</td>
+          <td><b>-12 Tokens</b></td>
+          <td>No extra tax on token spend</td>
+          <td><b>Used</b></td>
+        </tr>
+
+        <tr>
+          <td>02 May 2026</td>
+          <td><b>Creator Earnings</b></td>
+          <td>Weekend Gaming Live earnings added to wallet</td>
+          <td><b>₹12,400</b></td>
+          <td>Estimated TDS hold: ₹620</td>
+          <td><b>₹11,780 available</b></td>
+        </tr>
+
+        <tr>
+          <td>02 May 2026</td>
+          <td><b>Creator Earnings</b></td>
+          <td>Shorts monetization payout added to wallet</td>
+          <td><b>₹5,100</b></td>
+          <td>Estimated TDS hold: ₹255</td>
+          <td><b>₹4,845 available</b></td>
+        </tr>
+
+        <tr>
+          <td>01 May 2026</td>
+          <td><b>AI Tool Usage</b></td>
+          <td>AI Shorts Generator: Auto captions and highlight cut</td>
+          <td><b>-15 Tokens</b></td>
+          <td>No extra tax on token spend</td>
+          <td><b>Used</b></td>
+        </tr>
+
+        <tr>
+          <td>30 Apr 2026</td>
+          <td><b>Token Purchase</b></td>
+          <td>500 Tokens Pack purchased through JioVibe Wallet</td>
+          <td><b>₹399</b></td>
+          <td>GST included: ₹60.86</td>
+          <td><b>Success</b></td>
+        </tr>
+
+        <tr>
+          <td>29 Apr 2026</td>
+          <td><b>Creator Earnings</b></td>
+          <td>Brand campaign revenue for Gaming Setup Tour</td>
+          <td><b>₹18,000</b></td>
+          <td>
+            Platform service fee: ₹900<br>
+            TDS: ₹900
+          </td>
+          <td><b>₹16,200 credited</b></td>
+        </tr>
+
+        <tr>
+          <td>28 Apr 2026</td>
+          <td><b>Tax Record</b></td>
+          <td>Monthly creator earning tax summary generated</td>
+          <td><b>₹2,130</b></td>
+          <td>Estimated TDS recorded</td>
+          <td><b>Recorded</b></td>
+        </tr>
+
+        <tr>
+          <td>25 Apr 2026</td>
+          <td><b>Withdrawal</b></td>
+          <td>Creator payout transferred to bank account</td>
+          <td><b>₹24,000</b></td>
+          <td>TDS already deducted</td>
+          <td><b>Paid</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
 </div>
 
 <script>
-function toggleDropdown(){
-document.getElementById("dropdown").classList.toggle("show");
+function selectPack(card, pack){
+  document.querySelectorAll(".rev-card").forEach(item=>{
+    item.style.border="1px solid #FFD2B3";
+  });
+  card.style.border="2px solid #FF7A00";
 }
 
-document.addEventListener("click",function(e){
-if(!e.target.closest(".profile")){
-document.getElementById("dropdown").classList.remove("show");
-}
-});
-
-function selectPack(card, pack, amount){
-document.querySelectorAll(".pack-card").forEach(item=>{
-item.classList.remove("selected");
-item.querySelector(".select-btn").innerText = "Select";
-});
-card.classList.add("selected");
-card.querySelector(".select-btn").innerText = "Selected";
-document.getElementById("summaryPack").innerText = pack;
-document.getElementById("summaryAmount").innerText = amount;
+function selectMethod(card, method){
+  document.querySelectorAll(".method").forEach(item=>item.classList.remove("selected"));
+  card.classList.add("selected");
 }
 
-function selectMethod(method, name){
-document.querySelectorAll(".method").forEach(item=>item.classList.remove("selected"));
-method.classList.add("selected");
-document.getElementById("summaryMethod").innerText = name;
+function toggleTransactions(){
+  const box = document.getElementById("transactionBox");
+  const btn = document.getElementById("historyBtn");
+
+  if(box.style.display === "none"){
+    box.style.display = "block";
+    btn.innerText = "Hide Detailed Transactions";
+  }else{
+    box.style.display = "none";
+    btn.innerText = "View Detailed Transactions";
+  }
 }
+
+function applyFilter(){
+  const value = document.getElementById("earningFilter").value;
+  const rows = document.querySelectorAll("#earningsTable tr");
+  let total = 0;
+
+  rows.forEach(row=>{
+    const type = row.dataset.type;
+    const date = row.dataset.date;
+    const amount = Number(row.dataset.amount);
+
+    let show = false;
+
+    if(value === "All") show = true;
+    else if(value === "Today") show = date === "Today";
+    else if(value === "This Week") show = date === "Today" || date === "This Week";
+    else if(value === "This Month") show = date === "Today" || date === "This Week" || date === "This Month";
+    else show = type === value;
+
+    row.style.display = show ? "" : "none";
+    if(show) total += amount;
+  });
+
+  document.getElementById("filterAmount").innerText = "₹" + total.toLocaleString("en-IN");
+}
+
+applyFilter();
 </script>
 
 </body>
