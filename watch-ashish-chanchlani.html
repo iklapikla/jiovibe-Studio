@@ -130,7 +130,7 @@ display:flex;align-items:center;justify-content:space-between;gap:18px
 .channel-left{display:flex;align-items:center;gap:13px}
 .creator-wrap{
 width:56px;height:56px;border-radius:50%;padding:4px;background:#FF7A00;
-box-shadow:0 0 0 3px rgba(255,122,0,.12);
+box-shadow:0 0 0 3px rgba(32,196,90,.12);
 cursor:pointer;flex-shrink:0
 }
 .creator-wrap img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #FFFFFF}
@@ -343,7 +343,7 @@ margin-top:6px;
 display:flex;
 gap:22px;
 margin-top:10px;
-color:#A66A55;
+color:#7A3E2E;
 font-weight:900;
 font-size:15px;
 }
@@ -418,6 +418,181 @@ background:#4A0E0E;color:#FFFFFF;border-radius:14px;padding:14px 20px;font-weigh
 .comment-box{grid-template-columns:44px 1fr}
 .comment-box button{grid-column:2}
 }
+
+
+/* PREMIUM ANIMATION LAYER - added only, no structure/content changes */
+.menu-item,
+.category-btn,
+.video-card,
+.up-item,
+.live-card,
+.cat-card,
+.reel-card,
+.hero-section,
+.banner-wrap,
+.player,
+.watch-btn,
+.subscribe,
+.icon-btn,
+.show-more,
+.share-item,
+.amount-btn,
+.comment-icon,
+.comment-send,
+.super-chip,
+.round-btn,
+.profile,
+.bell,
+.logo,
+.creator-wrap,
+.about-box,
+.comments-section,
+.up-next,
+.modal-btn,
+.copy-row button{
+will-change:transform,box-shadow;
+transition:transform .32s cubic-bezier(.2,.8,.2,1), box-shadow .32s cubic-bezier(.2,.8,.2,1), border-color .32s ease, background .32s ease, color .32s ease, opacity .32s ease;
+}
+
+.menu-item:hover{
+transform:translateX(4px) scale(1.035);
+box-shadow:0 10px 24px rgba(255,122,0,.14);
+}
+
+.profile:hover,
+.bell:hover,
+.logo:hover{
+transform:scale(1.035);
+}
+
+.category-btn:hover{
+transform:translateY(-2px) scale(1.055);
+box-shadow:0 12px 28px rgba(255,122,0,.18), 0 0 0 4px rgba(255,122,0,.06);
+}
+
+.video-card:hover{
+transform:translateY(-7px) scale(1.018);
+box-shadow:0 18px 38px rgba(74,14,14,.14);
+}
+
+.video-card:hover .player img,
+.video-card:hover .thumb img,
+.video-card:hover .up-thumb img,
+.video-card:hover .live-thumb img{
+transform:scale(1.045);
+}
+
+.player img,
+.thumb img,
+.up-thumb img,
+.live-thumb img,
+.cat-card img,
+.reel-card img{
+transition:transform .42s cubic-bezier(.2,.8,.2,1), opacity .32s ease;
+will-change:transform;
+}
+
+.player:hover,
+.hero-section:hover,
+.banner-wrap:hover{
+transform:scale(1.012);
+box-shadow:0 18px 44px rgba(74,14,14,.16);
+}
+
+.player:hover img,
+.hero-section:hover .hero,
+.banner-wrap:hover .banner-slide{
+transform:scale(1.035);
+}
+
+.up-item:hover{
+transform:translateX(4px) scale(1.012);
+filter:drop-shadow(0 8px 18px rgba(74,14,14,.10));
+}
+
+.up-item:hover .up-thumb img{
+transform:scale(1.065);
+}
+
+.up-extra{
+opacity:0;
+transform:translateY(12px);
+transition:opacity .34s ease, transform .34s ease;
+}
+
+.up-extra.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.live-card:hover,
+.cat-card:hover,
+.reel-card:hover{
+transform:translateY(-7px) scale(1.02);
+box-shadow:0 18px 40px rgba(74,14,14,.16);
+}
+
+.live-card:hover img,
+.cat-card:hover img,
+.reel-card:hover img{
+transform:scale(1.06);
+}
+
+.watch-btn:hover,
+.subscribe:hover,
+.icon-btn:hover,
+.show-more:hover,
+.share-item:hover,
+.amount-btn:hover,
+.comment-icon:hover,
+.comment-send:hover,
+.super-chip:hover,
+.round-btn:hover,
+.modal-btn:hover,
+.copy-row button:hover{
+transform:translateY(-2px) scale(1.035);
+box-shadow:0 12px 26px rgba(255,122,0,.16);
+}
+
+.creator-wrap:hover{
+transform:scale(1.06);
+box-shadow:0 0 0 4px rgba(255,122,0,.12), 0 10px 24px rgba(74,14,14,.14);
+}
+
+.about-box:hover,
+.comments-section:hover,
+.up-next:hover{
+box-shadow:0 12px 32px rgba(74,14,14,.08);
+}
+
+.overlay.show .modal{
+animation:premiumModalIn .28s cubic-bezier(.2,.8,.2,1);
+}
+
+.comment,
+.super-comment{
+animation:softItemIn .32s ease both;
+}
+
+@keyframes premiumModalIn{
+from{opacity:0;transform:translateY(16px) scale(.97)}
+to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+@keyframes softItemIn{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+@media (prefers-reduced-motion: reduce){
+*,*::before,*::after{
+animation-duration:.001ms!important;
+animation-iteration-count:1!important;
+transition-duration:.001ms!important;
+scroll-behavior:auto!important;
+}
+}
+
 </style>
 </head>
 
@@ -760,7 +935,7 @@ document.getElementById("saveBtn").classList.toggle("active");
 
 function toggleSubscribe(btn){
 btn.innerText=btn.innerText==="Subscribe"?"Subscribed":"Subscribe";
-btn.style.background=btn.innerText==="Subscribed"?"#4A0E0E":"#FF7A00";
+btn.style.background=btn.innerText==="Subscribed"?"#2A0A0A":"#FF7A00";
 }
 
 /* Share */
