@@ -218,9 +218,20 @@ font-size:13px;
 font-weight:800;
 color:var(--brown);
 line-height:1.45;
-margin-bottom:12px
+margin-bottom:0;
+width:100%;
+text-align:left;
+cursor:pointer;
+display:block;
+transition:.22s ease
+}
+.selection-note:hover{
+border-color:var(--orange);
+box-shadow:0 10px 24px rgba(255,122,0,.16);
+transform:translateY(-1px)
 }
 .selection-note b{color:var(--orange)}
+.selection-note::after{content:"  →";color:var(--orange);font-weight:950;font-size:15px}
 .start-actions{
 display:flex;align-items:center;justify-content:space-between;gap:14px;background:#FFFFFF;border:1px solid var(--line);
 border-radius:20px;padding:14px;margin-bottom:18px
@@ -464,11 +475,7 @@ transition:.22s;
 </div>
 <div class="left-body">
 <div class="category-select-grid" id="categorySelectGrid"></div>
-<div class="selection-note" id="selectionNote">Please select one or more categories. Then tap Continue to see related videos, live streams and shorts.</div>
-<div class="start-actions">
-<div class="selected-text">Selected: <b id="selectedCategoryText">None</b></div>
-<button class="continue-btn" onclick="showPopupFeed()">Continue <i class="fa-solid fa-arrow-right"></i></button>
-</div>
+<button class="selection-note" id="selectionNote" onclick="showPopupFeed()">Please select one or more categories. Then tap this box to continue.</button>
 </div>
 </div>
 
@@ -636,15 +643,17 @@ updateSelectedText();
 
 function updateSelectedText(){
 if(selectedCategories.length===0){
-document.getElementById('selectedCategoryText').innerText='None';
-document.getElementById('selectionNote').innerHTML='Please select one or more categories. Then tap Continue to see related videos, live streams and shorts.';
+const selectedTextEl=document.getElementById('selectedCategoryText');
+if(selectedTextEl) selectedTextEl.innerText='None';
+document.getElementById('selectionNote').innerHTML='Please select one or more categories. Then tap this box to continue.';
 return;
 }
 const text=selectedCategories.join(', ');
-document.getElementById('selectedCategoryText').innerText=text;
+const selectedTextEl=document.getElementById('selectedCategoryText');
+if(selectedTextEl) selectedTextEl.innerText=text;
 const msg=selectedCategories.length===1
-? `You selected <b>${text}</b>. Do you want videos and live streams related to this? Tap Continue.`
-: `You selected <b>${text}</b>. Do you want a mixed feed from these categories? Tap Continue.`;
+? `You selected <b>${text}</b>. Do you want videos and live streams related to this? Tap this box to continue.`
+: `You selected <b>${text}</b>. Do you want a mixed feed from these categories? Tap this box to continue.`;
 document.getElementById('selectionNote').innerHTML=msg;
 }
 
