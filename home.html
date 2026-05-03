@@ -44,6 +44,31 @@ flex:initial;
 #videoRailWrap .rail-action{top:50%;}
 @media(max-width:1300px){#videoRail{grid-auto-columns:calc((100% - 18px)/2)}}
 @media(max-width:700px){#videoRail{grid-auto-columns:86%}}
+
+/* FIX: compact choose-your-vibe cards + fixed AI chat height */
+.ai-vibe-shell{align-items:stretch;}
+.panel-head{padding:16px 20px 12px;}
+.panel-head h2{font-size:25px;}
+.panel-head p{font-size:12px;margin-top:6px;}
+.kicker{padding:6px 10px;margin-bottom:8px;font-size:11px;}
+.left-body,.ai-body{padding:14px 18px 16px;}
+.category-select-grid{grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:12px;}
+.choice-card{aspect-ratio:auto!important;height:82px!important;border-radius:16px;}
+.choice-content{left:11px;right:10px;bottom:10px;}
+.choice-content strong{font-size:13px;}
+.choice-content i{width:28px;height:28px;font-size:12px;}
+.choice-tick{top:8px;right:8px;width:24px;height:24px;font-size:10px;}
+.selection-note{padding:12px 15px;font-size:13px;border-radius:16px;}
+.mood-title{font-size:21px;}
+.mood-sub{font-size:12px;margin-top:4px;}
+.mood-chips{gap:7px;margin:10px 0 12px;}
+.mood-chip{height:32px;padding:0 11px;font-size:12px;}
+.ai-body{height:100%;min-height:0;}
+.ai-chat{flex:0 0 210px!important;height:210px!important;min-height:210px!important;max-height:210px!important;overflow-y:auto!important;}
+.ai-input-wrap{margin-top:12px;}
+.msg{font-size:13px;padding:11px 13px;}
+@media(max-width:1300px){.choice-card{height:78px!important}.ai-chat{height:200px!important;min-height:200px!important;max-height:200px!important;flex-basis:200px!important}}
+
 </style>
 </head>
 <body>
@@ -109,8 +134,140 @@ function checkRailEnd(rail){if(rail.scrollLeft+rail.clientWidth>=rail.scrollWidt
 document.addEventListener('scroll',()=>{}, {passive:true});
 function bindRailInfinite(){['videoRail','shortsRail'].forEach(id=>{const rail=document.getElementById(id);rail.addEventListener('scroll',()=>checkRailEnd(rail),{passive:true});});}
 const aiPromoLines=['<b>AI Video Editor:</b> Auto edit your videos with smart cuts, transitions, effects and enhancements.','<b>AI Thumbnail Generator:</b> Create click-worthy thumbnails that make your content stand out.','<b>AI Shorts Generator:</b> Turn long videos into high-impact shorts using AI highlight moments.','<b>AI Multilingual Tool:</b> Translate, subtitle and dub your content for multiple language audiences.','<b>AI Monetization Insights:</b> Get smart recommendations to grow revenue from your content.'];let aiPromoIndex=0;setInterval(()=>{const promo=document.getElementById('aiPromoCopy');aiPromoIndex=(aiPromoIndex+1)%aiPromoLines.length;promo.innerHTML=aiPromoLines[aiPromoIndex];},5000);
-const suggestions=['I want funny content','Show me music videos','I am sad today','I need editing tips','Show gaming videos','I want motivation','Show fitness content','I want to learn something'];function showAISuggestions(){renderSuggestions(suggestions);document.getElementById('aiSuggestions').classList.add('show')}function filterAISuggestions(){const q=document.getElementById('aiInput').value.toLowerCase();renderSuggestions(suggestions.filter(s=>s.toLowerCase().includes(q)).length?suggestions.filter(s=>s.toLowerCase().includes(q)):suggestions)}function renderSuggestions(list){document.getElementById('aiSuggestions').innerHTML='<div class="suggest-title">Suggestions</div>'+list.map(s=>`<div class="suggest-item" onclick="pickSuggestion('${s.replace(/'/g,"\\'")}')"><i class="fa-solid fa-magnifying-glass"></i>${s}</div>`).join('')}function pickSuggestion(text){document.getElementById('aiInput').value=text;document.getElementById('aiSuggestions').classList.remove('show');sendAI()}function useMood(mood){document.getElementById('aiInput').value=mood;sendAI()}function sendAI(){const input=document.getElementById('aiInput');const text=input.value.trim();if(!text)return;const chat=document.getElementById('aiChat');chat.insertAdjacentHTML('beforeend',`<div class="msg user">${text}</div>`);let cat='Music';const low=text.toLowerCase();if(low.includes('game'))cat='Gaming';else if(low.includes('fun')||low.includes('comedy'))cat='Comedy';else if(low.includes('learn')||low.includes('study'))cat='Education';else if(low.includes('fitness'))cat='Fitness';else if(low.includes('edit')||low.includes('ai')){chat.insertAdjacentHTML('beforeend',`<div class="msg bot">This looks like an AI Studio need. You can open AI Studio for editing, thumbnails, shorts, titles and monetization tools.<div class="bot-actions"><button class="inline-action" onclick="location.href='ai-studio.html'"><i class="fa-solid fa-wand-magic-sparkles"></i> Open AI Studio</button></div></div>`);input.value='';chat.scrollTop=chat.scrollHeight;return;}selectedCategories=[cat];document.querySelectorAll('.choice-card').forEach((c,i)=>c.classList.toggle('selected',Object.keys(categoryData)[i]===cat));updateSelectionNote();chat.insertAdjacentHTML('beforeend',`<div class="msg bot">I found ${cat} content for your mood. Tap continue or open it directly.<div class="bot-actions"><button class="inline-action" onclick="showVibeResults()"><i class="fa-solid fa-play"></i> Show ${cat} Feed</button><button class="inline-action inline-no">Not now</button></div></div>`);input.value='';chat.scrollTop=chat.scrollHeight;}
-document.addEventListener('click',e=>{if(!e.target.closest('.ai-input-wrap'))document.getElementById('aiSuggestions').classList.remove('show')});
+
+let pendingAction={type:'category',categories:['Comedy']};
+let noCount=0;
+const suggestions=[
+'I am sad, suggest calming videos',
+'I had a breakup, show me something light',
+'I want funny content',
+'I want motivational content',
+'I am bored, recommend fresh videos',
+'I want relaxing music videos',
+'I want to learn something today',
+'I want gaming live streams',
+'I need fitness energy',
+'I want food and travel content',
+'How can I create AI thumbnail?',
+'How can I make shorts from my video?',
+'Suggest AI video editor tips',
+'Create title for my live stream',
+'Show me Ranveer Singh content',
+'No, suggest something else'
+];
+function showAISuggestions(){renderSuggestions(suggestions)}
+function filterAISuggestions(){
+const q=document.getElementById('aiInput').value.toLowerCase();
+const filtered=suggestions.filter(s=>s.toLowerCase().includes(q));
+renderSuggestions(filtered.length?filtered:suggestions);
+}
+function renderSuggestions(list){
+const box=document.getElementById('aiSuggestions');
+box.classList.add('show');
+box.innerHTML='<div class="suggest-title">Search suggestions</div>'+list.slice(0,9).map(s=>`<div class="suggest-item" onclick="pickSuggestion('${s.replace(/'/g,"\\'")}')"><i class="fa-solid fa-magnifying-glass"></i>${s}</div>`).join('');
+}
+function pickSuggestion(text){
+document.getElementById('aiInput').value=text;
+document.getElementById('aiSuggestions').classList.remove('show');
+sendAI();
+}
+function useMood(mood){
+document.getElementById('aiInput').value=mood;
+sendAI();
+}
+function addMsg(text,type){
+const chat=document.getElementById('aiChat');
+chat.innerHTML+=`<div class="msg ${type}">${text}</div>`;
+chat.scrollTop=chat.scrollHeight;
+}
+function addBotAction(text,categories,type='category'){
+const chat=document.getElementById('aiChat');
+pendingAction={type,categories:Array.isArray(categories)?categories:[categories]};
+const primary=type==='studio'?'Continue to AI Studio':'Continue to '+pendingAction.categories.join(' + ');
+chat.innerHTML+=`
+<div class="msg bot">
+${text}
+<div class="bot-actions">
+<button class="inline-action" onclick="continueAIAction()"><i class="fa-solid fa-play"></i> ${primary}</button>
+<button class="inline-action inline-no" onclick="sayNo()"><i class="fa-solid fa-xmark"></i> No</button>
+</div>
+</div>`;
+chat.scrollTop=chat.scrollHeight;
+}
+function sendAI(){
+const input=document.getElementById('aiInput');
+const q=input.value.trim();
+if(!q)return;
+document.getElementById('aiSuggestions').classList.remove('show');
+addMsg(q,'user');
+input.value='';
+processAI(q);
+}
+function processAI(q){
+const l=q.toLowerCase();
+noCount=0;
+if(l.includes('thumbnail')||l.includes('edit')||l.includes('title')||l.includes('shorts from')||l.includes('studio')||l.includes('ai')){
+addBotAction('This looks like a creator tool request. JioVibe AI Studio can help with AI thumbnail, title, video editor, shorts generator and monetization ideas.', ['AI Studio'], 'studio');
+}
+else if(l.includes('sad')||l.includes('breakup')||l.includes('low')||l.includes('calm')){
+addBotAction('I understand. You can watch soft music and light comedy to refresh your mood. I recommend a Music + Comedy mix.', ['Music','Comedy']);
+}
+else if(l.includes('happy')||l.includes('funny')||l.includes('laugh')||l.includes('comedy')){
+addBotAction('Nice. For this mood, comedy sketches and short funny clips will work best. I can open Comedy videos and shorts here.', ['Comedy']);
+}
+else if(l.includes('motivat')||l.includes('fitness')||l.includes('energy')){
+addBotAction('For motivation, I recommend Fitness and Sports content. It will feel energetic, positive and action-driven.', ['Fitness','Sports']);
+}
+else if(l.includes('music')||l.includes('relax')||l.includes('chill')){
+addBotAction('For a chill mood, music sessions and lifestyle vlogs are a good fit. I can open a Music + Lifestyle mix here.', ['Music','Lifestyle']);
+}
+else if(l.includes('learn')||l.includes('study')||l.includes('education')){
+addBotAction('Good choice. I can show quick learning videos, study hacks and education shorts that feel useful without being heavy.', ['Education']);
+}
+else if(l.includes('game')||l.includes('live stream')){
+addBotAction('Gaming live streams, clutch moments and tournament clips are perfect for this. I can open Gaming content here.', ['Gaming']);
+}
+else if(l.includes('food')||l.includes('travel')){
+addBotAction('I can show relaxing Food and Travel videos. This mix will look premium and visual in the demo.', ['Food','Travel']);
+}
+else if(l.includes('ranveer')){
+addBotAction('I can show creator and movie-style content related to celebrity moments. For this demo, Movies is the closest category.', ['Movies']);
+}
+else if(l.includes('no')){
+sayNo();
+}
+else{
+addBotAction('Based on your message, I suggest a mixed light feed first. Comedy + Music usually works well for quick engagement and mood refresh.', ['Comedy','Music']);
+}
+}
+function sayNo(){
+noCount++;
+if(noCount===1){
+addMsg('No','user');
+addBotAction('No problem. Do you want something calm instead, like Music, or something energetic like Fitness?', ['Music']);
+}
+else if(noCount===2){
+addMsg('No','user');
+addBotAction('Okay, then I can ask one more thing: do you want entertainment, learning, or creator tools? If creator tools, I will take you to AI Studio.', ['AI Studio'], 'studio');
+}
+else{
+addMsg('No','user');
+addBotAction('Understood. I will show a neutral mixed Comedy + Music feed because it works well for most viewers in a demo.', ['Comedy','Music']);
+}
+}
+function continueAIAction(){
+if(pendingAction.type==='studio'){location.href='ai-studio.html'}
+else{
+selectedCategories=pendingAction.categories;
+document.querySelectorAll('.choice-card').forEach((c,i)=>c.classList.toggle('selected',selectedCategories.includes(Object.keys(categoryData)[i])));
+updateSelectionNote();
+showVibeResults();
+}
+}
+document.addEventListener('click',e=>{
+if(!e.target.closest('.ai-input-wrap'))document.getElementById('aiSuggestions').classList.remove('show');
+});
+
 let currentSlide=1;function updateBanner(){const track=document.getElementById('bannerTrack');const dots=document.querySelectorAll('#bannerDots span');track.style.transform=`translateX(-${currentSlide*100}%)`;dots.forEach((d,i)=>d.classList.toggle('active',i===currentSlide));}function goToSlide(i){currentSlide=i;updateBanner()}function nextSlide(){currentSlide=(currentSlide+1)%3;updateBanner()}function prevSlide(){currentSlide=(currentSlide+2)%3;updateBanner()}setInterval(nextSlide,6000);
 function toggleDropdown(){document.getElementById('dropdown').classList.toggle('show')}function scrollToVibe(){document.getElementById('aiVibeArea').scrollIntoView({behavior:'smooth',block:'start'})}
 function makeGridCard(title,channel,cat,img,avatar,dur){return `<div class="video-card"><div class="video-thumb"><img src="${img}"><span class="duration">${dur}</span></div><div class="video-info"><img class="creator-img" src="${avatar}"><div><div class="video-title">${title}</div><div class="channel-name">${channel}</div><div class="video-meta">${cat} • ${Math.floor(200+Math.random()*900)}K views • ${Math.floor(2+Math.random()*9)} hours ago</div></div></div></div>`}
