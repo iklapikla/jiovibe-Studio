@@ -780,18 +780,18 @@ position:absolute;z-index:2;left:13px;right:13px;bottom:12px;display:flex;align-
 .choice-content i{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.22)}
 
 .selection-note{
-background:linear-gradient(135deg,#FFF3E8,#FFFFFF 55%,#FFE4CC);
-border:2px solid var(--orange);
+background:linear-gradient(135deg,#FF7A00,#FF9A3C);
+border:0;
 border-radius:18px;
-padding:13px 14px;
-font-size:13px;
-font-weight:800;
-color:var(--brown);
-line-height:1.45;
+padding:15px 16px;
+font-size:14px;
+font-weight:950;
+color:#FFFFFF;
+line-height:1.5;
 margin-bottom:0;
 width:100%;
 text-align:left;
-box-shadow:0 14px 34px rgba(255,122,0,.22);
+box-shadow:0 14px 34px rgba(255,122,0,.34);
 position:relative;
 overflow:hidden;
 cursor:pointer;
@@ -799,14 +799,13 @@ display:block;
 transition:.22s ease
 }
 .selection-note:hover{
-border-color:var(--orange);
-box-shadow:0 18px 40px rgba(255,122,0,.28);
-transform:translateY(-1px)
+box-shadow:0 18px 44px rgba(255,122,0,.46);
+transform:translateY(-2px)
 }
-.selection-note b{color:var(--orange)}
-.selection-note::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,122,0,.14),transparent);transform:translateX(-100%);animation:noteShine 2.6s ease-in-out infinite;pointer-events:none}
+.selection-note b{color:#FFFFFF;text-decoration:underline;text-underline-offset:3px}
+.selection-note::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:translateX(-100%);animation:noteShine 2.6s ease-in-out infinite;pointer-events:none}
 @keyframes noteShine{0%{transform:translateX(-100%)}55%{transform:translateX(100%)}100%{transform:translateX(100%)}}
-.selection-note::after{content:"  →";color:var(--orange);font-weight:950;font-size:15px}
+.selection-note::after{content:"  →";color:#FFFFFF;font-weight:950;font-size:15px}
 .start-actions{
 display:flex;align-items:center;justify-content:space-between;gap:14px;background:#FFFFFF;border:1px solid var(--line);
 border-radius:20px;padding:14px;margin-bottom:18px
@@ -865,6 +864,9 @@ border-radius:26px;
 padding:22px;
 box-shadow:0 18px 48px rgba(74,14,14,.10);
 animation:fadeUp .28s ease both;
+width:100%;
+max-width:100%;
+overflow:hidden;
 }
 .personalized-section.show{display:block;}
 .personalized-head{
@@ -873,6 +875,7 @@ align-items:flex-start;
 justify-content:space-between;
 gap:18px;
 margin-bottom:18px;
+min-width:0;
 }
 .personalized-kicker{
 display:inline-flex;
@@ -914,19 +917,68 @@ white-space:nowrap;
 transition:.22s;
 }
 .personalized-change:hover{background:var(--orange);color:#fff;border-color:var(--orange);transform:translateY(-2px)}
+.personalized-feed-layout{
+display:grid;
+grid-template-columns:1fr;
+gap:22px;
+width:100%;
+max-width:100%;
+min-width:0;
+overflow:hidden;
+}
+.personalized-video-block,.personalized-shorts-block{width:100%;max-width:100%;min-width:0;overflow:hidden;}
+.personalized-block-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:14px;
+margin:4px 0 12px;
+}
+.personalized-block-head h3{
+font-size:20px;
+font-weight:950;
+letter-spacing:-.03em;
+color:var(--dark);
+}
+.personalized-block-head span{
+font-size:12px;
+font-weight:900;
+color:var(--orange);
+background:#FFF3E8;
+border:1px solid #FFD7BC;
+border-radius:999px;
+padding:8px 11px;
+white-space:nowrap;
+}
+.personalized-video-scroll{
+width:100%;
+max-width:100%;
+overflow-x:auto;
+overflow-y:hidden;
+padding:4px 6px 18px 4px;
+scrollbar-width:thin;
+scrollbar-color:#FF7A00 #FFE4CC;
+scroll-snap-type:x mandatory;
+overscroll-behavior-x:contain;
+}
 .personalized-video-grid{
 display:grid;
-grid-template-columns:repeat(4,1fr);
+grid-auto-flow:column;
+grid-template-rows:repeat(2,auto);
+grid-auto-columns:calc((100% - 48px) / 4);
 gap:16px;
-margin-bottom:20px;
+width:max-content;
+min-width:100%;
 }
 .personalized-card{
+width:100%;
 background:#fff;
 border:1px solid var(--line);
 border-radius:18px;
 overflow:hidden;
 box-shadow:0 8px 24px rgba(74,14,14,.06);
 transition:.25s;
+scroll-snap-align:start;
 }
 .personalized-card:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 16px 34px rgba(74,14,14,.13)}
 .personalized-thumb{position:relative;aspect-ratio:16/9;background:var(--deep);overflow:hidden}
@@ -935,14 +987,50 @@ transition:.25s;
 .personalized-title{font-size:13px;font-weight:900;line-height:1.35;margin-bottom:4px;color:var(--dark)}
 .personalized-meta{font-size:11px;font-weight:750;color:#A66A55;line-height:1.35}
 .personalized-shorts-title{font-size:20px;font-weight:950;margin:4px 0 13px;color:var(--dark)}
-.personalized-shorts-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.personalized-short{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 20px rgba(74,14,14,.05);transition:.25s}
+.personalized-shorts-scroll{
+width:100%;
+max-width:100%;
+overflow-x:auto;
+overflow-y:hidden;
+padding:4px 6px 18px 4px;
+scrollbar-width:thin;
+scrollbar-color:#FF7A00 #FFE4CC;
+scroll-snap-type:x mandatory;
+overscroll-behavior-x:contain;
+}
+.personalized-shorts-grid{
+display:grid;
+grid-auto-flow:column;
+grid-auto-columns:210px;
+grid-template-rows:1fr;
+gap:14px;
+width:max-content;
+min-width:100%;
+}
+.personalized-loader{
+margin:14px auto 0;
+width:max-content;
+height:38px;
+padding:0 14px;
+border-radius:999px;
+background:#FFF3E8;
+border:1px solid #FFD7BC;
+color:var(--orange);
+font-size:12px;
+font-weight:950;
+display:flex;
+align-items:center;
+gap:8px;
+}
+.personalized-loader i{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.personalized-short{width:210px;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 8px 20px rgba(74,14,14,.05);transition:.25s;scroll-snap-align:start}
 .personalized-short:hover{transform:translateY(-4px);border-color:var(--orange)}
 .personalized-short-thumb{aspect-ratio:9/16;background:var(--deep);position:relative;overflow:hidden}
 .personalized-short-thumb img{width:100%;height:100%;object-fit:cover}
 .personalized-short-title{font-size:12px;font-weight:900;line-height:1.3;padding:9px;color:var(--dark)}
-@media(max-width:1300px){.personalized-video-grid{grid-template-columns:repeat(3,1fr)}.personalized-shorts-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:900px){.personalized-video-grid{grid-template-columns:repeat(2,1fr)}.personalized-shorts-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1300px){.personalized-video-grid{grid-auto-columns:290px}.personalized-shorts-grid{grid-auto-columns:190px}.personalized-short{width:190px}}
+@media(max-width:900px){.personalized-video-grid{grid-template-rows:repeat(2,auto);grid-auto-columns:260px}.personalized-shorts-grid{grid-auto-columns:170px}.personalized-short{width:170px}}
 
 /* RIGHT AI */
 .ai-body{padding:18px 22px 22px;display:flex;flex-direction:column;gap:14px;min-height:0;flex:1}
@@ -1363,9 +1451,29 @@ box-shadow:0 14px 38px rgba(74,14,14,.10);
 </div>
 <button class="personalized-change" onclick="document.getElementById('ai-vibe').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-sliders"></i> Change Vibe</button>
 </div>
+<div class="personalized-feed-layout">
+<div class="personalized-video-block">
+<div class="personalized-block-head">
+<h3 id="personalizedVideosTitle">Videos & Live Streams For Your Vibe</h3>
+<span><i class="fa-solid fa-arrow-right-long"></i> Side scroll • 2 video rows</span>
+</div>
+<div class="personalized-video-scroll" id="personalizedVideoScroll">
 <div class="personalized-video-grid" id="personalizedVideoGrid"></div>
+<div class="personalized-loader"><i class="fa-solid fa-spinner"></i> Loading more videos</div>
+</div>
+</div>
+
+<div class="personalized-shorts-block">
+<div class="personalized-block-head">
 <h3 class="personalized-shorts-title" id="personalizedShortsTitle">Shorts Matching Your Vibe</h3>
+<span><i class="fa-solid fa-arrow-right-long"></i> Shorts side scroll</span>
+</div>
+<div class="personalized-shorts-scroll" id="personalizedShortsScroll">
 <div class="personalized-shorts-grid" id="personalizedShortsGrid"></div>
+<div class="personalized-loader"><i class="fa-solid fa-spinner"></i> Loading more shorts</div>
+</div>
+</div>
+</div>
 </section>
 
 <div class="section-separator"></div>
@@ -1693,6 +1801,9 @@ Fitness:['https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=90
 };
 
 let selectedCategories=[];
+let currentPersonalizedCats=[];
+let personalizedVideoOffset=0;
+let personalizedShortOffset=0;
 let pendingAction={type:'category',categories:['Comedy']};
 let noCount=0;
 
@@ -1802,58 +1913,93 @@ grid.innerHTML+=`
 
 
 function renderPersonalizedFeed(cats,source){
+currentPersonalizedCats=[...cats];
+personalizedVideoOffset=0;
+personalizedShortOffset=0;
 const title=document.getElementById('personalizedTitle');
 const sub=document.getElementById('personalizedSub');
+const videosTitle=document.getElementById('personalizedVideosTitle');
 const shortsTitle=document.getElementById('personalizedShortsTitle');
 title.innerText=cats.length===1?`Content Matching Your ${cats[0]} Vibe`:`Content Matching Your ${cats.join(' + ')} Vibe`;
 sub.innerText=source==='mood'
-?'AI picked this feed from your mood. Here are matched videos, live streams and shorts.'
-:'Based on your selected categories, here is a personalized feed made for your vibe.';
+?'AI picked this feed from your mood. Videos and shorts are now in separate side-scroll sections.'
+:'Based on your selected categories, your matched videos and shorts are now split into two side-scroll rows.';
+videosTitle.innerText=cats.length===1?`${cats[0]} Videos & Live Streams For Your Vibe`:'Mixed Videos & Live Streams For Your Vibe';
 shortsTitle.innerText=cats.length===1?`${cats[0]} Shorts Matching Your Vibe`:'Mixed Shorts Matching Your Vibe';
-renderPersonalizedVideos(cats);
-renderPersonalizedShorts(cats);
+const videoGrid=document.getElementById('personalizedVideoGrid');
+const shortsGrid=document.getElementById('personalizedShortsGrid');
+if(videoGrid) videoGrid.innerHTML='';
+if(shortsGrid) shortsGrid.innerHTML='';
+appendPersonalizedVideos(16);
+appendPersonalizedShorts(18);
+setTimeout(setupPersonalizedInfiniteScroll,50);
 }
 
-function renderPersonalizedVideos(cats){
+function appendPersonalizedVideos(count=6){
 const grid=document.getElementById('personalizedVideoGrid');
-if(!grid)return;
-grid.innerHTML='';
-const total=8;
-for(let i=0;i<total;i++){
-const cat=cats[i%cats.length];
+if(!grid || !currentPersonalizedCats.length)return;
+let html='';
+for(let n=0;n<count;n++){
+const i=personalizedVideoOffset+n;
+const cat=currentPersonalizedCats[i%currentPersonalizedCats.length];
 const data=categoryData[cat];
 const creator=getCreator(i+cat.length+3);
 const isLive=i%4===0;
-grid.innerHTML+=`
+html+=`
 <div class="personalized-card">
 <div class="personalized-thumb">
 <img src="${getImage(cat,i)}">
-${isLive?'<span class="live-badge">LIVE</span>':`<span class="duration">${5+i}:${18+i}</span>`}
+${isLive?'<span class="live-badge">LIVE</span>':`<span class="duration">${5+(i%9)}:${18+(i%39)}</span>`}
 </div>
 <div class="personalized-info">
 <div class="random-logo" style="background:${getColor(i+2)}">${creator.split(' ').map(w=>w[0]).join('').slice(0,2)}</div>
 <div>
 <div class="personalized-title">${data.videos[i%data.videos.length]}</div>
-<div class="personalized-meta">${creator} • ${isLive?'Live now':(280+i*120)+'K views'} • ${cat}</div>
+<div class="personalized-meta">${creator} • ${isLive?'Live now':(280+(i%20)*120)+'K views'} • ${cat}</div>
 </div>
 </div>
 </div>`;
 }
+grid.insertAdjacentHTML('beforeend',html);
+personalizedVideoOffset+=count;
 }
 
-function renderPersonalizedShorts(cats){
+function appendPersonalizedShorts(count=12){
 const grid=document.getElementById('personalizedShortsGrid');
-if(!grid)return;
-grid.innerHTML='';
-const total=6;
-for(let i=0;i<total;i++){
-const cat=cats[i%cats.length];
+if(!grid || !currentPersonalizedCats.length)return;
+let html='';
+for(let n=0;n<count;n++){
+const i=personalizedShortOffset+n;
+const cat=currentPersonalizedCats[i%currentPersonalizedCats.length];
 const data=categoryData[cat];
-grid.innerHTML+=`
+html+=`
 <div class="personalized-short">
 <div class="personalized-short-thumb"><img src="${getImage(cat,i+7)}"><span class="live-badge">SHORT</span></div>
 <div class="personalized-short-title">${data.shorts[i%data.shorts.length]}</div>
 </div>`;
+}
+grid.insertAdjacentHTML('beforeend',html);
+personalizedShortOffset+=count;
+}
+
+function setupPersonalizedInfiniteScroll(){
+const videoScroll=document.getElementById('personalizedVideoScroll');
+const shortsScroll=document.getElementById('personalizedShortsScroll');
+if(videoScroll && !videoScroll.dataset.infiniteReady){
+videoScroll.dataset.infiniteReady='true';
+videoScroll.addEventListener('scroll',()=>{
+if(videoScroll.scrollLeft + videoScroll.clientWidth >= videoScroll.scrollWidth - 140){
+appendPersonalizedVideos(8);
+}
+});
+}
+if(shortsScroll && !shortsScroll.dataset.infiniteReady){
+shortsScroll.dataset.infiniteReady='true';
+shortsScroll.addEventListener('scroll',()=>{
+if(shortsScroll.scrollLeft + shortsScroll.clientWidth >= shortsScroll.scrollWidth - 140){
+appendPersonalizedShorts(10);
+}
+});
 }
 }
 
