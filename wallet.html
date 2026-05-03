@@ -1228,13 +1228,78 @@ Selected Earnings <span id="filterAmount">₹1,84,750</span>
 
 <div class="transaction-toggle">
 <div>
-<h2>Token & Transaction History</h2>
-<p>Detailed record of purchases, AI tool usage, creator earnings, deductions, tax and bank transfers.</p>
+<h2>Token History</h2>
+<p>Detailed record of token purchases and AI tool usage.</p>
 </div>
-<button class="history-btn" onclick="toggleTransactions()">View Detailed Transactions</button>
+<button class="history-btn" onclick="toggleHistory('tokenBox', this, 'Token History')">View Token History</button>
 </div>
 
-<div class="transaction-box" id="transactionBox">
+<div class="transaction-box" id="tokenBox">
+<table class="transaction-table token-table">
+<thead>
+<tr>
+<th>Date</th>
+<th>Type</th>
+<th>Description</th>
+<th>Tokens / Amount</th>
+<th>Tax / Notes</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>03 May 2026</td>
+<td><strong>Token Purchase</strong></td>
+<td>1000 Tokens Pack purchased through UPI</td>
+<td><strong>+1000 Tokens<br>₹699</strong></td>
+<td>GST included: ₹106.63</td>
+<td><strong class="status-success">Success</strong></td>
+</tr>
+<tr>
+<td>03 May 2026</td>
+<td><strong>AI Tool Usage</strong></td>
+<td>AI Content Generator: Prompt to Video</td>
+<td><strong>-20 Tokens</strong></td>
+<td>No extra tax on token spend</td>
+<td><strong class="status-used">Used</strong></td>
+</tr>
+<tr>
+<td>03 May 2026</td>
+<td><strong>AI Tool Usage</strong></td>
+<td>AI Thumbnail Generator: Generate Similar</td>
+<td><strong>-12 Tokens</strong></td>
+<td>No extra tax on token spend</td>
+<td><strong class="status-used">Used</strong></td>
+</tr>
+<tr>
+<td>01 May 2026</td>
+<td><strong>AI Tool Usage</strong></td>
+<td>AI Shorts Generator: Auto captions and highlight cut</td>
+<td><strong>-15 Tokens</strong></td>
+<td>No extra tax on token spend</td>
+<td><strong class="status-used">Used</strong></td>
+</tr>
+<tr>
+<td>30 Apr 2026</td>
+<td><strong>Token Purchase</strong></td>
+<td>500 Tokens Pack purchased through JioVibe Wallet</td>
+<td><strong>+500 Tokens<br>₹399</strong></td>
+<td>GST included: ₹60.86</td>
+<td><strong class="status-success">Success</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="transaction-toggle">
+<div>
+<h2>INR Transaction History</h2>
+<p>Detailed record of creator earnings, deductions, tax and bank transfers.</p>
+</div>
+<button class="history-btn" onclick="toggleHistory('inrBox', this, 'INR Transaction History')">View INR Transactions</button>
+</div>
+
+<div class="transaction-box" id="inrBox">
 <table class="transaction-table">
 <thead>
 <tr>
@@ -1256,30 +1321,6 @@ Selected Earnings <span id="filterAmount">₹1,84,750</span>
 <td><strong>₹25,691 credited</strong></td>
 </tr>
 <tr>
-<td>03 May 2026</td>
-<td><strong>Token Purchase</strong></td>
-<td>1000 Tokens Pack purchased through UPI</td>
-<td><strong>₹699</strong></td>
-<td>GST included: ₹106.63</td>
-<td><strong class="status-success">Success</strong></td>
-</tr>
-<tr>
-<td>03 May 2026</td>
-<td><strong>AI Tool Usage</strong></td>
-<td>AI Content Generator: Prompt to Video</td>
-<td><strong>-20 Tokens</strong></td>
-<td>No extra tax on token spend</td>
-<td><strong class="status-used">Used</strong></td>
-</tr>
-<tr>
-<td>03 May 2026</td>
-<td><strong>AI Tool Usage</strong></td>
-<td>AI Thumbnail Generator: Generate Similar</td>
-<td><strong>-12 Tokens</strong></td>
-<td>No extra tax on token spend</td>
-<td><strong class="status-used">Used</strong></td>
-</tr>
-<tr>
 <td>02 May 2026</td>
 <td><strong>Creator Earnings</strong></td>
 <td>Weekend Gaming Live earnings added to wallet</td>
@@ -1294,22 +1335,6 @@ Selected Earnings <span id="filterAmount">₹1,84,750</span>
 <td><strong>₹5,100</strong></td>
 <td>Estimated TDS hold: ₹255</td>
 <td><strong>₹4,845 available</strong></td>
-</tr>
-<tr>
-<td>01 May 2026</td>
-<td><strong>AI Tool Usage</strong></td>
-<td>AI Shorts Generator: Auto captions and highlight cut</td>
-<td><strong>-15 Tokens</strong></td>
-<td>No extra tax on token spend</td>
-<td><strong class="status-used">Used</strong></td>
-</tr>
-<tr>
-<td>30 Apr 2026</td>
-<td><strong>Token Purchase</strong></td>
-<td>500 Tokens Pack purchased through JioVibe Wallet</td>
-<td><strong>₹399</strong></td>
-<td>GST included: ₹60.86</td>
-<td><strong class="status-success">Success</strong></td>
 </tr>
 <tr>
 <td>29 Apr 2026</td>
@@ -1435,11 +1460,15 @@ document.getElementById("filterAmount").innerText="₹"+total.toLocaleString("en
 showToast("Filter applied: "+value);
 }
 
-function toggleTransactions(){
-const box=document.getElementById("transactionBox");
+function toggleHistory(boxId, btn, label){
+const box=document.getElementById(boxId);
 box.classList.toggle("show");
-const btn=document.querySelector(".history-btn");
-btn.innerText=box.classList.contains("show") ? "Hide Detailed Transactions" : "View Detailed Transactions";
+
+if(box.classList.contains("show")){
+btn.innerText="Hide "+label;
+}else{
+btn.innerText=boxId==="tokenBox" ? "View Token History" : "View INR Transactions";
+}
 }
 
 applyFilter();
