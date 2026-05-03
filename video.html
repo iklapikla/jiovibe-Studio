@@ -673,7 +673,7 @@ scroll-behavior:auto!important;
 }
 
 
-/* ADD-ON: YouTube-style player settings + AI CC translate demo */
+/* ADD-ON: YouTube-style player settings */
 .control-right{position:relative}
 .player-menu{
 position:absolute;
@@ -709,24 +709,6 @@ gap:10px;padding:11px 10px;border-radius:11px;color:#4A0E0E;font-weight:800;font
 .player-menu .menu-back{justify-content:flex-start;color:#FF7A00}
 .player-menu-panel{display:none}
 .player-menu-panel.active{display:block}
-.cc-ai-banner{
-position:absolute;
-left:50%;top:50%;transform:translate(-50%,-50%);
-background:rgba(42,10,10,.82);
-color:#FFFFFF;
-border:1px solid rgba(255,210,179,.55);
-border-radius:18px;
-padding:16px 20px;
-z-index:9;
-display:none;
-min-width:300px;
-text-align:center;
-box-shadow:0 18px 50px rgba(0,0,0,.25);
-backdrop-filter:blur(10px);
-}
-.cc-ai-banner.show{display:block;animation:premiumModalIn .25s ease both}
-.cc-ai-banner strong{display:block;font-size:16px;margin-bottom:6px;color:#FFB066}
-.cc-ai-banner span{font-size:13px;font-weight:700;color:#FFFFFF}
 #settingsBtn,#ccBtn,#fullscreenBtn{cursor:pointer}
 .video-card.theater-mode{
 position:relative;
@@ -787,6 +769,7 @@ box-decoration-break:clone;
 text-shadow:0 2px 6px rgba(0,0,0,.45);
 }
 .caption-lang-pill{
+display:none !important;
 position:absolute;
 left:50%;
 bottom:145px;
@@ -880,10 +863,6 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 <span class="video-caption-line" id="videoCaptionText">This comedy moment is getting funnier every second.</span>
 </div>
 
-<div class="cc-ai-banner" id="ccAiBanner">
-<strong id="ccAiTitle">AI Translate Ready</strong>
-<span id="ccAiText">Choose a language from CC to demo real-time audio translation.</span>
-</div>
 
 <div class="player-top">
 <div class="player-icons">
@@ -1158,6 +1137,8 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 <option value="hindi">Hindi</option>
 <option value="marathi">Marathi</option>
 <option value="tamil">Tamil</option>
+<option value="telugu">Telugu</option>
+<option value="bengali">Bengali</option>
 </select>
 </div>
 
@@ -1169,7 +1150,7 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 <div>Best for: comedy fans and short entertainment viewers.</div>
 <div>Overall mood: fun, fast and highly relatable.</div>
 </div>
-<div class="ai-note">Note: This is a demo AI summary popup. Language change is working with sample translated text.</div>
+<div class="ai-note" id="summaryNote">Note: This is a demo AI summary popup. Language change is working with sample translated text.</div>
 </div>
 </div>
 </div>
@@ -1229,25 +1210,40 @@ const summaryData={
 english:{
 title:"Summary",
 text:"This video is a light comedy scene built around relatable daily-life reactions, funny timing and quick expressions. The main highlight is Ashish Chanchlani’s energetic delivery, which makes the moment feel shareable and easy to enjoy.",
-points:["Key moment: funny reaction and quick punchline.","Best for: comedy fans and short entertainment viewers.","Overall mood: fun, fast and highly relatable."]
+points:["Key moment: funny reaction and quick punchline.","Best for: comedy fans and short entertainment viewers.","Overall mood: fun, fast and highly relatable."],
+note:"Note: This is a demo AI summary popup. Language change is working with sample translated text."
 },
 hindi:{
 title:"वीडियो सारांश",
-text:"यह वीडियो रोज़मर्रा की relatable situations, funny timing और quick expressions पर based एक light comedy scene है. Ashish Chanchlani की energetic delivery इस moment को aur funny aur shareable बनाती है.",
-points:["मुख्य पल: funny reaction और quick punchline.","किसके लिए अच्छा: comedy fans और short entertainment viewers.","Overall mood: मजेदार, fast और relatable."]
+text:"यह वीडियो रोज़मर्रा की समझ आने वाली प्रतिक्रियाओं, मज़ेदार टाइमिंग और तेज़ भावों पर आधारित एक हल्का-फुल्का कॉमेडी सीन है। मुख्य आकर्षण आशीष चंचलानी की ऊर्जावान प्रस्तुति है, जो इस पल को यादगार और देखने में आसान बनाती है।",
+points:["मुख्य पल: मज़ेदार प्रतिक्रिया और तेज़ पंचलाइन।","किसके लिए अच्छा: कॉमेडी पसंद करने वाले और छोटे मनोरंजन वीडियो देखने वाले दर्शक।","कुल माहौल: मज़ेदार, तेज़ और बहुत जुड़ाव वाला।"],
+note:"नोट: यह एक डेमो AI सारांश पॉपअप है। भाषा बदलने पर नमूना अनुवादित टेक्स्ट दिखाई देता है।"
 },
 marathi:{
 title:"व्हिडिओ सारांश",
-text:"हा व्हिडिओ रोजच्या relatable reactions, funny timing आणि quick expressions वर आधारित light comedy scene आहे. Ashish Chanchlani ची energetic delivery हा moment अधिक मजेदार आणि share करण्यासारखा बनवते.",
-points:["मुख्य क्षण: funny reaction आणि quick punchline.","कोणासाठी चांगला: comedy fans आणि short entertainment viewers.","Overall mood: मजेदार, fast आणि relatable."]
+text:"हा व्हिडिओ रोजच्या आयुष्यात सहज समजणाऱ्या प्रतिक्रिया, मजेशीर वेळ साधणे आणि झटपट बदलणारे हावभाव यांवर आधारित हलका-फुलका विनोदी सीन आहे. मुख्य आकर्षण आशीष चंचलानी यांची ऊर्जावान सादरीकरण शैली आहे, जी हा क्षण अधिक मजेदार आणि शेअर करण्यासारखा बनवते.",
+points:["मुख्य क्षण: मजेशीर प्रतिक्रिया आणि झटपट पंचलाइन.","कोणासाठी चांगला: विनोदी कंटेंट आवडणारे आणि छोटे मनोरंजन व्हिडिओ पाहणारे प्रेक्षक.","एकूण मूड: मजेदार, वेगवान आणि खूप संबंधित."],
+note:"टीप: हा एक डेमो AI सारांश पॉपअप आहे. भाषा बदलल्यावर नमुना अनुवादित मजकूर दिसतो."
 },
 tamil:{
 title:"வீடியோ சுருக்கம்",
-text:"இந்த வீடியோ தினசரி வாழ்க்கையில் நடக்கும் relatable reactions, funny timing மற்றும் quick expressions அடிப்படையில் இருக்கும் ஒரு light comedy scene. Ashish Chanchlani-யின் energetic delivery இந்த moment-ஐ இன்னும் funny மற்றும் shareable ஆக்குகிறது.",
-points:["முக்கிய தருணம்: funny reaction மற்றும் quick punchline.","யாருக்கு நல்லது: comedy fans மற்றும் short entertainment viewers.","Overall mood: fun, fast மற்றும் relatable."]
+text:"இந்த வீடியோ தினசரி வாழ்க்கையில் எளிதாக தொடர்புபடுத்தக்கூடிய எதிர்வினைகள், நகைச்சுவை நேரம் மற்றும் விரைவான முகபாவனைகள் ஆகியவற்றை மையமாகக் கொண்ட லேசான நகைச்சுவைக் காட்சி. ஆஷிஷ் சஞ்சலானியின் உற்சாகமான நடிப்பு இந்த தருணத்தை மேலும் ரசிக்கவும் பகிரவும் ஏற்றதாக மாற்றுகிறது.",
+points:["முக்கிய தருணம்: நகைச்சுவையான எதிர்வினை மற்றும் வேகமான பஞ்ச்லைன்.","யாருக்கு சிறந்தது: நகைச்சுவை ரசிகர்கள் மற்றும் குறும்பட பொழுதுபோக்கு பார்வையாளர்கள்.","மொத்த உணர்வு: மகிழ்ச்சியானது, வேகமானது மற்றும் மிகவும் தொடர்புபடுத்தக்கூடியது."],
+note:"குறிப்பு: இது ஒரு மாதிரி AI சுருக்க பாப்அப். மொழியை மாற்றும்போது மாதிரி மொழிபெயர்க்கப்பட்ட உரை காட்டப்படும்."
+},
+telugu:{
+title:"వీడియో సారాంశం",
+text:"ఈ వీడియో రోజువారీ జీవితానికి దగ్గరగా అనిపించే ప్రతిస్పందనలు, సరైన హాస్య సమయం మరియు వేగమైన ముఖభావాలపై ఆధారపడిన తేలికపాటి కామెడీ సీన్. ఆశిష్ చంచలాని ఉత్సాహభరితమైన ప్రదర్శన ఈ క్షణాన్ని మరింత ఆసక్తికరంగా మరియు పంచుకోవడానికి సరైనదిగా చేస్తుంది.",
+points:["ముఖ్యమైన క్షణం: సరదా ప్రతిస్పందన మరియు వేగమైన పంచ్‌లైన్.","ఎవరికి బాగుంటుంది: కామెడీ అభిమానులు మరియు చిన్న వినోద వీడియోలు చూసే ప్రేక్షకులు.","మొత్తం భావం: సరదాగా, వేగంగా మరియు చాలా దగ్గరగా అనిపించేలా."],
+note:"గమనిక: ఇది ఒక డెమో AI సారాంశ పాప్‌అప్. భాష మార్చినప్పుడు నమూనా అనువాద పాఠ్యం కనిపిస్తుంది."
+},
+bengali:{
+title:"ভিডিও সারাংশ",
+text:"এই ভিডিওটি দৈনন্দিন জীবনের সহজে বোঝা যায় এমন প্রতিক্রিয়া, মজার টাইমিং এবং দ্রুত অভিব্যক্তির উপর তৈরি একটি হালকা কমেডি দৃশ্য। আশীষ চঞ্চলানির উদ্দীপ্ত উপস্থাপনাই এই মুহূর্তকে আরও উপভোগ্য এবং শেয়ার করার মতো করে তোলে।",
+points:["মূল মুহূর্ত: মজার প্রতিক্রিয়া এবং দ্রুত পাঞ্চলাইন।","যাদের জন্য ভালো: কমেডি ভক্ত এবং ছোট বিনোদন ভিডিও দেখেন এমন দর্শক।","সামগ্রিক মুড: মজার, দ্রুত এবং খুব সহজে সম্পর্ক করা যায় এমন।"],
+note:"নোট: এটি একটি ডেমো AI সারাংশ পপআপ। ভাষা বদলালে নমুনা অনুবাদ করা লেখা দেখা যাবে।"
 }
 };
-
 function openAI(){
 document.getElementById("aiOverlay").classList.add("show");
 }
@@ -1262,6 +1258,7 @@ const data=summaryData[lang];
 document.getElementById("summaryTitle").innerText=data.title;
 document.getElementById("summaryText").innerText=data.text;
 document.getElementById("summaryPoints").innerHTML=data.points.map(point=>`<div>${point}</div>`).join("");
+document.getElementById("summaryNote").innerText=data.note;
 }
 
 function toggleDropdown(){
@@ -1410,39 +1407,39 @@ const captionLibrary = {
 "Watch the next reaction, it makes the whole scene funnier."
 ],
 "Hindi":[
-"Ye scene perfect comic timing ke baare mein hai.",
-"Woh bilkul group ke har dost ki tarah react kar raha hai.",
-"Punchline isliye funny lagti hai kyunki expression jaldi change hota hai.",
-"Ye comedy moment log baar-baar replay karenge.",
-"Agla reaction dekho, poora scene aur funny ho jayega."
+"यह दृश्य बेहतरीन कॉमिक टाइमिंग पर आधारित है।",
+"वह बिल्कुल ग्रुप के हर दोस्त की तरह प्रतिक्रिया दे रहा है।",
+"पंचलाइन इसलिए मजेदार लगती है क्योंकि भाव बहुत जल्दी बदलते हैं।",
+"यह ऐसा कॉमेडी पल है जिसे लोग बार-बार देखना पसंद करेंगे।",
+"अगली प्रतिक्रिया देखिए, पूरा दृश्य और भी मजेदार हो जाएगा।"
 ],
 "Tamil":[
-"Indha scene perfect comic timing pathi dhaan irukku.",
-"Avan group la irukkura friend madhiri react panra madhiri irukku.",
-"Expression fast ah change aaguradhu punchline ah romba funny aakudhu.",
-"Indha comedy moment ah fans repeat ah paapanga.",
-"Adutha reaction paathaa scene innum funny ah irukkum."
+"இந்த காட்சி சிறந்த நகைச்சுவை நேரத்தை மையமாகக் கொண்டது.",
+"அவர் குழுவில் இருக்கும் ஒவ்வொரு நண்பரைப் போலவே பதிலளிக்கிறார்.",
+"முகபாவனை வேகமாக மாறுவதால் punchline இன்னும் நகைச்சுவையாக இருக்கிறது.",
+"இந்த நகைச்சுவை தருணத்தை ரசிகர்கள் மீண்டும் மீண்டும் பார்ப்பார்கள்.",
+"அடுத்த பதிலைப் பாருங்கள், முழு காட்சியும் இன்னும் சிரிப்பாக மாறும்."
 ],
 "Telugu":[
-"Ee scene perfect comic timing meeda based undi.",
-"Atanu group lo unna friend laga react chestunnadu.",
-"Expression fast ga maaradam valla punchline inka funny ga anipistundi.",
-"Ee comedy moment ni fans malli malli chustaru.",
-"Next reaction chudandi, scene inka funny avtundi."
+"ఈ సన్నివేశం అద్భుతమైన కామెడీ టైమింగ్‌పై ఆధారపడి ఉంది.",
+"అతను గ్రూప్‌లో ఉన్న ప్రతి స్నేహితుడిలా స్పందిస్తున్నాడు.",
+"భావం వేగంగా మారడం వల్ల punchline మరింత సరదాగా అనిపిస్తుంది.",
+"ఇది అభిమానులు మళ్లీ మళ్లీ చూసే కామెడీ క్షణం.",
+"తర్వాతి స్పందన చూడండి, మొత్తం సన్నివేశం ఇంకా సరదాగా మారుతుంది."
 ],
 "Marathi":[
-"Ha scene perfect comic timing var based aahe.",
-"To group madhlya pratyek friend sarkha react karto aahe.",
-"Expression patkan change hota mhanun punchline ajun funny watte.",
-"Ha comedy moment lok punha-punha replay kartil.",
-"Pudcha reaction paha, scene ajun funny honar aahe."
+"हा प्रसंग उत्तम कॉमिक टाइमिंगवर आधारित आहे.",
+"तो ग्रुपमधल्या प्रत्येक मित्रासारखीच प्रतिक्रिया देतो आहे.",
+"भाव पटकन बदलतो म्हणून punchline अजून मजेदार वाटते.",
+"हा असा कॉमेडी क्षण आहे जो लोक पुन्हा पुन्हा पाहतील.",
+"पुढची प्रतिक्रिया पाहा, संपूर्ण प्रसंग अजून मजेदार होईल."
 ],
 "Bengali":[
-"Ei scene ta perfect comic timing er upor based.",
-"Se ekdom group er bondhur moto react korche.",
-"Expression taratari change howay punchline ta aro funny lagche.",
-"Ei comedy moment fans ra abar abar replay korbe.",
-"Porer reaction ta dekho, scene ta aro funny hoye jabe."
+"এই দৃশ্যটি নিখুঁত কমেডি টাইমিংয়ের উপর ভিত্তি করে তৈরি।",
+"সে একেবারে গ্রুপের প্রতিটি বন্ধুর মতো প্রতিক্রিয়া দিচ্ছে।",
+"মুখের ভাব দ্রুত বদলে যাওয়ায় punchline আরও মজার লাগছে।",
+"এটি এমন একটি কমেডি মুহূর্ত যা দর্শকরা বারবার দেখতে চাইবেন।",
+"পরের প্রতিক্রিয়াটি দেখুন, পুরো দৃশ্যটি আরও মজার হয়ে যাবে।"
 ]
 };
 
@@ -1453,8 +1450,8 @@ const box=document.getElementById("videoCaptionBox");
 const pill=document.getElementById("captionLangPill");
 if(!box || !pill) return;
 box.classList.add("show");
-pill.classList.add("show");
-pill.innerText = language === "English CC" ? "English CC" : "AI Translate: " + language;
+pill.classList.remove("show");
+pill.innerText = "";
 updateCaptionText();
 clearInterval(captionTimer);
 captionTimer = setInterval(updateCaptionText,2600);
@@ -1514,7 +1511,6 @@ function setCaption(value){
 document.getElementById("captionValue").innerText=value;
 if(value === "Off"){
 stopCaptions();
-hideAiBanner();
 showToast("Captions off");
 }else{
 startCaptions("English CC");
@@ -1525,19 +1521,11 @@ openSettingsPanel("mainSettingsPanel");
 
 function setAiLanguage(language){
 document.getElementById("captionValue").innerText="AI " + language;
-document.getElementById("ccAiTitle").innerText="AI Translate: " + language;
-document.getElementById("ccAiText").innerText="Demo: captions are now auto-changing in " + language + ".";
-document.getElementById("ccAiBanner").classList.add("show");
 startCaptions(language);
 showToast("AI captions: " + language);
 openSettingsPanel("mainSettingsPanel");
-setTimeout(hideAiBanner,2200);
 }
 
-function hideAiBanner(){
-const banner=document.getElementById("ccAiBanner");
-if(banner) banner.classList.remove("show");
-}
 
 function toggleTheaterMode(){
 const card=document.querySelector(".video-card");
