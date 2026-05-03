@@ -605,6 +605,62 @@ from{opacity:0;transform:translateY(-8px) scale(.96)}
 to{opacity:1;transform:translateY(0) scale(1)}
 }
 
+
+/* ADD-ON: YouTube style live captions over video */
+.video-caption-box{
+position:absolute;
+left:50%;
+bottom:82px;
+transform:translateX(-50%);
+z-index:8;
+max-width:78%;
+min-width:360px;
+text-align:center;
+pointer-events:none;
+display:none;
+}
+.video-caption-box.show{display:block;animation:captionFade .25s ease both}
+.video-caption-line{
+display:inline;
+background:rgba(0,0,0,.76);
+color:#FFFFFF;
+font-size:22px;
+font-weight:800;
+line-height:1.55;
+padding:7px 13px;
+border-radius:8px;
+box-decoration-break:clone;
+-webkit-box-decoration-break:clone;
+text-shadow:0 2px 6px rgba(0,0,0,.45);
+}
+.caption-lang-pill{
+position:absolute;
+left:50%;
+bottom:145px;
+transform:translateX(-50%);
+z-index:8;
+background:rgba(255,122,0,.94);
+color:#FFFFFF;
+font-size:12px;
+font-weight:900;
+letter-spacing:.2px;
+padding:7px 11px;
+border-radius:999px;
+display:none;
+pointer-events:none;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+.caption-lang-pill.show{display:block;animation:captionFade .25s ease both}
+@keyframes captionFade{
+from{opacity:0;transform:translateX(-50%) translateY(8px)}
+to{opacity:1;transform:translateX(-50%) translateY(0)}
+}
+@media(max-width:900px){
+.video-caption-box{min-width:260px;max-width:88%;bottom:72px}
+.video-caption-line{font-size:15px;line-height:1.45;padding:5px 9px}
+.caption-lang-pill{bottom:122px;font-size:10px}
+}
+
 </style>
 </head>
 
@@ -676,6 +732,12 @@ to{opacity:1;transform:translateY(0) scale(1)}
 <i class="fa-solid fa-share" onclick="openShare()"></i>
 <i class="fa-solid fa-ellipsis-vertical"></i>
 </div>
+</div>
+
+
+<div class="caption-lang-pill" id="captionLangPill">English CC</div>
+<div class="video-caption-box" id="videoCaptionBox">
+<span class="video-caption-line" id="videoCaptionText">Welcome to the live stream.</span>
 </div>
 
 <div class="cc-ai-banner" id="ccAiBanner">
@@ -1080,6 +1142,89 @@ showToast("Super Support sent and highlighted in chat");
 }
 
 
+
+/* Live Caption Demo */
+let currentCaptionLanguage = "Off";
+let captionIndex = 0;
+let captionTimer = null;
+
+const captionLibrary = {
+"English CC":[
+"Welcome everyone, the energy is amazing tonight.",
+"We are live with big creator moments and behind-the-scenes fun.",
+"Keep sending your questions, I am reading the chat.",
+"This next segment is going to be special for all fans.",
+"Thank you for joining the JioVibe live stream."
+],
+"Hindi":[
+"Sabhi ko welcome, aaj ki energy kamaal ki hai.",
+"Hum live hain creator moments aur behind-the-scenes fun ke saath.",
+"Apne questions bhejte raho, main chat dekh raha hoon.",
+"Agla moment fans ke liye bahut special hone wala hai.",
+"JioVibe live stream join karne ke liye thank you."
+],
+"Tamil":[
+"Ellarukkum welcome, innaiku energy romba super ah irukku.",
+"Creator moments matrum behind-the-scenes fun oda live la irukkom.",
+"Ungal questions anuppunga, naan chat paathuttu irukken.",
+"Adutha moment fans ku romba special ah irukkum.",
+"JioVibe live stream join pannathukku nandri."
+],
+"Telugu":[
+"Andariki welcome, ee roju energy chala bagundi.",
+"Creator moments mariyu behind-the-scenes fun tho live lo unnam.",
+"Mee questions pampandi, nenu chat chustunnanu.",
+"Tarvata moment fans kosam chala special ga untundi.",
+"JioVibe live stream join chesinanduku thank you."
+],
+"Marathi":[
+"Saglyanna welcome, aajchi energy khup zabardast aahe.",
+"Aamhi creator moments ani behind-the-scenes fun sobat live aahot.",
+"Tumche questions pathavat raha, mi chat baghat aahe.",
+"Pudcha moment fans sathi khup special asnar aahe.",
+"JioVibe live stream join kelyabaddal thank you."
+],
+"Bengali":[
+"Sobai ke welcome, aajker energy darun lagche.",
+"Amra creator moments aar behind-the-scenes fun niye live achi.",
+"Tomader questions pathate thako, ami chat dekhchi.",
+"Porer moment fans der jonno khub special hobe.",
+"JioVibe live stream join korar jonno thank you."
+]
+};
+
+function startCaptions(language){
+currentCaptionLanguage = language;
+captionIndex = 0;
+const box=document.getElementById("videoCaptionBox");
+const pill=document.getElementById("captionLangPill");
+if(!box || !pill) return;
+box.classList.add("show");
+pill.classList.add("show");
+pill.innerText = language === "English CC" ? "English CC" : "AI Translate: " + language;
+updateCaptionText();
+clearInterval(captionTimer);
+captionTimer = setInterval(updateCaptionText,2600);
+}
+
+function updateCaptionText(){
+const text=document.getElementById("videoCaptionText");
+if(!text || currentCaptionLanguage === "Off") return;
+const lines = captionLibrary[currentCaptionLanguage] || captionLibrary["English CC"];
+text.innerText = lines[captionIndex % lines.length];
+captionIndex++;
+}
+
+function stopCaptions(){
+currentCaptionLanguage = "Off";
+clearInterval(captionTimer);
+captionTimer = null;
+const box=document.getElementById("videoCaptionBox");
+const pill=document.getElementById("captionLangPill");
+if(box) box.classList.remove("show");
+if(pill) pill.classList.remove("show");
+}
+
 /* Player Settings + AI CC Demo */
 function togglePlayerMenu(event){
 if(event) event.stopPropagation();
@@ -1114,7 +1259,13 @@ openSettingsPanel("mainSettingsPanel");
 
 function setCaption(value){
 document.getElementById("captionValue").innerText=value;
-showToast(value === "Off" ? "Captions off" : value + " enabled");
+if(value === "Off"){
+stopCaptions();
+showToast("Captions off");
+}else{
+startCaptions("English CC");
+showToast("English captions enabled");
+}
 hideAiBanner();
 openSettingsPanel("mainSettingsPanel");
 }
@@ -1122,11 +1273,12 @@ openSettingsPanel("mainSettingsPanel");
 function setAiLanguage(language){
 document.getElementById("captionValue").innerText="AI " + language;
 document.getElementById("ccAiTitle").innerText="AI Translate: " + language;
-document.getElementById("ccAiText").innerText="Demo: video audio is now playing in " + language + " in real time.";
+document.getElementById("ccAiText").innerText="Captions are now auto-changing in " + language + " over the video.";
 document.getElementById("ccAiBanner").classList.add("show");
-showToast("AI real-time audio translation: " + language);
+startCaptions(language);
+showToast("AI captions: " + language);
 openSettingsPanel("mainSettingsPanel");
-setTimeout(hideAiBanner,3200);
+setTimeout(hideAiBanner,2200);
 }
 
 function hideAiBanner(){
