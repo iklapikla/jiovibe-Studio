@@ -316,16 +316,49 @@ New comedy story drop! Behind-the-scenes madness, funny moments and creator ener
 function closeStory(){
 const params = new URLSearchParams(window.location.search);
 const from = params.get("from");
+const ref = document.referrer || "";
 
 if(from === "home"){
 window.location.href = "home.html";
-}else if(from === "live"){
-window.location.href = "live.html";
-}else if(from === "watch"){
-window.location.href = "watch-ashish-chanchlani.html";
-}else{
-window.location.href = "watch-ashish-chanchlani.html";
+return;
 }
+
+if(from === "video"){
+window.location.href = "video.html";
+return;
+}
+
+if(from === "live"){
+window.location.href = "live.html";
+return;
+}
+
+if(from === "watch"){
+window.location.href = "watch-ashish-chanchlani.html";
+return;
+}
+
+if(ref.includes("home.html")){
+window.location.href = "home.html";
+return;
+}
+
+if(ref.includes("video.html")){
+window.location.href = "video.html";
+return;
+}
+
+if(ref.includes("live.html")){
+window.location.href = "live.html";
+return;
+}
+
+if(window.history.length > 1){
+window.history.back();
+return;
+}
+
+window.location.href = "home.html";
 }
 
 const stories = [
