@@ -505,7 +505,7 @@ top:12px
 
 <div class="story-page">
 
-<button class="close-btn" onclick="window.location.href='watch-ranveer-singh.html'">
+<button class="close-btn" onclick="closeStory()">
 <i class="fa-solid fa-xmark"></i>
 </button>
 
@@ -647,6 +647,13 @@ New story drop! Energy, style and creator vibes all in one frame 🔥
 </div>
 
 <script>
+
+function closeStory(){
+const params = new URLSearchParams(window.location.search);
+const backPage = params.get("from") || "watch-ranveer-singh.html";
+window.location.href = backPage;
+}
+
 const stories = [
 "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ranveer%20Singh%200.webp",
 "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ranveer%20Singh%201.jpg",
@@ -746,7 +753,7 @@ setTimeout(()=>toast.classList.remove("show"),1800);
 document.addEventListener("keydown",function(e){
 if(e.key === "ArrowRight") nextStory();
 if(e.key === "ArrowLeft") prevStory();
-if(e.key === "Escape") window.location.href = "watch-ranveer-singh.html";
+if(e.key === "Escape") closeStory();
 });
 
 updateStory();
