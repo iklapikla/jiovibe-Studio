@@ -171,7 +171,7 @@ opacity:0;transition:.25s;z-index:100
 
 <div class="story-page">
 
-<button class="close-btn" onclick="window.location.href='watch-ashish-chanchlani.html'">
+<button class="close-btn" onclick="closeStory()">
 <i class="fa-solid fa-xmark"></i>
 </button>
 
@@ -313,6 +313,21 @@ New comedy story drop! Behind-the-scenes madness, funny moments and creator ener
 </div>
 
 <script>
+function closeStory(){
+const params = new URLSearchParams(window.location.search);
+const from = params.get("from");
+
+if(from === "home"){
+window.location.href = "home.html";
+}else if(from === "live"){
+window.location.href = "live.html";
+}else if(from === "watch"){
+window.location.href = "watch-ashish-chanchlani.html";
+}else{
+window.location.href = "watch-ashish-chanchlani.html";
+}
+}
+
 const stories = [
 "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ashish%20Chanchalani%200.avif",
 "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ashish%20Chanchalani%201.jpg",
@@ -404,7 +419,7 @@ setTimeout(()=>toast.classList.remove("show"),1800);
 document.addEventListener("keydown",function(e){
 if(e.key === "ArrowRight") nextStory();
 if(e.key === "ArrowLeft") prevStory();
-if(e.key === "Escape") window.location.href = "watch-ashish-chanchlani.html";
+if(e.key === "Escape") closeStory();
 });
 
 updateStory();
