@@ -759,6 +759,61 @@ from{opacity:0;transform:translateY(-8px) scale(.98)}
 to{opacity:1;transform:translateY(0) scale(1)}
 }
 
+/* ADD-ON: YouTube style auto-changing captions over video */
+.video-caption-box{
+position:absolute;
+left:50%;
+bottom:82px;
+transform:translateX(-50%);
+z-index:8;
+max-width:78%;
+min-width:360px;
+text-align:center;
+pointer-events:none;
+display:none;
+}
+.video-caption-box.show{display:block;animation:captionFade .25s ease both}
+.video-caption-line{
+display:inline;
+background:rgba(0,0,0,.76);
+color:#FFFFFF;
+font-size:22px;
+font-weight:800;
+line-height:1.55;
+padding:7px 13px;
+border-radius:8px;
+box-decoration-break:clone;
+-webkit-box-decoration-break:clone;
+text-shadow:0 2px 6px rgba(0,0,0,.45);
+}
+.caption-lang-pill{
+position:absolute;
+left:50%;
+bottom:145px;
+transform:translateX(-50%);
+z-index:8;
+background:rgba(255,122,0,.94);
+color:#FFFFFF;
+font-size:12px;
+font-weight:900;
+letter-spacing:.2px;
+padding:7px 11px;
+border-radius:999px;
+display:none;
+pointer-events:none;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+}
+.caption-lang-pill.show{display:block;animation:captionFade .25s ease both}
+@keyframes captionFade{
+from{opacity:0;transform:translateX(-50%) translateY(8px)}
+to{opacity:1;transform:translateX(-50%) translateY(0)}
+}
+@media(max-width:900px){
+.video-caption-box{min-width:260px;max-width:88%;bottom:72px}
+.video-caption-line{font-size:15px;line-height:1.45;padding:5px 9px}
+.caption-lang-pill{bottom:122px;font-size:10px}
+}
+
 </style>
 </head>
 
@@ -820,6 +875,11 @@ to{opacity:1;transform:translateY(0) scale(1)}
 <div class="video-card">
 <div class="player">
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif">
+
+<div class="caption-lang-pill" id="captionLangPill">English CC</div>
+<div class="video-caption-box" id="videoCaptionBox">
+<span class="video-caption-line" id="videoCaptionText">This comedy moment is getting funnier every second.</span>
+</div>
 
 <div class="cc-ai-banner" id="ccAiBanner">
 <strong id="ccAiTitle">AI Translate Ready</strong>
@@ -1336,6 +1396,88 @@ btn.innerHTML=open
 }
 
 
+/* Auto-changing Caption Demo */
+let currentCaptionLanguage = "Off";
+let captionIndex = 0;
+let captionTimer = null;
+
+const captionLibrary = {
+"English CC":[
+"This scene is all about perfect comic timing.",
+"He is reacting exactly like every friend in the group.",
+"The punchline lands because the expression changes so quickly.",
+"This is the kind of comedy moment people replay again and again.",
+"Watch the next reaction, it makes the whole scene funnier."
+],
+"Hindi":[
+"Ye scene perfect comic timing ke baare mein hai.",
+"Woh bilkul group ke har dost ki tarah react kar raha hai.",
+"Punchline isliye funny lagti hai kyunki expression jaldi change hota hai.",
+"Ye comedy moment log baar-baar replay karenge.",
+"Agla reaction dekho, poora scene aur funny ho jayega."
+],
+"Tamil":[
+"Indha scene perfect comic timing pathi dhaan irukku.",
+"Avan group la irukkura friend madhiri react panra madhiri irukku.",
+"Expression fast ah change aaguradhu punchline ah romba funny aakudhu.",
+"Indha comedy moment ah fans repeat ah paapanga.",
+"Adutha reaction paathaa scene innum funny ah irukkum."
+],
+"Telugu":[
+"Ee scene perfect comic timing meeda based undi.",
+"Atanu group lo unna friend laga react chestunnadu.",
+"Expression fast ga maaradam valla punchline inka funny ga anipistundi.",
+"Ee comedy moment ni fans malli malli chustaru.",
+"Next reaction chudandi, scene inka funny avtundi."
+],
+"Marathi":[
+"Ha scene perfect comic timing var based aahe.",
+"To group madhlya pratyek friend sarkha react karto aahe.",
+"Expression patkan change hota mhanun punchline ajun funny watte.",
+"Ha comedy moment lok punha-punha replay kartil.",
+"Pudcha reaction paha, scene ajun funny honar aahe."
+],
+"Bengali":[
+"Ei scene ta perfect comic timing er upor based.",
+"Se ekdom group er bondhur moto react korche.",
+"Expression taratari change howay punchline ta aro funny lagche.",
+"Ei comedy moment fans ra abar abar replay korbe.",
+"Porer reaction ta dekho, scene ta aro funny hoye jabe."
+]
+};
+
+function startCaptions(language){
+currentCaptionLanguage = language;
+captionIndex = 0;
+const box=document.getElementById("videoCaptionBox");
+const pill=document.getElementById("captionLangPill");
+if(!box || !pill) return;
+box.classList.add("show");
+pill.classList.add("show");
+pill.innerText = language === "English CC" ? "English CC" : "AI Translate: " + language;
+updateCaptionText();
+clearInterval(captionTimer);
+captionTimer = setInterval(updateCaptionText,2600);
+}
+
+function updateCaptionText(){
+const text=document.getElementById("videoCaptionText");
+if(!text || currentCaptionLanguage === "Off") return;
+const lines = captionLibrary[currentCaptionLanguage] || captionLibrary["English CC"];
+text.innerText = lines[captionIndex % lines.length];
+captionIndex++;
+}
+
+function stopCaptions(){
+currentCaptionLanguage = "Off";
+clearInterval(captionTimer);
+captionTimer = null;
+const box=document.getElementById("videoCaptionBox");
+const pill=document.getElementById("captionLangPill");
+if(box) box.classList.remove("show");
+if(pill) pill.classList.remove("show");
+}
+
 /* Player Settings + AI CC Translate */
 function togglePlayerMenu(event){
 if(event) event.stopPropagation();
@@ -1370,19 +1512,26 @@ openSettingsPanel("mainSettingsPanel");
 
 function setCaption(value){
 document.getElementById("captionValue").innerText=value;
-showToast(value === "Off" ? "Captions off" : value + " enabled");
+if(value === "Off"){
+stopCaptions();
 hideAiBanner();
+showToast("Captions off");
+}else{
+startCaptions("English CC");
+showToast("English CC enabled");
+}
 openSettingsPanel("mainSettingsPanel");
 }
 
 function setAiLanguage(language){
 document.getElementById("captionValue").innerText="AI " + language;
 document.getElementById("ccAiTitle").innerText="AI Translate: " + language;
-document.getElementById("ccAiText").innerText="Demo: video audio is now playing in " + language + " in real time.";
+document.getElementById("ccAiText").innerText="Demo: captions are now auto-changing in " + language + ".";
 document.getElementById("ccAiBanner").classList.add("show");
-showToast("AI real-time audio translation: " + language);
+startCaptions(language);
+showToast("AI captions: " + language);
 openSettingsPanel("mainSettingsPanel");
-setTimeout(hideAiBanner,3200);
+setTimeout(hideAiBanner,2200);
 }
 
 function hideAiBanner(){
