@@ -616,10 +616,18 @@ font-size:18px;
 background:#FFFFFF;
 border:1px solid #FFD2B3;
 border-radius:20px;
-overflow:hidden;
+overflow-y:auto;
+overflow-x:hidden;
+max-height:474px;
 box-shadow:0 8px 24px rgba(74,14,14,.04);
 margin-bottom:28px;
 }
+
+.earnings-list::-webkit-scrollbar{width:8px}
+.earnings-list::-webkit-scrollbar-track{background:#FFF6ED}
+.earnings-list::-webkit-scrollbar-thumb{background:#FFB577;border-radius:999px}
+.earning-header{position:sticky;top:0;z-index:3}
+
 
 .earning-header,.earning-row{
 display:grid;
@@ -855,6 +863,120 @@ to{opacity:1;transform:translateY(0)}
 animation:softFadeUp .45s ease both;
 }
 
+
+.payment-modal{
+position:fixed;
+inset:0;
+background:rgba(42,10,10,.45);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:80;
+padding:20px;
+backdrop-filter:blur(5px);
+}
+
+.payment-modal.show{display:flex;animation:softFadeUp .2s ease both}
+
+.payment-card{
+width:min(760px,96vw);
+background:#FFFFFF;
+border:1px solid #FFD2B3;
+border-radius:24px;
+box-shadow:0 30px 80px rgba(42,10,10,.28);
+overflow:hidden;
+}
+
+.payment-modal-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:18px;
+padding:22px 24px;
+background:#FFF6ED;
+border-bottom:1px solid #FFD2B3;
+}
+
+.payment-modal-head h2{font-size:24px;font-weight:900;color:#4A0E0E;margin-bottom:4px}
+.payment-modal-head p{font-size:13px;font-weight:800;color:#7A3E2E}
+.close-pay{
+width:40px;height:40px;border-radius:50%;background:#FFE4CC;color:#4A0E0E;font-size:18px;font-weight:900;transition:.22s;
+}
+.close-pay:hover{background:#FF7A00;color:#FFFFFF;transform:scale(1.06)}
+
+.payment-body{padding:24px}
+.payment-summary{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:14px;
+margin-bottom:18px;
+}
+.summary-item{
+background:#FFF6ED;
+border:1px solid #FFE0CC;
+border-radius:16px;
+padding:15px;
+}
+.summary-item span{display:block;font-size:12px;font-weight:900;color:#7A3E2E;margin-bottom:6px}
+.summary-item strong{font-size:18px;color:#4A0E0E}
+
+.payment-form{
+border:1px solid #FFD2B3;
+border-radius:18px;
+padding:18px;
+background:#FFFFFF;
+margin-bottom:18px;
+}
+.payment-form h3{font-size:18px;margin-bottom:14px;color:#4A0E0E}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.form-field{display:flex;flex-direction:column;gap:8px}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:12px;font-weight:900;color:#7A3E2E}
+.form-field input{
+height:46px;border:1px solid #FFD2B3;border-radius:12px;padding:0 14px;font-size:14px;font-weight:800;color:#4A0E0E;outline:none;background:#FFFDFB;
+}
+.form-field input:focus{border-color:#FF7A00;box-shadow:0 0 0 3px rgba(255,122,0,.12)}
+
+.wallet-pay-box{
+background:#FFF6ED;
+border:1px solid #FFD2B3;
+border-radius:16px;
+padding:16px;
+display:flex;
+justify-content:space-between;
+gap:18px;
+align-items:center;
+font-weight:900;
+}
+.wallet-pay-box span{color:#7A3E2E;font-size:13px;display:block;margin-bottom:5px}
+.wallet-pay-box strong{font-size:22px;color:#4A0E0E}
+
+.tax-table{
+width:100%;border-collapse:collapse;margin:8px 0 18px;background:#FFF6ED;border-radius:16px;overflow:hidden;
+}
+.tax-table td{padding:12px 14px;border-bottom:1px solid #FFE0CC;font-size:14px;font-weight:800;color:#7A3E2E}
+.tax-table tr:last-child td{border-bottom:none}
+.tax-table td:last-child{text-align:right;color:#4A0E0E}
+.tax-table .grand td{font-size:17px;font-weight:900;color:#4A0E0E;background:#FFE4CC}
+
+.payment-actions{display:flex;justify-content:flex-end;gap:12px}
+.cancel-pay,.confirm-pay{
+padding:14px 18px;border-radius:12px;font-size:15px;font-weight:900;transition:.22s;
+}
+.cancel-pay{background:#FFF6ED;color:#4A0E0E;border:1px solid #FFD2B3}
+.confirm-pay{background:#FF7A00;color:#FFFFFF}
+.cancel-pay:hover,.confirm-pay:hover{transform:scale(1.03);box-shadow:0 10px 24px rgba(74,14,14,.12)}
+
+.payment-success{
+display:none;text-align:center;padding:30px 20px 10px;
+}
+.payment-success.show{display:block;animation:softFadeUp .25s ease both}
+.success-icon{
+width:82px;height:82px;margin:0 auto 18px;border-radius:50%;background:#E7F8ED;color:#0F8A3B;display:flex;align-items:center;justify-content:center;font-size:38px;
+}
+.payment-success h2{font-size:26px;margin-bottom:8px;color:#4A0E0E}
+.payment-success p{font-size:14px;font-weight:800;color:#7A3E2E;line-height:1.5}
+
 .toast{
 position:fixed;
 left:50%;
@@ -955,7 +1077,7 @@ box-shadow:0 12px 30px rgba(42,10,10,.25);
 <div class="coin-big"><i class="fa-solid fa-coins"></i></div>
 <div>
 <h2>Current Token Balance</h2>
-<strong>1,250</strong> <b>Tokens</b>
+<strong id="tokenBalance">1,250</strong> <b>Tokens</b>
 </div>
 </div>
 
@@ -1057,7 +1179,7 @@ box-shadow:0 12px 30px rgba(42,10,10,.25);
 <i class="fa-solid fa-wallet big"></i>
 <div>
 <h3>Wallets</h3>
-<p>Paytm, PhonePe, Amazon Pay, JioVibe Wallet</p>
+<p>JioWallet available balance: ₹28,600</p>
 </div>
 <button class="proceed-btn" onclick="event.stopPropagation(); proceedPay('Wallets')">Proceed</button>
 </div>
@@ -1081,7 +1203,7 @@ box-shadow:0 12px 30px rgba(42,10,10,.25);
 <div class="revenue-card">
 <i class="fa-solid fa-wallet"></i>
 <p>Current Amount in Your Wallet</p>
-<h2>₹28,600</h2>
+<h2 id="walletAmount">₹28,600</h2>
 <button class="withdraw-btn" onclick="showToast('Withdraw request started')">Withdraw to Bank</button>
 </div>
 
@@ -1394,6 +1516,51 @@ Selected Earnings <span id="filterAmount">₹1,84,750</span>
 </main>
 </div>
 
+
+<div class="payment-modal" id="paymentModal">
+<div class="payment-card">
+<div class="payment-modal-head">
+<div>
+<h2 id="modalTitle">Complete Payment</h2>
+<p id="modalSubtitle">Review tax breakup and confirm payment.</p>
+</div>
+<button class="close-pay" onclick="closePaymentModal()"><i class="fa-solid fa-xmark"></i></button>
+</div>
+
+<div class="payment-body" id="paymentStep">
+<div class="payment-summary">
+<div class="summary-item"><span>Selected Pack</span><strong id="summaryPack">-</strong></div>
+<div class="summary-item"><span>Payment Method</span><strong id="summaryMethod">-</strong></div>
+</div>
+
+<div class="payment-form" id="dynamicPaymentForm"></div>
+
+<table class="tax-table">
+<tbody>
+<tr><td>Base Amount</td><td id="baseAmount">₹0.00</td></tr>
+<tr><td>GST @ 18%</td><td id="gstAmount">₹0.00</td></tr>
+<tr><td>Platform Convenience Fee</td><td id="feeAmount">₹0.00</td></tr>
+<tr class="grand"><td>Total Payable</td><td id="totalPayable">₹0.00</td></tr>
+</tbody>
+</table>
+
+<div class="payment-actions">
+<button class="cancel-pay" onclick="closePaymentModal()">Cancel</button>
+<button class="confirm-pay" id="confirmPayBtn" onclick="confirmPayment()">Pay Now</button>
+</div>
+</div>
+
+<div class="payment-success" id="paymentSuccess">
+<div class="success-icon"><i class="fa-solid fa-check"></i></div>
+<h2>Payment Completed</h2>
+<p id="successText">Tokens added successfully.</p>
+<div class="payment-actions" style="justify-content:center;margin-top:20px">
+<button class="confirm-pay" onclick="closePaymentModal()">Done</button>
+</div>
+</div>
+</div>
+</div>
+
 <div class="toast" id="toast">Done</div>
 
 <script>
@@ -1414,7 +1581,21 @@ toast.classList.add("show");
 setTimeout(()=>toast.classList.remove("show"),1800);
 }
 
+let selectedPack=null;
+let selectedMethod=null;
+let tokenBalance=1250;
+let jioWalletBalance=28600;
+let activePayment=null;
+
+function formatINR(value){
+return "₹"+Number(value).toLocaleString("en-IN");
+}
+
 function selectPack(card, pack, amount){
+const tokens=Number(pack.replace(/[^0-9]/g,""));
+const price=Number(amount.replace(/[^0-9]/g,""));
+selectedPack={pack,amount,tokens,price};
+
 document.querySelectorAll(".pack-card").forEach(item=>{
 item.classList.remove("selected");
 item.querySelector(".select-btn").innerText="Select";
@@ -1425,13 +1606,120 @@ showToast(pack+" selected");
 }
 
 function selectMethod(method,name){
+selectedMethod=name;
 document.querySelectorAll(".method").forEach(item=>item.classList.remove("selected"));
 method.classList.add("selected");
 showToast(name+" selected");
 }
 
+function buildPaymentForm(method){
+const form=document.getElementById("dynamicPaymentForm");
+if(method==="UPI"){
+form.innerHTML=`
+<h3>UPI Payment</h3>
+<div class="form-grid">
+<div class="form-field full">
+<label>Dummy UPI ID</label>
+<input value="ankit.jiovibe@upi" readonly>
+</div>
+<div class="form-field full">
+<label>UPI App</label>
+<input value="JioPay UPI - Test Mode" readonly>
+</div>
+</div>`;
+}
+else if(method==="Credit / Debit Card"){
+form.innerHTML=`
+<h3>Card Payment</h3>
+<div class="form-grid">
+<div class="form-field full">
+<label>Card Number</label>
+<input value="4111 1111 1111 1111" readonly>
+</div>
+<div class="form-field">
+<label>Name on Card</label>
+<input value="ANKIT JAYANT" readonly>
+</div>
+<div class="form-field">
+<label>Expiry / CVV</label>
+<input value="12/29  •  123" readonly>
+</div>
+</div>`;
+}
+else{
+form.innerHTML=`
+<h3>JioWallet Payment</h3>
+<div class="wallet-pay-box">
+<div><span>Current Amount in Your Wallet</span><strong id="modalWalletBalance">${formatINR(jioWalletBalance)}</strong></div>
+<div><span>Payment Source</span><strong>JioWallet</strong></div>
+</div>`;
+}
+}
+
 function proceedPay(method){
-showToast("Proceeding with "+method);
+if(!selectedPack){
+showToast("Please select a token pack first");
+return;
+}
+selectMethod(document.querySelector(`.method button[onclick*="${method}"]`).closest(".method"), method);
+const gst=+(selectedPack.price*18/118).toFixed(2);
+const base=+(selectedPack.price-gst).toFixed(2);
+const fee=0;
+const total=selectedPack.price+fee;
+activePayment={...selectedPack,method,base,gst,fee,total};
+
+document.getElementById("summaryPack").innerText=selectedPack.pack+" • "+selectedPack.amount;
+document.getElementById("summaryMethod").innerText=method;
+document.getElementById("baseAmount").innerText="₹"+base.toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2});
+document.getElementById("gstAmount").innerText="₹"+gst.toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2});
+document.getElementById("feeAmount").innerText="₹"+fee.toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2});
+document.getElementById("totalPayable").innerText=formatINR(total);
+document.getElementById("confirmPayBtn").innerText=method==="Wallets" ? "Deduct from JioWallet" : "Pay Now";
+buildPaymentForm(method);
+document.getElementById("paymentStep").style.display="block";
+document.getElementById("paymentSuccess").classList.remove("show");
+document.getElementById("paymentModal").classList.add("show");
+}
+
+function closePaymentModal(){
+document.getElementById("paymentModal").classList.remove("show");
+}
+
+function confirmPayment(){
+if(!activePayment) return;
+if(activePayment.method==="Wallets" && jioWalletBalance<activePayment.total){
+showToast("Insufficient JioWallet balance");
+return;
+}
+
+if(activePayment.method==="Wallets"){
+jioWalletBalance-=activePayment.total;
+document.getElementById("walletAmount").innerText=formatINR(jioWalletBalance);
+}
+
+tokenBalance+=activePayment.tokens;
+document.getElementById("tokenBalance").innerText=tokenBalance.toLocaleString("en-IN");
+
+addTokenTransaction(activePayment);
+document.getElementById("paymentStep").style.display="none";
+document.getElementById("successText").innerText=`${activePayment.tokens.toLocaleString("en-IN")} tokens added. New token balance is ${tokenBalance.toLocaleString("en-IN")} tokens.`;
+document.getElementById("paymentSuccess").classList.add("show");
+showToast("Payment completed successfully");
+}
+
+function addTokenTransaction(payment){
+const tbody=document.querySelector(".token-table tbody");
+const tr=document.createElement("tr");
+const today="03 May 2026";
+const methodText=payment.method==="Wallets" ? "JioWallet" : payment.method;
+tr.innerHTML=`
+<td>${today}</td>
+<td><strong>Token Purchase</strong></td>
+<td>${payment.pack} Pack purchased through ${methodText}</td>
+<td><strong>+${payment.tokens.toLocaleString("en-IN")} Tokens<br>${formatINR(payment.total)}</strong></td>
+<td>Base: ₹${payment.base.toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2})}<br>GST included: ₹${payment.gst.toLocaleString("en-IN",{minimumFractionDigits:2,maximumFractionDigits:2})}</td>
+<td><strong class="status-success">Success</strong></td>`;
+tbody.prepend(tr);
 }
 
 function applyFilter(){
