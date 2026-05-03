@@ -650,8 +650,18 @@ New story drop! Energy, style and creator vibes all in one frame 🔥
 
 function closeStory(){
 const params = new URLSearchParams(window.location.search);
-const backPage = params.get("from") || "watch-ranveer-singh.html";
-window.location.href = backPage;
+const from = params.get("from");
+
+const backPages = {
+home: "home.html",
+live: "live.html",
+watch: "watch-ranveer-singh.html",
+"home.html": "home.html",
+"live.html": "live.html",
+"watch-ranveer-singh.html": "watch-ranveer-singh.html"
+};
+
+window.location.href = backPages[from] || document.referrer || "watch-ranveer-singh.html";
 }
 
 const stories = [
