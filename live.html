@@ -1156,39 +1156,39 @@ const captionLibrary = {
 "Thank you for joining the JioVibe live stream."
 ],
 "Hindi":[
-"Sabhi ko welcome, aaj ki energy kamaal ki hai.",
-"Hum live hain creator moments aur behind-the-scenes fun ke saath.",
-"Apne questions bhejte raho, main chat dekh raha hoon.",
-"Agla moment fans ke liye bahut special hone wala hai.",
-"JioVibe live stream join karne ke liye thank you."
+"सभी का स्वागत है, आज की ऊर्जा कमाल की है।",
+"हम बड़े क्रिएटर मोमेंट्स और पर्दे के पीछे की मस्ती के साथ लाइव हैं।",
+"अपने सवाल भेजते रहिए, मैं चैट पढ़ रहा हूँ।",
+"अगला सेगमेंट सभी फैंस के लिए बहुत खास होने वाला है।",
+"JioVibe लाइव स्ट्रीम से जुड़ने के लिए धन्यवाद।"
 ],
 "Tamil":[
-"Ellarukkum welcome, innaiku energy romba super ah irukku.",
-"Creator moments matrum behind-the-scenes fun oda live la irukkom.",
-"Ungal questions anuppunga, naan chat paathuttu irukken.",
-"Adutha moment fans ku romba special ah irukkum.",
-"JioVibe live stream join pannathukku nandri."
+"அனைவருக்கும் வரவேற்பு, இன்றைய உற்சாகம் அருமையாக உள்ளது.",
+"பெரிய கிரியேட்டர் தருணங்களும், பின்னணிப் பொழுதுபோக்கும் உடன் நாங்கள் நேரலையில் இருக்கிறோம்.",
+"உங்கள் கேள்விகளை தொடர்ந்து அனுப்புங்கள், நான் அரட்டையைப் படித்து வருகிறேன்.",
+"அடுத்த பகுதி எல்லா ரசிகர்களுக்கும் மிகவும் சிறப்பானதாக இருக்கும்.",
+"JioVibe நேரலையில் இணைந்ததற்கு நன்றி."
 ],
 "Telugu":[
-"Andariki welcome, ee roju energy chala bagundi.",
-"Creator moments mariyu behind-the-scenes fun tho live lo unnam.",
-"Mee questions pampandi, nenu chat chustunnanu.",
-"Tarvata moment fans kosam chala special ga untundi.",
-"JioVibe live stream join chesinanduku thank you."
+"అందరికీ స్వాగతం, ఈ రాత్రి ఉత్సాహం అద్భుతంగా ఉంది.",
+"పెద్ద క్రియేటర్ క్షణాలు మరియు తెర వెనుక సరదాతో మేము లైవ్‌లో ఉన్నాము.",
+"మీ ప్రశ్నలను పంపుతూ ఉండండి, నేను చాట్ చదువుతున్నాను.",
+"తదుపరి భాగం అభిమానులందరికీ చాలా ప్రత్యేకంగా ఉండబోతోంది.",
+"JioVibe లైవ్ స్ట్రీమ్‌లో చేరినందుకు ధన్యవాదాలు."
 ],
 "Marathi":[
-"Saglyanna welcome, aajchi energy khup zabardast aahe.",
-"Aamhi creator moments ani behind-the-scenes fun sobat live aahot.",
-"Tumche questions pathavat raha, mi chat baghat aahe.",
-"Pudcha moment fans sathi khup special asnar aahe.",
-"JioVibe live stream join kelyabaddal thank you."
+"सर्वांचे स्वागत आहे, आजची ऊर्जा खूपच जबरदस्त आहे.",
+"मोठ्या क्रिएटर क्षणांसह आणि पडद्यामागील मजेशीर गोष्टींसह आम्ही लाईव्ह आहोत.",
+"तुमचे प्रश्न पाठवत राहा, मी चॅट वाचत आहे.",
+"पुढचा भाग सर्व चाहत्यांसाठी खूप खास असणार आहे.",
+"JioVibe लाईव्ह स्ट्रीममध्ये सामील झाल्याबद्दल धन्यवाद."
 ],
 "Bengali":[
-"Sobai ke welcome, aajker energy darun lagche.",
-"Amra creator moments aar behind-the-scenes fun niye live achi.",
-"Tomader questions pathate thako, ami chat dekhchi.",
-"Porer moment fans der jonno khub special hobe.",
-"JioVibe live stream join korar jonno thank you."
+"সবাইকে স্বাগতম, আজকের উচ্ছ্বাস দারুণ।",
+"বড় ক্রিয়েটর মুহূর্ত এবং পর্দার পেছনের মজা নিয়ে আমরা লাইভে আছি।",
+"তোমরা প্রশ্ন পাঠাতে থাকো, আমি চ্যাট পড়ছি।",
+"পরের অংশটি সব ভক্তদের জন্য খুব বিশেষ হতে চলেছে।",
+"JioVibe লাইভ স্ট্রিমে যোগ দেওয়ার জন্য ধন্যবাদ।"
 ]
 };
 
@@ -1197,10 +1197,12 @@ currentCaptionLanguage = language;
 captionIndex = 0;
 const box=document.getElementById("videoCaptionBox");
 const pill=document.getElementById("captionLangPill");
-if(!box || !pill) return;
+if(!box) return;
 box.classList.add("show");
-pill.classList.add("show");
-pill.innerText = language === "English CC" ? "English CC" : "AI Translate: " + language;
+if(pill){
+pill.classList.remove("show");
+pill.innerText = "";
+}
 updateCaptionText();
 clearInterval(captionTimer);
 captionTimer = setInterval(updateCaptionText,2600);
@@ -1273,7 +1275,7 @@ function setAiLanguage(language){
 document.getElementById("captionValue").innerText="AI " + language;
 document.getElementById("ccAiTitle").innerText="AI Translate: " + language;
 document.getElementById("ccAiText").innerText="Captions are now auto-changing in " + language + " over the video.";
-document.getElementById("ccAiBanner").classList.add("show");
+hideAiBanner();
 startCaptions(language);
 showToast("AI captions: " + language);
 openSettingsPanel("mainSettingsPanel");
