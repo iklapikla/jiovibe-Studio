@@ -26,587 +26,231 @@ a{text-decoration:none;color:inherit}
 button,textarea,input{font-family:inherit}
 button{cursor:pointer;border:none}
 
-.topbar{
-  height:72px;background:var(--cream);border-bottom:1px solid var(--line);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 26px;position:sticky;top:0;z-index:20;
-}
-.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:900}
-.project{text-align:center}
-.project h1{font-size:24px;font-weight:900}
-.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
-.tag{background:var(--soft);color:var(--brown);padding:6px 11px;border-radius:8px;font-size:12px;font-weight:900}
-.top-actions{display:flex;align-items:center;gap:12px}
-.token-pill{border:1px solid var(--line);background:#fff;padding:11px 14px;border-radius:12px;font-weight:900}
-.buy-btn{background:var(--orange);color:#fff;border-radius:12px;padding:13px 18px;font-weight:900}
-.buy-btn:hover{background:var(--orange2)}
+.page{max-width:1440px;margin:auto;padding:28px;}
+.back{display:inline-flex;align-items:center;gap:8px;font-weight:900;color:var(--dark);margin-bottom:22px;}
 
-.shell{max-width:1450px;margin:auto;padding:26px;display:flex;flex-direction:column;gap:20px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:24px;}
+.head h1{font-size:38px;font-weight:950;margin-bottom:8px;}
+.head p{font-size:16px;font-weight:700;color:var(--brown);line-height:1.45;}
+.wallet{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 20px;font-weight:900;box-shadow:0 8px 24px rgba(74,14,14,.05);white-space:nowrap;}
+.wallet span{color:var(--orange)}
 
-.card{
-  background:#fff;border:1px solid var(--line);border-radius:22px;
-  padding:22px;box-shadow:0 8px 24px rgba(74,14,14,.05);
-}
-.card-head{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;
-}
-.card-title{display:flex;align-items:center;gap:12px}
-.step-no{
-  width:34px;height:34px;border-radius:50%;background:var(--orange);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-weight:950;
-}
-.card-head h2{font-size:22px;font-weight:950}
-.note{font-size:13px;color:#A66A55;font-weight:850;text-align:right}
+.layout{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:start;}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 8px 28px rgba(74,14,14,.05);}
+.section{margin-bottom:26px;}
+.section:last-child{margin-bottom:0;}
+.section h2{font-size:22px;font-weight:950;margin-bottom:10px;}
+.section-desc{font-size:14px;font-weight:700;color:var(--brown);line-height:1.55;margin-bottom:16px;}
 
-.upload-box{
-  border:1px dashed var(--line);border-radius:18px;padding:20px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;background:#FFF9F3;
-}
-.upload-left{display:flex;align-items:center;gap:15px}
-.upload-icon{
-  width:58px;height:58px;border-radius:16px;background:#FFE4CC;
-  display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:24px;
-}
-.upload-left h3{font-size:19px;font-weight:950;margin-bottom:4px}
-.upload-left p{font-size:14px;font-weight:750;color:var(--brown)}
+.upload-box{border:2px dashed var(--orange);background:#FFF9F3;border-radius:18px;padding:34px;text-align:center;cursor:pointer;transition:.25s;}
+.upload-box:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(255,122,0,.12);}
+.upload-box i{font-size:38px;color:var(--orange);margin-bottom:12px;}
+.upload-box strong{display:block;font-size:18px;font-weight:950;margin-bottom:6px;}
+.upload-box span{font-size:14px;font-weight:700;color:var(--brown);}
+.upload-status{margin-top:12px;font-size:14px;font-weight:900;color:var(--orange2);}
 
-.btn{
-  border-radius:14px;padding:14px 20px;font-size:15px;font-weight:950;transition:.22s;
-}
-.btn.primary{background:var(--orange);color:#fff}
-.btn.secondary{background:#fff;color:var(--dark);border:1px solid var(--line)}
-.btn.more{background:var(--soft);color:var(--orange);border:1px solid var(--line)}
-.btn:hover{transform:scale(1.02);box-shadow:0 8px 18px rgba(255,122,0,.14)}
-.btn.primary:hover{background:var(--orange2)}
+textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:16px;padding:16px;font-size:15px;font-weight:700;color:var(--dark);outline:none;resize:vertical;background:#fff;line-height:1.55;}
+textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.10);}
 
-.more-wrap{
-  text-align:center;
-  margin-top:16px;
-}
-.more-wrap .btn{
-  padding:10px 18px;
-  font-size:13px;
-  border-radius:999px;
-}
+.primary-btn{border:none;background:var(--orange);color:#fff;border-radius:14px;padding:14px 20px;font-size:15px;font-weight:950;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.22s;}
+.primary-btn:hover{background:var(--orange2);transform:scale(1.025);box-shadow:0 12px 28px rgba(255,122,0,.22);}
+.secondary-btn,.copy-btn{border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:12px;padding:10px 13px;font-size:13px;font-weight:900;cursor:pointer;display:inline-flex;gap:7px;align-items:center;}
+.secondary-btn:hover,.copy-btn:hover{background:var(--soft);}
+.prompt-actions{margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.token-pill{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-weight:950;color:var(--dark);}
 
-.prompt-area{
-  display:grid;grid-template-columns:1fr 220px;gap:16px;align-items:stretch;
-}
-textarea{
-  width:100%;height:120px;resize:none;border:1px solid var(--line);
-  border-radius:16px;padding:15px;outline:none;font-size:15px;font-weight:700;
-  line-height:1.45;color:var(--dark);background:#fff;
-}
-textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,122,0,.10)}
-.prompt-actions{display:flex;flex-direction:column;gap:12px}
+.tool-list{display:grid;grid-template-columns:1fr;gap:14px;}
+.tool-card{border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;background:#fff;transition:.22s;}
+.tool-card:hover{border-color:var(--orange);box-shadow:0 12px 26px rgba(255,122,0,.10);transform:translateY(-2px);}
+.tool-info h3{font-size:16px;font-weight:950;margin-bottom:6px;display:flex;gap:8px;align-items:center;}
+.tool-info h3 i{color:var(--orange);}
+.tool-info p{font-size:13px;font-weight:700;color:var(--brown);line-height:1.5;}
+.switch{position:relative;width:54px;height:30px;display:inline-block;}
+.switch input{display:none;}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--line);border-radius:999px;transition:.25s;}
+.slider:before{content:"";position:absolute;height:24px;width:24px;left:3px;top:3px;background:white;border-radius:50%;transition:.25s;box-shadow:0 4px 10px rgba(74,14,14,.18);}
+.switch input:checked + .slider{background:var(--orange);}
+.switch input:checked + .slider:before{transform:translateX(24px);}
 
-.action-row{
-  background:#fff;border:1px solid var(--line);border-radius:18px;
-  padding:16px;display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;
-}
-.action-info h3{font-size:18px;font-weight:950;margin-bottom:4px}
-.action-info p{font-size:13px;font-weight:750;color:var(--brown);line-height:1.35}
-.cost-pill{
-  background:var(--soft);border:1px solid var(--line);border-radius:999px;
-  color:var(--orange);padding:9px 13px;font-size:13px;font-weight:950;white-space:nowrap;
-}
-.action-buttons{display:flex;gap:10px;flex-wrap:wrap}
-.output{display:none;margin-top:16px;border-top:1px solid #FFE0CC;padding-top:16px}
-.output.show{display:block}
+.more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.action-card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:16px;cursor:pointer;transition:.22s;}
+.action-card:hover{background:#FFF9F3;border-color:var(--orange);transform:translateY(-3px);box-shadow:0 12px 24px rgba(255,122,0,.10);}
+.action-card h3{font-size:15px;font-weight:950;margin-bottom:6px;}
+.action-card p{font-size:12.5px;font-weight:700;color:var(--brown);line-height:1.45;}
 
-.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.short-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.story-grid,.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.meta-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.generate-row{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);padding-top:18px;margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.result-panel{height:calc(100vh - 150px);position:sticky;top:24px;display:flex;flex-direction:column;}
+.result-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;}
+.result-head h2{font-size:22px;font-weight:950;}
+.status-dot{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:900;color:var(--brown);}
+.status-dot span{width:9px;height:9px;background:var(--orange);border-radius:50%;display:inline-block;}
+.chat{flex:1;overflow-y:auto;background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth;}
+.msg{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 8px 20px rgba(74,14,14,.04);animation:popIn .25s ease both;}
+@keyframes popIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.msg-top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px;}
+.msg-title{font-size:15px;font-weight:950;}
+.msg-time{font-size:11px;font-weight:800;color:var(--brown);}
+.processing{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--orange2);}
+.spinner{width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--orange);border-radius:50%;animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
 
-.video-card,.short-card,.image-card,.meta-card{
-  border:1px solid var(--line);background:#FFF9F3;border-radius:18px;overflow:hidden;
-  transition:.22s;
-}
-.video-card:hover,.short-card:hover,.image-card:hover,.meta-card:hover{
-  transform:translateY(-3px);box-shadow:0 12px 26px rgba(255,122,0,.12);
-}
-
-.video-thumb{aspect-ratio:16/9;background-size:cover;background-position:center;position:relative}
-.short-thumb{
-  aspect-ratio:9/16;width:62%;margin:14px auto;border-radius:16px;
-  background-size:cover;background-position:center;position:relative;
-}
-.story-thumb{
-  aspect-ratio:9/16;width:65%;margin:14px auto;border-radius:16px;
-  background-size:cover;background-position:center;position:relative;
-}
-.community-thumb{
-  aspect-ratio:1/1;background-size:cover;background-position:center;position:relative;
-}
-.video-thumb:after,.short-thumb:after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(42,10,10,.55),rgba(42,10,10,.04));
-}
-.story-thumb:after,.community-thumb:after{
-  display:none;
-  content:none;
-}
-.play{
-  position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:44px;height:44px;border-radius:50%;background:#fff;color:var(--orange);
-  display:flex;align-items:center;justify-content:center;
-}
-.item-body{padding:14px}
-.item-body h3{font-size:16px;font-weight:950;margin-bottom:5px}
-.item-body p{font-size:13px;font-weight:750;color:var(--brown);line-height:1.35}
-.download-btn{
-  width:100%;margin-top:12px;background:#fff;border:1px solid var(--line);
-  color:var(--orange);border-radius:12px;padding:11px;font-size:13px;font-weight:950;
-}
-.download-btn:hover{background:var(--soft)}
-
-.meta-card{padding:16px}
-.meta-card h3{font-size:16px;font-weight:950;margin-bottom:8px}
-.meta-card p{font-size:14px;font-weight:750;color:var(--brown);line-height:1.45;margin-bottom:12px}
-.copy-btn{
-  background:#fff;border:1px solid var(--line);border-radius:12px;
-  padding:10px 13px;font-size:13px;font-weight:950;color:var(--orange);
-}
-.copy-btn:hover{background:var(--soft)}
-
-.toast{
-  position:fixed;left:50%;bottom:28px;transform:translateX(-50%);
-  background:var(--deep);color:#fff;padding:13px 18px;border-radius:999px;
-  font-weight:850;display:none;z-index:100;
-}
+.media{position:relative;border-radius:14px;overflow:hidden;background:var(--deep);margin-bottom:12px;border:1px solid var(--line);}
+.media.wide{aspect-ratio:16/9;width:100%;}
+.media.vertical{aspect-ratio:9/16;width:210px;max-width:100%;margin-left:auto;margin-right:auto;}
+.media.square{aspect-ratio:1/1;width:230px;max-width:100%;margin-left:auto;margin-right:auto;}
+.media img,.media video{width:100%;height:100%;object-fit:cover;display:block;}
+.media .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;backdrop-filter:blur(6px);}
+.media .label{position:absolute;left:14px;bottom:14px;background:rgba(0,0,0,.62);color:#fff;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:900;}
+.media .variant-badge{position:absolute;right:12px;top:12px;background:var(--orange);color:white;font-size:11px;font-weight:900;padding:7px 10px;border-radius:999px;}
+.output-text{font-size:13px;font-weight:700;color:var(--brown);line-height:1.55;margin-bottom:12px;}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.empty-state{text-align:center;color:var(--brown);font-weight:800;padding:36px 18px;}
+.empty-state i{font-size:42px;color:var(--orange);margin-bottom:14px;display:block;}
+.text-result{background:#FFF9F3;border:1px solid var(--line);border-radius:14px;padding:14px;font-size:14px;font-weight:750;color:var(--dark);line-height:1.55;margin-bottom:12px;}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--deep);color:#fff;padding:13px 18px;border-radius:999px;font-weight:900;display:none;z-index:100;}
 .toast.show{display:block}
 
-@media(max-width:1000px){
-  .action-row{grid-template-columns:1fr}
-  .prompt-area{grid-template-columns:1fr}
-  .video-grid,.short-grid,.story-grid,.community-grid,.meta-grid{grid-template-columns:1fr}
-}
-@media(max-width:800px){
-  .topbar{height:auto;flex-wrap:wrap;gap:14px;padding:16px}
-  .project{order:3;width:100%}
-  .upload-box{flex-direction:column;align-items:stretch}
-}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.result-panel{height:650px;position:relative;top:auto}.more-grid{grid-template-columns:1fr}.head{flex-direction:column}.wallet{white-space:normal}}
 </style>
 </head>
-
 <body>
 
-<header class="topbar">
-  <div class="back-title">
-    <a href="ai-studio.html"><i class="fa-solid fa-arrow-left"></i></a>
-    <span>AI Conetent Generator</span>
-  </div>
+<div class="page">
+<a href="ai-studio.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to AI Studio</a>
 
-  <div class="project">
-    <h1>Create Video, Shorts & Social Assets</h1>
-    <div class="tags">
-      <span class="tag">Video 16:9</span>
-      <span class="tag">Shorts 9:16</span>
-      <span class="tag">Images for Posts</span>
-    </div>
-  </div>
+<div class="head">
+<div>
+<h1>AI Content Generator</h1>
+<p>Create video, shorts, title, description, tags and social assets from a prompt or uploaded video.</p>
+</div>
+<div class="wallet"><i class="fa-solid fa-coins"></i> Current Usage: <span id="usedTokens">0</span> Tokens</div>
+</div>
 
-  <div class="top-actions">
-    <div class="token-pill"><i class="fa-solid fa-coins"></i> My Tokens: <span style="color:#FF7A00;">1,250</span></div>
-    <a href="wallet.html" class="buy-btn">+ Buy Tokens</a>
-  </div>
-</header>
+<div class="layout">
+<div class="panel">
 
-<div class="shell">
+<div class="section">
+<h2>1. Upload Video</h2>
+<p class="section-desc">Upload your video to create more videos, shorts, story images and community post images. This is a fake upload flow for demo.</p>
+<div class="upload-box" onclick="uploadVideo()">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+<strong id="uploadTitle">Click to Upload Video</strong>
+<span id="uploadText">Upload is free. After upload, all generation actions will appear on the right.</span>
+</div>
+<div class="upload-status" id="uploadStatus"></div>
+</div>
 
-<section class="card">
-  <div class="card-head">
-    <div class="card-title">
-      <div class="step-no">1</div>
-      <h2>Upload Video</h2>
-    </div>
-    <div class="note">Free upload</div>
-  </div>
+<div class="section">
+<h2>2. Prompt to Content</h2>
+<p class="section-desc">Write your idea and generate a complete content pack. Output will appear on the right like AI chat results.</p>
+<textarea id="promptText">Create a cinematic gaming intro video with fast cuts, glowing orange effects, creator face reveal moment, and strong YouTube-style opening.</textarea>
+<div class="prompt-actions">
+<button class="primary-btn" onclick="generatePromptPack()"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Content Pack</button>
+<span class="token-pill">Cost: 20 Tokens</span>
+<button class="secondary-btn" onclick="clearPrompt()"><i class="fa-solid fa-eraser"></i> Clear</button>
+</div>
+</div>
 
-  <div class="upload-box">
-    <div class="upload-left">
-      <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-      <div>
-        <h3 id="uploadTitle">Upload your video</h3>
-        <p id="uploadText">Upload is free. After upload, you can generate title, description, videos, shorts and images using tokens.</p>
-      </div>
-    </div>
-    <button class="btn primary" id="uploadBtn" onclick="uploadVideo()">Upload Video</button>
-  </div>
-</section>
+<div class="section">
+<h2>3. Select Output Type</h2>
+<p class="section-desc">Turn on the outputs you want. Each selected output costs 5 tokens, then click Generate Selected.</p>
+<div class="tool-list">
+<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-video"></i> Generate Video 16:9</h3><p>Create a landscape video from prompt or uploaded content.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="video16" data-name="Video 16:9"><span class="slider"></span></label></div>
+<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-mobile-screen"></i> Generate Shorts 9:16</h3><p>Create a vertical short with hook-first pacing and caption-ready framing.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="shorts9" data-name="Shorts 9:16"><span class="slider"></span></label></div>
+<div class="tool-card"><div class="tool-info"><h3><i class="fa-regular fa-image"></i> Generate Thumbnail 16:9</h3><p>Create a clickable thumbnail image from the same idea/content direction.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="thumbnail16" data-name="Thumbnail 16:9"><span class="slider"></span></label></div>
+<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-heading"></i> Generate Title</h3><p>Create SEO-friendly, creator-style titles with copy button.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="title" data-name="Title"><span class="slider"></span></label></div>
+<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-align-left"></i> Generate Description</h3><p>Create complete YouTube-style descriptions with copy button.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="description" data-name="Description"><span class="slider"></span></label></div>
+<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-hashtag"></i> Generate Tags</h3><p>Create hashtags and tags for discovery.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="tags" data-name="Tags"><span class="slider"></span></label></div>
+<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-bolt"></i> Highlighted Video 16:9</h3><p>Generate highlight video from uploaded video in 16:9 format.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="highlight16" data-name="Highlighted Video"><span class="slider"></span></label></div>
+<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-images"></i> Story Image 9:16</h3><p>Extract/refine a vertical story image from uploaded video.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="story9" data-name="Story Image"><span class="slider"></span></label></div>
+<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-table-cells"></i> Community Image 1:1</h3><p>Extract/refine a square community post image.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="community1" data-name="Community Image"><span class="slider"></span></label></div>
+</div>
+<div class="generate-row">
+<div class="token-pill">Selected Cost: <span id="selectedCost">0</span> Tokens</div>
+<button class="primary-btn" onclick="generateSelected()"><i class="fa-solid fa-layer-group"></i> Generate Selected</button>
+</div>
+</div>
 
-<section class="card">
-  <div class="card-head">
-    <div class="card-title">
-      <div class="step-no">2</div>
-      <h2>Prompt to Video</h2>
-    </div>
-    <div class="note">Generate 3 videos in 16:9</div>
-  </div>
+<div class="section">
+<h2>4. Quick Actions</h2>
+<p class="section-desc">Direct generation actions. Each action costs 5 tokens. More variations also cost 5 tokens.</p>
+<div class="more-grid">
+<div class="action-card" onclick="runAction('title')"><h3>Generate Title</h3><p>Generate one copy-ready title.</p></div>
+<div class="action-card" onclick="runAction('description')"><h3>Generate Description</h3><p>Generate one full description.</p></div>
+<div class="action-card" onclick="runAction('tags')"><h3>Generate Tags</h3><p>Generate tags and hashtags.</p></div>
+<div class="action-card" onclick="runAction('video16')"><h3>Generate Video 16:9</h3><p>Create a landscape video output.</p></div>
+<div class="action-card" onclick="runAction('shorts9')"><h3>Generate Shorts 9:16</h3><p>Create a vertical short output.</p></div>
+<div class="action-card" onclick="runAction('thumbnail16')"><h3>Generate Thumbnail 16:9</h3><p>Create a thumbnail image.</p></div>
+<div class="action-card" onclick="runAction('story9')"><h3>Story Image 9:16</h3><p>Create a vertical story image.</p></div>
+<div class="action-card" onclick="runAction('community1')"><h3>Community Post 1:1</h3><p>Create a square post image.</p></div>
+</div>
+</div>
 
-  <div class="prompt-area">
-    <textarea id="promptText">Create a cinematic gaming intro video with fast cuts, glowing orange effects, creator face reveal moment, and strong YouTube-style opening.</textarea>
-    <div class="prompt-actions">
-      <button class="btn primary" onclick="generatePromptVideos()">Generate Video • 20 Tokens</button>
-      <button class="btn secondary" onclick="clearPrompt()">Clear Prompt</button>
-    </div>
-  </div>
+</div>
 
-  <div class="output" id="promptVideoOutput">
-    <div class="video-grid" id="promptVideoGrid"></div>
-    <div class="more-wrap">
-      <button class="btn more" onclick="comingSoon()">More • 10 Tokens</button>
-    </div>
-  </div>
-</section>
-
-<section class="card">
-  <div class="action-row">
-    <div class="action-info">
-      <h3>Generate Title</h3>
-      <p>Generate copy-ready titles for uploaded video or prompt video.</p>
-    </div>
-    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 5 Tokens</div>
-    <div class="action-buttons">
-      <button class="btn primary" onclick="generateTitle('uploaded')">For Uploaded Video</button>
-      <button class="btn secondary" onclick="generateTitle('prompt')">For Prompt Video</button>
-    </div>
-  </div>
-
-  <div class="output" id="titleOutput">
-    <div class="meta-grid" id="titleGrid"></div>
-    <div class="more-wrap">
-      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
-    </div>
-  </div>
-</section>
-
-<section class="card">
-  <div class="action-row">
-    <div class="action-info">
-      <h3>Generate Description</h3>
-      <p>Generate copy-ready descriptions for uploaded video or prompt video.</p>
-    </div>
-    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 5 Tokens</div>
-    <div class="action-buttons">
-      <button class="btn primary" onclick="generateDescription('uploaded')">For Uploaded Video</button>
-      <button class="btn secondary" onclick="generateDescription('prompt')">For Prompt Video</button>
-    </div>
-  </div>
-
-  <div class="output" id="descriptionOutput">
-    <div class="meta-grid" id="descriptionGrid"></div>
-    <div class="more-wrap">
-      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
-    </div>
-  </div>
-</section>
-
-<section class="card">
-  <div class="action-row">
-    <div class="action-info">
-      <h3>Generate More Videos from Uploaded Video</h3>
-      <p>Create 3 new 16:9 video versions from your uploaded video.</p>
-    </div>
-    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 15 Tokens</div>
-    <div class="action-buttons">
-      <button class="btn primary" onclick="generateMoreVideos()">Generate</button>
-    </div>
-  </div>
-
-  <div class="output" id="moreVideoOutput">
-    <div class="video-grid" id="moreVideoGrid"></div>
-    <div class="more-wrap">
-      <button class="btn more" onclick="comingSoon()">More • 10 Tokens</button>
-    </div>
-  </div>
-</section>
-
-<section class="card">
-  <div class="action-row">
-    <div class="action-info">
-      <h3>Generate More Shorts from Uploaded Video</h3>
-      <p>Create 3 vertical 9:16 shorts from your uploaded video.</p>
-    </div>
-    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 10 Tokens</div>
-    <div class="action-buttons">
-      <button class="btn primary" onclick="generateShorts()">Generate</button>
-    </div>
-  </div>
-
-  <div class="output" id="shortOutput">
-    <div class="short-grid" id="shortGrid"></div>
-    <div class="more-wrap">
-      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
-    </div>
-  </div>
-</section>
-
-<section class="card">
-  <div class="action-row">
-    <div class="action-info">
-      <h3>Extract Images from Video for Story</h3>
-      <p>Extract and refine 3 vertical 9:16 story images from the video.</p>
-    </div>
-    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 10 Tokens</div>
-    <div class="action-buttons">
-      <button class="btn primary" onclick="generateStoryImages()">Generate</button>
-    </div>
-  </div>
-
-  <div class="output" id="storyOutput">
-    <div class="story-grid" id="storyGrid"></div>
-    <div class="more-wrap">
-      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
-    </div>
-  </div>
-</section>
-
-<section class="card">
-  <div class="action-row">
-    <div class="action-info">
-      <h3>Extract Images from Video for Community Post</h3>
-      <p>Extract and refine 3 square 1:1 images for community post.</p>
-    </div>
-    <div class="cost-pill"><i class="fa-solid fa-coins"></i> 10 Tokens</div>
-    <div class="action-buttons">
-      <button class="btn primary" onclick="generateCommunityImages()">Generate</button>
-    </div>
-  </div>
-
-  <div class="output" id="communityOutput">
-    <div class="community-grid" id="communityGrid"></div>
-    <div class="more-wrap">
-      <button class="btn more" onclick="comingSoon()">More • 5 Tokens</button>
-    </div>
-  </div>
-</section>
-
+<div class="panel result-panel">
+<div class="result-head"><h2>AI Results</h2><div class="status-dot"><span></span> Live Output</div></div>
+<div class="chat" id="chat"><div class="empty-state" id="emptyState"><i class="fa-solid fa-wand-magic-sparkles"></i>Results will appear here like a chat. Old results will stay available with scroll.</div></div>
+</div>
+</div>
 </div>
 
 <div class="toast" id="toast">Done</div>
 
 <script>
+let usedTokens = 0;
 let videoUploaded = false;
+const BASE_GIF = "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/simmba-ranveer-singh%20(1).gif";
+const BASE_IMAGE = "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/simmba-ranveer-singh.gif";
+let counters = {video:0,image:0,title:0,description:0,tags:0};
 
-const videoImages = [
-  "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop"
-];
+function showToast(text){const toast=document.getElementById('toast');toast.innerText=text;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
+function updateTokens(value){usedTokens+=value;document.getElementById('usedTokens').innerText=usedTokens;}
+function timeNow(){return new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});}
+function clearEmpty(){const empty=document.getElementById('emptyState');if(empty)empty.remove();}
+function scrollChat(){const chat=document.getElementById('chat');chat.scrollTop=chat.scrollHeight;}
+function addMsg(html){clearEmpty();const div=document.createElement('div');div.className='msg';div.innerHTML=html;document.getElementById('chat').appendChild(div);scrollChat();}
+function addProcessing(title){clearEmpty();const id='process_'+Date.now()+Math.floor(Math.random()*1000);const div=document.createElement('div');div.className='msg';div.id=id;div.innerHTML=`<div class="msg-top"><div class="msg-title">${title}</div><div class="msg-time">${timeNow()}</div></div><div class="processing"><span class="spinner"></span> AI is processing... please wait</div>`;document.getElementById('chat').appendChild(div);scrollChat();return id;}
+function replaceMsg(id, html){const el=document.getElementById(id);if(el){el.innerHTML=html;scrollChat();}}
+function uploadVideo(){videoUploaded=true;document.getElementById('uploadTitle').innerText='Video uploaded successfully';document.getElementById('uploadText').innerText='Your uploaded video is ready for video, shorts, title, description and social assets.';document.getElementById('uploadStatus').innerHTML='✅ Video uploaded successfully: content-demo-video.mp4';addMsg(`<div class="msg-top"><div class="msg-title">Video Uploaded</div><div class="msg-time">${timeNow()}</div></div><div class="output-text">Source video is ready. You can generate videos, shorts, thumbnails, title, description, tags and social assets.</div>`);}
+function clearPrompt(){document.getElementById('promptText').value='';showToast('Prompt cleared');}
 
-const travelImages = [
-  "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop"
-];
+document.querySelectorAll('.tool-toggle').forEach(t=>t.addEventListener('change',calculateSelectedCost));
+function calculateSelectedCost(){document.getElementById('selectedCost').innerText=document.querySelectorAll('.tool-toggle:checked').length*5;}
 
-const storyImages = [
-  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=900&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=900&auto=format&fit=crop"
-];
-
-function showToast(text){
-  const toast=document.getElementById("toast");
-  toast.innerText=text;
-  toast.classList.add("show");
-  setTimeout(()=>toast.classList.remove("show"),1800);
-}
-
-function requireUpload(){
-  if(!videoUploaded){
-    showToast("Please upload video first");
-    return false;
+function mediaBlock(label, kind='video', ratio='wide', isMore=false){
+  let cls=`media ${ratio}`;
+  let counterKey=kind==='video'?'video':'image';
+  counters[counterKey]++;
+  let variantNo=counters[counterKey];
+  let transform=isMore?`scale(${1.04 + (variantNo%4)*0.025}) translate(${(variantNo%3)-1}%, ${((variantNo+1)%3)-1}%)`:'';
+  let filter=isMore?`brightness(${0.92 + (variantNo%3)*0.06}) contrast(${1.02 + (variantNo%4)*0.04}) saturate(${1.04 + (variantNo%3)*0.05})`:'';
+  if(kind==='image'){
+    return `<div class="${cls}"><img src="${BASE_IMAGE}" style="transform:${transform};filter:${filter};"><div class="variant-badge">Image V${variantNo}</div><div class="label">${label}</div></div>`;
   }
-  return true;
+  return `<div class="${cls}"><img src="${BASE_GIF}" style="transform:${transform};filter:${filter};"><div class="play"><i class="fa-solid fa-play"></i></div><div class="variant-badge">Video V${variantNo}</div><div class="label">${label}</div></div>`;
 }
+function resultButtons(type){return `<div class="result-actions"><button class="secondary-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button><button class="secondary-btn" onclick="generateMore('${type}')"><i class="fa-solid fa-plus"></i> More (+5 Tokens)</button></div>`;}
+function textButtons(type,text){return `<div class="result-actions"><button class="copy-btn" onclick="copyText(\`${text.replace(/`/g,'')}\`)"><i class="fa-regular fa-copy"></i> Copy</button><button class="secondary-btn" onclick="generateMore('${type}')"><i class="fa-solid fa-plus"></i> More (+5 Tokens)</button></div>`;}
 
-function comingSoon(){
-  showToast("More output will be available soon");
+function generatePromptPack(){updateTokens(20);const id=addProcessing('Generating Content Pack');setTimeout(()=>{replaceMsg(id, `<div class="msg-top"><div class="msg-title">Prompt Content Pack Ready</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock('Prompt Video • 16:9','video','wide',false)}<div class="output-text">AI generated a complete content pack from your prompt: video, title, description, tags, thumbnail and shorts direction.</div>${resultButtons('video16')}`);runAction('title', false);runAction('description', false);runAction('tags', false);runAction('thumbnail16', false);},5000);}
+
+function generateSelected(){const selected=Array.from(document.querySelectorAll('.tool-toggle:checked')).map(t=>t.dataset.type);if(!selected.length){showToast('Please select at least one output');return;}updateTokens(selected.length*5);selected.forEach((type,i)=>setTimeout(()=>runAction(type,false,false),i*400));}
+
+function runAction(type, charge=true, delay=true){if(charge)updateTokens(5);const id=addProcessing(actionTitle(type));const wait=delay?5000:900;setTimeout(()=>replaceMsg(id, buildResult(type,false)),wait);}
+function actionTitle(type){return {title:'Generating Title',description:'Generating Description',tags:'Generating Tags',video16:'Generating Video 16:9',highlight16:'Generating Highlighted Video',shorts9:'Generating Shorts 9:16',thumbnail16:'Generating Thumbnail 16:9',story9:'Creating Story Image',community1:'Creating Community Post Image'}[type]||'Generating Output';}
+function buildResult(type,isMore){const moreLabel=isMore?'More ':'';
+ if(type==='title'){counters.title++;const arr=['High Energy Gaming Intro | JioVibe Creator Edit','This Intro Looks Insane | AI Generated Video','From Idea to Video in Seconds | AI Creator Demo'];const text=arr[(counters.title-1)%arr.length];return `<div class="msg-top"><div class="msg-title">${moreLabel}Generated Title</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">${text}</div>${textButtons('title',text)}`;}
+ if(type==='description'){counters.description++;const arr=['A strong creator-style video with fast cuts, bold visuals and high engagement opening. Created using JioVibe AI.','Watch this AI-powered video edit with cinematic visuals, smooth transitions and a powerful opening hook.','This video shows how creators can generate professional content using prompt-based AI tools on JioVibe.'];const text=arr[(counters.description-1)%arr.length];return `<div class="msg-top"><div class="msg-title">${moreLabel}Generated Description</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">${text}</div>${textButtons('description',text)}`;}
+ if(type==='tags'){counters.tags++;const arr=['#JioVibe #AIVideo #CreatorTools #GamingEdit #ViralShorts','#AIContent #VideoEditing #CreatorEconomy #Shorts #Trending','#Gaming #AIEdited #VideoCreator #Thumbnail #JioVibeStudio'];const text=arr[(counters.tags-1)%arr.length];return `<div class="msg-top"><div class="msg-title">${moreLabel}Generated Tags</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">${text}</div>${textButtons('tags',text)}`;}
+ if(type==='shorts9')return `<div class="msg-top"><div class="msg-title">${moreLabel}Shorts Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Shorts Output • 9:16`,'video','vertical',isMore)}<div class="output-text">Vertical short generated from the same idea/content with smart crop and hook-first framing.</div>${resultButtons('shorts9')}`;
+ if(type==='thumbnail16')return `<div class="msg-top"><div class="msg-title">${moreLabel}Thumbnail Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Thumbnail • 16:9`,'image','wide',isMore)}<div class="output-text">Thumbnail created using the same visual direction as the generated content.</div>${resultButtons('thumbnail16')}`;
+ if(type==='story9')return `<div class="msg-top"><div class="msg-title">${moreLabel}Story Image Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Story Image • 9:16`,'image','vertical',isMore)}<div class="output-text">Vertical story image created from the same content direction.</div>${resultButtons('story9')}`;
+ if(type==='community1')return `<div class="msg-top"><div class="msg-title">${moreLabel}Community Image Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Community Post • 1:1`,'image','square',isMore)}<div class="output-text">Square community post image created from the same content direction.</div>${resultButtons('community1')}`;
+ return `<div class="msg-top"><div class="msg-title">${moreLabel}Video Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Video Output • 16:9`,'video','wide',isMore)}<div class="output-text">AI generated a 16:9 video output from your idea or uploaded content.</div>${resultButtons(type)}`;
 }
-
-function uploadVideo(){
-  videoUploaded = true;
-  document.getElementById("uploadTitle").innerText="Video uploaded successfully";
-  document.getElementById("uploadText").innerText="Your uploaded video is ready for title, description, videos, shorts and image extraction.";
-  document.getElementById("uploadBtn").innerHTML='<i class="fa-solid fa-check"></i> Uploaded';
-  showToast("Video uploaded successfully");
-}
-
-function clearPrompt(){
-  document.getElementById("promptText").value="";
-  showToast("Prompt cleared");
-}
-
-function videoCard(title,img,desc){
-  return `
-  <div class="video-card">
-    <div class="video-thumb" style="background-image:url('${img}')">
-      <div class="play"><i class="fa-solid fa-play"></i></div>
-    </div>
-    <div class="item-body">
-      <h3>${title}</h3>
-      <p>${desc}</p>
-      <button class="download-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button>
-    </div>
-  </div>`;
-}
-
-function shortCard(title,img,desc){
-  return `
-  <div class="short-card">
-    <div class="short-thumb" style="background-image:url('${img}')">
-      <div class="play"><i class="fa-solid fa-play"></i></div>
-    </div>
-    <div class="item-body">
-      <h3>${title}</h3>
-      <p>${desc}</p>
-      <button class="download-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button>
-    </div>
-  </div>`;
-}
-
-function storyImageCard(title,img){
-  return `
-  <div class="image-card">
-    <div class="story-thumb" style="background-image:url('${img}')"></div>
-    <div class="item-body">
-      <h3>${title}</h3>
-      <p>9:16 refined story image generated from video frame.</p>
-      <button class="download-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button>
-    </div>
-  </div>`;
-}
-
-function communityImageCard(title,img){
-  return `
-  <div class="image-card">
-    <div class="community-thumb" style="background-image:url('${img}')"></div>
-    <div class="item-body">
-      <h3>${title}</h3>
-      <p>1:1 refined community post image generated from video frame.</p>
-      <button class="download-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button>
-    </div>
-  </div>`;
-}
-
-function generatePromptVideos(){
-  const grid=document.getElementById("promptVideoGrid");
-  grid.innerHTML =
-    videoCard("Prompt Video 1",videoImages[0],"16:9 AI generated video from prompt.")+
-    videoCard("Prompt Video 2",videoImages[1],"Alternative 16:9 video style.")+
-    videoCard("Prompt Video 3",videoImages[2],"High energy creator-style output.");
-  document.getElementById("promptVideoOutput").classList.add("show");
-  showToast("3 prompt videos generated • 20 Tokens");
-}
-
-function generateTitle(type){
-  if(type === "uploaded" && !requireUpload()) return;
-
-  const grid=document.getElementById("titleGrid");
-  const label = type === "uploaded" ? "Uploaded Video" : "Prompt Video";
-  const titles = [
-    "High Energy Gaming Intro | JioVibe Creator Edit",
-    "This Intro Looks Insane | AI Generated Video",
-    "Creator Video Made with AI | Full Edit Demo",
-    "From Idea to Video in Seconds"
-  ];
-
-  grid.innerHTML = titles.map((title,i)=>`
-    <div class="meta-card">
-      <h3>${label} Title ${i+1}</h3>
-      <p>${title}</p>
-      <button class="copy-btn" onclick="copyText('${title.replace(/'/g,"")}')">
-        <i class="fa-regular fa-copy"></i> Copy
-      </button>
-    </div>
-  `).join("");
-
-  document.getElementById("titleOutput").classList.add("show");
-  showToast("Titles generated • 5 Tokens");
-}
-
-function generateDescription(type){
-  if(type === "uploaded" && !requireUpload()) return;
-
-  const grid=document.getElementById("descriptionGrid");
-  const label = type === "uploaded" ? "Uploaded Video" : "Prompt Video";
-  const descriptions = [
-    "A strong creator-style video with fast cuts, bold visuals and high engagement opening. Created using JioVibe AI.",
-    "Watch this AI-powered video edit with cinematic visuals, smooth transitions and a powerful opening hook.",
-    "This video shows how creators can generate professional content using prompt-based AI tools on JioVibe.",
-    "A clean and engaging AI generated video made for creators, streamers and community posts."
-  ];
-
-  grid.innerHTML = descriptions.map((desc,i)=>`
-    <div class="meta-card">
-      <h3>${label} Description ${i+1}</h3>
-      <p>${desc}</p>
-      <button class="copy-btn" onclick="copyText('${desc.replace(/'/g,"")}')">
-        <i class="fa-regular fa-copy"></i> Copy
-      </button>
-    </div>
-  `).join("");
-
-  document.getElementById("descriptionOutput").classList.add("show");
-  showToast("Descriptions generated • 5 Tokens");
-}
-
-function generateMoreVideos(){
-  if(!requireUpload()) return;
-
-  const grid=document.getElementById("moreVideoGrid");
-  grid.innerHTML =
-    videoCard("Cinematic Edit",travelImages[0],"Generated from uploaded video in 16:9.")+
-    videoCard("Highlight Cut",travelImages[1],"Best moments converted into video.")+
-    videoCard("Clean Creator Edit",travelImages[2],"Polished creator-style 16:9 output.");
-  document.getElementById("moreVideoOutput").classList.add("show");
-  showToast("3 more videos generated • 15 Tokens");
-}
-
-function generateShorts(){
-  if(!requireUpload()) return;
-
-  const grid=document.getElementById("shortGrid");
-  grid.innerHTML =
-    shortCard("Viral Short",storyImages[0],"9:16 hook-first short generated.")+
-    shortCard("Best Moment Short",storyImages[1],"Best clip converted into short.")+
-    shortCard("Caption Short",storyImages[2],"Short with auto caption style.");
-  document.getElementById("shortOutput").classList.add("show");
-  showToast("3 shorts generated • 10 Tokens");
-}
-
-function generateStoryImages(){
-  if(!requireUpload()) return;
-
-  const grid=document.getElementById("storyGrid");
-  grid.innerHTML =
-    storyImageCard("Story Image 1",storyImages[0])+
-    storyImageCard("Story Image 2",storyImages[1])+
-    storyImageCard("Story Image 3",storyImages[2]);
-  document.getElementById("storyOutput").classList.add("show");
-  showToast("Story images generated • 10 Tokens");
-}
-
-function generateCommunityImages(){
-  if(!requireUpload()) return;
-
-  const grid=document.getElementById("communityGrid");
-  grid.innerHTML =
-    communityImageCard("Community Post 1",travelImages[0])+
-    communityImageCard("Community Post 2",travelImages[1])+
-    communityImageCard("Community Post 3",travelImages[2]);
-  document.getElementById("communityOutput").classList.add("show");
-  showToast("Community post images generated • 10 Tokens");
-}
-
-function copyText(text){
-  navigator.clipboard.writeText(text);
-  showToast("Copied");
-}
+function generateMore(type){updateTokens(5);const id=addProcessing('Generating More Variation (+5 Tokens)');setTimeout(()=>replaceMsg(id, buildResult(type,true)),5000);}
+function copyText(text){navigator.clipboard.writeText(text);showToast('Copied');addMsg(`<div class="msg-top"><div class="msg-title">Copied</div><div class="msg-time">${timeNow()}</div></div><div class="output-text">Text copied successfully.</div>`)}
 </script>
-
 </body>
 </html>
