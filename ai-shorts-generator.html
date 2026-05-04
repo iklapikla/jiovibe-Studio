@@ -72,20 +72,24 @@ textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.1
 .prompt-mode-grid{display:grid;grid-template-columns:1fr;gap:8px;}
 .prompt-mode{display:flex;align-items:center;cursor:pointer;}
 .prompt-mode input{display:none;}
-.prompt-mode span{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:13px;padding:11px 12px;font-size:13px;font-weight:900;transition:.22s;}
-.prompt-mode span .left{display:inline-flex;align-items:center;gap:9px;}
-.prompt-mode span i{color:var(--orange);}
-.prompt-mode span .cost{font-size:11px;font-weight:950;color:var(--brown);background:#FFF1E5;border-radius:999px;padding:5px 8px;}
-.prompt-mode:hover span{border-color:var(--orange);background:#FFF9F3;}
-.prompt-mode input:checked + span{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 10px 22px rgba(255,122,0,.20);}
-.prompt-mode input:checked + span i,.prompt-mode input:checked + span .cost{color:#fff;}
-.prompt-mode input:checked + span .cost{background:rgba(255,255,255,.18);}
+.prompt-mode > span{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:16px;padding:12px 12px;font-size:13px;font-weight:900;transition:.22s;box-shadow:0 6px 16px rgba(74,14,14,.035);}
+.prompt-mode > span .left{display:inline-flex;align-items:center;gap:10px;min-width:0;}
+.prompt-mode > span i{color:var(--orange);font-size:15px;width:18px;text-align:center;}
+.prompt-mode > input + span::after{content:"Select";flex:0 0 auto;background:#FFF1E5;color:var(--orange);border:1px solid #FFD2B3;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:950;letter-spacing:.2px;transition:.22s;}
+.prompt-mode > span .cost{font-size:11px;font-weight:950;color:var(--brown);background:#FFF1E5;border-radius:999px;padding:5px 8px;}
+.prompt-mode:hover > input + span{border-color:var(--orange);background:#FFFDF9;transform:translateY(-1px);box-shadow:0 10px 24px rgba(255,122,0,.10);}
+.prompt-mode:hover > input + span::after{background:#FFE0C2;border-color:var(--orange);}
+.prompt-mode input:checked + span{background:#fff;border-color:var(--orange);color:var(--dark);box-shadow:0 10px 24px rgba(255,122,0,.14);}
+.prompt-mode input:checked + span i{color:var(--orange);}
+.prompt-mode input:checked + span::after{content:"Selected";background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 8px 18px rgba(255,122,0,.22);}
+.prompt-mode input:checked + span .cost{background:#FFF1E5;color:var(--brown);}
 .composer-right{display:flex;align-items:center;gap:10px;}
 .prompt-cost{height:42px;border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:999px;padding:0 13px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:950;}
 .icon-btn{height:42px;width:42px;border-radius:50%;background:#fff;border:1px solid var(--line);color:var(--dark);display:inline-flex;align-items:center;justify-content:center;font-size:16px;transition:.22s;}
 .icon-btn:hover{border-color:var(--orange);color:var(--orange);transform:scale(1.04);}
 .send-btn{height:46px;width:46px;border-radius:50%;background:var(--orange);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:18px;transition:.22s;}
 .send-btn:hover{background:var(--orange2);transform:scale(1.05);box-shadow:0 12px 24px rgba(255,122,0,.22);}
+.generate-prompt-btn{height:42px;border-radius:999px;padding:0 20px;}
 .clear-mini{font-size:12px;font-weight:900;color:var(--brown);background:transparent;padding:0 4px;}
 .clear-mini:hover{color:var(--orange2);}
 .token-pill{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-weight:950;color:var(--dark);}
@@ -161,19 +165,8 @@ textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.1
 <div class="panel">
 
 <div class="section">
-<h2>1. Upload Video</h2>
-<p class="section-desc">Upload your video to create more videos, shorts, story images and community post images. This is a fake upload flow for demo.</p>
-<div class="upload-box" onclick="uploadVideo()">
-<i class="fa-solid fa-cloud-arrow-up"></i>
-<strong id="uploadTitle">Click to Upload Video</strong>
-<span id="uploadText">Upload is free. After upload, all generation actions will appear on the right.</span>
-</div>
-<div class="upload-status" id="uploadStatus"></div>
-</div>
-
-<div class="section">
-<h2>2. Prompt Based Editing</h2>
-<p class="section-desc">Write a prompt, select one or multiple AI modes from the chat-style tool button, and generate only selected outputs. Token cost keeps adding automatically.</p>
+<h2>1. AI Prompt Studio</h2>
+<p class="section-desc">Write a prompt, select one or multiple AI actions from the chat-style tool button, and generate only the selected outputs.</p>
 <div class="prompt-composer">
 <textarea id="promptText">Create a cinematic gaming intro video with fast cuts, glowing orange effects, creator face reveal moment, and strong YouTube-style opening.</textarea>
 <div class="composer-bar">
@@ -182,24 +175,32 @@ textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.1
 <div class="mode-menu" id="promptModeMenu">
 <div class="mode-menu-head">Choose what AI should do</div>
 <div class="prompt-mode-grid">
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="editVideo" data-name="Edit Uploaded Video" data-cost="5"><span><span class="left"><i class="fa-solid fa-scissors"></i> Edit Uploaded Video</span><span class="cost">5 Tokens</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="video16" data-name="New Video 16:9" data-cost="5"><span><span class="left"><i class="fa-solid fa-video"></i> New Video 16:9</span><span class="cost">5 Tokens</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="shorts9" data-name="Shorts 9:16" data-cost="5"><span><span class="left"><i class="fa-solid fa-mobile-screen"></i> Shorts 9:16</span><span class="cost">5 Tokens</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="thumbnail16" data-name="Thumbnail 16:9" data-cost="5"><span><span class="left"><i class="fa-regular fa-image"></i> Thumbnail 16:9</span><span class="cost">5 Tokens</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="title" data-name="Title" data-cost="5"><span><span class="left"><i class="fa-solid fa-heading"></i> Title</span><span class="cost">5 Tokens</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="description" data-name="Description" data-cost="5"><span><span class="left"><i class="fa-solid fa-align-left"></i> Description</span><span class="cost">5 Tokens</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="tags" data-name="Tags" data-cost="5"><span><span class="left"><i class="fa-solid fa-hashtag"></i> Tags</span><span class="cost">5 Tokens</span></span></label>
+<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="video16" data-name="New Video 16:9" data-cost="5"><span><span class="left"><i class="fa-solid fa-video"></i> New Video 16:9</span></span></label>
+<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="shorts9" data-name="Shorts 9:16" data-cost="5"><span><span class="left"><i class="fa-solid fa-mobile-screen"></i> Shorts 9:16</span></span></label>
+<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="thumbnail16" data-name="Thumbnail 16:9" data-cost="5"><span><span class="left"><i class="fa-regular fa-image"></i> Thumbnail 16:9</span></span></label>
+<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="title" data-name="Title" data-cost="5"><span><span class="left"><i class="fa-solid fa-heading"></i> Title</span></span></label>
+<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="description" data-name="Description" data-cost="5"><span><span class="left"><i class="fa-solid fa-align-left"></i> Description</span></span></label>
+<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="tags" data-name="Tags" data-cost="5"><span><span class="left"><i class="fa-solid fa-hashtag"></i> Tags</span></span></label>
 </div>
 </div>
 </div>
 <div class="composer-right">
-<span class="prompt-cost"><i class="fa-solid fa-coins"></i> <span id="promptSelectedCost">0</span> Tokens</span>
 <button class="clear-mini" type="button" onclick="clearPrompt()">Clear</button>
-<button class="icon-btn" type="button" onclick="showToast('Voice input demo')"><i class="fa-solid fa-microphone"></i></button>
-<button class="send-btn" type="button" onclick="generatePromptSelected()"><i class="fa-solid fa-arrow-up"></i></button>
+<button class="primary-btn generate-prompt-btn" type="button" onclick="generatePromptSelected()">Generate</button>
 </div>
 </div>
 </div>
+</div>
+
+<div class="section">
+<h2>2. Upload Video</h2>
+<p class="section-desc">Upload your video to create more videos, shorts, story images and community post images. This is a fake upload flow for demo.</p>
+<div class="upload-box" onclick="uploadVideo()">
+<i class="fa-solid fa-cloud-arrow-up"></i>
+<strong id="uploadTitle">Click to Upload Video</strong>
+<span id="uploadText">Upload is free. After upload, all generation actions will appear on the right.</span>
+</div>
+<div class="upload-status" id="uploadStatus"></div>
 </div>
 
 <div class="section">
@@ -258,7 +259,7 @@ document.addEventListener('click',function(e){const menu=document.getElementById
 document.querySelectorAll('.tool-toggle').forEach(t=>t.addEventListener('change',calculateSelectedCost));
 document.querySelectorAll('.prompt-toggle').forEach(t=>t.addEventListener('change',calculatePromptCost));
 function calculateSelectedCost(){document.getElementById('selectedCost').innerText=document.querySelectorAll('.tool-toggle:checked').length*5;}
-function calculatePromptCost(){const checked=Array.from(document.querySelectorAll('.prompt-toggle:checked'));const total=checked.reduce((sum,t)=>sum+Number(t.dataset.cost||5),0);document.getElementById('promptSelectedCost').innerText=total;const count=document.getElementById('modeCount');const label=document.getElementById('modeLabel');if(count){count.innerText=checked.length;count.classList.toggle('show',checked.length>0);}if(label){label.innerText=checked.length?`${checked.length} Tool Selected`:'Choose AI Tools';}}
+function calculatePromptCost(){const checked=Array.from(document.querySelectorAll('.prompt-toggle:checked'));const total=checked.reduce((sum,t)=>sum+Number(t.dataset.cost||5),0);const promptCostEl=document.getElementById('promptSelectedCost'); if(promptCostEl) promptCostEl.innerText=total;const count=document.getElementById('modeCount');const label=document.getElementById('modeLabel');if(count){count.innerText=checked.length;count.classList.toggle('show',checked.length>0);}if(label){label.innerText=checked.length?`${checked.length} Tool Selected`:'Choose AI Tools';}}
 
 function mediaBlock(label, kind='video', ratio='wide', isMore=false){
   let cls=`media ${ratio}`;
