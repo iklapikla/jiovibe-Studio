@@ -105,29 +105,28 @@ flex:initial;
 <main class="main">
 <header class="topbar"><div class="search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search creators, videos, topics..." /></div><div class="top-actions"><div class="bell"><i class="fa-regular fa-bell"></i></div><div class="profile" onclick="toggleDropdown()"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg"><span>Trupti Latur</span><i class="fa-solid fa-chevron-down"></i></div><div class="dropdown" id="dropdown"><a href="home.html">Home</a><a href="index.html">Dashboard</a><a href="logout.html">Sign out</a></div></div></header>
 <section class="content">
-<div class="categories">
-<button class="category-btn active" onclick="scrollToVibe(event)"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Vibe</button>
-<button class="category-btn" onclick="selectCategory(event,'Gaming')"><i class="fa-solid fa-gamepad"></i> Gaming</button>
-<button class="category-btn" onclick="selectCategory(event,'Music')"><i class="fa-solid fa-music"></i> Music</button>
-<button class="category-btn" onclick="selectCategory(event,'Comedy')"><i class="fa-regular fa-face-smile"></i> Comedy</button>
-<button class="category-btn" onclick="selectCategory(event,'Tech')"><i class="fa-solid fa-microchip"></i> Tech</button>
-<button class="category-btn" onclick="selectCategory(event,'Education')"><i class="fa-solid fa-graduation-cap"></i> Education</button>
-<button class="category-btn" onclick="selectCategory(event,'Lifestyle')"><i class="fa-solid fa-mug-hot"></i> Lifestyle</button>
-<button class="category-btn" onclick="selectCategory(event,'Movies')"><i class="fa-solid fa-clapperboard"></i> Movies</button>
-<button class="category-btn" onclick="selectCategory(event,'Sports')"><i class="fa-solid fa-trophy"></i> Sports</button>
-<button class="category-btn" onclick="selectCategory(event,'News')"><i class="fa-solid fa-newspaper"></i> News</button>
-<button class="category-btn" onclick="selectCategory(event,'Food')"><i class="fa-solid fa-utensils"></i> Food</button>
-<button class="category-btn" onclick="selectCategory(event,'Travel')"><i class="fa-solid fa-plane"></i> Travel</button>
-<button class="category-btn" onclick="selectCategory(event,'Fitness')"><i class="fa-solid fa-dumbbell"></i> Fitness</button>
+<div class="categories" id="topCategories">
+<button class="category-btn active" data-category="AI Vibe" onclick="showAIVibeTab(event)"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Vibe</button>
+<button class="category-btn" data-category="Gaming" onclick="selectTopCategory(event,'Gaming')"><i class="fa-solid fa-gamepad"></i> Gaming</button>
+<button class="category-btn" data-category="Music" onclick="selectTopCategory(event,'Music')"><i class="fa-solid fa-music"></i> Music</button>
+<button class="category-btn" data-category="Comedy" onclick="selectTopCategory(event,'Comedy')"><i class="fa-regular fa-face-smile"></i> Comedy</button>
+<button class="category-btn" data-category="Tech" onclick="selectTopCategory(event,'Tech')"><i class="fa-solid fa-microchip"></i> Tech</button>
+<button class="category-btn" data-category="Education" onclick="selectTopCategory(event,'Education')"><i class="fa-solid fa-graduation-cap"></i> Education</button>
+<button class="category-btn" data-category="Lifestyle" onclick="selectTopCategory(event,'Lifestyle')"><i class="fa-solid fa-mug-hot"></i> Lifestyle</button>
+<button class="category-btn" data-category="Movies" onclick="selectTopCategory(event,'Movies')"><i class="fa-solid fa-clapperboard"></i> Movies</button>
+<button class="category-btn" data-category="Sports" onclick="selectTopCategory(event,'Sports')"><i class="fa-solid fa-trophy"></i> Sports</button>
+<button class="category-btn" data-category="News" onclick="selectTopCategory(event,'News')"><i class="fa-solid fa-newspaper"></i> News</button>
+<button class="category-btn" data-category="Food" onclick="selectTopCategory(event,'Food')"><i class="fa-solid fa-utensils"></i> Food</button>
+<button class="category-btn" data-category="Travel" onclick="selectTopCategory(event,'Travel')"><i class="fa-solid fa-plane"></i> Travel</button>
+<button class="category-btn" data-category="Fitness" onclick="selectTopCategory(event,'Fitness')"><i class="fa-solid fa-dumbbell"></i> Fitness</button>
 </div>
-<section class="vibe-results" id="vibeResults"><div class="results-head"><div><div class="kicker"><i class="fa-solid fa-sliders"></i> Personalized Feed</div><h2 id="resultTitle">Content Matching Your Vibe</h2><p id="resultSub">Side scroll videos and shorts matched with your selected categories.</p></div><button class="change-vibe" onclick="scrollToVibe()"><i class="fa-solid fa-sliders"></i> AI Vibe</button></div><div class="rail-block"><h3 class="rail-title">Videos & Live Streams Matching Your Vibe</h3><div class="rail-wrap" id="videoRailWrap"><button class="rail-action left" onclick="scrollRail('videoRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="videoRail"></div><button class="rail-action right" onclick="scrollRail('videoRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more videos.</div></div><div class="rail-block"><h3 class="rail-title">Shorts Matching Your Vibe</h3><div class="rail-wrap"><button class="rail-action left" onclick="scrollRail('shortsRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="shortsRail"></div><button class="rail-action right" onclick="scrollRail('shortsRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more shorts.</div></div></section>
+<section class="vibe-results" id="vibeResults"><div class="results-head"><div><div class="kicker"><i class="fa-solid fa-sliders"></i> Personalized Feed</div><h2 id="resultTitle">Content Matching Your Vibe</h2><p id="resultSub">Side scroll videos and shorts matched with your selected categories.</p></div><button class="change-vibe" onclick="showAIVibeTab(event)"><i class="fa-solid fa-sliders"></i> AI Vibe</button></div><div class="rail-block"><h3 class="rail-title">Videos & Live Streams Matching Your Vibe</h3><div class="rail-wrap" id="videoRailWrap"><button class="rail-action left" onclick="scrollRail('videoRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="videoRail"></div><button class="rail-action right" onclick="scrollRail('videoRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more videos.</div></div><div class="rail-block"><h3 class="rail-title">Shorts Matching Your Vibe</h3><div class="rail-wrap"><button class="rail-action left" onclick="scrollRail('shortsRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="shortsRail"></div><button class="rail-action right" onclick="scrollRail('shortsRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more shorts.</div></div></section>
 <div class="banner-wrap"><div class="banner-track" id="bannerTrack"><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Creator Story</div><h1>Creator Spotlight</h1><p>Meet new creators and their powerful stories.</p><a href="watch-featured.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Live Now</div><h1>Big Live Moments</h1><p>Watch creators going live with trending events.</p><a href="watch-live.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Gaming</div><h1>Gaming Highlights</h1><p>Explore fresh gaming clips, live streams and shorts.</p><a href="gaming.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div></div><div class="banner-dots" id="bannerDots"><span class="active" onclick="goToSlide(0)"></span><span onclick="goToSlide(1)"></span><span onclick="goToSlide(2)"></span></div><div class="banner-arrow left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div><div class="banner-arrow right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div></div>
 <section><div class="section-head"><h2>Trending Now 🔥</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="trendingGrid"></div></section><div class="section-separator"></div><section><div class="section-head"><h2>Recommended for You ✨</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="recommendedGrid"></div></section>
 </section>
 </main>
 </div>
 <script>
-if('scrollRestoration' in history){history.scrollRestoration='manual';}
 const logoColors=['#FF7A00','#D73700','#7A3E2E','#4A0E0E','#E65100','#B84A2A','#AF2D00','#8A180A'];
 const categoryData={
 Gaming:{icon:'fa-gamepad',img:'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop',videos:['Final Zone Live Battle','Gaming Setup Tour','Retro Arcade Challenge','Last Zone Gaming Highlights','Pro Player Match Review','Squad Push Strategy'],shorts:['Clutch moment','1v4 fight','Setup reveal','Fast reaction','Winning shot','Gaming meme']},
@@ -158,18 +157,17 @@ Travel:['https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900
 Fitness:['https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=900&auto=format&fit=crop']
 };
 let selectedCategories=[],videoLoadCount=0,shortLoadCount=0;
-let onboardingCategories=[];
-function initCategories(){const grid=document.getElementById('categorySelectGrid');if(!grid)return;grid.innerHTML='';Object.keys(categoryData).forEach(name=>{const d=categoryData[name];const card=document.createElement('div');card.className='choice-card';card.onclick=()=>toggleCategory(name,card);card.innerHTML=`<img src="${d.img}"><div class="choice-tick"><i class="fa-solid fa-check"></i></div><div class="choice-content"><strong>${name}</strong><i class="fa-solid ${d.icon}"></i></div>`;grid.appendChild(card);});}
+function initCategories(){const grid=document.getElementById('categorySelectGrid');grid.innerHTML='';Object.keys(categoryData).forEach(name=>{const d=categoryData[name];const card=document.createElement('div');card.className='choice-card';card.onclick=()=>toggleCategory(name,card);card.innerHTML=`<img src="${d.img}"><div class="choice-tick"><i class="fa-solid fa-check"></i></div><div class="choice-content"><strong>${name}</strong><i class="fa-solid ${d.icon}"></i></div>`;grid.appendChild(card);});}
 function toggleCategory(name,card){card.classList.toggle('selected');if(selectedCategories.includes(name)){selectedCategories=selectedCategories.filter(x=>x!==name)}else{selectedCategories.push(name)}updateSelectionNote();}
-function updateSelectionNote(){const note=document.getElementById('selectionNote');if(!note)return;note.textContent=selectedCategories.length?`Open your personalized ${selectedCategories.join(' + ')} content feed`:'Select one or more categories to unlock your personalized feed';}
-function showVibeResults(shouldScroll=true){if(!selectedCategories.length){selectedCategories=['Gaming','Music'];document.querySelectorAll('.choice-card').forEach((c,i)=>{if(i<2)c.classList.add('selected')});updateSelectionNote();}videoLoadCount=0;shortLoadCount=0;document.getElementById('videoRail').innerHTML='';document.getElementById('shortsRail').innerHTML='';document.getElementById('resultTitle').textContent=`Content Matching Your ${selectedCategories.join(' + ')} Vibe`;document.getElementById('resultSub').textContent='Eight videos stay visible in two rows, and seven shorts stay visible below with smooth side-scroll for more.';document.getElementById('vibeResults').classList.add('show');addMoreVideos(16);addMoreShorts(14);if(shouldScroll)document.getElementById('vibeResults').scrollIntoView({behavior:'smooth',block:'start'});}
+function updateSelectionNote(){const note=document.getElementById('selectionNote');note.textContent=selectedCategories.length?`Open your personalized ${selectedCategories.join(' + ')} content feed`:'Select one or more categories to unlock your personalized feed';}
+function showVibeResults(){if(!selectedCategories.length){selectedCategories=['Gaming','Music'];document.querySelectorAll('.choice-card').forEach((c,i)=>{if(i<2)c.classList.add('selected')});updateSelectionNote();}videoLoadCount=0;shortLoadCount=0;document.getElementById('videoRail').innerHTML='';document.getElementById('shortsRail').innerHTML='';document.getElementById('resultTitle').textContent=`Content Matching Your ${selectedCategories.join(' + ')} Vibe`;document.getElementById('resultSub').textContent='Eight videos stay visible in two rows, and seven shorts stay visible below with smooth side-scroll for more.';document.getElementById('vibeResults').classList.add('show');addMoreVideos(16);addMoreShorts(14);document.getElementById('vibeResults').scrollIntoView({behavior:'smooth',block:'start'});}
 function addMoreVideos(count=4){const rail=document.getElementById('videoRail');for(let i=0;i<count;i++){const cat=selectedCategories[(videoLoadCount+i)%selectedCategories.length]||'Gaming';const data=categoryData[cat];const title=data.videos[(videoLoadCount+i)%data.videos.length];const imgs=imagePool[cat]||[data.img];const img=imgs[(videoLoadCount+i)%imgs.length];const logo=title.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();const live=(videoLoadCount+i)%5===0;rail.insertAdjacentHTML('beforeend',`<div class="player-card"><div class="player-thumb"><img src="${img}">${live?'<span class="live-badge">LIVE</span>':`<span class="duration">${5+(videoLoadCount+i)%8}:${String(10+(videoLoadCount+i)*7%49).padStart(2,'0')}</span>`}</div><div class="player-info"><div class="random-logo" style="background:${logoColors[(videoLoadCount+i)%logoColors.length]}">${logo}</div><div><div class="player-title">${title}</div><div class="player-meta">India Trends • ${live?'Live now':(300+(videoLoadCount+i)*80)+'K views'} • ${cat}</div></div></div></div>`);}videoLoadCount+=count;}
 function addMoreShorts(count=8){const rail=document.getElementById('shortsRail');for(let i=0;i<count;i++){const cat=selectedCategories[(shortLoadCount+i)%selectedCategories.length]||'Gaming';const data=categoryData[cat];const title=data.shorts[(shortLoadCount+i)%data.shorts.length];const imgs=imagePool[cat]||[data.img];const img=imgs[(shortLoadCount+i+1)%imgs.length];rail.insertAdjacentHTML('beforeend',`<div class="short-card"><div class="short-thumb"><img src="${img}"></div><div class="short-title">${title} • ${cat}</div></div>`);}shortLoadCount+=count;}
 function scrollRail(id,dir){const rail=document.getElementById(id);rail.scrollBy({left:dir*rail.clientWidth*.9,behavior:'smooth'});setTimeout(()=>checkRailEnd(rail),500)}
 function checkRailEnd(rail){if(rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-300){if(rail.id==='videoRail')addMoreVideos(8);else addMoreShorts(8);}}
 document.addEventListener('scroll',()=>{}, {passive:true});
 function bindRailInfinite(){['videoRail','shortsRail'].forEach(id=>{const rail=document.getElementById(id);rail.addEventListener('scroll',()=>checkRailEnd(rail),{passive:true});});}
-const aiPromoLines=['<b>AI Video Editor:</b> Auto edit your videos with smart cuts, transitions, effects and enhancements.','<b>AI Thumbnail Generator:</b> Create click-worthy thumbnails that make your content stand out.','<b>AI Shorts Generator:</b> Turn long videos into high-impact shorts using AI highlight moments.','<b>AI Multilingual Tool:</b> Translate, subtitle and dub your content for multiple language audiences.','<b>AI Monetization Insights:</b> Get smart recommendations to grow revenue from your content.'];let aiPromoIndex=0;setInterval(()=>{const promo=document.getElementById('aiPromoCopy');if(!promo)return;aiPromoIndex=(aiPromoIndex+1)%aiPromoLines.length;promo.innerHTML=aiPromoLines[aiPromoIndex];},5000);
+const aiPromoLines=['<b>AI Video Editor:</b> Auto edit your videos with smart cuts, transitions, effects and enhancements.','<b>AI Thumbnail Generator:</b> Create click-worthy thumbnails that make your content stand out.','<b>AI Shorts Generator:</b> Turn long videos into high-impact shorts using AI highlight moments.','<b>AI Multilingual Tool:</b> Translate, subtitle and dub your content for multiple language audiences.','<b>AI Monetization Insights:</b> Get smart recommendations to grow revenue from your content.'];let aiPromoIndex=0;setInterval(()=>{const promo=document.getElementById('aiPromoCopy');aiPromoIndex=(aiPromoIndex+1)%aiPromoLines.length;promo.innerHTML=aiPromoLines[aiPromoIndex];},5000);
 
 let pendingAction={type:'category',categories:['Comedy']};
 let noCount=0;
@@ -301,163 +299,142 @@ showVibeResults();
 }
 }
 document.addEventListener('click',e=>{
-const suggestBox=document.getElementById('aiSuggestions');
-if(suggestBox && !e.target.closest('.ai-input-wrap')) suggestBox.classList.remove('show');
+if(!e.target.closest('.ai-input-wrap'))document.getElementById('aiSuggestions').classList.remove('show');
 });
 
 let currentSlide=1;function updateBanner(){const track=document.getElementById('bannerTrack');const dots=document.querySelectorAll('#bannerDots span');track.style.transform=`translateX(-${currentSlide*100}%)`;dots.forEach((d,i)=>d.classList.toggle('active',i===currentSlide));}function goToSlide(i){currentSlide=i;updateBanner()}function nextSlide(){currentSlide=(currentSlide+1)%3;updateBanner()}function prevSlide(){currentSlide=(currentSlide+2)%3;updateBanner()}setInterval(nextSlide,6000);
-function toggleDropdown(){document.getElementById('dropdown').classList.toggle('show')}
-function setActiveCategoryButton(btn){
-  document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-}
-function scrollToVibe(e){
-  setActiveCategoryButton(e && e.currentTarget ? e.currentTarget : document.querySelector('.category-btn'));
-  resetDefaultBanner();
-
-  // AI Vibe section is only for onboarding/personalized feed.
-  // If user has come from onboarding, show Personalized Feed here.
-  // Otherwise stay on HOME top and keep normal home content.
-  if(onboardingCategories.length){
-    selectedCategories=[...onboardingCategories];
-    showVibeResults(false);
-  }else{
-    const vibeBox=document.getElementById('vibeResults');
-    if(vibeBox) vibeBox.classList.remove('show');
-    loadHomeGrids();
-  }
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-function selectCategory(e,category){
-  const normalized=normalizeCategoryName(category) || category;
-  setActiveCategoryButton(e && e.currentTarget ? e.currentTarget : null);
-
-  // Top category click should not open Personalized Feed.
-  // It only changes the banner, Trending Now, and Recommended for You on the same HOME page.
-  const vibeBox=document.getElementById('vibeResults');
-  if(vibeBox) vibeBox.classList.remove('show');
-  updateBannerForCategory(normalized);
-  loadCategoryGrids(normalized);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function setBannerSlides(slides){
-const track=document.getElementById('bannerTrack');
-if(!track)return;
-track.innerHTML=slides.map(slide=>`<div class="banner-slide" style="background-image:url('${slide.img}');"><div class="banner-content"><div class="banner-label">${slide.label}</div><h1>${slide.title}</h1><p>${slide.desc}</p><a href="javascript:void(0)" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div>`).join('');
-currentSlide=0;
-updateBanner();
-}
-function resetDefaultBanner(){
-setBannerSlides([
-{label:'Creator Story',title:'Creator Spotlight',desc:'Meet new creators and their powerful stories.',img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop'},
-{label:'Live Now',title:'Big Live Moments',desc:'Watch creators going live with trending events.',img:'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop'},
-{label:'Gaming',title:'Gaming Highlights',desc:'Explore fresh gaming clips, live streams and shorts.',img:'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop'}
-]);
-}
-function updateBannerForCategory(category){
-const cat=normalizeCategoryName(category)||'Gaming';
-const data=categoryData[cat]||categoryData.Gaming;
-const imgs=imagePool[cat]&&imagePool[cat].length?imagePool[cat]:[data.img];
-const titleMap={
-Gaming:'Gaming Highlights',Music:'Music Sessions',Comedy:'Comedy Picks',Tech:'Tech Trends',Education:'Learning Hub',Lifestyle:'Lifestyle Stories',Movies:'Movie Moments',Sports:'Sports Action',News:'News Updates',Food:'Food Discoveries',Travel:'Travel Stories',Fitness:'Fitness Energy'
-};
-setBannerSlides([
-{label:cat,title:titleMap[cat]||`${cat} Highlights`,desc:`Watch fresh ${cat.toLowerCase()} videos, live moments and creator clips.`,img:imgs[0]},
-{label:`Trending ${cat}`,title:data.videos[0]||`${cat} Trending`,desc:`Top ${cat.toLowerCase()} content selected for your home feed.`,img:imgs[1%imgs.length]},
-{label:`Recommended`,title:data.videos[1]||`${cat} Recommended`,desc:`More ${cat.toLowerCase()} videos and shorts matching your interest.`,img:imgs[2%imgs.length]}
-]);
-}
-
+function toggleDropdown(){document.getElementById('dropdown').classList.toggle('show')}function scrollToVibe(){document.getElementById('aiVibeArea').scrollIntoView({behavior:'smooth',block:'start'})}
 function makeGridCard(title,channel,cat,img,avatar,dur){const storyLinks={'Ranveer Singh':'story-ranveer-singh.html','Ashish Chanchlani':'story-ashish-chanchlani.html'};const avatarHtml=storyLinks[channel]?`<a href="${storyLinks[channel]}" class="story-ring"><img class="creator-img" src="${avatar}"></a>`:`<img class="creator-img" src="${avatar}">`;return `<div class="video-card"><div class="video-thumb"><img src="${img}"><span class="duration">${dur}</span></div><div class="video-info">${avatarHtml}<div><div class="video-title">${title}</div><div class="channel-name">${channel}</div><div class="video-meta">${cat} • ${Math.floor(200+Math.random()*900)}K views • ${Math.floor(2+Math.random()*9)} hours ago</div></div></div></div>`}
 function loadHomeGrids(){const avatarBase='https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/';const cards=[['Ranveer Singh Live: Creator Energy and Big Moments','Ranveer Singh','Movies','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ranveer%20Singh.webp',avatarBase+'PP%20Ranveer%20Singh.jpg','LIVE'],['Comedy Scene That Everyone Is Sharing Today','Ashish Chanchlani','Comedy','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ashish%20Chanchlani.webp',avatarBase+'PP%20Ashish%20Chanchlani.jpg','6:14'],['Major Event Highlights and Key Moments','Narendra Modi','Education','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Narendra%20Modi.webp',avatarBase+'PP%20Narendra%20Modi.jpeg','8:30'],['Captain’s Practice Session Highlights','Rohit Sharma','Sports','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Rohit%20Sharma.webp',avatarBase+'PP%20Rohit%20Sharma.jpg','4:45'],['Last Zone Gaming Highlights You Should Not Miss','Total Gaming','Gaming','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Total%20Gaming.webp',avatarBase+'PP%20Total%20Gaming.jpg','12:44']];document.getElementById('trendingGrid').innerHTML=cards.map(c=>makeGridCard(...c)).join('');const rec=[['Tech Gadgets Worth Watching This Week','Technical Guruji','Tech','https://wallpaperaccess.com/full/3900106.jpg',avatarBase+'PP%20Technical%20Guruji.jpg','6:20'],['Education Tip That Makes It Easy','Khan Sir','Education','https://wallpapercave.com/wp/wp6293134.jpg',avatarBase+'PP%20Khan%20Sir.jpg','8:15'],['Fitness Routine for Busy Creators','Flying Beast','Lifestyle','https://akm-img-a-in.tosshub.com/indiatoday/images/story/202207/Spotlight_Flying_Beast_Gaurav__1200x768.jpeg?VersionId=b',avatarBase+'PP%20Flying%20Beast.jpg','11:10'],['Bollywood Style and Fan Moment','Ranveer Singh','Movies','https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=900&auto=format&fit=crop',avatarBase+'PP%20Ranveer%20Singh.jpg','7:44'],['Public Event Highlights','Narendra Modi','News','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T2%20Narendra%20Modi.webp',avatarBase+'PP%20Narendra%20Modi.jpeg','5:01']];document.getElementById('recommendedGrid').innerHTML=rec.map(c=>makeGridCard(...c)).join('')}
 
-function loadCategoryGrids(category){
-const cat=normalizeCategoryName(category)||'Gaming';
-const data=categoryData[cat]||categoryData.Gaming;
-const imgs=imagePool[cat]||[data.img];
-const avatarBase='https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/';
-const creatorMap={
-Gaming:['Total Gaming',avatarBase+'PP%20Total%20Gaming.jpg'],
-Music:['Arijit Singh',avatarBase+'PP%20Arijit%20Singh.jpg'],
-Comedy:['Ashish Chanchlani',avatarBase+'PP%20Ashish%20Chanchlani.jpg'],
-Tech:['Technical Guruji',avatarBase+'PP%20Technical%20Guruji.jpg'],
-Education:['Khan Sir',avatarBase+'PP%20Khan%20Sir.jpg'],
-Lifestyle:['Flying Beast',avatarBase+'PP%20Flying%20Beast.jpg'],
-Movies:['Ranveer Singh',avatarBase+'PP%20Ranveer%20Singh.jpg'],
-Sports:['Rohit Sharma',avatarBase+'PP%20Rohit%20Sharma.jpg'],
-News:['Narendra Modi',avatarBase+'PP%20Narendra%20Modi.jpeg'],
-Food:['JioVibe Food','https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=200&auto=format&fit=crop'],
-Travel:['JioVibe Travel','https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=200&auto=format&fit=crop'],
-Fitness:['JioVibe Fitness','https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=200&auto=format&fit=crop']
-};
-const creator=creatorMap[cat]||['JioVibe Creator',imgs[0]];
-const durations=['LIVE','6:12','8:40','11:05','4:58'];
-const trending=data.videos.slice(0,5).map((title,i)=>[
-  title,
-  creator[0],
-  cat,
-  imgs[i%imgs.length],
-  creator[1],
-  durations[i%durations.length]
-]);
-const recommended=data.videos.concat(data.shorts).slice(1,6).map((title,i)=>[
-  `${title} ${cat==='News'?'Update':'Highlights'}`,
-  creator[0],
-  cat,
-  imgs[(i+1)%imgs.length],
-  creator[1],
-  durations[(i+2)%durations.length]
-]);
-document.getElementById('trendingGrid').innerHTML=trending.map(c=>makeGridCard(...c)).join('');
-document.getElementById('recommendedGrid').innerHTML=recommended.map(c=>makeGridCard(...c)).join('');
+function setActiveTopCategory(name){
+  document.querySelectorAll('.category-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.category === name);
+  });
+}
+
+function safeScrollTop(){
+  if('scrollRestoration' in history){history.scrollRestoration='manual';}
+  window.scrollTo({top:0,left:0,behavior:'auto'});
+}
+
+function showVibeResults(shouldScroll=false){
+  if(!selectedCategories.length){selectedCategories=['Gaming'];}
+  videoLoadCount=0;
+  shortLoadCount=0;
+  const videoRail=document.getElementById('videoRail');
+  const shortsRail=document.getElementById('shortsRail');
+  if(videoRail) videoRail.innerHTML='';
+  if(shortsRail) shortsRail.innerHTML='';
+  document.getElementById('resultTitle').textContent=`Content Matching Your ${selectedCategories.join(' + ')} Vibe`;
+  document.getElementById('resultSub').textContent='Eight videos stay visible in two rows, and seven shorts stay visible below with smooth side-scroll for more.';
+  document.getElementById('vibeResults').classList.add('show');
+  addMoreVideos(16);
+  addMoreShorts(14);
+  if(shouldScroll){document.getElementById('vibeResults').scrollIntoView({behavior:'smooth',block:'start'});}
+}
+
+function hidePersonalizedFeed(){
+  const box=document.getElementById('vibeResults');
+  if(box) box.classList.remove('show');
 }
 
 function normalizeCategoryName(name){
-return Object.keys(categoryData).find(c=>c.toLowerCase()===String(name||'').trim().toLowerCase());
+  return Object.keys(categoryData).find(c=>c.toLowerCase()===String(name||'').trim().toLowerCase());
 }
-function moodToCategories(mood){
-const m=String(mood||'').toLowerCase();
-if(m.includes('sad')||m.includes('breakup')||m.includes('calm')) return ['Music','Comedy'];
-if(m.includes('happy')||m.includes('funny')||m.includes('comedy')||m.includes('laugh')) return ['Comedy'];
-if(m.includes('motivat')||m.includes('fitness')||m.includes('energy')) return ['Fitness','Sports'];
-if(m.includes('chill')||m.includes('relax')||m.includes('music')) return ['Music','Lifestyle'];
-if(m.includes('learn')||m.includes('study')||m.includes('education')) return ['Education'];
-if(m.includes('game')) return ['Gaming'];
-if(m.includes('food')||m.includes('travel')) return ['Food','Travel'];
-return ['Comedy','Music'];
+
+function parseOnboardingCategories(){
+  const params=new URLSearchParams(window.location.search);
+  const raw=params.get('vibe') || params.get('category') || params.get('categories') || '';
+  let list=raw.split(/[,+|]/).map(x=>normalizeCategoryName(x)).filter(Boolean);
+  try{
+    const saved=JSON.parse(localStorage.getItem('jiovibe_onboarding_vibe')||'null');
+    if(!list.length && saved && Array.isArray(saved.categories)){
+      list=saved.categories.map(x=>normalizeCategoryName(x)).filter(Boolean);
+    }
+  }catch(e){}
+  return [...new Set(list)];
 }
-function getOnboardingCategories(){
-const params=new URLSearchParams(window.location.search);
-let raw=params.get('vibe')||params.get('category')||params.get('categories')||'';
-let mood=params.get('mood')||'';
-let list=raw.split(/[,+|]/).map(x=>normalizeCategoryName(x)).filter(Boolean);
-if(!list.length && mood) list=moodToCategories(mood);
-try{
-const saved=JSON.parse(localStorage.getItem('jiovibe_onboarding_vibe')||'null');
-if(!list.length && saved && Array.isArray(saved.categories)){
-list=saved.categories.map(x=>normalizeCategoryName(x)).filter(Boolean);
+
+function showAIVibeTab(e){
+  setActiveTopCategory('AI Vibe');
+  const cats=parseOnboardingCategories();
+  if(cats.length){
+    selectedCategories=cats;
+    showVibeResults(false);
+  }else{
+    hidePersonalizedFeed();
+  }
+  safeScrollTop();
 }
-}catch(e){}
-return [...new Set(list)];
+
+function selectTopCategory(e, category){
+  const cat=normalizeCategoryName(category);
+  if(!cat) return;
+  setActiveTopCategory(cat);
+  hidePersonalizedFeed();
+  loadCategoryContent(cat);
+  safeScrollTop();
 }
-function openOnboardingFeed(){
-const params=new URLSearchParams(window.location.search);
-const cats=getOnboardingCategories();
-if(params.get('from')==='onboarding' || cats.length){
-onboardingCategories=cats.length?cats:['Gaming'];
-selectedCategories=[...onboardingCategories];
-setActiveCategoryButton(document.querySelector('.category-btn'));
-showVibeResults(false);
-setTimeout(()=>window.scrollTo({top:0,left:0,behavior:'auto'}),50);
-}else{
-if('scrollRestoration' in history) history.scrollRestoration='manual';
-setActiveCategoryButton(document.querySelector('.category-btn'));
+
+function makeCategoryGridCard(title, channel, cat, img, dur){
+  const initials=title.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  return `<div class="video-card"><div class="video-thumb"><img src="${img}"><span class="duration">${dur}</span></div><div class="video-info"><div class="random-logo">${initials}</div><div><div class="video-title">${title}</div><div class="channel-name">${channel}</div><div class="video-meta">${cat} • ${Math.floor(180+Math.random()*850)}K views • ${Math.floor(1+Math.random()*12)} hours ago</div></div></div></div>`;
+}
+
+function loadCategoryContent(category){
+  const data=categoryData[category] || categoryData.Gaming;
+  const imgs=imagePool[category] || [data.img];
+  const videos=data.videos || [];
+  const shorts=data.shorts || [];
+
+  const bannerTrack=document.getElementById('bannerTrack');
+  const bannerDots=document.getElementById('bannerDots');
+  if(bannerTrack && bannerDots){
+    bannerTrack.innerHTML=[0,1,2].map(i=>{
+      const title=videos[i%videos.length] || `${category} Highlights`;
+      const img=imgs[i%imgs.length] || data.img;
+      return `<div class="banner-slide" style="background-image:url('${img}');"><div class="banner-content"><div class="banner-label">${category}</div><h1>${title}</h1><p>Explore fresh ${category.toLowerCase()} videos, live streams and creator moments.</p><a href="javascript:void(0)" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div>`;
+    }).join('');
+    bannerDots.innerHTML='<span class="active" onclick="goToSlide(0)"></span><span onclick="goToSlide(1)"></span><span onclick="goToSlide(2)"></span>';
+    currentSlide=0;
+    updateBanner();
+  }
+
+  const trending=[];
+  const recommended=[];
+  for(let i=0;i<5;i++){
+    const title=videos[i%videos.length] || `${category} Video`;
+    const img=imgs[i%imgs.length] || data.img;
+    trending.push(makeCategoryGridCard(title, `${category} Trends`, category, img, i%3===0?'LIVE':`${4+i}:${String(12+i*7).padStart(2,'0')}`));
+  }
+  for(let i=0;i<5;i++){
+    const title=(videos[(i+2)%videos.length] || shorts[i%shorts.length] || `${category} Picks`);
+    const img=imgs[(i+1)%imgs.length] || data.img;
+    recommended.push(makeCategoryGridCard(title, `Recommended ${category}`, category, img, `${6+i}:${String(10+i*9).padStart(2,'0')}`));
+  }
+  document.getElementById('trendingGrid').innerHTML=trending.join('');
+  document.getElementById('recommendedGrid').innerHTML=recommended.join('');
+}
+
+function openHomePageState(){
+  safeScrollTop();
+  const params=new URLSearchParams(window.location.search);
+  const cats=parseOnboardingCategories();
+  if(params.get('from')==='onboarding' && cats.length){
+    setActiveTopCategory('AI Vibe');
+    selectedCategories=cats;
+    showVibeResults(false);
+    // Banner, Trending Now and Recommended For You stay as the fixed default home content below AI Vibe result.
+  }else{
+    hidePersonalizedFeed();
+    setActiveTopCategory('AI Vibe');
+  }
+}
+
+bindRailInfinite();
 loadHomeGrids();
-setTimeout(()=>window.scrollTo({top:0,left:0,behavior:'auto'}),50);
-}
-}
-bindRailInfinite();openOnboardingFeed();
+openHomePageState();
 
 </script>
 </body>
