@@ -158,6 +158,7 @@ Travel:['https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900
 Fitness:['https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=900&auto=format&fit=crop']
 };
 let selectedCategories=[],videoLoadCount=0,shortLoadCount=0;
+let onboardingCategories=[];
 function initCategories(){const grid=document.getElementById('categorySelectGrid');if(!grid)return;grid.innerHTML='';Object.keys(categoryData).forEach(name=>{const d=categoryData[name];const card=document.createElement('div');card.className='choice-card';card.onclick=()=>toggleCategory(name,card);card.innerHTML=`<img src="${d.img}"><div class="choice-tick"><i class="fa-solid fa-check"></i></div><div class="choice-content"><strong>${name}</strong><i class="fa-solid ${d.icon}"></i></div>`;grid.appendChild(card);});}
 function toggleCategory(name,card){card.classList.toggle('selected');if(selectedCategories.includes(name)){selectedCategories=selectedCategories.filter(x=>x!==name)}else{selectedCategories.push(name)}updateSelectionNote();}
 function updateSelectionNote(){const note=document.getElementById('selectionNote');if(!note)return;note.textContent=selectedCategories.length?`Open your personalized ${selectedCategories.join(' + ')} content feed`:'Select one or more categories to unlock your personalized feed';}
@@ -312,23 +313,62 @@ function setActiveCategoryButton(btn){
 }
 function scrollToVibe(e){
   setActiveCategoryButton(e && e.currentTarget ? e.currentTarget : document.querySelector('.category-btn'));
-  const vibeBox=document.getElementById('vibeResults');
-  if(vibeBox) vibeBox.classList.remove('show');
-  loadHomeGrids();
+  resetDefaultBanner();
+
+  // AI Vibe section is only for onboarding/personalized feed.
+  // If user has come from onboarding, show Personalized Feed here.
+  // Otherwise stay on HOME top and keep normal home content.
+  if(onboardingCategories.length){
+    selectedCategories=[...onboardingCategories];
+    showVibeResults(false);
+  }else{
+    const vibeBox=document.getElementById('vibeResults');
+    if(vibeBox) vibeBox.classList.remove('show');
+    loadHomeGrids();
+  }
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function selectCategory(e,category){
   const normalized=normalizeCategoryName(category) || category;
-  selectedCategories=[normalized];
   setActiveCategoryButton(e && e.currentTarget ? e.currentTarget : null);
 
-  // Top category click should not open the onboarding-style AI Vibe result block.
-  // It only refreshes Trending Now and Recommended for You on the same HOME page.
+  // Top category click should not open Personalized Feed.
+  // It only changes the banner, Trending Now, and Recommended for You on the same HOME page.
   const vibeBox=document.getElementById('vibeResults');
   if(vibeBox) vibeBox.classList.remove('show');
+  updateBannerForCategory(normalized);
   loadCategoryGrids(normalized);
   window.scrollTo({top:0,behavior:'smooth'});
 }
+
+function setBannerSlides(slides){
+const track=document.getElementById('bannerTrack');
+if(!track)return;
+track.innerHTML=slides.map(slide=>`<div class="banner-slide" style="background-image:url('${slide.img}');"><div class="banner-content"><div class="banner-label">${slide.label}</div><h1>${slide.title}</h1><p>${slide.desc}</p><a href="javascript:void(0)" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div>`).join('');
+currentSlide=0;
+updateBanner();
+}
+function resetDefaultBanner(){
+setBannerSlides([
+{label:'Creator Story',title:'Creator Spotlight',desc:'Meet new creators and their powerful stories.',img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop'},
+{label:'Live Now',title:'Big Live Moments',desc:'Watch creators going live with trending events.',img:'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop'},
+{label:'Gaming',title:'Gaming Highlights',desc:'Explore fresh gaming clips, live streams and shorts.',img:'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop'}
+]);
+}
+function updateBannerForCategory(category){
+const cat=normalizeCategoryName(category)||'Gaming';
+const data=categoryData[cat]||categoryData.Gaming;
+const imgs=imagePool[cat]&&imagePool[cat].length?imagePool[cat]:[data.img];
+const titleMap={
+Gaming:'Gaming Highlights',Music:'Music Sessions',Comedy:'Comedy Picks',Tech:'Tech Trends',Education:'Learning Hub',Lifestyle:'Lifestyle Stories',Movies:'Movie Moments',Sports:'Sports Action',News:'News Updates',Food:'Food Discoveries',Travel:'Travel Stories',Fitness:'Fitness Energy'
+};
+setBannerSlides([
+{label:cat,title:titleMap[cat]||`${cat} Highlights`,desc:`Watch fresh ${cat.toLowerCase()} videos, live moments and creator clips.`,img:imgs[0]},
+{label:`Trending ${cat}`,title:data.videos[0]||`${cat} Trending`,desc:`Top ${cat.toLowerCase()} content selected for your home feed.`,img:imgs[1%imgs.length]},
+{label:`Recommended`,title:data.videos[1]||`${cat} Recommended`,desc:`More ${cat.toLowerCase()} videos and shorts matching your interest.`,img:imgs[2%imgs.length]}
+]);
+}
+
 function makeGridCard(title,channel,cat,img,avatar,dur){const storyLinks={'Ranveer Singh':'story-ranveer-singh.html','Ashish Chanchlani':'story-ashish-chanchlani.html'};const avatarHtml=storyLinks[channel]?`<a href="${storyLinks[channel]}" class="story-ring"><img class="creator-img" src="${avatar}"></a>`:`<img class="creator-img" src="${avatar}">`;return `<div class="video-card"><div class="video-thumb"><img src="${img}"><span class="duration">${dur}</span></div><div class="video-info">${avatarHtml}<div><div class="video-title">${title}</div><div class="channel-name">${channel}</div><div class="video-meta">${cat} • ${Math.floor(200+Math.random()*900)}K views • ${Math.floor(2+Math.random()*9)} hours ago</div></div></div></div>`}
 function loadHomeGrids(){const avatarBase='https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/';const cards=[['Ranveer Singh Live: Creator Energy and Big Moments','Ranveer Singh','Movies','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ranveer%20Singh.webp',avatarBase+'PP%20Ranveer%20Singh.jpg','LIVE'],['Comedy Scene That Everyone Is Sharing Today','Ashish Chanchlani','Comedy','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ashish%20Chanchlani.webp',avatarBase+'PP%20Ashish%20Chanchlani.jpg','6:14'],['Major Event Highlights and Key Moments','Narendra Modi','Education','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Narendra%20Modi.webp',avatarBase+'PP%20Narendra%20Modi.jpeg','8:30'],['Captain’s Practice Session Highlights','Rohit Sharma','Sports','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Rohit%20Sharma.webp',avatarBase+'PP%20Rohit%20Sharma.jpg','4:45'],['Last Zone Gaming Highlights You Should Not Miss','Total Gaming','Gaming','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Total%20Gaming.webp',avatarBase+'PP%20Total%20Gaming.jpg','12:44']];document.getElementById('trendingGrid').innerHTML=cards.map(c=>makeGridCard(...c)).join('');const rec=[['Tech Gadgets Worth Watching This Week','Technical Guruji','Tech','https://wallpaperaccess.com/full/3900106.jpg',avatarBase+'PP%20Technical%20Guruji.jpg','6:20'],['Education Tip That Makes It Easy','Khan Sir','Education','https://wallpapercave.com/wp/wp6293134.jpg',avatarBase+'PP%20Khan%20Sir.jpg','8:15'],['Fitness Routine for Busy Creators','Flying Beast','Lifestyle','https://akm-img-a-in.tosshub.com/indiatoday/images/story/202207/Spotlight_Flying_Beast_Gaurav__1200x768.jpeg?VersionId=b',avatarBase+'PP%20Flying%20Beast.jpg','11:10'],['Bollywood Style and Fan Moment','Ranveer Singh','Movies','https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=900&auto=format&fit=crop',avatarBase+'PP%20Ranveer%20Singh.jpg','7:44'],['Public Event Highlights','Narendra Modi','News','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T2%20Narendra%20Modi.webp',avatarBase+'PP%20Narendra%20Modi.jpeg','5:01']];document.getElementById('recommendedGrid').innerHTML=rec.map(c=>makeGridCard(...c)).join('')}
 
@@ -405,20 +445,19 @@ function openOnboardingFeed(){
 const params=new URLSearchParams(window.location.search);
 const cats=getOnboardingCategories();
 if(params.get('from')==='onboarding' || cats.length){
-selectedCategories=cats.length?cats:['Gaming'];
-const firstCat=selectedCategories[0];
-document.querySelectorAll('.category-btn').forEach(btn=>{
-  const text=btn.textContent.trim();
-  btn.classList.toggle('active', text===firstCat);
-});
+onboardingCategories=cats.length?cats:['Gaming'];
+selectedCategories=[...onboardingCategories];
+setActiveCategoryButton(document.querySelector('.category-btn'));
 showVibeResults(false);
 setTimeout(()=>window.scrollTo({top:0,left:0,behavior:'auto'}),50);
 }else{
 if('scrollRestoration' in history) history.scrollRestoration='manual';
+setActiveCategoryButton(document.querySelector('.category-btn'));
+loadHomeGrids();
 setTimeout(()=>window.scrollTo({top:0,left:0,behavior:'auto'}),50);
 }
 }
-bindRailInfinite();loadHomeGrids();openOnboardingFeed();
+bindRailInfinite();openOnboardingFeed();
 
 </script>
 </body>
