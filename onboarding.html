@@ -7,34 +7,99 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--cream:#FFF6ED;--soft:#FFE4CC;--line:#FFD2B3;--orange:#FF7A00;--brown:#7A3E2E;--dark:#4A0E0E;--deep:#2A0A0A;--muted:#A66A55}
+:root{
+  --cream:#FFF6ED;
+  --soft:#FFE4CC;
+  --line:#FFD2B3;
+  --orange:#FF7A00;
+  --orange2:#FF9638;
+  --brown:#7A3E2E;
+  --dark:#4A0E0E;
+  --deep:#2A0A0A;
+  --muted:#A66A55;
+  --white:#fff;
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 html,body{min-height:100%;background:var(--cream);color:var(--dark);overflow-x:hidden}
-button,input,textarea{font-family:inherit}button{border:0;background:none;cursor:pointer;color:inherit}a{text-decoration:none;color:inherit}
-.screen{min-height:100vh;display:none}.screen.active{display:block}
+button,input{font-family:inherit}
+button{border:0;background:none;cursor:pointer;color:inherit}
+a{text-decoration:none;color:inherit}
+.screen{min-height:100vh;display:none}
+.screen.active{display:block}
+
+/* LOGIN */
 .login-wrap{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:linear-gradient(135deg,#fff 0%,#FFF6ED 48%,#FFE4CC 100%)}
-.login-art{position:relative;overflow:hidden;padding:52px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(90deg,rgba(42,10,10,.76),rgba(42,10,10,.24)),url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1800&auto=format&fit=crop') center/cover;color:white}
-.logo{display:flex;align-items:center;gap:8px}.logo-circle{width:54px;height:54px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:950;font-size:25px;color:white}.logo-text{font-size:34px;font-weight:950;letter-spacing:-1.4px}
-.art-copy{max-width:620px}.art-kicker{color:#FFB36B;font-weight:950;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}.art-copy h1{font-size:58px;line-height:1.02;font-weight:950;letter-spacing:-2px;margin-bottom:18px}.art-copy p{font-size:18px;line-height:1.55;color:#FFE4CC;font-weight:700}
-.login-card{display:flex;align-items:center;justify-content:center;padding:44px}.login-box{width:100%;max-width:510px;background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:30px;padding:34px;box-shadow:0 26px 70px rgba(74,14,14,.12);backdrop-filter:blur(16px)}
+.login-art{position:relative;overflow:hidden;padding:52px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(90deg,rgba(42,10,10,.78),rgba(42,10,10,.26)),url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1800&auto=format&fit=crop') center/cover;color:white}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-circle{width:54px;height:54px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:950;font-size:25px;color:white}
+.logo-text{font-size:34px;font-weight:950;letter-spacing:-1.4px}
+.art-copy{max-width:620px}
+.art-kicker{color:#FFB36B;font-weight:950;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+.art-copy h1{font-size:58px;line-height:1.02;font-weight:950;letter-spacing:-2px;margin-bottom:18px}
+.art-copy p{font-size:18px;line-height:1.55;color:#FFE4CC;font-weight:700}
+.login-card{display:flex;align-items:center;justify-content:center;padding:44px}
+.login-box{width:100%;max-width:510px;background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:30px;padding:34px;box-shadow:0 26px 70px rgba(74,14,14,.12);backdrop-filter:blur(16px)}
 .kicker{display:inline-flex;align-items:center;gap:8px;background:#FFF3E8;border:1px solid #FFD7BC;color:var(--orange);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:950;margin-bottom:14px}
-.login-box h2{font-size:36px;font-weight:950;letter-spacing:-1.2px;margin-bottom:10px}.login-box p{font-size:15px;font-weight:750;color:var(--muted);line-height:1.5;margin-bottom:24px}.field-label{font-size:13px;font-weight:950;color:var(--brown);margin-bottom:8px}
-.input{width:100%;height:58px;border-radius:18px;border:2px solid var(--line);outline:none;padding:0 18px;font-size:15px;font-weight:800;color:var(--dark);background:white;transition:.25s}.input:focus{border-color:var(--orange);box-shadow:0 12px 28px rgba(255,122,0,.13)}
-.primary-btn{width:100%;height:58px;border-radius:18px;background:linear-gradient(135deg,var(--orange),#FF9638);color:white;font-weight:950;font-size:16px;margin-top:18px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 16px 34px rgba(255,122,0,.28);transition:.25s}.primary-btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(255,122,0,.36)}
+.login-box h2{font-size:36px;font-weight:950;letter-spacing:-1.2px;margin-bottom:10px}
+.login-box p{font-size:15px;font-weight:750;color:var(--muted);line-height:1.5;margin-bottom:24px}
+.field-label{font-size:13px;font-weight:950;color:var(--brown);margin-bottom:8px}
+.input{width:100%;height:58px;border-radius:18px;border:2px solid var(--line);outline:none;padding:0 18px;font-size:15px;font-weight:800;color:var(--dark);background:white;transition:.25s}
+.input:focus{border-color:var(--orange);box-shadow:0 12px 28px rgba(255,122,0,.13)}
+.primary-btn{width:100%;height:58px;border-radius:18px;background:linear-gradient(135deg,var(--orange),var(--orange2));color:white;font-weight:950;font-size:16px;margin-top:18px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 16px 34px rgba(255,122,0,.28);transition:.25s}
+.primary-btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(255,122,0,.36)}
 .helper{margin-top:16px;padding:13px 15px;border-radius:16px;background:#FFF6ED;border:1px solid #FFE0CC;color:var(--brown);font-size:13px;line-height:1.45;font-weight:800}
-.redirect-wrap .login-art{background:linear-gradient(90deg,rgba(42,10,10,.76),rgba(42,10,10,.25)),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1800&auto=format&fit=crop') center/cover}
-.modal-bg{position:fixed;inset:0;background:rgba(42,10,10,.42);display:none;align-items:flex-end;justify-content:center;z-index:100}.modal-bg.show{display:flex}
-.sheet{width:min(1120px,calc(100vw - 28px));max-height:88vh;overflow:auto;background:white;border-radius:32px 32px 0 0;border:1px solid var(--line);box-shadow:0 -20px 60px rgba(74,14,14,.22);padding:26px;animation:sheetUp .25s ease}@keyframes sheetUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
-.sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px}.sheet-head h2{font-size:34px;font-weight:950;letter-spacing:-1px}.sheet-head p{font-size:15px;font-weight:800;color:var(--muted);margin-top:6px}.pick-note{margin-top:10px;display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:#FFF3E8;border:1px solid #FFD7BC;color:var(--orange);padding:8px 12px;font-size:12px;font-weight:950}
-.close{width:46px;height:46px;border-radius:50%;background:#FFF3E8;color:var(--orange);font-size:20px}.progress-wrap{display:flex;gap:9px;margin-bottom:22px}.step-dot{height:6px;flex:1;border-radius:99px;background:#FFE0CC}.step-dot.active{background:var(--orange)}
-.topic-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.topic-card{aspect-ratio:1/1;border-radius:22px;border:2px solid #FFE0CC;background:#FFF8F1;padding:14px;position:relative;overflow:hidden;transition:.2s;display:flex;flex-direction:column;justify-content:flex-end;text-align:left}.topic-card:hover{transform:translateY(-3px);border-color:var(--orange)}.topic-card.selected{border-color:var(--orange);background:#FFF0E2;box-shadow:0 14px 30px rgba(255,122,0,.13)}.topic-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.52;transition:.25s}.topic-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,10,10,.05),rgba(42,10,10,.72))}.topic-card:hover img{transform:scale(1.08);opacity:.7}.topic-card h3,.topic-card i{position:relative;z-index:2;color:white}.topic-card h3{font-size:16px;font-weight:950}.topic-card i{font-size:22px;margin-bottom:9px}.check{position:absolute;right:12px;top:12px;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.18);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;z-index:3}.selected .check{background:var(--orange);border-color:var(--orange)}
-.lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.lang-card{height:82px;border-radius:20px;border:2px solid #FFE0CC;background:#FFF8F1;display:flex;align-items:center;justify-content:space-between;padding:0 18px;transition:.2s;text-align:left}.lang-card:hover{transform:translateY(-3px);border-color:var(--orange)}.lang-card.selected{background:#FFF0E2;border-color:var(--orange)}.lang-card strong{font-size:17px;font-weight:950}.lang-card span{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-top:4px}.lang-card .check{position:static;color:var(--muted);background:white;border-color:var(--line);flex:0 0 auto}.lang-card.selected .check{background:var(--orange);color:white;border-color:var(--orange)}
-.sheet-actions{position:sticky;bottom:-26px;background:linear-gradient(180deg,rgba(255,255,255,.8),#fff 35%);padding-top:20px;margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:12px}.text-btn{height:52px;padding:0 18px;border-radius:16px;background:#FFF3E8;color:var(--brown);font-weight:950}.next-btn{height:56px;padding:0 24px;border-radius:18px;background:var(--orange);color:white;font-weight:950;display:flex;align-items:center;gap:10px}
-.ai-flow{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.ai-prompt{min-height:235px;border-radius:24px;border:1px solid var(--line);background:#FFF8F1;padding:20px}.ai-prompt h3{font-size:22px;font-weight:950;margin-bottom:8px}.ai-prompt p{font-size:14px;font-weight:800;color:var(--muted);line-height:1.45;margin-bottom:15px}.prompt-input{width:100%;min-height:116px;border-radius:20px;border:2px solid var(--orange);padding:16px;resize:none;outline:none;font-weight:800;color:var(--dark)}
-.suggest-list{display:flex;flex-direction:column;gap:12px}.suggest-item{display:flex;align-items:center;gap:12px;min-height:64px;border-radius:18px;border:1px solid var(--line);background:white;padding:13px;font-weight:900;transition:.2s}.suggest-item:hover{background:#FFF3E8;color:var(--orange);transform:translateX(3px)}.suggest-icon{width:40px;height:40px;border-radius:14px;background:#FFF3E8;color:var(--orange);display:flex;align-items:center;justify-content:center}
-.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--deep);color:white;padding:13px 18px;border-radius:999px;font-size:14px;font-weight:950;display:none;z-index:200}.toast.show{display:block}
-@media(max-width:1300px){.topic-grid{grid-template-columns:repeat(4,1fr)}.lang-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:900px){.login-wrap{grid-template-columns:1fr}.login-art{display:none}.login-card{padding:22px}.topic-grid{grid-template-columns:repeat(2,1fr)}.lang-grid{grid-template-columns:1fr}.ai-flow{grid-template-columns:1fr}.sheet-head h2{font-size:28px}}
+
+/* COMMON ONBOARDING */
+.onboard-wrap{min-height:100vh;padding:34px;background:radial-gradient(circle at top left,rgba(255,122,0,.16),transparent 34%),linear-gradient(135deg,#fff 0%,#FFF6ED 52%,#FFE4CC 100%)}
+.onboard-shell{width:min(1220px,100%);margin:0 auto;min-height:calc(100vh - 68px);display:flex;flex-direction:column}
+.onboard-top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:26px}
+.top-skip{height:46px;padding:0 18px;border-radius:16px;background:#fff;border:1px solid var(--line);color:var(--brown);font-weight:950;box-shadow:0 10px 24px rgba(74,14,14,.05)}
+.top-skip:hover{background:#FFF3E8;color:var(--orange)}
+.progress-wrap{display:flex;gap:9px;margin-bottom:24px}
+.step-dot{height:7px;flex:1;border-radius:99px;background:#FFE0CC}
+.step-dot.active{background:var(--orange)}
+.hero-card{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:34px;padding:28px;box-shadow:0 25px 70px rgba(74,14,14,.10);backdrop-filter:blur(16px);flex:1;display:flex;flex-direction:column;min-height:0}
+.hero-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:22px}
+.hero-head h1{font-size:42px;font-weight:950;letter-spacing:-1.5px;line-height:1.05;margin-bottom:9px}
+.hero-head p{font-size:15px;font-weight:800;color:var(--muted);line-height:1.5;max-width:680px}
+.pick-note{display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:#FFF3E8;border:1px solid #FFD7BC;color:var(--orange);padding:8px 12px;font-size:12px;font-weight:950;margin-top:12px}
+
+/* TOPIC */
+.topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:6px}
+.topic-card{aspect-ratio:1/1;border-radius:24px;border:2px solid #FFE0CC;background:#FFF8F1;padding:15px;position:relative;overflow:hidden;transition:.22s;display:flex;flex-direction:column;justify-content:flex-end;text-align:left;box-shadow:0 10px 25px rgba(74,14,14,.05)}
+.topic-card:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 16px 36px rgba(74,14,14,.13)}
+.topic-card.selected{border-color:var(--orange);background:#FFF0E2;box-shadow:0 18px 38px rgba(255,122,0,.20)}
+.topic-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.54;transition:.25s}
+.topic-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,10,10,.02),rgba(42,10,10,.76))}
+.topic-card:hover img{transform:scale(1.08);opacity:.72}
+.topic-card h3,.topic-card i{position:relative;z-index:2;color:white}
+.topic-card h3{font-size:17px;font-weight:950}
+.topic-card i{font-size:23px;margin-bottom:9px}
+.check{position:absolute;right:13px;top:13px;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.44);background:rgba(255,255,255,.18);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;z-index:3}
+.selected .check{background:var(--orange);border-color:var(--orange)}
+
+/* LANGUAGE */
+.lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:6px}
+.lang-card{height:92px;border-radius:22px;border:2px solid #FFE0CC;background:#FFF8F1;display:flex;align-items:center;justify-content:space-between;padding:0 18px;transition:.22s;text-align:left;box-shadow:0 10px 25px rgba(74,14,14,.04)}
+.lang-card:hover{transform:translateY(-4px);border-color:var(--orange);box-shadow:0 15px 32px rgba(74,14,14,.11)}
+.lang-card.selected{background:#FFF0E2;border-color:var(--orange);box-shadow:0 15px 34px rgba(255,122,0,.14)}
+.lang-card strong{font-size:17px;font-weight:950}
+.lang-card span{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-top:4px}
+.lang-card .check{position:static;color:var(--muted);background:white;border-color:var(--line);flex:0 0 auto}
+.lang-card.selected .check{background:var(--orange);color:white;border-color:var(--orange)}
+
+/* ACTIONS */
+.actions{margin-top:auto;padding-top:22px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.text-btn{height:54px;padding:0 20px;border-radius:17px;background:#FFF3E8;color:var(--brown);font-weight:950;border:1px solid #FFD7BC}
+.text-btn:hover{background:#fff;color:var(--orange)}
+.next-btn{height:58px;padding:0 26px;border-radius:18px;background:linear-gradient(135deg,var(--orange),var(--orange2));color:white;font-weight:950;display:flex;align-items:center;gap:10px;box-shadow:0 16px 34px rgba(255,122,0,.28)}
+.next-btn:hover{transform:translateY(-2px);box-shadow:0 20px 42px rgba(255,122,0,.36)}
+.small-status{font-size:13px;font-weight:850;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--deep);color:white;padding:13px 18px;border-radius:999px;font-size:14px;font-weight:950;display:none;z-index:200;box-shadow:0 16px 38px rgba(42,10,10,.26)}
+.toast.show{display:block}
+
+@media(max-width:1100px){.topic-grid{grid-template-columns:repeat(3,1fr)}.lang-grid{grid-template-columns:repeat(3,1fr)}.hero-head h1{font-size:36px}}
+@media(max-width:900px){.login-wrap{grid-template-columns:1fr}.login-art{display:none}.login-card{padding:22px}.onboard-wrap{padding:18px}.onboard-shell{min-height:calc(100vh - 36px)}.topic-grid{grid-template-columns:repeat(2,1fr)}.lang-grid{grid-template-columns:1fr}.hero-card{padding:20px;border-radius:26px}.hero-head{display:block}.hero-head h1{font-size:31px}.actions{position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,246,237,0),#FFF6ED 25%);padding-bottom:8px}.small-status{display:none}}
 </style>
 </head>
 <body>
@@ -44,124 +109,85 @@ button,input,textarea{font-family:inherit}button{border:0;background:none;cursor
     <div class="login-art">
       <div class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
       <div class="art-copy">
-        <div class="art-kicker">Content first onboarding</div>
-        <h1>Discover creators, videos and live moments faster.</h1>
-        <p>Login takes the user directly to content. Personalization comes after the feed so the user sees value first.</p>
+        <div class="art-kicker">Personalized creator feed</div>
+        <h1>Start with your vibe. Land directly on content.</h1>
+        <p>Login first, select topics and languages, then JioVibe opens Home with AI Vibe results ready.</p>
       </div>
     </div>
     <div class="login-card">
       <div class="login-box">
         <div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> JioVibe</div>
-        <h2>Your creative hub for content</h2>
-        <p>Continue with your phone number or email. If you are new, we will create your account automatically after verification.</p>
+        <h2>Welcome to JioVibe</h2>
+        <p>Continue with your phone number or email. This is a dummy login for the prototype flow.</p>
         <div class="field-label">Phone number or email</div>
         <input class="input" id="loginInput" placeholder="Enter phone number or email" />
-        <button class="primary-btn" onclick="goNext()"><i class="fa-solid fa-arrow-right-to-bracket"></i> Continue</button>
-        <div class="helper">No separate sign-up step. New users move into account creation automatically after credential input.</div>
+        <button class="primary-btn" onclick="goToTopic()"><i class="fa-solid fa-arrow-right-to-bracket"></i> Continue</button>
+        <div class="helper">After this, user will select topic and language before going to Home.</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="screen" id="redirectScreen">
-  <div class="login-wrap redirect-wrap">
-    <div class="login-art">
-      <div class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
-      <div class="art-copy">
-        <div class="art-kicker">Onboarding complete</div>
-        <h1>Your feed is ready.</h1>
-        <p>After login, topic selection, language selection and AI prompt, the user lands on the existing JioVibe Home page AI Vibe result section.</p>
+<section class="screen" id="topicScreen">
+  <div class="onboard-wrap">
+    <div class="onboard-shell">
+      <div class="onboard-top">
+        <div class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
+        <button class="top-skip" onclick="skipToHome()">Skip</button>
       </div>
-    </div>
-    <div class="login-card">
-      <div class="login-box">
-        <div class="kicker"><i class="fa-solid fa-house"></i> Redirect to Home</div>
-        <h2>Continue to JioVibe Home</h2>
-        <p>This page only handles onboarding. Home page remains separate.</p>
-        <button class="primary-btn" onclick="openSheet('topicSheet')"><i class="fa-solid fa-sliders"></i> Personalize before Home</button>
-        <button class="text-btn" style="margin-top:14px;width:100%;" onclick="goRealHome()">Skip and go Home</button>
+      <div class="progress-wrap"><div class="step-dot active"></div><div class="step-dot"></div></div>
+      <div class="hero-card">
+        <div class="hero-head">
+          <div>
+            <div class="kicker"><i class="fa-solid fa-layer-group"></i> Screen 2</div>
+            <h1>What’s your vibe?</h1>
+            <p>Select one or multiple topics. These selections will be sent to Home page AI Vibe result section.</p>
+            <div class="pick-note"><i class="fa-solid fa-check-double"></i> Pick one or more</div>
+          </div>
+          <div class="small-status" id="topicStatus">0 selected</div>
+        </div>
+        <div class="topic-grid" id="topicGrid"></div>
+        <div class="actions">
+          <button class="text-btn" onclick="backToLogin()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+          <button class="next-btn" onclick="goToLanguage()">Continue <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="modal-bg" id="topicSheet">
-  <div class="sheet">
-    <div class="sheet-head">
-      <div>
-        <div class="kicker"><i class="fa-solid fa-layer-group"></i> Step 1 of 3</div>
-        <h2>What’s your vibe?</h2>
-        <p>Pick topics to shape your feed.</p>
-        <div class="pick-note"><i class="fa-solid fa-check-double"></i> Pick one or more</div>
+<section class="screen" id="languageScreen">
+  <div class="onboard-wrap">
+    <div class="onboard-shell">
+      <div class="onboard-top">
+        <div class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
+        <button class="top-skip" onclick="finishOnboarding(true)">Skip</button>
       </div>
-      <button class="close" onclick="closeSheet('topicSheet')"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="progress-wrap"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div></div>
-    <div class="topic-grid" id="topicGrid"></div>
-    <div class="sheet-actions">
-      <button class="text-btn" onclick="goRealHome()">Skip for now</button>
-      <button class="next-btn" onclick="nextToLanguages()">Continue <i class="fa-solid fa-arrow-right"></i></button>
+      <div class="progress-wrap"><div class="step-dot active"></div><div class="step-dot active"></div></div>
+      <div class="hero-card">
+        <div class="hero-head">
+          <div>
+            <div class="kicker"><i class="fa-solid fa-language"></i> Screen 3</div>
+            <h1>Choose your languages</h1>
+            <p>Select the languages you want in your feed. Home page will read these values and show matching AI Vibe results.</p>
+            <div class="pick-note"><i class="fa-solid fa-check-double"></i> Pick one or more</div>
+          </div>
+          <div class="small-status" id="languageStatus">0 selected</div>
+        </div>
+        <div class="lang-grid" id="langGrid"></div>
+        <div class="actions">
+          <button class="text-btn" onclick="goToTopic()"><i class="fa-solid fa-arrow-left"></i> Back</button>
+          <button class="next-btn" onclick="finishOnboarding(false)">Go to Home <i class="fa-solid fa-house"></i></button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="modal-bg" id="languageSheet">
-  <div class="sheet">
-    <div class="sheet-head">
-      <div>
-        <div class="kicker"><i class="fa-solid fa-language"></i> Step 2 of 3</div>
-        <h2>Choose your languages</h2>
-        <p>See content in the languages you love.</p>
-        <div class="pick-note"><i class="fa-solid fa-check-double"></i> Pick one or more</div>
-      </div>
-      <button class="close" onclick="closeSheet('languageSheet')"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="progress-wrap"><div class="step-dot active"></div><div class="step-dot active"></div><div class="step-dot"></div></div>
-    <div class="lang-grid" id="langGrid"></div>
-    <div class="sheet-actions">
-      <button class="text-btn" onclick="goRealHome()">Skip for now</button>
-      <button class="next-btn" onclick="nextToAI()">Continue <i class="fa-solid fa-arrow-right"></i></button>
-    </div>
-  </div>
-</div>
-
-<div class="modal-bg" id="aiSheet">
-  <div class="sheet">
-    <div class="sheet-head">
-      <div>
-        <div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> Step 3 of 3</div>
-        <h2>What are you in the mood for?</h2>
-        <p>Use one AI prompt field first. Suggested prompts appear below so options and typing do not compete.</p>
-      </div>
-      <button class="close" onclick="closeSheet('aiSheet')"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="progress-wrap"><div class="step-dot active"></div><div class="step-dot active"></div><div class="step-dot active"></div></div>
-    <div class="ai-flow">
-      <div class="ai-prompt">
-        <h3>Ask JioVibe AI</h3>
-        <p>Example: “Show me motivating Hindi videos” or “I want comedy content after work”.</p>
-        <textarea class="prompt-input" id="aiPrompt" placeholder="Tell us what you want to watch or create..."></textarea>
-        <button class="primary-btn" onclick="finishPersonalization()"><i class="fa-solid fa-wand-magic-sparkles"></i> Find content</button>
-      </div>
-      <div class="suggest-list">
-        <button class="suggest-item" onclick="fillPrompt('Explore trending videos')"><span class="suggest-icon"><i class="fa-solid fa-fire"></i></span> Explore trending videos</button>
-        <button class="suggest-item" onclick="fillPrompt('Popular videos in selected language')"><span class="suggest-icon"><i class="fa-solid fa-language"></i></span> Popular videos in selected language</button>
-        <button class="suggest-item" onclick="fillPrompt('Watch something motivating')"><span class="suggest-icon"><i class="fa-solid fa-bolt"></i></span> Watch something motivating</button>
-        <button class="suggest-item" onclick="fillPrompt('Create a video')"><span class="suggest-icon"><i class="fa-solid fa-video"></i></span> Create a video</button>
-        <button class="suggest-item" onclick="fillPrompt('Learn something new')"><span class="suggest-icon"><i class="fa-solid fa-book-open"></i></span> Learn something new</button>
-      </div>
-    </div>
-    <div class="sheet-actions">
-      <button class="text-btn" onclick="goRealHome()">Skip and go to content</button>
-      <button class="next-btn" onclick="finishPersonalization()">Done <i class="fa-solid fa-check"></i></button>
-    </div>
-  </div>
-</div>
+</section>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const HOME_URL = "https://iklapikla.github.io/jiovibe-Studio/home.html";
+const HOME_URL = 'home.html';
 const selectedTopics = new Set();
 const selectedLanguages = new Set();
 
@@ -181,9 +207,34 @@ const topics = [
 ];
 
 const languages = [
- ['Hindi','हिंदी content'],['English','Global content'],['Punjabi','ਪੰਜਾਬੀ content'],['Tamil','தமிழ் content'],
- ['Telugu','తెలుగు content'],['Marathi','मराठी content'],['Bengali','বাংলা content'],['Gujarati','ગુજરાતી content']
+  ['Hindi','हिंदी content'],
+  ['English','Global content'],
+  ['Punjabi','ਪੰਜਾਬੀ content'],
+  ['Tamil','தமிழ் content'],
+  ['Telugu','తెలుగు content'],
+  ['Marathi','मराठी content'],
+  ['Bengali','বাংলা content'],
+  ['Gujarati','ગુજરાતી content'],
+  ['Kannada','ಕನ್ನಡ content'],
+  ['Malayalam','മലയാളം content'],
+  ['Urdu','اردو content'],
+  ['Bhojpuri','भोजपुरी content']
 ];
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goToTopic(){showScreen('topicScreen')}
+function goToLanguage(){
+  if(selectedTopics.size === 0){
+    toast('Please select at least one topic or use Skip.');
+    return;
+  }
+  showScreen('languageScreen');
+}
+function backToLogin(){showScreen('loginScreen')}
 
 function renderOptions(){
   document.getElementById('topicGrid').innerHTML = topics.map(t=>`
@@ -201,29 +252,68 @@ function renderOptions(){
     </button>`).join('');
 }
 
-function toggleTopic(el,name){el.classList.toggle('selected'); selectedTopics.has(name)?selectedTopics.delete(name):selectedTopics.add(name);}
-function toggleLanguage(el,name){el.classList.toggle('selected'); selectedLanguages.has(name)?selectedLanguages.delete(name):selectedLanguages.add(name);}
-function goNext(){document.getElementById('loginScreen').classList.remove('active');document.getElementById('redirectScreen').classList.add('active');setTimeout(()=>openSheet('topicSheet'),450);}
-function openSheet(id){document.getElementById(id).classList.add('show')}
-function closeSheet(id){document.getElementById(id).classList.remove('show')}
-function nextToLanguages(){closeSheet('topicSheet');openSheet('languageSheet')}
-function nextToAI(){closeSheet('languageSheet');openSheet('aiSheet')}
-function fillPrompt(text){document.getElementById('aiPrompt').value=text}
+function toggleTopic(el,name){
+  el.classList.toggle('selected');
+  selectedTopics.has(name) ? selectedTopics.delete(name) : selectedTopics.add(name);
+  updateStatus();
+}
+function toggleLanguage(el,name){
+  el.classList.toggle('selected');
+  selectedLanguages.has(name) ? selectedLanguages.delete(name) : selectedLanguages.add(name);
+  updateStatus();
+}
+function updateStatus(){
+  document.getElementById('topicStatus').textContent = selectedTopics.size + ' selected';
+  document.getElementById('languageStatus').textContent = selectedLanguages.size + ' selected';
+}
+
 function buildHomeUrl(){
-  const vibe = Array.from(selectedTopics).join(',');
-  const lang = Array.from(selectedLanguages).join(',');
-  const prompt = document.getElementById('aiPrompt') ? document.getElementById('aiPrompt').value.trim() : '';
+  const topicsArr = Array.from(selectedTopics);
+  const langsArr = Array.from(selectedLanguages);
   const params = new URLSearchParams();
-  if(vibe) params.set('vibe', vibe);
-  if(lang) params.set('lang', lang);
-  if(prompt) params.set('prompt', prompt);
   params.set('from','onboarding');
+  if(topicsArr.length) params.set('vibe', topicsArr.join(','));
+  if(langsArr.length) params.set('lang', langsArr.join(','));
   return HOME_URL + '?' + params.toString();
 }
-function goRealHome(){window.location.href = buildHomeUrl();}
-function finishPersonalization(){toast('Opening your personalized Home...');setTimeout(()=>{window.location.href = buildHomeUrl()},650)}
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+
+function saveOnboardingData(){
+  const payload = {
+    from:'onboarding',
+    topics:Array.from(selectedTopics),
+    languages:Array.from(selectedLanguages),
+    createdAt:new Date().toISOString()
+  };
+  localStorage.setItem('jiovibe_onboarding_data', JSON.stringify(payload));
+  localStorage.setItem('jiovibe_selected_vibes', JSON.stringify(payload.topics));
+  localStorage.setItem('jiovibe_selected_languages', JSON.stringify(payload.languages));
+  localStorage.setItem('jiovibe_open_ai_vibe_results', 'true');
+}
+
+function finishOnboarding(isSkip){
+  if(!isSkip && selectedLanguages.size === 0){
+    toast('Please select at least one language or use Skip.');
+    return;
+  }
+  saveOnboardingData();
+  toast('Opening Home with your AI Vibe results...');
+  setTimeout(()=>{ window.location.href = buildHomeUrl(); }, 550);
+}
+
+function skipToHome(){
+  saveOnboardingData();
+  window.location.href = HOME_URL + '?from=onboarding';
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+
 renderOptions();
+updateStatus();
 </script>
 </body>
 </html>
