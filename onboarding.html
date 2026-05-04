@@ -54,7 +54,11 @@ chat.scrollTop=chat.scrollHeight;
 }
 function processAI(q){const l=q.toLowerCase();let cats=['Comedy','Music'],reply='Based on your message, I suggest a mixed Comedy + Music feed.';if(l.includes('sad')||l.includes('breakup')||l.includes('calm')){cats=['Music','Comedy'];reply='I recommend Music + Comedy mix for a softer mood.'}else if(l.includes('funny')||l.includes('happy')||l.includes('laugh')){cats=['Comedy'];reply='Comedy clips and funny shorts will work best.'}else if(l.includes('fitness')||l.includes('motivat')||l.includes('energy')){cats=['Fitness','Sports'];reply='Fitness + Sports will feel energetic and positive.'}else if(l.includes('game')){cats=['Gaming'];reply='Gaming live streams and clutch moments are perfect.'}else if(l.includes('learn')||l.includes('study')||l.includes('education')){cats=['Education'];reply='Good choice. I can show quick learning videos that feel useful without being heavy.'}else if(l.includes('music')||l.includes('chill')){cats=['Music','Lifestyle'];reply='Music + Lifestyle will feel relaxed and premium.'}else if(l.includes('food')||l.includes('travel')){cats=['Food','Travel'];reply='Food + Travel will look very visual in the demo.'}addBotAction(reply,cats)}
 function continueFromSelection(){
- if(!selectedCategories.length){selectedCategories=['Gaming'];document.querySelectorAll('.choice-card').forEach((c,i)=>c.classList.toggle('selected',Object.keys(categoryData)[i]==='Gaming'));updateSelectionNote();}
+ if(!selectedCategories.length){
+  selectedCategories=['Gaming'];
+  document.querySelectorAll('.choice-card').forEach((c,i)=>c.classList.toggle('selected',Object.keys(categoryData)[i]==='Gaming'));
+  updateSelectionNote();
+ }
  goHome();
 }
 function continueFromAI(){goHome();}
