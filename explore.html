@@ -297,19 +297,48 @@ font-size:12px;
 font-weight:900
 }
 .video-info{
-padding:13px 14px 15px
+padding:13px 14px 15px;
+display:flex;
+gap:11px;
+align-items:flex-start
 }
-.video-info h3{
+.creator-logo{
+width:42px;
+height:42px;
+border-radius:50%;
+object-fit:cover;
+flex-shrink:0;
+border:2px solid #FF7A00;
+box-shadow:0 5px 14px rgba(255,122,0,.18);
+background:#FFE4CC
+}
+.video-text{
+display:flex;
+flex-direction:column;
+min-width:0
+}
+.video-text h3{
 font-size:15px;
 line-height:1.35;
 font-weight:900;
-margin-bottom:7px
+margin-bottom:5px
+display:-webkit-box;
+-webkit-line-clamp:2;
+-webkit-box-orient:vertical;
+overflow:hidden
 }
-.video-info p{
+.video-text p{
 color:#7A3E2E;
 font-size:13px;
-line-height:1.4;
-font-weight:700
+line-height:1.35;
+font-weight:800
+}
+.video-text .stats{
+font-size:12px;
+line-height:1.35;
+font-weight:800;
+color:#9A5A45;
+margin-top:2px
 }
 .orange-dot{color:#FF7A00}
 
@@ -970,10 +999,59 @@ const reelsData = [
 ["Travel mood with family vibes","Flying Beast","1.7M","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=700&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Flying%20Beast.gif","shorts.html"]
 ];
 
+const fallbackProfile = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
+<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'>
+<rect width='80' height='80' rx='40' fill='#FF7A00'/>
+<text x='40' y='49' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='21' font-weight='900' fill='white'>Jio</text>
+</svg>`);
+
+const creatorProfiles = {
+"Narendra Modi":"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Narendra%20Modi.jpeg",
+"Rohit Sharma":"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg",
+"Total Gaming":"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg",
+"Ashish Chanchlani":"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg",
+"Arijit Singh":"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Arijit%20Singh.jpg",
+"Technical Guruji":"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg",
+"Khan Sir":"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg",
+"Flying Beast":"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.jpg",
+"Ranveer Singh":"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg",
+"JioVibe Official":fallbackProfile,
+"JioVibe Events":fallbackProfile,
+"JioVibe Studio":fallbackProfile,
+"JioVibe AI":fallbackProfile,
+"JioVibe Team":fallbackProfile
+};
+
+const videoStats = {
+"Ranveer Singh Live":"Movies • 12.8K watching now",
+"Rohit Practice Live":"Sports • 8.4K watching now",
+"Gaming Tournament Live":"Gaming • 5.2K watching now",
+"Creator Comedy Live":"Comedy • 6.6K watching now",
+"Music Room Live":"Music • 9.1K watching now",
+"Tech Live Q&A":"Tech • 3.8K watching now",
+"Education Live Class":"Education • 7.5K watching now",
+"JioVibe Launch Highlights":"Launch • 684K views • 8 hours ago",
+"Creator Stage Moments":"Events • 512K views • 10 hours ago",
+"Behind the Launch":"Studio • 409K views • 11 hours ago",
+"AI Studio Reveal":"AI • 735K views • 7 hours ago",
+"Launch Crowd Reactions":"Launch • 628K views • 9 hours ago",
+"Founder Welcome Note":"Business • 288K views • 1 day ago",
+"Creator Economy Panel":"Creator Economy • 476K views • 1 day ago",
+"Comedy Scene That Everyone Is Sharing Today":"Comedy • 503K views • 9 hours ago",
+"Major Event Highlights and Key Moments":"Education • 1016K views • 9 hours ago",
+"Last Zone Gaming Highlights":"Gaming • 250K views • 3 hours ago",
+"Studio Vibes and Live Singing Moment":"Music • 903K views • 5 hours ago",
+"Tech Gadgets Worth Watching":"Tech • 609K views • 5 hours ago",
+"Education Tip That Makes It Easy":"Education • 573K views • 9 hours ago",
+"Family Vlog and Travel Moments":"Lifestyle • 828K views • 6 hours ago"
+};
+
 function videoCard(item, live=false){
 const thumb = item[3] || fallbackThumb;
 const gif = item[4] || fallbackGif;
 const link = item[5] || "video.html";
+const profile = creatorProfiles[item[1]] || fallbackProfile;
+const stats = videoStats[item[0]] || (live ? `${item[2]} watching now` : `${item[2]} • Trending now`);
 return `
 <a href="${link}" class="video-card">
 <div class="thumb">
@@ -981,8 +1059,12 @@ return `
 ${live ? `<span class="live-tag">LIVE</span><span class="views">${item[2]}</span>` : `<span class="duration">${item[2]}</span>`}
 </div>
 <div class="video-info">
+<img class="creator-logo" src="${profile}" alt="${item[1]}" onerror="this.onerror=null;this.src=fallbackProfile;">
+<div class="video-text">
 <h3>${item[0]}</h3>
 <p>${item[1]} <span class="orange-dot">●</span></p>
+<div class="stats">${stats}</div>
+</div>
 </div>
 </a>
 `;
