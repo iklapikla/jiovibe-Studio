@@ -59,7 +59,7 @@ button,input{font-family:inherit}button{border:none;background:none;cursor:point
   <div class="page">
     <div class="top">
       <div class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
-      <button class="skip" onclick="goHome()">Skip</button>
+      <button class="skip" onclick="skipToHome()">Skip</button>
     </div>
     <div class="progress"><div class="bar" id="bar1"><span></span></div><div class="bar" id="bar2"><span></span></div><div class="bar" id="bar3"><span></span></div></div>
 
@@ -131,6 +131,7 @@ function addBotAction(text,cats){selectedCategories=cats;document.querySelectorA
 function useMood(mood,el){selectedMood=mood;document.querySelectorAll('.mood-chip').forEach(x=>x.classList.remove('active'));if(el)el.classList.add('active');addMsg(mood,'user');processMood(mood);}
 function sendAI(){const input=document.getElementById('aiInput');const q=input.value.trim();if(!q)return;selectedMood=q;addMsg(q,'user');input.value='';processMood(q);}
 function processMood(q){const l=q.toLowerCase();if(l.includes('sad')||l.includes('breakup')||l.includes('calm'))addBotAction('I recommend a Music + Comedy mix for this mood.', ['Music','Comedy']);else if(l.includes('learn')||l.includes('study'))addBotAction('Good choice. I can show quick learning videos that feel useful without being heavy.', ['Education']);else if(l.includes('game'))addBotAction('Gaming live streams and clutch moments are perfect for this mood.', ['Gaming']);else if(l.includes('fitness')||l.includes('motivat'))addBotAction('Fitness and Sports content will feel energetic and positive.', ['Fitness','Sports']);else if(l.includes('music')||l.includes('chill'))addBotAction('Music and Lifestyle content will fit this mood well.', ['Music','Lifestyle']);else addBotAction('Comedy clips and funny shorts will work best.', ['Comedy']);}
+function skipToHome(){window.location.href='https://iklapikla.github.io/jiovibe-Studio/home.html';}
 function goHome(){if(!selectedCategories.length)selectedCategories=['Gaming'];if(!selectedLanguages.length)selectedLanguages=['Hindi'];const params=new URLSearchParams();params.set('from','onboarding');params.set('vibe',selectedCategories.join(','));params.set('lang',selectedLanguages.join(','));if(selectedMood)params.set('mood',selectedMood);window.location.href='home.html?'+params.toString();}
 initLanguages();initCategories();initMoods();
 </script>
