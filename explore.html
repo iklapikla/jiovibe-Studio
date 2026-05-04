@@ -257,15 +257,12 @@ background:#2A0A0A;
 position:relative;
 overflow:hidden
 }
-.thumb img,.thumb video{
+.thumb img{
 width:100%;
 height:100%;
 object-fit:cover;
 display:block
 }
-.thumb video{display:none}
-.video-card:hover video{display:block}
-.video-card:hover .thumb-img{display:none}
 .duration{
 position:absolute;
 right:8px;
@@ -378,9 +375,12 @@ transition:.2s
 box-shadow:0 18px 40px rgba(74,14,14,.16)
 }
 .reel-card img{
+position:absolute;
+inset:0;
 width:100%;
 height:100%;
-object-fit:cover
+object-fit:cover;
+display:block
 }
 .reel-card::after{
 content:"";
@@ -607,13 +607,11 @@ box-shadow:0 18px 42px rgba(74,14,14,.16);
 border-color:#FF7A00;
 }
 
-.thumb img,
-.thumb video{
+.thumb img{
 transition: transform .4s ease, opacity .25s ease;
 }
 
-.video-card:hover .thumb img,
-.video-card:hover .thumb video{
+.video-card:hover .thumb img{
 transform: scale(1.08);
 }
 
@@ -676,6 +674,42 @@ transition-duration:.01ms !important;
 scroll-behavior:auto !important;
 }
 }
+
+
+/* FIXED SHORTS & REELS HOVER GIF - separate static thumbnail + GIF layer */
+.reel-card{position:relative;}
+.reel-card .reel-static,
+.reel-card .reel-hover-gif{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+transition:opacity .22s ease, transform .45s ease;
+}
+.reel-card .reel-hover-gif{
+opacity:0;
+z-index:1;
+}
+.reel-card .reel-static{
+opacity:1;
+z-index:0;
+}
+.reel-card:hover .reel-static{
+opacity:0;
+transform:scale(1.08);
+}
+.reel-card:hover .reel-hover-gif{
+opacity:1;
+transform:scale(1.08);
+}
+.reel-card h3,
+.reel-card p{
+z-index:3;
+pointer-events:none;
+}
+.reel-card::after{z-index:2;pointer-events:none;}
 
 </style>
 </head>
@@ -873,67 +907,77 @@ dots.appendChild(d);
 setInterval(()=>slideHero(1),4500);
 updateDots();
 
-const hoverVideo = "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4";
+const fallbackGif = "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif";
+const fallbackThumb = "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop";
+
+function swapToGif(img){
+if(!img.dataset.gif)return;
+if(!img.dataset.thumb)img.dataset.thumb = img.src;
+img.src = img.dataset.gif;
+}
+function swapToThumb(img){
+if(img.dataset.thumb)img.src = img.dataset.thumb;
+}
 
 const liveData = [
-["Ranveer Singh Live","Ranveer Singh","12.8K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ranveer%20Singh.gif","watch-ranveer-singh.html"],
-["Rohit Practice Live","Rohit Sharma","8.4K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Rohit%20Sharma.gif","live.html"],
-["Gaming Tournament Live","Total Gaming","5.2K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif","live.html"],
-["Creator Comedy Live","Ashish Chanchlani","6.6K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif","watch-ashish-chanchlani.html"],
-["Music Room Live","Arijit Singh","9.1K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Arijit%20Singh.gif","live.html"],
-["Tech Live Q&A","Technical Guruji","3.8K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Technical%20Guruji.gif","live.html"],
-["Education Live Class","Khan Sir","7.5K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20khan%20sir%20teacher%20gif.gif","live.html"]
+["Ranveer Singh Live","Ranveer Singh","12.8K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ranveer%20Singh.webp","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ranveer%20Singh.gif","watch-ranveer-singh.html"],
+["Rohit Practice Live","Rohit Sharma","8.4K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Rohit%20Sharma.webp","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Rohit%20Sharma.gif","live.html"],
+["Gaming Tournament Live","Total Gaming","5.2K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Total%20Gaming.webp","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif","live.html"],
+["Creator Comedy Live","Ashish Chanchlani","6.6K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ashish%20Chanchlani.webp","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif","watch-ashish-chanchlani.html"],
+["Music Room Live","Arijit Singh","9.1K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Arijit%20Singh.webp","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Arijit%20Singh.gif","live.html"],
+["Tech Live Q&A","Technical Guruji","3.8K","https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Technical%20Guruji.gif","live.html"],
+["Education Live Class","Khan Sir","7.5K","https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=900&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20khan%20sir%20teacher%20gif.gif","live.html"]
 ];
 
 const launchData = [
-["JioVibe Launch Highlights","JioVibe Official","8:45","https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=700&auto=format&fit=crop","video.html"],
-["Creator Stage Moments","JioVibe Events","12:20","https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=700&auto=format&fit=crop","video.html"],
-["Behind the Launch","JioVibe Studio","9:10","https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=700&auto=format&fit=crop","video.html"],
-["AI Studio Reveal","JioVibe AI","7:30","https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=700&auto=format&fit=crop","ai-studio.html"],
-["Launch Crowd Reactions","JioVibe Official","6:55","https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=700&auto=format&fit=crop","video.html"],
-["Founder Welcome Note","JioVibe Team","5:40","https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=700&auto=format&fit=crop","video.html"],
-["Creator Economy Panel","JioVibe Events","18:10","https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=700&auto=format&fit=crop","video.html"]
+["JioVibe Launch Highlights","JioVibe Official","8:45","https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=900&auto=format&fit=crop","https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif","video.html"],
+["Creator Stage Moments","JioVibe Events","12:20","https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=900&auto=format&fit=crop","https://media.giphy.com/media/l3vRlT2k2L35Cnn5C/giphy.gif","video.html"],
+["Behind the Launch","JioVibe Studio","9:10","https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=900&auto=format&fit=crop","https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif","video.html"],
+["AI Studio Reveal","JioVibe AI","7:30","https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=900&auto=format&fit=crop","https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif","ai-studio.html"],
+["Launch Crowd Reactions","JioVibe Official","6:55","https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=900&auto=format&fit=crop","https://media.giphy.com/media/xUPGcguWZHRC2HyBRS/giphy.gif","video.html"],
+["Founder Welcome Note","JioVibe Team","5:40","https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=900&auto=format&fit=crop","https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif","video.html"],
+["Creator Economy Panel","JioVibe Events","18:10","https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=900&auto=format&fit=crop","https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif","video.html"]
 ];
 
 const trendingData = [
-["Comedy Scene That Everyone Is Sharing Today","Ashish Chanchlani","6:14","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif","watch-ashish-chanchlani.html"],
-["Major Event Highlights and Key Moments","Narendra Modi","8:30","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Narendra%20Modi.gif","video.html"],
-["Last Zone Gaming Highlights","Total Gaming","12:44","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif","video.html"],
-["Studio Vibes and Live Singing Moment","Arijit Singh","3:45","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Arijit%20Singh.gif","video.html"],
-["Tech Gadgets Worth Watching","Technical Guruji","6:20","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Technical%20Guruji.gif","video.html"],
-["Education Tip That Makes It Easy","Khan Sir","8:15","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20khan%20sir%20teacher%20gif.gif","video.html"],
-["Family Vlog and Travel Moments","Flying Beast","11:10","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Flying%20Beast.gif","video.html"]
+["Comedy Scene That Everyone Is Sharing Today","Ashish Chanchlani","6:14","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ashish%20Chanchlani.webp","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif","watch-ashish-chanchlani.html"],
+["Major Event Highlights and Key Moments","Narendra Modi","8:30","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Narendra%20Modi.webp","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Narendra%20Modi.gif","video.html"],
+["Last Zone Gaming Highlights","Total Gaming","12:44","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Total%20Gaming.webp","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif","video.html"],
+["Studio Vibes and Live Singing Moment","Arijit Singh","3:45","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Arijit%20Singh.webp","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Arijit%20Singh.gif","video.html"],
+["Tech Gadgets Worth Watching","Technical Guruji","6:20","https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Technical%20Guruji.gif","video.html"],
+["Education Tip That Makes It Easy","Khan Sir","8:15","https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=900&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20khan%20sir%20teacher%20gif.gif","video.html"],
+["Family Vlog and Travel Moments","Flying Beast","11:10","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Flying%20Beast.gif","video.html"]
 ];
 
 const cats = [
-["Gaming","category-gaming.html","https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop"],
-["Music","category-music.html","https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=500&auto=format&fit=crop"],
-["Comedy","category-comedy.html","https://images.unsplash.com/photo-1527224857830-43a7acc85260?q=80&w=500&auto=format&fit=crop"],
-["Tech","category-tech.html","https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=500&auto=format&fit=crop"],
-["Education","category-education.html","https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=500&auto=format&fit=crop"],
-["Lifestyle","category-lifestyle.html","https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=500&auto=format&fit=crop"],
-["Movies","category-movies.html","https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=500&auto=format&fit=crop"]
+["Gaming","category-gaming.html","https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif"],
+["Music","category-music.html","https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=500&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Arijit%20Singh.gif"],
+["Comedy","category-comedy.html","https://images.unsplash.com/photo-1527224857830-43a7acc85260?q=80&w=500&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif"],
+["Tech","category-tech.html","https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=500&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Technical%20Guruji.gif"],
+["Education","category-education.html","https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=500&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20khan%20sir%20teacher%20gif.gif"],
+["Lifestyle","category-lifestyle.html","https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=500&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Flying%20Beast.gif"],
+["Movies","category-movies.html","https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=500&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ranveer%20Singh.gif"]
 ];
 
 const reelsData = [
-["Major event moments in seconds","Narendra Modi","1.4M","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Narendra%20Modi.gif","shorts.html"],
-["Captain energy and cricket vibes","Rohit Sharma","980K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Rohit%20Sharma.gif","shorts.html"],
-["Last zone clutch in 15 seconds","Total Gaming","2.2M","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif","shorts.html"],
-["When friends say just 5 minutes","Ashish Chanchlani","760K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Ashish%20Chanchlani.gif","shorts.html"],
-["Studio melody in a short vibe","Arijit Singh","1.1M","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Arijit%20Singh.gif","shorts.html"],
-["Future tech in 15 seconds","Technical Guruji","3.8M","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Technical%20Guruji.gif","shorts.html"],
-["Simple explanation that hits hard","Khan Sir","690K","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Khan%20Sir.gif","shorts.html"],
-["Travel mood with family vibes","Flying Beast","1.7M","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Flying%20Beast.gif","shorts.html"]
+["Major event moments in seconds","Narendra Modi","1.4M","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=700&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Narendra%20Modi.gif","shorts.html"],
+["Captain energy and cricket vibes","Rohit Sharma","980K","https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=700&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Rohit%20Sharma.gif","shorts.html"],
+["Last zone clutch in 15 seconds","Total Gaming","2.2M","https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=700&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif","shorts.html"],
+["When friends say just 5 minutes","Ashish Chanchlani","760K","https://images.unsplash.com/photo-1527224857830-43a7acc85260?q=80&w=700&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Ashish%20Chanchlani.gif","shorts.html"],
+["Studio melody in a short vibe","Arijit Singh","1.1M","https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=700&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Arijit%20Singh.gif","shorts.html"],
+["Future tech in 15 seconds","Technical Guruji","3.8M","https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=700&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Technical%20Guruji.gif","shorts.html"],
+["Simple explanation that hits hard","Khan Sir","690K","https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=700&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Khan%20Sir.gif","shorts.html"],
+["Travel mood with family vibes","Flying Beast","1.7M","https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=700&auto=format&fit=crop","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Flying%20Beast.gif","shorts.html"]
 ];
 
 function videoCard(item, live=false){
+const thumb = item[3] || fallbackThumb;
+const gif = item[4] || fallbackGif;
+const link = item[5] || "video.html";
 return `
-<a href="${item[4]}" class="video-card">
+<a href="${link}" class="video-card">
 <div class="thumb">
-<img class="thumb-img" src="${item[3]}">
-<video muted loop onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0">
-<source src="${hoverVideo}" type="video/mp4">
-</video>
+<img class="thumb-img" src="${thumb}" data-thumb="${thumb}" data-gif="${gif}" onmouseenter="swapToGif(this)" onmouseleave="swapToThumb(this)">
 ${live ? `<span class="live-tag">LIVE</span><span class="views">${item[2]}</span>` : `<span class="duration">${item[2]}</span>`}
 </div>
 <div class="video-info">
@@ -959,29 +1003,29 @@ function renderCategories(){
 const box=document.getElementById("categories");
 box.innerHTML=cats.map(c=>`
 <div class="cat-card" onclick="openCategory('${c[0]}','${c[1]}')">
-<img src="${c[2]}">
+<img src="${c[2]}" data-thumb="${c[2]}" data-gif="${c[3]}" onmouseenter="swapToGif(this)" onmouseleave="swapToThumb(this)">
 <h3>${c[0]}</h3>
 </div>
 `).join("");
 }
 renderCategories();
 
-function renderReels(){
-document.getElementById("reels").innerHTML = reelsData.slice(0,6).map(r=>`
-<a href="${r[4]}" class="reel-card">
-<img src="${r[3]}">
+function reelCard(r){
+const thumb = r[3] || fallbackThumb;
+const gif = r[4] || fallbackGif;
+const link = r[5] || "shorts.html";
+return `
+<a href="${link}" class="reel-card">
+<img class="reel-static" src="${thumb}" alt="${r[0]}">
+<img class="reel-hover-gif" src="${gif}" alt="${r[0]} preview">
 <h3>${r[0]}</h3>
 <p>${r[1]} • ${r[2]}</p>
-</a>
-`).join("");
+</a>`;
+}
 
-document.getElementById("extraReels").innerHTML = reelsData.slice(6).map(r=>`
-<a href="${r[4]}" class="reel-card">
-<img src="${r[3]}">
-<h3>${r[0]}</h3>
-<p>${r[1]} • ${r[2]}</p>
-</a>
-`).join("");
+function renderReels(){
+document.getElementById("reels").innerHTML = reelsData.slice(0,6).map(r=>reelCard(r)).join("");
+document.getElementById("extraReels").innerHTML = reelsData.slice(6).map(r=>reelCard(r)).join("");
 }
 renderReels();
 
