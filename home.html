@@ -47,6 +47,107 @@ height:100%;
 border:3px solid #FFFFFF;
 }
 
+
+
+/* INSTAGRAM STYLE STORY CIRCLE SECTION */
+.story-strip-section{
+margin-top:28px;
+background:#fff;
+border:1px solid var(--line);
+border-radius:24px;
+padding:28px 28px 24px;
+box-shadow:0 10px 30px rgba(74,14,14,.06);
+overflow:hidden;
+}
+.story-strip-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:14px;
+margin-bottom:16px;
+}
+.story-strip-head h2{
+font-size:24px;
+font-weight:950;
+letter-spacing:-.03em;
+}
+.story-strip-head p{
+font-size:13px;
+font-weight:800;
+color:var(--muted);
+margin-top:5px;
+}
+.story-strip{
+display:flex;
+gap:24px;
+overflow-x:auto;
+overflow-y:hidden;
+padding:8px 4px 16px;
+scrollbar-width:thin;
+scrollbar-color:var(--orange) transparent;
+}
+.story-strip::-webkit-scrollbar{height:7px}
+.story-strip::-webkit-scrollbar-track{background:#FFF3E8;border-radius:99px}
+.story-strip::-webkit-scrollbar-thumb{background:var(--orange);border-radius:99px}
+.story-item{
+flex:0 0 118px;
+width:118px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:9px;
+text-align:center;
+}
+.story-avatar-ring{
+width:102px;
+height:102px;
+border-radius:50%;
+padding:4px;
+background:linear-gradient(135deg,#FF7A00,#FFB347,#D73700);
+box-shadow:0 0 0 4px rgba(255,122,0,.12),0 12px 24px rgba(74,14,14,.10);
+transition:.25s ease;
+position:relative;
+}
+.story-avatar-ring::after{
+content:"";
+position:absolute;
+inset:-5px;
+border-radius:50%;
+border:2px solid rgba(255,122,0,.22);
+opacity:.75;
+animation:storyPulse 2.2s ease-in-out infinite;
+}
+.story-item:hover .story-avatar-ring{
+transform:translateY(-3px) scale(1.06);
+box-shadow:0 0 0 5px rgba(255,122,0,.18),0 16px 30px rgba(74,14,14,.16);
+}
+.story-avatar-ring img{
+width:100%;
+height:100%;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #fff;
+background:#fff;
+display:block;
+position:relative;
+z-index:2;
+}
+.story-name{
+font-size:14px;
+font-weight:900;
+color:var(--brown);
+line-height:1.25;
+max-width:118px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+@keyframes storyPulse{
+0%,100%{transform:scale(.98);opacity:.45}
+50%{transform:scale(1.08);opacity:.9}
+}
+@media(max-width:900px){.story-item{flex-basis:96px;width:96px}.story-avatar-ring{width:84px;height:84px}.story-name{max-width:96px;font-size:12px}.story-strip-section{padding:20px 16px}.story-strip-head h2{font-size:21px}}
+
 @media(max-width:1400px){.search{width:420px}.video-grid{grid-template-columns:repeat(3,1fr)}.ai-vibe-shell{grid-template-columns:1fr}.player-card{flex-basis:calc((100% - 18px)/2);min-width:calc((100% - 18px)/2)}.short-card{flex-basis:calc((100% - 36px)/3);min-width:calc((100% - 36px)/3)}}
 @media(max-width:900px){.sidebar{display:none}.main{margin-left:0;width:100%}.content{padding:24px 18px}.topbar{padding:0 18px}.search{width:280px}.video-grid{grid-template-columns:repeat(2,1fr)}.category-select-grid{grid-template-columns:repeat(2,1fr)}.ai-input-wrap{grid-template-columns:1fr}.ai-suggestions{right:0}.ai-promo-box{grid-template-columns:1fr auto}.ai-promo-badge{display:none}.ai-promo-copy{text-align:left;font-size:16px}.player-card{flex-basis:86%;min-width:86%}.short-card{flex-basis:44%;min-width:44%}.banner-wrap{height:260px}.banner-content h1{font-size:34px}}
 
@@ -271,6 +372,57 @@ font-weight:950;
 <section class="vibe-results" id="vibeResults"><div class="results-head"><div><div class="kicker"><i class="fa-solid fa-sliders"></i> Personalized Feed</div><h2 id="resultTitle">Content Matching Your Vibe</h2><p id="resultSub">Side scroll videos and shorts matched with your selected categories.</p></div><button class="change-vibe" onclick="openChangeVibeModal(event)"><i class="fa-solid fa-sliders"></i> Change Your Vibe</button></div><div class="rail-block"><h3 class="rail-title">Videos & Live Streams Matching Your Vibe</h3><div class="rail-wrap" id="videoRailWrap"><button class="rail-action left" onclick="scrollRail('videoRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="videoRail"></div><button class="rail-action right" onclick="scrollRail('videoRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more videos.</div></div><div class="rail-block"><h3 class="rail-title">Shorts Matching Your Vibe</h3><div class="rail-wrap"><button class="rail-action left" onclick="scrollRail('shortsRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="shortsRail"></div><button class="rail-action right" onclick="scrollRail('shortsRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more shorts.</div></div></section>
 <div class="banner-wrap"><div class="banner-track" id="bannerTrack"><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Creator Story</div><h1>Creator Spotlight</h1><p>Meet new creators and their powerful stories.</p><a href="watch-featured.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Live Now</div><h1>Big Live Moments</h1><p>Watch creators going live with trending events.</p><a href="watch-live.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Gaming</div><h1>Gaming Highlights</h1><p>Explore fresh gaming clips, live streams and shorts.</p><a href="gaming.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div></div><div class="banner-dots" id="bannerDots"><span class="active" onclick="goToSlide(0)"></span><span onclick="goToSlide(1)"></span><span onclick="goToSlide(2)"></span></div><div class="banner-arrow left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div><div class="banner-arrow right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div></div>
 <section><div class="section-head"><h2>Trending Now 🔥</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="trendingGrid"></div></section><div class="section-separator"></div><section><div class="section-head"><h2>Recommended for You ✨</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="recommendedGrid"></div></section>
+<section class="story-strip-section">
+  <div class="story-strip-head">
+    <div>
+      <h2>Creator Stories</h2>
+      <p>Tap a profile circle to watch quick creator stories.</p>
+    </div>
+    <button class="see-link">View all <i class="fa-solid fa-chevron-right"></i></button>
+  </div>
+  <div class="story-strip">
+    <a href="story-ranveer-singh.html" class="story-item">
+      <div class="story-avatar-ring"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg" alt="Ranveer Singh"></div>
+      <div class="story-name">Ranveer</div>
+    </a>
+    <a href="story-ashish-chanchlani.html" class="story-item">
+      <div class="story-avatar-ring"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg" alt="Ashish Chanchlani"></div>
+      <div class="story-name">Ashish</div>
+    </a>
+    <a href="javascript:void(0)" class="story-item">
+      <div class="story-avatar-ring"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Narendra%20Modi.jpeg" alt="Narendra Modi"></div>
+      <div class="story-name">Narendra</div>
+    </a>
+    <a href="javascript:void(0)" class="story-item">
+      <div class="story-avatar-ring"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg" alt="Rohit Sharma"></div>
+      <div class="story-name">Rohit</div>
+    </a>
+    <a href="javascript:void(0)" class="story-item">
+      <div class="story-avatar-ring"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg" alt="Total Gaming"></div>
+      <div class="story-name">Total Gaming</div>
+    </a>
+    <a href="javascript:void(0)" class="story-item">
+      <div class="story-avatar-ring"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Arijit%20Singh.jpg" alt="Arijit Singh"></div>
+      <div class="story-name">Arijit</div>
+    </a>
+    <a href="javascript:void(0)" class="story-item">
+      <div class="story-avatar-ring"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg" alt="Technical Guruji"></div>
+      <div class="story-name">Technical</div>
+    </a>
+    <a href="javascript:void(0)" class="story-item">
+      <div class="story-avatar-ring"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg" alt="Khan Sir"></div>
+      <div class="story-name">Khan Sir</div>
+    </a>
+    <a href="javascript:void(0)" class="story-item">
+      <div class="story-avatar-ring"><img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202207/Spotlight_Flying_Beast_Gaurav__1200x768.jpeg?VersionId=b" alt="Flying Beast"></div>
+      <div class="story-name">Flying Beast</div>
+    </a>
+    <a href="javascript:void(0)" class="story-item">
+      <div class="story-avatar-ring"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg" alt="Trupti Latur"></div>
+      <div class="story-name">Trupti</div>
+    </a>
+  </div>
+</section>
 </section>
 
 <div class="vibe-modal-overlay" id="changeVibeModal" onclick="closeChangeVibeModal(event)">
