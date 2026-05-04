@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JioVibe Onboarding</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{--cream:#FFF6ED;--soft:#FFE4CC;--line:#FFD2B3;--orange:#FF7A00;--brown:#7A3E2E;--dark:#4A0E0E;--deep:#2A0A0A;--muted:#A66A55}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+html,body{min-height:100%;background:var(--cream);color:var(--dark);overflow-x:hidden}
+button,input,textarea{font-family:inherit}button{border:0;background:none;cursor:pointer;color:inherit}a{text-decoration:none;color:inherit}
+.screen{min-height:100vh;display:none}.screen.active{display:block}
+.login-wrap{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;background:linear-gradient(135deg,#fff 0%,#FFF6ED 48%,#FFE4CC 100%)}
+.login-art{position:relative;overflow:hidden;padding:52px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(90deg,rgba(42,10,10,.76),rgba(42,10,10,.24)),url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1800&auto=format&fit=crop') center/cover;color:white}
+.logo{display:flex;align-items:center;gap:8px}.logo-circle{width:54px;height:54px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:950;font-size:25px;color:white}.logo-text{font-size:34px;font-weight:950;letter-spacing:-1.4px}
+.art-copy{max-width:620px}.art-kicker{color:#FFB36B;font-weight:950;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}.art-copy h1{font-size:58px;line-height:1.02;font-weight:950;letter-spacing:-2px;margin-bottom:18px}.art-copy p{font-size:18px;line-height:1.55;color:#FFE4CC;font-weight:700}
+.login-card{display:flex;align-items:center;justify-content:center;padding:44px}.login-box{width:100%;max-width:510px;background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:30px;padding:34px;box-shadow:0 26px 70px rgba(74,14,14,.12);backdrop-filter:blur(16px)}
+.kicker{display:inline-flex;align-items:center;gap:8px;background:#FFF3E8;border:1px solid #FFD7BC;color:var(--orange);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:950;margin-bottom:14px}
+.login-box h2{font-size:36px;font-weight:950;letter-spacing:-1.2px;margin-bottom:10px}.login-box p{font-size:15px;font-weight:750;color:var(--muted);line-height:1.5;margin-bottom:24px}.field-label{font-size:13px;font-weight:950;color:var(--brown);margin-bottom:8px}
+.input{width:100%;height:58px;border-radius:18px;border:2px solid var(--line);outline:none;padding:0 18px;font-size:15px;font-weight:800;color:var(--dark);background:white;transition:.25s}.input:focus{border-color:var(--orange);box-shadow:0 12px 28px rgba(255,122,0,.13)}
+.primary-btn{width:100%;height:58px;border-radius:18px;background:linear-gradient(135deg,var(--orange),#FF9638);color:white;font-weight:950;font-size:16px;margin-top:18px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 16px 34px rgba(255,122,0,.28);transition:.25s}.primary-btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(255,122,0,.36)}
+.helper{margin-top:16px;padding:13px 15px;border-radius:16px;background:#FFF6ED;border:1px solid #FFE0CC;color:var(--brown);font-size:13px;line-height:1.45;font-weight:800}
+.redirect-wrap .login-art{background:linear-gradient(90deg,rgba(42,10,10,.76),rgba(42,10,10,.25)),url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1800&auto=format&fit=crop') center/cover}
+.modal-bg{position:fixed;inset:0;background:rgba(42,10,10,.42);display:none;align-items:flex-end;justify-content:center;z-index:100}.modal-bg.show{display:flex}
+.sheet{width:min(1120px,calc(100vw - 28px));max-height:88vh;overflow:auto;background:white;border-radius:32px 32px 0 0;border:1px solid var(--line);box-shadow:0 -20px 60px rgba(74,14,14,.22);padding:26px;animation:sheetUp .25s ease}@keyframes sheetUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.sheet-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px}.sheet-head h2{font-size:34px;font-weight:950;letter-spacing:-1px}.sheet-head p{font-size:15px;font-weight:800;color:var(--muted);margin-top:6px}.pick-note{margin-top:10px;display:inline-flex;align-items:center;gap:8px;border-radius:999px;background:#FFF3E8;border:1px solid #FFD7BC;color:var(--orange);padding:8px 12px;font-size:12px;font-weight:950}
+.close{width:46px;height:46px;border-radius:50%;background:#FFF3E8;color:var(--orange);font-size:20px}.progress-wrap{display:flex;gap:9px;margin-bottom:22px}.step-dot{height:6px;flex:1;border-radius:99px;background:#FFE0CC}.step-dot.active{background:var(--orange)}
+.topic-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.topic-card{aspect-ratio:1/1;border-radius:22px;border:2px solid #FFE0CC;background:#FFF8F1;padding:14px;position:relative;overflow:hidden;transition:.2s;display:flex;flex-direction:column;justify-content:flex-end;text-align:left}.topic-card:hover{transform:translateY(-3px);border-color:var(--orange)}.topic-card.selected{border-color:var(--orange);background:#FFF0E2;box-shadow:0 14px 30px rgba(255,122,0,.13)}.topic-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.52;transition:.25s}.topic-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,10,10,.05),rgba(42,10,10,.72))}.topic-card:hover img{transform:scale(1.08);opacity:.7}.topic-card h3,.topic-card i{position:relative;z-index:2;color:white}.topic-card h3{font-size:16px;font-weight:950}.topic-card i{font-size:22px;margin-bottom:9px}.check{position:absolute;right:12px;top:12px;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.18);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;z-index:3}.selected .check{background:var(--orange);border-color:var(--orange)}
+.lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.lang-card{height:82px;border-radius:20px;border:2px solid #FFE0CC;background:#FFF8F1;display:flex;align-items:center;justify-content:space-between;padding:0 18px;transition:.2s;text-align:left}.lang-card:hover{transform:translateY(-3px);border-color:var(--orange)}.lang-card.selected{background:#FFF0E2;border-color:var(--orange)}.lang-card strong{font-size:17px;font-weight:950}.lang-card span{display:block;font-size:12px;font-weight:800;color:var(--muted);margin-top:4px}.lang-card .check{position:static;color:var(--muted);background:white;border-color:var(--line);flex:0 0 auto}.lang-card.selected .check{background:var(--orange);color:white;border-color:var(--orange)}
+.sheet-actions{position:sticky;bottom:-26px;background:linear-gradient(180deg,rgba(255,255,255,.8),#fff 35%);padding-top:20px;margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:12px}.text-btn{height:52px;padding:0 18px;border-radius:16px;background:#FFF3E8;color:var(--brown);font-weight:950}.next-btn{height:56px;padding:0 24px;border-radius:18px;background:var(--orange);color:white;font-weight:950;display:flex;align-items:center;gap:10px}
+.ai-flow{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.ai-prompt{min-height:235px;border-radius:24px;border:1px solid var(--line);background:#FFF8F1;padding:20px}.ai-prompt h3{font-size:22px;font-weight:950;margin-bottom:8px}.ai-prompt p{font-size:14px;font-weight:800;color:var(--muted);line-height:1.45;margin-bottom:15px}.prompt-input{width:100%;min-height:116px;border-radius:20px;border:2px solid var(--orange);padding:16px;resize:none;outline:none;font-weight:800;color:var(--dark)}
+.suggest-list{display:flex;flex-direction:column;gap:12px}.suggest-item{display:flex;align-items:center;gap:12px;min-height:64px;border-radius:18px;border:1px solid var(--line);background:white;padding:13px;font-weight:900;transition:.2s}.suggest-item:hover{background:#FFF3E8;color:var(--orange);transform:translateX(3px)}.suggest-icon{width:40px;height:40px;border-radius:14px;background:#FFF3E8;color:var(--orange);display:flex;align-items:center;justify-content:center}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--deep);color:white;padding:13px 18px;border-radius:999px;font-size:14px;font-weight:950;display:none;z-index:200}.toast.show{display:block}
+@media(max-width:1300px){.topic-grid{grid-template-columns:repeat(4,1fr)}.lang-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.login-wrap{grid-template-columns:1fr}.login-art{display:none}.login-card{padding:22px}.topic-grid{grid-template-columns:repeat(2,1fr)}.lang-grid{grid-template-columns:1fr}.ai-flow{grid-template-columns:1fr}.sheet-head h2{font-size:28px}}
+</style>
+</head>
+<body>
+
+<section class="screen active" id="loginScreen">
+  <div class="login-wrap">
+    <div class="login-art">
+      <div class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
+      <div class="art-copy">
+        <div class="art-kicker">Content first onboarding</div>
+        <h1>Discover creators, videos and live moments faster.</h1>
+        <p>Login takes the user directly to content. Personalization comes after the feed so the user sees value first.</p>
+      </div>
+    </div>
+    <div class="login-card">
+      <div class="login-box">
+        <div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> JioVibe</div>
+        <h2>Your creative hub for content</h2>
+        <p>Continue with your phone number or email. If you are new, we will create your account automatically after verification.</p>
+        <div class="field-label">Phone number or email</div>
+        <input class="input" id="loginInput" placeholder="Enter phone number or email" />
+        <button class="primary-btn" onclick="goNext()"><i class="fa-solid fa-arrow-right-to-bracket"></i> Continue</button>
+        <div class="helper">No separate sign-up step. New users move into account creation automatically after credential input.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="redirectScreen">
+  <div class="login-wrap redirect-wrap">
+    <div class="login-art">
+      <div class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
+      <div class="art-copy">
+        <div class="art-kicker">Onboarding complete</div>
+        <h1>Your feed is ready.</h1>
+        <p>After login, topic selection, language selection and AI prompt, the user lands on the existing JioVibe Home page AI Vibe result section.</p>
+      </div>
+    </div>
+    <div class="login-card">
+      <div class="login-box">
+        <div class="kicker"><i class="fa-solid fa-house"></i> Redirect to Home</div>
+        <h2>Continue to JioVibe Home</h2>
+        <p>This page only handles onboarding. Home page remains separate.</p>
+        <button class="primary-btn" onclick="openSheet('topicSheet')"><i class="fa-solid fa-sliders"></i> Personalize before Home</button>
+        <button class="text-btn" style="margin-top:14px;width:100%;" onclick="goRealHome()">Skip and go Home</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-bg" id="topicSheet">
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <div class="kicker"><i class="fa-solid fa-layer-group"></i> Step 1 of 3</div>
+        <h2>What’s your vibe?</h2>
+        <p>Pick topics to shape your feed.</p>
+        <div class="pick-note"><i class="fa-solid fa-check-double"></i> Pick one or more</div>
+      </div>
+      <button class="close" onclick="closeSheet('topicSheet')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="progress-wrap"><div class="step-dot active"></div><div class="step-dot"></div><div class="step-dot"></div></div>
+    <div class="topic-grid" id="topicGrid"></div>
+    <div class="sheet-actions">
+      <button class="text-btn" onclick="goRealHome()">Skip for now</button>
+      <button class="next-btn" onclick="nextToLanguages()">Continue <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="languageSheet">
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <div class="kicker"><i class="fa-solid fa-language"></i> Step 2 of 3</div>
+        <h2>Choose your languages</h2>
+        <p>See content in the languages you love.</p>
+        <div class="pick-note"><i class="fa-solid fa-check-double"></i> Pick one or more</div>
+      </div>
+      <button class="close" onclick="closeSheet('languageSheet')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="progress-wrap"><div class="step-dot active"></div><div class="step-dot active"></div><div class="step-dot"></div></div>
+    <div class="lang-grid" id="langGrid"></div>
+    <div class="sheet-actions">
+      <button class="text-btn" onclick="goRealHome()">Skip for now</button>
+      <button class="next-btn" onclick="nextToAI()">Continue <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="aiSheet">
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> Step 3 of 3</div>
+        <h2>What are you in the mood for?</h2>
+        <p>Use one AI prompt field first. Suggested prompts appear below so options and typing do not compete.</p>
+      </div>
+      <button class="close" onclick="closeSheet('aiSheet')"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="progress-wrap"><div class="step-dot active"></div><div class="step-dot active"></div><div class="step-dot active"></div></div>
+    <div class="ai-flow">
+      <div class="ai-prompt">
+        <h3>Ask JioVibe AI</h3>
+        <p>Example: “Show me motivating Hindi videos” or “I want comedy content after work”.</p>
+        <textarea class="prompt-input" id="aiPrompt" placeholder="Tell us what you want to watch or create..."></textarea>
+        <button class="primary-btn" onclick="finishPersonalization()"><i class="fa-solid fa-wand-magic-sparkles"></i> Find content</button>
+      </div>
+      <div class="suggest-list">
+        <button class="suggest-item" onclick="fillPrompt('Explore trending videos')"><span class="suggest-icon"><i class="fa-solid fa-fire"></i></span> Explore trending videos</button>
+        <button class="suggest-item" onclick="fillPrompt('Popular videos in selected language')"><span class="suggest-icon"><i class="fa-solid fa-language"></i></span> Popular videos in selected language</button>
+        <button class="suggest-item" onclick="fillPrompt('Watch something motivating')"><span class="suggest-icon"><i class="fa-solid fa-bolt"></i></span> Watch something motivating</button>
+        <button class="suggest-item" onclick="fillPrompt('Create a video')"><span class="suggest-icon"><i class="fa-solid fa-video"></i></span> Create a video</button>
+        <button class="suggest-item" onclick="fillPrompt('Learn something new')"><span class="suggest-icon"><i class="fa-solid fa-book-open"></i></span> Learn something new</button>
+      </div>
+    </div>
+    <div class="sheet-actions">
+      <button class="text-btn" onclick="goRealHome()">Skip and go to content</button>
+      <button class="next-btn" onclick="finishPersonalization()">Done <i class="fa-solid fa-check"></i></button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const HOME_URL = "https://iklapikla.github.io/jiovibe-Studio/home.html";
+const selectedTopics = new Set();
+const selectedLanguages = new Set();
+
+const topics = [
+  ['Gaming','fa-gamepad','https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop'],
+  ['Music','fa-music','https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=900&auto=format&fit=crop'],
+  ['Comedy','fa-face-laugh','https://images.unsplash.com/photo-1527224857830-43a7acc85260?q=80&w=900&auto=format&fit=crop'],
+  ['Tech','fa-microchip','https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop'],
+  ['Education','fa-graduation-cap','https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=900&auto=format&fit=crop'],
+  ['Lifestyle','fa-mug-hot','https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=900&auto=format&fit=crop'],
+  ['Movies','fa-clapperboard','https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=900&auto=format&fit=crop'],
+  ['Sports','fa-trophy','https://images.unsplash.com/photo-1546519638-68e109498ffc?q=80&w=900&auto=format&fit=crop'],
+  ['News','fa-newspaper','https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=900&auto=format&fit=crop'],
+  ['Food','fa-utensils','https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=900&auto=format&fit=crop'],
+  ['Travel','fa-plane','https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop'],
+  ['Fitness','fa-dumbbell','https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=900&auto=format&fit=crop']
+];
+
+const languages = [
+ ['Hindi','हिंदी content'],['English','Global content'],['Punjabi','ਪੰਜਾਬੀ content'],['Tamil','தமிழ் content'],
+ ['Telugu','తెలుగు content'],['Marathi','मराठी content'],['Bengali','বাংলা content'],['Gujarati','ગુજરાતી content']
+];
+
+function renderOptions(){
+  document.getElementById('topicGrid').innerHTML = topics.map(t=>`
+    <button class="topic-card" onclick="toggleTopic(this,'${t[0]}')">
+      <img src="${t[2]}" alt="${t[0]}">
+      <span class="check"><i class="fa-solid fa-check"></i></span>
+      <i class="fa-solid ${t[1]}"></i>
+      <h3>${t[0]}</h3>
+    </button>`).join('');
+
+  document.getElementById('langGrid').innerHTML = languages.map(l=>`
+    <button class="lang-card" onclick="toggleLanguage(this,'${l[0]}')">
+      <div><strong>${l[0]}</strong><span>${l[1]}</span></div>
+      <span class="check"><i class="fa-solid fa-check"></i></span>
+    </button>`).join('');
+}
+
+function toggleTopic(el,name){el.classList.toggle('selected'); selectedTopics.has(name)?selectedTopics.delete(name):selectedTopics.add(name);}
+function toggleLanguage(el,name){el.classList.toggle('selected'); selectedLanguages.has(name)?selectedLanguages.delete(name):selectedLanguages.add(name);}
+function goNext(){document.getElementById('loginScreen').classList.remove('active');document.getElementById('redirectScreen').classList.add('active');setTimeout(()=>openSheet('topicSheet'),450);}
+function openSheet(id){document.getElementById(id).classList.add('show')}
+function closeSheet(id){document.getElementById(id).classList.remove('show')}
+function nextToLanguages(){closeSheet('topicSheet');openSheet('languageSheet')}
+function nextToAI(){closeSheet('languageSheet');openSheet('aiSheet')}
+function fillPrompt(text){document.getElementById('aiPrompt').value=text}
+function buildHomeUrl(){
+  const vibe = Array.from(selectedTopics).join(',');
+  const lang = Array.from(selectedLanguages).join(',');
+  const prompt = document.getElementById('aiPrompt') ? document.getElementById('aiPrompt').value.trim() : '';
+  const params = new URLSearchParams();
+  if(vibe) params.set('vibe', vibe);
+  if(lang) params.set('lang', lang);
+  if(prompt) params.set('prompt', prompt);
+  params.set('from','onboarding');
+  return HOME_URL + '?' + params.toString();
+}
+function goRealHome(){window.location.href = buildHomeUrl();}
+function finishPersonalization(){toast('Opening your personalized Home...');setTimeout(()=>{window.location.href = buildHomeUrl()},650)}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+renderOptions();
+</script>
+</body>
+</html>
