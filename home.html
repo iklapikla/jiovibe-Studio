@@ -92,6 +92,154 @@ flex:initial;
 .msg{font-size:13px;padding:11px 13px;}
 @media(max-width:1300px){.choice-card{height:78px!important}.ai-chat{height:200px!important;min-height:200px!important;max-height:200px!important;flex-basis:200px!important}}
 
+
+
+/* CHANGE YOUR VIBE MODAL */
+.vibe-modal-overlay{
+position:fixed;
+inset:0;
+background:rgba(42,10,10,.42);
+backdrop-filter:blur(8px);
+z-index:200;
+display:none;
+align-items:center;
+justify-content:center;
+padding:22px;
+}
+.vibe-modal-overlay.show{display:flex;}
+.vibe-modal{
+width:min(980px,96vw);
+max-height:90vh;
+overflow:auto;
+background:#fff;
+border:1px solid var(--line);
+border-radius:28px;
+box-shadow:0 30px 90px rgba(42,10,10,.28);
+padding:24px;
+}
+.vibe-modal-head{
+display:flex;
+justify-content:space-between;
+gap:20px;
+align-items:flex-start;
+margin-bottom:18px;
+}
+.vibe-modal-head h2{
+font-size:30px;
+font-weight:950;
+letter-spacing:-.04em;
+margin-top:8px;
+}
+.vibe-modal-head p{
+font-size:14px;
+font-weight:800;
+color:var(--muted);
+margin-top:7px;
+line-height:1.45;
+}
+.vibe-modal-close{
+width:44px;
+height:44px;
+border-radius:50%;
+background:#FFF6ED;
+border:1px solid var(--line);
+color:var(--brown);
+font-size:18px;
+font-weight:900;
+flex:0 0 auto;
+}
+.vibe-modal-close:hover{background:var(--orange);color:#fff;border-color:var(--orange);}
+.change-vibe-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+margin-top:14px;
+}
+.vibe-modal-card{
+height:104px;
+border-radius:18px;
+position:relative;
+overflow:hidden;
+border:2px solid transparent;
+box-shadow:0 10px 26px rgba(74,14,14,.08);
+cursor:pointer;
+transition:.25s ease;
+background:#fff;
+}
+.vibe-modal-card:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(74,14,14,.15);}
+.vibe-modal-card.selected{border-color:var(--orange);box-shadow:0 18px 42px rgba(255,122,0,.25);}
+.vibe-modal-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.vibe-modal-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,10,10,.05),rgba(42,10,10,.78));}
+.vibe-modal-card .vibe-check{
+position:absolute;
+z-index:3;
+top:10px;
+right:10px;
+width:28px;
+height:28px;
+border-radius:50%;
+background:rgba(255,255,255,.24);
+color:#fff;
+border:1px solid rgba(255,255,255,.35);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+}
+.vibe-modal-card.selected .vibe-check{background:var(--orange);border-color:var(--orange);}
+.vibe-modal-card .vibe-name{
+position:absolute;
+z-index:3;
+left:14px;
+right:14px;
+bottom:13px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+color:#fff;
+font-size:15px;
+font-weight:950;
+}
+.vibe-modal-card .vibe-name i{
+width:32px;
+height:32px;
+border-radius:50%;
+background:rgba(255,255,255,.20);
+border:1px solid rgba(255,255,255,.25);
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.vibe-modal-footer{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:14px;
+margin-top:20px;
+padding-top:18px;
+border-top:1px solid #FFE0CC;
+}
+.selected-vibe-text{
+font-size:13px;
+font-weight:900;
+color:var(--muted);
+line-height:1.45;
+}
+.vibe-modal-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+.vibe-secondary-btn,
+.vibe-apply-btn{
+height:48px;
+padding:0 18px;
+border-radius:16px;
+font-size:14px;
+font-weight:950;
+}
+.vibe-secondary-btn{background:#fff;border:1px solid var(--line);color:var(--brown);}
+.vibe-secondary-btn:hover{background:var(--soft);color:var(--orange);}
+.vibe-apply-btn{background:linear-gradient(135deg,var(--orange),#FF9638);color:#fff;box-shadow:0 14px 30px rgba(255,122,0,.28);}
+.vibe-apply-btn:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(255,122,0,.38);}
+@media(max-width:900px){.change-vibe-grid{grid-template-columns:repeat(2,1fr)}.vibe-modal-footer{align-items:stretch;flex-direction:column}.vibe-modal-actions{justify-content:stretch}.vibe-secondary-btn,.vibe-apply-btn{flex:1}.vibe-modal-head h2{font-size:25px}}
+
 </style>
 </head>
 <body>
@@ -120,10 +268,31 @@ flex:initial;
 <button class="category-btn" data-category="Travel" onclick="selectTopCategory(event,'Travel')"><i class="fa-solid fa-plane"></i> Travel</button>
 <button class="category-btn" data-category="Fitness" onclick="selectTopCategory(event,'Fitness')"><i class="fa-solid fa-dumbbell"></i> Fitness</button>
 </div>
-<section class="vibe-results" id="vibeResults"><div class="results-head"><div><div class="kicker"><i class="fa-solid fa-sliders"></i> Personalized Feed</div><h2 id="resultTitle">Content Matching Your Vibe</h2><p id="resultSub">Side scroll videos and shorts matched with your selected categories.</p></div><button class="change-vibe" onclick="showAIVibeTab(event)"><i class="fa-solid fa-sliders"></i> AI Vibe</button></div><div class="rail-block"><h3 class="rail-title">Videos & Live Streams Matching Your Vibe</h3><div class="rail-wrap" id="videoRailWrap"><button class="rail-action left" onclick="scrollRail('videoRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="videoRail"></div><button class="rail-action right" onclick="scrollRail('videoRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more videos.</div></div><div class="rail-block"><h3 class="rail-title">Shorts Matching Your Vibe</h3><div class="rail-wrap"><button class="rail-action left" onclick="scrollRail('shortsRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="shortsRail"></div><button class="rail-action right" onclick="scrollRail('shortsRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more shorts.</div></div></section>
+<section class="vibe-results" id="vibeResults"><div class="results-head"><div><div class="kicker"><i class="fa-solid fa-sliders"></i> Personalized Feed</div><h2 id="resultTitle">Content Matching Your Vibe</h2><p id="resultSub">Side scroll videos and shorts matched with your selected categories.</p></div><button class="change-vibe" onclick="openChangeVibeModal(event)"><i class="fa-solid fa-sliders"></i> Change Your Vibe</button></div><div class="rail-block"><h3 class="rail-title">Videos & Live Streams Matching Your Vibe</h3><div class="rail-wrap" id="videoRailWrap"><button class="rail-action left" onclick="scrollRail('videoRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="videoRail"></div><button class="rail-action right" onclick="scrollRail('videoRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more videos.</div></div><div class="rail-block"><h3 class="rail-title">Shorts Matching Your Vibe</h3><div class="rail-wrap"><button class="rail-action left" onclick="scrollRail('shortsRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="shortsRail"></div><button class="rail-action right" onclick="scrollRail('shortsRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more shorts.</div></div></section>
 <div class="banner-wrap"><div class="banner-track" id="bannerTrack"><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Creator Story</div><h1>Creator Spotlight</h1><p>Meet new creators and their powerful stories.</p><a href="watch-featured.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Live Now</div><h1>Big Live Moments</h1><p>Watch creators going live with trending events.</p><a href="watch-live.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Gaming</div><h1>Gaming Highlights</h1><p>Explore fresh gaming clips, live streams and shorts.</p><a href="gaming.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div></div><div class="banner-dots" id="bannerDots"><span class="active" onclick="goToSlide(0)"></span><span onclick="goToSlide(1)"></span><span onclick="goToSlide(2)"></span></div><div class="banner-arrow left" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div><div class="banner-arrow right" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div></div>
 <section><div class="section-head"><h2>Trending Now 🔥</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="trendingGrid"></div></section><div class="section-separator"></div><section><div class="section-head"><h2>Recommended for You ✨</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="recommendedGrid"></div></section>
 </section>
+
+<div class="vibe-modal-overlay" id="changeVibeModal" onclick="closeChangeVibeModal(event)">
+  <div class="vibe-modal" onclick="event.stopPropagation()">
+    <div class="vibe-modal-head">
+      <div>
+        <div class="kicker"><i class="fa-solid fa-sliders"></i> Change Your Vibe</div>
+        <h2>Select your new vibe</h2>
+        <p>Select one or multiple categories. After applying, videos and shorts in this personalized section will update instantly.</p>
+      </div>
+      <button class="vibe-modal-close" onclick="closeChangeVibeModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="change-vibe-grid" id="changeVibeGrid"></div>
+    <div class="vibe-modal-footer">
+      <div class="selected-vibe-text" id="changeVibeSelectedText">Select one or more categories.</div>
+      <div class="vibe-modal-actions">
+        <button class="vibe-secondary-btn" onclick="closeChangeVibeModal()">Cancel</button>
+        <button class="vibe-apply-btn" onclick="applyChangedVibe()"><i class="fa-solid fa-check"></i> Apply Vibe</button>
+      </div>
+    </div>
+  </div>
+</div>
 </main>
 </div>
 <script>
@@ -157,6 +326,69 @@ Travel:['https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900
 Fitness:['https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=900&auto=format&fit=crop','https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=900&auto=format&fit=crop']
 };
 let selectedCategories=[],videoLoadCount=0,shortLoadCount=0;
+
+let changeVibeDraft=[];
+function renderChangeVibeGrid(){
+  const grid=document.getElementById('changeVibeGrid');
+  if(!grid) return;
+  grid.innerHTML='';
+  Object.keys(categoryData).forEach(name=>{
+    const d=categoryData[name];
+    const card=document.createElement('div');
+    card.className='vibe-modal-card'+(changeVibeDraft.includes(name)?' selected':'');
+    card.onclick=()=>toggleChangeVibe(name,card);
+    card.innerHTML=`<img src="${d.img}"><div class="vibe-check"><i class="fa-solid fa-check"></i></div><div class="vibe-name"><span>${name}</span><i class="fa-solid ${d.icon}"></i></div>`;
+    grid.appendChild(card);
+  });
+  updateChangeVibeText();
+}
+function updateChangeVibeText(){
+  const text=document.getElementById('changeVibeSelectedText');
+  if(!text) return;
+  text.textContent=changeVibeDraft.length?`Selected: ${changeVibeDraft.join(' + ')}`:'Select one or more categories.';
+}
+function toggleChangeVibe(name,card){
+  if(changeVibeDraft.includes(name)){
+    changeVibeDraft=changeVibeDraft.filter(x=>x!==name);
+    card.classList.remove('selected');
+  }else{
+    changeVibeDraft.push(name);
+    card.classList.add('selected');
+  }
+  updateChangeVibeText();
+}
+function openChangeVibeModal(e){
+  if(e) e.stopPropagation();
+  setActiveTopCategory('AI Vibe');
+  changeVibeDraft=[...selectedCategories];
+  if(!changeVibeDraft.length){
+    changeVibeDraft=parseOnboardingCategories();
+  }
+  if(!changeVibeDraft.length){
+    changeVibeDraft=['Gaming'];
+  }
+  renderChangeVibeGrid();
+  const modal=document.getElementById('changeVibeModal');
+  if(modal) modal.classList.add('show');
+}
+function closeChangeVibeModal(e){
+  if(e && e.target && e.target.id!=='changeVibeModal') return;
+  const modal=document.getElementById('changeVibeModal');
+  if(modal) modal.classList.remove('show');
+}
+function applyChangedVibe(){
+  if(!changeVibeDraft.length){
+    alert('Please select at least one category.');
+    return;
+  }
+  selectedCategories=[...new Set(changeVibeDraft)];
+  try{localStorage.setItem('jiovibe_onboarding_vibe',JSON.stringify({categories:selectedCategories}));}catch(e){}
+  setActiveTopCategory('AI Vibe');
+  closeChangeVibeModal();
+  showVibeResults(true);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeChangeVibeModal();});
+
 function initCategories(){const grid=document.getElementById('categorySelectGrid');grid.innerHTML='';Object.keys(categoryData).forEach(name=>{const d=categoryData[name];const card=document.createElement('div');card.className='choice-card';card.onclick=()=>toggleCategory(name,card);card.innerHTML=`<img src="${d.img}"><div class="choice-tick"><i class="fa-solid fa-check"></i></div><div class="choice-content"><strong>${name}</strong><i class="fa-solid ${d.icon}"></i></div>`;grid.appendChild(card);});}
 function toggleCategory(name,card){card.classList.toggle('selected');if(selectedCategories.includes(name)){selectedCategories=selectedCategories.filter(x=>x!==name)}else{selectedCategories.push(name)}updateSelectionNote();}
 function updateSelectionNote(){const note=document.getElementById('selectionNote');note.textContent=selectedCategories.length?`Open your personalized ${selectedCategories.join(' + ')} content feed`:'Select one or more categories to unlock your personalized feed';}
