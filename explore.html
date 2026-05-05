@@ -1050,6 +1050,19 @@ transform:none;
 box-shadow:none;
 }
 
+.channel-avatar.story-ring{
+border:5px solid #20C45A;
+box-shadow:0 0 0 5px rgba(32,196,90,.16),0 10px 30px rgba(32,196,90,.24);
+cursor:pointer;
+}
+.channel-avatar.story-ring:hover{
+transform:scale(1.05);
+box-shadow:0 0 0 6px rgba(32,196,90,.22),0 14px 38px rgba(32,196,90,.32);
+}
+.channel-avatar.no-story{
+cursor:default;
+}
+
 </style>
 </head>
 
@@ -1465,21 +1478,28 @@ const videoStats = {
 "Family Vlog and Travel Moments":"Lifestyle • 828K views • 6 hours ago"
 };
 
-const storyEnabledCreators = new Set([
-"Ranveer Singh",
-"Rohit Sharma",
-"Total Gaming",
-"Ashish Chanchlani",
-"Arijit Singh",
-"Narendra Modi"
-]);
+const sectionStoryIndexes = {
+  liveNow: new Set([0, 2, 4]),
+  extraLive: new Set([]),
+  launchEvent: new Set([0, 2, 4]),
+  extraLaunch: new Set([]),
+  trendingVideos: new Set([0, 2, 4]),
+  extraTrending: new Set([])
+};
 
-function videoCard(item, live=false){
+const storyEnabledCreators = new Set();
+
+function setCreatorStoryState(creator, enabled){
+  if(!creator) return;
+  if(enabled) storyEnabledCreators.add(creator);
+}
+
+function videoCard(item, live=false, hasStory=false){
 const thumb = item[3] || fallbackThumb;
 const gif = item[4] || fallbackGif;
 const profile = creatorProfiles[item[1]] || fallbackProfile;
 const stats = videoStats[item[0]] || (live ? `${item[2]} watching now` : `${item[2]} • Trending now`);
-const hasStory = storyEnabledCreators.has(item[1]);
+setCreatorStoryState(item[1], hasStory);
 const logoClass = hasStory ? "creator-logo story-ring" : "creator-logo no-story";
 const storyClick = hasStory ? `onclick="event.preventDefault();event.stopPropagation();openStory(\`${item[1]}\`)" title="Open ${item[1]} story"` : `onclick="event.preventDefault();event.stopPropagation();" title="No active story"`;
 return `
@@ -1501,7 +1521,8 @@ ${live ? `<span class="live-tag">LIVE</span><span class="views">${item[2]}</span
 }
 
 function renderVideos(id,data,live=false,start=0,end=5){
-document.getElementById(id).innerHTML = data.slice(start,end).map(x=>videoCard(x,live)).join("");
+const storyIndexes = sectionStoryIndexes[id] || new Set();
+document.getElementById(id).innerHTML = data.slice(start,end).map((x,i)=>videoCard(x,live,storyIndexes.has(start+i))).join("");
 }
 
 renderVideos("liveNow",liveData,true,0,5);
@@ -1510,6 +1531,7 @@ renderVideos("launchEvent",launchData,false,0,5);
 renderVideos("extraLaunch",launchData,false,5,launchData.length);
 renderVideos("trendingVideos",trendingData,false,0,5);
 renderVideos("extraTrending",trendingData,false,5,trendingData.length);
+
 
 function renderCategories(){
 const box=document.getElementById("categories");
@@ -1926,7 +1948,19 @@ return {videos,shorts,lives,playlists,posts};
 function openChannel(name){
 activeChannelName=name; const d=getChannelData(name); const c=buildChannelContent(name);
 
-document.getElementById("channelBannerImg").src=d.banner; document.getElementById("channelAvatar").src=d.avatar; document.getElementById("channelName").innerText=d.name; document.getElementById("channelHandle").innerText=d.handle; document.getElementById("channelSubs").innerText=d.subs; document.getElementById("channelVideos").innerText=d.videos; document.getElementById("channelBio").innerText=d.bio; document.getElementById("channelLink").innerText=d.link;
+document.getElementById("channelBannerImg").src=d.banner;
+const channelAvatarEl = document.getElementById("channelAvatar");
+channelAvatarEl.src=d.avatar;
+if(storyEnabledCreators.has(d.name)){
+  channelAvatarEl.className = "channel-avatar story-ring";
+  channelAvatarEl.onclick = function(e){e.preventDefault();e.stopPropagation();openStory(d.name);};
+  channelAvatarEl.title = `Open ${d.name} story`;
+}else{
+  channelAvatarEl.className = "channel-avatar no-story";
+  channelAvatarEl.onclick = function(e){e.preventDefault();e.stopPropagation();};
+  channelAvatarEl.title = "No active story";
+}
+document.getElementById("channelName").innerText=d.name; document.getElementById("channelHandle").innerText=d.handle; document.getElementById("channelSubs").innerText=d.subs; document.getElementById("channelVideos").innerText=d.videos; document.getElementById("channelBio").innerText=d.bio; document.getElementById("channelLink").innerText=d.link;
 document.getElementById("channelHomeVideos").innerHTML=c.videos.join(""); document.getElementById("channelHomeShorts").innerHTML=c.shorts.slice(0,6).join(""); document.getElementById("channelVideosGrid").innerHTML=c.videos.join(""); document.getElementById("channelShortsGrid").innerHTML=c.shorts.join(""); document.getElementById("channelLiveGrid").innerHTML=c.lives.join(""); document.getElementById("channelPlaylistsGrid").innerHTML=c.playlists.join(""); document.getElementById("channelPostsGrid").innerHTML=c.posts.join("");
 showChannelTab('channelHome', document.querySelector('.channel-tab-btn'));
 document.getElementById("channelViewer").classList.add("show"); document.body.classList.add("channel-open");
