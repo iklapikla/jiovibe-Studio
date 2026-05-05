@@ -252,13 +252,14 @@ padding:18px 0
 
 .short-item{
 height:100vh;
-width:720px;
+width:auto;
 max-width:96vw;
 position:relative;
 scroll-snap-align:start;
 display:flex;
 align-items:center;
 justify-content:center;
+gap:20px;
 flex-shrink:0
 }
 
@@ -367,14 +368,16 @@ z-index:4
 
 /* ACTION BUTTONS */
 .actions{
-position:absolute;
-right:0;
-transform:translateX(88px);
-top:50%;
-margin-top:-150px;
+position:relative;
+right:auto;
+top:auto;
+transform:none;
+margin-top:0;
 display:flex;
 flex-direction:column;
-gap:18px
+gap:14px;
+z-index:10;
+flex:0 0 auto
 }
 .action{
 width:66px;
@@ -420,78 +423,132 @@ background:#FFE4CC;
 color:#FF7A00
 }
 
-/* COMMENT PANEL FIXED */
+/* COMMENT PANEL - STORY STYLE SIDE PANEL */
+.player-mode.comments-open .short-scroll{
+transform:translateX(-190px);
+transition:transform .32s ease;
+}
+.short-scroll{
+transition:transform .32s ease;
+}
 .comment-panel{
 position:fixed;
-right:36px;
+right:70px;
 top:50%;
-transform:translateY(-50%);
-width:390px;
-height:560px;
+transform:translateY(-50%) translateX(30px) scale(.98);
+width:430px;
+height:min(720px,calc(100vh - 72px));
 background:#FFFFFF;
 border:1px solid #FFD2B3;
-border-radius:20px;
-box-shadow:0 24px 60px rgba(74,14,14,.20);
+border-radius:24px;
+box-shadow:0 28px 80px rgba(74,14,14,.18);
 z-index:130;
-display:none;
+display:flex;
 flex-direction:column;
-overflow:hidden
+overflow:hidden;
+opacity:0;
+pointer-events:none;
+transition:opacity .26s ease,transform .26s ease
 }
-.comment-panel.show{display:flex}
+.comment-panel.show{
+opacity:1;
+pointer-events:auto;
+transform:translateY(-50%) translateX(0) scale(1)
+}
 .comment-head{
-height:60px;
-border-bottom:1px solid #FFD2B3;
+height:78px;
+border-bottom:1px solid #FFE0CC;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 18px;
-flex-shrink:0
+padding:0 20px;
+flex-shrink:0;
+background:#FFFFFF
 }
-.comment-head h3{font-size:18px;font-weight:900}
+.comment-account{display:flex;align-items:center;gap:12px;min-width:0}
+.comment-account img{width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #FFFFFF;box-shadow:0 2px 10px rgba(0,0,0,.10)}
+.comment-account strong{font-size:15px;font-weight:900;color:#4A0E0E;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px}
+.comment-account span{display:block;margin-top:3px;font-size:12px;font-weight:800;color:#A66A55}
+.comment-close{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#FFF6ED;color:#7A3E2E;font-size:16px;transition:.2s}
+.comment-close:hover{background:#FF7A00;color:#FFFFFF}
+.comment-caption{
+padding:16px 20px;
+border-bottom:1px solid #FFE0CC;
+display:grid;
+grid-template-columns:40px 1fr;
+gap:12px;
+flex-shrink:0;
+background:#FFE4CC
+}
+.comment-caption img{width:38px;height:38px;border-radius:50%;object-fit:cover}
+.comment-caption p{font-size:13px;line-height:1.45;font-weight:800;color:#4A0E0E}
+.comment-caption .comment-tags{display:block;margin-top:8px;color:#FF7A00;font-weight:900}
+.comment-caption small{display:block;margin-top:6px;color:#A66A55;font-weight:900;font-size:11px}
 .comment-list{
 flex:1;
 overflow:auto;
-padding:16px;
+padding:18px 20px;
 display:flex;
 flex-direction:column;
-gap:14px
+gap:18px;
+background:#FFFFFF
 }
 .comment{
 display:grid;
-grid-template-columns:38px 1fr;
-gap:10px
+grid-template-columns:38px 1fr 24px;
+gap:11px;
+align-items:flex-start
 }
-.comment img{
-width:36px;
-height:36px;
-border-radius:50%;
-object-fit:cover
-}
-.comment h4{font-size:13px;font-weight:900}
-.comment p{font-size:13px;color:#7A3E2E;font-weight:600;margin-top:3px}
-.comment-input{
-border-top:1px solid #FFD2B3;
-padding:12px;
-display:flex;
-gap:8px;
+.comment img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.comment h4{font-size:13px;font-weight:900;color:#4A0E0E}
+.comment p{font-size:13px;color:#7A3E2E;font-weight:650;line-height:1.42;margin-top:4px}
+.comment small{display:inline-block;margin-top:7px;color:#A66A55;font-size:11px;font-weight:900}
+.comment .c-like{color:#A66A55;font-size:15px;padding-top:4px;cursor:pointer;transition:.2s}
+.comment .c-like:hover{color:#FF7A00}
+.comment-stats{
+border-top:1px solid #FFE0CC;
+padding:14px 20px 10px;
+background:#FFFFFF;
 flex-shrink:0
 }
+.comment-actions-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.comment-actions-left{display:flex;gap:16px;font-size:22px;color:#4A0E0E}
+.comment-actions-left i,.comment-bookmark{cursor:pointer;transition:.2s}
+.comment-actions-left i:hover,.comment-bookmark:hover{color:#FF7A00;transform:scale(1.08)}
+.comment-likes{font-size:13px;font-weight:900;color:#4A0E0E;margin-bottom:3px}
+.comment-date{font-size:11px;font-weight:900;color:#A66A55}
+.comment-input{
+height:64px;
+border-top:1px solid #FFE0CC;
+padding:0 18px;
+display:flex;
+align-items:center;
+gap:10px;
+flex-shrink:0;
+background:#FFFFFF
+}
+.comment-input .smile{color:#A66A55;font-size:16px}
 .comment-input input{
 flex:1;
 height:42px;
-border:1px solid #FFD2B3;
-border-radius:22px;
-padding:0 14px;
+border:1px solid #FFE0CC;
+background:#FFF6ED;
+border-radius:24px;
+padding:0 15px;
 outline:none;
-font-weight:700
+font-weight:750;
+color:#4A0E0E
 }
+.comment-input input::placeholder{color:#A66A55}
 .send{
-width:42px;
-height:42px;
-border-radius:50%;
-background:#FF7A00;
-color:#FFFFFF;
-font-size:16px
+width:auto;
+height:auto;
+border-radius:0;
+background:transparent;
+color:#FF7A00;
+font-size:13px;
+font-weight:900;
+padding:8px 0
 }
 
 /* SHARE MODAL */
@@ -574,6 +631,7 @@ transform:translateX(-50%) translateY(0)
 .actions{transform:translateX(78px)}
 }
 @media(max-width:780px){
+.player-mode.comments-open .short-scroll{transform:none}
 .sidebar{display:none}
 .topbar{padding:0 16px}
 .profile span{display:none}
@@ -582,10 +640,10 @@ transform:translateX(-50%) translateY(0)
 .feed-grid{grid-template-columns:repeat(2,1fr);gap:14px}
 .short-item{width:100%;height:100vh;max-width:100%}
 .phone{width:100%;height:100%;border-radius:0;max-height:none}
-.actions{right:16px;top:auto;bottom:120px;transform:none;margin-top:0;z-index:5}
+.actions{position:absolute;right:16px;top:auto;bottom:120px;transform:none;margin-top:0;z-index:5}
 .action{background:rgba(255,255,255,.92)}
 .close-player{top:18px;right:18px}
-.comment-panel{right:14px;left:14px;top:50%;width:auto}
+.comment-panel{right:14px;left:14px;top:50%;width:auto;height:min(650px,calc(100vh - 90px))}
 .more-menu{right:20px;top:auto;bottom:105px}
 }
 
@@ -675,14 +733,7 @@ transform:scale(1.06);
 box-shadow:0 12px 28px rgba(74,14,14,.14);
 }
 
-/* Comment panel animation */
-.comment-panel.show{
-animation:panelIn .28s ease both;
-}
-@keyframes panelIn{
-from{opacity:0;transform:translateY(-50%) translateX(18px) scale(.98);}
-to{opacity:1;transform:translateY(-50%) translateX(0) scale(1);}
-}
+/* Comment panel row hover */
 .comment{
 transition:transform .25s ease,background .25s ease;
 }
@@ -743,6 +794,15 @@ animation:softFadeUp .35s ease both;
 animation:none !important;
 transition:none !important;
 }
+}
+
+
+/* FINAL FIX: keep action buttons equally close to every short */
+@media(min-width:781px){
+.short-item{width:auto;max-width:96vw;gap:20px;}
+.short-item .actions{position:relative;right:auto;top:auto;bottom:auto;transform:none;margin-top:0;gap:14px;}
+.short-item .action{width:64px;min-height:64px;border-radius:14px;}
+.short-item .more-menu{right:-238px;top:58%;}
 }
 
 </style>
@@ -817,15 +877,44 @@ transition:none !important;
 <!-- COMMENT PANEL -->
 <div class="comment-panel" id="commentPanel">
 <div class="comment-head">
-<h3>Comments</h3>
-<button onclick="closeComments()"><i class="fa-solid fa-xmark"></i></button>
+<div class="comment-account">
+<img id="panelAvatar" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg">
+<div>
+<strong id="panelCreator">Creator</strong>
+<span id="panelSubline">Short comments</span>
+</div>
+</div>
+<button class="comment-close" onclick="closeComments()"><i class="fa-solid fa-xmark"></i></button>
+</div>
+
+<div class="comment-caption">
+<img id="panelCaptionAvatar" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg">
+<div>
+<p><strong id="panelCaptionCreator">Creator</strong> <span id="panelCaptionText">Short caption</span>
+<span class="comment-tags" id="panelTags">#JioVibe #Shorts</span></p>
+<small>2 h</small>
+</div>
 </div>
 
 <div class="comment-list" id="commentList"></div>
 
+<div class="comment-stats">
+<div class="comment-actions-row">
+<div class="comment-actions-left">
+<i class="fa-regular fa-heart"></i>
+<i class="fa-regular fa-comment"></i>
+<i class="fa-regular fa-paper-plane"></i>
+</div>
+<i class="fa-regular fa-bookmark comment-bookmark"></i>
+</div>
+<div class="comment-likes" id="panelLikes">0 likes</div>
+<div class="comment-date">30 April</div>
+</div>
+
 <div class="comment-input">
-<input id="commentInput" placeholder="Add a comment...">
-<button class="send" onclick="sendComment()"><i class="fa-solid fa-paper-plane"></i></button>
+<i class="fa-regular fa-face-smile smile"></i>
+<input id="commentInput" placeholder="Add a public comment...">
+<button class="send" onclick="sendComment()">Post</button>
 </div>
 </div>
 
@@ -962,6 +1051,13 @@ grid.appendChild(card);
 function createShortItem(item,index){
 const wrap = document.createElement("div");
 wrap.className = "short-item";
+wrap.dataset.creator = item.creator;
+wrap.dataset.avatar = item.avatar;
+wrap.dataset.caption = item.caption;
+wrap.dataset.tags = item.tags;
+wrap.dataset.likes = item.likes;
+wrap.dataset.comments = item.comments;
+wrap.dataset.shortIndex = index;
 
 wrap.innerHTML = `
 <div class="phone">
@@ -984,7 +1080,7 @@ wrap.innerHTML = `
 
 <div class="actions">
 <button class="action like" onclick="toggleLike(this)"><i class="fa-solid fa-heart"></i><span>${item.likes}</span></button>
-<button class="action" onclick="openComments()"><i class="fa-regular fa-comment-dots"></i><span>${item.comments}</span></button>
+<button class="action comment-toggle" onclick="toggleComments(this)"><i class="fa-regular fa-comment-dots"></i><span>${item.comments}</span></button>
 <button class="action" onclick="openModal('shareModal')"><i class="fa-solid fa-share"></i><span>${item.shares}</span></button>
 <button class="action" onclick="toggleMoreMenu(this)"><i class="fa-solid fa-ellipsis"></i></button>
 </div>
@@ -1062,12 +1158,19 @@ renderFeed();
 }
 });
 
+let commentScrollTimer = null;
+
 document.getElementById("shortScroll").addEventListener("scroll", function(){
 if(this.scrollTop + this.clientHeight >= this.scrollHeight - 500){
 for(let i=0;i<8;i++){
 const item = shortsData[Math.floor(Math.random()*shortsData.length)];
 this.appendChild(createShortItem(item,this.children.length));
 }
+}
+
+if(document.getElementById("commentPanel").classList.contains("show")){
+clearTimeout(commentScrollTimer);
+commentScrollTimer = setTimeout(syncCommentsWithVisibleShort,90);
 }
 });
 
@@ -1077,27 +1180,105 @@ document.querySelectorAll(".more-menu").forEach(m=>m.classList.remove("show"));
 }
 });
 
-function openComments(){
-renderComments();
+let activeCommentShort = null;
+
+function getVisibleShortItem(){
+const scroll = document.getElementById("shortScroll");
+const items = Array.from(scroll.querySelectorAll(".short-item"));
+if(!items.length) return null;
+const centerY = scroll.getBoundingClientRect().top + scroll.clientHeight / 2;
+let best = items[0];
+let bestDistance = Infinity;
+items.forEach(item=>{
+const rect = item.getBoundingClientRect();
+const itemCenter = rect.top + rect.height / 2;
+const distance = Math.abs(itemCenter - centerY);
+if(distance < bestDistance){
+bestDistance = distance;
+best = item;
+}
+});
+return best;
+}
+
+function markActiveCommentButton(item){
+document.querySelectorAll(".comment-toggle").forEach(b=>b.classList.remove("liked"));
+if(item){
+const btn = item.querySelector(".comment-toggle");
+if(btn) btn.classList.add("liked");
+}
+}
+
+function syncCommentsWithVisibleShort(){
+const panel = document.getElementById("commentPanel");
+if(!panel.classList.contains("show")) return;
+const current = getVisibleShortItem();
+if(current && current !== activeCommentShort){
+activeCommentShort = current;
+renderComments(current);
+markActiveCommentButton(current);
+}
+}
+
+function toggleComments(btn){
+const item = btn.closest(".short-item");
+const panel = document.getElementById("commentPanel");
+if(panel.classList.contains("show") && activeCommentShort === item){
+closeComments();
+return;
+}
+activeCommentShort = item;
+renderComments(item);
+panel.classList.add("show");
+document.getElementById("playerMode").classList.add("comments-open");
+markActiveCommentButton(item);
+}
+
+function openComments(btn){
+if(btn){ toggleComments(btn); return; }
+const current = getVisibleShortItem() || document.querySelector(".short-item");
+activeCommentShort = current;
+renderComments(current);
 document.getElementById("commentPanel").classList.add("show");
+document.getElementById("playerMode").classList.add("comments-open");
+markActiveCommentButton(current);
 }
 
 function closeComments(){
 document.getElementById("commentPanel").classList.remove("show");
+document.getElementById("playerMode").classList.remove("comments-open");
+document.querySelectorAll(".comment-toggle").forEach(b=>b.classList.remove("liked"));
+activeCommentShort = null;
 }
 
-function renderComments(){
-const comments = [
-["Rohan","This is so good 🔥","https://i.pravatar.cc/80?img=11"],
-["Priya","Vibe is perfect","https://i.pravatar.cc/80?img=18"],
-["Amit","Watched it 5 times already","https://i.pravatar.cc/80?img=24"],
-["Mumbai Vibes","JioVibe shorts look clean","https://i.pravatar.cc/80?img=32"]
+function renderComments(item){
+const creator = item?.dataset.creator || "Creator";
+const avatar = item?.dataset.avatar || "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg";
+const caption = item?.dataset.caption || "Short caption";
+const tags = item?.dataset.tags || "#JioVibe #Shorts";
+const likes = item?.dataset.likes || "0";
+
+document.getElementById("panelAvatar").src = avatar;
+document.getElementById("panelCaptionAvatar").src = avatar;
+document.getElementById("panelCreator").innerHTML = `${creator} <i class="fa-solid fa-circle-check verify"></i>`;
+document.getElementById("panelCaptionCreator").innerText = creator;
+document.getElementById("panelCaptionText").innerText = caption;
+document.getElementById("panelTags").innerText = tags;
+document.getElementById("panelLikes").innerText = `${likes} likes`;
+document.getElementById("panelSubline").innerText = "Short comments";
+
+const baseComments = [
+["sanket__kr_18","Full energy mode 🔥🔥","https://i.pravatar.cc/80?img=12","1 h  •  1,674 likes  •  Reply"],
+["hadiyal_18",`${creator} never misses 💖`,"https://i.pravatar.cc/80?img=33","45 m  •  1 like  •  Reply"],
+["dfg_editz__","Aura farming 📈","https://i.pravatar.cc/80?img=48","30 m  •  69 likes  •  Reply"],
+["creatorfan","This JioVibe shorts comment design is clean!","https://i.pravatar.cc/80?img=19","12 m  •  119 likes  •  Reply"]
 ];
 
-document.getElementById("commentList").innerHTML = comments.map(c=>`
+document.getElementById("commentList").innerHTML = baseComments.map(c=>`
 <div class="comment">
 <img src="${c[2]}">
-<div><h4>${c[0]}</h4><p>${c[1]}</p></div>
+<div><h4>${c[0]}</h4><p>${c[1]}</p><small>${c[3]}</small></div>
+<i class="fa-regular fa-heart c-like"></i>
 </div>
 `).join("");
 }
@@ -1111,7 +1292,8 @@ const div = document.createElement("div");
 div.className = "comment";
 div.innerHTML = `
 <img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
-<div><h4>Trupti Latur</h4><p>${input.value}</p></div>
+<div><h4>Trupti Latur</h4><p>${input.value}</p><small>Now  •  Reply</small></div>
+<i class="fa-regular fa-heart c-like"></i>
 `;
 list.prepend(div);
 input.value = "";
