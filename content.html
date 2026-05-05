@@ -257,15 +257,16 @@ box-shadow:0 4px 14px rgba(74,14,14,0.08);
 display:grid;
 grid-template-columns:
 50px
-360px
-140px
-130px
-150px
+330px
+120px
+115px
+135px
+80px
 90px
-110px
+90px
 110px;
 align-items:center;
-column-gap:20px;
+column-gap:16px;
 }
 
 .table-head{
@@ -384,6 +385,12 @@ white-space:nowrap;
 color:#4A0E0E;
 }
 
+.revenue{
+font-weight:800;
+white-space:nowrap;
+color:#E65100;
+}
+
 .likes{
 text-align:right;
 font-weight:500;
@@ -410,8 +417,8 @@ width:88%;
 @media(max-width:1300px){
 .table-head,
 .table-row{
-grid-template-columns:45px 330px 120px 110px 130px 80px 90px 90px;
-column-gap:14px;
+grid-template-columns:45px 310px 110px 100px 120px 75px 85px 85px 100px;
+column-gap:12px;
 }
 .search{width:480px;}
 }
@@ -427,13 +434,12 @@ overflow-x:auto;
 
 .table-head,
 .table-row{
-min-width:1150px;
+min-width:1180px;
 }
 }
 
 /* --- ADDED PREMIUM ANIMATIONS ONLY --- */
 
-/* Sidebar */
 .menu-item{
 transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
 transform-origin:left center;
@@ -444,7 +450,6 @@ transform:scale(1.045);
 box-shadow:0 10px 24px rgba(255,122,0,.14);
 }
 
-/* Topbar */
 .bell,
 .profile,
 .dropdown a{
@@ -466,7 +471,6 @@ from{opacity:0;transform:translateY(-8px) scale(.98);}
 to{opacity:1;transform:translateY(0) scale(1);}
 }
 
-/* Page load */
 .page-title,
 .tabs,
 .filter-row,
@@ -482,7 +486,6 @@ from{opacity:0;transform:translateY(12px);}
 to{opacity:1;transform:translateY(0);}
 }
 
-/* Search */
 .search{
 transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
 }
@@ -493,7 +496,6 @@ box-shadow:0 10px 24px rgba(255,122,0,.12);
 border-color:#FF7A00;
 }
 
-/* Tabs */
 .tab{
 transition:transform .25s ease,color .25s ease,background .25s ease;
 }
@@ -502,7 +504,6 @@ transform:translateY(-3px) scale(1.04);
 color:#FF7A00;
 }
 
-/* Table wrapper */
 .table-wrap{
 transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
 }
@@ -511,7 +512,6 @@ box-shadow:0 18px 42px rgba(74,14,14,.13);
 border-color:#FF7A00;
 }
 
-/* Rows as list items */
 .table-row{
 transition:transform .28s ease,box-shadow .28s ease,background .28s ease,border-color .28s ease;
 will-change:transform;
@@ -522,7 +522,6 @@ background:#FFF6ED;
 box-shadow:0 12px 28px rgba(74,14,14,.09);
 }
 
-/* Thumbnail zoom */
 .thumb{
 transition:transform .3s ease,box-shadow .3s ease;
 will-change:transform;
@@ -532,7 +531,6 @@ transform:scale(1.045);
 box-shadow:0 12px 26px rgba(74,14,14,.14);
 }
 
-/* Checkbox */
 .check{
 transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
 }
@@ -542,7 +540,6 @@ border-color:#FF7A00;
 box-shadow:0 0 0 3px rgba(255,122,0,.12);
 }
 
-/* Status and like bar */
 .status i,
 .like-fill{
 transition:transform .25s ease,box-shadow .25s ease;
@@ -554,7 +551,6 @@ transform:scale(1.12);
 box-shadow:0 0 14px rgba(255,122,0,.28);
 }
 
-/* New rows after tab switch */
 .table-row{
 animation:rowIn .3s ease both;
 }
@@ -563,14 +559,12 @@ from{opacity:0;transform:translateY(10px) scale(.99);}
 to{opacity:1;transform:translateY(0) scale(1);}
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce){
 *{
 animation:none !important;
 transition:none !important;
 }
 }
-
 </style>
 </head>
 
@@ -646,6 +640,7 @@ transition:none !important;
 <div>Views</div>
 <div>Comments</div>
 <div>Likes</div>
+<div>Revenue</div>
 </div>
 
 <div id="list"></div>
@@ -659,30 +654,30 @@ transition:none !important;
 <script>
 const data = {
 live: [
-{title:"Gaming Night Live", desc:"Live stream with audience chat and gameplay.", img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop", time:"LIVE", vis:"Public", icon:"fa-globe", date:"29 Apr 2026", status:"Live", views:"12.4K", comments:"248", likes:"96.5%"},
-{title:"Creator Q&A Session", desc:"Answering community questions live.", img:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=900&auto=format&fit=crop", time:"LIVE", vis:"Public", icon:"fa-globe", date:"28 Apr 2026", status:"Streamed", views:"8.1K", comments:"132", likes:"94.2%"},
-{title:"Music Jam Live", desc:"Acoustic session and fan requests.", img:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=900&auto=format&fit=crop", time:"LIVE", vis:"Unlisted", icon:"fa-link", date:"24 Apr 2026", status:"Streamed", views:"3.7K", comments:"86", likes:"91.8%"}
+{title:"Gaming Night Live", desc:"Live stream with audience chat and gameplay.", img:"https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=900&auto=format&fit=crop", time:"LIVE", vis:"Public", icon:"fa-globe", date:"29 Apr 2026", status:"Live", views:"12.4K", comments:"248", likes:"96.5%", revenue:"₹18,450"},
+{title:"Creator Q&A Session", desc:"Answering community questions live.", img:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=900&auto=format&fit=crop", time:"LIVE", vis:"Public", icon:"fa-globe", date:"28 Apr 2026", status:"Streamed", views:"8.1K", comments:"132", likes:"94.2%", revenue:"₹10,820"},
+{title:"Music Jam Live", desc:"Acoustic session and fan requests.", img:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=900&auto=format&fit=crop", time:"LIVE", vis:"Unlisted", icon:"fa-link", date:"24 Apr 2026", status:"Streamed", views:"3.7K", comments:"86", likes:"91.8%", revenue:"₹4,760"}
 ],
 video: [
-{title:"AI Editing Workflow Explained", desc:"Step by step video editing process using AI tools.", img:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop", time:"12:48", vis:"Public", icon:"fa-globe", date:"27 Apr 2026", status:"Published", views:"42.8K", comments:"318", likes:"98.1%"},
-{title:"Behind the Scenes Vlog", desc:"A day inside creator studio setup.", img:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=900&auto=format&fit=crop", time:"8:25", vis:"Public", icon:"fa-globe", date:"22 Apr 2026", status:"Published", views:"18.2K", comments:"94", likes:"96.0%"},
-{title:"How to Grow Your Channel", desc:"Simple creator growth tips for beginners.", img:"https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=900&auto=format&fit=crop", time:"15:10", vis:"Unlisted", icon:"fa-link", date:"18 Apr 2026", status:"Uploaded", views:"1.2K", comments:"12", likes:"--"},
-{title:"Studio Setup Tour", desc:"Camera, lights, mic and creator tools setup.", img:"https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=900&auto=format&fit=crop", time:"6:42", vis:"Public", icon:"fa-globe", date:"11 Apr 2026", status:"Published", views:"9.6K", comments:"61", likes:"92.4%"}
+{title:"AI Editing Workflow Explained", desc:"Step by step video editing process using AI tools.", img:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop", time:"12:48", vis:"Public", icon:"fa-globe", date:"27 Apr 2026", status:"Published", views:"42.8K", comments:"318", likes:"98.1%", revenue:"₹32,600"},
+{title:"Behind the Scenes Vlog", desc:"A day inside creator studio setup.", img:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=900&auto=format&fit=crop", time:"8:25", vis:"Public", icon:"fa-globe", date:"22 Apr 2026", status:"Published", views:"18.2K", comments:"94", likes:"96.0%", revenue:"₹14,250"},
+{title:"How to Grow Your Channel", desc:"Simple creator growth tips for beginners.", img:"https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=900&auto=format&fit=crop", time:"15:10", vis:"Unlisted", icon:"fa-link", date:"18 Apr 2026", status:"Uploaded", views:"1.2K", comments:"12", likes:"--", revenue:"₹850"},
+{title:"Studio Setup Tour", desc:"Camera, lights, mic and creator tools setup.", img:"https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=900&auto=format&fit=crop", time:"6:42", vis:"Public", icon:"fa-globe", date:"11 Apr 2026", status:"Published", views:"9.6K", comments:"61", likes:"92.4%", revenue:"₹7,980"}
 ],
 shorts: [
-{title:"Quick AI Thumbnail Hack", desc:"Short tip for better video thumbnails.", img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=900&auto=format&fit=crop", time:"0:38", vis:"Public", icon:"fa-globe", date:"29 Apr 2026", status:"Published", views:"86K", comments:"412", likes:"97.7%"},
-{title:"3 Creator Tips", desc:"Fast growth tips in under one minute.", img:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop", time:"0:52", vis:"Public", icon:"fa-globe", date:"25 Apr 2026", status:"Published", views:"54K", comments:"205", likes:"95.3%"},
-{title:"Before vs After Edit", desc:"AI edited clip transformation.", img:"https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=900&auto=format&fit=crop", time:"0:29", vis:"Unlisted", icon:"fa-link", date:"19 Apr 2026", status:"Uploaded", views:"2.4K", comments:"8", likes:"--"}
+{title:"Quick AI Thumbnail Hack", desc:"Short tip for better video thumbnails.", img:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=900&auto=format&fit=crop", time:"0:38", vis:"Public", icon:"fa-globe", date:"29 Apr 2026", status:"Published", views:"86K", comments:"412", likes:"97.7%", revenue:"₹21,300"},
+{title:"3 Creator Tips", desc:"Fast growth tips in under one minute.", img:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=900&auto=format&fit=crop", time:"0:52", vis:"Public", icon:"fa-globe", date:"25 Apr 2026", status:"Published", views:"54K", comments:"205", likes:"95.3%", revenue:"₹13,780"},
+{title:"Before vs After Edit", desc:"AI edited clip transformation.", img:"https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=900&auto=format&fit=crop", time:"0:29", vis:"Unlisted", icon:"fa-link", date:"19 Apr 2026", status:"Uploaded", views:"2.4K", comments:"8", likes:"--", revenue:"₹1,250"}
 ],
 stories: [
-{title:"New Upload Coming Soon", desc:"Story update for followers.", img:"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop", time:"Story", vis:"Public", icon:"fa-globe", date:"Today", status:"Active", views:"5.1K", comments:"--", likes:"--"},
-{title:"Behind The Camera", desc:"Studio moment shared as story.", img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=900&auto=format&fit=crop", time:"Story", vis:"Public", icon:"fa-globe", date:"Yesterday", status:"Expired", views:"3.9K", comments:"--", likes:"--"},
-{title:"Poll Result Update", desc:"Audience poll story summary.", img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=900&auto=format&fit=crop", time:"Story", vis:"Unlisted", icon:"fa-link", date:"21 Apr 2026", status:"Expired", views:"1.1K", comments:"--", likes:"--"}
+{title:"New Upload Coming Soon", desc:"Story update for followers.", img:"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=900&auto=format&fit=crop", time:"Story", vis:"Public", icon:"fa-globe", date:"Today", status:"Active", views:"5.1K", comments:"--", likes:"--", revenue:"--"},
+{title:"Behind The Camera", desc:"Studio moment shared as story.", img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=900&auto=format&fit=crop", time:"Story", vis:"Public", icon:"fa-globe", date:"Yesterday", status:"Expired", views:"3.9K", comments:"--", likes:"--", revenue:"--"},
+{title:"Poll Result Update", desc:"Audience poll story summary.", img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=900&auto=format&fit=crop", time:"Story", vis:"Unlisted", icon:"fa-link", date:"21 Apr 2026", status:"Expired", views:"1.1K", comments:"--", likes:"--", revenue:"--"}
 ],
 community: [
-{title:"Which video should come next?", desc:"Community poll for upcoming content.", img:"https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=900&auto=format&fit=crop", time:"Post", vis:"Public", icon:"fa-globe", date:"Today", status:"Published", views:"7.8K", comments:"542", likes:"89.2%"},
-{title:"Thank you for 25K followers", desc:"Creator milestone community update.", img:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900&auto=format&fit=crop", time:"Post", vis:"Public", icon:"fa-globe", date:"26 Apr 2026", status:"Published", views:"11.2K", comments:"389", likes:"96.9%"},
-{title:"Upload Schedule Update", desc:"Weekly content schedule announcement.", img:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop", time:"Post", vis:"Unlisted", icon:"fa-link", date:"20 Apr 2026", status:"Uploaded", views:"980", comments:"21", likes:"--"}
+{title:"Which video should come next?", desc:"Community poll for upcoming content.", img:"https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=900&auto=format&fit=crop", time:"Post", vis:"Public", icon:"fa-globe", date:"Today", status:"Published", views:"7.8K", comments:"542", likes:"89.2%", revenue:"--"},
+{title:"Thank you for 25K followers", desc:"Creator milestone community update.", img:"https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900&auto=format&fit=crop", time:"Post", vis:"Public", icon:"fa-globe", date:"26 Apr 2026", status:"Published", views:"11.2K", comments:"389", likes:"96.9%", revenue:"--"},
+{title:"Upload Schedule Update", desc:"Weekly content schedule announcement.", img:"https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop", time:"Post", vis:"Unlisted", icon:"fa-link", date:"20 Apr 2026", status:"Uploaded", views:"980", comments:"21", likes:"--", revenue:"--"}
 ]
 };
 
@@ -721,6 +716,8 @@ list.innerHTML = data[type].map(item => `
     ${item.likes}
     ${item.likes !== "--" ? `<div class="like-bar"><div class="like-fill"></div></div>` : ""}
   </div>
+
+  <div class="revenue">${item.revenue}</div>
 </div>
 `).join("");
 }
