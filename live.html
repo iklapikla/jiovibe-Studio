@@ -799,6 +799,289 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 .super-row{padding-bottom:13px !important;}
 .super-row .super-chip{display:inline-flex;align-items:center;gap:9px;}
 
+
+/* USER REQUEST UPDATE: YouTube-style monetization actions + Membership + CC token note */
+.support-actions-bar{
+  padding:12px 18px 14px;
+  border-bottom:1px solid #FFD2B3;
+  background:linear-gradient(180deg,#FFFFFF,#FFF6ED);
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  flex-shrink:0;
+}
+.support-action-btn{
+  min-height:54px;
+  border-radius:16px;
+  padding:10px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:900;
+  border:1px solid #FFD2B3;
+  background:#FFFFFF;
+  color:#4A0E0E;
+  box-shadow:0 8px 20px rgba(74,14,14,.05);
+  transition:.25s;
+}
+.support-action-btn i{font-size:16px}
+.support-action-btn:hover{
+  transform:translateY(-2px) scale(1.025);
+  border-color:#FF7A00;
+  color:#FF7A00;
+  box-shadow:0 12px 26px rgba(255,122,0,.16);
+}
+.support-action-btn.primary-action{
+  background:#FF7A00;
+  color:#FFFFFF;
+  border-color:#FF7A00;
+  box-shadow:0 12px 28px rgba(255,122,0,.22);
+}
+.support-action-btn.primary-action:hover{color:#FFFFFF;background:#E86F00}
+.support-action-btn.dark-action{
+  background:#4A0E0E;
+  color:#FFFFFF;
+  border-color:#4A0E0E;
+}
+.support-action-btn.dark-action:hover{color:#FFFFFF;background:#FF7A00;border-color:#FF7A00}
+.super-row{padding-top:12px !important;border-bottom:1px solid #FFD2B3 !important;}
+.super-row .super-sticker-chip{display:none !important;}
+.cc-token-note{
+  margin:6px 10px 8px;
+  padding:9px 10px;
+  border-radius:12px;
+  background:#FFF6ED;
+  border:1px dashed #FFB066;
+  color:#7A3E2E;
+  font-size:12px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.cc-token-note i{color:#FF7A00}
+.membership-modal{width:620px;max-width:92vw;}
+.membership-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}
+.membership-plan{
+  border:1px solid #FFD2B3;
+  border-radius:20px;
+  background:linear-gradient(145deg,#FFFFFF,#FFF6ED);
+  padding:16px;
+  text-align:left;
+  position:relative;
+  overflow:hidden;
+  transition:.25s;
+}
+.membership-plan::after{
+  content:"";
+  position:absolute;
+  inset:auto -30px -55px auto;
+  width:110px;height:110px;
+  background:rgba(255,122,0,.10);
+  border-radius:50%;
+}
+.membership-plan:hover{
+  transform:translateY(-4px) scale(1.02);
+  border-color:#FF7A00;
+  box-shadow:0 18px 38px rgba(255,122,0,.16);
+}
+.membership-plan .plan-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:#FFE4CC;color:#B95018;
+  border-radius:999px;padding:7px 10px;
+  font-size:11px;font-weight:900;
+  margin-bottom:10px;
+}
+.membership-plan h3{font-size:18px;font-weight:900;margin-bottom:5px;color:#4A0E0E}
+.membership-plan .plan-price{font-size:22px;font-weight:900;color:#FF7A00;margin-bottom:10px}
+.membership-plan ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:14px;position:relative;z-index:1}
+.membership-plan li{font-size:12px;font-weight:800;color:#7A3E2E;display:flex;gap:7px;align-items:flex-start}
+.membership-plan li i{color:#FF7A00;margin-top:2px}
+.membership-plan button{
+  width:100%;height:42px;border-radius:13px;
+  background:#4A0E0E;color:#FFFFFF;
+  font-weight:900;position:relative;z-index:1;
+}
+.membership-plan button:hover{background:#FF7A00}
+@media(max-width:900px){
+  .support-actions-bar{grid-template-columns:1fr;}
+  .membership-grid{grid-template-columns:1fr;}
+}
+
+
+
+/* USER UPDATE: YouTube-style bottom chat composer for Super Support / Sticker / Membership */
+.support-actions-bar{display:none !important;}
+.youtube-chat-composer{
+  border-top:1px solid #FFD2B3 !important;
+  padding:14px 16px 15px !important;
+  background:#FFFFFF !important;
+  display:flex !important;
+  flex-direction:column !important;
+  gap:11px !important;
+}
+.composer-main-row{
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 46px 46px;
+  gap:10px;
+  align-items:center;
+}
+.youtube-chat-composer input{
+  width:100%;
+  height:48px !important;
+  border:none !important;
+  border-radius:999px !important;
+  padding:0 18px !important;
+  background:#FFF6ED !important;
+  color:#4A0E0E !important;
+  font-size:14px !important;
+  font-weight:800 !important;
+  outline:1px solid #FFD2B3 !important;
+}
+.youtube-chat-composer input:focus{
+  background:#FFFFFF !important;
+  outline:2px solid #FF7A00 !important;
+  box-shadow:0 0 0 4px rgba(255,122,0,.10) !important;
+}
+.youtube-chat-composer .round-btn{
+  width:46px !important;
+  height:46px !important;
+  border-radius:50% !important;
+}
+.youtube-chat-composer .emoji-btn{
+  background:#FFF6ED !important;
+  border:1px solid #FFD2B3 !important;
+  color:#4A0E0E !important;
+}
+.composer-actions-row{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
+  width:100%;
+}
+.composer-action{
+  min-height:44px;
+  border-radius:999px;
+  padding:8px 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:12px;
+  font-weight:900;
+  border:1px solid #FFD2B3;
+  background:#FFF6ED;
+  color:#4A0E0E;
+  white-space:nowrap;
+  transition:.25s;
+}
+.composer-action span{
+  width:26px;height:26px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#FFFFFF;
+  box-shadow:0 4px 12px rgba(74,14,14,.06);
+  flex-shrink:0;
+}
+.composer-action:hover{
+  transform:translateY(-2px) scale(1.02);
+  border-color:#FF7A00;
+  box-shadow:0 12px 25px rgba(255,122,0,.14);
+}
+.composer-action.super-action{background:#FF7A00;color:#FFFFFF;border-color:#FF7A00;}
+.composer-action.super-action span{color:#FF7A00;}
+.composer-action.sticker-action{background:#4A0E0E;color:#FFFFFF;border-color:#4A0E0E;}
+.composer-action.sticker-action span{color:#4A0E0E;}
+.composer-action.member-action{background:#FFFFFF;color:#4A0E0E;}
+.composer-action.member-action span{color:#FF7A00;background:#FFF6ED;}
+.chat-input .sticker-input-btn{display:none !important;}
+@media(max-width:520px){
+  .composer-actions-row{grid-template-columns:1fr;}
+  .composer-action{justify-content:flex-start;padding-left:16px;}
+}
+
+
+/* FINAL FIX: Membership chat card full height + member name highlight */
+.membership-chat-card{
+  background:linear-gradient(135deg,#FF7A00 0%,#FF9A1F 55%,#FF7A00 100%) !important;
+  border:2px solid #FFE4CC !important;
+  outline:3px solid rgba(255,122,0,.15) !important;
+  color:#FFFFFF !important;
+  border-radius:24px !important;
+  padding:16px 16px !important;
+  min-height:auto !important;
+  height:auto !important;
+  overflow:visible !important;
+  box-shadow:0 14px 34px rgba(255,122,0,.30),0 0 28px rgba(255,122,0,.35) !important;
+  grid-template-columns:54px 1fr 42px !important;
+  gap:14px !important;
+  align-items:start !important;
+}
+.membership-chat-card::before{display:none !important;}
+.membership-chat-card img{
+  width:50px !important;height:50px !important;border-radius:50% !important;object-fit:cover !important;
+  border:2px solid rgba(255,255,255,.96) !important;
+}
+.membership-chat-card .amount{
+  color:#FFFFFF !important;
+  font-size:18px !important;
+  font-weight:900 !important;
+  line-height:1.18 !important;
+  margin:0 0 12px !important;
+  text-shadow:0 2px 8px rgba(0,0,0,.16);
+}
+.membership-chat-card strong{
+  color:#FFFFFF !important;
+  font-size:15px !important;
+  font-weight:900 !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:6px !important;
+}
+.membership-chat-card p{
+  color:#6B2B13 !important;
+  font-size:14px !important;
+  font-weight:900 !important;
+  line-height:1.35 !important;
+  margin-top:10px !important;
+  display:block !important;
+  max-height:none !important;
+  overflow:visible !important;
+}
+.membership-chat-card small{color:rgba(255,255,255,.78) !important;font-weight:900 !important;}
+.member-name,
+.msg strong.member-name{
+  color:#FF7A00 !important;
+  background:#FFF1E5 !important;
+  border:1px solid #FFD2B3 !important;
+  border-radius:999px !important;
+  padding:4px 10px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  width:max-content !important;
+  box-shadow:0 6px 16px rgba(255,122,0,.12) !important;
+}
+.member-name::before{
+  content:"\f521";
+  font-family:"Font Awesome 6 Free";
+  font-weight:900;
+  font-size:11px;
+}
+.membership-chat-card .member-name{
+  color:#FFFFFF !important;
+  background:rgba(255,255,255,.18) !important;
+  border-color:rgba(255,255,255,.45) !important;
+  box-shadow:none !important;
+}
+@media(max-width:520px){
+  .membership-chat-card{grid-template-columns:46px 1fr 34px !important;padding:14px !important;}
+  .membership-chat-card img{width:42px !important;height:42px !important;}
+  .membership-chat-card .amount{font-size:16px !important;}
+}
+
 </style>
 </head>
 
@@ -926,6 +1209,7 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 
 <div class="player-menu-panel" id="captionPanel">
 <button class="menu-back" onclick="openSettingsPanel('mainSettingsPanel')"><i class="fa-solid fa-chevron-left"></i> Captions / AI Translate</button>
+<div class="cc-token-note"><i class="fa-solid fa-coins"></i> AI Translate: 5 Tokens per language</div>
 <button onclick="setCaption('Off')">Off</button>
 <button onclick="setCaption('English CC')">English CC</button>
 <button onclick="setAiLanguage('Hindi')">एआई अनुवाद: हिंदी</button>
@@ -988,21 +1272,36 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 <i class="fa-solid fa-ellipsis-vertical"></i>
 </div>
 
+
 <div class="super-row" id="superRow">
 <button class="super-chip note-chip auto-super-chip" data-hide-after="180000" onclick="openSuper(500)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Rahul</span><span class="mini-sent">sent</span><span>₹500</span></button>
 <button class="super-chip note-chip auto-super-chip" data-hide-after="120000" onclick="openSuper(1000)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Priya</span><span class="mini-sent">sent</span><span>₹1,000</span></button>
 <button class="super-chip note-chip auto-super-chip" data-hide-after="60000" onclick="openSuper(2000)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Aman</span><span class="mini-sent">sent</span><span>₹2,000</span></button>
-<button class="super-sticker-chip" onclick="openSticker()"><i class="fa-solid fa-face-grin-stars"></i> Super Sticker</button>
 </div>
 
 <div class="chat-messages" id="chatMessages"></div>
 
-<div class="chat-input">
-<input id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendChat()">
-<button class="round-btn"><i class="fa-regular fa-face-smile"></i></button>
-<button class="round-btn" onclick="openSuper(500)" title="Super Support"><i class="fa-solid fa-indian-rupee-sign"></i></button>
-<button class="round-btn sticker-input-btn" onclick="openSticker()" title="Super Sticker"><i class="fa-solid fa-face-grin-stars"></i></button>
-<button class="round-btn send-btn" onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
+<div class="chat-input youtube-chat-composer">
+  <div class="composer-main-row">
+    <input id="chatInput" placeholder="Chat as a subscriber..." onkeydown="if(event.key==='Enter') sendChat()">
+    <button class="round-btn emoji-btn" title="Emoji"><i class="fa-regular fa-face-smile"></i></button>
+    <button class="round-btn send-btn" onclick="sendChat()" title="Send"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+
+  <div class="composer-actions-row">
+    <button class="composer-action super-action" onclick="openSuper(500)" title="Super Support">
+      <span><i class="fa-solid fa-indian-rupee-sign"></i></span>
+      <b>Super Support</b>
+    </button>
+    <button class="composer-action sticker-action" onclick="openSticker()" title="Super Sticker">
+      <span><i class="fa-solid fa-face-grin-stars"></i></span>
+      <b>Super Sticker</b>
+    </button>
+    <button class="composer-action member-action" onclick="openMembership()" title="Membership">
+      <span><i class="fa-solid fa-crown"></i></span>
+      <b>Membership</b>
+    </button>
+  </div>
 </div>
 </aside>
 
@@ -1141,6 +1440,67 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 </div>
 </div>
 
+
+
+<!-- MEMBERSHIP MODAL -->
+<div class="overlay" id="membershipOverlay">
+<div class="modal membership-modal">
+<button class="close-btn" onclick="closeMembership()"><i class="fa-solid fa-xmark"></i></button>
+<h2>Join Membership</h2>
+<div class="super-support-title"><i class="fa-solid fa-crown"></i> Support Ranveer Singh monthly and unlock member-only perks</div>
+
+<div class="membership-grid">
+<div class="membership-plan">
+<span class="plan-badge"><i class="fa-solid fa-star"></i> Starter</span>
+<h3>Fan Pass</h3>
+<div class="plan-price">₹99 / month</div>
+<ul>
+<li><i class="fa-solid fa-check"></i> Loyalty badge in live chat</li>
+<li><i class="fa-solid fa-check"></i> Member-only emojis</li>
+<li><i class="fa-solid fa-check"></i> Early community posts</li>
+</ul>
+<button onclick="buyMembership('Fan Pass','₹99')">Buy Membership</button>
+</div>
+
+<div class="membership-plan">
+<span class="plan-badge"><i class="fa-solid fa-fire"></i> Popular</span>
+<h3>Super Fan</h3>
+<div class="plan-price">₹199 / month</div>
+<ul>
+<li><i class="fa-solid fa-check"></i> All Fan Pass benefits</li>
+<li><i class="fa-solid fa-check"></i> Priority live chat highlight</li>
+<li><i class="fa-solid fa-check"></i> Exclusive behind-the-scenes clips</li>
+</ul>
+<button onclick="buyMembership('Super Fan','₹199')">Buy Membership</button>
+</div>
+
+<div class="membership-plan">
+<span class="plan-badge"><i class="fa-solid fa-bolt"></i> Creator Club</span>
+<h3>VIP Vibe</h3>
+<div class="plan-price">₹499 / month</div>
+<ul>
+<li><i class="fa-solid fa-check"></i> VIP badge + premium emojis</li>
+<li><i class="fa-solid fa-check"></i> Monthly members-only live</li>
+<li><i class="fa-solid fa-check"></i> 10 free AI Translate tokens</li>
+</ul>
+<button onclick="buyMembership('VIP Vibe','₹499')">Buy Membership</button>
+</div>
+
+<div class="membership-plan">
+<span class="plan-badge"><i class="fa-solid fa-gem"></i> Ultimate</span>
+<h3>Legend Member</h3>
+<div class="plan-price">₹999 / month</div>
+<ul>
+<li><i class="fa-solid fa-check"></i> Top-tier legend badge</li>
+<li><i class="fa-solid fa-check"></i> Shoutout chance in live stream</li>
+<li><i class="fa-solid fa-check"></i> 25 free AI Translate tokens</li>
+</ul>
+<button onclick="buyMembership('Legend Member','₹999')">Buy Membership</button>
+</div>
+</div>
+</div>
+</div>
+
 <script>
 function toggleDropdown(){
 document.getElementById("dropdown").classList.toggle("show");
@@ -1195,6 +1555,8 @@ showToast("More share options not supported here");
 }
 
 /* Chat */
+let truptiIsMember = false;
+
 const chatNames=["Rahul Beats","Acoustic Fan","Music Lover","Priya Sharma","Mumbai Vibes","Live Viewer","Ritika Jain","Creator Fan"];
 const chatTexts=["Super live!","This feels so powerful","Great energy","Watching with friends","What a vibe!","Audio is very clear","Love this moment","Ranveer energy is next level"];
 
@@ -1202,11 +1564,12 @@ function addChat(name,text,img,superAmount){
 const box=document.getElementById("chatMessages");
 const div=document.createElement("div");
 div.className=superAmount?"msg super-msg":"msg";
+const isTruptiMember = truptiIsMember && name === "Trupti Latur";
 div.innerHTML=`
 <img src="${img}">
 <div>
 ${superAmount?`<div class="amount">Super Support ${superAmount}</div>`:""}
-<strong>${name}</strong>
+<strong class="${isTruptiMember ? 'member-name' : ''}">${name}</strong>
 <p>${text}</p>
 </div>
 <small>Now</small>`;
@@ -1380,6 +1743,30 @@ showToast("Super Sticker sent and highlighted in chat");
 }
 
 
+/* Membership */
+function openMembership(){
+  document.getElementById("membershipOverlay").classList.add("show");
+}
+function closeMembership(){
+  document.getElementById("membershipOverlay").classList.remove("show");
+}
+function buyMembership(plan,price){
+  truptiIsMember = true;
+  addChat("Trupti Latur","Joined " + plan + " membership for " + price + "/month 🎉","https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg");
+  const lastMsg=document.querySelector("#chatMessages .msg:last-child");
+  if(lastMsg){
+    lastMsg.classList.add("membership-chat-card");
+    const amountBox=lastMsg.querySelector("div > .amount");
+    if(!amountBox){
+      const content=lastMsg.querySelector("img + div");
+      if(content){ content.insertAdjacentHTML("afterbegin",`<div class="amount"><i class="fa-solid fa-crown"></i> Membership: ${plan}</div>`); }
+    }
+    const nameEl=lastMsg.querySelector("strong");
+    if(nameEl){ nameEl.classList.add("member-name"); }
+  }
+  closeMembership();
+  showToast(plan + " membership activated");
+}
 
 
 /* Live Caption Demo */
