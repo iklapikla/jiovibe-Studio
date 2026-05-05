@@ -113,7 +113,7 @@ button{cursor:pointer;border:none}
   <div class="head">
     <div>
       <h1>AI Content Generator</h1>
-      <p>Upload one video and generate creator-ready thumbnails, shorts, story images, highlight videos, titles and descriptions. Every tool generates 3 results and costs 10 tokens.</p>
+      <p>Upload one video and generate creator-ready thumbnails, shorts, story images, highlight videos, titles and descriptions. Every tool generates 1 result and costs 10 tokens.</p>
     </div>
     <div class="wallet"><i class="fa-solid fa-coins"></i> Current Usage: <span id="usedTokens">0</span> Tokens</div>
   </div>
@@ -133,47 +133,47 @@ button{cursor:pointer;border:none}
 
       <div class="section">
         <h2>Choose AI Tool</h2>
-        <p class="section-desc">Click any tool below. Each tool will create 3 AI results and deduct 10 tokens.</p>
+        <p class="section-desc">Click any tool below. Each tool will create 1 AI result and deduct 10 tokens.</p>
 
         <div class="tools-grid">
           <div class="tool-card" onclick="generateTool('thumbnail')">
             <div class="tool-top"><div class="icon-wrap"><i class="fa-regular fa-image"></i></div><div class="token-badge">10 Tokens</div></div>
-            <div><h3>Thumbnail</h3><p>Create 3 clickable 16:9 thumbnail options from your uploaded video.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+            <div><h3>Thumbnail</h3><p>Create a clickable 16:9 thumbnail from your uploaded video.</p><div class="tool-cta">Generate Result <i class="fa-solid fa-arrow-right"></i></div></div>
           </div>
 
           <div class="tool-card" onclick="generateTool('shorts')">
             <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-mobile-screen"></i></div><div class="token-badge">10 Tokens</div></div>
-            <div><h3>Shorts</h3><p>Create 3 vertical 9:16 shorts with hook-first pacing and smart crop.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+            <div><h3>Shorts</h3><p>Create a vertical 9:16 short with hook-first pacing and smart crop.</p><div class="tool-cta">Generate Result <i class="fa-solid fa-arrow-right"></i></div></div>
           </div>
 
           <div class="tool-card" onclick="generateTool('story')">
             <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-images"></i></div><div class="token-badge">10 Tokens</div></div>
-            <div><h3>Story</h3><p>Create 3 vertical 9:16 story images from the best video moments.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+            <div><h3>Story</h3><p>Create a vertical 9:16 story image from the best video moment.</p><div class="tool-cta">Generate Result <i class="fa-solid fa-arrow-right"></i></div></div>
           </div>
 
           <div class="tool-card" onclick="generateTool('highlight')">
             <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-bolt"></i></div><div class="token-badge">10 Tokens</div></div>
-            <div><h3>Highlight</h3><p>Create 3 16:9 highlight video options with fast cuts and effects.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+            <div><h3>Highlight</h3><p>Create a 16:9 highlight video with fast cuts and effects.</p><div class="tool-cta">Generate Result <i class="fa-solid fa-arrow-right"></i></div></div>
           </div>
 
           <div class="tool-card" onclick="generateTool('title')">
             <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-heading"></i></div><div class="token-badge">10 Tokens</div></div>
-            <div><h3>Title</h3><p>Create 3 SEO-friendly creator-style titles with copy button.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+            <div><h3>Title</h3><p>Create an SEO-friendly creator-style title with copy button.</p><div class="tool-cta">Generate Result <i class="fa-solid fa-arrow-right"></i></div></div>
           </div>
 
           <div class="tool-card" onclick="generateTool('description')">
             <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-align-left"></i></div><div class="token-badge">10 Tokens</div></div>
-            <div><h3>Description</h3><p>Create 3 complete video descriptions with hook, CTA and hashtags.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+            <div><h3>Description</h3><p>Create a complete video description with hook, CTA and hashtags.</p><div class="tool-cta">Generate Result <i class="fa-solid fa-arrow-right"></i></div></div>
           </div>
         </div>
 
-        <div class="note-box"><i class="fa-solid fa-circle-info"></i> Result order is exactly: Thumbnail - Shorts, Story - Highlight, Title - Description. Every click creates a fresh 3-result pack on the right side.</div>
+        <div class="note-box"><i class="fa-solid fa-circle-info"></i> Result order is exactly: Thumbnail - Shorts, Story - Highlight, Title - Description. Every click creates a fresh result on the right side.</div>
       </div>
     </div>
 
     <div class="panel result-panel">
       <div class="result-head"><h2>AI Results</h2><div class="status-dot"><span></span> Live Output</div></div>
-      <div class="chat" id="chat"><div class="empty-state" id="emptyState"><i class="fa-solid fa-wand-magic-sparkles"></i>Upload a video and click any AI tool. Your 3 results will appear here.</div></div>
+      <div class="chat" id="chat"><div class="empty-state" id="emptyState"><i class="fa-solid fa-wand-magic-sparkles"></i>Upload a video and click any AI tool. Your result will appear here.</div></div>
     </div>
   </div>
 </div>
@@ -214,7 +214,7 @@ function addProcessing(title){
   const div=document.createElement('div');
   div.className='msg';
   div.id=id;
-  div.innerHTML=`<div class="msg-top"><div class="msg-title">${title}</div><div class="msg-time">${timeNow()}</div></div><div class="processing"><span class="spinner"></span> AI is creating 3 results...</div>`;
+  div.innerHTML=`<div class="msg-top"><div class="msg-title">${title}</div><div class="msg-time">${timeNow()}</div></div><div class="processing"><span class="spinner"></span> AI is creating your result...</div>`;
   document.getElementById('chat').appendChild(div);
   scrollChat();
   return id;
@@ -226,7 +226,7 @@ function uploadVideo(){
   document.getElementById('uploadTitle').innerText='Video uploaded successfully';
   document.getElementById('uploadText').innerText='Your video is ready for Thumbnail, Shorts, Story, Highlight, Title and Description.';
   document.getElementById('uploadStatus').innerHTML='✅ Video uploaded successfully: jiovibe-demo-video.mp4';
-  addMsg(`<div class="msg-top"><div class="msg-title">Video Uploaded</div><div class="msg-time">${timeNow()}</div></div><div class="output-text">Source video is ready. Choose any AI tool to generate 3 results. Each tool costs 10 tokens.</div>`);
+  addMsg(`<div class="msg-top"><div class="msg-title">Video Uploaded</div><div class="msg-time">${timeNow()}</div></div><div class="output-text">Source video is ready. Choose any AI tool to generate a result. Each tool costs 10 tokens.</div>`);
 }
 
 function generateTool(type){
@@ -236,7 +236,7 @@ function generateTool(type){
   }
   updateTokens(10);
   const id=addProcessing(actionTitle(type)+' • 10 Tokens');
-  setTimeout(()=>replaceMsg(id, buildResultPack(type)),900);
+  setTimeout(()=>replaceMsg(id, buildSingleResult(type)),900);
 }
 function actionTitle(type){
   return {
@@ -270,7 +270,7 @@ function mediaBlock(label, kind, ratio){
   return `<div class="media ${ratio}"><img src="${BASE_GIF}" style="transform:scale(${scale}) translate(${moveX}%, ${moveY}%);filter:${filter};"><div class="play"><i class="fa-solid fa-play"></i></div><div class="label">${label}</div></div>`;
 }
 function resultActions(type){
-  return `<div class="result-actions"><button class="secondary-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button><button class="secondary-btn" onclick="generateTool('${type}')"><i class="fa-solid fa-rotate"></i> Regenerate 3 (+10 Tokens)</button></div>`;
+  return `<div class="result-actions"><button class="secondary-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button><button class="secondary-btn" onclick="generateTool('${type}')"><i class="fa-solid fa-rotate"></i> Regenerate (+10 Tokens)</button></div>`;
 }
 function copyText(text){
   navigator.clipboard.writeText(text);
@@ -278,47 +278,32 @@ function copyText(text){
 }
 function textActions(text,type){
   const safe=text.replace(/`/g,'').replace(/\$/g,'');
-  return `<div class="result-actions"><button class="copy-btn" onclick="copyText(\`${safe}\`)"><i class="fa-regular fa-copy"></i> Copy</button><button class="secondary-btn" onclick="generateTool('${type}')"><i class="fa-solid fa-rotate"></i> Regenerate 3 (+10 Tokens)</button></div>`;
+  return `<div class="result-actions"><button class="copy-btn" onclick="copyText(\`${safe}\`)"><i class="fa-regular fa-copy"></i> Copy</button><button class="secondary-btn" onclick="generateTool('${type}')"><i class="fa-solid fa-rotate"></i> Regenerate (+10 Tokens)</button></div>`;
 }
-function buildResultPack(type){
-  const title=`<div class="msg-top"><div class="msg-title"><i class="${toolIcon(type)}"></i> ${actionTitle(type)} Results</div><div class="msg-time">${timeNow()}</div></div>`;
-  let pack='<div class="results-pack">';
-  for(let i=1;i<=3;i++){
-    pack+=buildSingleVariant(type,i);
-  }
-  pack+='</div>';
-  return title+pack;
+function buildSingleResult(type){
+  const title=`<div class="msg-top"><div class="msg-title"><i class="${toolIcon(type)}"></i> ${actionTitle(type)} Result</div><div class="msg-time">${timeNow()}</div></div>`;
+  return title + `<div class="results-pack">` + buildSingleVariant(type) + `</div>`;
 }
-function buildSingleVariant(type,i){
+function buildSingleVariant(type){
   if(type==='thumbnail'){
-    return `<div class="variant-card"><div class="variant-title"><span>Thumbnail Option ${i}</span><span>16:9 Image</span></div>${mediaBlock('Thumbnail • 16:9','image','wide')}<div class="output-text">High-click thumbnail with bold face focus, orange glow and creator-style text space.</div>${resultActions('thumbnail')}</div>`;
+    return `<div class="variant-card"><div class="variant-title"><span>Thumbnail Output</span><span>16:9 Image</span></div>${mediaBlock('Thumbnail • 16:9','image','wide')}<div class="output-text">High-click thumbnail with bold face focus, orange glow and creator-style text space.</div>${resultActions('thumbnail')}</div>`;
   }
   if(type==='shorts'){
-    return `<div class="variant-card"><div class="variant-title"><span>Shorts Option ${i}</span><span>9:16 Video</span></div>${mediaBlock('Shorts • 9:16','video','vertical')}<div class="output-text">Vertical short with smart crop, fast hook, captions-ready frame and strong ending beat.</div>${resultActions('shorts')}</div>`;
+    return `<div class="variant-card"><div class="variant-title"><span>Shorts Output</span><span>9:16 Video</span></div>${mediaBlock('Shorts • 9:16','video','vertical')}<div class="output-text">Vertical short with smart crop, fast hook, captions-ready frame and strong ending beat.</div>${resultActions('shorts')}</div>`;
   }
   if(type==='story'){
-    return `<div class="variant-card"><div class="variant-title"><span>Story Option ${i}</span><span>9:16 Image</span></div>${mediaBlock('Story Image • 9:16','image','vertical')}<div class="output-text">Story-ready vertical image with clean safe area for sticker, CTA and swipe-up style copy.</div>${resultActions('story')}</div>`;
+    return `<div class="variant-card"><div class="variant-title"><span>Story Output</span><span>9:16 Image</span></div>${mediaBlock('Story Image • 9:16','image','vertical')}<div class="output-text">Story-ready vertical image with clean safe area for sticker, CTA and swipe-up style copy.</div>${resultActions('story')}</div>`;
   }
   if(type==='highlight'){
-    return `<div class="variant-card"><div class="variant-title"><span>Highlight Option ${i}</span><span>16:9 Video</span></div>${mediaBlock('Highlight Video • 16:9','video','wide')}<div class="output-text">Best moments converted into a polished 16:9 highlight video with cuts, music pacing and effects.</div>${resultActions('highlight')}</div>`;
+    return `<div class="variant-card"><div class="variant-title"><span>Highlight Output</span><span>16:9 Video</span></div>${mediaBlock('Highlight Video • 16:9','video','wide')}<div class="output-text">Best moments converted into a polished 16:9 highlight video with cuts, music pacing and effects.</div>${resultActions('highlight')}</div>`;
   }
   if(type==='title'){
-    const titles=[
-      'This AI Edit Made My Video Look Like a Movie!',
-      'I Turned One Clip Into Viral Content Using JioVibe AI',
-      'From Raw Video to Creator-Ready Content in Seconds'
-    ];
-    const text=titles[i-1];
-    return `<div class="variant-card"><div class="variant-title"><span>Title Option ${i}</span><span>Text</span></div><div class="text-result">${text}</div>${textActions(text,'title')}</div>`;
+    const text='This AI Edit Made My Video Look Like a Movie!';
+    return `<div class="variant-card"><div class="variant-title"><span>Title Output</span><span>Text</span></div><div class="text-result">${text}</div>${textActions(text,'title')}</div>`;
   }
   if(type==='description'){
-    const desc=[
-      'Watch this AI-powered creator edit made from one uploaded video. JioVibe AI turns raw content into thumbnails, shorts, highlights and platform-ready assets in seconds. Like, comment and follow for more creator tools. #JioVibe #AIVideo #CreatorTools',
-      'In this video, we showcase how one upload can become multiple content formats using JioVibe AI. From 16:9 highlight video to 9:16 shorts and story assets, everything is designed for faster creator growth. #Shorts #AIEditing #JioVibe',
-      'A complete AI content generation demo for creators. Upload once and generate titles, descriptions, thumbnails, shorts, stories and highlight videos with token-based AI tools. #CreatorEconomy #JioVibeStudio #AICreator'
-    ];
-    const text=desc[i-1];
-    return `<div class="variant-card"><div class="variant-title"><span>Description Option ${i}</span><span>Text</span></div><div class="text-result">${text}</div>${textActions(text,'description')}</div>`;
+    const text='Watch this AI-powered creator edit made from one uploaded video. JioVibe AI turns raw content into thumbnails, shorts, highlights and platform-ready assets in seconds. Like, comment and follow for more creator tools. #JioVibe #AIVideo #CreatorTools';
+    return `<div class="variant-card"><div class="variant-title"><span>Description Output</span><span>Text</span></div><div class="text-result">${text}</div>${textActions(text,'description')}</div>`;
   }
   return '';
 }
