@@ -3,588 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Title & Description Generator - JioVibe</title>
-
+<title>AI Broadcaster - JioVibe</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
+:root{
+  --cream:#FFF6ED;
+  --soft:#FFE4CC;
+  --line:#FFD2B3;
+  --orange:#FF7A00;
+  --orange2:#E65100;
+  --brown:#7A3E2E;
+  --dark:#4A0E0E;
+  --deep:#2A0A0A;
+  --white:#fff;
+  --green:#20C45A;
+  --red:#ff3b30;
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#FFF6ED;color:#4A0E0E}
-a{text-decoration:none;color:inherit}
-button,textarea,select,input{font-family:inherit}
-button{cursor:pointer}
-
-.topbar{
-height:72px;background:#FFF6ED;border-bottom:1px solid #FFD2B3;
-display:flex;align-items:center;justify-content:space-between;
-padding:0 26px;position:sticky;top:0;z-index:20
-}
-.back-title{display:flex;align-items:center;gap:15px;font-size:22px;font-weight:800}
-.project{text-align:center}
-.project h1{font-size:24px;font-weight:800;color:#4A0E0E}
-.tags{display:flex;gap:8px;justify-content:center;margin-top:6px}
-.tag{background:#FFE4CC;color:#7A3E2E;padding:6px 11px;border-radius:8px;font-size:12px;font-weight:800}
-.top-actions{display:flex;align-items:center;gap:12px}
-.token-pill{border:1px solid #FFD2B3;background:#FFFFFF;padding:11px 14px;border-radius:12px;font-weight:800;color:#4A0E0E}
-.buy-btn{background:#FF7A00;color:#FFFFFF;border-radius:12px;padding:13px 18px;font-weight:800}
-.buy-btn:hover{background:#E65100}
-
-.shell{
-display:grid;
-grid-template-columns:420px 1fr;
-gap:24px;
-padding:26px;
-max-width:1700px;
-margin:auto
-}
-
-.card{
-background:#FFFFFF;border:1px solid #FFD2B3;border-radius:22px;
-box-shadow:0 8px 24px rgba(74,14,14,.05)
-}
-
-.input-panel{
-padding:24px;
-height:max-content;
-position:sticky;
-top:98px
-}
-
-.step-head{
-display:flex;
-align-items:center;
-gap:12px;
-margin-bottom:10px
-}
-.step-no{
-width:34px;height:34px;border-radius:50%;
-background:#FF7A00;color:#FFFFFF;
-display:flex;align-items:center;justify-content:center;
-font-weight:900
-}
-.step-head h2{
-font-size:22px;
-font-weight:900;
-color:#4A0E0E
-}
-.sub{
-color:#7A3E2E;
-font-size:14px;
-font-weight:700;
-margin-bottom:24px
-}
-
-.field{
-margin-bottom:22px
-}
-.field label{
-display:block;
-font-size:15px;
-font-weight:900;
-margin-bottom:10px;
-color:#4A0E0E
-}
-.textarea-wrap{
-position:relative
-}
-textarea{
-width:100%;
-height:135px;
-resize:none;
-border:1px solid #FFD2B3;
-border-radius:16px;
-padding:16px;
-font-size:16px;
-font-weight:600;
-line-height:1.5;
-outline:none;
-background:#FFFFFF;
-color:#4A0E0E
-}
-textarea:focus{
-border-color:#FF7A00;
-box-shadow:0 0 0 3px rgba(255,122,0,.10)
-}
-.count{
-position:absolute;
-right:14px;
-bottom:12px;
-font-size:13px;
-font-weight:800;
-color:#A66A55
-}
-
-.select-box{
-position:relative
-}
-.select-btn{
-width:100%;
-height:56px;
-border:1px solid #FFD2B3;
-background:#FFFFFF;
-border-radius:16px;
-padding:0 16px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-font-size:16px;
-font-weight:800;
-color:#4A0E0E;
-transition:.22s
-}
-.select-btn:hover{
-transform:scale(1.01);
-background:#FFE4CC
-}
-.select-btn span{
-display:flex;
-align-items:center;
-gap:12px
-}
-.dropdown-list{
-display:none;
-position:absolute;
-top:64px;
-left:0;
-right:0;
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:16px;
-box-shadow:0 12px 28px rgba(74,14,14,.12);
-overflow:hidden;
-z-index:10
-}
-.dropdown-list.show{display:block}
-.dropdown-list button{
-width:100%;
-border:none;
-background:#FFFFFF;
-padding:14px 16px;
-text-align:left;
-font-size:15px;
-font-weight:800;
-color:#4A0E0E;
-transition:.18s
-}
-.dropdown-list button:hover{
-background:#FFE4CC
-}
-
-.generate-btn{
-width:100%;
-border:none;
-background:#FF7A00;
-color:#FFFFFF;
-border-radius:14px;
-padding:16px;
-font-size:17px;
-font-weight:900;
-transition:.22s;
-margin-top:4px
-}
-.generate-btn:hover{
-transform:scale(1.02);
-box-shadow:0 8px 20px rgba(255,122,0,.25);
-background:#E65100
-}
-.cost-note{
-text-align:center;
-font-size:14px;
-font-weight:800;
-color:#7A3E2E;
-margin-top:18px
-}
-.cost-note span{color:#FF7A00}
-
-.results-panel{
-padding:24px
-}
-.results-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:18px;
-padding-bottom:22px;
-border-bottom:1px solid #FFE0CC;
-margin-bottom:24px
-}
-.results-head h2{
-font-size:24px;
-font-weight:900;
-margin-bottom:6px;
-color:#4A0E0E
-}
-.results-head p{
-color:#7A3E2E;
-font-weight:700
-}
-.regenerate-btn{
-border:1px solid #FFD2B3;
-background:#FFFFFF;
-border-radius:14px;
-padding:13px 20px;
-font-size:15px;
-font-weight:900;
-transition:.22s;
-color:#4A0E0E
-}
-.regenerate-btn:hover{
-background:#FF7A00;
-color:#FFFFFF;
-transform:scale(1.03)
-}
-.regenerate-btn span{color:#FF7A00}
-
-.section-title{
-display:flex;
-align-items:center;
-gap:10px;
-font-size:22px;
-font-weight:900;
-margin-bottom:14px;
-color:#4A0E0E
-}
-.section-title i{color:#FF7A00}
-
-.title-list{
-display:flex;
-flex-direction:column;
-gap:10px;
-margin-bottom:24px
-}
-.title-item{
-border:1px solid #FFD2B3;
-background:#FFFFFF;
-border-radius:14px;
-padding:13px 14px;
-display:grid;
-grid-template-columns:26px 1fr 92px;
-gap:12px;
-align-items:center;
-transition:.22s
-}
-.title-item:hover{
-transform:translateX(4px);
-box-shadow:0 8px 18px rgba(74,14,14,.07)
-}
-.radio{
-width:20px;height:20px;border-radius:50%;
-border:2px solid #FFD2B3
-}
-.title-text{
-font-size:15px;
-font-weight:800;
-line-height:1.4;
-color:#4A0E0E
-}
-.copy-btn{
-border:1px solid #FFD2B3;
-background:#FFFFFF;
-border-radius:11px;
-padding:10px 14px;
-font-size:14px;
-font-weight:900;
-transition:.22s;
-color:#4A0E0E
-}
-.copy-btn:hover{
-background:#FF7A00;
-color:#FFFFFF;
-transform:scale(1.04)
-}
-
-.content-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px
-}
-.result-box{
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-border-radius:18px;
-padding:20px;
-transition:.22s
-}
-.result-box:hover{
-box-shadow:0 8px 22px rgba(74,14,14,.07)
-}
-.box-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:16px
-}
-.box-head h3{
-font-size:22px;
-font-weight:900;
-display:flex;
-align-items:center;
-gap:10px;
-color:#4A0E0E
-}
-.box-head h3 i{color:#FF7A00}
-.copy-small{
-border:1px solid #FFD2B3;
-background:#FFFFFF;
-border-radius:11px;
-padding:10px 14px;
-font-size:14px;
-font-weight:900;
-transition:.22s;
-color:#4A0E0E
-}
-.copy-small:hover{
-background:#FF7A00;
-color:#FFFFFF;
-transform:scale(1.04)
-}
-.description-text{
-font-size:15px;
-line-height:1.7;
-font-weight:500;
-color:#7A3E2E
-}
-
-.hashtag-wrap{
-display:flex;
-flex-wrap:wrap;
-gap:10px
-}
-.hashtag{
-border:1px solid #FFD2B3;
-background:#FFE4CC;
-border-radius:10px;
-padding:10px 12px;
-font-size:14px;
-font-weight:800;
-transition:.22s;
-color:#4A0E0E
-}
-.hashtag:hover{
-transform:scale(1.04);
-background:#FF7A00;
-color:#FFFFFF
-}
-.hashtag.ai{
-background:#FFE4CC;
-border-color:#FFD2B3;
-color:#FF7A00
-}
-
-@media(max-width:1100px){
-.shell{grid-template-columns:1fr}
-.input-panel{position:static}
-.content_grid{grid-template-columns:1fr}
-}
+body{background:var(--cream);color:var(--dark)}
+a{text-decoration:none;color:inherit}button,input,textarea,select{font-family:inherit}button{cursor:pointer;border:none}
+.page{max-width:1480px;margin:auto;padding:26px}
+.back{display:inline-flex;align-items:center;gap:8px;font-weight:900;color:var(--dark);margin-bottom:20px}
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:22px}
+.title h1{font-size:38px;font-weight:950;margin-bottom:8px;letter-spacing:-.8px}
+.title p{font-size:15px;font-weight:700;color:var(--brown);line-height:1.55;max-width:820px}
+.wallet{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px 18px;font-weight:950;box-shadow:0 8px 24px rgba(74,14,14,.06);white-space:nowrap}
+.wallet span{color:var(--orange)}
+.mode-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.mode-pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:13px;font-weight:950;color:var(--dark);display:flex;align-items:center;gap:8px;transition:.22s}
+.mode-pill.active,.mode-pill:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-2px);box-shadow:0 12px 24px rgba(255,122,0,.18)}
+.grid{display:grid;grid-template-columns:360px 1fr 360px;gap:22px;align-items:start}
+.panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 8px 28px rgba(74,14,14,.05)}
+.panel h2{font-size:20px;font-weight:950;margin-bottom:8px}.desc{font-size:13px;font-weight:700;color:var(--brown);line-height:1.5;margin-bottom:16px}
+.upload-box{border:2px dashed var(--orange);background:#FFF9F3;border-radius:18px;padding:24px;text-align:center;cursor:pointer;transition:.25s;margin-bottom:16px}
+.upload-box:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(255,122,0,.12)}
+.upload-box i{font-size:34px;color:var(--orange);margin-bottom:10px}.upload-box strong{display:block;font-size:17px;font-weight:950;margin-bottom:5px}.upload-box span{font-size:12px;font-weight:800;color:var(--brown)}
+.tool-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.tool-card{border:1px solid var(--line);border-radius:17px;padding:15px;background:#fff;transition:.22s;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;cursor:pointer}
+.tool-card:hover{border-color:var(--orange);background:#FFF9F3;transform:translateY(-2px);box-shadow:0 12px 26px rgba(255,122,0,.10)}
+.tool-icon{height:42px;width:42px;border-radius:14px;background:#FFF1E5;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:18px}
+.tool-card h3{font-size:14px;font-weight:950;margin-bottom:5px}.tool-card p{font-size:12px;font-weight:700;color:var(--brown);line-height:1.45}.cost{display:inline-flex;margin-top:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:11px;font-weight:950;color:var(--orange2)}
+.preview-wrap{padding:18px}.live-preview{position:relative;background:#160606;border-radius:24px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;box-shadow:0 20px 50px rgba(74,14,14,.16)}
+.live-preview img.bg{width:100%;height:100%;object-fit:cover;opacity:.9;display:block}.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.7))}
+.live-badge{position:absolute;left:18px;top:18px;background:var(--red);color:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:950;display:flex;gap:7px;align-items:center}.live-badge span{height:7px;width:7px;border-radius:50%;background:#fff;animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.35}}
+.viewer{position:absolute;right:18px;top:18px;background:rgba(0,0,0,.55);color:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900;backdrop-filter:blur(8px)}
+.score{position:absolute;left:50%;top:18px;transform:translateX(-50%);background:rgba(255,122,0,.92);color:#fff;border-radius:14px;padding:10px 16px;font-weight:950;font-size:13px;box-shadow:0 10px 22px rgba(255,122,0,.25)}
+.lower{position:absolute;left:18px;bottom:18px;background:rgba(0,0,0,.58);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:18px;padding:13px 15px;backdrop-filter:blur(8px);max-width:70%}.lower strong{display:block;font-size:17px;font-weight:950;margin-bottom:4px}.lower span{font-size:12px;font-weight:700;color:#ffe2c6}.avatar-bubble{position:absolute;right:18px;bottom:18px;width:120px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:10px;text-align:center;backdrop-filter:blur(10px);color:#fff}.avatar-face{height:82px;border-radius:18px;background:linear-gradient(135deg,#ffb56b,#ff7a00);display:flex;align-items:center;justify-content:center;font-size:42px;margin-bottom:8px}.avatar-bubble b{font-size:12px}.avatar-bubble small{display:block;font-size:10px;color:#ffe2c6;font-weight:800;margin-top:2px}
+.preview-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.primary-btn{background:var(--orange);color:#fff;border-radius:14px;padding:13px 17px;font-size:14px;font-weight:950;display:inline-flex;align-items:center;gap:8px;transition:.22s}.primary-btn:hover{background:var(--orange2);transform:scale(1.025);box-shadow:0 12px 28px rgba(255,122,0,.22)}.secondary-btn{border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:14px;padding:12px 15px;font-size:13px;font-weight:950;display:inline-flex;align-items:center;gap:8px}.secondary-btn:hover{background:var(--soft)}
+.result-box{margin-top:18px;background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:14px;max-height:360px;overflow:auto}.empty{text-align:center;color:var(--brown);font-weight:800;padding:26px 8px}.empty i{display:block;font-size:34px;color:var(--orange);margin-bottom:10px}.msg{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin-bottom:12px;animation:pop .22s ease both}@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.msg-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px}.msg-title{font-size:14px;font-weight:950}.msg-time{font-size:11px;font-weight:800;color:var(--brown)}.text-result{background:#FFF9F3;border:1px solid var(--line);border-radius:13px;padding:12px;font-size:13px;font-weight:750;color:var(--dark);line-height:1.55}.media{border-radius:14px;overflow:hidden;background:#200606;border:1px solid var(--line);position:relative}.media.wide{aspect-ratio:16/9}.media.vertical{aspect-ratio:9/16;width:160px;max-width:100%;margin:auto}.media img{width:100%;height:100%;object-fit:cover;display:block}.media .label{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.65);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:950}
+.avatar-card{background:#FFF9F3;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:14px}.avatar-top{display:flex;gap:12px;align-items:center}.avatar-mini{height:56px;width:56px;border-radius:18px;background:linear-gradient(135deg,#ffb56b,#ff7a00);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff}.avatar-top h3{font-size:15px;font-weight:950;margin-bottom:4px}.avatar-top p{font-size:12px;font-weight:700;color:var(--brown)}
+.control{margin-bottom:14px}.control label{display:block;font-size:12px;font-weight:950;margin-bottom:8px;color:var(--brown)}select,textarea,input{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;outline:none;color:var(--dark);font-size:13px;font-weight:800}textarea{min-height:92px;resize:vertical;line-height:1.5}select:focus,textarea:focus,input:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.1)}
+.toggle-row{display:grid;gap:10px}.toggle-item{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:15px;padding:12px;background:#fff}.toggle-item span{font-size:13px;font-weight:900}.switch{position:relative;width:48px;height:28px;display:inline-block;flex:0 0 auto}.switch input{display:none}.slider{position:absolute;inset:0;background:var(--line);border-radius:999px;transition:.25s}.slider:before{content:"";position:absolute;height:22px;width:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 4px 10px rgba(74,14,14,.18)}.switch input:checked+.slider{background:var(--orange)}.switch input:checked+.slider:before{transform:translateX(20px)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--deep);color:#fff;padding:12px 18px;border-radius:999px;font-weight:950;display:none;z-index:50}.toast.show{display:block}
+@media(max-width:1180px){.grid{grid-template-columns:1fr}.topbar{flex-direction:column}.wallet{white-space:normal}.preview-wrap{padding:20px}.lower{max-width:62%}}
+@media(max-width:640px){.page{padding:16px}.title h1{font-size:30px}.preview-actions{display:grid}.avatar-bubble{width:92px}.avatar-face{height:62px;font-size:32px}.score{display:none}.lower{max-width:68%;padding:10px}.lower strong{font-size:14px}.grid{gap:16px}}
 </style>
 </head>
-
 <body>
-
-<header class="topbar">
-  <div class="back-title">
-    <a href="ai-studio.html"><i class="fa-solid fa-arrow-left"></i></a>
-    <span>AI Title & Description Generator</span>
-  </div>
-
-  <div class="project">
-    <h1>Content Metadata Generator</h1>
-    <div class="tags">
-      <span class="tag">Titles</span>
-      <span class="tag">Descriptions</span>
-      <span class="tag">Hashtags</span>
+<div class="page">
+  <a href="ai-studio.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to AI Studio</a>
+  <div class="topbar">
+    <div class="title">
+      <h1>AI Broadcaster</h1>
+      <p>Create a professional live broadcast with AI avatar caster, overlays, thumbnail, title, description, live commentary, highlight moments and shorts-ready clips.</p>
     </div>
+    <div class="wallet"><i class="fa-solid fa-coins"></i> Current Usage: <span id="usedTokens">0</span> Tokens</div>
   </div>
 
-  <div class="top-actions">
-    <div class="token-pill"><i class="fa-solid fa-coins"></i> My Tokens: <span style="color:#FF7A00;">1,250</span></div>
-    <a href="wallet.html" class="buy-btn">+ Buy Tokens</a>
+  <div class="mode-row">
+    <button class="mode-pill active" onclick="setMode(this,'Gaming')"><i class="fa-solid fa-gamepad"></i> Gaming</button>
+    <button class="mode-pill" onclick="setMode(this,'Sports')"><i class="fa-solid fa-futbol"></i> Sports</button>
+    <button class="mode-pill" onclick="setMode(this,'News')"><i class="fa-solid fa-newspaper"></i> News</button>
+    <button class="mode-pill" onclick="setMode(this,'Podcast')"><i class="fa-solid fa-microphone-lines"></i> Podcast</button>
   </div>
-</header>
 
-<div class="shell">
-
-<aside class="card input-panel">
-
-  <div class="step-head">
-    <div class="step-no">1</div>
-    <h2>Provide Your Input</h2>
-  </div>
-  <p class="sub">Add video topic or keywords to generate content.</p>
-
-  <div class="field">
-    <label>Video Topic / Keywords *</label>
-    <div class="textarea-wrap">
-      <textarea>Weekend trip to Manali, travel vlog, mountains, adventure, snow, budget trip</textarea>
-      <div class="count">76/300</div>
+  <div class="grid">
+    <div class="panel">
+      <h2>Broadcast Assets</h2>
+      <p class="desc">Upload source video or go live, then generate creator-ready assets. Every AI action costs 10 tokens.</p>
+      <div class="upload-box" onclick="uploadVideo()">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <strong id="uploadTitle">Upload Video / Stream Clip</strong>
+        <span id="uploadText">Use this source for overlays, avatar commentary and highlights.</span>
+      </div>
+      <div class="tool-grid">
+        <div class="tool-card" onclick="generate('thumbnail')"><div class="tool-icon"><i class="fa-regular fa-image"></i></div><div><h3>Thumbnail 16:9</h3><p>Generate a clickable livestream thumbnail.</p><span class="cost">10 Tokens</span></div></div>
+        <div class="tool-card" onclick="generate('overlay')"><div class="tool-icon"><i class="fa-solid fa-layer-group"></i></div><div><h3>Multiple Overlay Pack</h3><p>Scoreboard, lower-third, brand frame and live badges.</p><span class="cost">10 Tokens</span></div></div>
+        <div class="tool-card" onclick="generate('title')"><div class="tool-icon"><i class="fa-solid fa-heading"></i></div><div><h3>Title</h3><p>AI title for live stream discovery.</p><span class="cost">10 Tokens</span></div></div>
+        <div class="tool-card" onclick="generate('description')"><div class="tool-icon"><i class="fa-solid fa-align-left"></i></div><div><h3>Description</h3><p>Full stream description with hashtags and CTA.</p><span class="cost">10 Tokens</span></div></div>
+        <div class="tool-card" onclick="generate('highlight')"><div class="tool-icon"><i class="fa-solid fa-bolt"></i></div><div><h3>Smart Highlight 16:9</h3><p>Auto detect the best moment and create replay.</p><span class="cost">10 Tokens</span></div></div>
+        <div class="tool-card" onclick="generate('shorts')"><div class="tool-icon"><i class="fa-solid fa-mobile-screen"></i></div><div><h3>Live to Shorts 9:16</h3><p>Create vertical short from broadcast moment.</p><span class="cost">10 Tokens</span></div></div>
+      </div>
     </div>
-  </div>
 
-  <div class="field">
-    <label>Select Tone</label>
-    <div class="select-box">
-      <button class="select-btn" onclick="toggleMenu('toneMenu')" type="button">
-        <span><i class="fa-regular fa-face-smile"></i> <b id="toneValue">Friendly & Engaging</b></span>
-        <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div class="dropdown-list" id="toneMenu">
-        <button onclick="setValue('toneValue','Friendly & Engaging','toneMenu')">Friendly & Engaging</button>
-        <button onclick="setValue('toneValue','Professional','toneMenu')">Professional</button>
-        <button onclick="setValue('toneValue','Funny & Casual','toneMenu')">Funny & Casual</button>
-        <button onclick="setValue('toneValue','Bold & Viral','toneMenu')">Bold & Viral</button>
+    <div class="panel preview-wrap">
+      <h2>Live Preview</h2>
+      <p class="desc">AI caster, overlays and generated assets appear here like a production studio preview.</p>
+      <div class="live-preview" id="preview">
+        <img class="bg" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif" alt="preview">
+        <div class="shade"></div>
+        <div class="live-badge"><span></span> LIVE</div>
+        <div class="viewer"><i class="fa-solid fa-eye"></i> 24.8K Watching</div>
+        <div class="score" id="scoreOverlay">TEAM A 18 : 16 TEAM B</div>
+        <div class="lower" id="lowerOverlay"><strong>JioVibe AI Broadcast</strong><span>Auto commentary + overlays active</span></div>
+        <div class="avatar-bubble" id="avatarBubble"><div class="avatar-face"><i class="fa-solid fa-user-astronaut"></i></div><b>AI Caster</b><small>Hype Mode</small></div>
+      </div>
+      <div class="preview-actions">
+        <button class="primary-btn" onclick="generate('commentary')"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Commentary • 10 Tokens</button>
+        <button class="secondary-btn" onclick="generate('script')"><i class="fa-solid fa-scroll"></i> Script • 10 Tokens</button>
+        <button class="secondary-btn" onclick="goLive()"><i class="fa-solid fa-tower-broadcast"></i> Start Fake Live</button>
+      </div>
+      <div class="result-box" id="results"><div class="empty" id="emptyState"><i class="fa-solid fa-sparkles"></i>AI Results will appear here. Every button gives one clean output.</div></div>
+    </div>
+
+    <div class="panel">
+      <h2>AI Avatar Caster</h2>
+      <p class="desc">Choose avatar style, voice tone and language for auto commentary.</p>
+      <div class="avatar-card"><div class="avatar-top"><div class="avatar-mini"><i class="fa-solid fa-user-astronaut"></i></div><div><h3>Riya AI Caster</h3><p>Virtual host for gaming, sports, news and podcast streams.</p></div></div></div>
+      <div class="control"><label>Avatar Style</label><select id="avatarStyle" onchange="updateAvatar()"><option>Gamer Caster</option><option>News Anchor</option><option>Sports Commentator</option><option>Podcast Host</option></select></div>
+      <div class="control"><label>Voice Tone</label><select id="voiceTone" onchange="updateAvatar()"><option>Hype Mode</option><option>Funny Hinglish</option><option>Professional</option><option>Emotional</option></select></div>
+      <div class="control"><label>Language Output</label><select id="language"><option>Hinglish</option><option>Hindi</option><option>English</option><option>Marathi</option><option>Tamil</option></select></div>
+      <div class="control"><label>AI Prompt / Caster Direction</label><textarea id="casterPrompt">Make the commentary energetic, creator-style, and explain every big moment like a professional esports caster.</textarea></div>
+      <div class="toggle-row">
+        <div class="toggle-item"><span>Auto Commentary</span><label class="switch"><input type="checkbox" checked onchange="toggleOverlay('commentary',this.checked)"><span class="slider"></span></label></div>
+        <div class="toggle-item"><span>Scoreboard Overlay</span><label class="switch"><input type="checkbox" checked onchange="toggleOverlay('score',this.checked)"><span class="slider"></span></label></div>
+        <div class="toggle-item"><span>Lower Third</span><label class="switch"><input type="checkbox" checked onchange="toggleOverlay('lower',this.checked)"><span class="slider"></span></label></div>
+        <div class="toggle-item"><span>AI Avatar Visible</span><label class="switch"><input type="checkbox" checked onchange="toggleOverlay('avatar',this.checked)"><span class="slider"></span></label></div>
       </div>
     </div>
   </div>
-
-  <div class="field">
-    <label>Target Audience</label>
-    <div class="select-box">
-      <button class="select-btn" onclick="toggleMenu('audienceMenu')" type="button">
-        <span><i class="fa-solid fa-users"></i> <b id="audienceValue">Young Travelers</b></span>
-        <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div class="dropdown-list" id="audienceMenu">
-        <button onclick="setValue('audienceValue','Young Travelers','audienceMenu')">Young Travelers</button>
-        <button onclick="setValue('audienceValue','Gamers','audienceMenu')">Gamers</button>
-        <button onclick="setValue('audienceValue','Tech Audience','audienceMenu')">Tech Audience</button>
-        <button onclick="setValue('audienceValue','General Viewers','audienceMenu')">General Viewers</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="field">
-    <label>Language</label>
-    <div class="select-box">
-      <button class="select-btn" onclick="toggleMenu('languageMenu')" type="button">
-        <span><i class="fa-solid fa-globe"></i> <b id="languageValue">English</b></span>
-        <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div class="dropdown-list" id="languageMenu">
-        <button onclick="setValue('languageValue','English','languageMenu')">English</button>
-        <button onclick="setValue('languageValue','Hindi','languageMenu')">Hindi</button>
-        <button onclick="setValue('languageValue','Hinglish','languageMenu')">Hinglish</button>
-        <button onclick="setValue('languageValue','Marathi','languageMenu')">Marathi</button>
-      </div>
-    </div>
-  </div>
-
-  <button class="generate-btn">Generate Content</button>
-  <div class="cost-note">This will cost <span><i class="fa-solid fa-coins"></i> 10 Tokens</span></div>
-
-</aside>
-
-<main class="card results-panel">
-
-  <div class="results-head">
-    <div>
-      <h2><span style="color:#FF7A00;">2</span> AI Generated Results</h2>
-      <p>Review and copy the content you like.</p>
-    </div>
-    <button class="regenerate-btn"><i class="fa-solid fa-rotate-right"></i> Regenerate <span><i class="fa-solid fa-coins"></i> 10 Tokens</span></button>
-  </div>
-
-  <div class="section-title">
-    <i class="fa-solid fa-pen-nib"></i>
-    Title Suggestions
-  </div>
-
-  <div class="title-list">
-    <div class="title-item">
-      <div class="radio"></div>
-      <div class="title-text">Manali Trip on a Budget – Mountains, Snow & Memories!</div>
-      <button class="copy-btn">Copy</button>
-    </div>
-
-    <div class="title-item">
-      <div class="radio"></div>
-      <div class="title-text">Weekend in Manali | Full Travel Guide & Budget Plan</div>
-      <button class="copy-btn">Copy</button>
-    </div>
-
-    <div class="title-item">
-      <div class="radio"></div>
-      <div class="title-text">Snowy Adventures in Manali | A Perfect Weekend Escape!</div>
-      <button class="copy-btn">Copy</button>
-    </div>
-
-    <div class="title-item">
-      <div class="radio"></div>
-      <div class="title-text">Manali Vlog 2026 | Best Places, Food & Travel Tips</div>
-      <button class="copy-btn">Copy</button>
-    </div>
-
-    <div class="title-item">
-      <div class="radio"></div>
-      <div class="title-text">Exploring Manali | Budget Trip with Friends</div>
-      <button class="copy-btn">Copy</button>
-    </div>
-  </div>
-
-  <div class="content-grid">
-
-    <section class="result-box">
-      <div class="box-head">
-        <h3><i class="fa-regular fa-pen-to-square"></i> Description</h3>
-        <button class="copy-small"><i class="fa-regular fa-copy"></i> Copy</button>
-      </div>
-
-      <div class="description-text">
-        Join me on an unforgettable weekend trip to Manali. From snow-capped mountains to scenic roads, cozy cafes and adventure activities, this vlog has it all.
-        <br><br>
-        In this video, I share the complete budget, travel tips, places to visit, food stops and everything you need to know before planning your Manali trip.
-        <br><br>
-        Do not forget to like, share and subscribe for more amazing travel vlogs.
-      </div>
-    </section>
-
-    <section class="result-box">
-      <div class="box-head">
-        <h3><i class="fa-solid fa-hashtag"></i> Hashtags</h3>
-        <button class="copy-small"><i class="fa-regular fa-copy"></i> Copy All</button>
-      </div>
-
-      <div class="hashtag-wrap">
-        <button class="hashtag ai">#ManaliTrip</button>
-        <button class="hashtag ai">#ManaliVlog</button>
-        <button class="hashtag ai">#TravelVlog</button>
-        <button class="hashtag ai">#HimachalPradesh</button>
-        <button class="hashtag ai">#MountainLife</button>
-        <button class="hashtag ai">#SnowVibes</button>
-        <button class="hashtag">#BudgetTravel</button>
-        <button class="hashtag">#WeekendTrip</button>
-        <button class="hashtag">#TravelIndia</button>
-        <button class="hashtag">#Wanderlust</button>
-        <button class="hashtag">#ExploreMore</button>
-        <button class="hashtag">#VlogLife</button>
-      </div>
-    </section>
-
-  </div>
-
-</main>
-
 </div>
-
+<div class="toast" id="toast">Done</div>
 <script>
-function toggleMenu(id){
-  document.querySelectorAll(".dropdown-list").forEach(menu=>{
-    if(menu.id !== id){menu.classList.remove("show")}
-  });
-  document.getElementById(id).classList.toggle("show");
+let usedTokens=0;
+let currentMode='Gaming';
+const imgWide='https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif';
+const imgThumb='https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg';
+function timeNow(){return new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});}
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1600)}
+function updateTokens(v){usedTokens+=v;document.getElementById('usedTokens').innerText=usedTokens;}
+function clearEmpty(){const e=document.getElementById('emptyState');if(e)e.remove();}
+function addResult(html){clearEmpty();const box=document.getElementById('results');const div=document.createElement('div');div.className='msg';div.innerHTML=html;box.prepend(div);}
+function setMode(btn,mode){currentMode=mode;document.querySelectorAll('.mode-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('lowerOverlay').innerHTML=`<strong>${mode} Broadcast Mode</strong><span>AI caster optimized for ${mode.toLowerCase()} content</span>`;toast(mode+' mode selected');}
+function uploadVideo(){document.getElementById('uploadTitle').innerText='Video Uploaded Successfully';document.getElementById('uploadText').innerText='Source ready for AI broadcast tools.';addResult(`<div class="msg-top"><div class="msg-title">Video Uploaded</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">Source clip is ready. You can now generate thumbnail, overlays, title, description, avatar commentary, highlight and shorts.</div>`);}
+function goLive(){document.querySelector('.viewer').innerHTML='<i class="fa-solid fa-eye"></i> 31.2K Watching';toast('Fake live started');addResult(`<div class="msg-top"><div class="msg-title">Broadcast Started</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">Your fake JioVibe AI broadcast is live with avatar caster, scoreboard overlay and lower-third branding.</div>`);}
+function updateAvatar(){const style=document.getElementById('avatarStyle').value;const tone=document.getElementById('voiceTone').value;document.querySelector('#avatarBubble b').innerText=style;document.querySelector('#avatarBubble small').innerText=tone;}
+function toggleOverlay(type,on){if(type==='score')document.getElementById('scoreOverlay').style.display=on?'block':'none';if(type==='lower')document.getElementById('lowerOverlay').style.display=on?'block':'none';if(type==='avatar')document.getElementById('avatarBubble').style.display=on?'block':'none';if(type==='commentary')toast(on?'Auto commentary on':'Auto commentary off');}
+function generate(type){updateTokens(10);toast('10 tokens used');setTimeout(()=>addResult(buildResult(type)),450);}
+function buildResult(type){
+ const top=(title)=>`<div class="msg-top"><div class="msg-title">${title}</div><div class="msg-time">${timeNow()}</div></div>`;
+ if(type==='thumbnail')return `${top('Thumbnail Generated')}<div class="media wide"><img src="${imgThumb}"><div class="label">Thumbnail • 16:9</div></div><div class="text-result">High contrast thumbnail with creator face, orange glow, bold text and live broadcast energy.</div>`;
+ if(type==='overlay')return `${top('Overlay Pack Generated')}<div class="text-result"><b>Overlay Pack:</b><br>1. Live badge overlay<br>2. Scoreboard bar<br>3. Lower-third creator title<br>4. Super Support shoutout frame<br>5. Brand-safe orange JioVibe frame</div>`;
+ if(type==='title')return `${top('Title Generated')}<div class="text-result">🔥 ${currentMode} Live: AI Caster Reacts to the Biggest Moments!</div>`;
+ if(type==='description')return `${top('Description Generated')}<div class="text-result">Watch this ${currentMode.toLowerCase()} broadcast powered by JioVibe AI Broadcaster. This stream includes AI avatar commentary, live overlays, smart highlights, creator shoutouts and real-time engagement moments. #JioVibe #AIBroadcaster #LiveStream</div>`;
+ if(type==='highlight')return `${top('Smart Highlight Generated')}<div class="media wide"><img src="${imgWide}"><div class="label">Highlight • 16:9</div></div><div class="text-result">AI detected the most exciting moment and created a 16:9 replay-ready highlight.</div>`;
+ if(type==='shorts')return `${top('Live to Shorts Generated')}<div class="media vertical"><img src="${imgWide}"><div class="label">Shorts • 9:16</div></div><div class="text-result">Vertical short created with hook-first crop, captions space and fast creator-style pacing.</div>`;
+ if(type==='commentary'){const tone=document.getElementById('voiceTone').value;const lang=document.getElementById('language').value;return `${top('AI Commentary Generated')}<div class="text-result">${lang} • ${tone}: “What a moment! Ye play pure match ka turning point ho sakta hai. Crowd energy high hai aur creator ne timing perfectly catch kiya!”</div>`;}
+ if(type==='script')return `${top('Live Script Generated')}<div class="text-result"><b>Intro:</b> Welcome to JioVibe Live! Aaj ka broadcast AI caster ke saath next level hone wala hai.<br><br><b>Mid CTA:</b> Agar moment pasand aaye to Super Support bhejo aur apna shoutout live screen pe lao.<br><br><b>Outro:</b> Follow karo for more AI-powered live moments.</div>`;
+ return `${top('Generated')}<div class="text-result">AI output created successfully.</div>`;
 }
-
-function setValue(targetId, value, menuId){
-  document.getElementById(targetId).innerText = value;
-  document.getElementById(menuId).classList.remove("show");
-}
-
-document.addEventListener("click", function(e){
-  if(!e.target.closest(".select-box")){
-    document.querySelectorAll(".dropdown-list").forEach(menu=>menu.classList.remove("show"));
-  }
-});
 </script>
-
 </body>
 </html>
