@@ -23,15 +23,15 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--cream);color:var(--dark)}
 a{text-decoration:none;color:inherit}
-button,textarea,input{font-family:inherit}
+button,input{font-family:inherit}
 button{cursor:pointer;border:none}
 
 .page{max-width:1440px;margin:auto;padding:28px;}
 .back{display:inline-flex;align-items:center;gap:8px;font-weight:900;color:var(--dark);margin-bottom:22px;}
 
 .head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:24px;}
-.head h1{font-size:38px;font-weight:950;margin-bottom:8px;}
-.head p{font-size:16px;font-weight:700;color:var(--brown);line-height:1.45;}
+.head h1{font-size:38px;font-weight:950;margin-bottom:8px;letter-spacing:-.8px;}
+.head p{font-size:16px;font-weight:700;color:var(--brown);line-height:1.45;max-width:760px;}
 .wallet{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 20px;font-weight:900;box-shadow:0 8px 24px rgba(74,14,14,.05);white-space:nowrap;}
 .wallet span{color:var(--orange)}
 
@@ -42,78 +42,30 @@ button{cursor:pointer;border:none}
 .section h2{font-size:22px;font-weight:950;margin-bottom:10px;}
 .section-desc{font-size:14px;font-weight:700;color:var(--brown);line-height:1.55;margin-bottom:16px;}
 
-.upload-box{border:2px dashed var(--orange);background:#FFF9F3;border-radius:18px;padding:34px;text-align:center;cursor:pointer;transition:.25s;}
+.upload-box{border:2px dashed var(--orange);background:#FFF9F3;border-radius:20px;padding:34px;text-align:center;cursor:pointer;transition:.25s;position:relative;overflow:hidden;}
+.upload-box:before{content:"";position:absolute;inset:-80px;background:radial-gradient(circle at top left,rgba(255,122,0,.18),transparent 42%);pointer-events:none;}
 .upload-box:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(255,122,0,.12);}
-.upload-box i{font-size:38px;color:var(--orange);margin-bottom:12px;}
-.upload-box strong{display:block;font-size:18px;font-weight:950;margin-bottom:6px;}
-.upload-box span{font-size:14px;font-weight:700;color:var(--brown);}
+.upload-box i{font-size:42px;color:var(--orange);margin-bottom:12px;position:relative;}
+.upload-box strong{display:block;font-size:20px;font-weight:950;margin-bottom:7px;position:relative;}
+.upload-box span{font-size:14px;font-weight:700;color:var(--brown);position:relative;}
 .upload-status{margin-top:12px;font-size:14px;font-weight:900;color:var(--orange2);}
 
-textarea{width:100%;min-height:120px;border:1px solid var(--line);border-radius:16px;padding:16px;font-size:15px;font-weight:700;color:var(--dark);outline:none;resize:vertical;background:#fff;line-height:1.55;}
-textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.10);}
+.tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.tool-card{border:1px solid var(--line);border-radius:20px;padding:20px;background:#fff;transition:.22s;cursor:pointer;position:relative;overflow:hidden;min-height:168px;display:flex;flex-direction:column;justify-content:space-between;}
+.tool-card:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,122,0,.10),transparent 52%);opacity:0;transition:.22s;}
+.tool-card:hover{border-color:var(--orange);box-shadow:0 14px 30px rgba(255,122,0,.12);transform:translateY(-3px);}
+.tool-card:hover:before{opacity:1;}
+.tool-top{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;}
+.icon-wrap{height:48px;width:48px;border-radius:16px;background:#FFF1E5;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:21px;flex:0 0 auto;}
+.token-badge{background:var(--orange);color:#fff;border-radius:999px;padding:8px 11px;font-size:11px;font-weight:950;white-space:nowrap;box-shadow:0 8px 18px rgba(255,122,0,.20);}
+.tool-card h3{position:relative;font-size:18px;font-weight:950;margin-top:16px;margin-bottom:7px;}
+.tool-card p{position:relative;font-size:13px;font-weight:700;color:var(--brown);line-height:1.48;}
+.tool-cta{position:relative;margin-top:16px;display:inline-flex;align-items:center;gap:8px;color:var(--orange2);font-size:13px;font-weight:950;}
+.tool-card:hover .tool-cta{color:var(--orange);}
 
-.primary-btn{border:none;background:var(--orange);color:#fff;border-radius:14px;padding:14px 20px;font-size:15px;font-weight:950;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.22s;}
-.primary-btn:hover{background:var(--orange2);transform:scale(1.025);box-shadow:0 12px 28px rgba(255,122,0,.22);}
-.secondary-btn,.copy-btn{border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:12px;padding:10px 13px;font-size:13px;font-weight:900;cursor:pointer;display:inline-flex;gap:7px;align-items:center;}
-.secondary-btn:hover,.copy-btn:hover{background:var(--soft);}
-.prompt-composer{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:visible;box-shadow:0 10px 28px rgba(74,14,14,.05);}
-.prompt-composer textarea{border:none;border-radius:22px 22px 0 0;min-height:132px;box-shadow:none;background:#fff;resize:vertical;}
-.prompt-composer textarea:focus{border:none;box-shadow:none;}
-.composer-bar{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding:12px;background:#FFF9F3;border-radius:0 0 22px 22px;}
-.mode-picker{position:relative;}
-.mode-btn{height:42px;border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:999px;padding:0 14px;display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:950;transition:.22s;}
-.mode-btn:hover{border-color:var(--orange);box-shadow:0 10px 22px rgba(255,122,0,.12);}
-.mode-count{background:var(--orange);color:#fff;border-radius:999px;min-width:22px;height:22px;display:none;align-items:center;justify-content:center;font-size:11px;font-weight:950;padding:0 7px;}
-.mode-count.show{display:inline-flex;}
-.mode-menu{position:absolute;left:0;bottom:52px;width:360px;max-width:calc(100vw - 80px);background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:0 18px 48px rgba(74,14,14,.18);display:none;z-index:20;}
-.mode-menu.open{display:block;animation:menuPop .18s ease both;}
-@keyframes menuPop{from{opacity:0;transform:translateY(8px) scale(.98);}to{opacity:1;transform:translateY(0) scale(1);}}
-.mode-menu-head{font-size:13px;font-weight:950;color:var(--dark);margin:4px 4px 10px;}
-.prompt-mode-grid{display:grid;grid-template-columns:1fr;gap:8px;}
-.prompt-mode{display:flex;align-items:center;cursor:pointer;}
-.prompt-mode input{display:none;}
-.prompt-mode > span{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:16px;padding:12px 12px;font-size:13px;font-weight:900;transition:.22s;box-shadow:0 6px 16px rgba(74,14,14,.035);}
-.prompt-mode > span .left{display:inline-flex;align-items:center;gap:10px;min-width:0;}
-.prompt-mode > span i{color:var(--orange);font-size:15px;width:18px;text-align:center;}
-.prompt-mode > input + span::after{content:"Select";flex:0 0 auto;background:#FFF1E5;color:var(--orange);border:1px solid #FFD2B3;border-radius:999px;padding:7px 12px;font-size:11px;font-weight:950;letter-spacing:.2px;transition:.22s;}
-.prompt-mode > span .cost{font-size:11px;font-weight:950;color:var(--brown);background:#FFF1E5;border-radius:999px;padding:5px 8px;}
-.prompt-mode:hover > input + span{border-color:var(--orange);background:#FFFDF9;transform:translateY(-1px);box-shadow:0 10px 24px rgba(255,122,0,.10);}
-.prompt-mode:hover > input + span::after{background:#FFE0C2;border-color:var(--orange);}
-.prompt-mode input:checked + span{background:#fff;border-color:var(--orange);color:var(--dark);box-shadow:0 10px 24px rgba(255,122,0,.14);}
-.prompt-mode input:checked + span i{color:var(--orange);}
-.prompt-mode input:checked + span::after{content:"Selected";background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 8px 18px rgba(255,122,0,.22);}
-.prompt-mode input:checked + span .cost{background:#FFF1E5;color:var(--brown);}
-.composer-right{display:flex;align-items:center;gap:10px;}
-.prompt-cost{height:42px;border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:999px;padding:0 13px;display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:950;}
-.icon-btn{height:42px;width:42px;border-radius:50%;background:#fff;border:1px solid var(--line);color:var(--dark);display:inline-flex;align-items:center;justify-content:center;font-size:16px;transition:.22s;}
-.icon-btn:hover{border-color:var(--orange);color:var(--orange);transform:scale(1.04);}
-.send-btn{height:46px;width:46px;border-radius:50%;background:var(--orange);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:18px;transition:.22s;}
-.send-btn:hover{background:var(--orange2);transform:scale(1.05);box-shadow:0 12px 24px rgba(255,122,0,.22);}
-.generate-prompt-btn{height:42px;border-radius:999px;padding:0 20px;}
-.clear-mini{font-size:12px;font-weight:900;color:var(--brown);background:transparent;padding:0 4px;}
-.clear-mini:hover{color:var(--orange2);}
-.token-pill{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-weight:950;color:var(--dark);}
+.note-box{margin-top:18px;background:#FFF9F3;border:1px solid var(--line);border-radius:16px;padding:14px 16px;color:var(--brown);font-size:13px;font-weight:800;line-height:1.5;}
+.note-box i{color:var(--orange);margin-right:6px;}
 
-.tool-list{display:grid;grid-template-columns:1fr;gap:14px;}
-.tool-card{border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;background:#fff;transition:.22s;}
-.tool-card:hover{border-color:var(--orange);box-shadow:0 12px 26px rgba(255,122,0,.10);transform:translateY(-2px);}
-.tool-info h3{font-size:16px;font-weight:950;margin-bottom:6px;display:flex;gap:8px;align-items:center;}
-.tool-info h3 i{color:var(--orange);}
-.tool-info p{font-size:13px;font-weight:700;color:var(--brown);line-height:1.5;}
-.switch{position:relative;width:54px;height:30px;display:inline-block;}
-.switch input{display:none;}
-.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:var(--line);border-radius:999px;transition:.25s;}
-.slider:before{content:"";position:absolute;height:24px;width:24px;left:3px;top:3px;background:white;border-radius:50%;transition:.25s;box-shadow:0 4px 10px rgba(74,14,14,.18);}
-.switch input:checked + .slider{background:var(--orange);}
-.switch input:checked + .slider:before{transform:translateX(24px);}
-
-.more-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-.action-card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:16px;cursor:pointer;transition:.22s;}
-.action-card:hover{background:#FFF9F3;border-color:var(--orange);transform:translateY(-3px);box-shadow:0 12px 24px rgba(255,122,0,.10);}
-.action-card h3{font-size:15px;font-weight:950;margin-bottom:6px;}
-.action-card p{font-size:12.5px;font-weight:700;color:var(--brown);line-height:1.45;}
-
-.generate-row{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);padding-top:18px;margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:16px;}
 .result-panel{height:calc(100vh - 150px);position:sticky;top:24px;display:flex;flex-direction:column;}
 .result-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:16px;}
 .result-head h2{font-size:22px;font-weight:950;}
@@ -129,108 +81,101 @@ textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.1
 .spinner{width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--orange);border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 
+.results-pack{display:grid;grid-template-columns:1fr;gap:14px;}
+.variant-card{background:#FFF9F3;border:1px solid var(--line);border-radius:16px;padding:14px;}
+.variant-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;font-size:13px;font-weight:950;}
+.variant-title span:last-child{background:#fff;border:1px solid var(--line);color:var(--orange2);border-radius:999px;padding:6px 9px;font-size:11px;}
 .media{position:relative;border-radius:14px;overflow:hidden;background:var(--deep);margin-bottom:12px;border:1px solid var(--line);}
 .media.wide{aspect-ratio:16/9;width:100%;}
 .media.vertical{aspect-ratio:9/16;width:210px;max-width:100%;margin-left:auto;margin-right:auto;}
-.media.square{aspect-ratio:1/1;width:230px;max-width:100%;margin-left:auto;margin-right:auto;}
-.media img,.media video{width:100%;height:100%;object-fit:cover;display:block;}
-.media .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;color:#fff;font-size:24px;backdrop-filter:blur(6px);}
-.media .label{position:absolute;left:14px;bottom:14px;background:rgba(0,0,0,.62);color:#fff;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:900;}
-.media .variant-badge{position:absolute;right:12px;top:12px;background:var(--orange);color:white;font-size:11px;font-weight:900;padding:7px 10px;border-radius:999px;}
-.output-text{font-size:13px;font-weight:700;color:var(--brown);line-height:1.55;margin-bottom:12px;}
-.result-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.media img{width:100%;height:100%;object-fit:cover;display:block;}
+.media .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;backdrop-filter:blur(6px);}
+.media .label{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.62);color:#fff;padding:8px 12px;border-radius:999px;font-size:12px;font-weight:900;}
+.output-text{font-size:13px;font-weight:700;color:var(--brown);line-height:1.55;}
+.text-result{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;font-size:14px;font-weight:780;color:var(--dark);line-height:1.55;margin-bottom:10px;}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.secondary-btn,.copy-btn{border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:12px;padding:10px 13px;font-size:13px;font-weight:900;cursor:pointer;display:inline-flex;gap:7px;align-items:center;}
+.secondary-btn:hover,.copy-btn:hover{background:var(--soft);}
 .empty-state{text-align:center;color:var(--brown);font-weight:800;padding:36px 18px;}
 .empty-state i{font-size:42px;color:var(--orange);margin-bottom:14px;display:block;}
-.text-result{background:#FFF9F3;border:1px solid var(--line);border-radius:14px;padding:14px;font-size:14px;font-weight:750;color:var(--dark);line-height:1.55;margin-bottom:12px;}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--deep);color:#fff;padding:13px 18px;border-radius:999px;font-weight:900;display:none;z-index:100;}
 .toast.show{display:block}
 
-@media(max-width:1100px){.layout{grid-template-columns:1fr}.result-panel{height:650px;position:relative;top:auto}.more-grid{grid-template-columns:1fr}.head{flex-direction:column}.wallet{white-space:normal}}
+@media(max-width:1100px){.layout{grid-template-columns:1fr}.result-panel{height:650px;position:relative;top:auto}.head{flex-direction:column}.wallet{white-space:normal}}
+@media(max-width:720px){.page{padding:18px}.head h1{font-size:30px}.tools-grid{grid-template-columns:1fr}.panel{padding:18px}.media.vertical{width:180px}}
 </style>
 </head>
 <body>
 
 <div class="page">
-<a href="ai-studio.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to AI Studio</a>
+  <a href="ai-studio.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to AI Studio</a>
 
-<div class="head">
-<div>
-<h1>AI Content Generator</h1>
-<p>Create video, shorts, title, description, tags and social assets from a prompt or uploaded video.</p>
-</div>
-<div class="wallet"><i class="fa-solid fa-coins"></i> Current Usage: <span id="usedTokens">0</span> Tokens</div>
-</div>
+  <div class="head">
+    <div>
+      <h1>AI Content Generator</h1>
+      <p>Upload one video and generate creator-ready thumbnails, shorts, story images, highlight videos, titles and descriptions. Every tool generates 3 results and costs 10 tokens.</p>
+    </div>
+    <div class="wallet"><i class="fa-solid fa-coins"></i> Current Usage: <span id="usedTokens">0</span> Tokens</div>
+  </div>
 
-<div class="layout">
-<div class="panel">
+  <div class="layout">
+    <div class="panel">
+      <div class="section">
+        <h2>Upload Video</h2>
+        <p class="section-desc">Upload your video first. This is a demo upload flow, so clicking the upload box will mark your video as ready.</p>
+        <div class="upload-box" onclick="uploadVideo()">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <strong id="uploadTitle">Click to Upload Video</strong>
+          <span id="uploadText">Supported output: Video 16:9, Shorts 9:16 and Story Image 9:16.</span>
+        </div>
+        <div class="upload-status" id="uploadStatus"></div>
+      </div>
 
-<div class="section">
-<h2>1. AI Prompt Studio</h2>
-<p class="section-desc">Write a prompt, select one or multiple AI actions from the chat-style tool button, and generate only the selected outputs.</p>
-<div class="prompt-composer">
-<textarea id="promptText">Create a cinematic gaming intro video with fast cuts, glowing orange effects, creator face reveal moment, and strong YouTube-style opening.</textarea>
-<div class="composer-bar">
-<div class="mode-picker">
-<button class="mode-btn" type="button" onclick="togglePromptMenu(event)"><span id="modeLabel">Choose AI Tools</span><span class="mode-count" id="modeCount">0</span><i class="fa-solid fa-chevron-up"></i></button>
-<div class="mode-menu" id="promptModeMenu">
-<div class="mode-menu-head">Choose what AI should do</div>
-<div class="prompt-mode-grid">
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="video16" data-name="New Video 16:9" data-cost="5"><span><span class="left"><i class="fa-solid fa-video"></i> New Video 16:9</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="shorts9" data-name="Shorts 9:16" data-cost="5"><span><span class="left"><i class="fa-solid fa-mobile-screen"></i> Shorts 9:16</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="thumbnail16" data-name="Thumbnail 16:9" data-cost="5"><span><span class="left"><i class="fa-regular fa-image"></i> Thumbnail 16:9</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="title" data-name="Title" data-cost="5"><span><span class="left"><i class="fa-solid fa-heading"></i> Title</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="description" data-name="Description" data-cost="5"><span><span class="left"><i class="fa-solid fa-align-left"></i> Description</span></span></label>
-<label class="prompt-mode"><input type="checkbox" class="prompt-toggle" data-type="tags" data-name="Tags" data-cost="5"><span><span class="left"><i class="fa-solid fa-hashtag"></i> Tags</span></span></label>
-</div>
-</div>
-</div>
-<div class="composer-right">
-<button class="clear-mini" type="button" onclick="clearPrompt()">Clear</button>
-<button class="primary-btn generate-prompt-btn" type="button" onclick="generatePromptSelected()">Generate</button>
-</div>
-</div>
-</div>
-</div>
+      <div class="section">
+        <h2>Choose AI Tool</h2>
+        <p class="section-desc">Click any tool below. Each tool will create 3 AI results and deduct 10 tokens.</p>
 
-<div class="section">
-<h2>2. Upload Video</h2>
-<p class="section-desc">Upload your video to create more videos, shorts, story images and community post images. This is a fake upload flow for demo.</p>
-<div class="upload-box" onclick="uploadVideo()">
-<i class="fa-solid fa-cloud-arrow-up"></i>
-<strong id="uploadTitle">Click to Upload Video</strong>
-<span id="uploadText">Upload is free. After upload, all generation actions will appear on the right.</span>
-</div>
-<div class="upload-status" id="uploadStatus"></div>
-</div>
+        <div class="tools-grid">
+          <div class="tool-card" onclick="generateTool('thumbnail')">
+            <div class="tool-top"><div class="icon-wrap"><i class="fa-regular fa-image"></i></div><div class="token-badge">10 Tokens</div></div>
+            <div><h3>Thumbnail</h3><p>Create 3 clickable 16:9 thumbnail options from your uploaded video.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+          </div>
 
-<div class="section">
-<h2>3. Select Output Type</h2>
-<p class="section-desc">Turn on the outputs you want. Each selected output costs 5 tokens, then click Generate Selected.</p>
-<div class="tool-list">
-<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-bolt"></i> Highlighted Video 16:9</h3><p>Generate highlight video from uploaded video in 16:9 format.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="highlight16" data-name="Highlighted Video"><span class="slider"></span></label></div>
-<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-mobile-screen"></i> Generate Shorts 9:16</h3><p>Create a vertical short with hook-first pacing and caption-ready framing.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="shorts9" data-name="Shorts 9:16"><span class="slider"></span></label></div>
-<div class="tool-card"><div class="tool-info"><h3><i class="fa-regular fa-image"></i> Generate Thumbnail 16:9</h3><p>Create a clickable thumbnail image from the same idea/content direction.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="thumbnail16" data-name="Thumbnail 16:9"><span class="slider"></span></label></div>
-<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-heading"></i> Generate Title</h3><p>Create SEO-friendly, creator-style titles with copy button.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="title" data-name="Title"><span class="slider"></span></label></div>
-<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-align-left"></i> Generate Description</h3><p>Create complete YouTube-style descriptions with copy button.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="description" data-name="Description"><span class="slider"></span></label></div>
-<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-hashtag"></i> Generate Tags</h3><p>Create hashtags and tags for discovery.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="tags" data-name="Tags"><span class="slider"></span></label></div>
-<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-images"></i> Story Image 9:16</h3><p>Extract/refine a vertical story image from uploaded video.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="story9" data-name="Story Image"><span class="slider"></span></label></div>
-<div class="tool-card"><div class="tool-info"><h3><i class="fa-solid fa-table-cells"></i> Community Image 1:1</h3><p>Extract/refine a square community post image.</p></div><label class="switch"><input type="checkbox" class="tool-toggle" data-type="community1" data-name="Community Image"><span class="slider"></span></label></div>
-</div>
-<div class="generate-row">
-<div class="token-pill">Selected Cost: <span id="selectedCost">0</span> Tokens</div>
-<button class="primary-btn" onclick="generateSelected()"><i class="fa-solid fa-layer-group"></i> Generate Selected</button>
-</div>
-</div>
+          <div class="tool-card" onclick="generateTool('shorts')">
+            <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-mobile-screen"></i></div><div class="token-badge">10 Tokens</div></div>
+            <div><h3>Shorts</h3><p>Create 3 vertical 9:16 shorts with hook-first pacing and smart crop.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+          </div>
 
+          <div class="tool-card" onclick="generateTool('story')">
+            <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-images"></i></div><div class="token-badge">10 Tokens</div></div>
+            <div><h3>Story</h3><p>Create 3 vertical 9:16 story images from the best video moments.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+          </div>
 
+          <div class="tool-card" onclick="generateTool('highlight')">
+            <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-bolt"></i></div><div class="token-badge">10 Tokens</div></div>
+            <div><h3>Highlight</h3><p>Create 3 16:9 highlight video options with fast cuts and effects.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+          </div>
 
-</div>
+          <div class="tool-card" onclick="generateTool('title')">
+            <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-heading"></i></div><div class="token-badge">10 Tokens</div></div>
+            <div><h3>Title</h3><p>Create 3 SEO-friendly creator-style titles with copy button.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+          </div>
 
-<div class="panel result-panel">
-<div class="result-head"><h2>AI Results</h2><div class="status-dot"><span></span> Live Output</div></div>
-<div class="chat" id="chat"><div class="empty-state" id="emptyState"><i class="fa-solid fa-wand-magic-sparkles"></i>Results will appear here like a chat. Old results will stay available with scroll.</div></div>
-</div>
-</div>
+          <div class="tool-card" onclick="generateTool('description')">
+            <div class="tool-top"><div class="icon-wrap"><i class="fa-solid fa-align-left"></i></div><div class="token-badge">10 Tokens</div></div>
+            <div><h3>Description</h3><p>Create 3 complete video descriptions with hook, CTA and hashtags.</p><div class="tool-cta">Generate 3 Results <i class="fa-solid fa-arrow-right"></i></div></div>
+          </div>
+        </div>
+
+        <div class="note-box"><i class="fa-solid fa-circle-info"></i> Result order is exactly: Thumbnail - Shorts, Story - Highlight, Title - Description. Every click creates a fresh 3-result pack on the right side.</div>
+      </div>
+    </div>
+
+    <div class="panel result-panel">
+      <div class="result-head"><h2>AI Results</h2><div class="status-dot"><span></span> Live Output</div></div>
+      <div class="chat" id="chat"><div class="empty-state" id="emptyState"><i class="fa-solid fa-wand-magic-sparkles"></i>Upload a video and click any AI tool. Your 3 results will appear here.</div></div>
+    </div>
+  </div>
 </div>
 
 <div class="toast" id="toast">Done</div>
@@ -238,71 +183,145 @@ textarea:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.1
 <script>
 let usedTokens = 0;
 let videoUploaded = false;
+let variantCounter = 0;
 const BASE_GIF = "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/simmba-ranveer-singh%20(1).gif";
 const BASE_IMAGE = "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/simmba-ranveer-singh.gif";
-let counters = {video:0,image:0,title:0,description:0,tags:0};
 
-function showToast(text){const toast=document.getElementById('toast');toast.innerText=text;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1800)}
-function updateTokens(value){usedTokens+=value;document.getElementById('usedTokens').innerText=usedTokens;}
+function showToast(text){
+  const toast=document.getElementById('toast');
+  toast.innerText=text;
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),1800);
+}
+function updateTokens(value){
+  usedTokens+=value;
+  document.getElementById('usedTokens').innerText=usedTokens;
+}
 function timeNow(){return new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});}
 function clearEmpty(){const empty=document.getElementById('emptyState');if(empty)empty.remove();}
 function scrollChat(){const chat=document.getElementById('chat');chat.scrollTop=chat.scrollHeight;}
-function addMsg(html){clearEmpty();const div=document.createElement('div');div.className='msg';div.innerHTML=html;document.getElementById('chat').appendChild(div);scrollChat();}
-function addProcessing(title){clearEmpty();const id='process_'+Date.now()+Math.floor(Math.random()*1000);const div=document.createElement('div');div.className='msg';div.id=id;div.innerHTML=`<div class="msg-top"><div class="msg-title">${title}</div><div class="msg-time">${timeNow()}</div></div><div class="processing"><span class="spinner"></span> AI is processing... please wait</div>`;document.getElementById('chat').appendChild(div);scrollChat();return id;}
+function addMsg(html){
+  clearEmpty();
+  const div=document.createElement('div');
+  div.className='msg';
+  div.innerHTML=html;
+  document.getElementById('chat').appendChild(div);
+  scrollChat();
+}
+function addProcessing(title){
+  clearEmpty();
+  const id='process_'+Date.now()+Math.floor(Math.random()*1000);
+  const div=document.createElement('div');
+  div.className='msg';
+  div.id=id;
+  div.innerHTML=`<div class="msg-top"><div class="msg-title">${title}</div><div class="msg-time">${timeNow()}</div></div><div class="processing"><span class="spinner"></span> AI is creating 3 results...</div>`;
+  document.getElementById('chat').appendChild(div);
+  scrollChat();
+  return id;
+}
 function replaceMsg(id, html){const el=document.getElementById(id);if(el){el.innerHTML=html;scrollChat();}}
-function uploadVideo(){videoUploaded=true;document.getElementById('uploadTitle').innerText='Video uploaded successfully';document.getElementById('uploadText').innerText='Your uploaded video is ready for video, shorts, title, description and social assets.';document.getElementById('uploadStatus').innerHTML='✅ Video uploaded successfully: content-demo-video.mp4';addMsg(`<div class="msg-top"><div class="msg-title">Video Uploaded</div><div class="msg-time">${timeNow()}</div></div><div class="output-text">Source video is ready. You can generate videos, shorts, thumbnails, title, description, tags and social assets.</div>`);}
-function clearPrompt(){document.getElementById('promptText').value='';showToast('Prompt cleared');}
-function togglePromptMenu(e){e.stopPropagation();document.getElementById('promptModeMenu').classList.toggle('open');}
-document.addEventListener('click',function(e){const menu=document.getElementById('promptModeMenu');const picker=document.querySelector('.mode-picker');if(menu && picker && !picker.contains(e.target)){menu.classList.remove('open');}});
 
-document.querySelectorAll('.tool-toggle').forEach(t=>t.addEventListener('change',calculateSelectedCost));
-document.querySelectorAll('.prompt-toggle').forEach(t=>t.addEventListener('change',calculatePromptCost));
-function calculateSelectedCost(){document.getElementById('selectedCost').innerText=document.querySelectorAll('.tool-toggle:checked').length*5;}
-function calculatePromptCost(){const checked=Array.from(document.querySelectorAll('.prompt-toggle:checked'));const total=checked.reduce((sum,t)=>sum+Number(t.dataset.cost||5),0);const promptCostEl=document.getElementById('promptSelectedCost'); if(promptCostEl) promptCostEl.innerText=total;const count=document.getElementById('modeCount');const label=document.getElementById('modeLabel');if(count){count.innerText=checked.length;count.classList.toggle('show',checked.length>0);}if(label){label.innerText=checked.length?`${checked.length} Tool Selected`:'Choose AI Tools';}}
+function uploadVideo(){
+  videoUploaded=true;
+  document.getElementById('uploadTitle').innerText='Video uploaded successfully';
+  document.getElementById('uploadText').innerText='Your video is ready for Thumbnail, Shorts, Story, Highlight, Title and Description.';
+  document.getElementById('uploadStatus').innerHTML='✅ Video uploaded successfully: jiovibe-demo-video.mp4';
+  addMsg(`<div class="msg-top"><div class="msg-title">Video Uploaded</div><div class="msg-time">${timeNow()}</div></div><div class="output-text">Source video is ready. Choose any AI tool to generate 3 results. Each tool costs 10 tokens.</div>`);
+}
 
-function mediaBlock(label, kind='video', ratio='wide', isMore=false){
-  let cls=`media ${ratio}`;
-  let counterKey=kind==='video'?'video':'image';
-  counters[counterKey]++;
-  let variantNo=counters[counterKey];
-  let transform=isMore?`scale(${1.04 + (variantNo%4)*0.025}) translate(${(variantNo%3)-1}%, ${((variantNo+1)%3)-1}%)`:'';
-  let filter=isMore?`brightness(${0.92 + (variantNo%3)*0.06}) contrast(${1.02 + (variantNo%4)*0.04}) saturate(${1.04 + (variantNo%3)*0.05})`:'';
-  if(kind==='image'){
-    return `<div class="${cls}"><img src="${BASE_IMAGE}" style="transform:${transform};filter:${filter};"><div class="variant-badge">Image V${variantNo}</div><div class="label">${label}</div></div>`;
+function generateTool(type){
+  if(!videoUploaded){
+    showToast('Please upload video first');
+    return;
   }
-  return `<div class="${cls}"><img src="${BASE_GIF}" style="transform:${transform};filter:${filter};"><div class="play"><i class="fa-solid fa-play"></i></div><div class="variant-badge">Video V${variantNo}</div><div class="label">${label}</div></div>`;
+  updateTokens(10);
+  const id=addProcessing(actionTitle(type)+' • 10 Tokens');
+  setTimeout(()=>replaceMsg(id, buildResultPack(type)),900);
 }
-function resultButtons(type){return `<div class="result-actions"><button class="secondary-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button><button class="secondary-btn" onclick="generateMore('${type}')"><i class="fa-solid fa-plus"></i> More (+5 Tokens)</button></div>`;}
-function textButtons(type,text){return `<div class="result-actions"><button class="copy-btn" onclick="copyText(\`${text.replace(/`/g,'')}\`)"><i class="fa-regular fa-copy"></i> Copy</button><button class="secondary-btn" onclick="generateMore('${type}')"><i class="fa-solid fa-plus"></i> More (+5 Tokens)</button></div>`;}
-
-function generatePromptSelected(){
-  const selected=Array.from(document.querySelectorAll('.prompt-toggle:checked')).map(t=>({type:t.dataset.type,cost:Number(t.dataset.cost||5)}));
-  if(!selected.length){showToast('Please select at least one prompt output');return;}
-  const prompt=document.getElementById('promptText').value.trim();
-  if(!prompt){showToast('Please write a prompt');return;}
-  const totalCost=selected.reduce((sum,item)=>sum+item.cost,0);
-  updateTokens(totalCost);
-  selected.forEach((item,i)=>setTimeout(()=>runAction(item.type,false,false),i*450));
+function actionTitle(type){
+  return {
+    thumbnail:'Generating Thumbnail',
+    shorts:'Generating Shorts',
+    story:'Generating Story Image',
+    highlight:'Generating Highlight Video',
+    title:'Generating Title',
+    description:'Generating Description'
+  }[type] || 'Generating Output';
 }
-function generatePromptPack(){generatePromptSelected();}
-
-function generateSelected(){const selected=Array.from(document.querySelectorAll('.tool-toggle:checked')).map(t=>t.dataset.type);if(!selected.length){showToast('Please select at least one output');return;}updateTokens(selected.length*5);selected.forEach((type,i)=>setTimeout(()=>runAction(type,false,false),i*400));}
-
-function runAction(type, charge=true, delay=true){if(charge)updateTokens(5);const id=addProcessing(actionTitle(type));const wait=delay?5000:900;setTimeout(()=>replaceMsg(id, buildResult(type,false)),wait);}
-function actionTitle(type){return {editVideo:'Editing Uploaded Video',title:'Generating Title',description:'Generating Description',tags:'Generating Tags',video16:'Generating Video 16:9',highlight16:'Generating Highlighted Video',shorts9:'Generating Shorts 9:16',thumbnail16:'Generating Thumbnail 16:9',story9:'Creating Story Image',community1:'Creating Community Post Image'}[type]||'Generating Output';}
-function buildResult(type,isMore){const moreLabel=isMore?'More ':'';
- if(type==='title'){counters.title++;const arr=['High Energy Gaming Intro | JioVibe Creator Edit','This Intro Looks Insane | AI Generated Video','From Idea to Video in Seconds | AI Creator Demo'];const text=arr[(counters.title-1)%arr.length];return `<div class="msg-top"><div class="msg-title">${moreLabel}Generated Title</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">${text}</div>${textButtons('title',text)}`;}
- if(type==='description'){counters.description++;const arr=['A strong creator-style video with fast cuts, bold visuals and high engagement opening. Created using JioVibe AI.','Watch this AI-powered video edit with cinematic visuals, smooth transitions and a powerful opening hook.','This video shows how creators can generate professional content using prompt-based AI tools on JioVibe.'];const text=arr[(counters.description-1)%arr.length];return `<div class="msg-top"><div class="msg-title">${moreLabel}Generated Description</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">${text}</div>${textButtons('description',text)}`;}
- if(type==='tags'){counters.tags++;const arr=['#JioVibe #AIVideo #CreatorTools #GamingEdit #ViralShorts','#AIContent #VideoEditing #CreatorEconomy #Shorts #Trending','#Gaming #AIEdited #VideoCreator #Thumbnail #JioVibeStudio'];const text=arr[(counters.tags-1)%arr.length];return `<div class="msg-top"><div class="msg-title">${moreLabel}Generated Tags</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">${text}</div>${textButtons('tags',text)}`;}
- if(type==='editVideo')return `<div class="msg-top"><div class="msg-title">${moreLabel}Uploaded Video Edited</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Edited Video • 16:9`,'video','wide',isMore)}<div class="output-text">AI edited the uploaded video based on your prompt with smart cuts, effects, pacing and creator-ready polish.</div>${resultButtons('editVideo')}`;
- if(type==='shorts9')return `<div class="msg-top"><div class="msg-title">${moreLabel}Shorts Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Shorts Output • 9:16`,'video','vertical',isMore)}<div class="output-text">Vertical short generated from the same idea/content with smart crop and hook-first framing.</div>${resultButtons('shorts9')}`;
- if(type==='thumbnail16')return `<div class="msg-top"><div class="msg-title">${moreLabel}Thumbnail Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Thumbnail • 16:9`,'image','wide',isMore)}<div class="output-text">Thumbnail created using the same visual direction as the generated content.</div>${resultButtons('thumbnail16')}`;
- if(type==='story9')return `<div class="msg-top"><div class="msg-title">${moreLabel}Story Image Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Story Image • 9:16`,'image','vertical',isMore)}<div class="output-text">Vertical story image created from the same content direction.</div>${resultButtons('story9')}`;
- if(type==='community1')return `<div class="msg-top"><div class="msg-title">${moreLabel}Community Image Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Community Post • 1:1`,'image','square',isMore)}<div class="output-text">Square community post image created from the same content direction.</div>${resultButtons('community1')}`;
- return `<div class="msg-top"><div class="msg-title">${moreLabel}Video Generated</div><div class="msg-time">${timeNow()}</div></div>${mediaBlock(`${moreLabel}Video Output • 16:9`,'video','wide',isMore)}<div class="output-text">AI generated a 16:9 video output from your idea or uploaded content.</div>${resultButtons(type)}`;
+function toolIcon(type){
+  return {
+    thumbnail:'fa-regular fa-image',
+    shorts:'fa-solid fa-mobile-screen',
+    story:'fa-solid fa-images',
+    highlight:'fa-solid fa-bolt',
+    title:'fa-solid fa-heading',
+    description:'fa-solid fa-align-left'
+  }[type] || 'fa-solid fa-wand-magic-sparkles';
 }
-function generateMore(type){updateTokens(5);const id=addProcessing('Generating More Variation (+5 Tokens)');setTimeout(()=>replaceMsg(id, buildResult(type,true)),5000);}
-function copyText(text){navigator.clipboard.writeText(text);showToast('Copied');addMsg(`<div class="msg-top"><div class="msg-title">Copied</div><div class="msg-time">${timeNow()}</div></div><div class="output-text">Text copied successfully.</div>`)}
+function mediaBlock(label, kind, ratio){
+  variantCounter++;
+  const moveX=(variantCounter%3)-1;
+  const moveY=((variantCounter+1)%3)-1;
+  const scale=1.03+(variantCounter%4)*0.02;
+  const filter=`brightness(${0.94+(variantCounter%3)*0.04}) contrast(${1.04+(variantCounter%3)*0.04}) saturate(${1.04+(variantCounter%4)*0.04})`;
+  if(kind==='image'){
+    return `<div class="media ${ratio}"><img src="${BASE_IMAGE}" style="transform:scale(${scale}) translate(${moveX}%, ${moveY}%);filter:${filter};"><div class="label">${label}</div></div>`;
+  }
+  return `<div class="media ${ratio}"><img src="${BASE_GIF}" style="transform:scale(${scale}) translate(${moveX}%, ${moveY}%);filter:${filter};"><div class="play"><i class="fa-solid fa-play"></i></div><div class="label">${label}</div></div>`;
+}
+function resultActions(type){
+  return `<div class="result-actions"><button class="secondary-btn" onclick="showToast('Download started')"><i class="fa-solid fa-download"></i> Download</button><button class="secondary-btn" onclick="generateTool('${type}')"><i class="fa-solid fa-rotate"></i> Regenerate 3 (+10 Tokens)</button></div>`;
+}
+function copyText(text){
+  navigator.clipboard.writeText(text);
+  showToast('Copied');
+}
+function textActions(text,type){
+  const safe=text.replace(/`/g,'').replace(/\$/g,'');
+  return `<div class="result-actions"><button class="copy-btn" onclick="copyText(\`${safe}\`)"><i class="fa-regular fa-copy"></i> Copy</button><button class="secondary-btn" onclick="generateTool('${type}')"><i class="fa-solid fa-rotate"></i> Regenerate 3 (+10 Tokens)</button></div>`;
+}
+function buildResultPack(type){
+  const title=`<div class="msg-top"><div class="msg-title"><i class="${toolIcon(type)}"></i> ${actionTitle(type)} Results</div><div class="msg-time">${timeNow()}</div></div>`;
+  let pack='<div class="results-pack">';
+  for(let i=1;i<=3;i++){
+    pack+=buildSingleVariant(type,i);
+  }
+  pack+='</div>';
+  return title+pack;
+}
+function buildSingleVariant(type,i){
+  if(type==='thumbnail'){
+    return `<div class="variant-card"><div class="variant-title"><span>Thumbnail Option ${i}</span><span>16:9 Image</span></div>${mediaBlock('Thumbnail • 16:9','image','wide')}<div class="output-text">High-click thumbnail with bold face focus, orange glow and creator-style text space.</div>${resultActions('thumbnail')}</div>`;
+  }
+  if(type==='shorts'){
+    return `<div class="variant-card"><div class="variant-title"><span>Shorts Option ${i}</span><span>9:16 Video</span></div>${mediaBlock('Shorts • 9:16','video','vertical')}<div class="output-text">Vertical short with smart crop, fast hook, captions-ready frame and strong ending beat.</div>${resultActions('shorts')}</div>`;
+  }
+  if(type==='story'){
+    return `<div class="variant-card"><div class="variant-title"><span>Story Option ${i}</span><span>9:16 Image</span></div>${mediaBlock('Story Image • 9:16','image','vertical')}<div class="output-text">Story-ready vertical image with clean safe area for sticker, CTA and swipe-up style copy.</div>${resultActions('story')}</div>`;
+  }
+  if(type==='highlight'){
+    return `<div class="variant-card"><div class="variant-title"><span>Highlight Option ${i}</span><span>16:9 Video</span></div>${mediaBlock('Highlight Video • 16:9','video','wide')}<div class="output-text">Best moments converted into a polished 16:9 highlight video with cuts, music pacing and effects.</div>${resultActions('highlight')}</div>`;
+  }
+  if(type==='title'){
+    const titles=[
+      'This AI Edit Made My Video Look Like a Movie!',
+      'I Turned One Clip Into Viral Content Using JioVibe AI',
+      'From Raw Video to Creator-Ready Content in Seconds'
+    ];
+    const text=titles[i-1];
+    return `<div class="variant-card"><div class="variant-title"><span>Title Option ${i}</span><span>Text</span></div><div class="text-result">${text}</div>${textActions(text,'title')}</div>`;
+  }
+  if(type==='description'){
+    const desc=[
+      'Watch this AI-powered creator edit made from one uploaded video. JioVibe AI turns raw content into thumbnails, shorts, highlights and platform-ready assets in seconds. Like, comment and follow for more creator tools. #JioVibe #AIVideo #CreatorTools',
+      'In this video, we showcase how one upload can become multiple content formats using JioVibe AI. From 16:9 highlight video to 9:16 shorts and story assets, everything is designed for faster creator growth. #Shorts #AIEditing #JioVibe',
+      'A complete AI content generation demo for creators. Upload once and generate titles, descriptions, thumbnails, shorts, stories and highlight videos with token-based AI tools. #CreatorEconomy #JioVibeStudio #AICreator'
+    ];
+    const text=desc[i-1];
+    return `<div class="variant-card"><div class="variant-title"><span>Description Option ${i}</span><span>Text</span></div><div class="text-result">${text}</div>${textActions(text,'description')}</div>`;
+  }
+  return '';
+}
 </script>
 </body>
 </html>
