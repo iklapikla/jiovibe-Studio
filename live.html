@@ -1082,6 +1082,62 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
   .membership-chat-card .amount{font-size:16px !important;}
 }
 
+
+/* USER REQUEST UPDATE: JioVibe AI watermark + AI enhance for Super Support */
+.jiovibe-ai-watermark{
+  display:none;
+  align-items:center;
+  gap:6px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.38);
+  color:#FFFFFF;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.1px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 25px rgba(0,0,0,.18);
+  animation:aiWatermarkIn .25s ease both;
+}
+.jiovibe-ai-watermark.show{display:inline-flex;}
+.jiovibe-ai-watermark i{color:#FFB066;font-size:12px;}
+@keyframes aiWatermarkIn{from{opacity:0;transform:translateY(-5px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+.super-message-wrap{position:relative;display:flex;flex-direction:column;gap:9px;}
+.ai-enhance-btn{
+  align-self:flex-start;
+  min-height:38px;
+  border-radius:999px;
+  padding:9px 13px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:linear-gradient(135deg,#FFF6ED,#FFE4CC);
+  border:1px solid #FFD2B3;
+  color:#4A0E0E;
+  font-size:12px;
+  font-weight:900;
+  box-shadow:0 8px 18px rgba(255,122,0,.10);
+  transition:.25s;
+}
+.ai-enhance-btn i{color:#FF7A00;}
+.ai-enhance-btn small{color:#FF7A00;font-size:11px;font-weight:900;}
+.ai-enhance-btn:hover{
+  transform:translateY(-2px) scale(1.03);
+  background:#FF7A00;
+  border-color:#FF7A00;
+  color:#FFFFFF;
+  box-shadow:0 12px 26px rgba(255,122,0,.24);
+}
+.ai-enhance-btn:hover i,.ai-enhance-btn:hover small{color:#FFFFFF;}
+.ai-enhance-btn.enhanced{
+  background:#4A0E0E;
+  border-color:#4A0E0E;
+  color:#FFFFFF;
+}
+.ai-enhance-btn.enhanced i,.ai-enhance-btn.enhanced small{color:#FFB066;}
+
 </style>
 </head>
 
@@ -1149,6 +1205,7 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 <span class="viewer-tag"><i class="fa-solid fa-eye"></i> 12.8K</span>
 </div>
 <div class="player-icons">
+<span class="jiovibe-ai-watermark" id="jioAiWatermark"><i class="fa-solid fa-wand-magic-sparkles"></i> JioVibe AI</span>
 <i class="fa-solid fa-share" onclick="openShare()"></i>
 <i class="fa-solid fa-ellipsis-vertical"></i>
 </div>
@@ -1410,7 +1467,10 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 <label class="field-label">Or enter custom amount</label>
 <input class="custom-amount" id="customAmount" type="number" min="1" placeholder="Enter amount" oninput="setCustomAmount()">
 
+<div class="super-message-wrap">
 <textarea id="superMessage" placeholder="Add your Super Support message..."></textarea>
+<button type="button" class="ai-enhance-btn" id="aiEnhanceBtn" onclick="enhanceSuperMessage()"><i class="fa-solid fa-wand-magic-sparkles"></i> Enhance with AI <small>10 Tokens</small></button>
+</div>
 
 <select id="paymentMode">
 <option>UPI</option>
@@ -1630,6 +1690,11 @@ selectedAmount=amount || selectedAmount;
 const custom=document.getElementById("customAmount");
 if(custom) custom.value="";
 updateCurrency();
+const aiBtn=document.getElementById("aiEnhanceBtn");
+if(aiBtn){
+  aiBtn.classList.remove("enhanced");
+  aiBtn.innerHTML='<i class="fa-solid fa-wand-magic-sparkles"></i> Enhance with AI <small>10 Tokens</small>';
+}
 document.getElementById("superOverlay").classList.add("show");
 updateAmountButtons();
 }
@@ -1708,6 +1773,31 @@ row.scrollLeft=0;
 
 startDefaultSuperChipTimers();
 
+function enhanceSuperMessage(){
+const textarea=document.getElementById("superMessage");
+const btn=document.getElementById("aiEnhanceBtn");
+if(!textarea) return;
+const raw=textarea.value.trim();
+const fallback="Ranveer, your energy is amazing! Big love from the JioVibe family.";
+const rephrased={
+  "super live!":"This live is absolutely electric — sending big love and support!",
+  "great energy":"Your energy is next level today — this moment deserves a huge cheer!",
+  "love this":"Loving every second of this stream — keep shining and inspiring us!",
+  "what a vibe":"What a powerful vibe! This live feels unforgettable and full of energy!"
+};
+const key=raw.toLowerCase();
+let enhanced=rephrased[key];
+if(!enhanced){
+  enhanced=raw ? `Absolutely loved this moment! ${raw.charAt(0).toUpperCase()+raw.slice(1)} — sending full support and positive vibes!` : fallback;
+}
+textarea.value=enhanced;
+if(btn){
+  btn.classList.add("enhanced");
+  btn.innerHTML='<i class="fa-solid fa-circle-check"></i> Enhanced with AI <small>10 Tokens used</small>';
+}
+showToast("AI enhanced your Super Support message • 10 Tokens used");
+}
+
 function sendSuper(){
 const msg=document.getElementById("superMessage").value.trim() || "Super support for this live!";
 const displayAmount=formatSupportAmount(selectedAmount,selectedSymbol);
@@ -1717,6 +1807,11 @@ if(lastMsg) lastMsg.classList.add("chat-super-note");
 totalSuperSupport += selectedCurrency === "INR" ? selectedAmount : 0;
 showTopSuperSupport("Trupti Latur",selectedAmount,selectedSymbol);
 document.getElementById("superMessage").value="";
+const aiBtn=document.getElementById("aiEnhanceBtn");
+if(aiBtn){
+  aiBtn.classList.remove("enhanced");
+  aiBtn.innerHTML='<i class="fa-solid fa-wand-magic-sparkles"></i> Enhance with AI <small>10 Tokens</small>';
+}
 const custom=document.getElementById("customAmount");
 if(custom) custom.value="";
 closeSuper();
@@ -1885,13 +1980,25 @@ showToast("Playback speed: " + value);
 openSettingsPanel("mainSettingsPanel");
 }
 
+function showJioAiWatermark(){
+const watermark=document.getElementById("jioAiWatermark");
+if(watermark) watermark.classList.add("show");
+}
+
+function hideJioAiWatermark(){
+const watermark=document.getElementById("jioAiWatermark");
+if(watermark) watermark.classList.remove("show");
+}
+
 function setCaption(value){
 document.getElementById("captionValue").innerText=value;
 if(value === "Off"){
 stopCaptions();
+hideJioAiWatermark();
 showToast("Captions off");
 }else{
 startCaptions("English CC");
+showJioAiWatermark();
 showToast("English captions enabled");
 }
 hideAiBanner();
@@ -1912,6 +2019,7 @@ document.getElementById("ccAiTitle").innerText=copy.title;
 document.getElementById("ccAiText").innerText=copy.text;
 hideAiBanner();
 startCaptions(language);
+showJioAiWatermark();
 showToast(copy.toast);
 openSettingsPanel("mainSettingsPanel");
 setTimeout(hideAiBanner,2200);
