@@ -69,7 +69,6 @@ from{transform:scale(.97);opacity:0}
 to{transform:scale(1);opacity:1}
 }
 
-/* LEFT STORY */
 .story-left{
 background:#2A0A0A;
 position:relative;
@@ -111,13 +110,8 @@ background:#FF7A00;
 border-radius:20px
 }
 .progress.done span{width:100%}
-.progress.active span{
-animation:fill 5s linear forwards
-}
-@keyframes fill{
-from{width:0%}
-to{width:100%}
-}
+.progress.active span{animation:fill 5s linear forwards}
+@keyframes fill{from{width:0%}to{width:100%}}
 
 .story-user{
 position:absolute;
@@ -194,9 +188,7 @@ color:#fff;
 font-size:15px;
 font-weight:800
 }
-.reply-box input::placeholder{
-color:rgba(255,255,255,.88)
-}
+.reply-box input::placeholder{color:rgba(255,255,255,.88)}
 
 .story-icon{
 width:50px;
@@ -211,10 +203,7 @@ background:rgba(0,0,0,.35);
 backdrop-filter:blur(8px);
 transition:.2s
 }
-.story-icon:hover{
-background:#FF7A00
-}
-.story-icon.liked{
+.story-icon:hover,.story-icon.liked{
 background:#FF7A00;
 color:#fff
 }
@@ -243,13 +232,162 @@ color:#fff
 .arrow.left{left:14px}
 .arrow.right{right:14px}
 
+/* JIOMART SHOP FEATURE */
+.shop-label{
+position:absolute;
+left:16px;
+top:100px;
+z-index:18;
+display:flex;
+align-items:center;
+gap:8px;
+padding:9px 12px;
+border-radius:999px;
+background:rgba(255,255,255,.92);
+backdrop-filter:blur(12px);
+box-shadow:0 8px 24px rgba(0,0,0,.16);
+color:#4A0E0E;
+font-size:12px;
+font-weight:900
+}
+.shop-label i{color:#FF7A00}
+
+.shop-rail{
+position:absolute;
+left:18px;
+bottom:96px;
+z-index:22;
+display:flex;
+flex-direction:column;
+gap:10px
+}
+.rail-item{
+width:50px;
+height:50px;
+border-radius:15px;
+background:rgba(255,255,255,.94);
+backdrop-filter:blur(10px);
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 8px 24px rgba(0,0,0,.16);
+font-size:20px;
+color:#FF7A00;
+transition:.2s
+}
+.rail-item:hover,.rail-item.active{
+background:#FF7A00;
+color:#fff;
+transform:translateX(4px)
+}
+
+.product-card{
+position:absolute;
+z-index:28;
+left:82px;
+bottom:145px;
+width:270px;
+border-radius:20px;
+background:#fff;
+border:1px solid #FFD2B3;
+box-shadow:0 18px 50px rgba(0,0,0,.24);
+padding:14px;
+display:none;
+animation:cardPop .18s ease
+}
+.product-card.show{display:block}
+@keyframes cardPop{
+from{transform:translateY(8px) scale(.96);opacity:0}
+to{transform:translateY(0) scale(1);opacity:1}
+}
+.product-card::before{
+content:"";
+position:absolute;
+left:-8px;
+bottom:36px;
+width:16px;
+height:16px;
+background:#fff;
+border-left:1px solid #FFD2B3;
+border-bottom:1px solid #FFD2B3;
+transform:rotate(45deg)
+}
+.product-top{
+display:flex;
+gap:10px;
+align-items:center
+}
+.product-top img{
+width:66px;
+height:66px;
+border-radius:14px;
+object-fit:cover;
+background:#FFF6ED
+}
+.product-info h4{
+font-size:14px;
+font-weight:900;
+line-height:1.25;
+color:#4A0E0E;
+margin-bottom:4px
+}
+.product-info p{
+font-size:12px;
+font-weight:800;
+color:#A66A55;
+margin-bottom:5px
+}
+.product-price{
+font-size:18px;
+font-weight:900;
+color:#FF7A00
+}
+.product-actions{
+display:flex;
+gap:8px;
+margin-top:12px
+}
+.jiomart-btn{
+flex:1;
+height:40px;
+border-radius:12px;
+background:#0078AD;
+color:#fff;
+font-size:12px;
+font-weight:900;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:6px
+}
+.cart-btn{
+width:44px;
+height:40px;
+border-radius:12px;
+background:#FFF1E5;
+color:#FF7A00;
+font-size:16px
+}
+.ai-tag{
+margin-top:10px;
+padding:8px 9px;
+border-radius:12px;
+background:#FFF6ED;
+font-size:11px;
+font-weight:800;
+color:#7A3E2E
+}
+.ai-tag i{
+color:#FF7A00;
+margin-right:5px
+}
+
 /* RIGHT PANEL */
 .story-right{
 display:flex;
 flex-direction:column;
 background:#fff
 }
-
 .right-head{
 height:82px;
 border-bottom:1px solid #FFE0CC;
@@ -277,10 +415,7 @@ font-size:16px;
 font-weight:900;
 color:#4A0E0E
 }
-.verify{
-color:#FF7A00;
-font-size:13px
-}
+.verify{color:#FF7A00;font-size:13px}
 .sub-count{
 display:block;
 margin-top:3px;
@@ -296,10 +431,7 @@ padding:11px 16px;
 font-size:13px;
 font-weight:900
 }
-.dots{
-font-size:22px;
-color:#A66A55
-}
+.dots{font-size:22px;color:#A66A55}
 
 .caption{
 padding:20px 24px;
@@ -322,9 +454,7 @@ line-height:1.45;
 font-weight:700;
 color:#4A0E0E
 }
-.caption strong{
-font-weight:900
-}
+.caption strong{font-weight:900}
 .caption .tags{
 display:block;
 margin-top:12px;
@@ -382,9 +512,7 @@ color:#A66A55;
 font-size:16px;
 padding-top:5px
 }
-.comment .like:hover{
-color:#FF7A00
-}
+.comment .like:hover{color:#FF7A00}
 
 .actions{
 border-top:1px solid #FFE0CC;
@@ -407,12 +535,8 @@ font-size:24px
 transition:.2s;
 cursor:pointer
 }
-.action-left i:hover,.bookmark:hover{
-color:#FF7A00
-}
-.bookmark{
-font-size:24px
-}
+.action-left i:hover,.bookmark:hover{color:#FF7A00}
+.bookmark{font-size:24px}
 .likes{
 font-size:14px;
 font-weight:900;
@@ -434,9 +558,7 @@ padding:0 24px;
 flex-shrink:0;
 background:#fff
 }
-.public-comment i{
-color:#A66A55
-}
+.public-comment i{color:#A66A55}
 .public-comment input{
 flex:1;
 height:44px;
@@ -449,9 +571,7 @@ color:#4A0E0E;
 font-size:14px;
 font-weight:700
 }
-.public-comment input::placeholder{
-color:#A66A55
-}
+.public-comment input::placeholder{color:#A66A55}
 .public-comment button{
 font-size:14px;
 font-weight:900;
@@ -484,9 +604,7 @@ height:100vh;
 width:100vw;
 border-radius:0
 }
-.story-right{
-display:none
-}
+.story-right{display:none}
 .story-img{
 width:100%;
 height:100%
@@ -494,6 +612,12 @@ height:100%
 .close-btn{
 right:12px;
 top:12px
+}
+.product-card{
+left:84px;
+right:14px;
+width:auto;
+bottom:145px
 }
 }
 </style>
@@ -527,7 +651,45 @@ top:12px
 </div>
 </div>
 
+<div class="shop-label">
+<i class="fa-solid fa-store"></i>
+<span>Shop on JioMart</span>
+</div>
+
 <img id="storyImage" class="story-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ranveer%20Singh%200.webp">
+
+<div class="shop-rail">
+<button class="rail-item" onclick="openProduct(event,'glasses')" title="Glasses"><i class="fa-solid fa-glasses"></i></button>
+<button class="rail-item" onclick="openProduct(event,'outfit')" title="Outfit"><i class="fa-solid fa-shirt"></i></button>
+<button class="rail-item" onclick="openProduct(event,'jewellery')" title="Jewellery"><i class="fa-solid fa-gem"></i></button>
+<button class="rail-item" onclick="openProduct(event,'kidswear')" title="Kidswear"><i class="fa-solid fa-baby"></i></button>
+</div>
+
+<div class="product-card" id="productCard">
+<div class="product-top">
+<img id="productImg" src="">
+<div class="product-info">
+<h4 id="productName"></h4>
+<p id="productDesc"></p>
+<div class="product-price" id="productPrice"></div>
+</div>
+</div>
+
+<div class="product-actions">
+<button class="jiomart-btn" onclick="buyOnJioMart()">
+<i class="fa-solid fa-bag-shopping"></i>
+Buy on JioMart
+</button>
+<button class="cart-btn" onclick="addToCart()">
+<i class="fa-solid fa-cart-plus"></i>
+</button>
+</div>
+
+<div class="ai-tag">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+AI detected product from this story
+</div>
+</div>
 
 <div class="nav-area nav-left" onclick="prevStory()"></div>
 <div class="nav-area nav-right" onclick="nextStory()"></div>
@@ -647,7 +809,6 @@ New story drop! Energy, style and creator vibes all in one frame 🔥
 </div>
 
 <script>
-
 function closeStory(){
 const params = new URLSearchParams(window.location.search);
 const from = params.get("from");
@@ -672,6 +833,7 @@ const stories = [
 
 let currentStory = 0;
 let timer;
+let activeProductLink = "";
 
 function updateStory(){
 document.getElementById("storyImage").src = stories[currentStory];
@@ -682,31 +844,24 @@ bar.classList.remove("active","done");
 bar.querySelector("span").style.animation = "none";
 bar.querySelector("span").offsetHeight;
 bar.querySelector("span").style.animation = "";
-if(index < currentStory){
-bar.classList.add("done");
-}
-if(index === currentStory){
-bar.classList.add("active");
-}
+if(index < currentStory) bar.classList.add("done");
+if(index === currentStory) bar.classList.add("active");
 });
 
+closeProductCard();
 clearTimeout(timer);
 timer = setTimeout(nextStory,5000);
 }
 
 function nextStory(){
 currentStory++;
-if(currentStory >= stories.length){
-currentStory = 0;
-}
+if(currentStory >= stories.length) currentStory = 0;
 updateStory();
 }
 
 function prevStory(){
 currentStory--;
-if(currentStory < 0){
-currentStory = stories.length - 1;
-}
+if(currentStory < 0) currentStory = stories.length - 1;
 updateStory();
 }
 
@@ -753,6 +908,72 @@ btn.innerText = btn.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
 btn.style.background = btn.innerText === "Subscribed" ? "#4A0E0E" : "#FF7A00";
 }
 
+const products = {
+glasses:{
+name:"Ranveer Style Sunglasses",
+desc:"Premium tinted frame",
+price:"₹2,499",
+img:"https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=300&auto=format&fit=crop&q=80",
+link:"https://www.jiomart.com/search/sunglasses"
+},
+outfit:{
+name:"Cream Ethnic Kurta Set",
+desc:"Festive creator look",
+price:"₹3,999",
+img:"https://images.unsplash.com/photo-1617137968427-85924c800a22?w=300&auto=format&fit=crop&q=80",
+link:"https://www.jiomart.com/search/men%20kurta"
+},
+jewellery:{
+name:"Festive Jewellery Set",
+desc:"Traditional gold finish",
+price:"₹1,899",
+img:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&auto=format&fit=crop&q=80",
+link:"https://www.jiomart.com/search/jewellery"
+},
+kidswear:{
+name:"Kids Red Ethnic Dress",
+desc:"Mini festive outfit",
+price:"₹1,299",
+img:"https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=300&auto=format&fit=crop&q=80",
+link:"https://www.jiomart.com/search/kids%20ethnic%20wear"
+}
+};
+
+function openProduct(event,key){
+event.stopPropagation();
+
+const product = products[key];
+const card = document.getElementById("productCard");
+
+document.getElementById("productImg").src = product.img;
+document.getElementById("productName").innerText = product.name;
+document.getElementById("productDesc").innerText = product.desc;
+document.getElementById("productPrice").innerText = product.price;
+activeProductLink = product.link;
+
+document.querySelectorAll(".rail-item").forEach(btn=>btn.classList.remove("active"));
+event.currentTarget.classList.add("active");
+
+card.classList.add("show");
+clearTimeout(timer);
+}
+
+function closeProductCard(){
+document.getElementById("productCard").classList.remove("show");
+document.querySelectorAll(".rail-item").forEach(btn=>btn.classList.remove("active"));
+}
+
+function buyOnJioMart(){
+showToast("Opening JioMart product page");
+setTimeout(()=>{
+window.open(activeProductLink || "https://www.jiomart.com/", "_blank");
+},500);
+}
+
+function addToCart(){
+showToast("Added to JioMart cart");
+}
+
 function showToast(text){
 const toast = document.getElementById("toast");
 toast.innerText = text;
@@ -760,10 +981,16 @@ toast.classList.add("show");
 setTimeout(()=>toast.classList.remove("show"),1800);
 }
 
+document.addEventListener("click",function(e){
+if(!e.target.closest(".product-card") && !e.target.closest(".rail-item")){
+closeProductCard();
+}
+});
+
 document.addEventListener("keydown",function(e){
 if(e.key === "ArrowRight") nextStory();
 if(e.key === "ArrowLeft") prevStory();
-if(e.key === "Escape") closeStory();
+if(e.key === "Escape") closeProductCard();
 });
 
 updateStory();
