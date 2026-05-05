@@ -1117,7 +1117,7 @@ body.channel-open{overflow:hidden;}
 
 <div class="section">
 <div class="section-head">
-<h2>Shorts & Reels</h2>
+<h2>Shorts</h2>
 <button onclick="toggleSection('extraReels',this)">See more <i class="fa-solid fa-chevron-right"></i></button>
 </div>
 <div class="reel-grid" id="reels"></div>
@@ -1447,11 +1447,10 @@ const videoStats = {
 function videoCard(item, live=false){
 const thumb = item[3] || fallbackThumb;
 const gif = item[4] || fallbackGif;
-const link = item[5] || "video.html";
 const profile = creatorProfiles[item[1]] || fallbackProfile;
 const stats = videoStats[item[0]] || (live ? `${item[2]} watching now` : `${item[2]} • Trending now`);
 return `
-<a href="${link}" class="video-card">
+<div class="video-card" onclick="event.preventDefault();">
 <div class="thumb">
 <img class="thumb-img" src="${thumb}" data-thumb="${thumb}" data-gif="${gif}" onmouseenter="swapToGif(this)" onmouseleave="swapToThumb(this)">
 ${live ? `<span class="live-tag">LIVE</span><span class="views">${item[2]}</span>` : `<span class="duration">${item[2]}</span>`}
@@ -1464,7 +1463,7 @@ ${live ? `<span class="live-tag">LIVE</span><span class="views">${item[2]}</span
 <div class="stats">${stats}</div>
 </div>
 </div>
-</a>
+</div>
 `;
 }
 
@@ -1482,7 +1481,7 @@ renderVideos("extraTrending",trendingData,false,5,trendingData.length);
 function renderCategories(){
 const box=document.getElementById("categories");
 box.innerHTML=cats.map(c=>`
-<div class="cat-card" onclick="openCategory('${c[0]}','${c[1]}')">
+<div class="cat-card" onclick="event.preventDefault();">
 <img src="${c[2]}" data-thumb="${c[2]}" data-gif="${c[3]}" onmouseenter="swapToGif(this)" onmouseleave="swapToThumb(this)">
 <h3>${c[0]}</h3>
 </div>
@@ -1493,14 +1492,13 @@ renderCategories();
 function reelCard(r){
 const thumb = r[3] || fallbackThumb;
 const gif = r[4] || fallbackGif;
-const link = r[5] || "shorts.html";
 return `
-<a href="${link}" class="reel-card">
+<div class="reel-card" onclick="event.preventDefault();">
 <img class="reel-static" src="${thumb}" alt="${r[0]}">
 <img class="reel-hover-gif" src="${gif}" alt="${r[0]} preview">
 <h3>${r[0]}</h3>
 <p>${r[1]} • ${r[2]}</p>
-</a>`;
+</div>`;
 }
 
 function renderReels(){
