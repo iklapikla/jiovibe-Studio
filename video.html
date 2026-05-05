@@ -797,6 +797,150 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 .caption-lang-pill{bottom:122px;font-size:10px}
 }
 
+
+
+/* USER UPDATE: Copied Super Support modal design + AI Translate menu */
+#superOverlay .modal{
+  width:588px !important;
+  max-width:92vw !important;
+  border-radius:28px !important;
+  padding:30px 32px 32px !important;
+  background:#FFFFFF !important;
+  border:0 !important;
+  box-shadow:0 28px 80px rgba(42,10,10,.28) !important;
+}
+#superOverlay .modal h2{
+  font-size:31px !important;
+  line-height:1.1 !important;
+  font-weight:900 !important;
+  color:#5A0B0B !important;
+  margin-bottom:22px !important;
+}
+#superOverlay .close-btn{
+  font-size:26px !important;
+  color:#000 !important;
+  float:right !important;
+  margin-top:2px !important;
+}
+.super-support-title{
+  font-size:16px;
+  font-weight:900;
+  color:#7A3E2E;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:-9px 0 13px;
+}
+.super-support-title i{color:#7A3E2E;}
+.field-label{
+  font-size:16px;
+  font-weight:900;
+  color:#7A3E2E;
+  margin:0 0 -3px;
+}
+.super-form{gap:16px !important;}
+.super-form select,
+.custom-amount{
+  width:100% !important;
+  height:60px !important;
+  border:1.5px solid #FFB878 !important;
+  border-radius:18px !important;
+  padding:0 18px !important;
+  font-size:17px !important;
+  font-weight:900 !important;
+  color:#111 !important;
+  outline:none !important;
+  background:#FFFFFF !important;
+}
+.super-form textarea{
+  width:100% !important;
+  height:120px !important;
+  border:1.5px solid #FFB878 !important;
+  border-radius:18px !important;
+  padding:18px !important;
+  font-size:17px !important;
+  font-weight:900 !important;
+  resize:none !important;
+  outline:none !important;
+  color:#4A0E0E !important;
+}
+.super-form textarea::placeholder,.custom-amount::placeholder{color:#777;opacity:1;}
+.super-form select:focus,.custom-amount:focus,.super-form textarea:focus{
+  border-color:#FF7A00 !important;
+  box-shadow:0 0 0 4px rgba(255,122,0,.10) !important;
+}
+.note-amounts{
+  display:grid !important;
+  grid-template-columns:repeat(4,1fr) !important;
+  gap:12px !important;
+}
+.note-amount-btn{
+  height:50px !important;
+  border-radius:18px !important;
+  background:linear-gradient(145deg,#FFF6D8,#FFE07A) !important;
+  color:#5A2600 !important;
+  border:1px solid rgba(255,122,0,.34) !important;
+  box-shadow:0 12px 26px rgba(255,180,0,.16) !important;
+  font-size:18px !important;
+  font-weight:900 !important;
+}
+.note-amount-btn.active{
+  background:#FF7A00 !important;
+  color:#FFFFFF !important;
+  border-color:#FF7A00 !important;
+  box-shadow:0 18px 38px rgba(255,122,0,.28) !important;
+}
+#superOverlay .modal-btn{
+  width:100% !important;
+  height:52px !important;
+  border-radius:14px !important;
+  background:#5A0B0B !important;
+  color:#FFFFFF !important;
+  font-size:17px !important;
+  font-weight:900 !important;
+  margin-top:0 !important;
+}
+#superOverlay .modal-btn:hover{background:#FF7A00 !important;}
+.cc-token-note{
+  margin:8px 10px 12px;
+  padding:13px 12px;
+  border-radius:16px;
+  background:#FFFDFB;
+  border:1.5px dashed #FFB878;
+  color:#7A3E2E;
+  font-size:15px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  line-height:1.2;
+}
+.cc-token-note i{color:#FF7A00;font-size:18px;}
+#captionPanel .menu-back{
+  font-size:17px !important;
+  color:#FF7A00 !important;
+  font-weight:900 !important;
+  padding:13px 10px !important;
+}
+#captionPanel button:not(.menu-back){
+  font-size:17px !important;
+  font-weight:900 !important;
+  padding:13px 10px !important;
+  color:#5A0B0B !important;
+}
+.player-menu:has(#captionPanel.active){
+  width:342px !important;
+  right:-6px !important;
+  bottom:38px !important;
+  border-radius:20px !important;
+  padding:10px 14px 14px !important;
+}
+@media(max-width:720px){
+  #superOverlay .modal{width:92vw !important;padding:24px 20px !important;}
+  .note-amounts{grid-template-columns:repeat(2,1fr) !important;}
+  .player-menu:has(#captionPanel.active){width:300px !important;right:-36px !important;}
+}
+
 </style>
 </head>
 
@@ -915,13 +1059,14 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 
 <div class="player-menu-panel" id="captionPanel">
 <button class="menu-back" onclick="openSettingsPanel('mainSettingsPanel')"><i class="fa-solid fa-chevron-left"></i> Captions / AI Translate</button>
+<div class="cc-token-note"><i class="fa-solid fa-coins"></i> AI Translate: 5 Tokens per language</div>
 <button onclick="setCaption('Off')">Off</button>
 <button onclick="setCaption('English CC')">English CC</button>
-<button onclick="setAiLanguage('Hindi')">AI Translate: Hindi</button>
-<button onclick="setAiLanguage('Tamil')">AI Translate: Tamil</button>
-<button onclick="setAiLanguage('Telugu')">AI Translate: Telugu</button>
-<button onclick="setAiLanguage('Marathi')">AI Translate: Marathi</button>
-<button onclick="setAiLanguage('Bengali')">AI Translate: Bengali</button>
+<button onclick="setAiLanguage('Hindi')">एआई अनुवाद: हिंदी</button>
+<button onclick="setAiLanguage('Tamil')">ஏஐ மொழிபெயர்ப்பு: தமிழ்</button>
+<button onclick="setAiLanguage('Telugu')">ఏఐ అనువాదం: తెలుగు</button>
+<button onclick="setAiLanguage('Marathi')">एआय भाषांतर: मराठी</button>
+<button onclick="setAiLanguage('Bengali')">এআই অনুবাদ: বাংলা</button>
 </div>
 </div>
 </div>
@@ -1181,13 +1326,27 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 <div class="modal">
 <button class="close-btn" onclick="closeSuper()"><i class="fa-solid fa-xmark"></i></button>
 <h2>Super Support</h2>
+<div class="super-support-title"><i class="fa-solid fa-bolt"></i> Highlight your message in Top Chat like a glowing note</div>
 
 <div class="super-form">
-<div class="amounts">
-<button class="amount-btn" onclick="selectAmount(500)">₹500</button>
-<button class="amount-btn" onclick="selectAmount(1000)">₹1,000</button>
-<button class="amount-btn" onclick="selectAmount(2000)">₹2,000</button>
+<label class="field-label">Choose currency</label>
+<select id="currencySelect" onchange="updateCurrency()">
+<option value="INR" data-symbol="₹">INR ₹</option>
+<option value="USD" data-symbol="$">USD $</option>
+<option value="EUR" data-symbol="€">EUR €</option>
+<option value="GBP" data-symbol="£">GBP £</option>
+</select>
+
+<label class="field-label">Quick amount</label>
+<div class="amounts note-amounts" id="amountButtons">
+<button class="amount-btn note-amount-btn" onclick="selectAmount(100)">₹100</button>
+<button class="amount-btn note-amount-btn" onclick="selectAmount(500)">₹500</button>
+<button class="amount-btn note-amount-btn" onclick="selectAmount(1000)">₹1,000</button>
+<button class="amount-btn note-amount-btn" onclick="selectAmount(2000)">₹2,000</button>
 </div>
+
+<label class="field-label">Or enter custom amount</label>
+<input class="custom-amount" id="customAmount" type="number" min="1" placeholder="Enter amount" oninput="setCustomAmount()">
 
 <textarea id="superMessage" placeholder="Add your Super Support message..."></textarea>
 
@@ -1327,7 +1486,7 @@ div.className=superAmount?"comment super-comment":"comment";
 div.innerHTML=`
 <img src="${img}">
 <div>
-${superAmount?`<div class="amount">Super Support ₹${superAmount}</div>`:""}
+${superAmount?`<div class="amount">Super Support ${superAmount}</div>`:""}
 <strong>${name}</strong><small>${time}</small>
 <p>${text}</p>
 <div class="comment-actions">
@@ -1350,10 +1509,14 @@ input.value="";
 
 /* Super Support */
 let selectedAmount=500;
+let selectedCurrencySymbol="₹";
 
 function openSuper(amount){
-selectedAmount=amount;
+selectedAmount=amount || 500;
+const custom=document.getElementById("customAmount");
+if(custom) custom.value="";
 document.getElementById("superOverlay").classList.add("show");
+updateCurrency();
 updateAmountButtons();
 }
 
@@ -1363,20 +1526,51 @@ document.getElementById("superOverlay").classList.remove("show");
 
 function selectAmount(amount){
 selectedAmount=amount;
+const custom=document.getElementById("customAmount");
+if(custom) custom.value="";
 updateAmountButtons();
+}
+
+function updateCurrency(){
+const select=document.getElementById("currencySelect");
+if(select){
+selectedCurrencySymbol=select.options[select.selectedIndex].dataset.symbol || "₹";
+}
+const values=[100,500,1000,2000];
+document.querySelectorAll("#amountButtons .amount-btn").forEach((btn,index)=>{
+const value=values[index];
+btn.innerText=selectedCurrencySymbol + value.toLocaleString("en-IN");
+});
+updateAmountButtons();
+}
+
+function setCustomAmount(){
+const custom=document.getElementById("customAmount");
+const value=parseInt(custom.value,10);
+if(value>0){
+selectedAmount=value;
+document.querySelectorAll(".amount-btn").forEach(btn=>btn.classList.remove("active"));
+}
 }
 
 function updateAmountButtons(){
 document.querySelectorAll(".amount-btn").forEach(btn=>{
 btn.classList.remove("active");
-if(btn.innerText.replace(",","").includes(selectedAmount)) btn.classList.add("active");
+const numericText=btn.innerText.replace(/[^0-9]/g,"");
+if(Number(numericText)===Number(selectedAmount)) btn.classList.add("active");
 });
 }
 
 function sendSuper(){
+const custom=document.getElementById("customAmount");
+if(custom && custom.value.trim()){
+const value=parseInt(custom.value,10);
+if(value>0) selectedAmount=value;
+}
 const msg=document.getElementById("superMessage").value.trim() || "Super support for this video!";
-addComment("Trupti Latur",msg,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",selectedAmount);
+addComment("Trupti Latur",msg,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",selectedCurrencySymbol + selectedAmount.toLocaleString("en-IN"));
 document.getElementById("superMessage").value="";
+if(custom) custom.value="";
 closeSuper();
 showToast("Super Support sent");
 }
