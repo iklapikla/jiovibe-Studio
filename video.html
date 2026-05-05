@@ -941,6 +941,59 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
   .player-menu:has(#captionPanel.active){width:300px !important;right:-36px !important;}
 }
 
+
+/* USER UPDATE: JioVibe AI watermark after CC + Enhance Super Support with AI */
+.jv-ai-watermark{
+  display:none;
+  align-items:center;
+  gap:7px;
+  padding:7px 11px;
+  border-radius:999px;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.34);
+  color:#FFFFFF;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.2px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 24px rgba(0,0,0,.20);
+}
+.jv-ai-watermark.show{display:inline-flex;animation:watermarkIn .25s ease both}
+.jv-ai-watermark i{color:#FFB066;font-size:12px}
+@keyframes watermarkIn{
+  from{opacity:0;transform:translateY(-5px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.ai-enhance-btn{
+  width:100%;
+  min-height:48px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#FFF6ED,#FFE4CC);
+  border:1.5px dashed #FFB878;
+  color:#5A0B0B;
+  font-size:15px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  margin-top:-6px;
+  transition:.25s;
+}
+.ai-enhance-btn:hover{
+  background:#FF7A00;
+  color:#FFFFFF;
+  border-color:#FF7A00;
+  transform:translateY(-2px) scale(1.015);
+  box-shadow:0 14px 30px rgba(255,122,0,.22);
+}
+.ai-enhance-btn i{font-size:15px}
+.ai-enhance-btn small{
+  font-size:12px;
+  font-weight:900;
+  opacity:.82;
+}
+
 </style>
 </head>
 
@@ -1010,6 +1063,7 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 
 <div class="player-top">
 <div class="player-icons">
+<div class="jv-ai-watermark" id="jvAiWatermark"><i class="fa-solid fa-wand-magic-sparkles"></i> JioVibe AI</div>
 <i class="fa-solid fa-share" onclick="openShare()"></i>
 <i class="fa-solid fa-ellipsis-vertical"></i>
 </div>
@@ -1350,6 +1404,10 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 
 <textarea id="superMessage" placeholder="Add your Super Support message..."></textarea>
 
+<button type="button" class="ai-enhance-btn" onclick="enhanceSuperMessageAI()">
+<i class="fa-solid fa-wand-magic-sparkles"></i> Enhance with AI <small>10 Tokens</small>
+</button>
+
 <select id="paymentMode">
 <option>UPI</option>
 <option>Credit / Debit Card</option>
@@ -1561,6 +1619,21 @@ if(Number(numericText)===Number(selectedAmount)) btn.classList.add("active");
 });
 }
 
+function enhanceSuperMessageAI(){
+const input=document.getElementById("superMessage");
+if(!input) return;
+const raw=input.value.trim();
+const base=raw || "Amazing video, full support from my side!";
+const templates=[
+  `Big love for this moment! ${base} Keep creating this amazing energy for all of us.`,
+  `This was genuinely entertaining! ${base} Sending my Super Support with full JioVibe energy.`,
+  `What a vibe! ${base} Your content always makes the audience smile and stay connected.`,
+  `Superb creator energy! ${base} This deserves a big highlight in the chat.`
+];
+input.value=templates[Math.floor(Math.random()*templates.length)];
+showToast("AI enhanced message • 10 Tokens used");
+}
+
 function sendSuper(){
 const custom=document.getElementById("customAmount");
 if(custom && custom.value.trim()){
@@ -1639,6 +1712,8 @@ const captionLibrary = {
 
 function startCaptions(language){
 currentCaptionLanguage = language;
+const aiWatermark=document.getElementById("jvAiWatermark");
+if(aiWatermark) aiWatermark.classList.add("show");
 captionIndex = 0;
 const box=document.getElementById("videoCaptionBox");
 const pill=document.getElementById("captionLangPill");
@@ -1661,6 +1736,8 @@ captionIndex++;
 
 function stopCaptions(){
 currentCaptionLanguage = "Off";
+const aiWatermark=document.getElementById("jvAiWatermark");
+if(aiWatermark) aiWatermark.classList.remove("show");
 clearInterval(captionTimer);
 captionTimer = null;
 const box=document.getElementById("videoCaptionBox");
