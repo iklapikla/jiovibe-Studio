@@ -791,49 +791,6 @@ pointer-events:none;
 
 <section class="content">
 
-<div class="page-head">
-<div>
-<h1>Explore</h1>
-<p>Discover live streams, videos, shorts, creators and categories</p>
-</div>
-</div>
-
-<div class="hero-section">
-<button class="hero-arrow left" onclick="slideHero(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-<button class="hero-arrow right" onclick="slideHero(1)"><i class="fa-solid fa-chevron-right"></i></button>
-
-<div class="hero-track" id="heroTrack">
-<div class="hero" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1800&auto=format&fit=crop')">
-<div class="hero-content">
-<label>EXPLORE SPECIAL</label>
-<h1>Discover What’s Trending</h1>
-<p>Find live streams, videos, shorts, creators and special JioVibe moments in one place.</p>
-<button class="watch-btn" onclick="location.href='video.html'"><i class="fa-solid fa-play"></i> Watch Now</button>
-</div>
-</div>
-
-<div class="hero" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1800&auto=format&fit=crop')">
-<div class="hero-content">
-<label>LIVE MUSIC</label>
-<h1>Creator Music Nights</h1>
-<p>Watch creators perform live, interact with fans and build a real-time community.</p>
-<button class="watch-btn" onclick="location.href='live.html'"><i class="fa-solid fa-tower-broadcast"></i> Go Live</button>
-</div>
-</div>
-
-<div class="hero" style="background-image:url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1800&auto=format&fit=crop')">
-<div class="hero-content">
-<label>AI CREATOR TOOLS</label>
-<h1>AI Tools & Creator Growth</h1>
-<p>Explore AI videos, thumbnails, insights and smart creator tools.</p>
-<button class="watch-btn" onclick="location.href='ai-studio.html'"><i class="fa-solid fa-wand-magic-sparkles"></i> Explore AI</button>
-</div>
-</div>
-</div>
-
-<div class="hero-dots" id="heroDots"></div>
-</div>
-
 <div class="section">
 <div class="section-head">
 <h2>Live Now</h2>
@@ -912,6 +869,7 @@ let heroIndex = 0;
 
 function slideHero(dir){
 const track = document.getElementById("heroTrack");
+if(!track)return;
 const total = track.children.length;
 heroIndex = (heroIndex + dir + total) % total;
 track.style.transform = `translateX(-${heroIndex * 100}%)`;
@@ -920,8 +878,10 @@ updateDots();
 
 function updateDots(){
 const dots = document.getElementById("heroDots");
+const track = document.getElementById("heroTrack");
+if(!dots || !track)return;
 dots.innerHTML = "";
-const total = document.getElementById("heroTrack").children.length;
+const total = track.children.length;
 for(let i=0;i<total;i++){
 const d=document.createElement("span");
 d.className="hero-dot"+(i===heroIndex?" active":"");
