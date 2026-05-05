@@ -1029,6 +1029,27 @@ body.channel-open{overflow:hidden;}
 @media(max-width:1300px){.channel-video-grid{grid-template-columns:repeat(3,1fr)}.channel-shorts-grid{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:900px){.channel-viewer-main{margin-left:0;width:100%}.channel-backbar{padding:0 18px}.channel-content{padding:20px}.channel-header{grid-template-columns:1fr}.channel-avatar{width:130px;height:130px}.channel-name{font-size:32px}.channel-video-grid{grid-template-columns:repeat(2,1fr)}.channel-shorts-grid{grid-template-columns:repeat(2,1fr)}.channel-post-list{grid-template-columns:1fr}.channel-playlist-grid{grid-template-columns:1fr}}
 
+
+/* SELECTIVE STORY LOGO RING - UPDATED */
+.creator-logo.story-ring{
+border:3px solid #20C45A;
+box-shadow:0 0 0 3px rgba(32,196,90,.16),0 6px 18px rgba(32,196,90,.22);
+cursor:pointer;
+}
+.creator-logo.story-ring:hover{
+transform:scale(1.12);
+box-shadow:0 0 0 4px rgba(32,196,90,.22),0 10px 26px rgba(32,196,90,.32);
+}
+.creator-logo.no-story{
+border:2px solid #FFE4CC;
+box-shadow:none;
+cursor:default;
+}
+.creator-logo.no-story:hover{
+transform:none;
+box-shadow:none;
+}
+
 </style>
 </head>
 
@@ -1444,11 +1465,23 @@ const videoStats = {
 "Family Vlog and Travel Moments":"Lifestyle • 828K views • 6 hours ago"
 };
 
+const storyEnabledCreators = new Set([
+"Ranveer Singh",
+"Rohit Sharma",
+"Total Gaming",
+"Ashish Chanchlani",
+"Arijit Singh",
+"Narendra Modi"
+]);
+
 function videoCard(item, live=false){
 const thumb = item[3] || fallbackThumb;
 const gif = item[4] || fallbackGif;
 const profile = creatorProfiles[item[1]] || fallbackProfile;
 const stats = videoStats[item[0]] || (live ? `${item[2]} watching now` : `${item[2]} • Trending now`);
+const hasStory = storyEnabledCreators.has(item[1]);
+const logoClass = hasStory ? "creator-logo story-ring" : "creator-logo no-story";
+const storyClick = hasStory ? `onclick="event.preventDefault();event.stopPropagation();openStory(\`${item[1]}\`)" title="Open ${item[1]} story"` : `onclick="event.preventDefault();event.stopPropagation();" title="No active story"`;
 return `
 <div class="video-card" onclick="event.preventDefault();">
 <div class="thumb">
@@ -1456,7 +1489,7 @@ return `
 ${live ? `<span class="live-tag">LIVE</span><span class="views">${item[2]}</span>` : `<span class="duration">${item[2]}</span>`}
 </div>
 <div class="video-info">
-<img class="creator-logo" src="${profile}" alt="${item[1]}" onclick="event.preventDefault();event.stopPropagation();openStory(\`${item[1]}\`)" title="Open ${item[1]} story" onerror="this.onerror=null;this.src=fallbackProfile;">
+<img class="${logoClass}" src="${profile}" alt="${item[1]}" ${storyClick} onerror="this.onerror=null;this.src=fallbackProfile;">
 <div class="video-text">
 <h3>${item[0]}</h3>
 <p><span class="creator-name-link" onclick="event.preventDefault();event.stopPropagation();openChannel(\`${item[1]}\`)" title="Open ${item[1]} channel">${item[1]}</span> <span class="orange-dot">●</span></p>
