@@ -740,6 +740,239 @@ pointer-events:none;
 }
 .reel-card::after{z-index:2;pointer-events:none;}
 
+
+/* SAME PAGE STORY VIEWER - ADDED */
+.creator-logo{cursor:pointer;transition:transform .22s ease, box-shadow .22s ease;}
+.creator-logo:hover{transform:scale(1.12);box-shadow:0 8px 22px rgba(255,122,0,.34);}
+
+.story-viewer-bg{
+position:fixed;
+inset:0;
+background:rgba(42,10,10,.68);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:500;
+backdrop-filter:blur(8px);
+padding:20px;
+}
+.story-viewer-bg.show{display:flex;}
+.story-viewer-bg.show .story-modal-box{animation:storyPop .22s ease;}
+@keyframes storyPop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+.story-close-btn{
+position:absolute;
+right:28px;
+top:24px;
+width:46px;
+height:46px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+z-index:530;
+color:#4A0E0E;
+background:#FFFFFF;
+box-shadow:0 8px 24px rgba(0,0,0,.12);
+transition:.2s;
+}
+.story-close-btn:hover{background:#FF7A00;color:#FFFFFF;transform:scale(1.06);}
+.story-modal-box{
+width:min(1160px,92vw);
+height:min(780px,92vh);
+background:#FFFFFF;
+border:1px solid #FFD2B3;
+border-radius:24px;
+overflow:hidden;
+display:grid;
+grid-template-columns:440px 1fr;
+box-shadow:0 28px 80px rgba(0,0,0,.22);
+position:relative;
+}
+.story-left-panel{
+background:#2A0A0A;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+.story-img{
+height:100%;
+aspect-ratio:9/16;
+max-width:100%;
+object-fit:cover;
+display:block;
+}
+.story-progress-wrap{
+position:absolute;
+top:16px;
+left:16px;
+right:16px;
+display:flex;
+gap:7px;
+z-index:510;
+}
+.story-progress{
+height:4px;
+flex:1;
+background:rgba(255,255,255,.38);
+border-radius:20px;
+overflow:hidden;
+}
+.story-progress span{display:block;height:100%;width:0%;background:#FF7A00;border-radius:20px;}
+.story-progress.done span{width:100%;}
+.story-progress.active span{animation:storyFill 5s linear forwards;}
+@keyframes storyFill{from{width:0%}to{width:100%}}
+.story-user-pill{
+position:absolute;
+top:34px;
+left:20px;
+right:20px;
+z-index:511;
+display:flex;
+align-items:center;
+gap:12px;
+padding:10px 12px;
+border-radius:999px;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(8px);
+width:max-content;
+max-width:calc(100% - 40px);
+}
+.story-user-pill img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid #FFFFFF;}
+.story-user-pill strong{font-size:15px;font-weight:900;color:#FFFFFF;}
+.story-user-pill span{font-size:12px;color:rgba(255,255,255,.78);font-weight:700;}
+.story-nav-area{position:absolute;top:0;bottom:0;width:45%;z-index:508;}
+.story-nav-left{left:0;}
+.story-nav-right{right:0;}
+.story-arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:42px;
+height:42px;
+border-radius:50%;
+background:#FFFFFF;
+color:#4A0E0E;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+z-index:514;
+box-shadow:0 8px 24px rgba(0,0,0,.18);
+transition:.2s;
+}
+.story-arrow:hover{background:#FF7A00;color:#FFFFFF;}
+.story-arrow.left{left:14px;}
+.story-arrow.right{right:14px;}
+.story-bottom-bar{
+position:absolute;
+left:18px;
+right:18px;
+bottom:22px;
+z-index:512;
+display:flex;
+align-items:center;
+gap:14px;
+}
+.story-reply-box{
+flex:1;
+height:56px;
+border:1px solid rgba(255,255,255,.68);
+border-radius:30px;
+display:flex;
+align-items:center;
+padding:0 18px;
+background:rgba(255,255,255,.16);
+backdrop-filter:blur(10px);
+}
+.story-reply-box input{width:100%;background:transparent;border:none;outline:none;color:#FFFFFF;font-size:15px;font-weight:800;}
+.story-reply-box input::placeholder{color:rgba(255,255,255,.88);}
+.story-icon-btn{
+width:50px;
+height:50px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
+color:#FFFFFF;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(8px);
+transition:.2s;
+}
+.story-icon-btn:hover,.story-icon-btn.liked{background:#FF7A00;color:#FFFFFF;}
+.story-right-panel{display:flex;flex-direction:column;background:#FFFFFF;min-width:0;}
+.story-right-head{
+height:82px;
+border-bottom:1px solid #FFE0CC;
+padding:0 24px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+flex-shrink:0;
+}
+.story-account{display:flex;align-items:center;gap:12px;}
+.story-account img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #FFFFFF;box-shadow:0 2px 10px rgba(0,0,0,.10);}
+.story-account strong{font-size:16px;font-weight:900;color:#4A0E0E;}
+.story-verify{color:#FF7A00;font-size:13px;}
+.story-sub-count{display:block;margin-top:3px;color:#A66A55;font-size:12px;font-weight:800;}
+.story-subscribe-btn{background:#FF7A00;color:#FFFFFF;border-radius:12px;padding:11px 16px;font-size:13px;font-weight:900;}
+.story-dots{font-size:22px;color:#A66A55;}
+.story-caption{
+padding:20px 24px;
+border-bottom:1px solid #FFE0CC;
+display:grid;
+grid-template-columns:44px 1fr;
+gap:12px;
+flex-shrink:0;
+background:#FFE4CC;
+}
+.story-caption img{width:42px;height:42px;border-radius:50%;object-fit:cover;}
+.story-caption p{font-size:15px;line-height:1.45;font-weight:700;color:#4A0E0E;}
+.story-caption strong{font-weight:900;}
+.story-caption .story-tags{display:block;margin-top:12px;color:#FF7A00;font-weight:900;}
+.story-caption small{display:block;margin-top:8px;color:#A66A55;font-weight:800;}
+.story-comments{flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:18px;background:#FFFFFF;}
+.story-comment{display:grid;grid-template-columns:40px 1fr 28px;gap:12px;}
+.story-comment img{width:38px;height:38px;border-radius:50%;object-fit:cover;}
+.story-comment strong{font-size:14px;font-weight:900;color:#4A0E0E;}
+.story-comment p{font-size:14px;font-weight:600;line-height:1.4;margin-top:4px;color:#7A3E2E;}
+.story-comment small{display:inline-block;margin-top:8px;color:#A66A55;font-weight:800;font-size:12px;}
+.story-comment .story-like{color:#A66A55;font-size:16px;padding-top:5px;}
+.story-comment .story-like:hover{color:#FF7A00;}
+.story-actions{border-top:1px solid #FFE0CC;padding:16px 24px 12px;flex-shrink:0;background:#FFFFFF;}
+.story-action-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.story-action-left{display:flex;gap:18px;font-size:24px;}
+.story-action-left i,.story-bookmark{transition:.2s;cursor:pointer;}
+.story-action-left i:hover,.story-bookmark:hover{color:#FF7A00;}
+.story-bookmark{font-size:24px;}
+.story-likes{font-size:14px;font-weight:900;margin-bottom:4px;}
+.story-date{font-size:12px;color:#A66A55;font-weight:800;}
+.story-public-comment{
+height:68px;
+border-top:1px solid #FFE0CC;
+display:flex;
+align-items:center;
+gap:12px;
+padding:0 24px;
+flex-shrink:0;
+background:#FFFFFF;
+}
+.story-public-comment i{color:#A66A55;}
+.story-public-comment input{flex:1;height:44px;background:#FFF6ED;border:1px solid #FFE0CC;border-radius:24px;outline:none;padding:0 16px;color:#4A0E0E;font-size:14px;font-weight:700;}
+.story-public-comment input::placeholder{color:#A66A55;}
+.story-public-comment button{font-size:14px;font-weight:900;color:#FF7A00;}
+body.story-open{overflow:hidden;}
+@media(max-width:900px){
+.story-viewer-bg{padding:0;}
+.story-modal-box{grid-template-columns:1fr;height:100vh;width:100vw;border-radius:0;}
+.story-right-panel{display:none;}
+.story-img{width:100%;height:100%;}
+.story-close-btn{right:12px;top:12px;}
+}
+
 </style>
 </head>
 
@@ -849,6 +1082,73 @@ pointer-events:none;
 <h2>Related Videos & Live</h2>
 </div>
 <div class="video-grid" id="catModalGrid"></div>
+</div>
+</div>
+
+
+<div class="story-viewer-bg" id="storyViewer">
+<button class="story-close-btn" onclick="closeStoryViewer()"><i class="fa-solid fa-xmark"></i></button>
+<div class="story-modal-box">
+<div class="story-left-panel">
+<div class="story-progress-wrap" id="storyProgressWrap"></div>
+<div class="story-user-pill">
+<img id="storyUserImg" src="">
+<div>
+<strong id="storyUserName">Creator</strong>
+<span id="storyTime">2h ago</span>
+</div>
+</div>
+<img id="storyImage" class="story-img" src="">
+<div class="story-nav-area story-nav-left" onclick="prevStory()"></div>
+<div class="story-nav-area story-nav-right" onclick="nextStory()"></div>
+<button class="story-arrow left" onclick="prevStory()"><i class="fa-solid fa-chevron-left"></i></button>
+<button class="story-arrow right" onclick="nextStory()"><i class="fa-solid fa-chevron-right"></i></button>
+<div class="story-bottom-bar">
+<div class="story-reply-box"><input id="privateReply" placeholder="Reply..."></div>
+<button class="story-icon-btn" id="storyHeartBtn" onclick="toggleStoryHeart()"><i class="fa-regular fa-heart"></i></button>
+<button class="story-icon-btn" onclick="sendPrivateReply()"><i class="fa-regular fa-paper-plane"></i></button>
+</div>
+</div>
+<div class="story-right-panel">
+<div class="story-right-head">
+<div class="story-account">
+<img id="storyAccountImg" src="">
+<div>
+<strong><span id="storyAccountName">Creator</span> <i class="fa-solid fa-circle-check story-verify"></i></strong>
+<span class="story-sub-count" id="storySubCount">1M subscribers</span>
+</div>
+</div>
+<div style="display:flex;align-items:center;gap:16px;">
+<button class="story-subscribe-btn" onclick="toggleStorySubscribe(this)">Subscribe</button>
+<i class="fa-solid fa-ellipsis story-dots"></i>
+</div>
+</div>
+<div class="story-caption">
+<img id="storyCaptionImg" src="">
+<div>
+<p><strong id="storyCaptionName">Creator</strong> <span id="storyCaptionText">Story update</span><span class="story-tags" id="storyTags">#JioVibe</span></p>
+<small id="storyCaptionTime">2 h</small>
+</div>
+</div>
+<div class="story-comments" id="storyPublicComments"></div>
+<div class="story-actions">
+<div class="story-action-row">
+<div class="story-action-left">
+<i class="fa-regular fa-heart"></i>
+<i class="fa-regular fa-comment"></i>
+<i class="fa-regular fa-paper-plane"></i>
+</div>
+<i class="fa-regular fa-bookmark story-bookmark"></i>
+</div>
+<div class="story-likes" id="storyLikes">1M likes</div>
+<div class="story-date" id="storyDate">Today</div>
+</div>
+<div class="story-public-comment">
+<i class="fa-regular fa-face-smile"></i>
+<input id="publicInput" placeholder="Add a public comment...">
+<button onclick="sendPublicComment()">Post</button>
+</div>
+</div>
 </div>
 </div>
 
@@ -1019,7 +1319,7 @@ return `
 ${live ? `<span class="live-tag">LIVE</span><span class="views">${item[2]}</span>` : `<span class="duration">${item[2]}</span>`}
 </div>
 <div class="video-info">
-<img class="creator-logo" src="${profile}" alt="${item[1]}" onerror="this.onerror=null;this.src=fallbackProfile;">
+<img class="creator-logo" src="${profile}" alt="${item[1]}" onclick="event.preventDefault();event.stopPropagation();openStory(\`${item[1]}\`)" title="Open ${item[1]} story" onerror="this.onerror=null;this.src=fallbackProfile;">
 <div class="video-text">
 <h3>${item[0]}</h3>
 <p>${item[1]} <span class="orange-dot">●</span></p>
@@ -1103,6 +1403,316 @@ t.innerText=msg;
 t.style.display="block";
 setTimeout(()=>t.style.display="none",1500);
 }
+
+/* SAME PAGE STORY VIEWER - ADDED */
+const storyCommentsBase = [
+{img:"https://i.pravatar.cc/80?img=12",user:"sanket__kr_18",text:"Full energy mode 🔥🔥",meta:"1 h · 1,674 likes · Reply"},
+{img:"https://i.pravatar.cc/80?img=33",user:"hadiyal_18",text:"This story feature looks premium 💖",meta:"45 m · 1 like · Reply"},
+{img:"https://i.pravatar.cc/80?img=48",user:"dfg_editz__",text:"JioVibe vibes are clean!",meta:"30 m · 69 likes · Reply"},
+{img:"https://i.pravatar.cc/80?img=19",user:"creatorfan",text:"This looks like a real creator platform.",meta:"12 m · 119 likes · Reply"}
+];
+
+const storyData = {
+"Ranveer Singh":{
+name:"Ranveer Singh",subs:"4.8M subscribers",likes:"1.1M likes",date:"30 April",time:"2h ago",
+dp:creatorProfiles["Ranveer Singh"],
+stories:[
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ranveer%20Singh%200.webp",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ranveer%20Singh%201.jpg",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ranveer%20Singh%202.jpg"
+],
+caption:"New story drop! Energy, style and creator vibes all in one frame 🔥",tags:"#RanveerLive #CreatorEnergy #JioVibe"
+},
+"Rohit Sharma":{
+name:"Rohit Sharma",subs:"7.2M subscribers",likes:"980K likes",date:"Today",time:"1h ago",
+dp:creatorProfiles["Rohit Sharma"],
+stories:[
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Rohit%20Sharma.gif",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Rohit%20Sharma.webp",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Rohit%20Sharma.gif"
+],
+caption:"Practice session, captain energy and cricket moments from today's live vibe 🏏",tags:"#RohitSharma #CricketVibe #JioVibe"
+},
+"Total Gaming":{
+name:"Total Gaming",subs:"10.6M subscribers",likes:"2.2M likes",date:"Today",time:"35m ago",
+dp:creatorProfiles["Total Gaming"],
+stories:[
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Total%20Gaming.gif",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Total%20Gaming.webp",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif"
+],
+caption:"Clutch zone, squad rush and gaming tournament highlights are live now 🎮",tags:"#TotalGaming #GamingLive #JioVibe"
+},
+"Ashish Chanchlani":{
+name:"Ashish Chanchlani",subs:"6.4M subscribers",likes:"760K likes",date:"Today",time:"2h ago",
+dp:creatorProfiles["Ashish Chanchlani"],
+stories:[
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Ashish%20Chanchlani.gif",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ashish%20Chanchlani.webp",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Ashish%20Chanchlani.gif"
+],
+caption:"Comedy scene, behind-the-scenes madness and fan reactions all packed together 😂",tags:"#AshishChanchlani #ComedyVibe #JioVibe"
+},
+"Arijit Singh":{
+name:"Arijit Singh",subs:"9.8M subscribers",likes:"1.1M likes",date:"Today",time:"3h ago",
+dp:creatorProfiles["Arijit Singh"],
+stories:[
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Arijit%20Singh.gif",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Arijit%20Singh.webp",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Arijit%20Singh.gif"
+],
+caption:"Studio melody, live singing mood and soulful creator moments 🎵",tags:"#ArijitSingh #MusicLive #JioVibe"
+},
+"Technical Guruji":{
+name:"Technical Guruji",subs:"5.3M subscribers",likes:"3.8M likes",date:"Today",time:"45m ago",
+dp:creatorProfiles["Technical Guruji"],
+stories:[
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Technical%20Guruji.gif",
+"https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900&auto=format&fit=crop",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Technical%20Guruji.gif"
+],
+caption:"Quick tech breakdown, future gadgets and creator tech updates ⚡",tags:"#TechnicalGuruji #TechVibe #JioVibe"
+},
+"Khan Sir":{
+name:"Khan Sir",subs:"8.1M subscribers",likes:"690K likes",date:"Today",time:"1h ago",
+dp:creatorProfiles["Khan Sir"],
+stories:[
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Khan%20Sir.gif",
+"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=900&auto=format&fit=crop",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20khan%20sir%20teacher%20gif.gif"
+],
+caption:"Simple explanation, smart learning and classroom energy in one story 📚",tags:"#KhanSir #EducationVibe #JioVibe"
+},
+"Flying Beast":{
+name:"Flying Beast",subs:"4.1M subscribers",likes:"1.7M likes",date:"Today",time:"4h ago",
+dp:creatorProfiles["Flying Beast"],
+stories:[
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Flying%20Beast.gif",
+"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=900&auto=format&fit=crop",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Flying%20Beast.gif"
+],
+caption:"Travel mood, family moments and lifestyle story updates ✈️",tags:"#FlyingBeast #LifestyleVibe #JioVibe"
+},
+"Narendra Modi":{
+name:"Narendra Modi",subs:"12.4M subscribers",likes:"1.4M likes",date:"Today",time:"2h ago",
+dp:creatorProfiles["Narendra Modi"],
+stories:[
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/S%20Narendra%20Modi.gif",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Narendra%20Modi.webp",
+"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Narendra%20Modi.gif"
+],
+caption:"Major event moments, public address highlights and national updates 🇮🇳",tags:"#NarendraModi #IndiaUpdates #JioVibe"
+},
+"JioVibe Official":{
+name:"JioVibe Official",subs:"2.5M subscribers",likes:"684K likes",date:"Today",time:"8h ago",
+dp:fallbackProfile,
+stories:[
+"https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=900&auto=format&fit=crop",
+"https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif"
+],
+caption:"Launch event highlights and the future of creator monetization on JioVibe 🚀",tags:"#JioVibeLaunch #CreatorEconomy #India"
+},
+"JioVibe Events":{
+name:"JioVibe Events",subs:"1.8M subscribers",likes:"512K likes",date:"Today",time:"10h ago",
+dp:fallbackProfile,
+stories:[
+"https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=900&auto=format&fit=crop",
+"https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=900&auto=format&fit=crop",
+"https://media.giphy.com/media/l3vRlT2k2L35Cnn5C/giphy.gif"
+],
+caption:"Creator stage moments, panel clips and fan reactions from the launch floor 🎤",tags:"#JioVibeEvents #CreatorStage #Live"
+},
+"JioVibe Studio":{
+name:"JioVibe Studio",subs:"1.2M subscribers",likes:"409K likes",date:"Today",time:"11h ago",
+dp:fallbackProfile,
+stories:[
+"https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=900&auto=format&fit=crop",
+"https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif",
+"https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop"
+],
+caption:"Behind the launch, creator production and studio workflow moments 🎬",tags:"#JioVibeStudio #BehindTheScenes #CreatorTools"
+},
+"JioVibe AI":{
+name:"JioVibe AI",subs:"1.5M subscribers",likes:"735K likes",date:"Today",time:"7h ago",
+dp:fallbackProfile,
+stories:[
+"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=900&auto=format&fit=crop",
+"https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif",
+"https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=900&auto=format&fit=crop"
+],
+caption:"AI tools reveal: thumbnails, video editing, shorts and monetization insights 🤖",tags:"#JioVibeAI #AICreatorTools #CreatorGrowth"
+},
+"JioVibe Team":{
+name:"JioVibe Team",subs:"980K subscribers",likes:"288K likes",date:"Yesterday",time:"1d ago",
+dp:fallbackProfile,
+stories:[
+"https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=900&auto=format&fit=crop",
+"https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif",
+"https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=900&auto=format&fit=crop"
+],
+caption:"Welcome note from the team building the next creator economy platform for India ✨",tags:"#JioVibeTeam #CreatorFirst #OrangeEconomy"
+}
+};
+
+let activeStoryCreator = "Ranveer Singh";
+let activeStoryIndex = 0;
+let storyTimer;
+
+function getStoryCreator(name){
+return storyData[name] || {
+name:name || "JioVibe Creator",
+subs:"1M subscribers",
+likes:"100K likes",
+date:"Today",
+time:"2h ago",
+dp:creatorProfiles[name] || fallbackProfile,
+stories:[fallbackThumb,fallbackGif],
+caption:"Latest creator story update on JioVibe.",
+tags:"#JioVibe #CreatorStory"
+};
+}
+
+function openStory(name){
+activeStoryCreator = name;
+activeStoryIndex = 0;
+const data = getStoryCreator(name);
+const viewer = document.getElementById("storyViewer");
+viewer.classList.add("show");
+document.body.classList.add("story-open");
+document.getElementById("storyUserName").innerText = data.name;
+document.getElementById("storyTime").innerText = data.time;
+document.getElementById("storyUserImg").src = data.dp;
+document.getElementById("storyAccountName").innerText = data.name;
+document.getElementById("storyAccountImg").src = data.dp;
+document.getElementById("storyCaptionName").innerText = data.name;
+document.getElementById("storyCaptionImg").src = data.dp;
+document.getElementById("storySubCount").innerText = data.subs;
+document.getElementById("storyCaptionText").innerText = data.caption;
+document.getElementById("storyTags").innerText = data.tags;
+document.getElementById("storyCaptionTime").innerText = data.time.replace("ago","");
+document.getElementById("storyLikes").innerText = data.likes;
+document.getElementById("storyDate").innerText = data.date;
+document.getElementById("privateReply").placeholder = `Reply to ${data.name}...`;
+document.getElementById("storyHeartBtn").classList.remove("liked");
+document.getElementById("storyHeartBtn").innerHTML = '<i class="fa-regular fa-heart"></i>';
+renderStoryComments(data.name);
+renderStoryProgress();
+updateStory();
+}
+
+function renderStoryComments(name){
+const box = document.getElementById("storyPublicComments");
+box.innerHTML = storyCommentsBase.map(c=>`
+<div class="story-comment">
+<img src="${c.img}">
+<div>
+<strong>${c.user}</strong>
+<p>${name === "Ranveer Singh" && c.user === "sanket__kr_18" ? "Full energy mode 🔥🔥" : c.text}</p>
+<small>${c.meta}</small>
+</div>
+<i class="fa-regular fa-heart story-like"></i>
+</div>
+`).join("");
+}
+
+function renderStoryProgress(){
+const data = getStoryCreator(activeStoryCreator);
+const wrap = document.getElementById("storyProgressWrap");
+wrap.innerHTML = data.stories.map(()=>'<div class="story-progress"><span></span></div>').join("");
+}
+
+function updateStory(){
+const data = getStoryCreator(activeStoryCreator);
+document.getElementById("storyImage").src = data.stories[activeStoryIndex];
+const bars = document.querySelectorAll(".story-progress");
+bars.forEach((bar,index)=>{
+bar.classList.remove("active","done");
+const span = bar.querySelector("span");
+span.style.animation = "none";
+span.offsetHeight;
+span.style.animation = "";
+if(index < activeStoryIndex)bar.classList.add("done");
+if(index === activeStoryIndex)bar.classList.add("active");
+});
+clearTimeout(storyTimer);
+storyTimer = setTimeout(nextStory,5000);
+}
+
+function nextStory(){
+const data = getStoryCreator(activeStoryCreator);
+activeStoryIndex++;
+if(activeStoryIndex >= data.stories.length)activeStoryIndex = 0;
+updateStory();
+}
+
+function prevStory(){
+const data = getStoryCreator(activeStoryCreator);
+activeStoryIndex--;
+if(activeStoryIndex < 0)activeStoryIndex = data.stories.length - 1;
+updateStory();
+}
+
+function closeStoryViewer(){
+document.getElementById("storyViewer").classList.remove("show");
+document.body.classList.remove("story-open");
+clearTimeout(storyTimer);
+}
+
+function toggleStoryHeart(){
+const btn = document.getElementById("storyHeartBtn");
+btn.classList.toggle("liked");
+btn.innerHTML = btn.classList.contains("liked") ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>';
+}
+
+function sendPrivateReply(){
+const input = document.getElementById("privateReply");
+if(!input.value.trim()) return;
+showStoryToast(`Message sent directly to ${getStoryCreator(activeStoryCreator).name}`);
+input.value = "";
+}
+
+function sendPublicComment(){
+const input = document.getElementById("publicInput");
+const text = input.value.trim();
+if(!text) return;
+const box = document.getElementById("storyPublicComments");
+const div = document.createElement("div");
+div.className = "story-comment";
+div.innerHTML = `
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
+<div>
+<strong>Trupti Latur</strong>
+<p>${text.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</p>
+<small>Now · Reply</small>
+</div>
+<i class="fa-regular fa-heart story-like"></i>
+`;
+box.appendChild(div);
+box.scrollTop = box.scrollHeight;
+input.value = "";
+}
+
+function toggleStorySubscribe(btn){
+btn.innerText = btn.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
+btn.style.background = btn.innerText === "Subscribed" ? "#4A0E0E" : "#FF7A00";
+}
+
+function showStoryToast(text){
+toast(text);
+}
+
+document.getElementById("storyViewer").addEventListener("click",function(e){
+if(e.target === this)closeStoryViewer();
+});
+
+document.addEventListener("keydown",function(e){
+if(!document.getElementById("storyViewer").classList.contains("show"))return;
+if(e.key === "ArrowRight") nextStory();
+if(e.key === "ArrowLeft") prevStory();
+if(e.key === "Escape") closeStoryViewer();
+});
+
 </script>
 
 </body>
