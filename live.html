@@ -928,11 +928,11 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 <button class="menu-back" onclick="openSettingsPanel('mainSettingsPanel')"><i class="fa-solid fa-chevron-left"></i> Captions / AI Translate</button>
 <button onclick="setCaption('Off')">Off</button>
 <button onclick="setCaption('English CC')">English CC</button>
-<button onclick="setAiLanguage('Hindi')">AI Translate: Hindi</button>
-<button onclick="setAiLanguage('Tamil')">AI Translate: Tamil</button>
-<button onclick="setAiLanguage('Telugu')">AI Translate: Telugu</button>
-<button onclick="setAiLanguage('Marathi')">AI Translate: Marathi</button>
-<button onclick="setAiLanguage('Bengali')">AI Translate: Bengali</button>
+<button onclick="setAiLanguage('Hindi')">एआई अनुवाद: हिंदी</button>
+<button onclick="setAiLanguage('Tamil')">ஏஐ மொழிபெயர்ப்பு: தமிழ்</button>
+<button onclick="setAiLanguage('Telugu')">ఏఐ అనువాదం: తెలుగు</button>
+<button onclick="setAiLanguage('Marathi')">एआय भाषांतर: मराठी</button>
+<button onclick="setAiLanguage('Bengali')">এআই অনুবাদ: বাংলা</button>
 </div>
 </div>
 </div>
@@ -988,14 +988,12 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 <i class="fa-solid fa-ellipsis-vertical"></i>
 </div>
 
-<div class="super-row">
-<button class="super-chip note-chip auto-super-chip" data-hide-after="60000" onclick="openSuper(2000)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Aman</span><span class="mini-sent">sent</span><span>₹2,000</span></button>
-<button class="super-chip note-chip auto-super-chip" data-hide-after="120000" onclick="openSuper(1000)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Priya</span><span class="mini-sent">sent</span><span>₹1,000</span></button>
+<div class="super-row" id="superRow">
 <button class="super-chip note-chip auto-super-chip" data-hide-after="180000" onclick="openSuper(500)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Rahul</span><span class="mini-sent">sent</span><span>₹500</span></button>
+<button class="super-chip note-chip auto-super-chip" data-hide-after="120000" onclick="openSuper(1000)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Priya</span><span class="mini-sent">sent</span><span>₹1,000</span></button>
+<button class="super-chip note-chip auto-super-chip" data-hide-after="60000" onclick="openSuper(2000)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Aman</span><span class="mini-sent">sent</span><span>₹2,000</span></button>
 <button class="super-sticker-chip" onclick="openSticker()"><i class="fa-solid fa-face-grin-stars"></i> Super Sticker</button>
-<div class="super-live-chip" id="superLiveChip"><i class="fa-solid fa-bolt"></i><strong id="superLiveName">Trupti Latur</strong><span class="sent-word">sent</span><span id="superLiveAmount">₹0</span></div>
 </div>
-<div class="super-support-total" id="superSupportTotal">Super Support received: <span id="superSupportAmount">₹0</span></div>
 
 <div class="chat-messages" id="chatMessages"></div>
 
@@ -1330,35 +1328,22 @@ chip.style.display="none";
 }
 
 function startDefaultSuperChipTimers(){
-document.querySelectorAll(".auto-super-chip").forEach(chip=>{
-const delay = Number(chip.dataset.hideAfter || 60000);
-setTimeout(()=>fadeAndRemoveSuperChip(chip), delay);
-});
+// Super Support chips should stay visible; latest items are added to the left.
 }
 
 function showTopSuperSupport(name,amount,symbol){
-const chip=document.getElementById("superLiveChip");
-const amountText=document.getElementById("superLiveAmount");
-const nameText=document.getElementById("superLiveName");
-if(!chip || !amountText) return;
-if(nameText) nameText.innerText = name;
-amountText.innerText = formatSupportAmount(amount,symbol);
-chip.style.display="inline-flex";
-chip.classList.remove("super-fading");
-chip.classList.add("show");
-clearTimeout(superLiveTimer);
-superLiveTimer=setTimeout(()=>{
-fadeAndRemoveSuperChip(chip);
-},TOP_SUPER_VISIBLE_TIME);
+const row=document.getElementById("superRow") || document.querySelector(".super-row");
+if(!row) return;
+const chip=document.createElement("button");
+chip.type="button";
+chip.className="super-chip note-chip auto-super-chip dynamic-super-chip";
+chip.onclick=function(){ openSuper(amount); };
+chip.innerHTML=`<i class="fa-solid fa-bolt"></i><span class="mini-name">${name}</span><span class="mini-sent">sent</span><span>${formatSupportAmount(amount,symbol)}</span>`;
+row.insertBefore(chip,row.firstChild);
+row.scrollLeft=0;
 }
 
 startDefaultSuperChipTimers();
-setTimeout(()=>{
-  const totalBox=document.getElementById("superSupportTotal");
-  const totalAmt=document.getElementById("superSupportAmount");
-  if(totalBox && totalAmt){ totalSuperSupport=1000; totalBox.classList.add("show"); totalAmt.innerText="₹1,000"; }
-  showTopSuperSupport("Priya",1000,"₹");
-},500);
 
 function sendSuper(){
 const msg=document.getElementById("superMessage").value.trim() || "Super support for this live!";
@@ -1367,8 +1352,6 @@ addChat("Trupti Latur",msg,"https://raw.githubusercontent.com/iklapikla/jiovibe-
 const lastMsg=document.querySelector("#chatMessages .msg:last-child");
 if(lastMsg) lastMsg.classList.add("chat-super-note");
 totalSuperSupport += selectedCurrency === "INR" ? selectedAmount : 0;
-document.getElementById("superSupportTotal").classList.add("show");
-document.getElementById("superSupportAmount").innerText = "₹" + totalSuperSupport.toLocaleString("en-IN");
 showTopSuperSupport("Trupti Latur",selectedAmount,selectedSymbol);
 document.getElementById("superMessage").value="";
 const custom=document.getElementById("customAmount");
@@ -1391,8 +1374,6 @@ const label=stickerNames[sticker] || "Super Sticker";
 const displayAmount="₹" + amount.toLocaleString("en-IN");
 addStickerChat("Trupti Latur",sticker,label,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",displayAmount);
 totalSuperSupport += amount;
-document.getElementById("superSupportTotal").classList.add("show");
-document.getElementById("superSupportAmount").innerText = "₹" + totalSuperSupport.toLocaleString("en-IN");
 showTopSuperSupport("Trupti Latur",amount,"₹");
 closeSticker();
 showToast("Super Sticker sent and highlighted in chat");
@@ -1531,12 +1512,20 @@ openSettingsPanel("mainSettingsPanel");
 }
 
 function setAiLanguage(language){
-document.getElementById("captionValue").innerText="AI " + language;
-document.getElementById("ccAiTitle").innerText="AI Translate: " + language;
-document.getElementById("ccAiText").innerText="Captions are now auto-changing in " + language + " over the video.";
+const localizedAiText={
+Hindi:{title:"एआई अनुवाद: हिंदी",text:"कैप्शन अब वीडियो पर हिंदी में अपने आप बदल रहे हैं।",toast:"एआई कैप्शन: हिंदी"},
+Tamil:{title:"ஏஐ மொழிபெயர்ப்பு: தமிழ்",text:"வீடியோவில் வசனங்கள் இப்போது தமிழில் தானாக மாறுகின்றன.",toast:"ஏஐ வசனங்கள்: தமிழ்"},
+Telugu:{title:"ఏఐ అనువాదం: తెలుగు",text:"వీడియోపై క్యాప్షన్లు ఇప్పుడు తెలుగులో ఆటోమేటిక్‌గా మారుతున్నాయి.",toast:"ఏఐ క్యాప్షన్లు: తెలుగు"},
+Marathi:{title:"एआय भाषांतर: मराठी",text:"व्हिडिओवर कॅप्शन आता मराठीत आपोआप बदलत आहेत.",toast:"एआय कॅप्शन: मराठी"},
+Bengali:{title:"এআই অনুবাদ: বাংলা",text:"ভিডিওতে ক্যাপশন এখন বাংলায় স্বয়ংক্রিয়ভাবে বদলাচ্ছে।",toast:"এআই ক্যাপশন: বাংলা"}
+};
+const copy=localizedAiText[language] || {title:"AI Translate: " + language,text:"Captions are now auto-changing in " + language + " over the video.",toast:"AI captions: " + language};
+document.getElementById("captionValue").innerText=copy.title;
+document.getElementById("ccAiTitle").innerText=copy.title;
+document.getElementById("ccAiText").innerText=copy.text;
 hideAiBanner();
 startCaptions(language);
-showToast("AI captions: " + language);
+showToast(copy.toast);
 openSettingsPanel("mainSettingsPanel");
 setTimeout(hideAiBanner,2200);
 }
