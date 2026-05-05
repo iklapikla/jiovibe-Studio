@@ -973,6 +973,62 @@ body.story-open{overflow:hidden;}
 .story-close-btn{right:12px;top:12px;}
 }
 
+
+/* SAME PAGE CHANNEL VIEWER - ADDED */
+.creator-name-link{cursor:pointer;display:inline-block;transition:color .22s ease, transform .22s ease;}
+.creator-name-link:hover{color:#FF7A00;transform:translateX(2px);}
+.channel-viewer-bg{
+position:fixed;inset:0;background:#FFF6ED;z-index:450;display:none;overflow:auto;color:#4A0E0E;
+}
+.channel-viewer-bg.show{display:block;animation:channelFade .22s ease;}
+@keyframes channelFade{from{opacity:0}to{opacity:1}}
+body.channel-open{overflow:hidden;}
+.channel-viewer-inner{min-height:100vh;display:flex;}
+.channel-viewer-main{margin-left:250px;width:calc(100% - 250px);}
+.channel-backbar{height:76px;background:#FFFFFF;border-bottom:1px solid #FFD2B3;display:flex;align-items:center;gap:16px;padding:0 48px;position:sticky;top:0;z-index:455;}
+.channel-back-btn{height:44px;padding:0 18px;border-radius:999px;background:#FF7A00;color:#FFFFFF;font-weight:900;font-size:15px;display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 24px rgba(255,122,0,.20);transition:.22s;}
+.channel-back-btn:hover{background:#E65100;transform:translateX(-2px) scale(1.03);}
+.channel-back-title{font-weight:900;font-size:18px;color:#4A0E0E;}
+.channel-content{padding:30px 48px 60px;}
+.channel-banner{height:270px;border-radius:24px;overflow:hidden;position:relative;background:#2A0A0A;box-shadow:0 10px 30px rgba(74,14,14,.12)}
+.channel-banner img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease;}
+.channel-banner:hover img{transform:scale(1.035)}
+.channel-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(42,10,10,.62),rgba(42,10,10,.10),rgba(42,10,10,.03))}
+.channel-header{display:grid;grid-template-columns:170px 1fr;gap:26px;align-items:center;padding:28px 0 18px}
+.channel-avatar{width:160px;height:160px;border-radius:50%;object-fit:cover;border:5px solid #FFFFFF;box-shadow:0 8px 28px rgba(74,14,14,.16);background:#FFE4CC;transition:.3s;}
+.channel-avatar:hover{transform:scale(1.04);box-shadow:0 14px 36px rgba(255,122,0,.2)}
+.channel-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.channel-name{font-size:42px;font-weight:900;letter-spacing:-1.4px;color:#4A0E0E;line-height:1.05}
+.channel-verified{color:#FF7A00;font-size:22px}
+.channel-meta{margin-top:10px;font-size:16px;font-weight:800;color:#7A3E2E;display:flex;gap:8px;flex-wrap:wrap}
+.channel-bio{margin-top:12px;font-size:15px;font-weight:700;color:#7A3E2E;max-width:760px;line-height:1.45}
+.channel-link{margin-top:10px;font-size:14px;font-weight:900;color:#E65100}
+.channel-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.channel-primary-btn{height:46px;padding:0 20px;border-radius:999px;background:#FF7A00;color:#FFFFFF;font-weight:900;font-size:15px;display:inline-flex;align-items:center;gap:10px;transition:.22s;}
+.channel-primary-btn:hover{background:#E65100;transform:scale(1.04)}
+.channel-secondary-btn{height:46px;padding:0 18px;border-radius:999px;background:#FFE4CC;color:#4A0E0E;font-weight:900;font-size:15px;display:inline-flex;align-items:center;gap:10px;transition:.22s;}
+.channel-secondary-btn:hover{background:#FFD2B3;transform:scale(1.04)}
+.channel-tabs{display:flex;gap:8px;border-bottom:1px solid #FFD2B3;margin-top:8px;overflow-x:auto}
+.channel-tab-btn{min-width:max-content;padding:18px 20px;font-size:16px;font-weight:900;color:#7A3E2E;position:relative;transition:.22s;}
+.channel-tab-btn.active{color:#4A0E0E}
+.channel-tab-btn.active::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:4px;border-radius:8px;background:#FF7A00}
+.channel-tab-btn:hover{transform:translateY(-2px);background:#FFE4CC;border-radius:14px 14px 0 0;color:#FF7A00}
+.channel-tab-panel{display:none;padding-top:26px}.channel-tab-panel.active{display:block;animation:channelTabFade .32s ease both}
+@keyframes channelTabFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.channel-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.channel-section-head h2{font-size:24px;font-weight:900;color:#4A0E0E}.channel-section-head button{font-size:14px;font-weight:900;color:#E65100}
+.channel-video-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.channel-shorts-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}.channel-post-list{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.channel-playlist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.channel-video-card,.channel-short-card,.channel-post-card,.channel-playlist-card{background:#FFFFFF;border:1px solid #FFD2B3;border-radius:18px;overflow:hidden;box-shadow:0 4px 14px rgba(74,14,14,.04);transition:.25s;cursor:pointer}
+.channel-video-card:hover,.channel-short-card:hover,.channel-playlist-card:hover,.channel-post-card:hover{transform:translateY(-7px) scale(1.025);box-shadow:0 20px 44px rgba(74,14,14,.14);border-color:#FF7A00}
+.channel-thumb{position:relative;aspect-ratio:16/9;background:#2A0A0A;overflow:hidden}.channel-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .42s ease}.channel-video-card:hover .channel-thumb img{transform:scale(1.07)}
+.channel-duration{position:absolute;right:8px;bottom:8px;background:rgba(42,10,10,.85);color:#FFFFFF;font-size:11px;font-weight:900;padding:5px 7px;border-radius:6px}.channel-live-badge{position:absolute;left:8px;bottom:8px;background:#E65100;color:#FFFFFF;font-size:11px;font-weight:900;padding:5px 8px;border-radius:6px}
+.channel-video-info{padding:13px 14px 15px}.channel-video-title{font-size:15px;font-weight:900;line-height:1.35;color:#4A0E0E;margin-bottom:7px}.channel-video-meta{font-size:12px;font-weight:700;color:#A66A55;line-height:1.4}
+.channel-short-thumb{position:relative;aspect-ratio:9/16;background:#2A0A0A;overflow:hidden}.channel-short-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:.42s}.channel-short-card:hover .channel-short-thumb img{transform:scale(1.07)}.channel-short-info{padding:12px}.channel-short-title{font-size:13px;font-weight:900;line-height:1.35;color:#4A0E0E;margin-bottom:6px}.channel-short-meta{font-size:12px;font-weight:700;color:#A66A55}
+.channel-post-card{padding:18px}.channel-post-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}.channel-post-top img{width:46px;height:46px;border-radius:50%;object-fit:cover}.channel-post-top strong{font-size:15px;font-weight:900;color:#4A0E0E}.channel-post-top span{display:block;font-size:12px;font-weight:700;color:#A66A55;margin-top:3px}.channel-post-card p{font-size:15px;font-weight:700;line-height:1.5;color:#7A3E2E}.channel-post-media{margin-top:14px;width:100%;aspect-ratio:16/9;border-radius:14px;object-fit:cover}.channel-post-actions{display:flex;gap:20px;margin-top:14px;font-size:14px;font-weight:900;color:#A66A55}
+.channel-playlist-cover{height:170px;position:relative;background:#2A0A0A}.channel-playlist-cover img{width:100%;height:100%;object-fit:cover;opacity:.8}.channel-playlist-count{position:absolute;right:12px;bottom:12px;background:rgba(42,10,10,.88);color:#FFFFFF;border-radius:10px;padding:8px 10px;font-weight:900;font-size:12px}.channel-playlist-info{padding:14px}.channel-playlist-info h3{font-size:17px;font-weight:900;color:#4A0E0E;margin-bottom:6px}.channel-playlist-info p{font-size:13px;font-weight:700;color:#A66A55}
+@media(max-width:1300px){.channel-video-grid{grid-template-columns:repeat(3,1fr)}.channel-shorts-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:900px){.channel-viewer-main{margin-left:0;width:100%}.channel-backbar{padding:0 18px}.channel-content{padding:20px}.channel-header{grid-template-columns:1fr}.channel-avatar{width:130px;height:130px}.channel-name{font-size:32px}.channel-video-grid{grid-template-columns:repeat(2,1fr)}.channel-shorts-grid{grid-template-columns:repeat(2,1fr)}.channel-post-list{grid-template-columns:1fr}.channel-playlist-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 
@@ -1152,6 +1208,52 @@ body.story-open{overflow:hidden;}
 </div>
 </div>
 
+
+<div class="channel-viewer-bg" id="channelViewer">
+<div class="channel-viewer-inner">
+<main class="channel-viewer-main">
+<div class="channel-backbar">
+<button class="channel-back-btn" onclick="closeChannel()"><i class="fa-solid fa-arrow-left"></i> Back to Explore</button>
+<div class="channel-back-title" id="channelBackTitle">Creator Channel</div>
+</div>
+<section class="channel-content">
+<div class="channel-banner"><img id="channelBannerImg" src=""></div>
+<div class="channel-header">
+<img class="channel-avatar" id="channelAvatar" src="">
+<div>
+<div class="channel-title-row"><h1 class="channel-name" id="channelName">Creator</h1><i class="fa-solid fa-circle-check channel-verified"></i></div>
+<div class="channel-meta"><span id="channelHandle">@creator</span><span>•</span><span id="channelSubs">1M subscribers</span><span>•</span><span id="channelVideos">100 videos</span></div>
+<div class="channel-bio" id="channelBio">Creator bio</div>
+<div class="channel-link" id="channelLink">jiovibe.com/creator</div>
+<div class="channel-actions"><button class="channel-primary-btn" onclick="toggleChannelSubscribe(this)"><i class="fa-regular fa-bell"></i> Subscribe</button><button class="channel-secondary-btn" onclick="showChannelTabByName('posts')"><i class="fa-solid fa-users"></i> Community</button><button class="channel-secondary-btn" onclick="toast('Channel link copied')"><i class="fa-solid fa-share"></i> Share</button></div>
+</div>
+</div>
+<div class="channel-tabs">
+<button class="channel-tab-btn active" onclick="showChannelTab('channelHome', this)">Home</button>
+<button class="channel-tab-btn" onclick="showChannelTab('channelVideosTab', this)">Videos</button>
+<button class="channel-tab-btn" onclick="showChannelTab('channelShortsTab', this)">Shorts</button>
+<button class="channel-tab-btn" onclick="showChannelTab('channelLiveTab', this)">Live</button>
+<button class="channel-tab-btn" onclick="showChannelTab('channelPlaylistsTab', this)">Playlists</button>
+<button class="channel-tab-btn" onclick="showChannelTab('channelPostsTab', this)">Posts</button>
+<i class="fa-solid fa-magnifying-glass channel-tab-btn"></i>
+</div>
+<div class="channel-tab-panel active" id="channelHome">
+<div class="channel-section-head"><h2>Latest Videos</h2><button onclick="showChannelTabByName('videos')">View all</button></div>
+<div class="channel-video-grid" id="channelHomeVideos"></div>
+<div style="height:26px"></div>
+<div class="channel-section-head"><h2>Shorts</h2><button onclick="showChannelTabByName('shorts')">View all</button></div>
+<div class="channel-shorts-grid" id="channelHomeShorts"></div>
+</div>
+<div class="channel-tab-panel" id="channelVideosTab"><div class="channel-section-head"><h2>Videos</h2></div><div class="channel-video-grid" id="channelVideosGrid"></div></div>
+<div class="channel-tab-panel" id="channelShortsTab"><div class="channel-section-head"><h2>Shorts</h2></div><div class="channel-shorts-grid" id="channelShortsGrid"></div></div>
+<div class="channel-tab-panel" id="channelLiveTab"><div class="channel-section-head"><h2>Live</h2></div><div class="channel-video-grid" id="channelLiveGrid"></div></div>
+<div class="channel-tab-panel" id="channelPlaylistsTab"><div class="channel-section-head"><h2>Playlists</h2></div><div class="channel-playlist-grid" id="channelPlaylistsGrid"></div></div>
+<div class="channel-tab-panel" id="channelPostsTab"><div class="channel-section-head"><h2>Posts</h2></div><div class="channel-post-list" id="channelPostsGrid"></div></div>
+</section>
+</main>
+</div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1322,7 +1424,7 @@ ${live ? `<span class="live-tag">LIVE</span><span class="views">${item[2]}</span
 <img class="creator-logo" src="${profile}" alt="${item[1]}" onclick="event.preventDefault();event.stopPropagation();openStory(\`${item[1]}\`)" title="Open ${item[1]} story" onerror="this.onerror=null;this.src=fallbackProfile;">
 <div class="video-text">
 <h3>${item[0]}</h3>
-<p>${item[1]} <span class="orange-dot">●</span></p>
+<p><span class="creator-name-link" onclick="event.preventDefault();event.stopPropagation();openChannel(\`${item[1]}\`)" title="Open ${item[1]} channel">${item[1]}</span> <span class="orange-dot">●</span></p>
 <div class="stats">${stats}</div>
 </div>
 </div>
@@ -1712,6 +1814,61 @@ if(e.key === "ArrowRight") nextStory();
 if(e.key === "ArrowLeft") prevStory();
 if(e.key === "Escape") closeStoryViewer();
 });
+
+
+/* SAME PAGE CHANNEL VIEWER - ADDED */
+const channelDefaults = {
+"Ranveer Singh":{category:"Movies",handle:"@RanveerSingh",subs:"4.8M subscribers",videos:"126 videos",banner:"https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=1600&auto=format&fit=crop",bio:"High-energy creator moments, movie updates, live sessions, behind-the-scenes clips and fan-first stories.",link:"instagram.com/ranveersingh and 1 more link"},
+"Rohit Sharma":{category:"Sports",handle:"@RohitSharma",subs:"7.2M subscribers",videos:"94 videos",banner:"https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=1600&auto=format&fit=crop",bio:"Cricket practice, match moments, captain energy, fan sessions and sports lifestyle updates.",link:"jiovibe.com/rohitsharma"},
+"Total Gaming":{category:"Gaming",handle:"@TotalGaming",subs:"10.6M subscribers",videos:"342 videos",banner:"https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1600&auto=format&fit=crop",bio:"Gaming tournament streams, clutch highlights, squad gameplay and creator gaming community moments.",link:"jiovibe.com/totalgaming"},
+"Ashish Chanchlani":{category:"Comedy",handle:"@AshishChanchlani",subs:"6.4M subscribers",videos:"188 videos",banner:"https://images.unsplash.com/photo-1527224857830-43a7acc85260?q=80&w=1600&auto=format&fit=crop",bio:"Comedy scenes, sketches, reaction clips, behind-the-scenes madness and fun creator stories.",link:"jiovibe.com/ashishchanchlani"},
+"Arijit Singh":{category:"Music",handle:"@ArijitSingh",subs:"9.8M subscribers",videos:"156 videos",banner:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1600&auto=format&fit=crop",bio:"Studio melodies, live singing, music room moments and soulful fan-first performances.",link:"jiovibe.com/arijitsingh"},
+"Technical Guruji":{category:"Tech",handle:"@TechnicalGuruji",subs:"5.3M subscribers",videos:"271 videos",banner:"https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop",bio:"Tech gadget breakdowns, future tech explainers, live Q&A and smart creator tech updates.",link:"jiovibe.com/technicalguruji"},
+"Khan Sir":{category:"Education",handle:"@KhanSir",subs:"8.1M subscribers",videos:"220 videos",banner:"https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600&auto=format&fit=crop",bio:"Simple explanations, live classes, education tips and classroom-style learning content.",link:"jiovibe.com/khansir"},
+"Flying Beast":{category:"Lifestyle",handle:"@FlyingBeast",subs:"4.1M subscribers",videos:"204 videos",banner:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop",bio:"Travel, family moments, lifestyle vlogs, fitness stories and daily creator life.",link:"jiovibe.com/flyingbeast"},
+"Narendra Modi":{category:"Education",handle:"@NarendraModi",subs:"12.4M subscribers",videos:"310 videos",banner:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1600&auto=format&fit=crop",bio:"Public address highlights, major event moments, governance updates and national stories.",link:"jiovibe.com/narendramodi"},
+"JioVibe Official":{category:"Launch",handle:"@JioVibeOfficial",subs:"2.5M subscribers",videos:"82 videos",banner:"https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1600&auto=format&fit=crop",bio:"Official JioVibe launch updates, creator economy highlights and platform announcements.",link:"jiovibe.com/official"},
+"JioVibe Events":{category:"Events",handle:"@JioVibeEvents",subs:"1.8M subscribers",videos:"64 videos",banner:"https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1600&auto=format&fit=crop",bio:"Creator stage moments, live events, launch floor updates and community programs.",link:"jiovibe.com/events"},
+"JioVibe Studio":{category:"Studio",handle:"@JioVibeStudio",subs:"1.2M subscribers",videos:"57 videos",banner:"https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1600&auto=format&fit=crop",bio:"Behind-the-scenes production, creator studio workflows and content-making moments.",link:"jiovibe.com/studio"},
+"JioVibe AI":{category:"AI",handle:"@JioVibeAI",subs:"1.5M subscribers",videos:"73 videos",banner:"https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1600&auto=format&fit=crop",bio:"AI creator tools, video editing, thumbnails, shorts generation and monetization insights.",link:"jiovibe.com/ai"},
+"JioVibe Team":{category:"Business",handle:"@JioVibeTeam",subs:"980K subscribers",videos:"42 videos",banner:"https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop",bio:"Team notes, creator-first updates and the people building JioVibe for India.",link:"jiovibe.com/team"}
+};
+let activeChannelName = "Ranveer Singh";
+function getChannelData(name){
+const base = channelDefaults[name] || {category:"Creator",handle:"@"+(name||"Creator").replace(/\s+/g,""),subs:"1M subscribers",videos:"100 videos",banner:fallbackThumb,bio:"Creator videos, live streams, shorts and community updates on JioVibe.",link:"jiovibe.com/creator"};
+return {name:name||"JioVibe Creator",avatar:creatorProfiles[name]||fallbackProfile,...base};
+}
+function channelVideoCard(title,img,meta,duration,live=false){return `<div class="channel-video-card"><div class="channel-thumb"><img src="${img}">${live?`<span class="channel-live-badge">LIVE</span>`:`<span class="channel-duration">${duration}</span>`}</div><div class="channel-video-info"><div class="channel-video-title">${title}</div><div class="channel-video-meta">${meta}</div></div></div>`}
+function channelShortCard(title,img,meta){return `<div class="channel-short-card"><div class="channel-short-thumb"><img src="${img}"></div><div class="channel-short-info"><div class="channel-short-title">${title}</div><div class="channel-short-meta">${meta}</div></div></div>`}
+function buildChannelContent(name){
+const d=getChannelData(name); const thumb=(trendingData.find(x=>x[1]===name)||liveData.find(x=>x[1]===name)||[null,null,null,fallbackThumb])[3]||fallbackThumb; const gif=(trendingData.find(x=>x[1]===name)||liveData.find(x=>x[1]===name)||[null,null,null,null,fallbackGif])[4]||fallbackGif;
+const videos=[
+channelVideoCard(`${d.name} Live: ${d.category} Energy and Big Moments`,thumb,`Live now • ${d.subs.split(' ')[0]} watching`,"",true),
+channelVideoCard(`${d.category} Highlights and Fan Moments`,gif,`1.3M views • 1 day ago`,"7:44"),
+channelVideoCard(`Behind the Scenes with ${d.name}`,d.banner,`980K views • 2 days ago`,"9:21"),
+channelVideoCard(`${d.category} Talk and Creator Updates`,fallbackThumb,`760K views • 4 days ago`,"11:10")
+];
+const shorts=[
+channelShortCard(`Quick ${d.category} moment`,gif,"2.4M views"),channelShortCard(`${d.name} short vibe`,thumb,"1.8M views"),channelShortCard(`Fan reaction clip`,d.banner,"920K views"),channelShortCard(`Trending creator cut`,fallbackThumb,"880K views"),channelShortCard(`BTS mood`,gif,"640K views"),channelShortCard(`Stage entry`,thumb,"1.1M views")
+];
+const lives=[videos[0],channelVideoCard(`${d.name} Live Replay`,d.banner,"Streamed 1 day ago • 1.1M views","1:12:44"),channelVideoCard(`${d.category} Community Live`,fallbackThumb,"Streamed 3 days ago • 840K views","48:20"),channelVideoCard(`Creator Talk Live Replay`,thumb,"Streamed 6 days ago • 620K views","59:08")];
+const playlists=[`<div class="channel-playlist-card"><div class="channel-playlist-cover"><img src="${thumb}"><span class="channel-playlist-count">14 videos</span></div><div class="channel-playlist-info"><h3>${d.category} Moments</h3><p>Top videos and updates</p></div></div>`,`<div class="channel-playlist-card"><div class="channel-playlist-cover"><img src="${d.banner}"><span class="channel-playlist-count">9 videos</span></div><div class="channel-playlist-info"><h3>Live Events</h3><p>Streams and creator events</p></div></div>`,`<div class="channel-playlist-card"><div class="channel-playlist-cover"><img src="${gif}"><span class="channel-playlist-count">18 videos</span></div><div class="channel-playlist-info"><h3>Shorts Mix</h3><p>Fast creator clips</p></div></div>`];
+const posts=[`<div class="channel-post-card"><div class="channel-post-top"><img src="${d.avatar}"><div><strong>${d.name}</strong><span>2 hours ago</span></div></div><p>Big ${d.category.toLowerCase()} energy coming soon. Thank you for all the love on JioVibe.</p><img class="channel-post-media" src="${d.banner}"><div class="channel-post-actions"><span>Like 24K</span><span>Comment 1.2K</span><span>Share</span></div></div>`,`<div class="channel-post-card"><div class="channel-post-top"><img src="${d.avatar}"><div><strong>${d.name}</strong><span>1 day ago</span></div></div><p>Behind the scenes from today’s creator session. More clips dropping soon.</p><img class="channel-post-media" src="${thumb}"><div class="channel-post-actions"><span>Like 18K</span><span>Comment 760</span><span>Share</span></div></div>`];
+return {videos,shorts,lives,playlists,posts};
+}
+function openChannel(name){
+activeChannelName=name; const d=getChannelData(name); const c=buildChannelContent(name);
+document.getElementById("channelBackTitle").innerText = d.name + " Channel";
+document.getElementById("channelBannerImg").src=d.banner; document.getElementById("channelAvatar").src=d.avatar; document.getElementById("channelName").innerText=d.name; document.getElementById("channelHandle").innerText=d.handle; document.getElementById("channelSubs").innerText=d.subs; document.getElementById("channelVideos").innerText=d.videos; document.getElementById("channelBio").innerText=d.bio; document.getElementById("channelLink").innerText=d.link;
+document.getElementById("channelHomeVideos").innerHTML=c.videos.join(""); document.getElementById("channelHomeShorts").innerHTML=c.shorts.slice(0,6).join(""); document.getElementById("channelVideosGrid").innerHTML=c.videos.join(""); document.getElementById("channelShortsGrid").innerHTML=c.shorts.join(""); document.getElementById("channelLiveGrid").innerHTML=c.lives.join(""); document.getElementById("channelPlaylistsGrid").innerHTML=c.playlists.join(""); document.getElementById("channelPostsGrid").innerHTML=c.posts.join("");
+showChannelTab('channelHome', document.querySelector('.channel-tab-btn'));
+document.getElementById("channelViewer").classList.add("show"); document.body.classList.add("channel-open");
+}
+function closeChannel(){document.getElementById("channelViewer").classList.remove("show");document.body.classList.remove("channel-open");}
+function showChannelTab(tabId,btn){document.querySelectorAll('.channel-tab-panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.channel-tab-btn').forEach(t=>t.classList.remove('active'));document.getElementById(tabId).classList.add('active');if(btn)btn.classList.add('active');}
+function showChannelTabByName(name){const map={home:'channelHome',videos:'channelVideosTab',shorts:'channelShortsTab',live:'channelLiveTab',playlists:'channelPlaylistsTab',posts:'channelPostsTab'};const tabId=map[name];const btn=[...document.querySelectorAll('.channel-tab-btn')].find(b=>b.textContent.trim().toLowerCase()===name);if(tabId)showChannelTab(tabId,btn);}
+function toggleChannelSubscribe(btn){btn.classList.toggle('subscribed');btn.innerHTML=btn.classList.contains('subscribed')?'<i class="fa-solid fa-bell"></i> Subscribed':'<i class="fa-regular fa-bell"></i> Subscribe';btn.style.background=btn.classList.contains('subscribed')?'#4A0E0E':'#FF7A00';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape' && document.getElementById('channelViewer').classList.contains('show'))closeChannel();});
 
 </script>
 
