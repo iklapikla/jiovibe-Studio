@@ -661,6 +661,144 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 .caption-lang-pill{bottom:122px;font-size:10px}
 }
 
+
+/* ADD-ON: Currency, custom amount, glowing note support and Super Sticker */
+.note-chip{
+background:linear-gradient(145deg,#FFF2C8,#FFD86B 48%,#FFB321) !important;
+color:#5A2600 !important;
+border:1px solid rgba(255,122,0,.35);
+box-shadow:0 10px 24px rgba(255,180,0,.22), inset 0 1px 0 rgba(255,255,255,.55);
+position:relative;
+overflow:hidden;
+}
+.note-chip::after{
+content:"";position:absolute;inset:-40% -70%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);transform:rotate(18deg);animation:noteShine 2.8s ease-in-out infinite;
+}
+.note-chip i,.note-chip span{position:relative;z-index:1}
+.super-sticker-chip{
+background:#4A0E0E;color:#FFFFFF;border-radius:999px;padding:10px 16px;font-size:13px;font-weight:900;display:inline-flex;align-items:center;gap:8px;
+box-shadow:0 10px 24px rgba(74,14,14,.14);transition:.25s;
+}
+.super-sticker-chip:hover{background:#FF7A00;transform:translateY(-2px) scale(1.04);box-shadow:0 12px 28px rgba(255,122,0,.24)}
+.field-label{font-size:12px;font-weight:900;color:#7A3E2E;margin-bottom:-6px}
+.custom-amount{
+width:100%;height:48px;border:1px solid #FFD2B3;border-radius:14px;padding:0 14px;font-weight:900;outline:none;color:#4A0E0E;background:#FFFDFB;
+}
+.custom-amount:focus,.super-form select:focus,.super-form textarea:focus{border-color:#FF7A00;box-shadow:0 0 0 4px rgba(255,122,0,.12)}
+.note-amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.note-amount-btn{
+border-radius:14px !important;background:linear-gradient(145deg,#FFF6D8,#FFE07A) !important;color:#5A2600 !important;border:1px solid rgba(255,122,0,.28);
+box-shadow:0 9px 18px rgba(255,180,0,.15);position:relative;overflow:hidden;
+}
+.note-amount-btn.active{background:#FF7A00 !important;color:#FFFFFF !important;box-shadow:0 12px 26px rgba(255,122,0,.25)}
+.chat-super-note{
+background:linear-gradient(135deg,#FF7A00,#FF9F2F,#FF7A00) !important;
+border:2px solid #FFF1C6 !important;color:#FFFFFF !important;border-radius:18px !important;
+box-shadow:0 0 0 3px rgba(255,122,0,.16),0 0 26px rgba(255,122,0,.65),0 18px 42px rgba(255,122,0,.32) !important;
+animation:superPulseGlow 1.4s ease-in-out infinite !important;
+}
+.chat-super-note .amount{font-size:16px;text-shadow:0 2px 8px rgba(0,0,0,.18)}
+.chat-super-note p{font-size:14px !important}
+.super-live-chip strong{font-size:13px;color:#FFFFFF;font-weight:900}
+.sticker-modal{width:500px}
+.sticker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.sticker-item{
+height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-weight:900;transition:.25s;
+}
+.sticker-item span{font-size:34px}.sticker-item strong{font-size:13px}.sticker-item small{color:#FF7A00;font-weight:900}
+.sticker-item:hover{background:#FF7A00;color:#FFFFFF;transform:translateY(-4px) scale(1.04);box-shadow:0 16px 34px rgba(255,122,0,.25)}
+.sticker-item:hover small{color:#FFFFFF}
+@keyframes noteShine{0%,55%{transform:translateX(-100%) rotate(18deg)}80%,100%{transform:translateX(115%) rotate(18deg)}}
+@keyframes superPulseGlow{0%,100%{box-shadow:0 0 0 3px rgba(255,122,0,.16),0 0 22px rgba(255,122,0,.55),0 18px 42px rgba(255,122,0,.30)}50%{box-shadow:0 0 0 5px rgba(255,122,0,.20),0 0 38px rgba(255,210,100,.85),0 22px 52px rgba(255,122,0,.40)}}
+@media(max-width:900px){.note-amounts,.sticker-grid{grid-template-columns:repeat(2,1fr)}.sticker-modal{width:92vw}}
+
+
+/* USER REQUEST UPDATE: horizontal super support rail + bottom sticker + big sticker chat */
+.super-row{
+  overflow-x:auto;
+  overflow-y:hidden;
+  flex-wrap:nowrap !important;
+  scrollbar-width:thin;
+  scroll-behavior:smooth;
+}
+.super-row::-webkit-scrollbar{height:6px}
+.super-row::-webkit-scrollbar-thumb{background:#FFC08C;border-radius:999px}
+.super-row::-webkit-scrollbar-track{background:#FFF6ED;border-radius:999px}
+.super-row .super-chip,.super-row .super-sticker-chip,.super-row .super-live-chip{flex:0 0 auto;white-space:nowrap}
+.auto-super-chip{gap:8px}
+.auto-super-chip .mini-name{font-weight:900;color:inherit}
+.auto-super-chip .mini-sent{font-size:12px;opacity:.82;font-weight:900}
+.chat-input .sticker-input-btn{background:#4A0E0E;color:#FFFFFF;border-color:#4A0E0E}
+.chat-input .sticker-input-btn:hover{background:#FF7A00;border-color:#FF7A00;color:#FFFFFF}
+.sticker-chat-card{
+  background:linear-gradient(135deg,#4A0E0E,#FF7A00) !important;
+  border:2px solid #FFE4B8 !important;
+  color:#FFFFFF !important;
+  border-radius:20px !important;
+  box-shadow:0 0 0 3px rgba(255,122,0,.18),0 0 34px rgba(255,122,0,.6),0 18px 44px rgba(74,14,14,.28) !important;
+  animation:superPulseGlow 1.4s ease-in-out infinite !important;
+}
+.sticker-chat-card .amount,.sticker-chat-card strong,.sticker-chat-card p,.sticker-chat-card small{color:#FFFFFF !important}
+.sticker-chat-card img{border:2px solid rgba(255,255,255,.92)}
+.sticker-emoji-big{
+  font-size:64px;
+  line-height:1;
+  margin:6px 0 8px;
+  filter:drop-shadow(0 10px 14px rgba(0,0,0,.24));
+  animation:stickerBounce 1.15s ease-in-out infinite;
+}
+.sticker-label{font-size:13px !important;font-weight:900 !important;color:#FFFFFF !important}
+@keyframes stickerBounce{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-5px) scale(1.08)}}
+
+
+/* FINAL CLEAN FIX: clean Super Support / Sticker card, no left white line, spaced top chip */
+.super-live-chip{gap:10px !important; padding:11px 18px !important;}
+.super-live-chip strong{margin-right:2px;}
+.super-live-chip .sent-word{font-size:13px;font-weight:900;color:#FFFFFF;opacity:.92;margin:0 2px;}
+.super-live-chip #superLiveAmount{margin-left:2px;}
+.chat-super-note::before,
+.sticker-chat-card::before{display:none !important;}
+.chat-super-note,
+.sticker-chat-card{
+  grid-template-columns:46px 1fr 42px !important;
+  gap:14px !important;
+  align-items:start !important;
+  padding:15px 16px !important;
+  margin:2px 0 !important;
+  border-radius:22px !important;
+  overflow:hidden !important;
+  border:2px solid #FFE6C9 !important;
+  outline:3px solid rgba(255,122,0,.13) !important;
+}
+.chat-super-note img,
+.sticker-chat-card img{width:42px !important;height:42px !important;border-radius:50% !important;object-fit:cover !important;}
+.chat-super-note .amount,
+.sticker-chat-card .amount{
+  font-size:18px !important;
+  font-weight:900 !important;
+  margin-bottom:8px !important;
+  letter-spacing:-.2px !important;
+}
+.chat-super-note strong,
+.sticker-chat-card strong{font-size:15px !important;font-weight:900 !important;}
+.chat-super-note p{font-size:14px !important;line-height:1.35 !important;margin-top:8px !important;}
+.sticker-chat-card{
+  background:linear-gradient(135deg,#8B320F 0%,#B95018 45%,#FF7A00 100%) !important;
+  min-height:180px !important;
+  box-shadow:0 0 0 3px rgba(255,122,0,.12),0 16px 34px rgba(255,122,0,.32),0 0 28px rgba(255,122,0,.42) !important;
+}
+.chat-super-note{
+  min-height:126px !important;
+  box-shadow:0 0 0 3px rgba(255,122,0,.12),0 14px 30px rgba(255,122,0,.30),0 0 26px rgba(255,122,0,.42) !important;
+}
+.sticker-emoji-big{
+  font-size:56px !important;
+  margin:10px 0 10px !important;
+}
+.sticker-label{font-size:14px !important;margin-top:0 !important;}
+.super-row{padding-bottom:13px !important;}
+.super-row .super-chip{display:inline-flex;align-items:center;gap:9px;}
+
 </style>
 </head>
 
@@ -851,10 +989,11 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 </div>
 
 <div class="super-row">
-<button class="super-chip auto-super-chip" data-hide-after="60000" onclick="openSuper(2000)">₹2,000</button>
-<button class="super-chip auto-super-chip" data-hide-after="120000" onclick="openSuper(1000)">₹1,000</button>
-<button class="super-chip auto-super-chip" data-hide-after="180000" onclick="openSuper(500)">₹500</button>
-<div class="super-live-chip" id="superLiveChip"><i class="fa-solid fa-bolt"></i> New Super Support <span id="superLiveAmount">₹0</span></div>
+<button class="super-chip note-chip auto-super-chip" data-hide-after="60000" onclick="openSuper(2000)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Aman</span><span class="mini-sent">sent</span><span>₹2,000</span></button>
+<button class="super-chip note-chip auto-super-chip" data-hide-after="120000" onclick="openSuper(1000)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Priya</span><span class="mini-sent">sent</span><span>₹1,000</span></button>
+<button class="super-chip note-chip auto-super-chip" data-hide-after="180000" onclick="openSuper(500)"><i class="fa-solid fa-bolt"></i><span class="mini-name">Rahul</span><span class="mini-sent">sent</span><span>₹500</span></button>
+<button class="super-sticker-chip" onclick="openSticker()"><i class="fa-solid fa-face-grin-stars"></i> Super Sticker</button>
+<div class="super-live-chip" id="superLiveChip"><i class="fa-solid fa-bolt"></i><strong id="superLiveName">Trupti Latur</strong><span class="sent-word">sent</span><span id="superLiveAmount">₹0</span></div>
 </div>
 <div class="super-support-total" id="superSupportTotal">Super Support received: <span id="superSupportAmount">₹0</span></div>
 
@@ -863,7 +1002,8 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 <div class="chat-input">
 <input id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendChat()">
 <button class="round-btn"><i class="fa-regular fa-face-smile"></i></button>
-<button class="round-btn" onclick="openSuper(500)"><i class="fa-solid fa-indian-rupee-sign"></i></button>
+<button class="round-btn" onclick="openSuper(500)" title="Super Support"><i class="fa-solid fa-indian-rupee-sign"></i></button>
+<button class="round-btn sticker-input-btn" onclick="openSticker()" title="Super Sticker"><i class="fa-solid fa-face-grin-stars"></i></button>
 <button class="round-btn send-btn" onclick="sendChat()"><i class="fa-solid fa-paper-plane"></i></button>
 </div>
 </aside>
@@ -951,14 +1091,27 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 <div class="modal">
 <button class="close-btn" onclick="closeSuper()"><i class="fa-solid fa-xmark"></i></button>
 <h2>Super Support</h2>
-<div class="super-support-title"><i class="fa-solid fa-bolt"></i> Highlight your message in Top Chat</div>
+<div class="super-support-title"><i class="fa-solid fa-bolt"></i> Highlight your message in Top Chat like a glowing note</div>
 
 <div class="super-form">
-<div class="amounts">
-<button class="amount-btn" onclick="selectAmount(500)">₹500</button>
-<button class="amount-btn" onclick="selectAmount(1000)">₹1,000</button>
-<button class="amount-btn" onclick="selectAmount(2000)">₹2,000</button>
+<label class="field-label">Choose currency</label>
+<select id="currencySelect" onchange="updateCurrency()">
+<option value="INR" data-symbol="₹">INR ₹</option>
+<option value="USD" data-symbol="$">USD $</option>
+<option value="EUR" data-symbol="€">EUR €</option>
+<option value="GBP" data-symbol="£">GBP £</option>
+</select>
+
+<label class="field-label">Quick amount</label>
+<div class="amounts note-amounts" id="amountButtons">
+<button class="amount-btn note-amount-btn" onclick="selectAmount(100)">₹100</button>
+<button class="amount-btn note-amount-btn" onclick="selectAmount(500)">₹500</button>
+<button class="amount-btn note-amount-btn" onclick="selectAmount(1000)">₹1,000</button>
+<button class="amount-btn note-amount-btn" onclick="selectAmount(2000)">₹2,000</button>
 </div>
+
+<label class="field-label">Or enter custom amount</label>
+<input class="custom-amount" id="customAmount" type="number" min="1" placeholder="Enter amount" oninput="setCustomAmount()">
 
 <textarea id="superMessage" placeholder="Add your Super Support message..."></textarea>
 
@@ -970,6 +1123,22 @@ to{opacity:1;transform:translateX(-50%) translateY(0)}
 </select>
 
 <button class="modal-btn" onclick="sendSuper()">Pay & Send Super Support</button>
+</div>
+</div>
+</div>
+
+
+<!-- SUPER STICKER MODAL -->
+<div class="overlay" id="stickerOverlay">
+<div class="modal sticker-modal">
+<button class="close-btn" onclick="closeSticker()"><i class="fa-solid fa-xmark"></i></button>
+<h2>Super Sticker</h2>
+<div class="super-support-title"><i class="fa-solid fa-face-grin-stars"></i> Send a fun sticker with highlighted support</div>
+<div class="sticker-grid">
+<button class="sticker-item" onclick="sendSticker('🔥',300)"><span>🔥</span><strong>Fire Vibe</strong><small>₹300</small></button>
+<button class="sticker-item" onclick="sendSticker('❤️',500)"><span>❤️</span><strong>Love</strong><small>₹500</small></button>
+<button class="sticker-item" onclick="sendSticker('⭐',700)"><span>⭐</span><strong>Star Fan</strong><small>₹700</small></button>
+<button class="sticker-item" onclick="sendSticker('🚀',1000)"><span>🚀</span><strong>Boost</strong><small>₹1,000</small></button>
 </div>
 </div>
 </div>
@@ -1038,7 +1207,7 @@ div.className=superAmount?"msg super-msg":"msg";
 div.innerHTML=`
 <img src="${img}">
 <div>
-${superAmount?`<div class="amount">Super Support ₹${superAmount}</div>`:""}
+${superAmount?`<div class="amount">Super Support ${superAmount}</div>`:""}
 <strong>${name}</strong>
 <p>${text}</p>
 </div>
@@ -1047,6 +1216,24 @@ box.appendChild(div);
 while(box.children.length > 35){
 box.removeChild(box.firstElementChild);
 }
+box.scrollTop=box.scrollHeight;
+}
+
+function addStickerChat(name,sticker,label,img,superAmount){
+const box=document.getElementById("chatMessages");
+const div=document.createElement("div");
+div.className="msg super-msg sticker-chat-card";
+div.innerHTML=`
+<img src="${img}">
+<div>
+<div class="amount">Super Sticker ${superAmount}</div>
+<strong>${name}</strong>
+<div class="sticker-emoji-big">${sticker}</div>
+<p class="sticker-label">${label}</p>
+</div>
+<small>Now</small>`;
+box.appendChild(div);
+while(box.children.length > 35){box.removeChild(box.firstElementChild);}
 box.scrollTop=box.scrollHeight;
 }
 
@@ -1069,10 +1256,19 @@ input.value="";
 
 /* Super Support */
 let selectedAmount=500;
+let selectedCurrency="INR";
+let selectedSymbol="₹";
 let totalSuperSupport=0;
 
+function formatSupportAmount(amount,symbol=selectedSymbol){
+return symbol + Number(amount || 0).toLocaleString("en-IN");
+}
+
 function openSuper(amount){
-selectedAmount=amount;
+selectedAmount=amount || selectedAmount;
+const custom=document.getElementById("customAmount");
+if(custom) custom.value="";
+updateCurrency();
 document.getElementById("superOverlay").classList.add("show");
 updateAmountButtons();
 }
@@ -1081,15 +1277,43 @@ function closeSuper(){
 document.getElementById("superOverlay").classList.remove("show");
 }
 
-function selectAmount(amount){
-selectedAmount=amount;
+function updateCurrency(){
+const select=document.getElementById("currencySelect");
+if(select){
+selectedCurrency=select.value;
+selectedSymbol=select.options[select.selectedIndex].dataset.symbol || "₹";
+}
+const defaults = selectedCurrency === "INR" ? [100,500,1000,2000] : [5,10,25,50];
+document.querySelectorAll(".note-amount-btn").forEach((btn,index)=>{
+const value=defaults[index] || defaults[0];
+btn.innerText=formatSupportAmount(value,selectedSymbol);
+btn.setAttribute("onclick","selectAmount("+value+")");
+});
+if(!defaults.includes(selectedAmount)) selectedAmount=defaults[1] || defaults[0];
 updateAmountButtons();
+}
+
+function selectAmount(amount){
+selectedAmount=Number(amount) || 1;
+const custom=document.getElementById("customAmount");
+if(custom) custom.value="";
+updateAmountButtons();
+}
+
+function setCustomAmount(){
+const custom=document.getElementById("customAmount");
+const value=Number(custom.value);
+if(value > 0){
+selectedAmount=value;
+document.querySelectorAll(".amount-btn").forEach(btn=>btn.classList.remove("active"));
+}
 }
 
 function updateAmountButtons(){
 document.querySelectorAll(".amount-btn").forEach(btn=>{
 btn.classList.remove("active");
-if(btn.innerText.replace(",","").includes(selectedAmount)) btn.classList.add("active");
+const text=btn.innerText.replace(/[^0-9]/g,"");
+if(Number(text) === Number(selectedAmount)) btn.classList.add("active");
 });
 }
 
@@ -1112,11 +1336,13 @@ setTimeout(()=>fadeAndRemoveSuperChip(chip), delay);
 });
 }
 
-function showTopSuperSupport(amount){
+function showTopSuperSupport(name,amount,symbol){
 const chip=document.getElementById("superLiveChip");
 const amountText=document.getElementById("superLiveAmount");
+const nameText=document.getElementById("superLiveName");
 if(!chip || !amountText) return;
-amountText.innerText = "₹" + amount.toLocaleString("en-IN");
+if(nameText) nameText.innerText = name;
+amountText.innerText = formatSupportAmount(amount,symbol);
 chip.style.display="inline-flex";
 chip.classList.remove("super-fading");
 chip.classList.add("show");
@@ -1127,18 +1353,51 @@ fadeAndRemoveSuperChip(chip);
 }
 
 startDefaultSuperChipTimers();
+setTimeout(()=>{
+  const totalBox=document.getElementById("superSupportTotal");
+  const totalAmt=document.getElementById("superSupportAmount");
+  if(totalBox && totalAmt){ totalSuperSupport=1000; totalBox.classList.add("show"); totalAmt.innerText="₹1,000"; }
+  showTopSuperSupport("Priya",1000,"₹");
+},500);
 
 function sendSuper(){
 const msg=document.getElementById("superMessage").value.trim() || "Super support for this live!";
-addChat("You",msg,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",selectedAmount);
-totalSuperSupport += selectedAmount;
+const displayAmount=formatSupportAmount(selectedAmount,selectedSymbol);
+addChat("Trupti Latur",msg,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",displayAmount);
+const lastMsg=document.querySelector("#chatMessages .msg:last-child");
+if(lastMsg) lastMsg.classList.add("chat-super-note");
+totalSuperSupport += selectedCurrency === "INR" ? selectedAmount : 0;
 document.getElementById("superSupportTotal").classList.add("show");
 document.getElementById("superSupportAmount").innerText = "₹" + totalSuperSupport.toLocaleString("en-IN");
-showTopSuperSupport(selectedAmount);
+showTopSuperSupport("Trupti Latur",selectedAmount,selectedSymbol);
 document.getElementById("superMessage").value="";
+const custom=document.getElementById("customAmount");
+if(custom) custom.value="";
 closeSuper();
 showToast("Super Support sent and highlighted in chat");
 }
+
+function openSticker(){
+document.getElementById("stickerOverlay").classList.add("show");
+}
+
+function closeSticker(){
+document.getElementById("stickerOverlay").classList.remove("show");
+}
+
+function sendSticker(sticker,amount){
+const stickerNames={"🔥":"Fire Vibe","❤️":"Love Support","⭐":"Star Fan","🚀":"Creator Boost"};
+const label=stickerNames[sticker] || "Super Sticker";
+const displayAmount="₹" + amount.toLocaleString("en-IN");
+addStickerChat("Trupti Latur",sticker,label,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",displayAmount);
+totalSuperSupport += amount;
+document.getElementById("superSupportTotal").classList.add("show");
+document.getElementById("superSupportAmount").innerText = "₹" + totalSuperSupport.toLocaleString("en-IN");
+showTopSuperSupport("Trupti Latur",amount,"₹");
+closeSticker();
+showToast("Super Sticker sent and highlighted in chat");
+}
+
 
 
 
