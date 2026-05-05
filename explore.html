@@ -1211,11 +1211,41 @@ body.channel-open{overflow:hidden;}
 
 <div class="channel-viewer-bg" id="channelViewer">
 <div class="channel-viewer-inner">
+<aside class="sidebar">
+<a href="home.html" class="logo">
+<div class="logo-circle">Jio</div>
+<div class="logo-text">Vibe</div>
+</a>
+<nav class="menu">
+<a href="home.html" class="menu-item"><i class="fa-solid fa-house"></i> Home</a>
+<a href="#" class="menu-item active" onclick="event.preventDefault();closeChannel()"><i class="fa-regular fa-compass"></i> Explore</a>
+<a href="live.html" class="menu-item"><i class="fa-solid fa-tower-broadcast"></i> Live</a>
+<a href="video.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Video</a>
+<a href="shorts.html" class="menu-item"><i class="fa-solid fa-bolt"></i> Shorts</a>
+<a href="subscriptions.html" class="menu-item"><i class="fa-solid fa-list"></i> Subscriptions</a>
+<a href="history.html" class="menu-item"><i class="fa-solid fa-clock"></i> Library</a>
+</nav>
+</aside>
 <main class="channel-viewer-main">
-<div class="channel-backbar">
-<button class="channel-back-btn" onclick="closeChannel()"><i class="fa-solid fa-arrow-left"></i> Back to Explore</button>
-<div class="channel-back-title" id="channelBackTitle">Creator Channel</div>
+<header class="topbar">
+<div class="search">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input type="text" placeholder="Search creators, videos, topics..." />
 </div>
+<div class="top-actions">
+<div class="bell"><i class="fa-regular fa-bell"></i></div>
+<div class="profile" onclick="toggleChannelDropdown()">
+<img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg">
+<span>Trupti Latur</span>
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+<div class="dropdown" id="channelDropdown">
+<a href="home.html">Home</a>
+<a href="index.html">Dashboard</a>
+<a href="logout.html">Sign out</a>
+</div>
+</div>
+</header>
 <section class="channel-content">
 <div class="channel-banner"><img id="channelBannerImg" src=""></div>
 <div class="channel-header">
@@ -1261,9 +1291,15 @@ function toggleDropdown(){
 document.getElementById("dropdown").classList.toggle("show");
 }
 
+function toggleChannelDropdown(){
+document.getElementById("channelDropdown").classList.toggle("show");
+}
+
 document.addEventListener("click",function(e){
 if(!e.target.closest(".profile")){
 document.getElementById("dropdown").classList.remove("show");
+const channelDropdown = document.getElementById("channelDropdown");
+if(channelDropdown) channelDropdown.classList.remove("show");
 }
 });
 
@@ -1858,7 +1894,7 @@ return {videos,shorts,lives,playlists,posts};
 }
 function openChannel(name){
 activeChannelName=name; const d=getChannelData(name); const c=buildChannelContent(name);
-document.getElementById("channelBackTitle").innerText = d.name + " Channel";
+
 document.getElementById("channelBannerImg").src=d.banner; document.getElementById("channelAvatar").src=d.avatar; document.getElementById("channelName").innerText=d.name; document.getElementById("channelHandle").innerText=d.handle; document.getElementById("channelSubs").innerText=d.subs; document.getElementById("channelVideos").innerText=d.videos; document.getElementById("channelBio").innerText=d.bio; document.getElementById("channelLink").innerText=d.link;
 document.getElementById("channelHomeVideos").innerHTML=c.videos.join(""); document.getElementById("channelHomeShorts").innerHTML=c.shorts.slice(0,6).join(""); document.getElementById("channelVideosGrid").innerHTML=c.videos.join(""); document.getElementById("channelShortsGrid").innerHTML=c.shorts.join(""); document.getElementById("channelLiveGrid").innerHTML=c.lives.join(""); document.getElementById("channelPlaylistsGrid").innerHTML=c.playlists.join(""); document.getElementById("channelPostsGrid").innerHTML=c.posts.join("");
 showChannelTab('channelHome', document.querySelector('.channel-tab-btn'));
