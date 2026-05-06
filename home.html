@@ -823,6 +823,35 @@ box-shadow:0 12px 28px rgba(255,122,0,.28);
 }
 @media(max-height:760px){.sidebar-subscriptions{margin-top:14px;padding-top:12px}.sidebar-sub-list{gap:3px}.sidebar-sub-item{padding:7px 8px}.sidebar-sub-head{font-size:15px;padding-bottom:7px}}
 
+
+
+/* ONBOARDING POPUP FLOW - ADDED */
+.onboarding-popup-bg{
+position:fixed;inset:0;z-index:99999;background:rgba(42,10,10,.62);display:none;align-items:center;justify-content:center;padding:22px;backdrop-filter:blur(10px);
+}
+.onboarding-popup-bg.show{display:flex;animation:obFade .22s ease both;}
+@keyframes obFade{from{opacity:0}to{opacity:1}}
+body.onboarding-open{overflow:hidden!important;}
+.onboarding-popup{
+width:min(1380px,96vw);max-height:92vh;background:var(--cream);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 34px 100px rgba(42,10,10,.32);position:relative;
+}
+.ob-screen{display:none;max-height:92vh;overflow:auto;}
+.ob-screen.active{display:block;animation:obSlide .24s ease both;}
+@keyframes obSlide{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.ob-top{display:flex;align-items:center;justify-content:space-between;padding:26px 32px 0;gap:16px;}
+.ob-logo{display:flex;align-items:center;gap:8px}.ob-logo .logo-circle{width:50px;height:50px;font-size:23px}.ob-logo .logo-text{font-size:31px;margin:0;color:var(--dark)}
+.ob-skip{height:48px;padding:0 20px;border-radius:16px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:950;color:var(--brown);box-shadow:0 10px 24px rgba(74,14,14,.08)}
+.ob-skip:hover{background:var(--orange);color:#fff;border-color:var(--orange)}
+.ob-progress{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:20px 32px 22px}.ob-bar{height:7px;background:#FFE1C9;border-radius:999px;overflow:hidden}.ob-bar span{display:block;height:100%;width:0;background:var(--orange);border-radius:999px;transition:.3s}.ob-bar.active span{width:100%}
+.ob-login-wrap{display:grid;grid-template-columns:1.08fr .92fr;min-height:680px;background:#fff;}
+.ob-login-left{position:relative;background:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;color:#fff;padding:48px;min-height:620px;}
+.ob-login-left:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,10,10,.35),rgba(42,10,10,.15),rgba(42,10,10,.74))}.ob-login-left>*{position:relative;z-index:2}.ob-login-left .logo-text{color:#fff}.ob-login-hero{position:absolute;left:48px;right:48px;bottom:44px;z-index:3}.ob-kicker{font-size:15px;font-weight:950;letter-spacing:.06em;color:#FFC089;text-transform:uppercase;margin-bottom:16px}.ob-title{font-size:50px;line-height:1.05;font-weight:950;letter-spacing:-.06em;max-width:560px}.ob-sub{font-size:17px;line-height:1.5;font-weight:800;color:rgba(255,255,255,.92);max-width:620px;margin-top:20px}
+.ob-login-right{display:flex;align-items:center;justify-content:center;padding:38px;background:linear-gradient(135deg,#FFF6ED,#FFE6D1)}.ob-login-card{width:100%;max-width:520px;background:#fff;border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:0 28px 80px rgba(74,14,14,.12)}.ob-login-card h1{font-size:33px;font-weight:950;letter-spacing:-.05em;margin-bottom:12px}.ob-login-card p{font-size:14px;font-weight:800;color:var(--muted);line-height:1.45;margin-bottom:24px}.ob-field-label{display:block;font-size:13px;font-weight:950;color:var(--brown);margin-bottom:9px}.ob-input{height:58px;width:100%;border:1px solid var(--line);border-radius:18px;background:#fff;outline:none;padding:0 18px;color:var(--dark);font-size:15px;font-weight:800}.ob-input:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.10)}.ob-note{margin-top:18px;padding:15px;border-radius:16px;background:#FFF8F1;border:1px solid #FFE0CC;color:var(--brown);font-size:13px;font-weight:850;line-height:1.45}
+.ob-primary{height:58px;min-width:180px;padding:0 26px;border-radius:19px;background:linear-gradient(135deg,var(--orange),#FF9638);color:#fff;font-size:15px;font-weight:950;display:inline-flex;align-items:center;justify-content:center;gap:11px;box-shadow:0 18px 40px rgba(255,122,0,.30)}.ob-primary:hover{transform:translateY(-2px);box-shadow:0 22px 50px rgba(255,122,0,.38)}
+.ob-page{padding:0 32px 32px}.ob-card{background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:28px;box-shadow:0 24px 70px rgba(74,14,14,.10);overflow:hidden}.ob-inner{padding:30px 30px 24px}.ob-tag{display:inline-flex;align-items:center;gap:9px;height:32px;padding:0 13px;border-radius:999px;background:#FFF3E8;border:1px solid #FFD7BC;color:var(--orange);font-size:11px;font-weight:950;margin-bottom:18px}.ob-h1{font-size:40px;line-height:1.04;font-weight:950;letter-spacing:-.06em;margin-bottom:12px}.ob-copy{font-size:15px;font-weight:800;line-height:1.45;color:var(--muted);max-width:760px}.ob-count{font-size:14px;font-weight:950;color:var(--brown)}.ob-head-row{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.ob-bottom-actions{display:flex;justify-content:flex-end;margin-top:24px}.ob-lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}.ob-lang-card{height:100px;border-radius:21px;background:#FFF9F4;border:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 20px;transition:.25s}.ob-lang-card:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(74,14,14,.10)}.ob-lang-card.selected{border-color:var(--orange);background:#FFF2E5;box-shadow:0 18px 44px rgba(255,122,0,.16)}.ob-lang-name{font-size:19px;font-weight:950;letter-spacing:-.04em}.ob-lang-sub{font-size:12px;font-weight:850;color:var(--muted);margin-top:6px}.ob-check{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--brown);font-size:12px}.selected .ob-check{background:var(--orange);border-color:var(--orange);color:#fff}.ob-ai-shell{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}.ob-panel{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 10px 26px rgba(74,14,14,.05)}.ob-panel .panel-head{padding:16px 20px 12px}.ob-panel .left-body,.ob-panel .ai-body{padding:14px 18px 16px}.ob-panel .choice-card{height:78px!important}.ob-panel .ai-chat{height:200px!important;min-height:200px!important;max-height:200px!important;flex-basis:200px!important}.ob-panel .selection-note{animation:obAttention 1.8s ease-in-out infinite;position:relative;overflow:hidden}.ob-panel .selection-note:before{content:"";position:absolute;top:0;left:-85%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-18deg);animation:obShine 2.4s ease-in-out infinite}.ob-panel .selection-note:hover{animation-play-state:paused}@keyframes obAttention{0%,100%{transform:scale(1);box-shadow:0 14px 30px rgba(255,122,0,.35),0 0 0 0 rgba(255,122,0,.40)}50%{transform:scale(1.012);box-shadow:0 20px 46px rgba(255,122,0,.48),0 0 0 9px rgba(255,122,0,.10)}}@keyframes obShine{0%{left:-85%}45%,100%{left:130%}}
+@media(max-width:1200px){.ob-login-wrap{grid-template-columns:1fr}.ob-login-left{min-height:430px}.ob-ai-shell{grid-template-columns:1fr}.ob-lang-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.onboarding-popup-bg{padding:0}.onboarding-popup{width:100vw;max-height:100vh;height:100vh;border-radius:0}.ob-screen{max-height:100vh}.ob-login-wrap{min-height:100vh}.ob-login-left{padding:28px;min-height:360px}.ob-login-hero{left:28px;right:28px}.ob-title{font-size:36px}.ob-lang-grid{grid-template-columns:1fr}.ob-h1{font-size:32px}.ob-ai-shell .category-select-grid{grid-template-columns:repeat(2,1fr)}.ob-top,.ob-page{padding-left:18px;padding-right:18px}.ob-progress{margin-left:18px;margin-right:18px}}
+
 </style>
 </head>
 <body>
@@ -854,7 +883,7 @@ box-shadow:0 12px 28px rgba(255,122,0,.28);
 <button class="category-btn active"><i class="fa-solid fa-border-all"></i> All</button><a href="gaming.html" class="category-btn"><i class="fa-solid fa-gamepad"></i> Gaming</a><a href="music.html" class="category-btn"><i class="fa-solid fa-music"></i> Music</a><a href="comedy.html" class="category-btn"><i class="fa-regular fa-face-smile"></i> Comedy</a><a href="tech.html" class="category-btn"><i class="fa-solid fa-microchip"></i> Tech</a><a href="education.html" class="category-btn"><i class="fa-solid fa-graduation-cap"></i> Education</a><a href="lifestyle.html" class="category-btn"><i class="fa-solid fa-mug-hot"></i> Lifestyle</a><a href="movies.html" class="category-btn"><i class="fa-solid fa-clapperboard"></i> Movies</a><a href="sports.html" class="category-btn"><i class="fa-solid fa-trophy"></i> Sports</a><a href="news.html" class="category-btn"><i class="fa-solid fa-newspaper"></i> News</a><a href="food.html" class="category-btn"><i class="fa-solid fa-utensils"></i> Food</a><a href="travel.html" class="category-btn"><i class="fa-solid fa-plane"></i> Travel</a><a href="fitness.html" class="category-btn"><i class="fa-solid fa-dumbbell"></i> Fitness</a>
 </div>
 <section class="ai-vibe-area" id="aiVibeArea"><div class="ai-vibe-title"><h1>AI Vibe</h1><p>Choose your vibe or chat with AI to open related videos, live streams, shorts, or AI Studio actions.</p></div><div class="ai-vibe-shell"><section class="panel"><div class="panel-head"><div class="kicker"><i class="fa-solid fa-layer-group"></i> Personalize your feed</div><h2>Choose your vibe</h2><p>Select one or multiple categories. Your feed will mix related videos, live streams and shorts.</p></div><div class="left-body"><div class="category-select-grid" id="categorySelectGrid"></div><button class="selection-note" id="selectionNote" onclick="showVibeResults()">Please select one or more categories. Then tap this box to continue.</button></div></section><section class="panel"><div class="panel-head"><div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Mood Assist</div><h2>What are you into today?</h2><p>Pick a mood or type like a real chat. AI will suggest the right category, creator content, or AI Studio action.</p></div><div class="ai-body"><div><div class="mood-title">Choose a mood</div><div class="mood-sub">Use quick moods for meeting demo, or select a Google-style suggestion from the input.</div></div><div class="mood-chips"><button class="mood-chip" onclick="useMood('Happy')"><i class="fa-regular fa-face-smile"></i> Happy</button><button class="mood-chip" onclick="useMood('Sad')"><i class="fa-regular fa-face-frown"></i> Sad</button><button class="mood-chip" onclick="useMood('Breakup')"><i class="fa-solid fa-heart-crack"></i> Breakup</button><button class="mood-chip" onclick="useMood('Motivated')"><i class="fa-solid fa-bolt"></i> Motivated</button><button class="mood-chip" onclick="useMood('Chill')"><i class="fa-solid fa-mug-hot"></i> Chill</button><button class="mood-chip" onclick="useMood('Funny')"><i class="fa-regular fa-face-laugh"></i> Funny</button><button class="mood-chip" onclick="useMood('Romantic')"><i class="fa-solid fa-heart"></i> Romantic</button><button class="mood-chip" onclick="useMood('Learning')"><i class="fa-solid fa-book-open"></i> Learning</button><button class="mood-chip" onclick="useMood('Gaming mood')"><i class="fa-solid fa-gamepad"></i> Gaming</button><button class="mood-chip" onclick="useMood('Fitness energy')"><i class="fa-solid fa-dumbbell"></i> Fitness</button></div><div class="ai-chat" id="aiChat"><div class="msg bot">Hi, tell me your mood. For example: “I am sad”, “I want funny content”, “I need editing tips”, or “show me music videos”.</div></div><div class="ai-input-wrap"><input class="ai-input" id="aiInput" onfocus="showAISuggestions()" oninput="filterAISuggestions()" onkeydown="if(event.key==='Enter') sendAI()" placeholder="Type or select a suggestion..."><button class="ask-btn" onclick="sendAI()">Send <i class="fa-solid fa-arrow-right"></i></button><div class="ai-suggestions" id="aiSuggestions"></div></div></div></section></div><div class="ai-promo-box"><div class="ai-promo-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Creator Tools</div><div class="ai-promo-copy" id="aiPromoCopy"><b>AI Video Editor:</b> Auto edit your videos with smart cuts, transitions, effects and enhancements.</div><button class="ai-promo-go" onclick="location.href='ai-studio.html'">Go <i class="fa-solid fa-arrow-right"></i></button></div></section>
-<section class="vibe-results" id="vibeResults"><div class="results-head"><div><div class="kicker"><i class="fa-solid fa-sliders"></i> Personalized Feed</div><h2 id="resultTitle">Content Matching Your Vibe</h2><p id="resultSub">Side scroll videos and shorts matched with your selected categories.</p></div><button class="change-vibe" onclick="scrollToVibe()"><i class="fa-solid fa-sliders"></i> Change Vibe</button></div><div class="rail-block"><h3 class="rail-title">Videos & Live Streams Matching Your Vibe</h3><div class="rail-wrap" id="videoRailWrap"><button class="rail-action left" onclick="scrollRail('videoRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="videoRail"></div><button class="rail-action right" onclick="scrollRail('videoRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more videos.</div></div><div class="rail-block"><h3 class="rail-title">Shorts Matching Your Vibe</h3><div class="rail-wrap"><button class="rail-action left" onclick="scrollRail('shortsRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="shortsRail"></div><button class="rail-action right" onclick="scrollRail('shortsRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more shorts.</div></div></section>
+<section class="vibe-results" id="vibeResults"><div class="results-head"><div><div class="kicker"><i class="fa-solid fa-sliders"></i> Personalized Feed</div><h2 id="resultTitle">Content Matching Your Vibe</h2><p id="resultSub">Side scroll videos and shorts matched with your selected categories.</p></div><button class="change-vibe" onclick="openOnboardingVibeOnly()"><i class="fa-solid fa-sliders"></i> Change Vibe</button></div><div class="rail-block"><h3 class="rail-title">Videos & Live Streams Matching Your Vibe</h3><div class="rail-wrap" id="videoRailWrap"><button class="rail-action left" onclick="scrollRail('videoRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="videoRail"></div><button class="rail-action right" onclick="scrollRail('videoRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more videos.</div></div><div class="rail-block"><h3 class="rail-title">Shorts Matching Your Vibe</h3><div class="rail-wrap"><button class="rail-action left" onclick="scrollRail('shortsRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="shortsRail"></div><button class="rail-action right" onclick="scrollRail('shortsRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more shorts.</div></div></section>
 <div class="banner-wrap"><div class="banner-track" id="bannerTrack"><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Creator Story</div><h1>Creator Spotlight</h1><p>Meet new creators and their powerful stories.</p><a href="watch-featured.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Live Now</div><h1>Big Live Moments</h1><p>Watch creators going live with trending events.</p><a href="watch-live.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Gaming</div><h1>Gaming Highlights</h1><p>Explore fresh gaming clips, live streams and shorts.</p><a href="gaming.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div></div><div class="banner-dots" id="bannerDots"><span class="active" onclick="goToSlide(0)"></span><span onclick="goToSlide(1)"></span><span onclick="goToSlide(2)"></span></div></div>
 <section><div class="section-head"><h2>Trending Now 🔥</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="trendingGrid"></div></section><div class="section-separator"></div><section><div class="section-head"><h2>Recommended for You ✨</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="recommendedGrid"></div></section>
 <div class="creator-stories-section">
@@ -1056,6 +1085,31 @@ Story image se AI ne matching products detect kiye hain. Buy button se direct Ji
 
 <div class="toast" id="toast"></div>
 <button class="vibe-float-btn" id="vibeFloatBtn" title="Open AI Vibe"><span class="mini-label">AI Vibe</span><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+
+
+<!-- ONBOARDING POPUP FLOW - ADDED -->
+<div class="onboarding-popup-bg" id="onboardingPopup">
+  <div class="onboarding-popup">
+    <section class="ob-screen active" id="obLoginScreen">
+      <div class="ob-login-wrap">
+        <div class="ob-login-left">
+          <div class="ob-logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
+          <div class="ob-login-hero"><div class="ob-kicker">Personalized Creator Feed</div><div class="ob-title">Start with your vibe. Land directly on content.</div><div class="ob-sub">Login first, select languages and vibes, then JioVibe opens Home with AI Vibe results ready.</div></div>
+        </div>
+        <div class="ob-login-right"><div class="ob-login-card"><div class="ob-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> JioVibe</div><h1>Welcome to JioVibe</h1><p>Continue with your phone number or email. This is a dummy login for the prototype flow.</p><label class="ob-field-label">Phone number or email</label><input class="ob-input" id="obLoginInput" placeholder="Enter phone number or email" /><button class="ob-primary" style="width:100%;margin-top:18px" onclick="obGoStep('language')"><i class="fa-solid fa-right-to-bracket"></i> Continue</button><div class="ob-note">After this, user will select language and AI Vibe before going to Home.</div></div></div>
+      </div>
+    </section>
+    <section class="ob-screen" id="obFlowScreen">
+      <div class="ob-top"><div class="ob-logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div><button class="ob-skip" onclick="skipOnboardingPopup()">Skip</button></div>
+      <div class="ob-progress"><div class="ob-bar" id="obBar1"><span></span></div><div class="ob-bar" id="obBar2"><span></span></div><div class="ob-bar" id="obBar3"><span></span></div></div>
+      <div class="ob-page">
+        <div id="obLanguageStep"><div class="ob-card"><div class="ob-inner"><div class="ob-head-row"><div><div class="ob-tag"><i class="fa-solid fa-language"></i> Screen 2</div><div class="ob-h1">Choose your languages</div><div class="ob-copy">Select the languages you want in your feed. Home page will read these values and show matching AI Vibe results.</div><div class="ob-tag" style="margin-top:18px;margin-bottom:0"><i class="fa-solid fa-check"></i> Pick one or more</div></div><div class="ob-count"><span id="obLangCount">0</span> selected</div></div><div class="ob-lang-grid" id="obLanguageGrid"></div><div class="ob-bottom-actions"><button class="ob-primary" onclick="obGoStep('vibe')">Continue <i class="fa-solid fa-arrow-right"></i></button></div></div></div></div>
+        <div id="obVibeStep" style="display:none"><div class="ob-card"><div class="ob-inner"><div class="ob-head-row"><div><div class="ob-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Screen 3</div><div class="ob-h1">AI Vibe</div><div class="ob-copy">Choose your vibe or chat with AI. After continue, matching result section will open directly.</div></div><div class="ob-count"><span id="obVibeCount">0</span> selected</div></div><div class="ob-ai-shell"><section class="ob-panel"><div class="panel-head"><div class="kicker"><i class="fa-solid fa-layer-group"></i> Personalize your feed</div><h2>Choose your vibe</h2><p>Select one or multiple categories. Your feed will mix related videos, live streams and shorts.</p></div><div class="left-body"><div class="category-select-grid" id="obCategoryGrid"></div><button class="selection-note" id="obSelectionNote" onclick="completeOnboardingPopup()">Please select one or more categories. Then tap this box to continue.</button></div></section><section class="ob-panel"><div class="panel-head"><div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Mood Assist</div><h2>What are you into today?</h2><p>Pick a mood or type like a real chat. AI will suggest the right category or creator content.</p></div><div class="ai-body"><div><div class="mood-title">Choose a mood</div><div class="mood-sub">Use quick moods for meeting demo, or type your own message.</div></div><div class="mood-chips" id="obMoodChips"></div><div class="ai-chat" id="obAiChat"><div class="msg bot">Hi, tell me your mood. For example: “I am sad”, “I want funny content”, “I need editing tips”, or “show me music videos”.</div></div><div class="ai-input-wrap"><input class="ai-input" id="obAiInput" placeholder="Type or select a suggestion..." onkeydown="if(event.key==='Enter')obSendAI()"><button class="ask-btn" onclick="obSendAI()">Send <i class="fa-solid fa-arrow-right"></i></button></div></div></section></div></div></div></div>
+      </div>
+    </section>
+  </div>
+</div>
+
 <script>
 const logoColors=['#FF7A00','#D73700','#7A3E2E','#4A0E0E','#E65100','#B84A2A','#AF2D00','#8A180A'];
 const categoryData={
@@ -1848,8 +1902,75 @@ function closeHomeWatchOverlay(){
 }
 window.closeHomeWatchOverlay=closeHomeWatchOverlay;
 
-initCategories();bindRailInfinite();loadHomeGrids();initDraggableVibeButton();
+
+
+/* ONBOARDING POPUP FLOW - ADDED */
+const OB_DONE_KEY='jiovibe_home_onboarding_done_v2';
+const obLanguages=[['Hindi','हिंदी content'],['English','Global content'],['Punjabi','ਪੰਜਾਬੀ content'],['Tamil','தமிழ் content'],['Telugu','తెలుగు content'],['Marathi','मराठी content'],['Bengali','বাংলা content'],['Gujarati','ગુજરાતી content'],['Kannada','ಕನ್ನಡ content'],['Malayalam','മലയാളം content'],['Urdu','اردو content'],['Bhojpuri','भोजपुरी content']];
+const obMoods=['Happy','Sad','Breakup','Motivated','Chill','Funny','Romantic','Learning','Gaming mood','Fitness energy'];
+let obSelectedLanguages=[], obSelectedCategories=[], obSelectedMood='', obVibeOnlyMode=false;
+function initOnboardingPopup(){
+  initObLanguages();initObCategories();initObMoods();
+  const params=new URLSearchParams(location.search);
+  if(params.get('resetOnboarding')==='1'){localStorage.removeItem(OB_DONE_KEY);}
+  const incomingVibe=params.get('vibe');
+  if(incomingVibe){
+    selectedCategories=incomingVibe.split(',').map(x=>x.trim()).filter(Boolean);
+    syncMainVibeCards();
+    setTimeout(()=>showVibeResults(),350);
+    localStorage.setItem(OB_DONE_KEY,'1');
+    return;
+  }
+  if(localStorage.getItem(OB_DONE_KEY)==='1')return;
+  setTimeout(()=>openOnboardingPopup('login'),5000);
+}
+function openOnboardingPopup(step){
+  const pop=document.getElementById('onboardingPopup'); if(!pop)return;
+  pop.classList.add('show');document.body.classList.add('onboarding-open');
+  if(step==='vibe'){obVibeOnlyMode=true;document.getElementById('obLoginScreen').classList.remove('active');document.getElementById('obFlowScreen').classList.add('active');obGoStep('vibe');}
+  else{obVibeOnlyMode=false;document.getElementById('obLoginScreen').classList.add('active');document.getElementById('obFlowScreen').classList.remove('active');}
+}
+function closeOnboardingPopup(){const pop=document.getElementById('onboardingPopup'); if(pop)pop.classList.remove('show');document.body.classList.remove('onboarding-open');}
+function skipOnboardingPopup(){localStorage.setItem(OB_DONE_KEY,'1');closeOnboardingPopup();}
+function openOnboardingVibeOnly(){openOnboardingPopup('vibe');}
+function obGoStep(step){
+  document.getElementById('obLoginScreen').classList.remove('active');document.getElementById('obFlowScreen').classList.add('active');
+  document.getElementById('obLanguageStep').style.display=step==='language'?'block':'none';
+  document.getElementById('obVibeStep').style.display=step==='vibe'?'block':'none';
+  document.getElementById('obBar1').classList.add('active');
+  document.getElementById('obBar2').classList.toggle('active',step==='language'||step==='vibe');
+  document.getElementById('obBar3').classList.toggle('active',step==='vibe');
+}
+function initObLanguages(){const grid=document.getElementById('obLanguageGrid');if(!grid)return;grid.innerHTML=obLanguages.map(([name,sub])=>`<button class="ob-lang-card" onclick="toggleObLanguage('${name}',this)"><div><div class="ob-lang-name">${name}</div><div class="ob-lang-sub">${sub}</div></div><div class="ob-check"><i class="fa-solid fa-check"></i></div></button>`).join('');}
+function toggleObLanguage(name,el){el.classList.toggle('selected');obSelectedLanguages=obSelectedLanguages.includes(name)?obSelectedLanguages.filter(x=>x!==name):[...obSelectedLanguages,name];document.getElementById('obLangCount').textContent=obSelectedLanguages.length;}
+function initObCategories(){const grid=document.getElementById('obCategoryGrid');if(!grid)return;grid.innerHTML='';Object.keys(categoryData).forEach(name=>{const d=categoryData[name];const card=document.createElement('button');card.type='button';card.className='choice-card';card.onclick=()=>toggleObCategory(name,card);card.innerHTML=`<img src="${d.img}"><div class="choice-tick"><i class="fa-solid fa-check"></i></div><div class="choice-content"><strong>${name}</strong><i class="fa-solid ${d.icon}"></i></div>`;grid.appendChild(card);});}
+function toggleObCategory(name,el){el.classList.toggle('selected');obSelectedCategories=obSelectedCategories.includes(name)?obSelectedCategories.filter(x=>x!==name):[...obSelectedCategories,name];updateObSelectionNote();}
+function updateObSelectionNote(){document.getElementById('obVibeCount').textContent=obSelectedCategories.length;const note=document.getElementById('obSelectionNote');note.textContent=obSelectedCategories.length?`Open your personalized ${obSelectedCategories.join(' + ')} content feed`:'Please select one or more categories. Then tap this box to continue.';}
+function initObMoods(){const chips=document.getElementById('obMoodChips');if(!chips)return;chips.innerHTML=obMoods.map(m=>`<button class="mood-chip" onclick="obUseMood('${m}',this)">${m}</button>`).join('');}
+function obAddMsg(text,type){const chat=document.getElementById('obAiChat');chat.insertAdjacentHTML('beforeend',`<div class="msg ${type}">${text}</div>`);chat.scrollTop=chat.scrollHeight;}
+function obSetCats(cats){obSelectedCategories=cats;document.querySelectorAll('#obCategoryGrid .choice-card').forEach((c,i)=>c.classList.toggle('selected',obSelectedCategories.includes(Object.keys(categoryData)[i])));updateObSelectionNote();}
+function obBotAction(text,cats){obSetCats(cats);const chat=document.getElementById('obAiChat');chat.insertAdjacentHTML('beforeend',`<div class="msg bot">${text}<div class="bot-actions"><button class="inline-action" onclick="completeOnboardingPopup()"><i class="fa-solid fa-play"></i> Continue to ${cats.join(' + ')}</button><button class="inline-action inline-no" onclick="obAddMsg('No','user')"><i class="fa-solid fa-xmark"></i> No</button></div></div>`);chat.scrollTop=chat.scrollHeight;}
+function obUseMood(mood,el){obSelectedMood=mood;document.querySelectorAll('#obMoodChips .mood-chip').forEach(x=>x.classList.remove('active'));if(el)el.classList.add('active');obAddMsg(mood,'user');obProcessMood(mood);}
+function obSendAI(){const input=document.getElementById('obAiInput');const q=input.value.trim();if(!q)return;obSelectedMood=q;obAddMsg(q,'user');input.value='';obProcessMood(q);}
+function obProcessMood(q){const l=q.toLowerCase();if(l.includes('sad')||l.includes('breakup')||l.includes('calm'))obBotAction('I recommend a Music + Comedy mix for this mood.', ['Music','Comedy']);else if(l.includes('learn')||l.includes('study'))obBotAction('Good choice. I can show quick learning videos that feel useful without being heavy.', ['Education']);else if(l.includes('game'))obBotAction('Gaming live streams and clutch moments are perfect for this mood.', ['Gaming']);else if(l.includes('fitness')||l.includes('motivat'))obBotAction('Fitness and Sports content will feel energetic and positive.', ['Fitness','Sports']);else if(l.includes('music')||l.includes('chill'))obBotAction('Music and Lifestyle content will fit this mood well.', ['Music','Lifestyle']);else obBotAction('Comedy clips and funny shorts will work best.', ['Comedy']);}
+function syncMainVibeCards(){document.querySelectorAll('#categorySelectGrid .choice-card').forEach((c,i)=>c.classList.toggle('selected',selectedCategories.includes(Object.keys(categoryData)[i])));if(typeof updateSelectionNote==='function')updateSelectionNote();}
+function completeOnboardingPopup(){
+  if(!obSelectedCategories.length)obSelectedCategories=['Gaming'];
+  if(!obSelectedLanguages.length)obSelectedLanguages=['Hindi'];
+  selectedCategories=[...obSelectedCategories];syncMainVibeCards();
+  localStorage.setItem(OB_DONE_KEY,'1');
+  localStorage.setItem('jiovibe_home_languages',obSelectedLanguages.join(','));
+  localStorage.setItem('jiovibe_home_vibe',selectedCategories.join(','));
+  if(obSelectedMood)localStorage.setItem('jiovibe_home_mood',obSelectedMood);
+  closeOnboardingPopup();
+  showVibeResults();
+}
+
+initCategories();bindRailInfinite();loadHomeGrids();initDraggableVibeButton();initOnboardingPopup();
 </script>
+
+
+
 
 
 <!-- SAME PAGE LIVE / VIDEO WATCH OVERLAY -->
