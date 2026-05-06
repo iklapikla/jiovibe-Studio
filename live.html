@@ -1138,6 +1138,63 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 }
 .ai-enhance-btn.enhanced i,.ai-enhance-btn.enhanced small{color:#FFB066;}
 
+
+/* USER UPDATE: Premium Super Support note preview + animated glitter card */
+.super-note-modal{width:480px;max-width:92vw;}
+.super-note-preview{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  padding:16px;
+  min-height:150px;
+  background:linear-gradient(135deg,#FFF8D8 0%,#FFE17A 35%,#FF9F2F 68%,#FF7A00 100%);
+  border:2px solid #FFF1C6;
+  box-shadow:0 16px 38px rgba(255,122,0,.24), inset 0 1px 0 rgba(255,255,255,.65);
+  color:#5A2600;
+  isolation:isolate;
+}
+.super-note-preview::before{
+  content:"";position:absolute;inset:-80px -120px;
+  background:conic-gradient(from 180deg,transparent,rgba(255,255,255,.72),transparent,rgba(255,255,255,.48),transparent);
+  animation:premiumNoteSpin 5.5s linear infinite;z-index:-1;opacity:.55;
+}
+.super-note-preview::after{
+  content:"";position:absolute;top:-45%;left:-60%;width:60%;height:190%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);
+  transform:rotate(18deg);animation:premiumNoteShine 2.7s ease-in-out infinite;
+}
+.super-note-preview.ai-premium{
+  color:#FFFFFF;
+  background:linear-gradient(135deg,#4A0E0E 0%,#9B3A11 32%,#FF7A00 68%,#FFC35A 100%);
+  box-shadow:0 0 0 4px rgba(255,122,0,.16),0 0 42px rgba(255,122,0,.62),0 22px 60px rgba(74,14,14,.28);
+  animation:premiumNotePulse 1.35s ease-in-out infinite;
+}
+.note-top-line{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative;z-index:2;margin-bottom:14px}
+.note-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.56);border:1px solid rgba(255,255,255,.75);font-size:12px;font-weight:900;color:inherit;backdrop-filter:blur(10px)}
+.note-top-line strong{font-size:23px;font-weight:1000;text-shadow:0 2px 10px rgba(0,0,0,.12)}
+.note-main{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:start;position:relative;z-index:2}
+.note-avatar{width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:1000;color:#FF7A00;box-shadow:0 10px 22px rgba(74,14,14,.12)}
+.note-main h3{font-size:15px;font-weight:1000;margin-bottom:7px;color:inherit}
+.note-main p{font-size:13px;font-weight:800;line-height:1.42;color:inherit;opacity:.92}
+.note-sparkles span{position:absolute;width:5px;height:5px;border-radius:50%;background:#FFFFFF;box-shadow:0 0 12px #FFFFFF;z-index:3;animation:noteSparkle 1.8s ease-in-out infinite}
+.note-sparkles span:nth-child(1){top:18px;left:28px}.note-sparkles span:nth-child(2){top:34px;right:44px;animation-delay:.35s}.note-sparkles span:nth-child(3){bottom:28px;left:72px;animation-delay:.7s}.note-sparkles span:nth-child(4){bottom:44px;right:82px;animation-delay:1.05s}
+.chat-super-note .note-card-in-chat{position:relative;z-index:1}
+.chat-super-note.ai-premium-chat{
+  background:linear-gradient(135deg,#4A0E0E 0%,#9B3A11 34%,#FF7A00 76%,#FFC35A 100%) !important;
+  animation:premiumChatNotePulse 1.35s ease-in-out infinite !important;
+}
+.chat-super-note.ai-premium-chat::after{
+  content:"";position:absolute;top:-60%;left:-70%;width:65%;height:220%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+  transform:rotate(18deg);animation:premiumNoteShine 2.7s ease-in-out infinite;
+}
+@keyframes premiumNoteSpin{to{transform:rotate(360deg)}}
+@keyframes premiumNoteShine{0%,52%{transform:translateX(-120%) rotate(18deg)}78%,100%{transform:translateX(320%) rotate(18deg)}}
+@keyframes premiumNotePulse{0%,100%{transform:scale(1);box-shadow:0 0 0 4px rgba(255,122,0,.16),0 0 34px rgba(255,122,0,.55),0 22px 60px rgba(74,14,14,.28)}50%{transform:scale(1.012);box-shadow:0 0 0 6px rgba(255,122,0,.22),0 0 54px rgba(255,210,100,.9),0 26px 70px rgba(74,14,14,.34)}}
+@keyframes premiumChatNotePulse{0%,100%{box-shadow:0 0 0 3px rgba(255,122,0,.16),0 0 28px rgba(255,122,0,.6),0 18px 42px rgba(255,122,0,.32) !important}50%{box-shadow:0 0 0 5px rgba(255,122,0,.24),0 0 52px rgba(255,210,100,.95),0 22px 58px rgba(255,122,0,.42) !important}}
+@keyframes noteSparkle{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.45)}}
+@media(max-width:520px){.super-note-preview{padding:14px}.note-top-line{align-items:flex-start;flex-direction:column}.note-main{grid-template-columns:42px 1fr}.note-avatar{width:42px;height:42px;border-radius:14px}}
+
 </style>
 </head>
 
@@ -1442,20 +1499,12 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 
 <!-- SUPER SUPPORT MODAL -->
 <div class="overlay" id="superOverlay">
-<div class="modal">
+<div class="modal super-note-modal">
 <button class="close-btn" onclick="closeSuper()"><i class="fa-solid fa-xmark"></i></button>
 <h2>Super Support</h2>
-<div class="super-support-title"><i class="fa-solid fa-bolt"></i> Highlight your message in Top Chat like a glowing note</div>
+<div class="super-support-title"><i class="fa-solid fa-bolt"></i> Select a quick amount and send it as a premium glowing note</div>
 
 <div class="super-form">
-<label class="field-label">Choose currency</label>
-<select id="currencySelect" onchange="updateCurrency()">
-<option value="INR" data-symbol="₹">INR ₹</option>
-<option value="USD" data-symbol="$">USD $</option>
-<option value="EUR" data-symbol="€">EUR €</option>
-<option value="GBP" data-symbol="£">GBP £</option>
-</select>
-
 <label class="field-label">Quick amount</label>
 <div class="amounts note-amounts" id="amountButtons">
 <button class="amount-btn note-amount-btn" onclick="selectAmount(100)">₹100</button>
@@ -1464,11 +1513,23 @@ height:118px;border:1px solid #FFD2B3;border-radius:18px;background:#FFF6ED;disp
 <button class="amount-btn note-amount-btn" onclick="selectAmount(2000)">₹2,000</button>
 </div>
 
-<label class="field-label">Or enter custom amount</label>
-<input class="custom-amount" id="customAmount" type="number" min="1" placeholder="Enter amount" oninput="setCustomAmount()">
+<div class="super-note-preview" id="superNotePreview">
+  <div class="note-sparkles"><span></span><span></span><span></span><span></span></div>
+  <div class="note-top-line">
+    <span class="note-badge"><i class="fa-solid fa-bolt"></i> Super Support Note</span>
+    <strong id="notePreviewAmount">₹500</strong>
+  </div>
+  <div class="note-main">
+    <div class="note-avatar">₹</div>
+    <div>
+      <h3>Trupti Latur sent support</h3>
+      <p id="notePreviewText">Add your custom message below.</p>
+    </div>
+  </div>
+</div>
 
 <div class="super-message-wrap">
-<textarea id="superMessage" placeholder="Add your Super Support message..."></textarea>
+<textarea id="superMessage" placeholder="Add custom message below your note..." oninput="updateNotePreview()"></textarea>
 <button type="button" class="ai-enhance-btn" id="aiEnhanceBtn" onclick="enhanceSuperMessage()"><i class="fa-solid fa-wand-magic-sparkles"></i> Enhance with AI <small>10 Tokens</small></button>
 </div>
 
@@ -1680,23 +1741,35 @@ let selectedAmount=500;
 let selectedCurrency="INR";
 let selectedSymbol="₹";
 let totalSuperSupport=0;
+let superNoteEnhanced=false;
 
 function formatSupportAmount(amount,symbol=selectedSymbol){
 return symbol + Number(amount || 0).toLocaleString("en-IN");
 }
 
+function updateNotePreview(){
+const amountEl=document.getElementById("notePreviewAmount");
+const textEl=document.getElementById("notePreviewText");
+if(amountEl) amountEl.innerText=formatSupportAmount(selectedAmount,selectedSymbol);
+const msg=document.getElementById("superMessage")?.value.trim();
+if(textEl) textEl.innerText=msg || "Add your custom message below.";
+}
+
 function openSuper(amount){
 selectedAmount=amount || selectedAmount;
-const custom=document.getElementById("customAmount");
-if(custom) custom.value="";
-updateCurrency();
+selectedCurrency="INR";
+selectedSymbol="₹";
+superNoteEnhanced=false;
 const aiBtn=document.getElementById("aiEnhanceBtn");
 if(aiBtn){
   aiBtn.classList.remove("enhanced");
   aiBtn.innerHTML='<i class="fa-solid fa-wand-magic-sparkles"></i> Enhance with AI <small>10 Tokens</small>';
 }
+const note=document.getElementById("superNotePreview");
+if(note) note.classList.remove("ai-premium");
 document.getElementById("superOverlay").classList.add("show");
 updateAmountButtons();
+updateNotePreview();
 }
 
 function closeSuper(){
@@ -1704,35 +1777,20 @@ document.getElementById("superOverlay").classList.remove("show");
 }
 
 function updateCurrency(){
-const select=document.getElementById("currencySelect");
-if(select){
-selectedCurrency=select.value;
-selectedSymbol=select.options[select.selectedIndex].dataset.symbol || "₹";
-}
-const defaults = selectedCurrency === "INR" ? [100,500,1000,2000] : [5,10,25,50];
-document.querySelectorAll(".note-amount-btn").forEach((btn,index)=>{
-const value=defaults[index] || defaults[0];
-btn.innerText=formatSupportAmount(value,selectedSymbol);
-btn.setAttribute("onclick","selectAmount("+value+")");
-});
-if(!defaults.includes(selectedAmount)) selectedAmount=defaults[1] || defaults[0];
+selectedCurrency="INR";
+selectedSymbol="₹";
 updateAmountButtons();
+updateNotePreview();
 }
 
 function selectAmount(amount){
-selectedAmount=Number(amount) || 1;
-const custom=document.getElementById("customAmount");
-if(custom) custom.value="";
+selectedAmount=Number(amount) || 100;
 updateAmountButtons();
+updateNotePreview();
 }
 
 function setCustomAmount(){
-const custom=document.getElementById("customAmount");
-const value=Number(custom.value);
-if(value > 0){
-selectedAmount=value;
-document.querySelectorAll(".amount-btn").forEach(btn=>btn.classList.remove("active"));
-}
+updateNotePreview();
 }
 
 function updateAmountButtons(){
@@ -1776,6 +1834,7 @@ startDefaultSuperChipTimers();
 function enhanceSuperMessage(){
 const textarea=document.getElementById("superMessage");
 const btn=document.getElementById("aiEnhanceBtn");
+const note=document.getElementById("superNotePreview");
 if(!textarea) return;
 const raw=textarea.value.trim();
 const fallback="Ranveer, your energy is amazing! Big love from the JioVibe family.";
@@ -1791,11 +1850,14 @@ if(!enhanced){
   enhanced=raw ? `Absolutely loved this moment! ${raw.charAt(0).toUpperCase()+raw.slice(1)} — sending full support and positive vibes!` : fallback;
 }
 textarea.value=enhanced;
+superNoteEnhanced=true;
+if(note) note.classList.add("ai-premium");
+updateNotePreview();
 if(btn){
   btn.classList.add("enhanced");
-  btn.innerHTML='<i class="fa-solid fa-circle-check"></i> Enhanced with AI <small>10 Tokens used</small>';
+  btn.innerHTML='<i class="fa-solid fa-circle-check"></i> Premium AI Note Ready <small>10 Tokens used</small>';
 }
-showToast("AI enhanced your Super Support message • 10 Tokens used");
+showToast("AI made your Super Support note premium • 10 Tokens used");
 }
 
 function sendSuper(){
@@ -1803,19 +1865,26 @@ const msg=document.getElementById("superMessage").value.trim() || "Super support
 const displayAmount=formatSupportAmount(selectedAmount,selectedSymbol);
 addChat("Trupti Latur",msg,"https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg",displayAmount);
 const lastMsg=document.querySelector("#chatMessages .msg:last-child");
-if(lastMsg) lastMsg.classList.add("chat-super-note");
-totalSuperSupport += selectedCurrency === "INR" ? selectedAmount : 0;
+if(lastMsg){
+  lastMsg.classList.add("chat-super-note");
+  if(superNoteEnhanced) lastMsg.classList.add("ai-premium-chat");
+  const amountBox=lastMsg.querySelector(".amount");
+  if(amountBox) amountBox.innerHTML=`<i class="fa-solid fa-bolt"></i> Super Support Note ${displayAmount}`;
+}
+totalSuperSupport += selectedAmount;
 showTopSuperSupport("Trupti Latur",selectedAmount,selectedSymbol);
 document.getElementById("superMessage").value="";
+superNoteEnhanced=false;
+const note=document.getElementById("superNotePreview");
+if(note) note.classList.remove("ai-premium");
 const aiBtn=document.getElementById("aiEnhanceBtn");
 if(aiBtn){
   aiBtn.classList.remove("enhanced");
   aiBtn.innerHTML='<i class="fa-solid fa-wand-magic-sparkles"></i> Enhance with AI <small>10 Tokens</small>';
 }
-const custom=document.getElementById("customAmount");
-if(custom) custom.value="";
+updateNotePreview();
 closeSuper();
-showToast("Super Support sent and highlighted in chat");
+showToast("Premium Super Support note sent and highlighted in chat");
 }
 
 function openSticker(){
