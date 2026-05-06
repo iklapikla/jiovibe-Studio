@@ -1272,6 +1272,42 @@ textarea{
 .ai-vibe-title p{display:none!important;}
 .top-stories-only .creator-stories-row{overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;}
 .categories{overflow-x:auto!important;overflow-y:hidden!important;}
+
+
+/* FINAL UPDATE: remove story container box + hide brown scroll lines */
+.creator-stories-section.top-stories-only{
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+  padding:0 0 18px!important;
+  margin:0 0 20px!important;
+  border-radius:0!important;
+}
+.top-stories-only .creator-stories-row{
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  padding:0 0 6px!important;
+  scrollbar-width:none!important;
+  -ms-overflow-style:none!important;
+}
+.top-stories-only .creator-stories-row::-webkit-scrollbar{
+  display:none!important;
+  height:0!important;
+}
+.categories{
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scrollbar-width:none!important;
+  -ms-overflow-style:none!important;
+}
+.categories::-webkit-scrollbar{
+  display:none!important;
+  height:0!important;
+}
+@media(max-width:700px){
+  .creator-stories-section.top-stories-only{padding:0 0 14px!important;margin-bottom:16px!important;}
+}
+
 </style>
 </head>
 <body>
@@ -2000,7 +2036,7 @@ box.innerHTML = products.map((p,index)=>`
 </div>
 <div class="story-shop-tag">
 <i class="fa-solid fa-wand-magic-sparkles"></i>
-${index === 0 ? "AI detected from this story" : "Similar style on JioMart"}
+${index === 0 ? "Similar style on JioMart" : "Similar style on JioMart"}
 </div>
 </div>`).join("");
 }
