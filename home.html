@@ -1308,6 +1308,36 @@ textarea{
   .creator-stories-section.top-stories-only{padding:0 0 14px!important;margin-bottom:16px!important;}
 }
 
+
+/* AI VIBE CHATBOT FLOATING POPUP - NEW */
+.vibe-float-btn .mini-label{right:66px;}
+.ai-vibe-chatbot{
+position:fixed;right:28px;bottom:112px;width:390px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 140px);
+background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:0 26px 80px rgba(74,14,14,.22);z-index:9998;display:none;overflow:hidden;
+}
+.ai-vibe-chatbot.show{display:flex;flex-direction:column;animation:aiBotPop .24s ease both;}
+@keyframes aiBotPop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.ai-bot-head{height:76px;background:linear-gradient(135deg,var(--orange),#FF9638);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;flex-shrink:0;}
+.ai-bot-brand{display:flex;align-items:center;gap:12px;}
+.ai-bot-avatar{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.34);display:flex;align-items:center;justify-content:center;font-size:21px;}
+.ai-bot-brand strong{display:block;font-size:16px;font-weight:950;line-height:1.05;}
+.ai-bot-brand span{display:block;font-size:11px;font-weight:850;opacity:.88;margin-top:4px;}
+.ai-bot-close{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;}
+.ai-bot-close:hover{background:#fff;color:var(--orange);}
+.ai-bot-chat{flex:1;overflow-y:auto;padding:18px;background:linear-gradient(180deg,#FFF6ED,#fff);display:flex;flex-direction:column;gap:12px;}
+.ai-bot-msg{max-width:88%;padding:12px 14px;border-radius:18px;font-size:13px;font-weight:800;line-height:1.45;}
+.ai-bot-msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);color:var(--dark);box-shadow:0 8px 20px rgba(74,14,14,.06);border-bottom-left-radius:6px;}
+.ai-bot-msg.user{align-self:flex-end;background:var(--orange);color:#fff;border-bottom-right-radius:6px;}
+.ai-bot-quick{display:flex;gap:8px;flex-wrap:wrap;padding:12px 14px;background:#fff;border-top:1px solid #FFE0CC;flex-shrink:0;}
+.ai-bot-chip{height:32px;padding:0 11px;border-radius:999px;background:#FFF6ED;border:1px solid var(--line);color:var(--brown);font-size:11px;font-weight:950;display:flex;align-items:center;gap:6px;}
+.ai-bot-chip:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
+.ai-bot-input{display:grid;grid-template-columns:1fr 46px;gap:9px;padding:14px;background:#fff;border-top:1px solid #FFE0CC;flex-shrink:0;}
+.ai-bot-input input{height:46px;border:1px solid var(--line);border-radius:16px;outline:none;padding:0 14px;font-size:13px;font-weight:800;color:var(--dark);background:#FFF9F4;}
+.ai-bot-input input:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.10);background:#fff;}
+.ai-bot-send{height:46px;border-radius:16px;background:var(--orange);color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;}
+.ai-bot-send:hover{background:var(--orange2);}
+@media(max-width:700px){.ai-vibe-chatbot{right:14px;left:14px;bottom:92px;width:auto;height:520px;max-height:calc(100vh - 110px)}}
+
 </style>
 </head>
 <body>
@@ -1540,7 +1570,30 @@ textarea{
 
 
 <div class="toast" id="toast"></div>
-<button class="vibe-float-btn" id="vibeFloatBtn" title="Open AI Vibe"><span class="mini-label">AI Vibe</span><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+<button class="vibe-float-btn" id="vibeFloatBtn" title="Open AI Vibe Chat Bot"><span class="mini-label">AI Vibe</span><i class="fa-solid fa-robot"></i></button>
+
+<div class="ai-vibe-chatbot" id="aiVibeChatbot">
+  <div class="ai-bot-head">
+    <div class="ai-bot-brand">
+      <div class="ai-bot-avatar"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <div><strong>AI Vibe Chat Bot</strong><span>Ask mood, creator, category or AI tool help</span></div>
+    </div>
+    <button class="ai-bot-close" onclick="toggleAIVibeChatbot(false)"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="ai-bot-chat" id="aiBotChat">
+    <div class="ai-bot-msg bot">Hi 👋 Main AI Vibe bot hoon. Aap mujhe bol sakte ho: “funny content dikhao”, “gaming live chahiye”, “sad mood hai”, ya “thumbnail kaise banao?”</div>
+  </div>
+  <div class="ai-bot-quick">
+    <button class="ai-bot-chip" onclick="aiBotQuick('I want funny content')"><i class="fa-regular fa-face-laugh"></i> Funny</button>
+    <button class="ai-bot-chip" onclick="aiBotQuick('Show me gaming live streams')"><i class="fa-solid fa-gamepad"></i> Gaming Live</button>
+    <button class="ai-bot-chip" onclick="aiBotQuick('I am sad, suggest calming videos')"><i class="fa-solid fa-music"></i> Calm Mood</button>
+    <button class="ai-bot-chip" onclick="aiBotQuick('How can I create AI thumbnail?')"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Tools</button>
+  </div>
+  <div class="ai-bot-input">
+    <input id="aiBotInput" placeholder="Type your message..." onkeydown="if(event.key==='Enter')sendAIBotMessage()" />
+    <button class="ai-bot-send" onclick="sendAIBotMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</div>
 
 
 <!-- ONBOARDING POPUP FLOW - ADDED -->
@@ -1756,15 +1809,56 @@ const isOpen=area.classList.contains('show')||results.classList.contains('show')
 if(isOpen){area.classList.remove('show');results.classList.remove('show');}
 else{area.classList.add('show');area.scrollIntoView({behavior:'smooth',block:'start'});}
 }
+function toggleAIVibeChatbot(force){
+const bot=document.getElementById('aiVibeChatbot');
+if(!bot)return;
+const open=typeof force==='boolean'?force:!bot.classList.contains('show');
+bot.classList.toggle('show',open);
+if(open)setTimeout(()=>{const input=document.getElementById('aiBotInput');if(input)input.focus();},120);
+}
+function aiBotAddMsg(text,type){
+const chat=document.getElementById('aiBotChat');
+if(!chat)return;
+chat.innerHTML+=`<div class="ai-bot-msg ${type}">${text}</div>`;
+chat.scrollTop=chat.scrollHeight;
+}
+function aiBotReply(q){
+const l=q.toLowerCase();
+let reply='Samjha. Main aapke mood ke hisaab se JioVibe feed suggest kar sakta hoon. Aap comedy, gaming, music, education, sports, food, travel ya AI tools me se kuch bhi pooch sakte ho.';
+if(l.includes('thumbnail')||l.includes('edit')||l.includes('title')||l.includes('shorts')||l.includes('ai tool')||l.includes('studio')) reply='Creator ke liye AI Studio best rahega: AI Thumbnail, AI Shorts, Title/Description, Multilingual aur Monetization Insights use kar sakte ho.';
+else if(l.includes('sad')||l.includes('breakup')||l.includes('calm')||l.includes('low')) reply='Aapke mood ke liye soft Music + light Comedy mix best rahega. Main calming videos, relaxing music aur feel-good clips recommend karunga.';
+else if(l.includes('funny')||l.includes('comedy')||l.includes('laugh')) reply='Comedy mood ke liye Ashish Chanchlani style sketches, funny shorts aur trending comedy clips recommend karunga.';
+else if(l.includes('gaming')||l.includes('game')||l.includes('live')) reply='Gaming ke liye live streams, tournament highlights aur Total Gaming style clips best rahenge.';
+else if(l.includes('music')||l.includes('song')||l.includes('chill')) reply='Music vibe ke liye Arijit style performances, chill playlists aur live music sessions recommend karunga.';
+else if(l.includes('learn')||l.includes('study')||l.includes('education')) reply='Learning ke liye Khan Sir style education videos, study tips aur short explainers recommend karunga.';
+else if(l.includes('fitness')||l.includes('sports')||l.includes('energy')) reply='Energy ke liye Sports + Fitness content best rahega: practice clips, motivation aur workout shorts.';
+else if(l.includes('food')||l.includes('travel')) reply='Food + Travel vibe ke liye premium visual videos, travel shorts aur food recommendations recommend karunga.';
+setTimeout(()=>aiBotAddMsg(reply,'bot'),350);
+}
+function sendAIBotMessage(){
+const input=document.getElementById('aiBotInput');
+const q=(input?.value||'').trim();
+if(!q)return;
+aiBotAddMsg(q,'user');
+input.value='';
+aiBotReply(q);
+}
+function aiBotQuick(text){
+const input=document.getElementById('aiBotInput');
+if(input)input.value=text;
+sendAIBotMessage();
+}
 function initDraggableVibeButton(){
 const btn=document.getElementById('vibeFloatBtn');
+if(!btn)return;
 let dragging=false,moved=false,startX=0,startY=0,baseX=0,baseY=0;
 const down=e=>{dragging=true;moved=false;const p=e.touches?e.touches[0]:e;startX=p.clientX;startY=p.clientY;const r=btn.getBoundingClientRect();baseX=r.left;baseY=r.top;btn.style.left=baseX+'px';btn.style.top=baseY+'px';btn.style.right='auto';btn.style.bottom='auto';};
 const move=e=>{if(!dragging)return;const p=e.touches?e.touches[0]:e;const dx=p.clientX-startX,dy=p.clientY-startY;if(Math.abs(dx)>4||Math.abs(dy)>4)moved=true;let x=baseX+dx,y=baseY+dy;const pad=8;x=Math.max(pad,Math.min(window.innerWidth-btn.offsetWidth-pad,x));y=Math.max(pad,Math.min(window.innerHeight-btn.offsetHeight-pad,y));btn.style.left=x+'px';btn.style.top=y+'px';};
-const up=e=>{if(!dragging)return;dragging=false;if(!moved)toggleVibePanel();};
+const up=e=>{if(!dragging)return;dragging=false;if(!moved)toggleAIVibeChatbot();};
 btn.addEventListener('mousedown',down);document.addEventListener('mousemove',move);document.addEventListener('mouseup',up);
 btn.addEventListener('touchstart',down,{passive:true});document.addEventListener('touchmove',move,{passive:true});document.addEventListener('touchend',up);
 }
+
 
 function makeGridCard(title,channel,cat,img,avatar,dur){
 const hasStory = storyEnabledCreators.has(channel);
@@ -2348,6 +2442,36 @@ function personalizeHomeWatchDoc(html,type,creator,title,img,dur,cat){
 .creator-wrap{background:#20C45A!important;box-shadow:0 0 0 3px rgba(32,196,90,.18)!important;}
 .creator-wrap:hover{box-shadow:0 0 0 4px rgba(32,196,90,.25),0 12px 26px rgba(32,196,90,.25)!important;}
 .channel-left .creator-wrap{background:#20C45A!important;}
+
+/* AI VIBE CHATBOT FLOATING POPUP - NEW */
+.vibe-float-btn .mini-label{right:66px;}
+.ai-vibe-chatbot{
+position:fixed;right:28px;bottom:112px;width:390px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 140px);
+background:#fff;border:1px solid var(--line);border-radius:28px;box-shadow:0 26px 80px rgba(74,14,14,.22);z-index:9998;display:none;overflow:hidden;
+}
+.ai-vibe-chatbot.show{display:flex;flex-direction:column;animation:aiBotPop .24s ease both;}
+@keyframes aiBotPop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.ai-bot-head{height:76px;background:linear-gradient(135deg,var(--orange),#FF9638);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;flex-shrink:0;}
+.ai-bot-brand{display:flex;align-items:center;gap:12px;}
+.ai-bot-avatar{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.34);display:flex;align-items:center;justify-content:center;font-size:21px;}
+.ai-bot-brand strong{display:block;font-size:16px;font-weight:950;line-height:1.05;}
+.ai-bot-brand span{display:block;font-size:11px;font-weight:850;opacity:.88;margin-top:4px;}
+.ai-bot-close{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;}
+.ai-bot-close:hover{background:#fff;color:var(--orange);}
+.ai-bot-chat{flex:1;overflow-y:auto;padding:18px;background:linear-gradient(180deg,#FFF6ED,#fff);display:flex;flex-direction:column;gap:12px;}
+.ai-bot-msg{max-width:88%;padding:12px 14px;border-radius:18px;font-size:13px;font-weight:800;line-height:1.45;}
+.ai-bot-msg.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);color:var(--dark);box-shadow:0 8px 20px rgba(74,14,14,.06);border-bottom-left-radius:6px;}
+.ai-bot-msg.user{align-self:flex-end;background:var(--orange);color:#fff;border-bottom-right-radius:6px;}
+.ai-bot-quick{display:flex;gap:8px;flex-wrap:wrap;padding:12px 14px;background:#fff;border-top:1px solid #FFE0CC;flex-shrink:0;}
+.ai-bot-chip{height:32px;padding:0 11px;border-radius:999px;background:#FFF6ED;border:1px solid var(--line);color:var(--brown);font-size:11px;font-weight:950;display:flex;align-items:center;gap:6px;}
+.ai-bot-chip:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
+.ai-bot-input{display:grid;grid-template-columns:1fr 46px;gap:9px;padding:14px;background:#fff;border-top:1px solid #FFE0CC;flex-shrink:0;}
+.ai-bot-input input{height:46px;border:1px solid var(--line);border-radius:16px;outline:none;padding:0 14px;font-size:13px;font-weight:800;color:var(--dark);background:#FFF9F4;}
+.ai-bot-input input:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.10);background:#fff;}
+.ai-bot-send{height:46px;border-radius:16px;background:var(--orange);color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center;}
+.ai-bot-send:hover{background:var(--orange2);}
+@media(max-width:700px){.ai-vibe-chatbot{right:14px;left:14px;bottom:92px;width:auto;height:520px;max-height:calc(100vh - 110px)}}
+
 </style>`;
   html=html.replace('</head>',customStyle+'</head>');
   const customScript = `<script>
