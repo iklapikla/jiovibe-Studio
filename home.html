@@ -1098,6 +1098,173 @@ html,body,
   .top-stories-only .story-avatar-btn{width:66px!important;height:66px!important;}
 }
 
+
+/* =========================================================
+   WHITE BACKGROUND + BLACK TEXT OVERRIDES - REQUESTED UPDATE
+   Added at end so original layout, JS and hover effects stay intact
+   ========================================================= */
+
+/* Full website background: top, left, content area */
+:root{
+  --cream:#FFFFFF;
+}
+html,
+body,
+.app,
+.main,
+.content,
+.sidebar,
+.topbar,
+.channel-viewer-bg,
+.channel-backbar,
+.home-watch-overlay,
+.home-watch-frame{
+  background:#FFFFFF !important;
+}
+
+/* Keep cards/panels clean white */
+.panel,
+.ai-vibe-shell,
+.vibe-results,
+.creator-stories-section,
+.video-card,
+.player-card,
+.short-card,
+.category-btn,
+.search,
+.profile,
+.dropdown,
+.sidebar-subscriptions,
+.sidebar-sub-item,
+.ai-promo-box{
+  background:#FFFFFF !important;
+}
+
+/* Left sidebar category text black */
+.menu-item,
+.sidebar-sub-head,
+.sidebar-sub-head i,
+.sidebar-sub-item,
+.sidebar-sub-more{
+  color:#111111 !important;
+}
+
+/* Sidebar hover and active remain original white/orange/brown style */
+.menu-item:hover,
+.sidebar-sub-item:hover,
+.sidebar-sub-more:hover{
+  background:var(--soft) !important;
+  color:var(--orange) !important;
+}
+.menu-item.active{
+  background:var(--orange) !important;
+  color:#FFFFFF !important;
+}
+
+/* Topbar right-side buttons/text black by default */
+.top-actions,
+.top-actions *,
+.profile span,
+.bell,
+.wallet-icon,
+.dropdown a{
+  color:#111111 !important;
+}
+
+/* Right buttons hover remains same white/brown/orange behavior */
+.profile:hover{
+  background:#FFF3E8 !important;
+}
+.wallet-icon:hover{
+  background:var(--orange) !important;
+  color:#FFFFFF !important;
+}
+.wallet-icon:hover i,
+.wallet-icon:hover *{
+  color:#FFFFFF !important;
+}
+.dropdown a:hover{
+  background:var(--soft) !important;
+  color:var(--brown) !important;
+}
+
+/* Top category buttons: black when not selected */
+.category-btn{
+  color:#111111 !important;
+  background:#FFFFFF !important;
+}
+
+/* Category hover and selected unchanged */
+.category-btn:hover{
+  background:var(--soft) !important;
+  border-color:var(--orange) !important;
+  color:var(--orange) !important;
+  transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(255,122,0,.20);
+}
+.category-btn.active{
+  background:var(--orange) !important;
+  color:#FFFFFF !important;
+  border-color:var(--orange) !important;
+}
+
+/* Section titles + See More black */
+.section-head h2,
+.section-head h2 *,
+.see-link,
+.see-link *,
+.rail-title,
+.results-head h2,
+.creator-stories-head h2,
+.creator-stories-head a,
+.creator-stories-head a *,
+.ai-vibe-title h1,
+.ai-vibe-title p{
+  color:#111111 !important;
+}
+
+/* Trending / Recommended video card text black */
+.video-title,
+.channel-name,
+.video-meta,
+.video-info .channel-name,
+.video-info .creator-name-link,
+.player-title,
+.player-meta,
+.short-title,
+.rail-hint,
+.story-person span{
+  color:#111111 !important;
+}
+
+/* Keep video-card hover effect exactly as existing */
+.video-card:hover{
+  transform:scale(1.03);
+  box-shadow:0 16px 38px rgba(74,14,14,.16);
+  border-color:var(--orange);
+}
+
+/* Creator/channel name hover can stay orange for click feedback */
+.video-info .creator-name-link:hover,
+.creator-name-link:hover,
+.see-link:hover,
+.creator-stories-head a:hover{
+  color:var(--orange) !important;
+}
+
+/* Inputs remain readable */
+.search input,
+.ai-input,
+input,
+textarea{
+  color:#111111 !important;
+}
+
+/* Separator on white */
+.section-separator{
+  background:linear-gradient(90deg,rgba(0,0,0,0),#E8E8E8,rgba(0,0,0,0)) !important;
+}
+
 </style>
 </head>
 <body>
