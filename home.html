@@ -680,6 +680,27 @@ cursor:default;
 .channel-viewer-bg .channel-name{font-size:42px!important;font-weight:900!important;letter-spacing:-1.4px!important;color:#4A0E0E!important;line-height:1.05!important;margin:0!important;}
 @media(max-width:900px){.channel-viewer-bg .channel-name{font-size:32px!important;}}
 
+
+/* YOUTUBE STYLE LIVE BADGE UPDATE */
+.live-badge{
+background:#E62117!important;
+color:#FFFFFF!important;
+letter-spacing:.4px;
+box-shadow:0 6px 16px rgba(230,33,23,.35);
+}
+.live-badge::before{
+content:"";
+display:inline-block;
+width:6px;
+height:6px;
+border-radius:50%;
+background:#FFFFFF;
+margin-right:5px;
+vertical-align:1px;
+animation:liveDotPulse 1.1s infinite ease-in-out;
+}
+@keyframes liveDotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.72)}}
+
 </style>
 </head>
 <body>
@@ -1106,8 +1127,11 @@ function makeGridCard(title,channel,cat,img,avatar,dur){
 const hasStory = storyEnabledCreators.has(channel);
 const avatarClass = hasStory ? 'creator-img story-ring' : 'creator-img no-story';
 const avatarClick = hasStory ? `openStory('${channel.replace(/'/g,"\\'")}')` : `event.preventDefault();event.stopPropagation();`;
-return `<div class="video-card"><div class="video-thumb"><img src="${img}"><span class="duration">${dur}</span></div><div class="video-info"><img class="${avatarClass}" src="${avatar}" onclick="event.preventDefault();event.stopPropagation();${avatarClick}" title="${hasStory?'Open '+channel+' story':'No active story'}"><div><div class="video-title">${title}</div><div class="channel-name"><span class="creator-name-link" onclick="event.preventDefault();event.stopPropagation();openChannel('${channel.replace(/'/g,"\\'")}')">${channel}</span></div><div class="video-meta">${cat} • ${Math.floor(200+Math.random()*900)}K views • ${Math.floor(2+Math.random()*9)} hours ago</div></div></div></div>`}
-function loadHomeGrids(){const avatarBase='https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/';const cards=[['Ranveer Singh Live: Creator Energy and Big Moments','Ranveer Singh','Movies','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ranveer%20Singh.webp',avatarBase+'PP%20Ranveer%20Singh.jpg','LIVE'],['Comedy Scene That Everyone Is Sharing Today','Ashish Chanchlani','Comedy','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ashish%20Chanchlani.webp',avatarBase+'PP%20Ashish%20Chanchlani.jpg','6:14'],['Major Event Highlights and Key Moments','Narendra Modi','Education','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Narendra%20Modi.webp',avatarBase+'PP%20Narendra%20Modi.jpeg','8:30'],['Captain’s Practice Session Highlights','Rohit Sharma','Sports','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Rohit%20Sharma.webp',avatarBase+'PP%20Rohit%20Sharma.jpg','4:45'],['Last Zone Gaming Highlights You Should Not Miss','Total Gaming','Gaming','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Total%20Gaming.webp',avatarBase+'PP%20Total%20Gaming.jpg','12:44']];document.getElementById('trendingGrid').innerHTML=cards.map(c=>makeGridCard(...c)).join('');const rec=[['Tech Gadgets Worth Watching This Week','Technical Guruji','Tech','https://wallpaperaccess.com/full/3900106.jpg',avatarBase+'PP%20Technical%20Guruji.jpg','6:20'],['Education Tip That Makes It Easy','Khan Sir','Education','https://wallpapercave.com/wp/wp6293134.jpg',avatarBase+'PP%20Khan%20Sir.jpg','8:15'],['Fitness Routine for Busy Creators','Flying Beast','Lifestyle','https://akm-img-a-in.tosshub.com/indiatoday/images/story/202207/Spotlight_Flying_Beast_Gaurav__1200x768.jpeg?VersionId=b',avatarBase+'PP%20Flying%20Beast.png','11:10'],['Bollywood Style and Fan Moment','Ranveer Singh','Movies','https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=900&auto=format&fit=crop',avatarBase+'PP%20Ranveer%20Singh.jpg','7:44'],['Public Event Highlights','Narendra Modi','News','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T2%20Narendra%20Modi.webp',avatarBase+'PP%20Narendra%20Modi.jpeg','5:01']];document.getElementById('recommendedGrid').innerHTML=rec.map(c=>makeGridCard(...c)).join('')}
+const isLive = String(dur).toUpperCase() === 'LIVE';
+const badgeHtml = isLive ? '<span class="live-badge">LIVE</span>' : `<span class="duration">${dur}</span>`;
+const metaHtml = isLive ? `${cat} • Live now • ${Math.floor(2+Math.random()*18)}K watching` : `${cat} • ${Math.floor(200+Math.random()*900)}K views • ${Math.floor(2+Math.random()*9)} hours ago`;
+return `<div class="video-card"><div class="video-thumb"><img src="${img}">${badgeHtml}</div><div class="video-info"><img class="${avatarClass}" src="${avatar}" onclick="event.preventDefault();event.stopPropagation();${avatarClick}" title="${hasStory?'Open '+channel+' story':'No active story'}"><div><div class="video-title">${title}</div><div class="channel-name"><span class="creator-name-link" onclick="event.preventDefault();event.stopPropagation();openChannel('${channel.replace(/'/g,"\\'")}')">${channel}</span></div><div class="video-meta">${metaHtml}</div></div></div></div>`}
+function loadHomeGrids(){const avatarBase='https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/';const cards=[['Ranveer Singh Live: Creator Energy and Big Moments','Ranveer Singh','Movies','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ranveer%20Singh.webp',avatarBase+'PP%20Ranveer%20Singh.jpg','LIVE'],['Comedy Scene That Everyone Is Sharing Today','Ashish Chanchlani','Comedy','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Ashish%20Chanchlani.webp',avatarBase+'PP%20Ashish%20Chanchlani.jpg','6:14'],['Major Event Highlights and Key Moments','Narendra Modi','Education','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Narendra%20Modi.webp',avatarBase+'PP%20Narendra%20Modi.jpeg','8:30'],['Captain’s Practice Session LIVE Practice','Rohit Sharma','Sports','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Rohit%20Sharma.webp',avatarBase+'PP%20Rohit%20Sharma.jpg','LIVE'],['Last Zone Gaming Highlights You Should Not Miss','Total Gaming','Gaming','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T%20Total%20Gaming.webp',avatarBase+'PP%20Total%20Gaming.jpg','12:44']];document.getElementById('trendingGrid').innerHTML=cards.map(c=>makeGridCard(...c)).join('');const rec=[['Tech Gadgets LIVE Q&A This Week','Technical Guruji','Tech','https://wallpaperaccess.com/full/3900106.jpg',avatarBase+'PP%20Technical%20Guruji.jpg','LIVE'],['Education Tip That Makes It Easy','Khan Sir','Education','https://wallpapercave.com/wp/wp6293134.jpg',avatarBase+'PP%20Khan%20Sir.jpg','8:15'],['Flying Beast LIVE Fitness Routine','Flying Beast','Lifestyle','https://akm-img-a-in.tosshub.com/indiatoday/images/story/202207/Spotlight_Flying_Beast_Gaurav__1200x768.jpeg?VersionId=b',avatarBase+'PP%20Flying%20Beast.png','LIVE'],['Bollywood Style and Fan Moment','Ranveer Singh','Movies','https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=900&auto=format&fit=crop',avatarBase+'PP%20Ranveer%20Singh.jpg','7:44'],['Public Event Highlights','Narendra Modi','News','https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/T2%20Narendra%20Modi.webp',avatarBase+'PP%20Narendra%20Modi.jpeg','5:01']];document.getElementById('recommendedGrid').innerHTML=rec.map(c=>makeGridCard(...c)).join('')}
 
 /* HOME STORY + CHANNEL SUPPORT DATA */
 const fallbackProfile = "https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg";
