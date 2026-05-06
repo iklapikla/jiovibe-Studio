@@ -778,14 +778,14 @@ transition:.2s;
 }
 .story-close-btn:hover{background:#FF7A00;color:#FFFFFF;transform:scale(1.06);}
 .story-modal-box{
-width:min(1160px,92vw);
+width:min(1380px,94vw);
 height:min(780px,92vh);
 background:#FFFFFF;
 border:1px solid #FFD2B3;
 border-radius:24px;
 overflow:hidden;
 display:grid;
-grid-template-columns:440px 1fr;
+grid-template-columns:280px 440px 1fr;
 box-shadow:0 28px 80px rgba(0,0,0,.22);
 position:relative;
 }
@@ -904,97 +904,104 @@ transition:.2s;
 }
 .story-icon-btn:hover,.story-icon-btn.liked{background:#FF7A00;color:#FFFFFF;}
 
-/* JIOMART SHOP FEATURE INSIDE STORY VIEWER */
-.story-shop-label{
-position:absolute;
-left:16px;
-top:100px;
-z-index:518;
+/* LEFT OUTSIDE SHOP PANEL - NEW STORY VIEWER DESIGN */
+.story-shop-side{
+background:#FFF2E7;
+border-right:1px solid #FFD2B3;
+padding:18px 14px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+gap:14px;
+}
+.story-shop-side-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+padding:12px 12px;
+border-radius:18px;
+background:#FFFFFF;
+box-shadow:0 8px 22px rgba(255,122,0,.10);
+border:1px solid #FFE0CC;
+}
+.story-shop-title{
 display:flex;
 align-items:center;
 gap:8px;
-padding:9px 12px;
-border-radius:999px;
-background:rgba(255,255,255,.92);
-backdrop-filter:blur(12px);
-box-shadow:0 8px 24px rgba(0,0,0,.16);
-color:#4A0E0E;
-font-size:12px;
+font-size:15px;
 font-weight:900;
+color:#4A0E0E;
 }
-.story-shop-label i{color:#FF7A00;}
-.story-shop-rail{
-position:absolute;
-left:18px;
-bottom:96px;
-z-index:522;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-.story-rail-item{
-width:50px;
-height:50px;
-border-radius:15px;
-background:rgba(255,255,255,.94);
-backdrop-filter:blur(10px);
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 8px 24px rgba(0,0,0,.16);
-font-size:20px;
+.story-shop-title i{color:#FF7A00;}
+.story-ai-picked{
+font-size:11px;
+font-weight:900;
 color:#FF7A00;
+background:#FFF1E5;
+padding:7px 9px;
+border-radius:999px;
+}
+.story-shop-sub{
+font-size:12px;
+font-weight:800;
+line-height:1.4;
+color:#9B5B45;
+padding:0 4px;
+}
+.story-shop-product{
+background:#FFFFFF;
+border:1px solid #FFE0CC;
+border-radius:20px;
+padding:12px;
+box-shadow:0 10px 26px rgba(74,14,14,.08);
 transition:.2s;
 }
-.story-rail-item:hover,.story-rail-item.active{
-background:#FF7A00;
-color:#FFFFFF;
-transform:translateX(4px);
+.story-shop-product:hover{
+transform:translateY(-3px);
+box-shadow:0 16px 36px rgba(74,14,14,.14);
 }
-.story-product-card{
-position:absolute;
-z-index:528;
-left:82px;
-bottom:145px;
-width:270px;
-border-radius:20px;
-background:#FFFFFF;
-border:1px solid #FFD2B3;
-box-shadow:0 18px 50px rgba(0,0,0,.24);
-padding:14px;
-display:none;
-animation:storyProductPop .18s ease;
+.story-shop-product-top{
+display:grid;
+grid-template-columns:70px 1fr;
+gap:10px;
+align-items:center;
 }
-.story-product-card.show{display:block;}
-@keyframes storyProductPop{from{transform:translateY(8px) scale(.96);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
-.story-product-card::before{
-content:"";
-position:absolute;
-left:-8px;
-bottom:36px;
-width:16px;
-height:16px;
-background:#FFFFFF;
-border-left:1px solid #FFD2B3;
-border-bottom:1px solid #FFD2B3;
-transform:rotate(45deg);
-}
-.story-product-top{display:flex;gap:10px;align-items:center;}
-.story-product-top img{
-width:66px;
-height:66px;
-border-radius:14px;
+.story-shop-product img{
+width:70px;
+height:70px;
+border-radius:16px;
 object-fit:cover;
 background:#FFF6ED;
 }
-.story-product-info h4{font-size:14px;font-weight:900;line-height:1.25;color:#4A0E0E;margin-bottom:4px;}
-.story-product-info p{font-size:12px;font-weight:800;color:#A66A55;margin-bottom:5px;}
-.story-product-price{font-size:18px;font-weight:900;color:#FF7A00;}
-.story-product-actions{display:flex;gap:8px;margin-top:12px;}
-.story-jiomart-btn{
-flex:1;
+.story-shop-product h4{
+font-size:13px;
+line-height:1.2;
+font-weight:900;
+color:#4A0E0E;
+margin-bottom:4px;
+}
+.story-shop-product p{
+font-size:11px;
+font-weight:800;
+line-height:1.25;
+color:#A66A55;
+margin-bottom:5px;
+}
+.story-shop-price{
+font-size:18px;
+font-weight:900;
+color:#FF7A00;
+}
+.story-shop-actions{
+display:grid;
+grid-template-columns:1fr 42px;
+gap:8px;
+margin-top:12px;
+}
+.story-buy-btn{
 height:40px;
-border-radius:12px;
+border-radius:13px;
 background:#0078AD;
 color:#FFFFFF;
 font-size:12px;
@@ -1002,29 +1009,25 @@ font-weight:900;
 display:flex;
 align-items:center;
 justify-content:center;
-gap:6px;
+gap:7px;
 }
-.story-cart-btn{
-width:44px;
+.story-side-cart-btn{
 height:40px;
-border-radius:12px;
+border-radius:13px;
 background:#FFF1E5;
 color:#FF7A00;
 font-size:16px;
 }
-.story-ai-tag{
+.story-shop-tag{
 margin-top:10px;
-padding:8px 9px;
+padding:8px 10px;
 border-radius:12px;
 background:#FFF6ED;
 font-size:11px;
 font-weight:800;
 color:#7A3E2E;
 }
-.story-ai-tag i{color:#FF7A00;margin-right:5px;}
-@media(max-width:900px){
-.story-product-card{left:84px;right:14px;width:auto;bottom:145px;}
-}
+.story-shop-tag i{color:#FF7A00;margin-right:5px;}
 
 .story-right-panel{display:flex;flex-direction:column;background:#FFFFFF;min-width:0;}
 .story-right-head{
@@ -1091,7 +1094,7 @@ body.story-open{overflow:hidden;}
 @media(max-width:900px){
 .story-viewer-bg{padding:0;}
 .story-modal-box{grid-template-columns:1fr;height:100vh;width:100vw;border-radius:0;}
-.story-right-panel{display:none;}
+.story-shop-side,.story-right-panel{display:none;}
 .story-img{width:100%;height:100%;}
 .story-close-btn{right:12px;top:12px;}
 }
@@ -1302,6 +1305,18 @@ cursor:default;
 <div class="story-viewer-bg" id="storyViewer">
 <button class="story-close-btn" onclick="closeStoryViewer()"><i class="fa-solid fa-xmark"></i></button>
 <div class="story-modal-box">
+<div class="story-shop-side" id="storyShopSide">
+<div class="story-shop-side-head">
+<div class="story-shop-title">
+<i class="fa-solid fa-bag-shopping"></i>
+<span>Shop the Look</span>
+</div>
+<span class="story-ai-picked">AI Picked</span>
+</div>
+<div class="story-shop-sub">
+Story image se AI ne matching products detect kiye hain. Buy button se direct JioMart search open hoga.
+</div>
+</div>
 <div class="story-left-panel">
 <div class="story-progress-wrap" id="storyProgressWrap"></div>
 <div class="story-user-pill">
@@ -1309,37 +1324,6 @@ cursor:default;
 <div>
 <strong id="storyUserName">Creator</strong>
 <span id="storyTime">2h ago</span>
-</div>
-</div>
-
-<div class="story-shop-label">
-<i class="fa-solid fa-store"></i>
-<span>Shop on JioMart</span>
-</div>
-
-<div class="story-shop-rail" id="storyShopRail"></div>
-
-<div class="story-product-card" id="storyProductCard">
-<div class="story-product-top">
-<img id="storyProductImg" src="">
-<div class="story-product-info">
-<h4 id="storyProductName"></h4>
-<p id="storyProductDesc"></p>
-<div class="story-product-price" id="storyProductPrice"></div>
-</div>
-</div>
-<div class="story-product-actions">
-<button class="story-jiomart-btn" onclick="buyStoryProductOnJioMart(event)">
-<i class="fa-solid fa-bag-shopping"></i>
-Buy on JioMart
-</button>
-<button class="story-cart-btn" onclick="addStoryProductToCart(event)">
-<i class="fa-solid fa-cart-plus"></i>
-</button>
-</div>
-<div class="story-ai-tag">
-<i class="fa-solid fa-wand-magic-sparkles"></i>
-AI detected product from this story
 </div>
 </div>
 
@@ -1931,11 +1915,50 @@ return storyProductsByCreator[name] || storyProductsDefault;
 }
 
 function renderStoryShop(name){
-const rail = document.getElementById("storyShopRail");
-if(!rail) return;
+const side = document.getElementById("storyShopSide");
+if(!side) return;
 const products = getStoryProducts(name);
-rail.innerHTML = products.map(p=>`<button class="story-rail-item" onclick="openStoryProduct(event,'${p.key}')" title="${p.name}"><i class="fa-solid ${p.icon}"></i></button>`).join("");
-closeStoryProductCard();
+side.innerHTML = `
+<div class="story-shop-side-head">
+<div class="story-shop-title">
+<i class="fa-solid fa-bag-shopping"></i>
+<span>Shop the Look</span>
+</div>
+<span class="story-ai-picked">AI Picked</span>
+</div>
+<div class="story-shop-sub">
+Story image se AI ne matching products detect kiye hain. Buy button se direct JioMart search open hoga.
+</div>
+${products.map((p,index)=>`
+<div class="story-shop-product">
+<div class="story-shop-product-top">
+<img src="${p.img}">
+<div>
+<h4>${p.name}</h4>
+<p>${p.desc}</p>
+<div class="story-shop-price">${p.price}</div>
+</div>
+</div>
+<div class="story-shop-actions">
+<button class="story-buy-btn" onclick="openStoryJioMart(event,'${p.link}')">
+<i class="fa-solid fa-lock"></i> Buy
+</button>
+<button class="story-side-cart-btn" onclick="addStoryProductToCart(event)">
+<i class="fa-solid fa-cart-plus"></i>
+</button>
+</div>
+<div class="story-shop-tag">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+${index === 0 ? 'AI detected from this story' : 'Similar style on JioMart'}
+</div>
+</div>
+`).join("")}`;
+}
+
+function openStoryJioMart(event,link){
+if(event) event.stopPropagation();
+toast("Opening JioMart product page");
+setTimeout(()=>{window.open(link || "https://www.jiomart.com/", "_blank");},400);
 }
 
 function openStoryProduct(event,key){
