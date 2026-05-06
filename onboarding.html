@@ -877,6 +877,82 @@ width:min(1380px,96vw);max-height:92vh;background:var(--cream);border:1px solid 
 @media(max-width:1200px){.ob-login-wrap{grid-template-columns:1fr}.ob-login-left{min-height:430px}.ob-ai-shell{grid-template-columns:1fr}.ob-lang-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:720px){.onboarding-popup-bg{padding:0}.onboarding-popup{width:100vw;max-height:100vh;height:100vh;border-radius:0}.ob-screen{max-height:100vh}.ob-login-wrap{min-height:100vh}.ob-login-left{padding:28px;min-height:360px}.ob-login-hero{left:28px;right:28px}.ob-title{font-size:36px}.ob-lang-grid{grid-template-columns:1fr}.ob-h1{font-size:32px}.ob-ai-shell .category-select-grid{grid-template-columns:repeat(2,1fr)}.ob-top,.ob-page{padding-left:18px;padding-right:18px}.ob-progress{margin-left:18px;margin-right:18px}}
 
+
+/* FINAL ONBOARDING UPDATE - LOGIN → VIBE + LANGUAGE → HOME */
+.onboarding-popup-bg{
+  background:rgba(42,10,10,.38)!important;
+  backdrop-filter:blur(4px)!important;
+  -webkit-backdrop-filter:blur(4px)!important;
+}
+.onboarding-popup{
+  width:min(1280px,94vw)!important;
+  max-height:88vh!important;
+  border-radius:26px!important;
+}
+.ob-screen{max-height:88vh!important;}
+.ob-login-wrap{min-height:560px!important;grid-template-columns:1.08fr .92fr!important;}
+.ob-login-left{min-height:560px!important;padding:42px!important;}
+.ob-login-hero{left:42px!important;right:42px!important;bottom:40px!important;}
+.ob-title{font-size:44px!important;}
+.ob-sub{font-size:15px!important;}
+.ob-login-card{max-width:470px!important;padding:30px!important;}
+.ob-close-x{
+  position:absolute;left:18px;top:18px;z-index:20;width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,.92);border:1px solid var(--line);color:var(--dark);
+  display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 10px 28px rgba(42,10,10,.14);
+  transition:.22s ease;
+}
+.ob-close-x:hover{background:var(--orange)!important;color:#fff!important;transform:scale(1.06);}
+.ob-top{padding:20px 28px 0 72px!important;min-height:66px;}
+.ob-top .ob-logo .logo-circle{width:42px;height:42px;font-size:19px;}
+.ob-top .ob-logo .logo-text{font-size:26px!important;}
+.ob-progress{grid-template-columns:repeat(2,1fr)!important;margin:14px 28px 16px 72px!important;}
+.ob-progress .ob-bar:nth-child(3){display:none!important;}
+.ob-page{padding:0 28px 26px!important;}
+.ob-card{border-radius:24px!important;}
+.ob-combined-card .ob-inner{padding:22px 22px 22px!important;}
+.ob-combined-head{margin-bottom:14px!important;}
+.ob-h1{font-size:30px!important;margin-bottom:7px!important;}
+.ob-copy{display:none!important;}
+.ob-combined-count{font-size:13px!important;}
+.ob-vibe-main-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;}
+.ob-vibe-main-grid .ob-panel{height:100%;}
+.ob-vibe-main-grid .category-select-grid{grid-template-columns:repeat(3,1fr)!important;gap:8px!important;}
+.ob-vibe-main-grid .choice-card{height:68px!important;border-radius:14px!important;}
+.ob-vibe-main-grid .choice-content strong{font-size:12px!important;}
+.ob-vibe-main-grid .choice-content i{width:24px!important;height:24px!important;font-size:11px!important;}
+.ob-vibe-main-grid .choice-tick{width:22px!important;height:22px!important;top:7px!important;right:7px!important;}
+.ob-vibe-main-grid .panel-head{padding:14px 16px 10px!important;}
+.ob-vibe-main-grid .panel-head h2{font-size:22px!important;}
+.ob-vibe-main-grid .panel-head p{font-size:11px!important;}
+.ob-vibe-main-grid .left-body,.ob-vibe-main-grid .ai-body{padding:12px 14px 14px!important;}
+.ob-vibe-main-grid .selection-note{padding:11px 13px!important;font-size:12px!important;border-radius:14px!important;}
+.ob-vibe-main-grid .mood-title{font-size:18px!important;}
+.ob-vibe-main-grid .mood-sub{font-size:11px!important;}
+.ob-vibe-main-grid .mood-chip{height:28px!important;font-size:11px!important;padding:0 9px!important;}
+.ob-vibe-main-grid .mood-chips{gap:6px!important;margin:8px 0 10px!important;}
+.ob-vibe-main-grid .ai-chat{height:150px!important;min-height:150px!important;max-height:150px!important;flex-basis:150px!important;}
+.ob-vibe-main-grid .ai-input-wrap{grid-template-columns:1fr 90px!important;gap:8px!important;margin-top:10px!important;}
+.ob-vibe-main-grid .ai-input,.ob-vibe-main-grid .ask-btn{height:44px!important;border-radius:14px!important;font-size:12px!important;}
+.ob-language-strip{
+  margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:22px;
+  box-shadow:0 10px 26px rgba(74,14,14,.05);padding:14px 16px;overflow:hidden;
+}
+.ob-language-strip-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:10px;}
+.ob-language-strip-head .kicker{margin:0!important;}
+.ob-language-title{font-size:20px;font-weight:950;letter-spacing:-.04em;color:var(--dark);}
+.ob-language-scroll{display:flex;gap:10px;overflow-x:auto;overflow-y:hidden;padding:2px 2px 8px;scrollbar-width:thin;scrollbar-color:var(--orange) transparent;}
+.ob-language-scroll::-webkit-scrollbar{height:6px}.ob-language-scroll::-webkit-scrollbar-thumb{background:var(--orange);border-radius:999px}
+.ob-lang-chip{
+  flex:0 0 auto;height:44px;padding:0 18px;border-radius:999px;background:#FFF9F4;border:1px solid var(--line);
+  display:flex;align-items:center;gap:9px;font-size:14px;font-weight:950;color:var(--brown);transition:.22s ease;white-space:nowrap;
+}
+.ob-lang-chip:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(74,14,14,.10);}
+.ob-lang-chip.selected{background:var(--orange)!important;border-color:var(--orange)!important;color:#fff!important;box-shadow:0 12px 28px rgba(255,122,0,.25);}
+.ob-lang-chip i{font-size:12px;opacity:.75;}
+@media(max-width:1100px){.ob-login-wrap{grid-template-columns:1fr!important}.ob-login-left{min-height:350px!important}.ob-vibe-main-grid{grid-template-columns:1fr}.onboarding-popup{max-height:96vh!important}.ob-screen{max-height:96vh!important}}
+@media(max-width:720px){.onboarding-popup{width:100vw!important;height:100vh!important;max-height:100vh!important;border-radius:0!important}.ob-screen{max-height:100vh!important}.ob-page{padding-left:16px!important;padding-right:16px!important}.ob-top{padding-left:64px!important}.ob-progress{margin-left:64px!important;margin-right:16px!important}.ob-title{font-size:34px!important}.ob-login-card{padding:24px!important}.ob-vibe-main-grid .category-select-grid{grid-template-columns:repeat(2,1fr)!important}}
+
 /* ================= COLOR THEME UPDATE - BROWN PAGE BACKGROUND =================
    Notes:
    - Green story rings unchanged
@@ -1544,17 +1620,36 @@ body{
 <!-- ONBOARDING POPUP FLOW - ADDED -->
 <div class="onboarding-popup-bg" id="onboardingPopup">
   <div class="onboarding-popup">
+    <button class="ob-close-x" onclick="skipOnboardingPopup()" aria-label="Close onboarding"><i class="fa-solid fa-xmark"></i></button>
+
     <section class="ob-screen active" id="obLoginScreen">
       <div class="ob-login-wrap">
         <div class="ob-login-left">
           <div class="ob-logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
-          <div class="ob-login-hero"><div class="ob-kicker">Personalized Creator Feed</div><div class="ob-title">Start with your vibe. Land directly on content.</div><div class="ob-sub">Login first, select languages and vibes, then JioVibe opens Home with AI Vibe results ready.</div></div>
+          <div class="ob-login-hero">
+            <div class="ob-kicker">Personalized Creator Feed</div>
+            <div class="ob-title">Start with your vibe. Land directly on content.</div>
+            <div class="ob-sub">Login first, select your vibe and language, then JioVibe opens Home.</div>
+          </div>
         </div>
-        <div class="ob-login-right"><div class="ob-login-card"><div class="ob-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> JioVibe</div><h1>Welcome to JioVibe</h1><p>Continue with your phone number or email. This is a dummy login for the prototype flow.</p><label class="ob-field-label">Phone number or email</label><input class="ob-input" id="obLoginInput" placeholder="Enter phone number or email" /><button class="ob-primary" style="width:100%;margin-top:18px" onclick="obGoStep('language')"><i class="fa-solid fa-right-to-bracket"></i> Continue</button><div class="ob-note">After this, user will select language and AI Vibe before going to Home.</div></div></div>
+        <div class="ob-login-right">
+          <div class="ob-login-card">
+            <div class="ob-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> JioVibe</div>
+            <h1>Welcome to JioVibe</h1>
+            <p>Continue with your phone number or email. This is a dummy login for the prototype flow.</p>
+            <label class="ob-field-label">Phone number or email</label>
+            <input class="ob-input" id="obLoginInput" placeholder="Enter phone number or email" />
+            <button class="ob-primary" style="width:100%;margin-top:18px" onclick="obGoStep('vibe')"><i class="fa-solid fa-right-to-bracket"></i> Continue</button>
+            <div class="ob-note">After this, user will select AI Vibe and language before going to Home.</div>
+          </div>
+        </div>
       </div>
     </section>
+
     <section class="ob-screen" id="obFlowScreen">
-      <div class="ob-top"><div class="ob-logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div><button class="ob-skip" onclick="skipOnboardingPopup()">Skip</button></div>
+      <div class="ob-top">
+        <div class="ob-logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
+      </div>
       <div class="ob-progress"><div class="ob-bar" id="obBar1"><span></span></div><div class="ob-bar" id="obBar2"><span></span></div><div class="ob-bar" id="obBar3"><span></span></div></div>
       <div class="ob-page">
         <div id="obLanguageStep">
@@ -1563,36 +1658,55 @@ body{
               <div class="ob-head-row ob-combined-head">
                 <div>
                   <div class="ob-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Screen 2</div>
-                  <div class="ob-h1">Choose your languages & vibe</div>
-                  <div class="ob-copy">Select languages, choose your vibe, or chat with AI to personalize your feed.</div>
+                  <div class="ob-h1">Choose your vibe</div>
                 </div>
-                <div class="ob-count ob-combined-count"><span id="obLangCount">0</span> languages • <span id="obVibeCount">0</span> vibe selected</div>
+                <div class="ob-count ob-combined-count"><span id="obVibeCount">0</span> vibe selected • <span id="obLangCount">0</span> languages</div>
               </div>
 
-              <div class="ob-combined-grid">
-                <section class="ob-panel ob-language-panel">
+              <div class="ob-vibe-main-grid">
+                <section class="ob-panel">
                   <div class="panel-head">
-                    <div class="kicker"><i class="fa-solid fa-language"></i> Choose your languages</div>
-                    <h2>Languages</h2>
-                    <p>Select one or more languages for your personalized feed.</p>
+                    <div class="kicker"><i class="fa-solid fa-layer-group"></i> Personalize your feed</div>
+                    <h2>Choose your vibe</h2>
+                    <p>Select one or multiple categories. Your feed will mix related videos, live streams and shorts.</p>
                   </div>
                   <div class="left-body">
-                    <div class="ob-tag ob-pick-tag"><i class="fa-solid fa-check"></i> Pick one or more</div>
-                    <div class="ob-lang-grid" id="obLanguageGrid"></div>
+                    <div class="category-select-grid" id="obCategoryGrid"></div>
+                    <button class="selection-note" id="obSelectionNote" onclick="completeOnboardingPopup()">Please select one or more categories. Then tap this box to continue.</button>
                   </div>
                 </section>
 
-                <div class="ob-right-vibe-wrap">
-                  <section class="ob-panel">
-                    <div class="panel-head"><div class="kicker"><i class="fa-solid fa-layer-group"></i> Personalize your feed</div><h2>Choose your vibe</h2><p>Select one or multiple categories. Your feed will mix related videos, live streams and shorts.</p></div>
-                    <div class="left-body"><div class="category-select-grid" id="obCategoryGrid"></div><button class="selection-note" id="obSelectionNote" onclick="completeOnboardingPopup()">Please select one or more categories. Then tap this box to continue.</button></div>
-                  </section>
-                  <section class="ob-panel">
-                    <div class="panel-head"><div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Mood Assist</div><h2>What are you into today?</h2><p>Pick a mood or type like a real chat. AI will suggest the right category or creator content.</p></div>
-                    <div class="ai-body"><div><div class="mood-title">Choose a mood</div><div class="mood-sub">Use quick moods for meeting demo, or type your own message.</div></div><div class="mood-chips" id="obMoodChips"></div><div class="ai-chat" id="obAiChat"><div class="msg bot">Hi, tell me your mood. For example: “I am sad”, “I want funny content”, “I need editing tips”, or “show me music videos”.</div></div><div class="ai-input-wrap"><input class="ai-input" id="obAiInput" placeholder="Type or select a suggestion..." onkeydown="if(event.key==='Enter')obSendAI()"><button class="ask-btn" onclick="obSendAI()">Send <i class="fa-solid fa-arrow-right"></i></button></div></div>
-                  </section>
-                </div>
+                <section class="ob-panel">
+                  <div class="panel-head">
+                    <div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Mood Assist</div>
+                    <h2>What are you into today?</h2>
+                    <p>Pick a mood or type like a real chat. AI will suggest the right category or creator content.</p>
+                  </div>
+                  <div class="ai-body">
+                    <div>
+                      <div class="mood-title">Choose a mood</div>
+                      <div class="mood-sub">Use quick moods for demo, or type your own message.</div>
+                    </div>
+                    <div class="mood-chips" id="obMoodChips"></div>
+                    <div class="ai-chat" id="obAiChat"><div class="msg bot">Hi, tell me your mood. For example: “I am sad”, “I want funny content”, “I need editing tips”, or “show me music videos”.</div></div>
+                    <div class="ai-input-wrap">
+                      <input class="ai-input" id="obAiInput" placeholder="Type or select a suggestion..." onkeydown="if(event.key==='Enter')obSendAI()">
+                      <button class="ask-btn" onclick="obSendAI()">Send <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                  </div>
+                </section>
               </div>
+
+              <section class="ob-language-strip">
+                <div class="ob-language-strip-head">
+                  <div>
+                    <div class="kicker"><i class="fa-solid fa-language"></i> Select Language</div>
+                    <div class="ob-language-title">Language</div>
+                  </div>
+                  <div class="ob-count">Horizontal scroll</div>
+                </div>
+                <div class="ob-language-scroll" id="obLanguageGrid"></div>
+              </section>
             </div>
           </div>
         </div>
@@ -1601,7 +1715,6 @@ body{
     </section>
   </div>
 </div>
-
 <script>
 const logoColors=['#FF7A00','#D73700','#7A3E2E','#4A0E0E','#E65100','#B84A2A','#AF2D00','#8A180A'];
 const categoryData={
@@ -2404,7 +2517,7 @@ window.closeHomeWatchOverlay=closeHomeWatchOverlay;
 
 /* ONBOARDING POPUP FLOW - ADDED */
 const OB_DONE_KEY='jiovibe_home_onboarding_done_v2';
-const obLanguages=[['Hindi','हिंदी content'],['English','Global content'],['Punjabi','ਪੰਜਾਬੀ content'],['Tamil','தமிழ் content'],['Telugu','తెలుగు content'],['Marathi','मराठी content'],['Bengali','বাংলা content'],['Gujarati','ગુજરાતી content'],['Kannada','ಕನ್ನಡ content'],['Malayalam','മലയാളം content'],['Urdu','اردو content'],['Bhojpuri','भोजपुरी content']];
+const obLanguages=['हिन्दी','English','मराठी','தமிழ்','తెలుగు','বাংলা','ગુજરાતી','ਪੰਜਾਬੀ','ಕನ್ನಡ','മലയാളം','اردو','भोजपुरी'];
 const obMoods=['Happy','Sad','Breakup','Motivated','Chill','Funny','Romantic','Learning','Gaming mood','Fitness energy'];
 let obSelectedLanguages=[], obSelectedCategories=[], obSelectedMood='', obVibeOnlyMode=false;
 function initOnboardingPopup(){
@@ -2419,7 +2532,7 @@ function openOnboardingPopup(step){
   else{obVibeOnlyMode=false;document.getElementById('obLoginScreen').classList.add('active');document.getElementById('obFlowScreen').classList.remove('active');}
 }
 function closeOnboardingPopup(){const pop=document.getElementById('onboardingPopup'); if(pop)pop.classList.remove('show');document.body.classList.remove('onboarding-open');}
-function skipOnboardingPopup(){window.location.href='home.html';}
+function skipOnboardingPopup(){window.location.href='https://iklapikla.github.io/jiovibe-Studio/home.html';}
 function openOnboardingVibeOnly(){openOnboardingPopup('vibe');}
 function obGoStep(step){
   document.getElementById('obLoginScreen').classList.remove('active');document.getElementById('obFlowScreen').classList.add('active');
@@ -2429,7 +2542,7 @@ function obGoStep(step){
   document.getElementById('obBar2').classList.add('active');
   document.getElementById('obBar3').classList.add('active');
 }
-function initObLanguages(){const grid=document.getElementById('obLanguageGrid');if(!grid)return;grid.innerHTML=obLanguages.map(([name,sub])=>`<button class="ob-lang-card" onclick="toggleObLanguage('${name}',this)"><div><div class="ob-lang-name">${name}</div><div class="ob-lang-sub">${sub}</div></div><div class="ob-check"><i class="fa-solid fa-check"></i></div></button>`).join('');}
+function initObLanguages(){const grid=document.getElementById('obLanguageGrid');if(!grid)return;grid.innerHTML=obLanguages.map(name=>`<button class="ob-lang-chip" onclick="toggleObLanguage('${name}',this)"><i class="fa-solid fa-language"></i>${name}</button>`).join('');}
 function toggleObLanguage(name,el){el.classList.toggle('selected');obSelectedLanguages=obSelectedLanguages.includes(name)?obSelectedLanguages.filter(x=>x!==name):[...obSelectedLanguages,name];document.getElementById('obLangCount').textContent=obSelectedLanguages.length;}
 function initObCategories(){const grid=document.getElementById('obCategoryGrid');if(!grid)return;grid.innerHTML='';Object.keys(categoryData).forEach(name=>{const d=categoryData[name];const card=document.createElement('button');card.type='button';card.className='choice-card';card.onclick=()=>toggleObCategory(name,card);card.innerHTML=`<img src="${d.img}"><div class="choice-tick"><i class="fa-solid fa-check"></i></div><div class="choice-content"><strong>${name}</strong><i class="fa-solid ${d.icon}"></i></div>`;grid.appendChild(card);});}
 function toggleObCategory(name,el){el.classList.toggle('selected');obSelectedCategories=obSelectedCategories.includes(name)?obSelectedCategories.filter(x=>x!==name):[...obSelectedCategories,name];updateObSelectionNote();}
@@ -2444,10 +2557,10 @@ function obProcessMood(q){const l=q.toLowerCase();if(l.includes('sad')||l.includ
 function syncMainVibeCards(){document.querySelectorAll('#categorySelectGrid .choice-card').forEach((c,i)=>c.classList.toggle('selected',selectedCategories.includes(Object.keys(categoryData)[i])));if(typeof updateSelectionNote==='function')updateSelectionNote();}
 function completeOnboardingPopup(){
   if(!obSelectedCategories.length)obSelectedCategories=['Gaming'];
-  if(!obSelectedLanguages.length)obSelectedLanguages=['Hindi'];
-  selectedCategories=[...obSelectedCategories];syncMainVibeCards();
-  closeOnboardingPopup();
-  showVibeResults();
+  if(!obSelectedLanguages.length)obSelectedLanguages=['हिन्दी'];
+  selectedCategories=[...obSelectedCategories];
+  syncMainVibeCards();
+  window.location.href='https://iklapikla.github.io/jiovibe-Studio/home.html';
 }
 
 initCategories();bindRailInfinite();loadHomeGrids();initDraggableVibeButton();initOnboardingPopup();
