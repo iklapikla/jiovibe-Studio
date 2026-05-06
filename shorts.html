@@ -805,6 +805,149 @@ transition:none !important;
 .short-item .more-menu{right:-238px;top:58%;}
 }
 
+
+/* ===== STORY STYLE SHORTS VIEWER UPDATE ===== */
+.player-mode.show{
+display:flex!important;
+align-items:center!important;
+justify-content:center!important;
+background:rgba(42,10,10,.68)!important;
+backdrop-filter:blur(8px)!important;
+padding:20px!important;
+}
+.close-player{
+top:24px!important;
+right:28px!important;
+background:#FFFFFF!important;
+color:#4A0E0E!important;
+z-index:500!important;
+}
+.close-player:hover{background:#FF7A00!important;color:#FFFFFF!important;}
+.short-scroll{
+width:min(1380px,94vw)!important;
+height:min(780px,92vh)!important;
+overflow-y:auto!important;
+scroll-snap-type:y mandatory!important;
+border-radius:24px!important;
+box-shadow:0 28px 80px rgba(0,0,0,.22)!important;
+background:#FFFFFF!important;
+padding:0!important;
+align-items:stretch!important;
+}
+.short-item{
+width:100%!important;
+height:min(780px,92vh)!important;
+max-width:none!important;
+display:grid!important;
+grid-template-columns:280px 440px 1fr!important;
+gap:0!important;
+background:#FFFFFF!important;
+border:1px solid #FFD2B3!important;
+border-radius:24px!important;
+overflow:hidden!important;
+scroll-snap-align:start!important;
+position:relative!important;
+}
+.short-shop-side{
+grid-column:1;
+background:#FFF2E7;
+border-right:1px solid #FFD2B3;
+padding:18px 14px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+gap:14px;
+z-index:2;
+}
+.short-shop-side-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+padding:12px;
+border-radius:18px;
+background:#FFFFFF;
+box-shadow:0 8px 22px rgba(255,122,0,.10);
+border:1px solid #FFE0CC;
+}
+.short-shop-title{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:900;color:#4A0E0E}
+.short-shop-title i{color:#FF7A00}
+.short-ai-picked{font-size:11px;font-weight:900;color:#FF7A00;background:#FFF1E5;padding:7px 9px;border-radius:999px}
+.short-shop-product{
+background:#FFFFFF;
+border:1px solid #FFE0CC;
+border-radius:20px;
+padding:12px;
+box-shadow:0 10px 26px rgba(74,14,14,.08);
+transition:.2s;
+}
+.short-shop-product:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(74,14,14,.14)}
+.short-shop-product-top{display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:center}
+.short-shop-product img{width:70px;height:70px;border-radius:16px;object-fit:cover;background:#FFF6ED}
+.short-shop-product h4{font-size:13px;line-height:1.2;font-weight:900;color:#4A0E0E;margin-bottom:4px}
+.short-shop-product p{font-size:11px;font-weight:800;line-height:1.25;color:#A66A55;margin-bottom:5px}
+.short-shop-price{font-size:18px;font-weight:900;color:#FF7A00}
+.short-shop-actions{display:grid;grid-template-columns:1fr 42px;gap:8px;margin-top:12px}
+.short-buy-btn{height:40px;border-radius:13px;background:#0078AD;color:#FFFFFF;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:7px}
+.short-cart-btn{height:40px;border-radius:13px;background:#FFF1E5;color:#FF7A00;font-size:16px}
+.short-shop-tag{margin-top:10px;padding:8px 10px;border-radius:12px;background:#FFF6ED;font-size:11px;font-weight:800;color:#7A3E2E}
+.short-shop-tag i{color:#FF7A00;margin-right:5px}
+.phone{
+grid-column:2!important;
+height:100%!important;
+width:100%!important;
+max-height:none!important;
+aspect-ratio:auto!important;
+border-radius:0!important;
+box-shadow:none!important;
+}
+.phone:hover{transform:none!important;box-shadow:none!important}
+.actions{
+position:absolute!important;
+left:485px!important;
+bottom:26px!important;
+top:auto!important;
+right:auto!important;
+transform:none!important;
+display:flex!important;
+flex-direction:row!important;
+gap:12px!important;
+z-index:20!important;
+}
+.action{
+width:50px!important;
+min-height:50px!important;
+border-radius:50%!important;
+background:rgba(42,10,10,.36)!important;
+color:#FFFFFF!important;
+backdrop-filter:blur(8px)!important;
+box-shadow:none!important;
+}
+.action span{display:none!important}
+.action.liked,.action:hover{background:#FF7A00!important;color:#FFFFFF!important}
+.more-menu{right:auto!important;left:610px!important;top:auto!important;bottom:88px!important}
+.player-mode.comments-open .short-scroll{transform:none!important}
+.comment-panel{
+right:calc((100vw - min(1380px,94vw))/2)!important;
+top:50%!important;
+width:calc(min(1380px,94vw) - 720px)!important;
+height:min(780px,92vh)!important;
+border-radius:0 24px 24px 0!important;
+box-shadow:none!important;
+border-left:1px solid #FFD2B3!important;
+z-index:220!important;
+}
+.comment-panel.show{transform:translateY(-50%) translateX(0) scale(1)!important;opacity:1!important;pointer-events:auto!important}
+.comment-head{height:82px!important}
+.comment-caption{background:#FFE4CC!important}
+@media(max-width:900px){
+.short-scroll{width:100vw!important;height:100vh!important;border-radius:0!important}
+.short-item{grid-template-columns:1fr!important;height:100vh!important;border-radius:0!important}
+.short-shop-side,.comment-panel{display:none!important}
+.phone{grid-column:1!important}
+.actions{left:auto!important;right:14px!important;bottom:120px!important;flex-direction:column!important}
+}
+
 </style>
 </head>
 
@@ -1060,6 +1203,62 @@ wrap.dataset.comments = item.comments;
 wrap.dataset.shortIndex = index;
 
 wrap.innerHTML = `
+
+<div class="short-shop-side">
+  <div class="short-shop-side-head">
+    <div class="short-shop-title"><i class="fa-solid fa-bag-shopping"></i> Shop the Look</div>
+    <div class="short-ai-picked">AI Picked</div>
+  </div>
+
+  <div class="short-shop-product">
+    <div class="short-shop-product-top">
+      <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=300&auto=format&fit=crop">
+      <div>
+        <h4>${item.creator} Style Sunglasses</h4>
+        <p>Premium creator look</p>
+        <div class="short-shop-price">₹2,499</div>
+      </div>
+    </div>
+    <div class="short-shop-actions">
+      <button class="short-buy-btn" onclick="showToast('Opening JioMart')"><i class="fa-solid fa-lock"></i> Buy</button>
+      <button class="short-cart-btn" onclick="showToast('Added to cart')"><i class="fa-solid fa-cart-shopping"></i></button>
+    </div>
+    <div class="short-shop-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> AI detected from this short</div>
+  </div>
+
+  <div class="short-shop-product">
+    <div class="short-shop-product-top">
+      <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=300&auto=format&fit=crop">
+      <div>
+        <h4>Creator Outfit</h4>
+        <p>Similar style on JioMart</p>
+        <div class="short-shop-price">₹3,999</div>
+      </div>
+    </div>
+    <div class="short-shop-actions">
+      <button class="short-buy-btn" onclick="showToast('Opening JioMart')"><i class="fa-solid fa-lock"></i> Buy</button>
+      <button class="short-cart-btn" onclick="showToast('Added to cart')"><i class="fa-solid fa-cart-shopping"></i></button>
+    </div>
+    <div class="short-shop-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Similar product match</div>
+  </div>
+
+  <div class="short-shop-product">
+    <div class="short-shop-product-top">
+      <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?q=80&w=300&auto=format&fit=crop">
+      <div>
+        <h4>Accessories Set</h4>
+        <p>Short inspired add-on</p>
+        <div class="short-shop-price">₹1,899</div>
+      </div>
+    </div>
+    <div class="short-shop-actions">
+      <button class="short-buy-btn" onclick="showToast('Opening JioMart')"><i class="fa-solid fa-lock"></i> Buy</button>
+      <button class="short-cart-btn" onclick="showToast('Added to cart')"><i class="fa-solid fa-cart-shopping"></i></button>
+    </div>
+    <div class="short-shop-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Recommended for viewers</div>
+  </div>
+</div>
+
 <div class="phone">
 <img src="${item.gif}">
 <button class="mute" onclick="toggleMute(this)"><i class="fa-solid fa-volume-xmark"></i></button>
@@ -1114,6 +1313,14 @@ player.classList.add("show");
 
 setTimeout(()=>{
 scroll.scrollTop = 0;
+const firstShort = scroll.querySelector(".short-item");
+if(firstShort){
+activeCommentShort = firstShort;
+renderComments(firstShort);
+document.getElementById("commentPanel").classList.add("show");
+document.getElementById("playerMode").classList.add("comments-open");
+markActiveCommentButton(firstShort);
+}
 },50);
 }
 
