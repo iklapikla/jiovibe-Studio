@@ -439,16 +439,264 @@ cursor:pointer;
 background:#E65100;
 }
 
+/* DigiLocker Verification */
+.digilocker-card{
+background:linear-gradient(135deg,#FFFFFF 0%,#FFF8F1 100%);
+position:relative;
+overflow:hidden;
+}
+
+.digilocker-card::after{
+content:"";
+position:absolute;
+width:240px;
+height:240px;
+border-radius:50%;
+background:rgba(255,122,0,.08);
+right:-80px;
+top:-90px;
+}
+
+.digilocker-wrap{
+position:relative;
+z-index:1;
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:24px;
+align-items:center;
+}
+
+.digilocker-left{
+display:flex;
+gap:18px;
+align-items:flex-start;
+}
+
+.digilocker-icon{
+width:72px;
+height:72px;
+border-radius:22px;
+background:#FFE4CC;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#FF7A00;
+font-size:34px;
+box-shadow:0 10px 24px rgba(255,122,0,.12);
+flex-shrink:0;
+}
+
+.verify-badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:#FFF0E2;
+color:#C55400;
+border:1px solid #FFD2B3;
+padding:9px 14px;
+border-radius:999px;
+font-size:13px;
+font-weight:800;
+margin-top:10px;
+}
+
+.verify-badge.verified{
+background:#EAFBF0;
+color:#167A36;
+border-color:#BDEACB;
+}
+
+.digilocker-points{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:20px;
+}
+
+.digilocker-point{
+background:#FFF6ED;
+border:1px solid #FFD2B3;
+border-radius:16px;
+padding:14px;
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:800;
+font-size:14px;
+color:#4A0E0E;
+}
+
+.digilocker-point i{
+color:#FF7A00;
+font-size:18px;
+}
+
+.digilocker-panel{
+background:#FFFFFF;
+border:1px solid #FFD2B3;
+border-radius:20px;
+padding:22px;
+box-shadow:0 12px 28px rgba(74,14,14,.06);
+}
+
+.digi-status-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:14px;
+padding:14px 0;
+border-bottom:1px solid #FFE4CC;
+}
+
+.digi-status-row:last-child{
+border-bottom:none;
+}
+
+.digi-label{
+font-size:14px;
+font-weight:800;
+color:#7A3E2E;
+}
+
+.digi-value{
+font-size:14px;
+font-weight:800;
+color:#4A0E0E;
+text-align:right;
+}
+
+.digilocker-actions{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.digi-note{
+margin-top:14px;
+font-size:13px;
+font-weight:600;
+line-height:1.5;
+color:#A66A55;
+}
+
+.verify-modal{
+position:fixed;
+inset:0;
+background:rgba(42,10,10,.45);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:99;
+padding:20px;
+}
+
+.verify-modal.show{
+display:flex;
+}
+
+.verify-box{
+width:430px;
+max-width:100%;
+background:#FFFFFF;
+border-radius:24px;
+padding:26px;
+box-shadow:0 24px 70px rgba(42,10,10,.25);
+border:1px solid #FFD2B3;
+animation:modalIn .25s ease both;
+}
+
+.verify-box-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:14px;
+margin-bottom:18px;
+}
+
+.verify-box h3{
+font-size:23px;
+font-weight:800;
+color:#4A0E0E;
+}
+
+.close-modal{
+width:40px;
+height:40px;
+border:none;
+border-radius:50%;
+background:#FFE4CC;
+color:#4A0E0E;
+cursor:pointer;
+font-size:18px;
+}
+
+.verify-step{
+display:flex;
+gap:14px;
+align-items:flex-start;
+padding:13px 0;
+border-bottom:1px solid #FFE4CC;
+}
+
+.verify-step:last-child{
+border-bottom:none;
+}
+
+.step-num{
+width:30px;
+height:30px;
+border-radius:50%;
+background:#FF7A00;
+color:#FFFFFF;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:13px;
+font-weight:800;
+flex-shrink:0;
+}
+
+.verify-step strong{
+display:block;
+font-size:15px;
+margin-bottom:4px;
+}
+
+.verify-step span{
+font-size:13px;
+font-weight:600;
+color:#7A3E2E;
+line-height:1.5;
+}
+
+.verify-success{
+display:none;
+margin-top:16px;
+background:#EAFBF0;
+border:1px solid #BDEACB;
+border-radius:16px;
+padding:14px;
+color:#167A36;
+font-weight:800;
+font-size:14px;
+}
+
+@keyframes modalIn{
+from{opacity:0;transform:translateY(12px) scale(.97);}
+to{opacity:1;transform:translateY(0) scale(1);}
+}
+
 @media(max-width:1200px){
 .search{width:430px;}
-.media-row,.form-grid{grid-template-columns:1fr;}
+.media-row,.form-grid,.digilocker-wrap{grid-template-columns:1fr;}
 .link-row{grid-template-columns:36px 1fr;}
 .link-row .input-box:nth-child(3){grid-column:2;}
+.digilocker-points{grid-template-columns:1fr;}
 }
 
 /* --- ADDED PREMIUM ANIMATIONS ONLY --- */
 
-/* Sidebar */
 .menu-item{
 transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease;
 transform-origin:left center;
@@ -459,7 +707,6 @@ transform:scale(1.045);
 box-shadow:0 10px 24px rgba(255,122,0,.14);
 }
 
-/* Topbar */
 .bell,
 .profile,
 .dropdown a{
@@ -481,7 +728,6 @@ from{opacity:0;transform:translateY(-8px) scale(.98);}
 to{opacity:1;transform:translateY(0) scale(1);}
 }
 
-/* Page load */
 .page-head,
 .settings-grid,
 .save-bar{
@@ -495,7 +741,6 @@ from{opacity:0;transform:translateY(12px);}
 to{opacity:1;transform:translateY(0);}
 }
 
-/* Search */
 .search{
 transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
 }
@@ -506,7 +751,6 @@ box-shadow:0 10px 24px rgba(255,122,0,.12);
 border-color:#FF7A00;
 }
 
-/* Setting cards */
 .setting-card{
 transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
 will-change:transform;
@@ -517,7 +761,6 @@ box-shadow:0 18px 42px rgba(74,14,14,.13);
 border-color:#FF7A00;
 }
 
-/* Banner and profile previews */
 .banner-preview,
 .picture-preview{
 transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
@@ -535,22 +778,22 @@ transition:transform .4s ease;
 transform:scale(1.06);
 }
 
-/* Buttons */
 .soft-btn,
 .add-btn,
 .icon-btn,
-.save-btn{
+.save-btn,
+.close-modal{
 transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
 }
 .soft-btn:hover,
 .add-btn:hover,
 .icon-btn:hover,
-.save-btn:hover{
+.save-btn:hover,
+.close-modal:hover{
 transform:scale(1.045);
 box-shadow:0 12px 28px rgba(255,122,0,.18);
 }
 
-/* Inputs and textareas */
 .input-box,
 .textarea-box{
 transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
@@ -564,7 +807,6 @@ box-shadow:0 10px 24px rgba(255,122,0,.12);
 border-color:#FF7A00;
 }
 
-/* Link rows */
 .link-row{
 transition:transform .25s ease,box-shadow .25s ease,background .25s ease;
 border-radius:14px;
@@ -583,7 +825,6 @@ transform:scale(1.1);
 color:#FF7A00;
 }
 
-/* Media rows */
 .media-row{
 transition:transform .25s ease;
 }
@@ -591,7 +832,6 @@ transition:transform .25s ease;
 transform:translateY(-2px);
 }
 
-/* Save bar */
 .save-bar{
 transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;
 will-change:transform;
@@ -602,14 +842,12 @@ box-shadow:0 18px 44px rgba(74,14,14,.16);
 border-color:#FF7A00;
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce){
 *{
 animation:none !important;
 transition:none !important;
 }
 }
-
 </style>
 </head>
 
@@ -662,7 +900,7 @@ transition:none !important;
 
 <div class="page-head">
 <h1>Channel Settings</h1>
-<p>Manage your channel identity, profile details, links and contact information.</p>
+<p>Manage your channel identity, profile details, verification, links and contact information.</p>
 </div>
 
 <div class="settings-grid">
@@ -734,6 +972,69 @@ I'm Ankit Jayant, and here I post gaming videos, creator content, live streams a
 </div>
 </div>
 
+<div class="setting-card digilocker-card">
+<h2 class="card-title">Account Verification with DigiLocker</h2>
+<p class="card-subtitle">Verify your creator account using DigiLocker to unlock trusted creator badge, secure payouts and higher account credibility.</p>
+
+<div class="digilocker-wrap">
+<div>
+<div class="digilocker-left">
+<div class="digilocker-icon">
+<i class="fa-solid fa-id-card-clip"></i>
+</div>
+<div>
+<h3 style="font-size:24px;font-weight:800;margin-bottom:8px;">Verify your identity securely</h3>
+<p class="card-subtitle" style="margin-bottom:0;">Connect DigiLocker and allow JioVibe to verify your government ID details. This is a demo flow for UI preview.</p>
+<div class="verify-badge" id="verifyBadge">
+<i class="fa-solid fa-circle-exclamation"></i>
+<span id="verifyBadgeText">Not Verified</span>
+</div>
+</div>
+</div>
+
+<div class="digilocker-points">
+<div class="digilocker-point"><i class="fa-solid fa-shield-halved"></i> Secure KYC</div>
+<div class="digilocker-point"><i class="fa-solid fa-badge-check"></i> Trusted Badge</div>
+<div class="digilocker-point"><i class="fa-solid fa-wallet"></i> Payout Ready</div>
+<div class="digilocker-point"><i class="fa-solid fa-lock"></i> Privacy Safe</div>
+</div>
+</div>
+
+<div class="digilocker-panel">
+<div class="digi-status-row">
+<span class="digi-label">Verification Status</span>
+<span class="digi-value" id="verificationStatus">Pending</span>
+</div>
+
+<div class="digi-status-row">
+<span class="digi-label">Verification Method</span>
+<span class="digi-value">DigiLocker</span>
+</div>
+
+<div class="digi-status-row">
+<span class="digi-label">Verified Name</span>
+<span class="digi-value" id="verifiedName">Not connected</span>
+</div>
+
+<div class="digi-status-row">
+<span class="digi-label">Documents</span>
+<span class="digi-value" id="verifiedDocs">Aadhaar / PAN</span>
+</div>
+
+<div class="digilocker-actions">
+<button class="soft-btn" type="button" onclick="openDigiLockerModal()">
+<i class="fa-solid fa-link"></i> Connect DigiLocker
+</button>
+<button class="soft-btn secondary" type="button" onclick="resetDigiLocker()">
+<i class="fa-solid fa-rotate-left"></i> Reset
+</button>
+</div>
+
+<p class="digi-note">Note: Real DigiLocker integration will require official API authentication. This UI currently shows a clickable demo verification flow.</p>
+</div>
+</div>
+</div>
+
 <div class="setting-card">
 <h2 class="card-title">Channel URL</h2>
 <p class="card-subtitle">This is the standard web address for your channel. You can copy and share it with your viewers.</p>
@@ -791,13 +1092,56 @@ I'm Ankit Jayant, and here I post gaming videos, creator content, live streams a
 </div>
 
 <div class="save-bar">
-<span>Changes are for demo only. Buttons are clickable-style but no real action is connected.</span>
+<span>Changes are for demo only. DigiLocker verification is a clickable demo flow.</span>
 <button class="save-btn" type="button">Save Changes</button>
 </div>
 
 </section>
 
 </main>
+</div>
+
+<div class="verify-modal" id="digiLockerModal">
+<div class="verify-box">
+<div class="verify-box-top">
+<h3>DigiLocker Verification</h3>
+<button class="close-modal" type="button" onclick="closeDigiLockerModal()">
+<i class="fa-solid fa-xmark"></i>
+</button>
+</div>
+
+<div class="verify-step">
+<div class="step-num">1</div>
+<div>
+<strong>Connect DigiLocker</strong>
+<span>User signs in using DigiLocker mobile number or Aadhaar linked account.</span>
+</div>
+</div>
+
+<div class="verify-step">
+<div class="step-num">2</div>
+<div>
+<strong>Allow document access</strong>
+<span>User gives permission to verify Aadhaar / PAN details securely.</span>
+</div>
+</div>
+
+<div class="verify-step">
+<div class="step-num">3</div>
+<div>
+<strong>JioVibe account verified</strong>
+<span>Creator profile gets trusted verification and payout readiness.</span>
+</div>
+</div>
+
+<button class="soft-btn" type="button" style="width:100%;margin-top:18px;" onclick="completeDigiLockerVerification()">
+<i class="fa-solid fa-shield-check"></i> Simulate Verification
+</button>
+
+<div class="verify-success" id="verifySuccess">
+<i class="fa-solid fa-circle-check"></i> DigiLocker connected successfully. Account verified.
+</div>
+</div>
 </div>
 
 <script>
@@ -810,6 +1154,42 @@ if(!e.target.closest(".profile")){
 document.getElementById("dropdown").classList.remove("show");
 }
 });
+
+function openDigiLockerModal(){
+document.getElementById("digiLockerModal").classList.add("show");
+}
+
+function closeDigiLockerModal(){
+document.getElementById("digiLockerModal").classList.remove("show");
+}
+
+function completeDigiLockerVerification(){
+document.getElementById("verifySuccess").style.display = "block";
+
+setTimeout(function(){
+document.getElementById("verificationStatus").innerText = "Verified";
+document.getElementById("verifiedName").innerText = "Ankit Jayant";
+document.getElementById("verifiedDocs").innerText = "Aadhaar + PAN verified";
+
+const badge = document.getElementById("verifyBadge");
+badge.classList.add("verified");
+badge.innerHTML = '<i class="fa-solid fa-circle-check"></i><span>Verified with DigiLocker</span>';
+
+closeDigiLockerModal();
+},900);
+}
+
+function resetDigiLocker(){
+document.getElementById("verificationStatus").innerText = "Pending";
+document.getElementById("verifiedName").innerText = "Not connected";
+document.getElementById("verifiedDocs").innerText = "Aadhaar / PAN";
+
+const badge = document.getElementById("verifyBadge");
+badge.classList.remove("verified");
+badge.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i><span id="verifyBadgeText">Not Verified</span>';
+
+document.getElementById("verifySuccess").style.display = "none";
+}
 </script>
 
 </body>
