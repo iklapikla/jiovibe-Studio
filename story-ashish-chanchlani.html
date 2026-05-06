@@ -27,11 +27,139 @@ color:#4A0E0E;background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:.
 .close-btn:hover{background:#FF7A00;color:#fff}
 
 .story-modal{
-width:min(1160px,92vw);height:min(780px,92vh);background:#fff;border:1px solid #FFD2B3;
-border-radius:24px;overflow:hidden;display:grid;grid-template-columns:440px 1fr;
+width:min(1380px,94vw);height:min(780px,92vh);background:#fff;border:1px solid #FFD2B3;
+border-radius:24px;overflow:hidden;display:grid;grid-template-columns:280px 440px 1fr;
 box-shadow:0 28px 80px rgba(0,0,0,.16);animation:pop .22s ease
 }
 @keyframes pop{from{transform:scale(.97);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* LEFT OUTSIDE SHOP PANEL - NEW DESIGN */
+.shop-side{
+background:#FFF2E7;
+border-right:1px solid #FFD2B3;
+padding:18px 14px;
+overflow-y:auto;
+display:flex;
+flex-direction:column;
+gap:14px
+}
+.shop-side-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+padding:12px 12px;
+border-radius:18px;
+background:#fff;
+box-shadow:0 8px 22px rgba(255,122,0,.10);
+border:1px solid #FFE0CC
+}
+.shop-title{
+display:flex;
+align-items:center;
+gap:8px;
+font-size:15px;
+font-weight:900;
+color:#4A0E0E
+}
+.shop-title i{color:#FF7A00}
+.ai-picked{
+font-size:11px;
+font-weight:900;
+color:#FF7A00;
+background:#FFF1E5;
+padding:7px 9px;
+border-radius:999px
+}
+.shop-sub{
+font-size:12px;
+font-weight:800;
+line-height:1.4;
+color:#9B5B45;
+padding:0 4px
+}
+.shop-product{
+background:#fff;
+border:1px solid #FFE0CC;
+border-radius:20px;
+padding:12px;
+box-shadow:0 10px 26px rgba(74,14,14,.08);
+transition:.2s
+}
+.shop-product:hover{
+transform:translateY(-3px);
+box-shadow:0 16px 36px rgba(74,14,14,.14)
+}
+.shop-product-top{
+display:grid;
+grid-template-columns:70px 1fr;
+gap:10px;
+align-items:center
+}
+.shop-product img{
+width:70px;
+height:70px;
+border-radius:16px;
+object-fit:cover;
+background:#FFF6ED
+}
+.shop-product h4{
+font-size:13px;
+line-height:1.2;
+font-weight:900;
+color:#4A0E0E;
+margin-bottom:4px
+}
+.shop-product p{
+font-size:11px;
+font-weight:800;
+line-height:1.25;
+color:#A66A55;
+margin-bottom:5px
+}
+.shop-price{
+font-size:18px;
+font-weight:900;
+color:#FF7A00
+}
+.shop-actions{
+display:grid;
+grid-template-columns:1fr 42px;
+gap:8px;
+margin-top:12px
+}
+.buy-btn{
+height:40px;
+border-radius:13px;
+background:#0078AD;
+color:#fff;
+font-size:12px;
+font-weight:900;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:7px
+}
+.cart-btn{
+height:40px;
+border-radius:13px;
+background:#FFF1E5;
+color:#FF7A00;
+font-size:16px
+}
+.shop-tag{
+margin-top:10px;
+padding:8px 10px;
+border-radius:12px;
+background:#FFF6ED;
+font-size:11px;
+font-weight:800;
+color:#7A3E2E
+}
+.shop-tag i{
+color:#FF7A00;
+margin-right:5px
+}
 
 .story-left{
 background:#2A0A0A;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden
@@ -84,156 +212,6 @@ z-index:14;box-shadow:0 8px 24px rgba(0,0,0,.18);transition:.2s
 }
 .arrow:hover{background:#FF7A00;color:#fff}
 .arrow.left{left:14px}.arrow.right{right:14px}
-
-/* JIOMART SHOP FEATURE */
-.shop-label{
-position:absolute;
-left:16px;
-top:100px;
-z-index:18;
-display:flex;
-align-items:center;
-gap:8px;
-padding:9px 12px;
-border-radius:999px;
-background:rgba(255,255,255,.92);
-backdrop-filter:blur(12px);
-box-shadow:0 8px 24px rgba(0,0,0,.16);
-color:#4A0E0E;
-font-size:12px;
-font-weight:900
-}
-.shop-label i{color:#FF7A00}
-
-.shop-rail{
-position:absolute;
-left:18px;
-bottom:96px;
-z-index:22;
-display:flex;
-flex-direction:column;
-gap:10px
-}
-.rail-item{
-width:50px;
-height:50px;
-border-radius:15px;
-background:rgba(255,255,255,.94);
-backdrop-filter:blur(10px);
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 8px 24px rgba(0,0,0,.16);
-font-size:20px;
-color:#FF7A00;
-transition:.2s
-}
-.rail-item:hover,.rail-item.active{
-background:#FF7A00;
-color:#fff;
-transform:translateX(4px)
-}
-
-.product-card{
-position:absolute;
-z-index:28;
-left:82px;
-bottom:145px;
-width:270px;
-border-radius:20px;
-background:#fff;
-border:1px solid #FFD2B3;
-box-shadow:0 18px 50px rgba(0,0,0,.24);
-padding:14px;
-display:none;
-animation:cardPop .18s ease
-}
-.product-card.show{display:block}
-@keyframes cardPop{
-from{transform:translateY(8px) scale(.96);opacity:0}
-to{transform:translateY(0) scale(1);opacity:1}
-}
-.product-card::before{
-content:"";
-position:absolute;
-left:-8px;
-bottom:36px;
-width:16px;
-height:16px;
-background:#fff;
-border-left:1px solid #FFD2B3;
-border-bottom:1px solid #FFD2B3;
-transform:rotate(45deg)
-}
-.product-top{
-display:flex;
-gap:10px;
-align-items:center
-}
-.product-top img{
-width:66px;
-height:66px;
-border-radius:14px;
-object-fit:cover;
-background:#FFF6ED
-}
-.product-info h4{
-font-size:14px;
-font-weight:900;
-line-height:1.25;
-color:#4A0E0E;
-margin-bottom:4px
-}
-.product-info p{
-font-size:12px;
-font-weight:800;
-color:#A66A55;
-margin-bottom:5px
-}
-.product-price{
-font-size:18px;
-font-weight:900;
-color:#FF7A00
-}
-.product-actions{
-display:flex;
-gap:8px;
-margin-top:12px
-}
-.jiomart-btn{
-flex:1;
-height:40px;
-border-radius:12px;
-background:#0078AD;
-color:#fff;
-font-size:12px;
-font-weight:900;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:6px
-}
-.cart-btn{
-width:44px;
-height:40px;
-border-radius:12px;
-background:#FFF1E5;
-color:#FF7A00;
-font-size:16px
-}
-.ai-tag{
-margin-top:10px;
-padding:8px 9px;
-border-radius:12px;
-background:#FFF6ED;
-font-size:11px;
-font-weight:800;
-color:#7A3E2E
-}
-.ai-tag i{
-color:#FF7A00;
-margin-right:5px
-}
 
 /* RIGHT PANEL */
 .story-right{display:flex;flex-direction:column;background:#fff}
@@ -306,17 +284,15 @@ opacity:0;transition:.25s;z-index:100
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
+@media(max-width:1100px){
+.story-modal{grid-template-columns:240px 390px 1fr}
+}
+
 @media(max-width:900px){
 .story-modal{grid-template-columns:1fr;height:100vh;width:100vw;border-radius:0}
-.story-right{display:none}
+.shop-side,.story-right{display:none}
 .story-img{width:100%;height:100%}
 .close-btn{right:12px;top:12px}
-.product-card{
-left:84px;
-right:14px;
-width:auto;
-bottom:145px
-}
 }
 </style>
 </head>
@@ -332,6 +308,112 @@ bottom:145px
 </button>
 
 <div class="story-modal">
+
+<div class="shop-side">
+<div class="shop-side-head">
+<div class="shop-title">
+<i class="fa-solid fa-bag-shopping"></i>
+<span>Shop the Look</span>
+</div>
+<span class="ai-picked">AI Picked</span>
+</div>
+
+<div class="shop-sub">
+Story image se AI ne matching products detect kiye hain. Buy button se direct JioMart search open hoga.
+</div>
+
+<div class="shop-product">
+<div class="shop-product-top">
+<img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=300&auto=format&fit=crop&q=80">
+<div>
+<h4>Creator Style Glasses</h4>
+<p>Casual comedy look</p>
+<div class="shop-price">₹1,499</div>
+</div>
+</div>
+<div class="shop-actions">
+<button class="buy-btn" onclick="openJioMart('https://www.jiomart.com/search/sunglasses')">
+<i class="fa-solid fa-lock"></i> Buy
+</button>
+<button class="cart-btn" onclick="addToCart()">
+<i class="fa-solid fa-cart-plus"></i>
+</button>
+</div>
+<div class="shop-tag">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+AI detected from this story
+</div>
+</div>
+
+<div class="shop-product">
+<div class="shop-product-top">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&auto=format&fit=crop&q=80">
+<div>
+<h4>Casual Creator T-Shirt</h4>
+<p>Comfort fit daily wear</p>
+<div class="shop-price">₹799</div>
+</div>
+</div>
+<div class="shop-actions">
+<button class="buy-btn" onclick="openJioMart('https://www.jiomart.com/search/men%20tshirt')">
+<i class="fa-solid fa-lock"></i> Buy
+</button>
+<button class="cart-btn" onclick="addToCart()">
+<i class="fa-solid fa-cart-plus"></i>
+</button>
+</div>
+<div class="shop-tag">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+Similar style on JioMart
+</div>
+</div>
+
+<div class="shop-product">
+<div class="shop-product-top">
+<img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300&auto=format&fit=crop&q=80">
+<div>
+<h4>Vlog Camera Gear</h4>
+<p>For comedy creators</p>
+<div class="shop-price">₹24,999</div>
+</div>
+</div>
+<div class="shop-actions">
+<button class="buy-btn" onclick="openJioMart('https://www.jiomart.com/search/camera')">
+<i class="fa-solid fa-lock"></i> Buy
+</button>
+<button class="cart-btn" onclick="addToCart()">
+<i class="fa-solid fa-cart-plus"></i>
+</button>
+</div>
+<div class="shop-tag">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+Creator gear match found
+</div>
+</div>
+
+<div class="shop-product">
+<div class="shop-product-top">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&auto=format&fit=crop&q=80">
+<div>
+<h4>Street Style Sneakers</h4>
+<p>Creator casual shoes</p>
+<div class="shop-price">₹2,199</div>
+</div>
+</div>
+<div class="shop-actions">
+<button class="buy-btn" onclick="openJioMart('https://www.jiomart.com/search/sneakers')">
+<i class="fa-solid fa-lock"></i> Buy
+</button>
+<button class="cart-btn" onclick="addToCart()">
+<i class="fa-solid fa-cart-plus"></i>
+</button>
+</div>
+<div class="shop-tag">
+<i class="fa-solid fa-wand-magic-sparkles"></i>
+AI outfit match
+</div>
+</div>
+</div>
 
 <div class="story-left">
 
@@ -349,45 +431,7 @@ bottom:145px
 </div>
 </div>
 
-<div class="shop-label">
-<i class="fa-solid fa-store"></i>
-<span>Shop on JioMart</span>
-</div>
-
 <img id="storyImage" class="story-img" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Story%20Ashish%20Chanchalani%200.avif">
-
-<div class="shop-rail">
-<button class="rail-item" onclick="openProduct(event,'glasses')" title="Glasses"><i class="fa-solid fa-glasses"></i></button>
-<button class="rail-item" onclick="openProduct(event,'tshirt')" title="T-Shirt"><i class="fa-solid fa-shirt"></i></button>
-<button class="rail-item" onclick="openProduct(event,'camera')" title="Camera"><i class="fa-solid fa-camera"></i></button>
-<button class="rail-item" onclick="openProduct(event,'shoes')" title="Shoes"><i class="fa-solid fa-shoe-prints"></i></button>
-</div>
-
-<div class="product-card" id="productCard">
-<div class="product-top">
-<img id="productImg" src="">
-<div class="product-info">
-<h4 id="productName"></h4>
-<p id="productDesc"></p>
-<div class="product-price" id="productPrice"></div>
-</div>
-</div>
-
-<div class="product-actions">
-<button class="jiomart-btn" onclick="buyOnJioMart()">
-<i class="fa-solid fa-bag-shopping"></i>
-Buy on JioMart
-</button>
-<button class="cart-btn" onclick="addToCart()">
-<i class="fa-solid fa-cart-plus"></i>
-</button>
-</div>
-
-<div class="ai-tag">
-<i class="fa-solid fa-wand-magic-sparkles"></i>
-AI detected product from this story
-</div>
-</div>
 
 <div class="nav-area nav-left" onclick="prevStory()"></div>
 <div class="nav-area nav-right" onclick="nextStory()"></div>
@@ -563,7 +607,6 @@ const stories = [
 
 let currentStory = 0;
 let timer;
-let activeProductLink = "";
 
 function updateStory(){
 document.getElementById("storyImage").src = stories[currentStory];
@@ -578,7 +621,6 @@ if(index < currentStory){bar.classList.add("done");}
 if(index === currentStory){bar.classList.add("active");}
 });
 
-closeProductCard();
 clearTimeout(timer);
 timer = setTimeout(nextStory,5000);
 }
@@ -638,69 +680,11 @@ btn.innerText = btn.innerText === "Subscribe" ? "Subscribed" : "Subscribe";
 btn.style.background = btn.innerText === "Subscribed" ? "#4A0E0E" : "#FF7A00";
 }
 
-const products = {
-glasses:{
-name:"Creator Style Glasses",
-desc:"Casual comedy look",
-price:"₹1,499",
-img:"https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=300&auto=format&fit=crop&q=80",
-link:"https://www.jiomart.com/search/sunglasses"
-},
-tshirt:{
-name:"Casual Creator T-Shirt",
-desc:"Comfort fit daily wear",
-price:"₹799",
-img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&auto=format&fit=crop&q=80",
-link:"https://www.jiomart.com/search/men%20tshirt"
-},
-camera:{
-name:"Vlog Camera Gear",
-desc:"For comedy creators",
-price:"₹24,999",
-img:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=300&auto=format&fit=crop&q=80",
-link:"https://www.jiomart.com/search/camera"
-},
-shoes:{
-name:"Street Style Sneakers",
-desc:"Creator casual shoes",
-price:"₹2,199",
-img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&auto=format&fit=crop&q=80",
-link:"https://www.jiomart.com/search/sneakers"
-}
-};
-
-function openProduct(event,key){
-event.stopPropagation();
-
-const product = products[key];
-const card = document.getElementById("productCard");
-
-document.getElementById("productImg").src = product.img;
-document.getElementById("productName").innerText = product.name;
-document.getElementById("productDesc").innerText = product.desc;
-document.getElementById("productPrice").innerText = product.price;
-activeProductLink = product.link;
-
-document.querySelectorAll(".rail-item").forEach(btn=>btn.classList.remove("active"));
-event.currentTarget.classList.add("active");
-
-card.classList.add("show");
-clearTimeout(timer);
-}
-
-function closeProductCard(){
-const card = document.getElementById("productCard");
-if(card){
-card.classList.remove("show");
-}
-document.querySelectorAll(".rail-item").forEach(btn=>btn.classList.remove("active"));
-}
-
-function buyOnJioMart(){
+function openJioMart(link){
 showToast("Opening JioMart product page");
 setTimeout(()=>{
-window.open(activeProductLink || "https://www.jiomart.com/", "_blank");
-},500);
+window.open(link, "_blank");
+},400);
 }
 
 function addToCart(){
@@ -714,16 +698,9 @@ toast.classList.add("show");
 setTimeout(()=>toast.classList.remove("show"),1800);
 }
 
-document.addEventListener("click",function(e){
-if(!e.target.closest(".product-card") && !e.target.closest(".rail-item")){
-closeProductCard();
-}
-});
-
 document.addEventListener("keydown",function(e){
 if(e.key === "ArrowRight") nextStory();
 if(e.key === "ArrowLeft") prevStory();
-if(e.key === "Escape") closeProductCard();
 });
 
 updateStory();
