@@ -101,6 +101,18 @@ button{cursor:pointer;border:none}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--deep);color:#fff;padding:13px 18px;border-radius:999px;font-weight:900;display:none;z-index:100;}
 .toast.show{display:block}
 
+
+.efficiency-card{background:linear-gradient(135deg,#fff,#FFF6ED);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px;box-shadow:0 8px 20px rgba(74,14,14,.04);}
+.efficiency-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:950;color:var(--dark);margin-bottom:12px;}
+.efficiency-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.eff-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;}
+.eff-label{font-size:11px;font-weight:900;color:var(--brown);text-transform:uppercase;letter-spacing:.35px;margin-bottom:6px;}
+.eff-value{font-size:14px;font-weight:950;color:var(--dark);line-height:1.35;}
+.eff-value.orange{color:var(--orange2);}
+.eff-note{margin-top:10px;font-size:12px;font-weight:750;color:var(--brown);line-height:1.45;}
+.generation-pill{display:inline-flex;align-items:center;gap:7px;background:#EFFFF1;border:1px solid #BFE8C6;color:#146B2A;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:950;}
+@media(max-width:720px){.efficiency-grid{grid-template-columns:1fr}}
+
 @media(max-width:1100px){.layout{grid-template-columns:1fr}.result-panel{height:650px;position:relative;top:auto}.head{flex-direction:column}.wallet{white-space:normal}}
 @media(max-width:720px){.page{padding:18px}.head h1{font-size:30px}.tools-grid{grid-template-columns:1fr}.panel{padding:18px}.media.vertical{width:180px}}
 </style>
@@ -235,8 +247,36 @@ function generateTool(type){
     return;
   }
   updateTokens(10);
+  const generatedSeconds=randomGeneratedSeconds(type);
   const id=addProcessing(actionTitle(type)+' • 10 Tokens');
-  setTimeout(()=>replaceMsg(id, buildSingleResult(type)),900);
+  setTimeout(()=>replaceMsg(id, buildSingleResult(type, generatedSeconds)),900);
+}
+function randomGeneratedSeconds(type){
+  const ranges={thumbnail:[5,7],shorts:[6,9],story:[5,7],highlight:[7,10],title:[5,6],description:[5,7]};
+  const r=ranges[type] || [5,8];
+  return Math.floor(Math.random()*(r[1]-r[0]+1))+r[0];
+}
+function humanBenchmark(type){
+  return {
+    thumbnail:{time:'45-90 min',cost:'₹500-₹1,500',work:'Designer selects frame, edits face focus, adds text, exports thumbnail.'},
+    shorts:{time:'2-4 hours',cost:'₹1,500-₹5,000',work:'Editor finds hook, cuts video, reframes 9:16, adds captions and pacing.'},
+    story:{time:'20-40 min',cost:'₹300-₹800',work:'Designer creates vertical story creative with CTA safe space.'},
+    highlight:{time:'3-6 hours',cost:'₹2,500-₹8,000',work:'Editor reviews footage, marks best moments, cuts, adds music and effects.'},
+    title:{time:'15-30 min',cost:'₹200-₹500',work:'Creator/SEO person researches hook, keyword and clickable title options.'},
+    description:{time:'30-60 min',cost:'₹300-₹800',work:'Writer creates hook, CTA, hashtags, keywords and platform-ready description.'}
+  }[type] || {time:'1-2 hours',cost:'₹500-₹2,000',work:'Manual creator workflow with review and export.'};
+}
+function efficiencyBlock(type, seconds){
+  const h=humanBenchmark(type);
+  return `<div class="efficiency-card">
+    <div class="efficiency-title"><span class="generation-pill"><i class="fa-solid fa-bolt"></i> Result generated in ${seconds} sec</span></div>
+    <div class="efficiency-grid">
+      <div class="eff-item"><div class="eff-label">AI Cost</div><div class="eff-value orange">10 Tokens</div></div>
+      <div class="eff-item"><div class="eff-label">Normal Human Time</div><div class="eff-value">${h.time}</div></div>
+      <div class="eff-item"><div class="eff-label">Normal Human Cost</div><div class="eff-value">${h.cost}</div></div>
+    </div>
+    <div class="eff-note"><b>Human workflow:</b> ${h.work}</div>
+  </div>`;
 }
 function actionTitle(type){
   return {
@@ -280,9 +320,9 @@ function textActions(text,type){
   const safe=text.replace(/`/g,'').replace(/\$/g,'');
   return `<div class="result-actions"><button class="copy-btn" onclick="copyText(\`${safe}\`)"><i class="fa-regular fa-copy"></i> Copy</button><button class="secondary-btn" onclick="generateTool('${type}')"><i class="fa-solid fa-rotate"></i> Regenerate (+10 Tokens)</button></div>`;
 }
-function buildSingleResult(type){
+function buildSingleResult(type, generatedSeconds){
   const title=`<div class="msg-top"><div class="msg-title"><i class="${toolIcon(type)}"></i> ${actionTitle(type)} Result</div><div class="msg-time">${timeNow()}</div></div>`;
-  return title + `<div class="results-pack">` + buildSingleVariant(type) + `</div>`;
+  return title + efficiencyBlock(type, generatedSeconds) + `<div class="results-pack">` + buildSingleVariant(type) + `</div>`;
 }
 function buildSingleVariant(type){
   if(type==='thumbnail'){
