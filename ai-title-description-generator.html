@@ -8,17 +8,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{
-  --cream:#FFF6ED;
-  --soft:#FFE4CC;
-  --line:#FFD2B3;
-  --orange:#FF7A00;
-  --orange2:#E65100;
-  --brown:#7A3E2E;
-  --dark:#4A0E0E;
-  --deep:#2A0A0A;
-  --white:#fff;
-  --green:#20C45A;
-  --red:#ff3b30;
+  --cream:#FFF6ED;--soft:#FFE4CC;--line:#FFD2B3;--orange:#FF7A00;--orange2:#E65100;
+  --brown:#7A3E2E;--dark:#4A0E0E;--deep:#2A0A0A;--white:#fff;--green:#20C45A;--red:#ff3b30;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:var(--cream);color:var(--dark)}
@@ -35,7 +26,8 @@ a{text-decoration:none;color:inherit}button,input,textarea,select{font-family:in
 .mode-pill.active,.mode-pill:hover{background:var(--orange);border-color:var(--orange);color:#fff;transform:translateY(-2px);box-shadow:0 12px 24px rgba(255,122,0,.18)}
 .grid{display:grid;grid-template-columns:360px 1fr 360px;gap:22px;align-items:start}
 .panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 8px 28px rgba(74,14,14,.05)}
-.panel h2{font-size:20px;font-weight:950;margin-bottom:8px}.desc{font-size:13px;font-weight:700;color:var(--brown);line-height:1.5;margin-bottom:16px}
+.panel h2{font-size:20px;font-weight:950;margin-bottom:8px}
+.desc{font-size:13px;font-weight:700;color:var(--brown);line-height:1.5;margin-bottom:16px}
 .upload-box{border:2px dashed var(--orange);background:#FFF9F3;border-radius:18px;padding:24px;text-align:center;cursor:pointer;transition:.25s;margin-bottom:16px}
 .upload-box:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(255,122,0,.12)}
 .upload-box i{font-size:34px;color:var(--orange);margin-bottom:10px}.upload-box strong{display:block;font-size:17px;font-weight:950;margin-bottom:5px}.upload-box span{font-size:12px;font-weight:800;color:var(--brown)}
@@ -44,29 +36,59 @@ a{text-decoration:none;color:inherit}button,input,textarea,select{font-family:in
 .tool-card:hover{border-color:var(--orange);background:#FFF9F3;transform:translateY(-2px);box-shadow:0 12px 26px rgba(255,122,0,.10)}
 .tool-icon{height:42px;width:42px;border-radius:14px;background:#FFF1E5;color:var(--orange);display:flex;align-items:center;justify-content:center;font-size:18px}
 .tool-card h3{font-size:14px;font-weight:950;margin-bottom:5px}.tool-card p{font-size:12px;font-weight:700;color:var(--brown);line-height:1.45}.cost{display:inline-flex;margin-top:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:11px;font-weight:950;color:var(--orange2)}
-.preview-wrap{padding:18px}.live-preview{position:relative;background:#160606;border-radius:24px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;box-shadow:0 20px 50px rgba(74,14,14,.16)}
-.live-preview img.bg{width:100%;height:100%;object-fit:cover;opacity:.9;display:block}.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.7))}
-.live-badge{position:absolute;left:18px;top:18px;background:var(--red);color:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:950;display:flex;gap:7px;align-items:center}.live-badge span{height:7px;width:7px;border-radius:50%;background:#fff;animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.35}}
+.preview-wrap{padding:18px}
+.live-preview{position:relative;background:#160606;border-radius:24px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/9;box-shadow:0 20px 50px rgba(74,14,14,.16)}
+.live-preview img.bg{width:100%;height:100%;object-fit:cover;opacity:.9;display:block}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.7))}
+.live-badge{position:absolute;left:18px;top:18px;background:var(--red);color:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:950;display:flex;gap:7px;align-items:center}
+.live-badge span{height:7px;width:7px;border-radius:50%;background:#fff;animation:pulse 1s infinite}@keyframes pulse{50%{opacity:.35}}
 .viewer{position:absolute;right:18px;top:18px;background:rgba(0,0,0,.55);color:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900;backdrop-filter:blur(8px)}
 .score{position:absolute;left:50%;top:18px;transform:translateX(-50%);background:rgba(255,122,0,.92);color:#fff;border-radius:14px;padding:10px 16px;font-weight:950;font-size:13px;box-shadow:0 10px 22px rgba(255,122,0,.25)}
-.lower{position:absolute;left:18px;bottom:18px;background:rgba(0,0,0,.58);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:18px;padding:13px 15px;backdrop-filter:blur(8px);max-width:70%}.lower strong{display:block;font-size:17px;font-weight:950;margin-bottom:4px}.lower span{font-size:12px;font-weight:700;color:#ffe2c6}.avatar-bubble{position:absolute;right:18px;bottom:18px;width:120px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:10px;text-align:center;backdrop-filter:blur(10px);color:#fff}.avatar-face{height:82px;border-radius:18px;background:linear-gradient(135deg,#ffb56b,#ff7a00);display:flex;align-items:center;justify-content:center;font-size:42px;margin-bottom:8px}.avatar-bubble b{font-size:12px}.avatar-bubble small{display:block;font-size:10px;color:#ffe2c6;font-weight:800;margin-top:2px}
-.preview-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}.primary-btn{background:var(--orange);color:#fff;border-radius:14px;padding:13px 17px;font-size:14px;font-weight:950;display:inline-flex;align-items:center;gap:8px;transition:.22s}.primary-btn:hover{background:var(--orange2);transform:scale(1.025);box-shadow:0 12px 28px rgba(255,122,0,.22)}.secondary-btn{border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:14px;padding:12px 15px;font-size:13px;font-weight:950;display:inline-flex;align-items:center;gap:8px}.secondary-btn:hover{background:var(--soft)}
-.result-box{margin-top:18px;background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:14px;max-height:360px;overflow:auto}.empty{text-align:center;color:var(--brown);font-weight:800;padding:26px 8px}.empty i{display:block;font-size:34px;color:var(--orange);margin-bottom:10px}.msg{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin-bottom:12px;animation:pop .22s ease both}@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}.msg-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px}.msg-title{font-size:14px;font-weight:950}.msg-time{font-size:11px;font-weight:800;color:var(--brown)}.text-result{background:#FFF9F3;border:1px solid var(--line);border-radius:13px;padding:12px;font-size:13px;font-weight:750;color:var(--dark);line-height:1.55}.media{border-radius:14px;overflow:hidden;background:#200606;border:1px solid var(--line);position:relative}.media.wide{aspect-ratio:16/9}.media.vertical{aspect-ratio:9/16;width:160px;max-width:100%;margin:auto}.media img{width:100%;height:100%;object-fit:cover;display:block}.media .label{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.65);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:950}
-.avatar-card{background:#FFF9F3;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:14px}.avatar-top{display:flex;gap:12px;align-items:center}.avatar-mini{height:56px;width:56px;border-radius:18px;background:linear-gradient(135deg,#ffb56b,#ff7a00);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff}.avatar-top h3{font-size:15px;font-weight:950;margin-bottom:4px}.avatar-top p{font-size:12px;font-weight:700;color:var(--brown)}
-.control{margin-bottom:14px}.control label{display:block;font-size:12px;font-weight:950;margin-bottom:8px;color:var(--brown)}select,textarea,input{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;outline:none;color:var(--dark);font-size:13px;font-weight:800}textarea{min-height:92px;resize:vertical;line-height:1.5}select:focus,textarea:focus,input:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.1)}
-.toggle-row{display:grid;gap:10px}.toggle-item{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:15px;padding:12px;background:#fff}.toggle-item span{font-size:13px;font-weight:900}.switch{position:relative;width:48px;height:28px;display:inline-block;flex:0 0 auto}.switch input{display:none}.slider{position:absolute;inset:0;background:var(--line);border-radius:999px;transition:.25s}.slider:before{content:"";position:absolute;height:22px;width:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 4px 10px rgba(74,14,14,.18)}.switch input:checked+.slider{background:var(--orange)}.switch input:checked+.slider:before{transform:translateX(20px)}
+.lower{position:absolute;left:18px;bottom:18px;background:rgba(0,0,0,.58);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:18px;padding:13px 15px;backdrop-filter:blur(8px);max-width:70%}
+.lower strong{display:block;font-size:17px;font-weight:950;margin-bottom:4px}.lower span{font-size:12px;font-weight:700;color:#ffe2c6}
+.avatar-bubble{position:absolute;right:18px;bottom:18px;width:132px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:10px;text-align:center;backdrop-filter:blur(10px);color:#fff}
+.avatar-face{height:82px;border-radius:18px;overflow:hidden;background:#fff;margin-bottom:8px}
+.avatar-face img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar-bubble b{font-size:12px}.avatar-bubble small{display:block;font-size:10px;color:#ffe2c6;font-weight:800;margin-top:2px}
+.avatar-card{background:#FFF9F3;border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:14px}
+.avatar-top{display:flex;gap:12px;align-items:center}
+.avatar-mini{height:62px;width:62px;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line);flex:0 0 auto}
+.avatar-mini img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar-top h3{font-size:15px;font-weight:950;margin-bottom:4px}.avatar-top p{font-size:12px;font-weight:700;color:var(--brown)}
+.preview-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.primary-btn{background:var(--orange);color:#fff;border-radius:14px;padding:13px 17px;font-size:14px;font-weight:950;display:inline-flex;align-items:center;gap:8px;transition:.22s}
+.primary-btn:hover{background:var(--orange2);transform:scale(1.025);box-shadow:0 12px 28px rgba(255,122,0,.22)}
+.secondary-btn{border:1px solid var(--line);background:#fff;color:var(--dark);border-radius:14px;padding:12px 15px;font-size:13px;font-weight:950;display:inline-flex;align-items:center;gap:8px}.secondary-btn:hover{background:var(--soft)}
+.result-box{margin-top:18px;background:var(--cream);border:1px solid var(--line);border-radius:20px;padding:14px;max-height:360px;overflow:auto}
+.empty{text-align:center;color:var(--brown);font-weight:800;padding:26px 8px}.empty i{display:block;font-size:34px;color:var(--orange);margin-bottom:10px}
+.msg{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin-bottom:12px;animation:pop .22s ease both}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg-top{display:flex;justify-content:space-between;gap:10px;margin-bottom:9px}.msg-title{font-size:14px;font-weight:950}.msg-time{font-size:11px;font-weight:800;color:var(--brown)}
+.text-result{background:#FFF9F3;border:1px solid var(--line);border-radius:13px;padding:12px;font-size:13px;font-weight:750;color:var(--dark);line-height:1.55}
+.media{border-radius:14px;overflow:hidden;background:#200606;border:1px solid var(--line);position:relative}.media.wide{aspect-ratio:16/9}.media.vertical{aspect-ratio:9/16;width:160px;max-width:100%;margin:auto}
+.media img{width:100%;height:100%;object-fit:cover;display:block}.media .label{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.65);color:#fff;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:950}
+.control{margin-bottom:14px}.control label{display:block;font-size:12px;font-weight:950;margin-bottom:8px;color:var(--brown)}
+select,textarea,input{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px;outline:none;color:var(--dark);font-size:13px;font-weight:800}
+textarea{min-height:92px;resize:vertical;line-height:1.5}
+select:focus,textarea:focus,input:focus{border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,122,0,.1)}
+.toggle-row{display:grid;gap:10px}.toggle-item{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:15px;padding:12px;background:#fff}.toggle-item span{font-size:13px;font-weight:900}
+.switch{position:relative;width:48px;height:28px;display:inline-block;flex:0 0 auto}.switch input{display:none}
+.slider{position:absolute;inset:0;background:var(--line);border-radius:999px;transition:.25s}
+.slider:before{content:"";position:absolute;height:22px;width:22px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 4px 10px rgba(74,14,14,.18)}
+.switch input:checked+.slider{background:var(--orange)}.switch input:checked+.slider:before{transform:translateX(20px)}
 .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--deep);color:#fff;padding:12px 18px;border-radius:999px;font-weight:950;display:none;z-index:50}.toast.show{display:block}
 @media(max-width:1180px){.grid{grid-template-columns:1fr}.topbar{flex-direction:column}.wallet{white-space:normal}.preview-wrap{padding:20px}.lower{max-width:62%}}
-@media(max-width:640px){.page{padding:16px}.title h1{font-size:30px}.preview-actions{display:grid}.avatar-bubble{width:92px}.avatar-face{height:62px;font-size:32px}.score{display:none}.lower{max-width:68%;padding:10px}.lower strong{font-size:14px}.grid{gap:16px}}
+@media(max-width:640px){.page{padding:16px}.title h1{font-size:30px}.preview-actions{display:grid}.avatar-bubble{width:100px}.avatar-face{height:66px}.score{display:none}.lower{max-width:68%;padding:10px}.lower strong{font-size:14px}.grid{gap:16px}}
 </style>
 </head>
 <body>
 <div class="page">
   <a href="ai-studio.html" class="back"><i class="fa-solid fa-arrow-left"></i> Back to AI Studio</a>
+
   <div class="topbar">
     <div class="title">
       <h1>AI Broadcaster</h1>
-      <p>Create a professional live broadcast with AI avatar caster, overlays, thumbnail, title, description, live commentary, highlight moments and shorts-ready clips.</p>
+      <p>Create a professional live broadcast with AI Shoutcaster, overlays, thumbnail, title, description, live commentary, highlight moments and shorts-ready clips.</p>
     </div>
     <div class="wallet"><i class="fa-solid fa-coins"></i> Current Usage: <span id="usedTokens">0</span> Tokens</div>
   </div>
@@ -85,8 +107,9 @@ a{text-decoration:none;color:inherit}button,input,textarea,select{font-family:in
       <div class="upload-box" onclick="uploadVideo()">
         <i class="fa-solid fa-cloud-arrow-up"></i>
         <strong id="uploadTitle">Upload Video / Stream Clip</strong>
-        <span id="uploadText">Use this source for overlays, avatar commentary and highlights.</span>
+        <span id="uploadText">Use this source for overlays, AI Shoutcaster commentary and highlights.</span>
       </div>
+
       <div class="tool-grid">
         <div class="tool-card" onclick="generate('thumbnail')"><div class="tool-icon"><i class="fa-regular fa-image"></i></div><div><h3>Thumbnail 16:9</h3><p>Generate a clickable livestream thumbnail.</p><span class="cost">10 Tokens</span></div></div>
         <div class="tool-card" onclick="generate('overlay')"><div class="tool-icon"><i class="fa-solid fa-layer-group"></i></div><div><h3>Multiple Overlay Pack</h3><p>Scoreboard, lower-third, brand frame and live badges.</p><span class="cost">10 Tokens</span></div></div>
@@ -99,7 +122,7 @@ a{text-decoration:none;color:inherit}button,input,textarea,select{font-family:in
 
     <div class="panel preview-wrap">
       <h2>Live Preview</h2>
-      <p class="desc">AI caster, overlays and generated assets appear here like a production studio preview.</p>
+      <p class="desc">AI Shoutcaster, overlays and generated assets appear here like a production studio preview.</p>
       <div class="live-preview" id="preview">
         <img class="bg" src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif" alt="preview">
         <div class="shade"></div>
@@ -107,60 +130,191 @@ a{text-decoration:none;color:inherit}button,input,textarea,select{font-family:in
         <div class="viewer"><i class="fa-solid fa-eye"></i> 24.8K Watching</div>
         <div class="score" id="scoreOverlay">TEAM A 18 : 16 TEAM B</div>
         <div class="lower" id="lowerOverlay"><strong>JioVibe AI Broadcast</strong><span>Auto commentary + overlays active</span></div>
-        <div class="avatar-bubble" id="avatarBubble"><div class="avatar-face"><i class="fa-solid fa-user-astronaut"></i></div><b>AI Caster</b><small>Hype Mode</small></div>
+        <div class="avatar-bubble" id="avatarBubble">
+          <div class="avatar-face">
+            <img src="https://mangoanimate.com/blog/wp-content/uploads/2024/08/AI-talking-avatar.gif" alt="AI Shoutcaster">
+          </div>
+          <b>AI Shoutcaster</b>
+          <small>Hype Mode</small>
+        </div>
       </div>
+
       <div class="preview-actions">
         <button class="primary-btn" onclick="generate('commentary')"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate Commentary • 10 Tokens</button>
         <button class="secondary-btn" onclick="generate('script')"><i class="fa-solid fa-scroll"></i> Script • 10 Tokens</button>
         <button class="secondary-btn" onclick="goLive()"><i class="fa-solid fa-tower-broadcast"></i> Start Fake Live</button>
       </div>
-      <div class="result-box" id="results"><div class="empty" id="emptyState"><i class="fa-solid fa-sparkles"></i>AI Results will appear here. Every button gives one clean output.</div></div>
+
+      <div class="result-box" id="results">
+        <div class="empty" id="emptyState"><i class="fa-solid fa-sparkles"></i>AI Results will appear here. Every button gives one clean output.</div>
+      </div>
     </div>
 
     <div class="panel">
-      <h2>AI Avatar Caster</h2>
-      <p class="desc">Choose avatar style, voice tone and language for auto commentary.</p>
-      <div class="avatar-card"><div class="avatar-top"><div class="avatar-mini"><i class="fa-solid fa-user-astronaut"></i></div><div><h3>Riya AI Caster</h3><p>Virtual host for gaming, sports, news and podcast streams.</p></div></div></div>
-      <div class="control"><label>Avatar Style</label><select id="avatarStyle" onchange="updateAvatar()"><option>Gamer Caster</option><option>News Anchor</option><option>Sports Commentator</option><option>Podcast Host</option></select></div>
-      <div class="control"><label>Voice Tone</label><select id="voiceTone" onchange="updateAvatar()"><option>Hype Mode</option><option>Funny Hinglish</option><option>Professional</option><option>Emotional</option></select></div>
-      <div class="control"><label>Language Output</label><select id="language"><option>Hinglish</option><option>Hindi</option><option>English</option><option>Marathi</option><option>Tamil</option></select></div>
-      <div class="control"><label>AI Prompt / Caster Direction</label><textarea id="casterPrompt">Make the commentary energetic, creator-style, and explain every big moment like a professional esports caster.</textarea></div>
+      <h2>AI Shoutcaster</h2>
+      <p class="desc">Choose AI Shoutcaster style, voice tone and language for auto commentary.</p>
+
+      <div class="avatar-card">
+        <div class="avatar-top">
+          <div class="avatar-mini">
+            <img src="https://mangoanimate.com/blog/wp-content/uploads/2024/08/AI-talking-avatar.gif" alt="AI Shoutcaster">
+          </div>
+          <div>
+            <h3>Riya AI Shoutcaster</h3>
+            <p>Virtual host for gaming, sports, news and podcast streams.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="control">
+        <label>Shoutcaster Style</label>
+        <select id="avatarStyle" onchange="updateAvatar()">
+          <option>AI Shoutcaster</option>
+          <option>Gamer Shoutcaster</option>
+          <option>News Anchor</option>
+          <option>Sports Commentator</option>
+          <option>Podcast Host</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label>Voice Tone</label>
+        <select id="voiceTone" onchange="updateAvatar()">
+          <option>Hype Mode</option>
+          <option>Funny Hinglish</option>
+          <option>Professional</option>
+          <option>Emotional</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label>Language Output</label>
+        <select id="language">
+          <option>Hinglish</option>
+          <option>Hindi</option>
+          <option>English</option>
+          <option>Marathi</option>
+          <option>Tamil</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <label>AI Prompt / Shoutcaster Direction</label>
+        <textarea id="casterPrompt">Make the commentary energetic, creator-style, and explain every big moment like a professional esports shoutcaster.</textarea>
+      </div>
+
       <div class="toggle-row">
         <div class="toggle-item"><span>Auto Commentary</span><label class="switch"><input type="checkbox" checked onchange="toggleOverlay('commentary',this.checked)"><span class="slider"></span></label></div>
         <div class="toggle-item"><span>Scoreboard Overlay</span><label class="switch"><input type="checkbox" checked onchange="toggleOverlay('score',this.checked)"><span class="slider"></span></label></div>
         <div class="toggle-item"><span>Lower Third</span><label class="switch"><input type="checkbox" checked onchange="toggleOverlay('lower',this.checked)"><span class="slider"></span></label></div>
-        <div class="toggle-item"><span>AI Avatar Visible</span><label class="switch"><input type="checkbox" checked onchange="toggleOverlay('avatar',this.checked)"><span class="slider"></span></label></div>
+        <div class="toggle-item"><span>AI Shoutcaster Visible</span><label class="switch"><input type="checkbox" checked onchange="toggleOverlay('avatar',this.checked)"><span class="slider"></span></label></div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="toast" id="toast">Done</div>
+
 <script>
 let usedTokens=0;
 let currentMode='Gaming';
+
 const imgWide='https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/GIF%20Total%20Gaming.gif';
 const imgThumb='https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg';
-function timeNow(){return new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});}
-function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1600)}
-function updateTokens(v){usedTokens+=v;document.getElementById('usedTokens').innerText=usedTokens;}
-function clearEmpty(){const e=document.getElementById('emptyState');if(e)e.remove();}
-function addResult(html){clearEmpty();const box=document.getElementById('results');const div=document.createElement('div');div.className='msg';div.innerHTML=html;box.prepend(div);}
-function setMode(btn,mode){currentMode=mode;document.querySelectorAll('.mode-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('lowerOverlay').innerHTML=`<strong>${mode} Broadcast Mode</strong><span>AI caster optimized for ${mode.toLowerCase()} content</span>`;toast(mode+' mode selected');}
-function uploadVideo(){document.getElementById('uploadTitle').innerText='Video Uploaded Successfully';document.getElementById('uploadText').innerText='Source ready for AI broadcast tools.';addResult(`<div class="msg-top"><div class="msg-title">Video Uploaded</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">Source clip is ready. You can now generate thumbnail, overlays, title, description, avatar commentary, highlight and shorts.</div>`);}
-function goLive(){document.querySelector('.viewer').innerHTML='<i class="fa-solid fa-eye"></i> 31.2K Watching';toast('Fake live started');addResult(`<div class="msg-top"><div class="msg-title">Broadcast Started</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">Your fake JioVibe AI broadcast is live with avatar caster, scoreboard overlay and lower-third branding.</div>`);}
-function updateAvatar(){const style=document.getElementById('avatarStyle').value;const tone=document.getElementById('voiceTone').value;document.querySelector('#avatarBubble b').innerText=style;document.querySelector('#avatarBubble small').innerText=tone;}
-function toggleOverlay(type,on){if(type==='score')document.getElementById('scoreOverlay').style.display=on?'block':'none';if(type==='lower')document.getElementById('lowerOverlay').style.display=on?'block':'none';if(type==='avatar')document.getElementById('avatarBubble').style.display=on?'block':'none';if(type==='commentary')toast(on?'Auto commentary on':'Auto commentary off');}
-function generate(type){updateTokens(10);toast('10 tokens used');setTimeout(()=>addResult(buildResult(type)),450);}
+
+function timeNow(){
+  return new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+}
+
+function toast(t){
+  const el=document.getElementById('toast');
+  el.textContent=t;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),1600);
+}
+
+function updateTokens(v){
+  usedTokens+=v;
+  document.getElementById('usedTokens').innerText=usedTokens;
+}
+
+function clearEmpty(){
+  const e=document.getElementById('emptyState');
+  if(e)e.remove();
+}
+
+function addResult(html){
+  clearEmpty();
+  const box=document.getElementById('results');
+  const div=document.createElement('div');
+  div.className='msg';
+  div.innerHTML=html;
+  box.prepend(div);
+}
+
+function setMode(btn,mode){
+  currentMode=mode;
+  document.querySelectorAll('.mode-pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('lowerOverlay').innerHTML=`<strong>${mode} Broadcast Mode</strong><span>AI Shoutcaster optimized for ${mode.toLowerCase()} content</span>`;
+  toast(mode+' mode selected');
+}
+
+function uploadVideo(){
+  document.getElementById('uploadTitle').innerText='Video Uploaded Successfully';
+  document.getElementById('uploadText').innerText='Source ready for AI broadcast tools.';
+  addResult(`<div class="msg-top"><div class="msg-title">Video Uploaded</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">Source clip is ready. You can now generate thumbnail, overlays, title, description, AI Shoutcaster commentary, highlight and shorts.</div>`);
+}
+
+function goLive(){
+  document.querySelector('.viewer').innerHTML='<i class="fa-solid fa-eye"></i> 31.2K Watching';
+  toast('Fake live started');
+  addResult(`<div class="msg-top"><div class="msg-title">Broadcast Started</div><div class="msg-time">${timeNow()}</div></div><div class="text-result">Your fake JioVibe AI broadcast is live with AI Shoutcaster, scoreboard overlay and lower-third branding.</div>`);
+}
+
+function updateAvatar(){
+  const style=document.getElementById('avatarStyle').value;
+  const tone=document.getElementById('voiceTone').value;
+  document.querySelector('#avatarBubble b').innerText=style;
+  document.querySelector('#avatarBubble small').innerText=tone;
+}
+
+function toggleOverlay(type,on){
+  if(type==='score')document.getElementById('scoreOverlay').style.display=on?'block':'none';
+  if(type==='lower')document.getElementById('lowerOverlay').style.display=on?'block':'none';
+  if(type==='avatar')document.getElementById('avatarBubble').style.display=on?'block':'none';
+  if(type==='commentary')toast(on?'Auto commentary on':'Auto commentary off');
+}
+
+function generate(type){
+  updateTokens(10);
+  toast('10 tokens used');
+  setTimeout(()=>addResult(buildResult(type)),450);
+}
+
 function buildResult(type){
  const top=(title)=>`<div class="msg-top"><div class="msg-title">${title}</div><div class="msg-time">${timeNow()}</div></div>`;
+
  if(type==='thumbnail')return `${top('Thumbnail Generated')}<div class="media wide"><img src="${imgThumb}"><div class="label">Thumbnail • 16:9</div></div><div class="text-result">High contrast thumbnail with creator face, orange glow, bold text and live broadcast energy.</div>`;
+
  if(type==='overlay')return `${top('Overlay Pack Generated')}<div class="text-result"><b>Overlay Pack:</b><br>1. Live badge overlay<br>2. Scoreboard bar<br>3. Lower-third creator title<br>4. Super Support shoutout frame<br>5. Brand-safe orange JioVibe frame</div>`;
- if(type==='title')return `${top('Title Generated')}<div class="text-result">🔥 ${currentMode} Live: AI Caster Reacts to the Biggest Moments!</div>`;
- if(type==='description')return `${top('Description Generated')}<div class="text-result">Watch this ${currentMode.toLowerCase()} broadcast powered by JioVibe AI Broadcaster. This stream includes AI avatar commentary, live overlays, smart highlights, creator shoutouts and real-time engagement moments. #JioVibe #AIBroadcaster #LiveStream</div>`;
+
+ if(type==='title')return `${top('Title Generated')}<div class="text-result">🔥 ${currentMode} Live: AI Shoutcaster Reacts to the Biggest Moments!</div>`;
+
+ if(type==='description')return `${top('Description Generated')}<div class="text-result">Watch this ${currentMode.toLowerCase()} broadcast powered by JioVibe AI Broadcaster. This stream includes AI Shoutcaster commentary, live overlays, smart highlights, creator shoutouts and real-time engagement moments. #JioVibe #AIBroadcaster #AIShoutcaster #LiveStream</div>`;
+
  if(type==='highlight')return `${top('Smart Highlight Generated')}<div class="media wide"><img src="${imgWide}"><div class="label">Highlight • 16:9</div></div><div class="text-result">AI detected the most exciting moment and created a 16:9 replay-ready highlight.</div>`;
+
  if(type==='shorts')return `${top('Live to Shorts Generated')}<div class="media vertical"><img src="${imgWide}"><div class="label">Shorts • 9:16</div></div><div class="text-result">Vertical short created with hook-first crop, captions space and fast creator-style pacing.</div>`;
- if(type==='commentary'){const tone=document.getElementById('voiceTone').value;const lang=document.getElementById('language').value;return `${top('AI Commentary Generated')}<div class="text-result">${lang} • ${tone}: “What a moment! Ye play pure match ka turning point ho sakta hai. Crowd energy high hai aur creator ne timing perfectly catch kiya!”</div>`;}
- if(type==='script')return `${top('Live Script Generated')}<div class="text-result"><b>Intro:</b> Welcome to JioVibe Live! Aaj ka broadcast AI caster ke saath next level hone wala hai.<br><br><b>Mid CTA:</b> Agar moment pasand aaye to Super Support bhejo aur apna shoutout live screen pe lao.<br><br><b>Outro:</b> Follow karo for more AI-powered live moments.</div>`;
+
+ if(type==='commentary'){
+  const tone=document.getElementById('voiceTone').value;
+  const lang=document.getElementById('language').value;
+  return `${top('AI Shoutcaster Commentary Generated')}<div class="text-result">${lang} • ${tone}: “What a moment! Ye play pure match ka turning point ho sakta hai. Crowd energy high hai aur creator ne timing perfectly catch kiya!”</div>`;
+ }
+
+ if(type==='script')return `${top('Live Script Generated')}<div class="text-result"><b>Intro:</b> Welcome to JioVibe Live! Aaj ka broadcast AI Shoutcaster ke saath next level hone wala hai.<br><br><b>Mid CTA:</b> Agar moment pasand aaye to Super Support bhejo aur apna shoutout live screen pe lao.<br><br><b>Outro:</b> Follow karo for more AI-powered live moments.</div>`;
+
  return `${top('Generated')}<div class="text-result">AI output created successfully.</div>`;
 }
 </script>
