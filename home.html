@@ -852,6 +852,252 @@ width:min(1380px,96vw);max-height:92vh;background:var(--cream);border:1px solid 
 @media(max-width:1200px){.ob-login-wrap{grid-template-columns:1fr}.ob-login-left{min-height:430px}.ob-ai-shell{grid-template-columns:1fr}.ob-lang-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:720px){.onboarding-popup-bg{padding:0}.onboarding-popup{width:100vw;max-height:100vh;height:100vh;border-radius:0}.ob-screen{max-height:100vh}.ob-login-wrap{min-height:100vh}.ob-login-left{padding:28px;min-height:360px}.ob-login-hero{left:28px;right:28px}.ob-title{font-size:36px}.ob-lang-grid{grid-template-columns:1fr}.ob-h1{font-size:32px}.ob-ai-shell .category-select-grid{grid-template-columns:repeat(2,1fr)}.ob-top,.ob-page{padding-left:18px;padding-right:18px}.ob-progress{margin-left:18px;margin-right:18px}}
 
+
+
+/* ================= COLOR THEME UPDATE - BROWN PAGE BACKGROUND =================
+   Notes:
+   - Green story rings unchanged
+   - Orange logo and orange buttons unchanged
+   - Full page / sidebar / topbar / content use same warm brown-beige background
+   - See More + channel names updated
+   - Light-orange hover states converted to brown
+========================================================================== */
+:root{
+  --cream:#F3E5D4;
+  --soft:#E7C7A6;
+  --line:#C9966B;
+  --orange:#FF7A00;
+  --orange2:#E65100;
+  --rust:#D73700;
+  --brown:#6B341E;
+  --dark:#3A170C;
+  --deep:#1F0B05;
+  --muted:#87533A;
+}
+html,body,
+.app,
+.main,
+.content,
+.sidebar,
+.topbar,
+.channel-viewer-bg,
+.channel-viewer-main,
+.home-watch-overlay,
+.home-watch-frame{
+  background:#F3E5D4!important;
+}
+.sidebar,
+.topbar,
+.channel-backbar{
+  border-color:#C9966B!important;
+}
+.logo-circle,
+.ob-logo .logo-circle{
+  background:#FF7A00!important;
+  color:#fff!important;
+}
+.logo-text,
+.ob-logo .logo-text{
+  color:#3A170C!important;
+}
+/* Cards stay readable but now match the brown family */
+.panel,
+.ai-vibe-shell,
+.vibe-results,
+.creator-stories-section,
+.video-card,
+.player-card,
+.short-card,
+.category-btn,
+.search,
+.dropdown,
+.ai-promo-box,
+.story-shop-side-head,
+.story-shop-product,
+.story-right-panel,
+.story-actions,
+.story-public-comment,
+.channel-video-card,
+.channel-short-card,
+.channel-post-card,
+.channel-playlist-card{
+  background:#FFF8F0!important;
+  border-color:#C9966B!important;
+}
+.search input,
+.ai-input,
+.story-public-comment input{
+  background:#FFF8F0!important;
+  color:#3A170C!important;
+}
+/* See More / section links new brown color */
+.see-link,
+.creator-stories-head a,
+.channel-section-head button,
+.story-public-comment button,
+.channel-link{
+  color:#8B3A16!important;
+}
+.see-link:hover,
+.creator-stories-head a:hover,
+.channel-section-head button:hover,
+.story-public-comment button:hover,
+.channel-link:hover{
+  color:#4B1D0E!important;
+}
+/* All channel / creator names new brown shade */
+.channel-name,
+.video-info .channel-name,
+.video-info .creator-name-link,
+.creator-name-link,
+.story-person span,
+.sidebar-sub-item span,
+.player-meta,
+.video-meta,
+.channel-video-meta,
+.channel-short-meta{
+  color:#6B341E!important;
+}
+.video-info .creator-name-link:hover,
+.creator-name-link:hover,
+.story-person span:hover,
+.sidebar-sub-item:hover span{
+  color:#3A170C!important;
+}
+/* Convert light-orange hover backgrounds to brown hover */
+.menu-item:hover,
+.category-btn:hover,
+.dropdown a:hover,
+.profile:hover,
+.mood-chip:hover,
+.suggest-item:hover,
+.change-vibe:hover,
+.rail-action:hover,
+.video-card:hover,
+.sidebar-sub-item:hover,
+.sidebar-sub-more:hover,
+.channel-tab-btn:hover,
+.channel-secondary-btn:hover,
+.story-shop-product:hover{
+  background:#6B341E!important;
+  color:#FFFFFF!important;
+  border-color:#6B341E!important;
+  box-shadow:0 14px 32px rgba(74,29,14,.28)!important;
+}
+.menu-item:hover i,
+.category-btn:hover i,
+.sidebar-sub-more:hover i,
+.dropdown a:hover,
+.profile:hover span,
+.suggest-item:hover,
+.change-vibe:hover{
+  color:#FFFFFF!important;
+}
+/* Keep active buttons and orange action buttons orange */
+.menu-item.active,
+.category-btn.active,
+.watch-btn,
+.ask-btn,
+.inline-action,
+.selection-note,
+.ai-promo-go,
+.change-vibe.active,
+.channel-primary-btn,
+.channel-back-btn,
+.story-subscribe-btn,
+.wallet-icon:hover,
+.ob-primary,
+.ob-skip:hover{
+  background:#FF7A00!important;
+  color:#FFFFFF!important;
+  border-color:#FF7A00!important;
+}
+.wallet-icon{
+  background:#FFF8F0!important;
+  color:#FF7A00!important;
+  border-color:#C9966B!important;
+}
+/* Keep green story circles untouched */
+.story-ring,
+.creator-logo.story-ring,
+.creator-img.story-ring,
+.channel-avatar.story-ring,
+.story-person .story-avatar-btn{
+  border-color:#20C45A!important;
+}
+.story-person .story-avatar-btn,
+.story-ring{
+  background:linear-gradient(135deg,#20C45A,#8DFFB2)!important;
+}
+/* Scrollbars now brown except where orange buttons are used */
+.categories,
+.rail,
+.creator-stories-row{
+  scrollbar-color:#6B341E transparent!important;
+}
+.categories::-webkit-scrollbar-thumb,
+.rail::-webkit-scrollbar-thumb,
+.creator-stories-row::-webkit-scrollbar-thumb{
+  background:#6B341E!important;
+}
+
+
+
+/* FINAL FIX: video card hover text readable on brown */
+.video-card:hover .video-info,
+.player-card:hover .player-info{
+  background:#4B1D0E!important;
+}
+.video-card:hover .video-title,
+.video-card:hover .channel-name,
+.video-card:hover .channel-name span,
+.video-card:hover .creator-name-link,
+.video-card:hover .video-meta,
+.player-card:hover .player-title,
+.player-card:hover .player-meta{
+  color:#FFFFFF!important;
+  opacity:1!important;
+  text-shadow:0 2px 8px rgba(0,0,0,.35)!important;
+}
+.video-card:hover .creator-img,
+.video-card:hover .creator-img.story-ring{
+  border-color:#20C45A!important;
+  box-shadow:0 0 0 4px rgba(32,196,90,.22),0 10px 24px rgba(0,0,0,.20)!important;
+}
+.video-card:hover .video-info .channel-name,
+.video-card:hover .video-info .creator-name-link{
+  color:#FFE9D6!important;
+}
+
+/* TOP CREATOR STORIES ONLY CIRCLES */
+.creator-stories-section.top-stories-only{
+  margin:0 0 24px!important;
+  padding:16px 22px!important;
+  border-radius:24px!important;
+  background:#FFF8F0!important;
+  border:1px solid #C9966B!important;
+}
+.top-stories-only .creator-stories-head{display:none!important;}
+.top-stories-only .creator-stories-row{
+  gap:34px!important;
+  padding:2px 4px 8px!important;
+}
+.top-stories-only .story-person{
+  min-width:96px!important;
+  gap:0!important;
+}
+.top-stories-only .story-person span{display:none!important;}
+.top-stories-only .story-avatar-btn{
+  width:92px!important;
+  height:92px!important;
+}
+@media(max-width:700px){
+  .creator-stories-section.top-stories-only{padding:14px!important;margin-bottom:18px!important;}
+  .top-stories-only .creator-stories-row{gap:18px!important;}
+  .top-stories-only .story-person{min-width:70px!important;}
+  .top-stories-only .story-avatar-btn{width:66px!important;height:66px!important;}
+}
+
 </style>
 </head>
 <body>
@@ -879,6 +1125,21 @@ width:min(1380px,96vw);max-height:92vh;background:var(--cream);border:1px solid 
 <main class="main">
 <header class="topbar"><div class="search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" placeholder="Search creators, videos, topics..." /></div><div class="top-actions"><button class="wallet-icon" onclick="location.href='Wallet_s.html'" title="Wallet"><i class="fa-solid fa-wallet"></i></button><div class="bell"><i class="fa-regular fa-bell"></i></div><div class="profile" onclick="toggleDropdown()"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg"><span>Trupti Latur</span><i class="fa-solid fa-chevron-down"></i></div><div class="dropdown" id="dropdown"><a href="home.html">Home</a><a href="index.html">Dashboard</a><a href="logout.html">Sign out</a></div></div></header>
 <section class="content">
+<div class="creator-stories-section top-stories-only">
+<div class="creator-stories-row">
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Ranveer Singh')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg"></button></div>
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Ashish Chanchlani')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg"></button></div>
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Narendra Modi')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Narendra%20Modi.jpeg"></button></div>
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Rohit Sharma')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg"></button></div>
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Total Gaming')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg"></button></div>
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Arijit Singh')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Arijit%20Singh.jpg"></button></div>
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Technical Guruji')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg"></button></div>
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Khan Sir')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg"></button></div>
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Flying Beast')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.png"></button></div>
+<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Trupti Latur')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg"></button></div>
+</div>
+</div>
+
 <div class="categories">
 <button class="category-btn active"><i class="fa-solid fa-border-all"></i> All</button><a href="gaming.html" class="category-btn"><i class="fa-solid fa-gamepad"></i> Gaming</a><a href="music.html" class="category-btn"><i class="fa-solid fa-music"></i> Music</a><a href="comedy.html" class="category-btn"><i class="fa-regular fa-face-smile"></i> Comedy</a><a href="tech.html" class="category-btn"><i class="fa-solid fa-microchip"></i> Tech</a><a href="education.html" class="category-btn"><i class="fa-solid fa-graduation-cap"></i> Education</a><a href="lifestyle.html" class="category-btn"><i class="fa-solid fa-mug-hot"></i> Lifestyle</a><a href="movies.html" class="category-btn"><i class="fa-solid fa-clapperboard"></i> Movies</a><a href="sports.html" class="category-btn"><i class="fa-solid fa-trophy"></i> Sports</a><a href="news.html" class="category-btn"><i class="fa-solid fa-newspaper"></i> News</a><a href="food.html" class="category-btn"><i class="fa-solid fa-utensils"></i> Food</a><a href="travel.html" class="category-btn"><i class="fa-solid fa-plane"></i> Travel</a><a href="fitness.html" class="category-btn"><i class="fa-solid fa-dumbbell"></i> Fitness</a>
 </div>
@@ -886,27 +1147,6 @@ width:min(1380px,96vw);max-height:92vh;background:var(--cream);border:1px solid 
 <section class="vibe-results" id="vibeResults"><div class="results-head"><div><div class="kicker"><i class="fa-solid fa-sliders"></i> Personalized Feed</div><h2 id="resultTitle">Content Matching Your Vibe</h2><p id="resultSub">Side scroll videos and shorts matched with your selected categories.</p></div><button class="change-vibe" onclick="openOnboardingVibeOnly()"><i class="fa-solid fa-sliders"></i> Change Vibe</button></div><div class="rail-block"><h3 class="rail-title">Videos & Live Streams Matching Your Vibe</h3><div class="rail-wrap" id="videoRailWrap"><button class="rail-action left" onclick="scrollRail('videoRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="videoRail"></div><button class="rail-action right" onclick="scrollRail('videoRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more videos.</div></div><div class="rail-block"><h3 class="rail-title">Shorts Matching Your Vibe</h3><div class="rail-wrap"><button class="rail-action left" onclick="scrollRail('shortsRail',-1)"><i class="fa-solid fa-chevron-left"></i></button><div class="rail" id="shortsRail"></div><button class="rail-action right" onclick="scrollRail('shortsRail',1)"><i class="fa-solid fa-chevron-right"></i></button></div><div class="rail-hint">Scroll side-wise to see more shorts.</div></div></section>
 <div class="banner-wrap"><div class="banner-track" id="bannerTrack"><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Creator Story</div><h1>Creator Spotlight</h1><p>Meet new creators and their powerful stories.</p><a href="watch-featured.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Live Now</div><h1>Big Live Moments</h1><p>Watch creators going live with trending events.</p><a href="watch-live.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div><div class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop');"><div class="banner-content"><div class="banner-label">Gaming</div><h1>Gaming Highlights</h1><p>Explore fresh gaming clips, live streams and shorts.</p><a href="gaming.html" class="watch-btn"><i class="fa-solid fa-play"></i> Watch Now</a></div></div></div><div class="banner-dots" id="bannerDots"><span class="active" onclick="goToSlide(0)"></span><span onclick="goToSlide(1)"></span><span onclick="goToSlide(2)"></span></div></div>
 <section><div class="section-head"><h2>Trending Now 🔥</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="trendingGrid"></div></section><div class="section-separator"></div><section><div class="section-head"><h2>Recommended for You ✨</h2><button class="see-link">See more <i class="fa-solid fa-chevron-right"></i></button></div><div class="video-grid" id="recommendedGrid"></div></section>
-<div class="creator-stories-section">
-<div class="creator-stories-head">
-<div>
-<h2>Creator Stories</h2>
-<p>Green ring wale creator par tap karo to same page story open hogi. Name par tap karo to channel open hoga.</p>
-</div>
-<a href="explore.html">View all <i class="fa-solid fa-chevron-right"></i></a>
-</div>
-<div class="creator-stories-row">
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Ranveer Singh')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ranveer%20Singh.jpg"></button><span onclick="openChannel('Ranveer Singh')">Ranveer</span></div>
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Ashish Chanchlani')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Ashish%20Chanchlani.jpg"></button><span onclick="openChannel('Ashish Chanchlani')">Ashish</span></div>
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Narendra Modi')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Narendra%20Modi.jpeg"></button><span onclick="openChannel('Narendra Modi')">Narendra</span></div>
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Rohit Sharma')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Rohit%20Sharma.jpg"></button><span onclick="openChannel('Rohit Sharma')">Rohit</span></div>
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Total Gaming')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Total%20Gaming.jpg"></button><span onclick="openChannel('Total Gaming')">Total Gaming</span></div>
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Arijit Singh')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Arijit%20Singh.jpg"></button><span onclick="openChannel('Arijit Singh')">Arijit</span></div>
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Technical Guruji')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Technical%20Guruji.jpg"></button><span onclick="openChannel('Technical Guruji')">Technical</span></div>
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Khan Sir')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Khan%20Sir.jpg"></button><span onclick="openChannel('Khan Sir')">Khan Sir</span></div>
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Flying Beast')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/PP%20Flying%20Beast.png"></button><span onclick="openChannel('Flying Beast')">Flying Beast</span></div>
-<div class="story-person"><button class="story-avatar-btn" onclick="openStory('Trupti Latur')" title="Open story"><img src="https://raw.githubusercontent.com/iklapikla/jiovibe-Studio/refs/heads/main/Trupti.jpeg"></button><span onclick="openChannel('Trupti Latur')">Trupti</span></div>
-</div>
-</div>
 
 </section>
 </main>
