@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>JioVibe Home Onboarding Demo</title>
+<title>Vibe Home Onboarding Demo</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -1386,7 +1386,7 @@ body{
 <body>
 <div class="app">
 <aside class="sidebar">
-<a href="home.html" class="logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></a>
+<a href="home.html" class="logo"><div class="logo-circle"></div><div class="logo-text">Vibe</div></a>
 <nav class="menu">
 <a href="home.html" class="menu-item active"><i class="fa-solid fa-house"></i> Home</a><a href="explore.html" class="menu-item"><i class="fa-regular fa-compass"></i> Explore</a><a href="live.html" class="menu-item"><i class="fa-solid fa-tower-broadcast"></i> Live</a><a href="video.html" class="menu-item"><i class="fa-regular fa-circle-play"></i> Video</a><a href="shorts.html" class="menu-item"><i class="fa-solid fa-bolt"></i> Shorts</a><a href="subscriptions.html" class="menu-item"><i class="fa-solid fa-list"></i> Subscriptions</a><a href="history.html" class="menu-item"><i class="fa-solid fa-clock"></i> Library</a>
 </nav>
@@ -1495,7 +1495,7 @@ body{
 <div class="story-caption">
 <img id="storyCaptionImg" src="">
 <div>
-<p><strong id="storyCaptionName">Creator</strong> <span id="storyCaptionText">Story update</span><span class="story-tags" id="storyTags">#JioVibe</span></p>
+<p><strong id="storyCaptionName">Creator</strong> <span id="storyCaptionText">Story update</span><span class="story-tags" id="storyTags"></span></p>
 <small id="storyCaptionTime">2 h</small>
 </div>
 </div>
@@ -1526,7 +1526,7 @@ body{
 <div class="channel-viewer-inner">
 <aside class="sidebar">
 <a href="home.html" class="logo">
-<div class="logo-circle">Jio</div>
+<div class="logo-circle"></div>
 <div class="logo-text">Vibe</div>
 </a>
 <nav class="menu">
@@ -1625,17 +1625,17 @@ body{
     <section class="ob-screen active" id="obLoginScreen">
       <div class="ob-login-wrap">
         <div class="ob-login-left">
-          <div class="ob-logo"><div class="logo-circle">Jio</div><div class="logo-text">Vibe</div></div>
+         <div class="ob-logo"><div class="logo-circle"></div><div class="logo-text">Vibe</div></div>
           <div class="ob-login-hero">
             <div class="ob-kicker">Personalized Creator Feed</div>
             <div class="ob-title">Start with your vibe. Land directly on content.</div>
-            <div class="ob-sub">Login first, select your vibe and language, then JioVibe opens Home.</div>
+            <div class="ob-sub">Login first, select your vibe and language, then Vibe opens Home.</div>
           </div>
         </div>
         <div class="ob-login-right">
           <div class="ob-login-card">
-            <div class="ob-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> JioVibe</div>
-            <h1>Welcome to JioVibe</h1>
+            <div class="ob-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Vibe</div>
+            <h1>Welcome to Vibe</h1>
             <p>Continue with your phone number or email. This is a dummy login for the prototype flow.</p>
             <label class="ob-field-label">Phone number or email</label>
             <input class="ob-input" id="obLoginInput" placeholder="Enter phone number or email" />
@@ -1830,7 +1830,7 @@ function processAI(q){
 const l=q.toLowerCase();
 noCount=0;
 if(l.includes('thumbnail')||l.includes('edit')||l.includes('title')||l.includes('shorts from')||l.includes('studio')||l.includes('ai')){
-addBotAction('This looks like a creator tool request. JioVibe AI Studio can help with AI thumbnail, title, video editor, shorts generator and monetization ideas.', ['AI Studio'], 'studio');
+addBotAction('This looks like a creator tool request. Vibe AI Studio can help with AI thumbnail, title, video editor, shorts generator and monetization ideas.', ['AI Studio'], 'studio');
 }
 else if(l.includes('sad')||l.includes('breakup')||l.includes('low')||l.includes('calm')){
 addBotAction('I understand. You can watch soft music and light comedy to refresh your mood. I recommend a Music + Comedy mix.', ['Music','Comedy']);
